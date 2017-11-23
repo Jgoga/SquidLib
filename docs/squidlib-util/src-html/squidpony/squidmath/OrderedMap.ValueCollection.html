@@ -2809,7 +2809,61 @@
 <span class="sourceLineNo">2801</span>        } else<a name="line.2801"></a>
 <span class="sourceLineNo">2802</span>            return null;<a name="line.2802"></a>
 <span class="sourceLineNo">2803</span>    }<a name="line.2803"></a>
-<span class="sourceLineNo">2804</span>}<a name="line.2804"></a>
+<span class="sourceLineNo">2804</span><a name="line.2804"></a>
+<span class="sourceLineNo">2805</span>    /**<a name="line.2805"></a>
+<span class="sourceLineNo">2806</span>     * Makes an OrderedMap (OM) with the given load factor (which should be between 0.1 and 0.9), key and value types<a name="line.2806"></a>
+<span class="sourceLineNo">2807</span>     * inferred from the types of k0 and v0, and considers all remaining parameters key-value pairs, casting the Objects<a name="line.2807"></a>
+<span class="sourceLineNo">2808</span>     * at positions 0, 2, 4... etc. to K and the objects at positions 1, 3, 5... etc. to V. If rest has an odd-number<a name="line.2808"></a>
+<span class="sourceLineNo">2809</span>     * length, then it discards the last item. If any pair of items in rest cannot be cast to the correct type of K or<a name="line.2809"></a>
+<span class="sourceLineNo">2810</span>     * V, then this inserts nothing for that pair. This is similar to the makeOM method in the Maker class, but does not<a name="line.2810"></a>
+<span class="sourceLineNo">2811</span>     * allow setting the load factor (since that extra parameter can muddle how javac figures out which generic types<a name="line.2811"></a>
+<span class="sourceLineNo">2812</span>     * the map should use), nor does it log debug information if a cast fails. The result should be the same otherwise.<a name="line.2812"></a>
+<span class="sourceLineNo">2813</span>     * &lt;br&gt;<a name="line.2813"></a>
+<span class="sourceLineNo">2814</span>     * This is named makeMap to indicate that it expects key and value parameters, unlike a Set or List. This convention<a name="line.2814"></a>
+<span class="sourceLineNo">2815</span>     * may be extended to other data structures that also have static methods for instantiation.<a name="line.2815"></a>
+<span class="sourceLineNo">2816</span>     * @param k0 the first key; used to infer the types of other keys if generic parameters aren't specified.<a name="line.2816"></a>
+<span class="sourceLineNo">2817</span>     * @param v0 the first value; used to infer the types of other values if generic parameters aren't specified.<a name="line.2817"></a>
+<span class="sourceLineNo">2818</span>     * @param rest an array or vararg of keys and values in pairs; should contain alternating K, V, K, V... elements<a name="line.2818"></a>
+<span class="sourceLineNo">2819</span>     * @param &lt;K&gt; the type of keys in the returned OrderedMap; if not specified, will be inferred from k0<a name="line.2819"></a>
+<span class="sourceLineNo">2820</span>     * @param &lt;V&gt; the type of values in the returned OrderedMap; if not specified, will be inferred from v0<a name="line.2820"></a>
+<span class="sourceLineNo">2821</span>     * @return a freshly-made OrderedMap with K keys and V values, using k0, v0, and the contents of rest to fill it<a name="line.2821"></a>
+<span class="sourceLineNo">2822</span>     */<a name="line.2822"></a>
+<span class="sourceLineNo">2823</span>    @SuppressWarnings("unchecked")<a name="line.2823"></a>
+<span class="sourceLineNo">2824</span>    public static &lt;K, V&gt; OrderedMap&lt;K, V&gt; makeMap(K k0, V v0, Object... rest)<a name="line.2824"></a>
+<span class="sourceLineNo">2825</span>    {<a name="line.2825"></a>
+<span class="sourceLineNo">2826</span>        if(rest == null || rest.length == 0)<a name="line.2826"></a>
+<span class="sourceLineNo">2827</span>        {<a name="line.2827"></a>
+<span class="sourceLineNo">2828</span>            OrderedMap&lt;K, V&gt; om = new OrderedMap&lt;&gt;(2);<a name="line.2828"></a>
+<span class="sourceLineNo">2829</span>            om.put(k0, v0);<a name="line.2829"></a>
+<span class="sourceLineNo">2830</span>            return om;<a name="line.2830"></a>
+<span class="sourceLineNo">2831</span>        }<a name="line.2831"></a>
+<span class="sourceLineNo">2832</span>        OrderedMap&lt;K, V&gt; om = new OrderedMap&lt;&gt;(1 + (rest.length &gt;&gt; 1));<a name="line.2832"></a>
+<span class="sourceLineNo">2833</span>        om.put(k0, v0);<a name="line.2833"></a>
+<span class="sourceLineNo">2834</span><a name="line.2834"></a>
+<span class="sourceLineNo">2835</span>        for (int i = 0; i &lt; rest.length - 1; i+=2) {<a name="line.2835"></a>
+<span class="sourceLineNo">2836</span>            try {<a name="line.2836"></a>
+<span class="sourceLineNo">2837</span>                om.put((K) rest[i], (V) rest[i + 1]);<a name="line.2837"></a>
+<span class="sourceLineNo">2838</span>            }catch (ClassCastException ignored) {<a name="line.2838"></a>
+<span class="sourceLineNo">2839</span>            }<a name="line.2839"></a>
+<span class="sourceLineNo">2840</span>        }<a name="line.2840"></a>
+<span class="sourceLineNo">2841</span>        return om;<a name="line.2841"></a>
+<span class="sourceLineNo">2842</span>    }<a name="line.2842"></a>
+<span class="sourceLineNo">2843</span><a name="line.2843"></a>
+<span class="sourceLineNo">2844</span>    /**<a name="line.2844"></a>
+<span class="sourceLineNo">2845</span>     * Makes an empty OrderedMap (OM); needs key and value types to be specified in order to work. For an empty<a name="line.2845"></a>
+<span class="sourceLineNo">2846</span>     * OrderedMap with String keys and Coord values, you could use {@code Maker.&lt;String, Coord&gt;makeOM()}. Using<a name="line.2846"></a>
+<span class="sourceLineNo">2847</span>     * the new keyword is probably just as easy in this case; this method is provided for completeness relative to<a name="line.2847"></a>
+<span class="sourceLineNo">2848</span>     * makeMap() with 2 or more parameters.<a name="line.2848"></a>
+<span class="sourceLineNo">2849</span>     * @param &lt;K&gt; the type of keys in the returned OrderedMap; cannot be inferred and must be specified<a name="line.2849"></a>
+<span class="sourceLineNo">2850</span>     * @param &lt;V&gt; the type of values in the returned OrderedMap; cannot be inferred and must be specified<a name="line.2850"></a>
+<span class="sourceLineNo">2851</span>     * @return an empty OrderedMap with the given key and value types.<a name="line.2851"></a>
+<span class="sourceLineNo">2852</span>     */<a name="line.2852"></a>
+<span class="sourceLineNo">2853</span>    public static &lt;K, V&gt; OrderedMap&lt;K, V&gt; makeMap()<a name="line.2853"></a>
+<span class="sourceLineNo">2854</span>    {<a name="line.2854"></a>
+<span class="sourceLineNo">2855</span>        return new OrderedMap&lt;&gt;();<a name="line.2855"></a>
+<span class="sourceLineNo">2856</span>    }<a name="line.2856"></a>
+<span class="sourceLineNo">2857</span><a name="line.2857"></a>
+<span class="sourceLineNo">2858</span>}<a name="line.2858"></a>
 
 
 

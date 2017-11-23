@@ -1437,89 +1437,96 @@
 <span class="sourceLineNo">1429</span>    }<a name="line.1429"></a>
 <span class="sourceLineNo">1430</span><a name="line.1430"></a>
 <span class="sourceLineNo">1431</span>    /**<a name="line.1431"></a>
-<span class="sourceLineNo">1432</span>     * A constant containing only chars that are reasonably likely to be supported by broad fonts and thus display-able.<a name="line.1432"></a>
-<span class="sourceLineNo">1433</span>     * This assumes the font supports Latin, Greek, and Cyrillic alphabets, with good support for extended Latin (at<a name="line.1433"></a>
-<span class="sourceLineNo">1434</span>     * least for European languages) but not required to be complete enough to support the very large Vietnamese set of<a name="line.1434"></a>
-<span class="sourceLineNo">1435</span>     * extensions to Latin, nor to support any International Phonetic Alphabet (IPA) chars. It also assumes box drawing<a name="line.1435"></a>
-<span class="sourceLineNo">1436</span>     * characters are supported and a handful of common dingbats, such as male and female signs. It does not include<a name="line.1436"></a>
-<span class="sourceLineNo">1437</span>     * the tab, newline, or carriage return characters, since these don't usually make sense on a grid of chars.<a name="line.1437"></a>
-<span class="sourceLineNo">1438</span>     */<a name="line.1438"></a>
-<span class="sourceLineNo">1439</span>    public static final String PERMISSIBLE_CHARS =<a name="line.1439"></a>
-<span class="sourceLineNo">1440</span>            " !\"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmno"+<a name="line.1440"></a>
-<span class="sourceLineNo">1441</span>            "pqrstuvwxyz{|}~¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàá"+<a name="line.1441"></a>
-<span class="sourceLineNo">1442</span>            "âãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİı"+<a name="line.1442"></a>
-<span class="sourceLineNo">1443</span>            "ĴĵĶķĹĺĻļĽľĿŀŁłŃńŅņŇňŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžſƒǺǻǼǽǾǿ"+<a name="line.1443"></a>
-<span class="sourceLineNo">1444</span>            "ȘșȚțȷˆˇˉˋ˘˙˚˛˜˝΄΅Ά·ΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυ"+<a name="line.1444"></a>
-<span class="sourceLineNo">1445</span>            "φχψωϊϋόύώЀЁЂЃЄЅІЇЈЉЊЋЌЍЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхц"+<a name="line.1445"></a>
-<span class="sourceLineNo">1446</span>            "чшщъыьэюяѐёђѓєѕіїјљњћќѝўџѴѵҐґẀẁẂẃẄẅỲỳ–—‘’‚‛“”„†‡•…‰‹›ⁿ₤€№™Ω℮←↑→↓∆−√≈" +<a name="line.1446"></a>
-<span class="sourceLineNo">1447</span>            "─│┌┐└┘├┤┬┴┼═║╒╓╔╕╖╗╘╙╚╛╜╝╞╟╠╡╢╣╤╥╦╧╨╩╪╫╬■□▲▼○●◦♀♂♠♣♥♦♪";<a name="line.1447"></a>
-<span class="sourceLineNo">1448</span><a name="line.1448"></a>
-<span class="sourceLineNo">1449</span>    public static final String BOX_DRAWING_SINGLE = "─│┌┐└┘├┤┬┴┼";<a name="line.1449"></a>
-<span class="sourceLineNo">1450</span>    public static final String BOX_DRAWING_DOUBLE = "═║╔╗╚╝╠╣╦╩╬";<a name="line.1450"></a>
-<span class="sourceLineNo">1451</span>    public static final String BOX_DRAWING = "─│┌┐└┘├┤┬┴┼═║╒╓╔╕╖╗╘╙╚╛╜╝╞╟╠╡╢╣╤╥╦╧╨╩╪╫╬";<a name="line.1451"></a>
-<span class="sourceLineNo">1452</span>    public static final String VISUAL_SYMBOLS = "←↑→↓■□▲▼○●◦♀♂♠♣♥♦♪";<a name="line.1452"></a>
-<span class="sourceLineNo">1453</span>    public static final String DIGITS = "0123456789";<a name="line.1453"></a>
-<span class="sourceLineNo">1454</span>    public static final String MARKS = "~`^'¨¯°´¸ˆˇˉˋ˘˙˚˛˜˝΄΅‘’‚‛";<a name="line.1454"></a>
-<span class="sourceLineNo">1455</span>    /**<a name="line.1455"></a>
-<span class="sourceLineNo">1456</span>     * Can be used to match an index with one in {@link #GROUPING_SIGNS_CLOSE} to find the closing char (this way only).<a name="line.1456"></a>
-<span class="sourceLineNo">1457</span>     */<a name="line.1457"></a>
-<span class="sourceLineNo">1458</span>    public static final String GROUPING_SIGNS_OPEN  = "([{&lt;«‘‛“‹";<a name="line.1458"></a>
-<span class="sourceLineNo">1459</span>    /**<a name="line.1459"></a>
-<span class="sourceLineNo">1460</span>     * An index in {@link #GROUPING_SIGNS_OPEN} can be used here to find the closing char for that opening one.<a name="line.1460"></a>
-<span class="sourceLineNo">1461</span>     */<a name="line.1461"></a>
-<span class="sourceLineNo">1462</span>    public static final String GROUPING_SIGNS_CLOSE = ")]}&gt;»’’”›";<a name="line.1462"></a>
-<span class="sourceLineNo">1463</span>    public static final String COMMON_PUNCTUATION = "!\"%&amp;'*+,-./:;&lt;&gt;?•…–—";<a name="line.1463"></a>
-<span class="sourceLineNo">1464</span>    public static final String MODERN_PUNCTUATION = "@\\^_`|~¦©®™´№♀♂♪";<a name="line.1464"></a>
-<span class="sourceLineNo">1465</span>    public static final String UNCOMMON_PUNCTUATION = "§¶¨ªº¯°·¸¡¿·‚„†‡";<a name="line.1465"></a>
-<span class="sourceLineNo">1466</span>    public static final String TECHNICAL_PUNCTUATION = "#%'*+,-./&lt;=&gt;^|¬°µ±¹²³ⁿ¼½¾×÷‰№Ω℮∆−√≈";<a name="line.1466"></a>
-<span class="sourceLineNo">1467</span>    public static final String PUNCTUATION = COMMON_PUNCTUATION + MODERN_PUNCTUATION + UNCOMMON_PUNCTUATION +<a name="line.1467"></a>
-<span class="sourceLineNo">1468</span>            TECHNICAL_PUNCTUATION + GROUPING_SIGNS_OPEN + GROUPING_SIGNS_CLOSE;<a name="line.1468"></a>
-<span class="sourceLineNo">1469</span>    public static final String CURRENCY = "$¢£¤¥₤€";<a name="line.1469"></a>
-<span class="sourceLineNo">1470</span>    public static final String SPACING = " ";<a name="line.1470"></a>
-<span class="sourceLineNo">1471</span>    public static final String ENGLISH_LETTERS_UPPER =<a name="line.1471"></a>
-<span class="sourceLineNo">1472</span>            "ABCDEFGHIJKLMNOPQRSTUVWXYZ";<a name="line.1472"></a>
-<span class="sourceLineNo">1473</span>    public static final String ENGLISH_LETTERS_LOWER =<a name="line.1473"></a>
-<span class="sourceLineNo">1474</span>            "abcdefghijklmnopqrstuvwxyz";<a name="line.1474"></a>
-<span class="sourceLineNo">1475</span>    public static final String ENGLISH_LETTERS = ENGLISH_LETTERS_UPPER + ENGLISH_LETTERS_LOWER;<a name="line.1475"></a>
-<span class="sourceLineNo">1476</span><a name="line.1476"></a>
-<span class="sourceLineNo">1477</span>    public static final String LATIN_EXTENDED_LETTERS_UPPER =<a name="line.1477"></a>
-<span class="sourceLineNo">1478</span>            "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞĀĂĄĆĈĊČĎĐĒĔĖĘĚĜĞĠĢĤĦĨĪĬĮİĴĶĹĻĽĿŁŃŅŇŊŌŎŐŒŔŖŘŚŜŞŠŢŤŨŪŬŮŰŲŴŶŸŹŻŽǺǼǾȘȚẀẂẄỲßSFJ";<a name="line.1478"></a>
-<span class="sourceLineNo">1479</span>    public static final String LATIN_EXTENDED_LETTERS_LOWER =<a name="line.1479"></a>
-<span class="sourceLineNo">1480</span>            "àáâãäåæçèéêëìíîïðñòóôõöøùúûüýþāăąćĉċčďđēĕėęěĝğġģĥħĩīĭįıĵķĺļľŀłńņňŋōŏőœŕŗřśŝşšţťũūŭůűųŵŷÿźżžǻǽǿșțẁẃẅỳßſƒȷ";<a name="line.1480"></a>
-<span class="sourceLineNo">1481</span>    public static final String LATIN_EXTENDED_LETTERS = LATIN_EXTENDED_LETTERS_UPPER + LATIN_EXTENDED_LETTERS_LOWER;<a name="line.1481"></a>
-<span class="sourceLineNo">1482</span><a name="line.1482"></a>
-<span class="sourceLineNo">1483</span>    public static final String LATIN_LETTERS_UPPER = ENGLISH_LETTERS_UPPER + LATIN_EXTENDED_LETTERS_UPPER;<a name="line.1483"></a>
-<span class="sourceLineNo">1484</span>    public static final String LATIN_LETTERS_LOWER = ENGLISH_LETTERS_LOWER + LATIN_EXTENDED_LETTERS_LOWER;<a name="line.1484"></a>
-<span class="sourceLineNo">1485</span>    public static final String LATIN_LETTERS = LATIN_LETTERS_UPPER + LATIN_LETTERS_LOWER;<a name="line.1485"></a>
-<span class="sourceLineNo">1486</span><a name="line.1486"></a>
-<span class="sourceLineNo">1487</span>    /**<a name="line.1487"></a>
-<span class="sourceLineNo">1488</span>     * Includes the letter Sigma, 'Σ', twice because it has two lower-case forms in {@link #GREEK_LETTERS_LOWER}. This<a name="line.1488"></a>
-<span class="sourceLineNo">1489</span>     * lets you use one index for both lower and upper case, like with Latin and Cyrillic.<a name="line.1489"></a>
-<span class="sourceLineNo">1490</span>     */<a name="line.1490"></a>
-<span class="sourceLineNo">1491</span>    public static final String GREEK_LETTERS_UPPER =<a name="line.1491"></a>
-<span class="sourceLineNo">1492</span>            "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΣΤΥΦΧΨΩΆΈΉΊΌΎΏΪΫΪΫ";<a name="line.1492"></a>
-<span class="sourceLineNo">1493</span>    /**<a name="line.1493"></a>
-<span class="sourceLineNo">1494</span>     * Includes both lower-case forms for Sigma, 'ς' and 'σ', but this matches the two upper-case Sigma in<a name="line.1494"></a>
-<span class="sourceLineNo">1495</span>     * {@link #GREEK_LETTERS_UPPER}. This lets you use one index for both lower and upper case, like with Latin and<a name="line.1495"></a>
-<span class="sourceLineNo">1496</span>     * Cyrillic.<a name="line.1496"></a>
+<span class="sourceLineNo">1432</span>     * Constant storing the 16 hexadecimal digits, as char values, in order.<a name="line.1432"></a>
+<span class="sourceLineNo">1433</span>     */<a name="line.1433"></a>
+<span class="sourceLineNo">1434</span>    public static final char[] hexDigits = {<a name="line.1434"></a>
+<span class="sourceLineNo">1435</span>            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'<a name="line.1435"></a>
+<span class="sourceLineNo">1436</span>    };<a name="line.1436"></a>
+<span class="sourceLineNo">1437</span><a name="line.1437"></a>
+<span class="sourceLineNo">1438</span>    /**<a name="line.1438"></a>
+<span class="sourceLineNo">1439</span>     * A constant containing only chars that are reasonably likely to be supported by broad fonts and thus display-able.<a name="line.1439"></a>
+<span class="sourceLineNo">1440</span>     * This assumes the font supports Latin, Greek, and Cyrillic alphabets, with good support for extended Latin (at<a name="line.1440"></a>
+<span class="sourceLineNo">1441</span>     * least for European languages) but not required to be complete enough to support the very large Vietnamese set of<a name="line.1441"></a>
+<span class="sourceLineNo">1442</span>     * extensions to Latin, nor to support any International Phonetic Alphabet (IPA) chars. It also assumes box drawing<a name="line.1442"></a>
+<span class="sourceLineNo">1443</span>     * characters are supported and a handful of common dingbats, such as male and female signs. It does not include<a name="line.1443"></a>
+<span class="sourceLineNo">1444</span>     * the tab, newline, or carriage return characters, since these don't usually make sense on a grid of chars.<a name="line.1444"></a>
+<span class="sourceLineNo">1445</span>     */<a name="line.1445"></a>
+<span class="sourceLineNo">1446</span>    public static final String PERMISSIBLE_CHARS =<a name="line.1446"></a>
+<span class="sourceLineNo">1447</span>            " !\"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmno"+<a name="line.1447"></a>
+<span class="sourceLineNo">1448</span>            "pqrstuvwxyz{|}~¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàá"+<a name="line.1448"></a>
+<span class="sourceLineNo">1449</span>            "âãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİı"+<a name="line.1449"></a>
+<span class="sourceLineNo">1450</span>            "ĴĵĶķĹĺĻļĽľĿŀŁłŃńŅņŇňŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžſƒǺǻǼǽǾǿ"+<a name="line.1450"></a>
+<span class="sourceLineNo">1451</span>            "ȘșȚțȷˆˇˉˋ˘˙˚˛˜˝΄΅Ά·ΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυ"+<a name="line.1451"></a>
+<span class="sourceLineNo">1452</span>            "φχψωϊϋόύώЀЁЂЃЄЅІЇЈЉЊЋЌЍЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхц"+<a name="line.1452"></a>
+<span class="sourceLineNo">1453</span>            "чшщъыьэюяѐёђѓєѕіїјљњћќѝўџѴѵҐґẀẁẂẃẄẅỲỳ–—‘’‚‛“”„†‡•…‰‹›ⁿ₤€№™Ω℮←↑→↓∆−√≈" +<a name="line.1453"></a>
+<span class="sourceLineNo">1454</span>            "─│┌┐└┘├┤┬┴┼═║╒╓╔╕╖╗╘╙╚╛╜╝╞╟╠╡╢╣╤╥╦╧╨╩╪╫╬■□▲▼○●◦♀♂♠♣♥♦♪";<a name="line.1454"></a>
+<span class="sourceLineNo">1455</span><a name="line.1455"></a>
+<span class="sourceLineNo">1456</span>    public static final String BOX_DRAWING_SINGLE = "─│┌┐└┘├┤┬┴┼";<a name="line.1456"></a>
+<span class="sourceLineNo">1457</span>    public static final String BOX_DRAWING_DOUBLE = "═║╔╗╚╝╠╣╦╩╬";<a name="line.1457"></a>
+<span class="sourceLineNo">1458</span>    public static final String BOX_DRAWING = "─│┌┐└┘├┤┬┴┼═║╒╓╔╕╖╗╘╙╚╛╜╝╞╟╠╡╢╣╤╥╦╧╨╩╪╫╬";<a name="line.1458"></a>
+<span class="sourceLineNo">1459</span>    public static final String VISUAL_SYMBOLS = "←↑→↓■□▲▼○●◦♀♂♠♣♥♦♪";<a name="line.1459"></a>
+<span class="sourceLineNo">1460</span>    public static final String DIGITS = "0123456789";<a name="line.1460"></a>
+<span class="sourceLineNo">1461</span>    public static final String MARKS = "~`^'¨¯°´¸ˆˇˉˋ˘˙˚˛˜˝΄΅‘’‚‛";<a name="line.1461"></a>
+<span class="sourceLineNo">1462</span>    /**<a name="line.1462"></a>
+<span class="sourceLineNo">1463</span>     * Can be used to match an index with one in {@link #GROUPING_SIGNS_CLOSE} to find the closing char (this way only).<a name="line.1463"></a>
+<span class="sourceLineNo">1464</span>     */<a name="line.1464"></a>
+<span class="sourceLineNo">1465</span>    public static final String GROUPING_SIGNS_OPEN  = "([{&lt;«‘‛“‹";<a name="line.1465"></a>
+<span class="sourceLineNo">1466</span>    /**<a name="line.1466"></a>
+<span class="sourceLineNo">1467</span>     * An index in {@link #GROUPING_SIGNS_OPEN} can be used here to find the closing char for that opening one.<a name="line.1467"></a>
+<span class="sourceLineNo">1468</span>     */<a name="line.1468"></a>
+<span class="sourceLineNo">1469</span>    public static final String GROUPING_SIGNS_CLOSE = ")]}&gt;»’’”›";<a name="line.1469"></a>
+<span class="sourceLineNo">1470</span>    public static final String COMMON_PUNCTUATION = "!\"%&amp;'*+,-./:;&lt;&gt;?•…–—";<a name="line.1470"></a>
+<span class="sourceLineNo">1471</span>    public static final String MODERN_PUNCTUATION = "@\\^_`|~¦©®™´№♀♂♪";<a name="line.1471"></a>
+<span class="sourceLineNo">1472</span>    public static final String UNCOMMON_PUNCTUATION = "§¶¨ªº¯°·¸¡¿·‚„†‡";<a name="line.1472"></a>
+<span class="sourceLineNo">1473</span>    public static final String TECHNICAL_PUNCTUATION = "#%'*+,-./&lt;=&gt;^|¬°µ±¹²³ⁿ¼½¾×÷‰№Ω℮∆−√≈";<a name="line.1473"></a>
+<span class="sourceLineNo">1474</span>    public static final String PUNCTUATION = COMMON_PUNCTUATION + MODERN_PUNCTUATION + UNCOMMON_PUNCTUATION +<a name="line.1474"></a>
+<span class="sourceLineNo">1475</span>            TECHNICAL_PUNCTUATION + GROUPING_SIGNS_OPEN + GROUPING_SIGNS_CLOSE;<a name="line.1475"></a>
+<span class="sourceLineNo">1476</span>    public static final String CURRENCY = "$¢£¤¥₤€";<a name="line.1476"></a>
+<span class="sourceLineNo">1477</span>    public static final String SPACING = " ";<a name="line.1477"></a>
+<span class="sourceLineNo">1478</span>    public static final String ENGLISH_LETTERS_UPPER =<a name="line.1478"></a>
+<span class="sourceLineNo">1479</span>            "ABCDEFGHIJKLMNOPQRSTUVWXYZ";<a name="line.1479"></a>
+<span class="sourceLineNo">1480</span>    public static final String ENGLISH_LETTERS_LOWER =<a name="line.1480"></a>
+<span class="sourceLineNo">1481</span>            "abcdefghijklmnopqrstuvwxyz";<a name="line.1481"></a>
+<span class="sourceLineNo">1482</span>    public static final String ENGLISH_LETTERS = ENGLISH_LETTERS_UPPER + ENGLISH_LETTERS_LOWER;<a name="line.1482"></a>
+<span class="sourceLineNo">1483</span><a name="line.1483"></a>
+<span class="sourceLineNo">1484</span>    public static final String LATIN_EXTENDED_LETTERS_UPPER =<a name="line.1484"></a>
+<span class="sourceLineNo">1485</span>            "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞĀĂĄĆĈĊČĎĐĒĔĖĘĚĜĞĠĢĤĦĨĪĬĮİĴĶĹĻĽĿŁŃŅŇŊŌŎŐŒŔŖŘŚŜŞŠŢŤŨŪŬŮŰŲŴŶŸŹŻŽǺǼǾȘȚẀẂẄỲßSFJ";<a name="line.1485"></a>
+<span class="sourceLineNo">1486</span>    public static final String LATIN_EXTENDED_LETTERS_LOWER =<a name="line.1486"></a>
+<span class="sourceLineNo">1487</span>            "àáâãäåæçèéêëìíîïðñòóôõöøùúûüýþāăąćĉċčďđēĕėęěĝğġģĥħĩīĭįıĵķĺļľŀłńņňŋōŏőœŕŗřśŝşšţťũūŭůűųŵŷÿźżžǻǽǿșțẁẃẅỳßſƒȷ";<a name="line.1487"></a>
+<span class="sourceLineNo">1488</span>    public static final String LATIN_EXTENDED_LETTERS = LATIN_EXTENDED_LETTERS_UPPER + LATIN_EXTENDED_LETTERS_LOWER;<a name="line.1488"></a>
+<span class="sourceLineNo">1489</span><a name="line.1489"></a>
+<span class="sourceLineNo">1490</span>    public static final String LATIN_LETTERS_UPPER = ENGLISH_LETTERS_UPPER + LATIN_EXTENDED_LETTERS_UPPER;<a name="line.1490"></a>
+<span class="sourceLineNo">1491</span>    public static final String LATIN_LETTERS_LOWER = ENGLISH_LETTERS_LOWER + LATIN_EXTENDED_LETTERS_LOWER;<a name="line.1491"></a>
+<span class="sourceLineNo">1492</span>    public static final String LATIN_LETTERS = LATIN_LETTERS_UPPER + LATIN_LETTERS_LOWER;<a name="line.1492"></a>
+<span class="sourceLineNo">1493</span><a name="line.1493"></a>
+<span class="sourceLineNo">1494</span>    /**<a name="line.1494"></a>
+<span class="sourceLineNo">1495</span>     * Includes the letter Sigma, 'Σ', twice because it has two lower-case forms in {@link #GREEK_LETTERS_LOWER}. This<a name="line.1495"></a>
+<span class="sourceLineNo">1496</span>     * lets you use one index for both lower and upper case, like with Latin and Cyrillic.<a name="line.1496"></a>
 <span class="sourceLineNo">1497</span>     */<a name="line.1497"></a>
-<span class="sourceLineNo">1498</span>    public static final String GREEK_LETTERS_LOWER =<a name="line.1498"></a>
-<span class="sourceLineNo">1499</span>            "αβγδεζηθικλμνξοπρςστυφχψωάέήίόύώϊϋΐΰ";<a name="line.1499"></a>
-<span class="sourceLineNo">1500</span><a name="line.1500"></a>
-<span class="sourceLineNo">1501</span>    public static final String GREEK_LETTERS = GREEK_LETTERS_UPPER + GREEK_LETTERS_LOWER;<a name="line.1501"></a>
-<span class="sourceLineNo">1502</span><a name="line.1502"></a>
-<span class="sourceLineNo">1503</span>    public static final String CYRILLIC_LETTERS_UPPER =<a name="line.1503"></a>
-<span class="sourceLineNo">1504</span>            "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯЀЁЂЃЄЅІЇЈЉЊЋЌЍЎЏѴҐ";<a name="line.1504"></a>
-<span class="sourceLineNo">1505</span>    public static final String CYRILLIC_LETTERS_LOWER =<a name="line.1505"></a>
-<span class="sourceLineNo">1506</span>            "абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѵґ";<a name="line.1506"></a>
-<span class="sourceLineNo">1507</span>    public static final String CYRILLIC_LETTERS = CYRILLIC_LETTERS_UPPER + CYRILLIC_LETTERS_LOWER;<a name="line.1507"></a>
-<span class="sourceLineNo">1508</span><a name="line.1508"></a>
-<span class="sourceLineNo">1509</span>    public static final String LETTERS_UPPER = LATIN_LETTERS_UPPER + GREEK_LETTERS_UPPER + CYRILLIC_LETTERS_UPPER;<a name="line.1509"></a>
-<span class="sourceLineNo">1510</span>    public static final String LETTERS_LOWER = LATIN_LETTERS_LOWER + GREEK_LETTERS_LOWER + CYRILLIC_LETTERS_LOWER;<a name="line.1510"></a>
-<span class="sourceLineNo">1511</span>    public static final String LETTERS = LETTERS_UPPER + LETTERS_LOWER;<a name="line.1511"></a>
-<span class="sourceLineNo">1512</span>    public static final String LETTERS_AND_NUMBERS = LETTERS + DIGITS;<a name="line.1512"></a>
-<span class="sourceLineNo">1513</span><a name="line.1513"></a>
-<span class="sourceLineNo">1514</span>}<a name="line.1514"></a>
+<span class="sourceLineNo">1498</span>    public static final String GREEK_LETTERS_UPPER =<a name="line.1498"></a>
+<span class="sourceLineNo">1499</span>            "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΣΤΥΦΧΨΩΆΈΉΊΌΎΏΪΫΪΫ";<a name="line.1499"></a>
+<span class="sourceLineNo">1500</span>    /**<a name="line.1500"></a>
+<span class="sourceLineNo">1501</span>     * Includes both lower-case forms for Sigma, 'ς' and 'σ', but this matches the two upper-case Sigma in<a name="line.1501"></a>
+<span class="sourceLineNo">1502</span>     * {@link #GREEK_LETTERS_UPPER}. This lets you use one index for both lower and upper case, like with Latin and<a name="line.1502"></a>
+<span class="sourceLineNo">1503</span>     * Cyrillic.<a name="line.1503"></a>
+<span class="sourceLineNo">1504</span>     */<a name="line.1504"></a>
+<span class="sourceLineNo">1505</span>    public static final String GREEK_LETTERS_LOWER =<a name="line.1505"></a>
+<span class="sourceLineNo">1506</span>            "αβγδεζηθικλμνξοπρςστυφχψωάέήίόύώϊϋΐΰ";<a name="line.1506"></a>
+<span class="sourceLineNo">1507</span><a name="line.1507"></a>
+<span class="sourceLineNo">1508</span>    public static final String GREEK_LETTERS = GREEK_LETTERS_UPPER + GREEK_LETTERS_LOWER;<a name="line.1508"></a>
+<span class="sourceLineNo">1509</span><a name="line.1509"></a>
+<span class="sourceLineNo">1510</span>    public static final String CYRILLIC_LETTERS_UPPER =<a name="line.1510"></a>
+<span class="sourceLineNo">1511</span>            "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯЀЁЂЃЄЅІЇЈЉЊЋЌЍЎЏѴҐ";<a name="line.1511"></a>
+<span class="sourceLineNo">1512</span>    public static final String CYRILLIC_LETTERS_LOWER =<a name="line.1512"></a>
+<span class="sourceLineNo">1513</span>            "абвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѵґ";<a name="line.1513"></a>
+<span class="sourceLineNo">1514</span>    public static final String CYRILLIC_LETTERS = CYRILLIC_LETTERS_UPPER + CYRILLIC_LETTERS_LOWER;<a name="line.1514"></a>
+<span class="sourceLineNo">1515</span><a name="line.1515"></a>
+<span class="sourceLineNo">1516</span>    public static final String LETTERS_UPPER = LATIN_LETTERS_UPPER + GREEK_LETTERS_UPPER + CYRILLIC_LETTERS_UPPER;<a name="line.1516"></a>
+<span class="sourceLineNo">1517</span>    public static final String LETTERS_LOWER = LATIN_LETTERS_LOWER + GREEK_LETTERS_LOWER + CYRILLIC_LETTERS_LOWER;<a name="line.1517"></a>
+<span class="sourceLineNo">1518</span>    public static final String LETTERS = LETTERS_UPPER + LETTERS_LOWER;<a name="line.1518"></a>
+<span class="sourceLineNo">1519</span>    public static final String LETTERS_AND_NUMBERS = LETTERS + DIGITS;<a name="line.1519"></a>
+<span class="sourceLineNo">1520</span><a name="line.1520"></a>
+<span class="sourceLineNo">1521</span>}<a name="line.1521"></a>
 
 
 
