@@ -11984,7 +11984,7 @@
 <span class="sourceLineNo">11976</span>     * @return a float in packed ABGR8888 format<a name="line.11976"></a>
 <span class="sourceLineNo">11977</span>     */<a name="line.11977"></a>
 <span class="sourceLineNo">11978</span>    public static float charsToFloat(final char[] data) {<a name="line.11978"></a>
-<span class="sourceLineNo">11979</span>        return NumberTools.intBitsToFloat(<a name="line.11979"></a>
+<span class="sourceLineNo">11979</span>        return NumberTools.intBitsToFloat(0xFEFFFFFF &amp;<a name="line.11979"></a>
 <span class="sourceLineNo">11980</span>                Integer.reverseBytes(StringKit.intFromHex(data, 0, 8)));<a name="line.11980"></a>
 <span class="sourceLineNo">11981</span>    }<a name="line.11981"></a>
 <span class="sourceLineNo">11982</span><a name="line.11982"></a>
@@ -12001,7 +12001,7 @@
 <span class="sourceLineNo">11993</span>     * @return a float in packed ABGR8888 format<a name="line.11993"></a>
 <span class="sourceLineNo">11994</span>     */<a name="line.11994"></a>
 <span class="sourceLineNo">11995</span>    public static float charsToFloat(final char[] data, final int offset) {<a name="line.11995"></a>
-<span class="sourceLineNo">11996</span>        return NumberTools.intBitsToFloat(0xFE000000 &amp;<a name="line.11996"></a>
+<span class="sourceLineNo">11996</span>        return NumberTools.intBitsToFloat(0xFEFFFFFF &amp;<a name="line.11996"></a>
 <span class="sourceLineNo">11997</span>                Integer.reverseBytes(StringKit.intFromHex(data, offset, Math.min(data.length, offset + 8))));<a name="line.11997"></a>
 <span class="sourceLineNo">11998</span>    }<a name="line.11998"></a>
 <span class="sourceLineNo">11999</span><a name="line.11999"></a>
@@ -12019,7 +12019,7 @@
 <span class="sourceLineNo">12011</span>     */<a name="line.12011"></a>
 <span class="sourceLineNo">12012</span><a name="line.12012"></a>
 <span class="sourceLineNo">12013</span>    public static float charsToFloat(final CharSequence data, final int offset) {<a name="line.12013"></a>
-<span class="sourceLineNo">12014</span>        return NumberTools.intBitsToFloat(0xFE000000 &amp;<a name="line.12014"></a>
+<span class="sourceLineNo">12014</span>        return NumberTools.intBitsToFloat(0xFEFFFFFF &amp;<a name="line.12014"></a>
 <span class="sourceLineNo">12015</span>                Integer.reverseBytes(StringKit.intFromHex(data, offset, Math.min(data.length(), offset + 8))));<a name="line.12015"></a>
 <span class="sourceLineNo">12016</span>    }<a name="line.12016"></a>
 <span class="sourceLineNo">12017</span><a name="line.12017"></a>

@@ -1004,7 +1004,7 @@
 <span class="sourceLineNo">996</span>        {<a name="line.996"></a>
 <span class="sourceLineNo">997</span>            colorFromFloat(bmpFont.getColor(), encodedColor);<a name="line.997"></a>
 <span class="sourceLineNo">998</span>            mut.setCharAt(0, swap.getOrDefault(c, c));<a name="line.998"></a>
-<span class="sourceLineNo">999</span>            bmpFont.draw(batch, mut, x, y - descent/* * 1.5f*//* - lineHeight * 0.2f */ /* + descent*/, width, Align.center, false);<a name="line.999"></a>
+<span class="sourceLineNo">999</span>            bmpFont.draw(batch, mut, x, y - descent + 1/* * 1.5f*//* - lineHeight * 0.2f */ /* + descent*/, width, Align.center, false);<a name="line.999"></a>
 <span class="sourceLineNo">1000</span>        }<a name="line.1000"></a>
 <span class="sourceLineNo">1001</span>    }<a name="line.1001"></a>
 <span class="sourceLineNo">1002</span><a name="line.1002"></a>
@@ -2059,7 +2059,7 @@
 <span class="sourceLineNo">2051</span>         */<a name="line.2051"></a>
 <span class="sourceLineNo">2052</span>        @Override<a name="line.2052"></a>
 <span class="sourceLineNo">2053</span>        public void draw(Batch batch, float parentAlpha) {<a name="line.2053"></a>
-<span class="sourceLineNo">2054</span>            TextCellFactory.this.draw(batch, shown, color, getX(), getY());<a name="line.2054"></a>
+<span class="sourceLineNo">2054</span>            TextCellFactory.this.draw(batch, shown, color, getX(), getY() + 1);<a name="line.2054"></a>
 <span class="sourceLineNo">2055</span>        }<a name="line.2055"></a>
 <span class="sourceLineNo">2056</span>    }<a name="line.2056"></a>
 <span class="sourceLineNo">2057</span>}<a name="line.2057"></a>

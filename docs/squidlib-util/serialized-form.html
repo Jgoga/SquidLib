@@ -3579,6 +3579,86 @@
 </li>
 </ul>
 </li>
+<li class="blockList"><a name="squidpony.squidmath.UnorderedSet">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">squidpony.squidmath.UnorderedSet</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialization Methods</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>readObject</h4>
+<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/UnorderedSet.html#line.1096">readObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectInputStream.html?is-external=true" title="class or interface in java.io">ObjectInputStream</a>&nbsp;s)
+                 throws <a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a>,
+                        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/ClassNotFoundException.html?is-external=true" title="class or interface in java.lang">ClassNotFoundException</a></pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/ClassNotFoundException.html?is-external=true" title="class or interface in java.lang">ClassNotFoundException</a></code></dd>
+</dl>
+</li>
+<li class="blockListLast">
+<h4>writeObject</h4>
+<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/UnorderedSet.html#line.1085">writeObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectOutputStream.html?is-external=true" title="class or interface in java.io">ObjectOutputStream</a>&nbsp;s)
+                  throws <a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code></dd>
+</dl>
+</li>
+</ul>
+</li>
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>key</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[] key</pre>
+<div class="block">The array of keys.</div>
+</li>
+<li class="blockList">
+<h4>mask</h4>
+<pre>int mask</pre>
+<div class="block">The mask for wrapping a position counter.</div>
+</li>
+<li class="blockList">
+<h4>containsNull</h4>
+<pre>boolean containsNull</pre>
+<div class="block">Whether this set contains the key zero.</div>
+</li>
+<li class="blockList">
+<h4>n</h4>
+<pre>int n</pre>
+<div class="block">The current table size.</div>
+</li>
+<li class="blockList">
+<h4>maxFill</h4>
+<pre>int maxFill</pre>
+<div class="block">Threshold after which we rehash. It must be the table size times <a href="squidpony/squidmath/UnorderedSet.html#f"><code>UnorderedSet.f</code></a>.</div>
+</li>
+<li class="blockList">
+<h4>size</h4>
+<pre>int size</pre>
+<div class="block">Number of entries in the set (including the key zero, if present).</div>
+</li>
+<li class="blockList">
+<h4>f</h4>
+<pre>float f</pre>
+<div class="block">The acceptable load factor.</div>
+</li>
+<li class="blockListLast">
+<h4>hasher</h4>
+<pre><a href="squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> hasher</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="blockList"><a name="squidpony.squidmath.VanDerCorputQRNG">
 <!--   -->
 </a>

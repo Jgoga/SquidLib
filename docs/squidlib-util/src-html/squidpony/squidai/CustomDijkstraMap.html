@@ -2894,42 +2894,44 @@
 <span class="sourceLineNo">2886</span>    }<a name="line.2886"></a>
 <span class="sourceLineNo">2887</span><a name="line.2887"></a>
 <span class="sourceLineNo">2888</span><a name="line.2888"></a>
-<span class="sourceLineNo">2889</span>    public static void main(String[] args) {<a name="line.2889"></a>
-<span class="sourceLineNo">2890</span>        squidpony.squidgrid.mapping.DungeonGenerator dungeonGen =<a name="line.2890"></a>
-<span class="sourceLineNo">2891</span>                new squidpony.squidgrid.mapping.DungeonGenerator(40, 40, new RNG(0x1337BEEFDEAL));<a name="line.2891"></a>
-<span class="sourceLineNo">2892</span>        char[][] map = dungeonGen.generate();<a name="line.2892"></a>
-<span class="sourceLineNo">2893</span>        squidpony.squidgrid.mapping.DungeonUtility.debugPrint(map);<a name="line.2893"></a>
-<span class="sourceLineNo">2894</span>        squidpony.squidmath.GreasedRegion floors = new squidpony.squidmath.GreasedRegion(map, '.');<a name="line.2894"></a>
-<span class="sourceLineNo">2895</span>        System.out.println("Floors: " + floors.size());<a name="line.2895"></a>
-<span class="sourceLineNo">2896</span>        System.out.println("Percentage walkable: " + floors.size() / 16.0 + "%");<a name="line.2896"></a>
-<span class="sourceLineNo">2897</span>        Adjacency adj = new BasicAdjacency(40, 40, Measurement.EUCLIDEAN);<a name="line.2897"></a>
-<span class="sourceLineNo">2898</span>        adj.blockingRule = 2;<a name="line.2898"></a>
-<span class="sourceLineNo">2899</span>        RNG rng = new RNG(0x1337BEEF);<a name="line.2899"></a>
-<span class="sourceLineNo">2900</span>        CustomDijkstraMap dijkstra = new CustomDijkstraMap(<a name="line.2900"></a>
-<span class="sourceLineNo">2901</span>                map, adj, rng);<a name="line.2901"></a>
-<span class="sourceLineNo">2902</span>        double[] scanned;<a name="line.2902"></a>
-<span class="sourceLineNo">2903</span>        short[][] sMap = new short[40][40];<a name="line.2903"></a>
-<span class="sourceLineNo">2904</span>        //for (int x = 1; x &lt; 39; x++) {<a name="line.2904"></a>
-<span class="sourceLineNo">2905</span>        //    for (int y = 1; y &lt; 39; y++) {<a name="line.2905"></a>
-<span class="sourceLineNo">2906</span>        squidpony.squidmath.Coord c = floors.singleRandom(rng);<a name="line.2906"></a>
-<span class="sourceLineNo">2907</span>        dijkstra.setGoal(adj.composite(c.x, c.y, 0, 0));<a name="line.2907"></a>
-<span class="sourceLineNo">2908</span>        scanned = dijkstra.scan(null);<a name="line.2908"></a>
-<span class="sourceLineNo">2909</span>        dijkstra.clearGoals();<a name="line.2909"></a>
-<span class="sourceLineNo">2910</span>        dijkstra.resetMap();<a name="line.2910"></a>
-<span class="sourceLineNo">2911</span>        System.out.println("MAPPED: " + dijkstra.getMappedCount());<a name="line.2911"></a>
-<span class="sourceLineNo">2912</span>        for (int i = 0; i &lt; 1600; i++) {<a name="line.2912"></a>
-<span class="sourceLineNo">2913</span>            sMap[adj.extractX(i)][adj.extractY(i)] = (scanned[i] &gt;= FLOOR ? -999 : (short) (scanned[i] * 100));<a name="line.2913"></a>
-<span class="sourceLineNo">2914</span>        }<a name="line.2914"></a>
-<span class="sourceLineNo">2915</span>        for (int yy = 0; yy &lt; 40; yy++) {<a name="line.2915"></a>
-<span class="sourceLineNo">2916</span>            for (int xx = 0; xx &lt; 40; xx++) {<a name="line.2916"></a>
-<span class="sourceLineNo">2917</span>                System.out.print((sMap[xx][yy] == -999) ? "#### " : squidpony.StringKit.hex(sMap[xx][yy]) + ' ');<a name="line.2917"></a>
-<span class="sourceLineNo">2918</span>            }<a name="line.2918"></a>
-<span class="sourceLineNo">2919</span>            System.out.println();<a name="line.2919"></a>
-<span class="sourceLineNo">2920</span>        }<a name="line.2920"></a>
-<span class="sourceLineNo">2921</span>        //    }<a name="line.2921"></a>
-<span class="sourceLineNo">2922</span>        //}<a name="line.2922"></a>
-<span class="sourceLineNo">2923</span>    }<a name="line.2923"></a>
-<span class="sourceLineNo">2924</span>}<a name="line.2924"></a>
+<span class="sourceLineNo">2889</span>    /*<a name="line.2889"></a>
+<span class="sourceLineNo">2890</span>    public static void main(String[] args) {<a name="line.2890"></a>
+<span class="sourceLineNo">2891</span>        squidpony.squidgrid.mapping.DungeonGenerator dungeonGen =<a name="line.2891"></a>
+<span class="sourceLineNo">2892</span>                new squidpony.squidgrid.mapping.DungeonGenerator(40, 40, new RNG(0x1337BEEFDEAL));<a name="line.2892"></a>
+<span class="sourceLineNo">2893</span>        char[][] map = dungeonGen.generate();<a name="line.2893"></a>
+<span class="sourceLineNo">2894</span>        squidpony.squidgrid.mapping.DungeonUtility.debugPrint(map);<a name="line.2894"></a>
+<span class="sourceLineNo">2895</span>        squidpony.squidmath.GreasedRegion floors = new squidpony.squidmath.GreasedRegion(map, '.');<a name="line.2895"></a>
+<span class="sourceLineNo">2896</span>        System.out.println("Floors: " + floors.size());<a name="line.2896"></a>
+<span class="sourceLineNo">2897</span>        System.out.println("Percentage walkable: " + floors.size() / 16.0 + "%");<a name="line.2897"></a>
+<span class="sourceLineNo">2898</span>        Adjacency adj = new BasicAdjacency(40, 40, Measurement.EUCLIDEAN);<a name="line.2898"></a>
+<span class="sourceLineNo">2899</span>        adj.blockingRule = 2;<a name="line.2899"></a>
+<span class="sourceLineNo">2900</span>        RNG rng = new RNG(0x1337BEEF);<a name="line.2900"></a>
+<span class="sourceLineNo">2901</span>        CustomDijkstraMap dijkstra = new CustomDijkstraMap(<a name="line.2901"></a>
+<span class="sourceLineNo">2902</span>                map, adj, rng);<a name="line.2902"></a>
+<span class="sourceLineNo">2903</span>        double[] scanned;<a name="line.2903"></a>
+<span class="sourceLineNo">2904</span>        short[][] sMap = new short[40][40];<a name="line.2904"></a>
+<span class="sourceLineNo">2905</span>        //for (int x = 1; x &lt; 39; x++) {<a name="line.2905"></a>
+<span class="sourceLineNo">2906</span>        //    for (int y = 1; y &lt; 39; y++) {<a name="line.2906"></a>
+<span class="sourceLineNo">2907</span>        squidpony.squidmath.Coord c = floors.singleRandom(rng);<a name="line.2907"></a>
+<span class="sourceLineNo">2908</span>        dijkstra.setGoal(adj.composite(c.x, c.y, 0, 0));<a name="line.2908"></a>
+<span class="sourceLineNo">2909</span>        scanned = dijkstra.scan(null);<a name="line.2909"></a>
+<span class="sourceLineNo">2910</span>        dijkstra.clearGoals();<a name="line.2910"></a>
+<span class="sourceLineNo">2911</span>        dijkstra.resetMap();<a name="line.2911"></a>
+<span class="sourceLineNo">2912</span>        System.out.println("MAPPED: " + dijkstra.getMappedCount());<a name="line.2912"></a>
+<span class="sourceLineNo">2913</span>        for (int i = 0; i &lt; 1600; i++) {<a name="line.2913"></a>
+<span class="sourceLineNo">2914</span>            sMap[adj.extractX(i)][adj.extractY(i)] = (scanned[i] &gt;= FLOOR ? -999 : (short) (scanned[i] * 100));<a name="line.2914"></a>
+<span class="sourceLineNo">2915</span>        }<a name="line.2915"></a>
+<span class="sourceLineNo">2916</span>        for (int yy = 0; yy &lt; 40; yy++) {<a name="line.2916"></a>
+<span class="sourceLineNo">2917</span>            for (int xx = 0; xx &lt; 40; xx++) {<a name="line.2917"></a>
+<span class="sourceLineNo">2918</span>                System.out.print((sMap[xx][yy] == -999) ? "#### " : squidpony.StringKit.hex(sMap[xx][yy]) + ' ');<a name="line.2918"></a>
+<span class="sourceLineNo">2919</span>            }<a name="line.2919"></a>
+<span class="sourceLineNo">2920</span>            System.out.println();<a name="line.2920"></a>
+<span class="sourceLineNo">2921</span>        }<a name="line.2921"></a>
+<span class="sourceLineNo">2922</span>        //    }<a name="line.2922"></a>
+<span class="sourceLineNo">2923</span>        //}<a name="line.2923"></a>
+<span class="sourceLineNo">2924</span>    }<a name="line.2924"></a>
+<span class="sourceLineNo">2925</span>    */<a name="line.2925"></a>
+<span class="sourceLineNo">2926</span>}<a name="line.2926"></a>
 
 
 
