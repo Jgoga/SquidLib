@@ -967,162 +967,167 @@
 <span class="sourceLineNo">959</span>        return h;<a name="line.959"></a>
 <span class="sourceLineNo">960</span>    }<a name="line.960"></a>
 <span class="sourceLineNo">961</span><a name="line.961"></a>
-<span class="sourceLineNo">962</span>    /**<a name="line.962"></a>
-<span class="sourceLineNo">963</span>     * Returns the maximum number of entries that can be filled before rehashing.<a name="line.963"></a>
-<span class="sourceLineNo">964</span>     *<a name="line.964"></a>
-<span class="sourceLineNo">965</span>     * @param n the size of the backing array.<a name="line.965"></a>
-<span class="sourceLineNo">966</span>     * @param f the load factor.<a name="line.966"></a>
-<span class="sourceLineNo">967</span>     * @return the maximum number of entries before rehashing.<a name="line.967"></a>
-<span class="sourceLineNo">968</span>     */<a name="line.968"></a>
-<span class="sourceLineNo">969</span>    public static int maxFill(final int n, final float f) {<a name="line.969"></a>
-<span class="sourceLineNo">970</span>        /* We must guarantee that there is always at least<a name="line.970"></a>
-<span class="sourceLineNo">971</span>                 * one free entry (even with pathological load factors). */<a name="line.971"></a>
-<span class="sourceLineNo">972</span>        return Math.min((int) Math.ceil(n * f), n - 1);<a name="line.972"></a>
-<span class="sourceLineNo">973</span>    }<a name="line.973"></a>
-<span class="sourceLineNo">974</span><a name="line.974"></a>
-<span class="sourceLineNo">975</span>    /**<a name="line.975"></a>
-<span class="sourceLineNo">976</span>     * Returns the maximum number of entries that can be filled before rehashing.<a name="line.976"></a>
-<span class="sourceLineNo">977</span>     *<a name="line.977"></a>
-<span class="sourceLineNo">978</span>     * @param n the size of the backing array.<a name="line.978"></a>
-<span class="sourceLineNo">979</span>     * @param f the load factor.<a name="line.979"></a>
-<span class="sourceLineNo">980</span>     * @return the maximum number of entries before rehashing.<a name="line.980"></a>
-<span class="sourceLineNo">981</span>     */<a name="line.981"></a>
-<span class="sourceLineNo">982</span>    public static long maxFill(final long n, final float f) {<a name="line.982"></a>
-<span class="sourceLineNo">983</span>                /* We must guarantee that there is always at least<a name="line.983"></a>
-<span class="sourceLineNo">984</span>                 * one free entry (even with pathological load factors). */<a name="line.984"></a>
-<span class="sourceLineNo">985</span>        return Math.min((long) Math.ceil(n * f), n - 1);<a name="line.985"></a>
-<span class="sourceLineNo">986</span>    }<a name="line.986"></a>
-<span class="sourceLineNo">987</span><a name="line.987"></a>
-<span class="sourceLineNo">988</span>    /**<a name="line.988"></a>
-<span class="sourceLineNo">989</span>     * Returns the least power of two smaller than or equal to 2&lt;sup&gt;30&lt;/sup&gt; and larger than or equal to &lt;code&gt;Math.ceil( expected / f )&lt;/code&gt;.<a name="line.989"></a>
-<span class="sourceLineNo">990</span>     *<a name="line.990"></a>
-<span class="sourceLineNo">991</span>     * @param expected the expected number of elements in a hash table.<a name="line.991"></a>
-<span class="sourceLineNo">992</span>     * @param f        the load factor.<a name="line.992"></a>
-<span class="sourceLineNo">993</span>     * @return the minimum possible size for a backing array.<a name="line.993"></a>
-<span class="sourceLineNo">994</span>     * @throws IllegalArgumentException if the necessary size is larger than 2&lt;sup&gt;30&lt;/sup&gt;.<a name="line.994"></a>
-<span class="sourceLineNo">995</span>     */<a name="line.995"></a>
-<span class="sourceLineNo">996</span>    public static int arraySize(final int expected, final float f) {<a name="line.996"></a>
-<span class="sourceLineNo">997</span>        final long s = Math.max(2, HashCommon.nextPowerOfTwo((long) Math.ceil(expected / f)));<a name="line.997"></a>
-<span class="sourceLineNo">998</span>        if (s &gt; 1 &lt;&lt; 30)<a name="line.998"></a>
-<span class="sourceLineNo">999</span>            throw new IllegalArgumentException("Too large (" + expected + " expected elements with load factor " + f + ")");<a name="line.999"></a>
-<span class="sourceLineNo">1000</span>        return (int) s;<a name="line.1000"></a>
-<span class="sourceLineNo">1001</span>    }<a name="line.1001"></a>
-<span class="sourceLineNo">1002</span><a name="line.1002"></a>
-<span class="sourceLineNo">1003</span>    @Override<a name="line.1003"></a>
-<span class="sourceLineNo">1004</span>    public Object[] toArray() {<a name="line.1004"></a>
-<span class="sourceLineNo">1005</span>        final Object[] a = new Object[size];<a name="line.1005"></a>
-<span class="sourceLineNo">1006</span>        objectUnwrap(iterator(), a);<a name="line.1006"></a>
-<span class="sourceLineNo">1007</span>        return a;<a name="line.1007"></a>
-<span class="sourceLineNo">1008</span>    }<a name="line.1008"></a>
-<span class="sourceLineNo">1009</span><a name="line.1009"></a>
-<span class="sourceLineNo">1010</span>    @SuppressWarnings("unchecked")<a name="line.1010"></a>
-<span class="sourceLineNo">1011</span>    @Override<a name="line.1011"></a>
-<span class="sourceLineNo">1012</span>    public &lt;T&gt; T[] toArray(T[] a) {<a name="line.1012"></a>
-<span class="sourceLineNo">1013</span>        final int size = this.size;<a name="line.1013"></a>
-<span class="sourceLineNo">1014</span>        objectUnwrap(iterator(), a);<a name="line.1014"></a>
-<span class="sourceLineNo">1015</span>        if (size &lt; a.length)<a name="line.1015"></a>
-<span class="sourceLineNo">1016</span>            a[size] = null;<a name="line.1016"></a>
-<span class="sourceLineNo">1017</span>        return a;<a name="line.1017"></a>
-<span class="sourceLineNo">1018</span>    }<a name="line.1018"></a>
-<span class="sourceLineNo">1019</span><a name="line.1019"></a>
-<span class="sourceLineNo">1020</span><a name="line.1020"></a>
-<span class="sourceLineNo">1021</span>    /**<a name="line.1021"></a>
-<span class="sourceLineNo">1022</span>     * Unwraps an iterator into an array starting at a given offset for a given number of elements.<a name="line.1022"></a>
-<span class="sourceLineNo">1023</span>     * &lt;p&gt;<a name="line.1023"></a>
-<span class="sourceLineNo">1024</span>     * &lt;P&gt;This method iterates over the given type-specific iterator and stores the elements returned, up to a maximum of &lt;code&gt;length&lt;/code&gt;, in the given array starting at &lt;code&gt;offset&lt;/code&gt;. The<a name="line.1024"></a>
-<span class="sourceLineNo">1025</span>     * number of actually unwrapped elements is returned (it may be less than &lt;code&gt;max&lt;/code&gt; if the iterator emits less than &lt;code&gt;max&lt;/code&gt; elements).<a name="line.1025"></a>
-<span class="sourceLineNo">1026</span>     *<a name="line.1026"></a>
-<span class="sourceLineNo">1027</span>     * @param i      a type-specific iterator.<a name="line.1027"></a>
-<span class="sourceLineNo">1028</span>     * @param array  an array to contain the output of the iterator.<a name="line.1028"></a>
-<span class="sourceLineNo">1029</span>     * @param offset the first element of the array to be returned.<a name="line.1029"></a>
-<span class="sourceLineNo">1030</span>     * @param max    the maximum number of elements to unwrap.<a name="line.1030"></a>
-<span class="sourceLineNo">1031</span>     * @return the number of elements unwrapped.<a name="line.1031"></a>
-<span class="sourceLineNo">1032</span>     */<a name="line.1032"></a>
-<span class="sourceLineNo">1033</span>    private static &lt;K&gt; int objectUnwrap(final Iterator&lt;? extends K&gt; i, final K array[], int offset, final int max) {<a name="line.1033"></a>
-<span class="sourceLineNo">1034</span>        if (max &lt; 0) throw new IllegalArgumentException("The maximum number of elements (" + max + ") is negative");<a name="line.1034"></a>
-<span class="sourceLineNo">1035</span>        if (offset &lt; 0 || offset + max &gt; array.length) throw new IllegalArgumentException();<a name="line.1035"></a>
-<span class="sourceLineNo">1036</span>        int j = max;<a name="line.1036"></a>
-<span class="sourceLineNo">1037</span>        while (j-- != 0 &amp;&amp; i.hasNext())<a name="line.1037"></a>
-<span class="sourceLineNo">1038</span>            array[offset++] = i.next();<a name="line.1038"></a>
-<span class="sourceLineNo">1039</span>        return max - j - 1;<a name="line.1039"></a>
-<span class="sourceLineNo">1040</span>    }<a name="line.1040"></a>
-<span class="sourceLineNo">1041</span><a name="line.1041"></a>
-<span class="sourceLineNo">1042</span>    /**<a name="line.1042"></a>
-<span class="sourceLineNo">1043</span>     * Unwraps an iterator into an array.<a name="line.1043"></a>
-<span class="sourceLineNo">1044</span>     * &lt;p&gt;<a name="line.1044"></a>
-<span class="sourceLineNo">1045</span>     * &lt;P&gt;This method iterates over the given type-specific iterator and stores the elements returned in the given array. The iteration will stop when the iterator has no more elements or when the end<a name="line.1045"></a>
-<span class="sourceLineNo">1046</span>     * of the array has been reached.<a name="line.1046"></a>
-<span class="sourceLineNo">1047</span>     *<a name="line.1047"></a>
-<span class="sourceLineNo">1048</span>     * @param i     a type-specific iterator.<a name="line.1048"></a>
-<span class="sourceLineNo">1049</span>     * @param array an array to contain the output of the iterator.<a name="line.1049"></a>
-<span class="sourceLineNo">1050</span>     * @return the number of elements unwrapped.<a name="line.1050"></a>
-<span class="sourceLineNo">1051</span>     */<a name="line.1051"></a>
-<span class="sourceLineNo">1052</span>    private static &lt;K&gt; int objectUnwrap(final Iterator&lt;? extends K&gt; i, final K array[]) {<a name="line.1052"></a>
-<span class="sourceLineNo">1053</span>        return objectUnwrap(i, array, 0, array.length);<a name="line.1053"></a>
-<span class="sourceLineNo">1054</span>    }<a name="line.1054"></a>
-<span class="sourceLineNo">1055</span><a name="line.1055"></a>
-<span class="sourceLineNo">1056</span>    @Override<a name="line.1056"></a>
-<span class="sourceLineNo">1057</span>    public String toString() {<a name="line.1057"></a>
-<span class="sourceLineNo">1058</span>        final StringBuilder s = new StringBuilder();<a name="line.1058"></a>
-<span class="sourceLineNo">1059</span>        int i = scanNext(-1);<a name="line.1059"></a>
-<span class="sourceLineNo">1060</span>        boolean first = true;<a name="line.1060"></a>
-<span class="sourceLineNo">1061</span>        s.append("OrderedSet{");<a name="line.1061"></a>
-<span class="sourceLineNo">1062</span>        while (i != -1) {<a name="line.1062"></a>
-<span class="sourceLineNo">1063</span>            if (first) first = false;<a name="line.1063"></a>
-<span class="sourceLineNo">1064</span>            else s.append(", ");<a name="line.1064"></a>
-<span class="sourceLineNo">1065</span>            s.append(key[i]);<a name="line.1065"></a>
-<span class="sourceLineNo">1066</span>            i = scanNext(i);<a name="line.1066"></a>
-<span class="sourceLineNo">1067</span>        }<a name="line.1067"></a>
-<span class="sourceLineNo">1068</span>        s.append("}");<a name="line.1068"></a>
-<span class="sourceLineNo">1069</span>        return s.toString();<a name="line.1069"></a>
-<span class="sourceLineNo">1070</span>    }<a name="line.1070"></a>
-<span class="sourceLineNo">1071</span><a name="line.1071"></a>
-<span class="sourceLineNo">1072</span>    @Override<a name="line.1072"></a>
-<span class="sourceLineNo">1073</span>    public boolean equals(final Object o) {<a name="line.1073"></a>
-<span class="sourceLineNo">1074</span>        if (o == this)<a name="line.1074"></a>
-<span class="sourceLineNo">1075</span>            return true;<a name="line.1075"></a>
-<span class="sourceLineNo">1076</span>        if (!(o instanceof Set))<a name="line.1076"></a>
-<span class="sourceLineNo">1077</span>            return false;<a name="line.1077"></a>
-<span class="sourceLineNo">1078</span>        Set&lt;?&gt; s = (Set&lt;?&gt;) o;<a name="line.1078"></a>
-<span class="sourceLineNo">1079</span>        if (s.size() != size)<a name="line.1079"></a>
-<span class="sourceLineNo">1080</span>            return false;<a name="line.1080"></a>
-<span class="sourceLineNo">1081</span>        return containsAll(s);<a name="line.1081"></a>
-<span class="sourceLineNo">1082</span>    }<a name="line.1082"></a>
-<span class="sourceLineNo">1083</span><a name="line.1083"></a>
-<span class="sourceLineNo">1084</span>    @GwtIncompatible<a name="line.1084"></a>
-<span class="sourceLineNo">1085</span>    private void writeObject(java.io.ObjectOutputStream s)<a name="line.1085"></a>
-<span class="sourceLineNo">1086</span>            throws java.io.IOException {<a name="line.1086"></a>
-<span class="sourceLineNo">1087</span>        final Iterator&lt;K&gt; i = iterator();<a name="line.1087"></a>
-<span class="sourceLineNo">1088</span>        s.defaultWriteObject();<a name="line.1088"></a>
-<span class="sourceLineNo">1089</span>        s.writeObject(hasher);<a name="line.1089"></a>
-<span class="sourceLineNo">1090</span>        for (int j = size; j-- != 0; )<a name="line.1090"></a>
-<span class="sourceLineNo">1091</span>            s.writeObject(i.next());<a name="line.1091"></a>
-<span class="sourceLineNo">1092</span>    }<a name="line.1092"></a>
-<span class="sourceLineNo">1093</span><a name="line.1093"></a>
-<span class="sourceLineNo">1094</span>    @GwtIncompatible<a name="line.1094"></a>
-<span class="sourceLineNo">1095</span>    @SuppressWarnings("unchecked")<a name="line.1095"></a>
-<span class="sourceLineNo">1096</span>    private void readObject(java.io.ObjectInputStream s)<a name="line.1096"></a>
-<span class="sourceLineNo">1097</span>            throws java.io.IOException, ClassNotFoundException {<a name="line.1097"></a>
-<span class="sourceLineNo">1098</span>        s.defaultReadObject();<a name="line.1098"></a>
-<span class="sourceLineNo">1099</span>        hasher = (CrossHash.IHasher) s.readObject();<a name="line.1099"></a>
-<span class="sourceLineNo">1100</span>        n = arraySize(size, f);<a name="line.1100"></a>
-<span class="sourceLineNo">1101</span>        maxFill = maxFill(n, f);<a name="line.1101"></a>
-<span class="sourceLineNo">1102</span>        mask = n - 1;<a name="line.1102"></a>
-<span class="sourceLineNo">1103</span>        final K key[] = this.key = (K[]) new Object[n + 1];<a name="line.1103"></a>
-<span class="sourceLineNo">1104</span>        K k;<a name="line.1104"></a>
-<span class="sourceLineNo">1105</span>        for (int i = size, pos; i-- != 0; ) {<a name="line.1105"></a>
-<span class="sourceLineNo">1106</span>            k = (K) s.readObject();<a name="line.1106"></a>
-<span class="sourceLineNo">1107</span>            if (k == null) {<a name="line.1107"></a>
-<span class="sourceLineNo">1108</span>                pos = n;<a name="line.1108"></a>
-<span class="sourceLineNo">1109</span>                containsNull = true;<a name="line.1109"></a>
-<span class="sourceLineNo">1110</span>            } else {<a name="line.1110"></a>
-<span class="sourceLineNo">1111</span>                if (!(key[pos = HashCommon.mix(hasher.hash(k)) &amp; mask] == null))<a name="line.1111"></a>
-<span class="sourceLineNo">1112</span>                    while (!(key[pos = pos + 1 &amp; mask] == null)) ;<a name="line.1112"></a>
-<span class="sourceLineNo">1113</span>            }<a name="line.1113"></a>
-<span class="sourceLineNo">1114</span>            key[pos] = k;<a name="line.1114"></a>
-<span class="sourceLineNo">1115</span>        }<a name="line.1115"></a>
-<span class="sourceLineNo">1116</span>    }<a name="line.1116"></a>
-<span class="sourceLineNo">1117</span>}<a name="line.1117"></a>
+<span class="sourceLineNo">962</span>    public long hash64()<a name="line.962"></a>
+<span class="sourceLineNo">963</span>    {<a name="line.963"></a>
+<span class="sourceLineNo">964</span>        return 31L * size + CrossHash.hash64(key);<a name="line.964"></a>
+<span class="sourceLineNo">965</span>    }<a name="line.965"></a>
+<span class="sourceLineNo">966</span><a name="line.966"></a>
+<span class="sourceLineNo">967</span>    /**<a name="line.967"></a>
+<span class="sourceLineNo">968</span>     * Returns the maximum number of entries that can be filled before rehashing.<a name="line.968"></a>
+<span class="sourceLineNo">969</span>     *<a name="line.969"></a>
+<span class="sourceLineNo">970</span>     * @param n the size of the backing array.<a name="line.970"></a>
+<span class="sourceLineNo">971</span>     * @param f the load factor.<a name="line.971"></a>
+<span class="sourceLineNo">972</span>     * @return the maximum number of entries before rehashing.<a name="line.972"></a>
+<span class="sourceLineNo">973</span>     */<a name="line.973"></a>
+<span class="sourceLineNo">974</span>    public static int maxFill(final int n, final float f) {<a name="line.974"></a>
+<span class="sourceLineNo">975</span>        /* We must guarantee that there is always at least<a name="line.975"></a>
+<span class="sourceLineNo">976</span>                 * one free entry (even with pathological load factors). */<a name="line.976"></a>
+<span class="sourceLineNo">977</span>        return Math.min((int) Math.ceil(n * f), n - 1);<a name="line.977"></a>
+<span class="sourceLineNo">978</span>    }<a name="line.978"></a>
+<span class="sourceLineNo">979</span><a name="line.979"></a>
+<span class="sourceLineNo">980</span>    /**<a name="line.980"></a>
+<span class="sourceLineNo">981</span>     * Returns the maximum number of entries that can be filled before rehashing.<a name="line.981"></a>
+<span class="sourceLineNo">982</span>     *<a name="line.982"></a>
+<span class="sourceLineNo">983</span>     * @param n the size of the backing array.<a name="line.983"></a>
+<span class="sourceLineNo">984</span>     * @param f the load factor.<a name="line.984"></a>
+<span class="sourceLineNo">985</span>     * @return the maximum number of entries before rehashing.<a name="line.985"></a>
+<span class="sourceLineNo">986</span>     */<a name="line.986"></a>
+<span class="sourceLineNo">987</span>    public static long maxFill(final long n, final float f) {<a name="line.987"></a>
+<span class="sourceLineNo">988</span>                /* We must guarantee that there is always at least<a name="line.988"></a>
+<span class="sourceLineNo">989</span>                 * one free entry (even with pathological load factors). */<a name="line.989"></a>
+<span class="sourceLineNo">990</span>        return Math.min((long) Math.ceil(n * f), n - 1);<a name="line.990"></a>
+<span class="sourceLineNo">991</span>    }<a name="line.991"></a>
+<span class="sourceLineNo">992</span><a name="line.992"></a>
+<span class="sourceLineNo">993</span>    /**<a name="line.993"></a>
+<span class="sourceLineNo">994</span>     * Returns the least power of two smaller than or equal to 2&lt;sup&gt;30&lt;/sup&gt; and larger than or equal to &lt;code&gt;Math.ceil( expected / f )&lt;/code&gt;.<a name="line.994"></a>
+<span class="sourceLineNo">995</span>     *<a name="line.995"></a>
+<span class="sourceLineNo">996</span>     * @param expected the expected number of elements in a hash table.<a name="line.996"></a>
+<span class="sourceLineNo">997</span>     * @param f        the load factor.<a name="line.997"></a>
+<span class="sourceLineNo">998</span>     * @return the minimum possible size for a backing array.<a name="line.998"></a>
+<span class="sourceLineNo">999</span>     * @throws IllegalArgumentException if the necessary size is larger than 2&lt;sup&gt;30&lt;/sup&gt;.<a name="line.999"></a>
+<span class="sourceLineNo">1000</span>     */<a name="line.1000"></a>
+<span class="sourceLineNo">1001</span>    public static int arraySize(final int expected, final float f) {<a name="line.1001"></a>
+<span class="sourceLineNo">1002</span>        final long s = Math.max(2, HashCommon.nextPowerOfTwo((long) Math.ceil(expected / f)));<a name="line.1002"></a>
+<span class="sourceLineNo">1003</span>        if (s &gt; 1 &lt;&lt; 30)<a name="line.1003"></a>
+<span class="sourceLineNo">1004</span>            throw new IllegalArgumentException("Too large (" + expected + " expected elements with load factor " + f + ")");<a name="line.1004"></a>
+<span class="sourceLineNo">1005</span>        return (int) s;<a name="line.1005"></a>
+<span class="sourceLineNo">1006</span>    }<a name="line.1006"></a>
+<span class="sourceLineNo">1007</span><a name="line.1007"></a>
+<span class="sourceLineNo">1008</span>    @Override<a name="line.1008"></a>
+<span class="sourceLineNo">1009</span>    public Object[] toArray() {<a name="line.1009"></a>
+<span class="sourceLineNo">1010</span>        final Object[] a = new Object[size];<a name="line.1010"></a>
+<span class="sourceLineNo">1011</span>        objectUnwrap(iterator(), a);<a name="line.1011"></a>
+<span class="sourceLineNo">1012</span>        return a;<a name="line.1012"></a>
+<span class="sourceLineNo">1013</span>    }<a name="line.1013"></a>
+<span class="sourceLineNo">1014</span><a name="line.1014"></a>
+<span class="sourceLineNo">1015</span>    @SuppressWarnings("unchecked")<a name="line.1015"></a>
+<span class="sourceLineNo">1016</span>    @Override<a name="line.1016"></a>
+<span class="sourceLineNo">1017</span>    public &lt;T&gt; T[] toArray(T[] a) {<a name="line.1017"></a>
+<span class="sourceLineNo">1018</span>        final int size = this.size;<a name="line.1018"></a>
+<span class="sourceLineNo">1019</span>        objectUnwrap(iterator(), a);<a name="line.1019"></a>
+<span class="sourceLineNo">1020</span>        if (size &lt; a.length)<a name="line.1020"></a>
+<span class="sourceLineNo">1021</span>            a[size] = null;<a name="line.1021"></a>
+<span class="sourceLineNo">1022</span>        return a;<a name="line.1022"></a>
+<span class="sourceLineNo">1023</span>    }<a name="line.1023"></a>
+<span class="sourceLineNo">1024</span><a name="line.1024"></a>
+<span class="sourceLineNo">1025</span><a name="line.1025"></a>
+<span class="sourceLineNo">1026</span>    /**<a name="line.1026"></a>
+<span class="sourceLineNo">1027</span>     * Unwraps an iterator into an array starting at a given offset for a given number of elements.<a name="line.1027"></a>
+<span class="sourceLineNo">1028</span>     * &lt;p&gt;<a name="line.1028"></a>
+<span class="sourceLineNo">1029</span>     * &lt;P&gt;This method iterates over the given type-specific iterator and stores the elements returned, up to a maximum of &lt;code&gt;length&lt;/code&gt;, in the given array starting at &lt;code&gt;offset&lt;/code&gt;. The<a name="line.1029"></a>
+<span class="sourceLineNo">1030</span>     * number of actually unwrapped elements is returned (it may be less than &lt;code&gt;max&lt;/code&gt; if the iterator emits less than &lt;code&gt;max&lt;/code&gt; elements).<a name="line.1030"></a>
+<span class="sourceLineNo">1031</span>     *<a name="line.1031"></a>
+<span class="sourceLineNo">1032</span>     * @param i      a type-specific iterator.<a name="line.1032"></a>
+<span class="sourceLineNo">1033</span>     * @param array  an array to contain the output of the iterator.<a name="line.1033"></a>
+<span class="sourceLineNo">1034</span>     * @param offset the first element of the array to be returned.<a name="line.1034"></a>
+<span class="sourceLineNo">1035</span>     * @param max    the maximum number of elements to unwrap.<a name="line.1035"></a>
+<span class="sourceLineNo">1036</span>     * @return the number of elements unwrapped.<a name="line.1036"></a>
+<span class="sourceLineNo">1037</span>     */<a name="line.1037"></a>
+<span class="sourceLineNo">1038</span>    private static &lt;K&gt; int objectUnwrap(final Iterator&lt;? extends K&gt; i, final K array[], int offset, final int max) {<a name="line.1038"></a>
+<span class="sourceLineNo">1039</span>        if (max &lt; 0) throw new IllegalArgumentException("The maximum number of elements (" + max + ") is negative");<a name="line.1039"></a>
+<span class="sourceLineNo">1040</span>        if (offset &lt; 0 || offset + max &gt; array.length) throw new IllegalArgumentException();<a name="line.1040"></a>
+<span class="sourceLineNo">1041</span>        int j = max;<a name="line.1041"></a>
+<span class="sourceLineNo">1042</span>        while (j-- != 0 &amp;&amp; i.hasNext())<a name="line.1042"></a>
+<span class="sourceLineNo">1043</span>            array[offset++] = i.next();<a name="line.1043"></a>
+<span class="sourceLineNo">1044</span>        return max - j - 1;<a name="line.1044"></a>
+<span class="sourceLineNo">1045</span>    }<a name="line.1045"></a>
+<span class="sourceLineNo">1046</span><a name="line.1046"></a>
+<span class="sourceLineNo">1047</span>    /**<a name="line.1047"></a>
+<span class="sourceLineNo">1048</span>     * Unwraps an iterator into an array.<a name="line.1048"></a>
+<span class="sourceLineNo">1049</span>     * &lt;p&gt;<a name="line.1049"></a>
+<span class="sourceLineNo">1050</span>     * &lt;P&gt;This method iterates over the given type-specific iterator and stores the elements returned in the given array. The iteration will stop when the iterator has no more elements or when the end<a name="line.1050"></a>
+<span class="sourceLineNo">1051</span>     * of the array has been reached.<a name="line.1051"></a>
+<span class="sourceLineNo">1052</span>     *<a name="line.1052"></a>
+<span class="sourceLineNo">1053</span>     * @param i     a type-specific iterator.<a name="line.1053"></a>
+<span class="sourceLineNo">1054</span>     * @param array an array to contain the output of the iterator.<a name="line.1054"></a>
+<span class="sourceLineNo">1055</span>     * @return the number of elements unwrapped.<a name="line.1055"></a>
+<span class="sourceLineNo">1056</span>     */<a name="line.1056"></a>
+<span class="sourceLineNo">1057</span>    private static &lt;K&gt; int objectUnwrap(final Iterator&lt;? extends K&gt; i, final K array[]) {<a name="line.1057"></a>
+<span class="sourceLineNo">1058</span>        return objectUnwrap(i, array, 0, array.length);<a name="line.1058"></a>
+<span class="sourceLineNo">1059</span>    }<a name="line.1059"></a>
+<span class="sourceLineNo">1060</span><a name="line.1060"></a>
+<span class="sourceLineNo">1061</span>    @Override<a name="line.1061"></a>
+<span class="sourceLineNo">1062</span>    public String toString() {<a name="line.1062"></a>
+<span class="sourceLineNo">1063</span>        final StringBuilder s = new StringBuilder();<a name="line.1063"></a>
+<span class="sourceLineNo">1064</span>        int i = scanNext(-1);<a name="line.1064"></a>
+<span class="sourceLineNo">1065</span>        boolean first = true;<a name="line.1065"></a>
+<span class="sourceLineNo">1066</span>        s.append("OrderedSet{");<a name="line.1066"></a>
+<span class="sourceLineNo">1067</span>        while (i != -1) {<a name="line.1067"></a>
+<span class="sourceLineNo">1068</span>            if (first) first = false;<a name="line.1068"></a>
+<span class="sourceLineNo">1069</span>            else s.append(", ");<a name="line.1069"></a>
+<span class="sourceLineNo">1070</span>            s.append(key[i]);<a name="line.1070"></a>
+<span class="sourceLineNo">1071</span>            i = scanNext(i);<a name="line.1071"></a>
+<span class="sourceLineNo">1072</span>        }<a name="line.1072"></a>
+<span class="sourceLineNo">1073</span>        s.append("}");<a name="line.1073"></a>
+<span class="sourceLineNo">1074</span>        return s.toString();<a name="line.1074"></a>
+<span class="sourceLineNo">1075</span>    }<a name="line.1075"></a>
+<span class="sourceLineNo">1076</span><a name="line.1076"></a>
+<span class="sourceLineNo">1077</span>    @Override<a name="line.1077"></a>
+<span class="sourceLineNo">1078</span>    public boolean equals(final Object o) {<a name="line.1078"></a>
+<span class="sourceLineNo">1079</span>        if (o == this)<a name="line.1079"></a>
+<span class="sourceLineNo">1080</span>            return true;<a name="line.1080"></a>
+<span class="sourceLineNo">1081</span>        if (!(o instanceof Set))<a name="line.1081"></a>
+<span class="sourceLineNo">1082</span>            return false;<a name="line.1082"></a>
+<span class="sourceLineNo">1083</span>        Set&lt;?&gt; s = (Set&lt;?&gt;) o;<a name="line.1083"></a>
+<span class="sourceLineNo">1084</span>        if (s.size() != size)<a name="line.1084"></a>
+<span class="sourceLineNo">1085</span>            return false;<a name="line.1085"></a>
+<span class="sourceLineNo">1086</span>        return containsAll(s);<a name="line.1086"></a>
+<span class="sourceLineNo">1087</span>    }<a name="line.1087"></a>
+<span class="sourceLineNo">1088</span><a name="line.1088"></a>
+<span class="sourceLineNo">1089</span>    @GwtIncompatible<a name="line.1089"></a>
+<span class="sourceLineNo">1090</span>    private void writeObject(java.io.ObjectOutputStream s)<a name="line.1090"></a>
+<span class="sourceLineNo">1091</span>            throws java.io.IOException {<a name="line.1091"></a>
+<span class="sourceLineNo">1092</span>        final Iterator&lt;K&gt; i = iterator();<a name="line.1092"></a>
+<span class="sourceLineNo">1093</span>        s.defaultWriteObject();<a name="line.1093"></a>
+<span class="sourceLineNo">1094</span>        s.writeObject(hasher);<a name="line.1094"></a>
+<span class="sourceLineNo">1095</span>        for (int j = size; j-- != 0; )<a name="line.1095"></a>
+<span class="sourceLineNo">1096</span>            s.writeObject(i.next());<a name="line.1096"></a>
+<span class="sourceLineNo">1097</span>    }<a name="line.1097"></a>
+<span class="sourceLineNo">1098</span><a name="line.1098"></a>
+<span class="sourceLineNo">1099</span>    @GwtIncompatible<a name="line.1099"></a>
+<span class="sourceLineNo">1100</span>    @SuppressWarnings("unchecked")<a name="line.1100"></a>
+<span class="sourceLineNo">1101</span>    private void readObject(java.io.ObjectInputStream s)<a name="line.1101"></a>
+<span class="sourceLineNo">1102</span>            throws java.io.IOException, ClassNotFoundException {<a name="line.1102"></a>
+<span class="sourceLineNo">1103</span>        s.defaultReadObject();<a name="line.1103"></a>
+<span class="sourceLineNo">1104</span>        hasher = (CrossHash.IHasher) s.readObject();<a name="line.1104"></a>
+<span class="sourceLineNo">1105</span>        n = arraySize(size, f);<a name="line.1105"></a>
+<span class="sourceLineNo">1106</span>        maxFill = maxFill(n, f);<a name="line.1106"></a>
+<span class="sourceLineNo">1107</span>        mask = n - 1;<a name="line.1107"></a>
+<span class="sourceLineNo">1108</span>        final K key[] = this.key = (K[]) new Object[n + 1];<a name="line.1108"></a>
+<span class="sourceLineNo">1109</span>        K k;<a name="line.1109"></a>
+<span class="sourceLineNo">1110</span>        for (int i = size, pos; i-- != 0; ) {<a name="line.1110"></a>
+<span class="sourceLineNo">1111</span>            k = (K) s.readObject();<a name="line.1111"></a>
+<span class="sourceLineNo">1112</span>            if (k == null) {<a name="line.1112"></a>
+<span class="sourceLineNo">1113</span>                pos = n;<a name="line.1113"></a>
+<span class="sourceLineNo">1114</span>                containsNull = true;<a name="line.1114"></a>
+<span class="sourceLineNo">1115</span>            } else {<a name="line.1115"></a>
+<span class="sourceLineNo">1116</span>                if (!(key[pos = HashCommon.mix(hasher.hash(k)) &amp; mask] == null))<a name="line.1116"></a>
+<span class="sourceLineNo">1117</span>                    while (!(key[pos = pos + 1 &amp; mask] == null)) ;<a name="line.1117"></a>
+<span class="sourceLineNo">1118</span>            }<a name="line.1118"></a>
+<span class="sourceLineNo">1119</span>            key[pos] = k;<a name="line.1119"></a>
+<span class="sourceLineNo">1120</span>        }<a name="line.1120"></a>
+<span class="sourceLineNo">1121</span>    }<a name="line.1121"></a>
+<span class="sourceLineNo">1122</span>}<a name="line.1122"></a>
 
 
 

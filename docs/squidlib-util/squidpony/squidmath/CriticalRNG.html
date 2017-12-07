@@ -292,21 +292,19 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CriticalRNG.html#nextDouble--">nextDouble</a></span>()</code>
-<div class="block">This returns a maximum of 0.9999999999999999 because that is the largest
- Double value that is less than 1.0</div>
+<div class="block">Gets a random double between 0.0 inclusive and 1.0 exclusive.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CriticalRNG.html#nextDouble-double-">nextDouble</a></span>(double&nbsp;max)</code>
-<div class="block">This returns a random double between 0.0 (inclusive) and max (exclusive).</div>
+<div class="block">This returns a random double between 0.0 (inclusive) and outer (exclusive).</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CriticalRNG.html#nextFloat--">nextFloat</a></span>()</code>
-<div class="block">This returns a maximum of 0.99999994 because that is the largest Float
- value that is less than 1.0f</div>
+<div class="block">Gets a random float between 0.0f inclusive and 1.0f exclusive.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
@@ -351,7 +349,7 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;squidpony.squidmath.<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></h3>
-<code><a href="../../squidpony/squidmath/RNG.html#approximateBits-int-">approximateBits</a>, <a href="../../squidpony/squidmath/RNG.html#asRandom--">asRandom</a>, <a href="../../squidpony/squidmath/RNG.html#between-double-double-">between</a>, <a href="../../squidpony/squidmath/RNG.html#between-int-int-">between</a>, <a href="../../squidpony/squidmath/RNG.html#between-long-long-">between</a>, <a href="../../squidpony/squidmath/RNG.html#betweenWeighted-int-int-int-">betweenWeighted</a>, <a href="../../squidpony/squidmath/RNG.html#copy--">copy</a>, <a href="../../squidpony/squidmath/RNG.html#equals-java.lang.Object-">equals</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomCellsIterable-int-int-int-">getRandomCellsIterable</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomness--">getRandomness</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomStartIterable-java.util.List-">getRandomStartIterable</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomUniqueCells-int-int-int-int-">getRandomUniqueCells</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomUniqueCells-int-int-int-int-squidpony.squidmath.Coord:A-">getRandomUniqueCells</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomUniqueCells-int-int-int-int-int-">getRandomUniqueCells</a>, <a href="../../squidpony/squidmath/RNG.html#hashCode--">hashCode</a>, <a href="../../squidpony/squidmath/RNG.html#next-int-">next</a>, <a href="../../squidpony/squidmath/RNG.html#nextBytes-byte:A-">nextBytes</a>, <a href="../../squidpony/squidmath/RNG.html#nextCoord-int-int-">nextCoord</a>, <a href="../../squidpony/squidmath/RNG.html#randomInterleave--">randomInterleave</a>, <a href="../../squidpony/squidmath/RNG.html#randomOrdering-int-">randomOrdering</a>, <a href="../../squidpony/squidmath/RNG.html#randomOrdering-int-int:A-">randomOrdering</a>, <a href="../../squidpony/squidmath/RNG.html#randomPortion-java.util.List-int-">randomPortion</a>, <a href="../../squidpony/squidmath/RNG.html#randomPortion-T:A-T:A-">randomPortion</a>, <a href="../../squidpony/squidmath/RNG.html#randomRange-int-int-int-">randomRange</a>, <a href="../../squidpony/squidmath/RNG.html#randomRotation-java.util.List-">randomRotation</a>, <a href="../../squidpony/squidmath/RNG.html#setRandomness-squidpony.squidmath.RandomnessSource-">setRandomness</a>, <a href="../../squidpony/squidmath/RNG.html#shuffle-java.util.Collection-">shuffle</a>, <a href="../../squidpony/squidmath/RNG.html#shuffle-java.util.Collection-java.util.ArrayList-">shuffle</a>, <a href="../../squidpony/squidmath/RNG.html#shuffle-T:A-">shuffle</a>, <a href="../../squidpony/squidmath/RNG.html#shuffle-T:A-T:A-">shuffle</a>, <a href="../../squidpony/squidmath/RNG.html#shuffleInPlace-T:A-">shuffleInPlace</a>, <a href="../../squidpony/squidmath/RNG.html#toString--">toString</a></code></li>
+<code><a href="../../squidpony/squidmath/RNG.html#approximateBits-int-">approximateBits</a>, <a href="../../squidpony/squidmath/RNG.html#asRandom--">asRandom</a>, <a href="../../squidpony/squidmath/RNG.html#between-double-double-">between</a>, <a href="../../squidpony/squidmath/RNG.html#between-int-int-">between</a>, <a href="../../squidpony/squidmath/RNG.html#between-long-long-">between</a>, <a href="../../squidpony/squidmath/RNG.html#betweenWeighted-int-int-int-">betweenWeighted</a>, <a href="../../squidpony/squidmath/RNG.html#copy--">copy</a>, <a href="../../squidpony/squidmath/RNG.html#equals-java.lang.Object-">equals</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomCellsIterable-int-int-int-">getRandomCellsIterable</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomness--">getRandomness</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomStartIterable-java.util.List-">getRandomStartIterable</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomUniqueCells-int-int-int-int-">getRandomUniqueCells</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomUniqueCells-int-int-int-int-squidpony.squidmath.Coord:A-">getRandomUniqueCells</a>, <a href="../../squidpony/squidmath/RNG.html#getRandomUniqueCells-int-int-int-int-int-">getRandomUniqueCells</a>, <a href="../../squidpony/squidmath/RNG.html#hashCode--">hashCode</a>, <a href="../../squidpony/squidmath/RNG.html#maxDoubleOf-double-int-">maxDoubleOf</a>, <a href="../../squidpony/squidmath/RNG.html#maxFloatOf-float-int-">maxFloatOf</a>, <a href="../../squidpony/squidmath/RNG.html#maxIntOf-int-int-">maxIntOf</a>, <a href="../../squidpony/squidmath/RNG.html#maxLongOf-long-int-">maxLongOf</a>, <a href="../../squidpony/squidmath/RNG.html#minDoubleOf-double-int-">minDoubleOf</a>, <a href="../../squidpony/squidmath/RNG.html#minFloatOf-float-int-">minFloatOf</a>, <a href="../../squidpony/squidmath/RNG.html#minIntOf-int-int-">minIntOf</a>, <a href="../../squidpony/squidmath/RNG.html#minLongOf-long-int-">minLongOf</a>, <a href="../../squidpony/squidmath/RNG.html#next-int-">next</a>, <a href="../../squidpony/squidmath/RNG.html#nextBytes-byte:A-">nextBytes</a>, <a href="../../squidpony/squidmath/RNG.html#nextCoord-int-int-">nextCoord</a>, <a href="../../squidpony/squidmath/RNG.html#nextFloat-float-">nextFloat</a>, <a href="../../squidpony/squidmath/RNG.html#randomInterleave--">randomInterleave</a>, <a href="../../squidpony/squidmath/RNG.html#randomOrdering-int-">randomOrdering</a>, <a href="../../squidpony/squidmath/RNG.html#randomOrdering-int-int:A-">randomOrdering</a>, <a href="../../squidpony/squidmath/RNG.html#randomPortion-java.util.List-int-">randomPortion</a>, <a href="../../squidpony/squidmath/RNG.html#randomPortion-T:A-T:A-">randomPortion</a>, <a href="../../squidpony/squidmath/RNG.html#randomRange-int-int-int-">randomRange</a>, <a href="../../squidpony/squidmath/RNG.html#randomRotation-java.util.List-">randomRotation</a>, <a href="../../squidpony/squidmath/RNG.html#setRandomness-squidpony.squidmath.RandomnessSource-">setRandomness</a>, <a href="../../squidpony/squidmath/RNG.html#shuffle-java.util.Collection-">shuffle</a>, <a href="../../squidpony/squidmath/RNG.html#shuffle-java.util.Collection-java.util.ArrayList-">shuffle</a>, <a href="../../squidpony/squidmath/RNG.html#shuffle-T:A-">shuffle</a>, <a href="../../squidpony/squidmath/RNG.html#shuffle-T:A-T:A-">shuffle</a>, <a href="../../squidpony/squidmath/RNG.html#shuffleInPlace-java.util.List-">shuffleInPlace</a>, <a href="../../squidpony/squidmath/RNG.html#shuffleInPlace-T:A-">shuffleInPlace</a>, <a href="../../squidpony/squidmath/RNG.html#toString--">toString</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -524,13 +522,13 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <h4>nextDouble</h4>
 <pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/CriticalRNG.html#line.97">nextDouble</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../squidpony/squidmath/RNG.html#nextDouble--">RNG</a></code></span></div>
-<div class="block">This returns a maximum of 0.9999999999999999 because that is the largest
- Double value that is less than 1.0</div>
+<div class="block">Gets a random double between 0.0 inclusive and 1.0 exclusive.
+ This returns a maximum of 0.9999999999999999 because that is the largest double value that is less than 1.0 .</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextDouble--">nextDouble</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a value between 0 (inclusive) and 0.9999999999999999 (inclusive)</dd>
+<dd>a double between 0.0 (inclusive) and 0.9999999999999999 (inclusive)</dd>
 </dl>
 </li>
 </ul>
@@ -542,12 +540,16 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <h4>nextDouble</h4>
 <pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/CriticalRNG.html#line.102">nextDouble</a>(double&nbsp;max)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../squidpony/squidmath/RNG.html#nextDouble-double-">RNG</a></code></span></div>
-<div class="block">This returns a random double between 0.0 (inclusive) and max (exclusive).</div>
+<div class="block">This returns a random double between 0.0 (inclusive) and outer (exclusive). The value for outer can be positive
+ or negative. Because of how math on doubles works, there are at most 2 to the 53 values this can return for any
+ given outer bound, and very large values for outer will not necessarily produce all numbers you might expect.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextDouble-double-">nextDouble</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>max</code> - the outer exclusive bound as a double; can be negative or positive</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a value between 0 (inclusive) and max (exclusive)</dd>
+<dd>a double between 0.0 (inclusive) and outer (exclusive)</dd>
 </dl>
 </li>
 </ul>
@@ -559,13 +561,13 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <h4>nextFloat</h4>
 <pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/CriticalRNG.html#line.107">nextFloat</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../squidpony/squidmath/RNG.html#nextFloat--">RNG</a></code></span></div>
-<div class="block">This returns a maximum of 0.99999994 because that is the largest Float
- value that is less than 1.0f</div>
+<div class="block">Gets a random float between 0.0f inclusive and 1.0f exclusive.
+ This returns a maximum of 0.99999994 because that is the largest float value that is less than 1.0f .</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextFloat--">nextFloat</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a value between 0 (inclusive) and 0.99999994 (inclusive)</dd>
+<dd>a float between 0f (inclusive) and 0.99999994f (inclusive)</dd>
 </dl>
 </li>
 </ul>
@@ -577,7 +579,13 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <h4>nextBoolean</h4>
 <pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CriticalRNG.html#line.112">nextBoolean</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../squidpony/squidmath/RNG.html#nextBoolean--">RNG</a></code></span></div>
-<div class="block">Get a random bit of state, interpreted as true or false with approximately equal likelihood.</div>
+<div class="block">Get a random bit of state, interpreted as true or false with approximately equal likelihood.
+ This may have better behavior than <code>rng.next(1)</code>, depending on the RandomnessSource implementation; the
+ default LightRNG will behave fine, as will ThrustRNG and ThrustAltRNG (these all use similar algorithms), but the
+ normally-high-quality XoRoRNG will produce very predictable output with <code>rng.next(1)</code> and very good output
+ with <code>rng.nextBoolean()</code>. This is a known and considered flaw of Xoroshiro128+, the algorithm used by
+ XoRoRNG, and a large number of generators have lower quality on the least-significant bit than the most-
+ significant bit, where this method only checks the most-significant bit.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextBoolean--">nextBoolean</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>

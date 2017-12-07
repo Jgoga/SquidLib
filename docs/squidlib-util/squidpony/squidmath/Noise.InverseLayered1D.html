@@ -147,6 +147,12 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.InverseLayered1D.html#frequency">frequency</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.InverseLayered1D.html#lacunarity">lacunarity</a></span></code>
+<div class="block">A multiplier that affects how much the frequency changes with each layer; the default is 0.5 .</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.InverseLayered1D.html#octaves">octaves</a></span></code>&nbsp;</td>
 </tr>
@@ -178,6 +184,12 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.InverseLayered1D.html#InverseLayered1D-squidpony.squidmath.Noise.Noise1D-int-double-">InverseLayered1D</a></span>(<a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>&nbsp;basis,
                 int&nbsp;octaves,
                 double&nbsp;frequency)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.InverseLayered1D.html#InverseLayered1D-squidpony.squidmath.Noise.Noise1D-int-double-double-">InverseLayered1D</a></span>(<a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>&nbsp;basis,
+                int&nbsp;octaves,
+                double&nbsp;frequency,
+                double&nbsp;lacunarity)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -246,10 +258,20 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <a name="frequency">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>frequency</h4>
 <pre>public&nbsp;double <a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.278">frequency</a></pre>
+</li>
+</ul>
+<a name="lacunarity">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>lacunarity</h4>
+<pre>public&nbsp;double <a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.282">lacunarity</a></pre>
+<div class="block">A multiplier that affects how much the frequency changes with each layer; the default is 0.5 .</div>
 </li>
 </ul>
 </li>
@@ -266,7 +288,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>InverseLayered1D</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.279">InverseLayered1D</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.283">InverseLayered1D</a>()</pre>
 </li>
 </ul>
 <a name="InverseLayered1D-squidpony.squidmath.Noise.Noise1D-">
@@ -275,7 +297,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>InverseLayered1D</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.283">InverseLayered1D</a>(<a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>&nbsp;basis)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.287">InverseLayered1D</a>(<a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>&nbsp;basis)</pre>
 </li>
 </ul>
 <a name="InverseLayered1D-squidpony.squidmath.Noise.Noise1D-int-">
@@ -284,19 +306,31 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>InverseLayered1D</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.287">InverseLayered1D</a>(<a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>&nbsp;basis,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.291">InverseLayered1D</a>(<a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>&nbsp;basis,
                         int&nbsp;octaves)</pre>
 </li>
 </ul>
 <a name="InverseLayered1D-squidpony.squidmath.Noise.Noise1D-int-double-">
 <!--   -->
 </a>
+<ul class="blockList">
+<li class="blockList">
+<h4>InverseLayered1D</h4>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.294">InverseLayered1D</a>(<a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>&nbsp;basis,
+                        int&nbsp;octaves,
+                        double&nbsp;frequency)</pre>
+</li>
+</ul>
+<a name="InverseLayered1D-squidpony.squidmath.Noise.Noise1D-int-double-double-">
+<!--   -->
+</a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>InverseLayered1D</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.290">InverseLayered1D</a>(<a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>&nbsp;basis,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.299">InverseLayered1D</a>(<a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>&nbsp;basis,
                         int&nbsp;octaves,
-                        double&nbsp;frequency)</pre>
+                        double&nbsp;frequency,
+                        double&nbsp;lacunarity)</pre>
 </li>
 </ul>
 </li>
@@ -313,7 +347,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.298">getNoise</a>(double&nbsp;x)</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.305">getNoise</a>(double&nbsp;x)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/Noise.Noise1D.html#getNoise-double-">getNoise</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a></code></dd>
@@ -326,7 +360,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.309">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.InverseLayered1D.html#line.316">getNoiseWithSeed</a>(double&nbsp;x,
                                long&nbsp;seed)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
