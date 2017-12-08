@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidmath/GreasedRegion.GRIterator.html" title="class in squidpony.squidmath"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidmath/Hashers.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidmath/HashCommon.EnumHasher.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidmath/HashCommon.html" target="_top">Frames</a></li>
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -109,7 +109,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <hr>
 <br>
-<pre>public class <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.8">HashCommon</a>
+<pre>public class <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.10">HashCommon</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Code used internally for hashing OrderedMap, OrderedSet, IntDoubleOrderedMap, Arrangement, and so on.
  Has some methods and constants that may be useful in other kinds of code.
@@ -120,6 +120,25 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.EnumHasher.html" title="class in squidpony.squidmath">HashCommon.EnumHasher</a></span></code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- =========== FIELD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="field.summary">
@@ -133,24 +152,28 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static <a href="../../squidpony/squidmath/HashCommon.EnumHasher.html" title="class in squidpony.squidmath">HashCommon.EnumHasher</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.html#enumHasher">enumHasher</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.html#INT_PHI">INT_PHI</a></span></code>
 <div class="block">2<sup>32</sup> &middot; &phi;, &phi; = (&#x221A;5 &minus; 1)/2.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.html#INV_INT_PHI">INV_INT_PHI</a></span></code>
 <div class="block">The reciprocal of <a href="../../squidpony/squidmath/HashCommon.html#INT_PHI"><code>INT_PHI</code></a> modulo 2<sup>32</sup>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.html#INV_LONG_PHI">INV_LONG_PHI</a></span></code>
 <div class="block">The reciprocal of <a href="../../squidpony/squidmath/HashCommon.html#LONG_PHI"><code>LONG_PHI</code></a> modulo 2<sup>64</sup>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.html#LONG_PHI">LONG_PHI</a></span></code>
 <div class="block">2<sup>64</sup> &middot; &phi;, &phi; = (&#x221A;5 &minus; 1)/2.</div>
@@ -205,13 +228,22 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <!--   -->
 </a>
 <h3>Field Detail</h3>
+<a name="enumHasher">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>enumHasher</h4>
+<pre>public static final&nbsp;<a href="../../squidpony/squidmath/HashCommon.EnumHasher.html" title="class in squidpony.squidmath">HashCommon.EnumHasher</a> <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.23">enumHasher</a></pre>
+</li>
+</ul>
 <a name="INT_PHI">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>INT_PHI</h4>
-<pre>public static final&nbsp;int <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.16">INT_PHI</a></pre>
+<pre>public static final&nbsp;int <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.31">INT_PHI</a></pre>
 <div class="block">2<sup>32</sup> &middot; &phi;, &phi; = (&#x221A;5 &minus; 1)/2.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -225,7 +257,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>INV_INT_PHI</h4>
-<pre>public static final&nbsp;int <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.20">INV_INT_PHI</a></pre>
+<pre>public static final&nbsp;int <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.35">INV_INT_PHI</a></pre>
 <div class="block">The reciprocal of <a href="../../squidpony/squidmath/HashCommon.html#INT_PHI"><code>INT_PHI</code></a> modulo 2<sup>32</sup>.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -239,7 +271,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>LONG_PHI</h4>
-<pre>public static final&nbsp;long <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.24">LONG_PHI</a></pre>
+<pre>public static final&nbsp;long <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.39">LONG_PHI</a></pre>
 <div class="block">2<sup>64</sup> &middot; &phi;, &phi; = (&#x221A;5 &minus; 1)/2.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -253,7 +285,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>INV_LONG_PHI</h4>
-<pre>public static final&nbsp;long <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.28">INV_LONG_PHI</a></pre>
+<pre>public static final&nbsp;long <a href="../../src-html/squidpony/squidmath/HashCommon.html#line.43">INV_LONG_PHI</a></pre>
 <div class="block">The reciprocal of <a href="../../squidpony/squidmath/HashCommon.html#LONG_PHI"><code>LONG_PHI</code></a> modulo 2<sup>64</sup>.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -275,7 +307,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>nextPowerOfTwo</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/HashCommon.html#line.92">nextPowerOfTwo</a>(int&nbsp;x)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/HashCommon.html#line.107">nextPowerOfTwo</a>(int&nbsp;x)</pre>
 <div class="block">Return the least power of two greater than or equal to the specified value.
  <br>Note that this function will return 1 when the argument is 0.</div>
 <dl>
@@ -292,7 +324,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>nextPowerOfTwo</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/HashCommon.html#line.109">nextPowerOfTwo</a>(long&nbsp;x)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/HashCommon.html#line.124">nextPowerOfTwo</a>(long&nbsp;x)</pre>
 <div class="block">Return the least power of two greater than or equal to the specified value.
  <br>Note that this function will return 1 when the argument is 0.</div>
 <dl>
@@ -332,7 +364,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidmath/GreasedRegion.GRIterator.html" title="class in squidpony.squidmath"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidmath/Hashers.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidmath/HashCommon.EnumHasher.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidmath/HashCommon.html" target="_top">Frames</a></li>
@@ -356,7 +388,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>

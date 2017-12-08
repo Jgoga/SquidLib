@@ -2729,10 +2729,10 @@
 <span class="sourceLineNo">2721</span><a name="line.2721"></a>
 <span class="sourceLineNo">2722</span>        return new FakeLanguageGen(<a name="line.2722"></a>
 <span class="sourceLineNo">2723</span>                processParts(parts0, missingSounds, forbidden, rng, 0.0, p0s),<a name="line.2723"></a>
-<span class="sourceLineNo">2724</span>                new String[]{"y", "y"},<a name="line.2724"></a>
+<span class="sourceLineNo">2724</span>                new String[]{},<a name="line.2724"></a>
 <span class="sourceLineNo">2725</span>                processParts(openCons, missingSounds, forbidden, rng, 0.0, 4096),<a name="line.2725"></a>
-<span class="sourceLineNo">2726</span>                processParts(midCons, missingSounds, forbidden, rng, (rng.nextDouble() * 3 - 0.75) / 2.25, 4096),<a name="line.2726"></a>
-<span class="sourceLineNo">2727</span>                processParts(closeCons, missingSounds, forbidden, rng, (rng.nextDouble() * 3 - 0.75) / 3.5, 4096),<a name="line.2727"></a>
+<span class="sourceLineNo">2726</span>                processParts(midCons, missingSounds, forbidden, rng, (rng.nextDouble() * 3 - 0.75) * 0.4444, 4096),<a name="line.2726"></a>
+<span class="sourceLineNo">2727</span>                processParts(closeCons, missingSounds, forbidden, rng, (rng.nextDouble() * 3 - 0.75) * 0.2857, 4096),<a name="line.2727"></a>
 <span class="sourceLineNo">2728</span>                new String[]{},<a name="line.2728"></a>
 <span class="sourceLineNo">2729</span>                new String[]{}, lengths, chances, vowelHeavy, vowelHeavy * 1.8, 0.0, 0.0, genericSanityChecks, true).summarize("0#" + seed + "@1");<a name="line.2729"></a>
 <span class="sourceLineNo">2730</span>    }<a name="line.2730"></a>
@@ -3664,7 +3664,7 @@
 <span class="sourceLineNo">3656</span>                syllableEndFrequency, sanityChecks, clean, modifiers);<a name="line.3656"></a>
 <span class="sourceLineNo">3657</span>    }<a name="line.3657"></a>
 <span class="sourceLineNo">3658</span><a name="line.3658"></a>
-<span class="sourceLineNo">3659</span>    static String[] copyStrings(String[] start) {<a name="line.3659"></a>
+<span class="sourceLineNo">3659</span>    private static String[] copyStrings(String[] start) {<a name="line.3659"></a>
 <span class="sourceLineNo">3660</span>        String[] next = new String[start.length];<a name="line.3660"></a>
 <span class="sourceLineNo">3661</span>        System.arraycopy(start, 0, next, 0, start.length);<a name="line.3661"></a>
 <span class="sourceLineNo">3662</span>        return next;<a name="line.3662"></a>
