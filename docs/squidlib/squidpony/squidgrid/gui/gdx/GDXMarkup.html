@@ -360,7 +360,7 @@ implements <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/
 <ul class="blockList">
 <li class="blockList">
 <h4>styleString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html?is-external=true" title="class or interface in java.lang">StringBuilder</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/GDXMarkup.html#line.154">styleString</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;markupString)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html?is-external=true" title="class or interface in java.lang">StringBuilder</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/GDXMarkup.html#line.157">styleString</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;markupString)</pre>
 <div class="block">Similar to <a href="../../../../squidpony/squidgrid/gui/gdx/GDXMarkup.html#colorString-java.lang.CharSequence-"><code>colorString(CharSequence)</code></a>, but leaves color tags as they are and only uses style tags, like
  <code>[*]</code> for bold and <code>[/]</code> for italic. The StringBuilder this returns can be converted to a String or
  used directly for further modification, but styles will probably only render correctly if using a TextFamily.
@@ -384,7 +384,7 @@ implements <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/
 <ul class="blockList">
 <li class="blockList">
 <h4>styleChar</h4>
-<pre>public&nbsp;char&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/GDXMarkup.html#line.204">styleChar</a>(char&nbsp;basis,
+<pre>public&nbsp;char&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/GDXMarkup.html#line.207">styleChar</a>(char&nbsp;basis,
                       boolean&nbsp;bold,
                       boolean&nbsp;italic)</pre>
 <div class="block">Directly styles one char value, toggling its bold state if <code>bold</code> is true, and toggling its italic state if
@@ -407,7 +407,7 @@ implements <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/
 <ul class="blockListLast">
 <li class="blockList">
 <h4>unstyleChar</h4>
-<pre>public&nbsp;char&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/GDXMarkup.html#line.216">unstyleChar</a>(char&nbsp;styled)</pre>
+<pre>public&nbsp;char&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/GDXMarkup.html#line.219">unstyleChar</a>(char&nbsp;styled)</pre>
 <div class="block">If given a char that has added style information for bold/italic modes (colors aren't stored in char data), this
  removes the bold/italic data and makes the char what it will be rendered as in a normal font (not a special
  TextFamily, which renders later sections of Unicode as bold and/or italic).</div>
