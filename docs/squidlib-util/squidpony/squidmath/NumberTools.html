@@ -309,30 +309,30 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i22" class="altColor">
 <td class="colFirst"><code>static double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/NumberTools.html#randomDouble-int-">randomDouble</a></span>(int&nbsp;seed)</code>
-<div class="block">Generates a pseudo-random double between 0.0 (inclusive) and 1.0 (exclusive) using the given int seed, passing it
- once through the (very high-quality and rather fast) <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm, also called SplitMix64.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/NumberTools.html#randomDouble-long-">randomDouble</a></span>(long&nbsp;seed)</code>
+<div class="block">Generates a pseudo-random double between 0.0 (inclusive) and 1.0 (exclusive) using the given long seed, passing
+ it once through the (high-quality and very fast) <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm.</div>
 </td>
 </tr>
 <tr id="i23" class="rowColor">
 <td class="colFirst"><code>static float</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/NumberTools.html#randomFloat-int-">randomFloat</a></span>(int&nbsp;seed)</code>
-<div class="block">Generates a pseudo-random float between 0.0f (inclusive) and 1.0f (exclusive) using the given int seed, passing
- it once through the (very high-quality and rather fast) <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm, also called SplitMix64.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/NumberTools.html#randomFloat-long-">randomFloat</a></span>(long&nbsp;seed)</code>
+<div class="block">Generates a pseudo-random float between 0f (inclusive) and 1f (exclusive) using the given long seed, passing it
+ once through the (high-quality and very fast) <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm.</div>
 </td>
 </tr>
 <tr id="i24" class="altColor">
 <td class="colFirst"><code>static float</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/NumberTools.html#randomFloatCurved-int-">randomFloatCurved</a></span>(int&nbsp;seed)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/NumberTools.html#randomFloatCurved-long-">randomFloatCurved</a></span>(long&nbsp;seed)</code>
 <div class="block">Generates a pseudo-random double between -1.0 (exclusive) and 1.0 (exclusive) with a distribution that has a
  strong central bias (around 0.0).</div>
 </td>
 </tr>
 <tr id="i25" class="rowColor">
 <td class="colFirst"><code>static float</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/NumberTools.html#randomSignedFloat-int-">randomSignedFloat</a></span>(int&nbsp;seed)</code>
-<div class="block">Generates a pseudo-random float between -1.0f (exclusive) and 1.0f (exclusive) using the given int seed, passing
- it once through the (very high-quality and rather fast) <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm, also called SplitMix64.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/NumberTools.html#randomSignedFloat-long-">randomSignedFloat</a></span>(long&nbsp;seed)</code>
+<div class="block">Generates a pseudo-random float between -1f (inclusive) and 1f (exclusive) using the given long seed, passing
+ it once through the (high-quality and very fast) <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm.</div>
 </td>
 </tr>
 <tr id="i26" class="altColor">
@@ -966,95 +966,86 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="randomDouble-int-">
+<a name="randomDouble-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomDouble</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.401">randomDouble</a>(int&nbsp;seed)</pre>
-<div class="block">Generates a pseudo-random double between 0.0 (inclusive) and 1.0 (exclusive) using the given int seed, passing it
- once through the (very high-quality and rather fast) <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm, also called SplitMix64. This
- produces a pair of random ints, which this produces a double from using the equivalent of
- <a href="../../squidpony/squidmath/NumberTools.html#longBitsToDouble-long-"><code>longBitsToDouble(long)</code></a> or something functionally equivalent on GWT.
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.399">randomDouble</a>(long&nbsp;seed)</pre>
+<div class="block">Generates a pseudo-random double between 0.0 (inclusive) and 1.0 (exclusive) using the given long seed, passing
+ it once through the (high-quality and very fast) <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm.
  <br>
- Consider calling this with <code>NumberTools.randomDouble(++seed)</code> for an optimal period of 2 to the 32 when
- repeatedly called, but <code>NumberTools.randomDouble(seed += ODD_INT)</code> will also work just fine if ODD_INT is
- any odd-number integer, positive or negative.</div>
+ Consider calling this with <code>NumberTools.randomDouble(++seed)</code> for an optimal period of 2 to the 64 when
+ repeatedly called, but <code>NumberTools.randomDouble(seed += ODD_LONG)</code> will also work just fine if ODD_LONG is
+ any odd-number long, positive or negative.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>seed</code> - any int to be used as a seed</dd>
+<dd><code>seed</code> - any long to be used as a seed</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a pseudo-random double from 0.0 (inclusive) to 1.0 (exclusive)</dd>
 </dl>
 </li>
 </ul>
-<a name="randomFloat-int-">
+<a name="randomFloat-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomFloat</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.420">randomFloat</a>(int&nbsp;seed)</pre>
-<div class="block">Generates a pseudo-random float between 0.0f (inclusive) and 1.0f (exclusive) using the given int seed, passing
- it once through the (very high-quality and rather fast) <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm, also called SplitMix64. This
- produces a random int, which this produces a float from using <a href="../../squidpony/squidmath/NumberTools.html#intBitsToFloat-int-"><code>intBitsToFloat(int)</code></a> (long)} or something
- functionally equivalent on GWT.
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.413">randomFloat</a>(long&nbsp;seed)</pre>
+<div class="block">Generates a pseudo-random float between 0f (inclusive) and 1f (exclusive) using the given long seed, passing it
+ once through the (high-quality and very fast) <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm.
  <br>
- Consider calling this with <code>NumberTools.randomFloat(++seed)</code> for an optimal period of 2 to the 32 when
- repeatedly called, but <code>NumberTools.randomFloat(seed += ODD_INT)</code> will also work just fine if ODD_INT is
- any odd-number integer, positive or negative.</div>
+ Consider calling this with <code>NumberTools.randomFloat(++seed)</code> for an optimal period of 2 to the 64 when
+ repeatedly called, but <code>NumberTools.randomFloat(seed += ODD_LONG)</code> will also work just fine if ODD_LONG is
+ any odd-number long, positive or negative.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>seed</code> - any int to be used as a seed</dd>
+<dd><code>seed</code> - any long to be used as a seed</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a pseudo-random float from -1.0f (exclusive) to 1.0f (exclusive)</dd>
 </dl>
 </li>
 </ul>
-<a name="randomSignedFloat-int-">
+<a name="randomSignedFloat-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomSignedFloat</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.442">randomSignedFloat</a>(int&nbsp;seed)</pre>
-<div class="block">Generates a pseudo-random float between -1.0f (exclusive) and 1.0f (exclusive) using the given int seed, passing
- it once through the (very high-quality and rather fast) <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm, also called SplitMix64. This
- produces a random int, which this produces a float from using <a href="../../squidpony/squidmath/NumberTools.html#intBitsToFloat-int-"><code>intBitsToFloat(int)</code></a> (long)} or something
- functionally equivalent on GWT. The sign bit of the result is determined by data that is not used by the float
- otherwise, and keeps the results almost linear in distribution between -1.0 and 1.0, exclusive for both (0 shows
- up twice as often as any single other result, but this shouldn't affect the odds very strongly; it's about a 1 in
- 8 million chance of exactly 0 occurring vs. a 1 in 16 million of any other specific float this can produce).
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.429">randomSignedFloat</a>(long&nbsp;seed)</pre>
+<div class="block">Generates a pseudo-random float between -1f (inclusive) and 1f (exclusive) using the given long seed, passing
+ it once through the (high-quality and very fast) <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm. This can be useful as a
+ multiplier that has approximately equal likelihood of changing or leaving the sign of its multiplicand, and won't
+ make the result larger (more significant) but will usually make it closer to 0.
  <br>
- Consider calling this with <code>NumberTools.randomSignedFloat(++seed)</code> for an optimal period of 2 to the 32
- when repeatedly called, but <code>NumberTools.randomSignedFloat(seed += ODD_INT)</code> will also work just fine if
- ODD_INT is any odd-number integer, positive or negative.</div>
+ Consider calling this with <code>NumberTools.randomDouble(++seed)</code> for an optimal period of 2 to the 64 when
+ repeatedly called, but <code>NumberTools.randomDouble(seed += ODD_LONG)</code> will also work just fine if ODD_LONG is
+ any odd-number long, positive or negative.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>seed</code> - any int to be used as a seed</dd>
+<dd><code>seed</code> - any long to be used as a seed</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a pseudo-random float from -1.0f (exclusive) to 1.0f (exclusive)</dd>
 </dl>
 </li>
 </ul>
-<a name="randomFloatCurved-int-">
+<a name="randomFloatCurved-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomFloatCurved</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.464">randomFloatCurved</a>(int&nbsp;seed)</pre>
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.446">randomFloatCurved</a>(long&nbsp;seed)</pre>
 <div class="block">Generates a pseudo-random double between -1.0 (exclusive) and 1.0 (exclusive) with a distribution that has a
- strong central bias (around 0.0). Uses the given int seed, passing it once through the (very high-quality and
- rather fast) <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm, also called SplitMix64. This produces a pair of random ints, which this
- uses to generate a pair of floats between 0.0 (inclusive)and 1.0 (exclusive) using the equivalent of
- <a href="../../squidpony/squidmath/NumberTools.html#intBitsToFloat-int-"><code>intBitsToFloat(int)</code></a> or something functionally equivalent on GWT, multiplies the floats, and sets the
- sign pseudo-randomly based on an unused bit from earlier.
+ strong central bias (around 0.0). Uses the given long seed, passing it once through the (high-quality and very
+ fast) <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm. This produces a pseudo-random long, which this simply passes to
+ <a href="../../squidpony/squidmath/NumberTools.html#formCurvedFloat-long-"><code>formCurvedFloat(long)</code></a>, since it is already well-suited to generating a curved distribution.
  <br>
- Consider calling this with <code>NumberTools.randomFloatCurved(++seed)</code> for an optimal period of 2 to the 32
- when repeatedly called, but <code>NumberTools.randomFloatCurved(seed += ODD_INT)</code> will also work just fine if
- ODD_INT is any odd-number integer, positive or negative.</div>
+ Consider calling this with <code>NumberTools.randomFloatCurved(++seed)</code> for an optimal period of 2 to the 64
+ when repeatedly called, but <code>NumberTools.randomFloatCurved(seed += ODD_LONG)</code> will also work just fine if
+ ODD_LONG is any odd-number long, positive or negative.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>seed</code> - any int to be used as a seed</dd>
@@ -1069,7 +1060,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>formFloat</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.481">formFloat</a>(int&nbsp;seed)</pre>
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.457">formFloat</a>(int&nbsp;seed)</pre>
 <div class="block">Given an int as a seed, this uses its least-significant 23 bits to produce a float between 0f (inclusive) and 1f
  (exclusive). This does not randomize the seed at all, and the upper 9 bits of the seed are ignored.</div>
 <dl>
@@ -1086,7 +1077,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>formSignedFloat</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.491">formSignedFloat</a>(int&nbsp;seed)</pre>
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.467">formSignedFloat</a>(int&nbsp;seed)</pre>
 <div class="block">Given an int as a seed, this uses its least-significant 23 bits to produce a float between -1f (inclusive) and 1f
  (exclusive). This does not randomize the seed at all, and the upper 9 bits of the seed are ignored.</div>
 <dl>
@@ -1103,7 +1094,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>formCurvedFloat</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.504">formCurvedFloat</a>(long&nbsp;start)</pre>
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.480">formCurvedFloat</a>(long&nbsp;start)</pre>
 <div class="block">A different kind of determine-like method that expects to be given a random long and produces a random float with
  a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.
  The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near -1f or
@@ -1122,7 +1113,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>formCurvedFloat</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.521">formCurvedFloat</a>(int&nbsp;start1,
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.497">formCurvedFloat</a>(int&nbsp;start1,
                                     int&nbsp;start2)</pre>
 <div class="block">A different kind of determine-like method that expects to be given random ints and produces a random float with
  a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.
@@ -1143,7 +1134,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>formCurvedFloat</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.536">formCurvedFloat</a>(int&nbsp;start)</pre>
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.512">formCurvedFloat</a>(int&nbsp;start)</pre>
 <div class="block">A different kind of determine-like method that expects to be given a random int and produces a random float with
  a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.
  The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near -1f or
@@ -1162,7 +1153,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>lowestOneBit</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.559">lowestOneBit</a>(int&nbsp;num)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.535">lowestOneBit</a>(int&nbsp;num)</pre>
 <div class="block">Returns an int value with at most a single one-bit, in the position of the lowest-order ("rightmost") one-bit in
  the specified int value. Returns zero if the specified value has no one-bits in its two's complement binary
  representation, that is, if it is equal to zero.
@@ -1188,7 +1179,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>lowestOneBit</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.578">lowestOneBit</a>(long&nbsp;num)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/NumberTools.html#line.554">lowestOneBit</a>(long&nbsp;num)</pre>
 <div class="block">Returns an long value with at most a single one-bit, in the position of the lowest-order ("rightmost") one-bit in
  the specified long value. Returns zero if the specified value has no one-bits in its two's complement binary
  representation, that is, if it is equal to zero.
