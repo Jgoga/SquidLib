@@ -107,7 +107,7 @@
 <span class="sourceLineNo">099</span>//        long floor, seed = 1234567;<a name="line.99"></a>
 <span class="sourceLineNo">100</span>//        double diff, conn, result = 0.0;<a name="line.100"></a>
 <span class="sourceLineNo">101</span>//        for (int i = 0; i &lt; len; i++) {<a name="line.101"></a>
-<span class="sourceLineNo">102</span>//            diff = (conn = connections[i]) - (floor = fastFloor(conn));<a name="line.102"></a>
+<span class="sourceLineNo">102</span>//            diff = (conn = connections[i]) - (floor = longFloor(conn));<a name="line.102"></a>
 <span class="sourceLineNo">103</span>//            seed += 10000;<a name="line.103"></a>
 <span class="sourceLineNo">104</span>//            result += querp(<a name="line.104"></a>
 <span class="sourceLineNo">105</span>//                    NumberTools.formCurvedFloat(NumberTools.splitMix64(floor * seed + 100 * (i + 1))),<a name="line.105"></a>
@@ -126,7 +126,7 @@
 <span class="sourceLineNo">118</span>    public final double getDoubleBase() {<a name="line.118"></a>
 <span class="sourceLineNo">119</span>        for (int i = 0; i &lt; len; i++) {<a name="line.119"></a>
 <span class="sourceLineNo">120</span>            long seed = seeds[i];<a name="line.120"></a>
-<span class="sourceLineNo">121</span>            scratch3[i * 3 + 1] = (scratch3[i * 3] = (scratch3[i * 3 + 2] = fastFloor(connections[i])) * seed) + seed;<a name="line.121"></a>
+<span class="sourceLineNo">121</span>            scratch3[i * 3 + 1] = (scratch3[i * 3] = (scratch3[i * 3 + 2] = longFloor(connections[i])) * seed) + seed;<a name="line.121"></a>
 <span class="sourceLineNo">122</span>        }<a name="line.122"></a>
 <span class="sourceLineNo">123</span>        long working;<a name="line.123"></a>
 <span class="sourceLineNo">124</span>        for (int i = 0; i &lt; upper; i++) {<a name="line.124"></a>
@@ -150,7 +150,7 @@
 <span class="sourceLineNo">142</span>//        long floor;<a name="line.142"></a>
 <span class="sourceLineNo">143</span>//        double diff, conn, result = 0.0;//, total = 1.0;<a name="line.143"></a>
 <span class="sourceLineNo">144</span>//        for (int i = 0; i &lt; len; i++) {<a name="line.144"></a>
-<span class="sourceLineNo">145</span>//            diff = (conn = connections[i]) - (floor = fastFloor(conn));<a name="line.145"></a>
+<span class="sourceLineNo">145</span>//            diff = (conn = connections[i]) - (floor = longFloor(conn));<a name="line.145"></a>
 <span class="sourceLineNo">146</span>//            //  &amp; 0xfffffffffffffL<a name="line.146"></a>
 <span class="sourceLineNo">147</span>//            result +=<a name="line.147"></a>
 <span class="sourceLineNo">148</span>//                    NumberTools.bounce((NumberTools.longBitsToDouble((floor * 0x9E3779B97F4A7C15L &gt;&gt;&gt; 12) | 0x4000000000000000L) - 3.0)<a name="line.148"></a>
@@ -179,7 +179,7 @@
 <span class="sourceLineNo">171</span>//        final int len = connections.length;<a name="line.171"></a>
 <span class="sourceLineNo">172</span>//        long floor;<a name="line.172"></a>
 <span class="sourceLineNo">173</span>//        for (int i = 0; i &lt; len; i++) {<a name="line.173"></a>
-<span class="sourceLineNo">174</span>//            diff = connections[i] - (floor = fastFloor(connections[i]));<a name="line.174"></a>
+<span class="sourceLineNo">174</span>//            diff = connections[i] - (floor = longFloor(connections[i]));<a name="line.174"></a>
 <span class="sourceLineNo">175</span>//            v += randomDouble(floor) * (1.0 - diff) + randomDouble(floor + 1L) * diff;<a name="line.175"></a>
 <span class="sourceLineNo">176</span>//        }<a name="line.176"></a>
 <span class="sourceLineNo">177</span>//        return v / len;<a name="line.177"></a>
@@ -201,7 +201,7 @@
 <span class="sourceLineNo">193</span>     * @param t the double to find the floor for<a name="line.193"></a>
 <span class="sourceLineNo">194</span>     * @return the floor of t, as a long<a name="line.194"></a>
 <span class="sourceLineNo">195</span>     */<a name="line.195"></a>
-<span class="sourceLineNo">196</span>    public static long fastFloor(double t) {<a name="line.196"></a>
+<span class="sourceLineNo">196</span>    public static long longFloor(double t) {<a name="line.196"></a>
 <span class="sourceLineNo">197</span>        return t &gt;= 0 ? (long) t : (long) t - 1;<a name="line.197"></a>
 <span class="sourceLineNo">198</span>    }<a name="line.198"></a>
 <span class="sourceLineNo">199</span><a name="line.199"></a>

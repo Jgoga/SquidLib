@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":9,"i15":10,"i16":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":9,"i14":10,"i15":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -113,7 +113,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.33">WaveletNoise</a>
+<pre>public class <a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.35">WaveletNoise</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a>, <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interface in squidpony.squidmath">Noise.Noise2D</a>, <a href="../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></pre>
 <div class="block">Wavelet Noise, a kind of multi-dimensional noise that is technically unrelated to classic Perlin or Simplex Noise,
@@ -203,18 +203,12 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
           int&nbsp;stride)</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#fastFloor-float-">fastFloor</a></span>(float&nbsp;t)</code>
-<div class="block">Like <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#floor-double-" title="class or interface in java.lang"><code>Math.floor(double)</code></a>, but returns an int.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#generate--">generate</a></span>()</code>
 <div class="block">Only needs to be called if you change the <a href="../../squidpony/squidmath/WaveletNoise.html#seed"><code>seed</code></a> field and want the cube of random values re-created.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getBandedNoise-float-float-float-long-float:A-">getBandedNoise</a></span>(float&nbsp;x,
               float&nbsp;y,
@@ -225,55 +219,55 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
  noise functions but allowing arbitrary weights for frequencies.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getNoise-double-">getNoise</a></span>(double&nbsp;x)</code>&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getNoise-double-double-">getNoise</a></span>(double&nbsp;x,
         double&nbsp;y)</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getNoise-double-double-double-">getNoise</a></span>(double&nbsp;x,
         double&nbsp;y,
         double&nbsp;z)</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getNoise-float-">getNoise</a></span>(float&nbsp;x)</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getNoise-float-float-">getNoise</a></span>(float&nbsp;x,
         float&nbsp;y)</code>&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getNoise-float-float-float-">getNoise</a></span>(float&nbsp;x,
         float&nbsp;y,
         float&nbsp;z)</code>&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getNoiseWithSeed-double-double-double-long-">getNoiseWithSeed</a></span>(double&nbsp;x,
                 double&nbsp;y,
                 double&nbsp;z,
                 long&nbsp;seed)</code>&nbsp;</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getNoiseWithSeed-double-double-long-">getNoiseWithSeed</a></span>(double&nbsp;x,
                 double&nbsp;y,
                 long&nbsp;seed)</code>&nbsp;</td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getNoiseWithSeed-double-long-">getNoiseWithSeed</a></span>(double&nbsp;x,
                 long&nbsp;seed)</code>&nbsp;</td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#getRawNoise-float-float-float-long-">getRawNoise</a></span>(float&nbsp;x,
            float&nbsp;y,
@@ -284,17 +278,17 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
  normally.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>static float[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#prepareBands-float...-">prepareBands</a></span>(float...&nbsp;weights)</code>
 <div class="block">Makes a float array that can be passed as bands to <a href="../../squidpony/squidmath/WaveletNoise.html#getBandedNoise-float-float-float-long-float:A-"><code>getBandedNoise(float, float, float, long, float[])</code></a>.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#setScale-float-">setScale</a></span>(float&nbsp;scale)</code>&nbsp;</td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WaveletNoise.html#upsample-float:A-float:A-int-int-int-">upsample</a></span>(float[]&nbsp;from,
         float[]&nbsp;to,
@@ -330,7 +324,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>m_Scale</h4>
-<pre>public&nbsp;float <a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.54">m_Scale</a></pre>
+<pre>public&nbsp;float <a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.56">m_Scale</a></pre>
 </li>
 </ul>
 <a name="seed">
@@ -339,7 +333,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>seed</h4>
-<pre>public&nbsp;long <a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.56">seed</a></pre>
+<pre>public&nbsp;long <a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.58">seed</a></pre>
 </li>
 </ul>
 <a name="instance">
@@ -348,7 +342,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>instance</h4>
-<pre>public static final&nbsp;<a href="../../squidpony/squidmath/WaveletNoise.html" title="class in squidpony.squidmath">WaveletNoise</a> <a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.57">instance</a></pre>
+<pre>public static final&nbsp;<a href="../../squidpony/squidmath/WaveletNoise.html" title="class in squidpony.squidmath">WaveletNoise</a> <a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.59">instance</a></pre>
 </li>
 </ul>
 </li>
@@ -365,7 +359,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>WaveletNoise</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.60">WaveletNoise</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.62">WaveletNoise</a>()</pre>
 </li>
 </ul>
 <a name="WaveletNoise-int-">
@@ -374,7 +368,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>WaveletNoise</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.65">WaveletNoise</a>(int&nbsp;dimensions)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.67">WaveletNoise</a>(int&nbsp;dimensions)</pre>
 </li>
 </ul>
 </li>
@@ -391,7 +385,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.80">getNoise</a>(double&nbsp;x)</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.82">getNoise</a>(double&nbsp;x)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/Noise.Noise1D.html#getNoise-double-">getNoise</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interface in squidpony.squidmath">Noise.Noise1D</a></code></dd>
@@ -404,7 +398,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.85">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.87">getNoiseWithSeed</a>(double&nbsp;x,
                                long&nbsp;seed)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -418,7 +412,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.90">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.92">getNoise</a>(double&nbsp;x,
                        double&nbsp;y)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -432,7 +426,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.96">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.98">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                long&nbsp;seed)</pre>
 <dl>
@@ -447,7 +441,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.101">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.103">getNoise</a>(double&nbsp;x,
                        double&nbsp;y,
                        double&nbsp;z)</pre>
 <dl>
@@ -462,7 +456,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.106">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.108">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                double&nbsp;z,
                                long&nbsp;seed)</pre>
@@ -478,7 +472,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.110">getNoise</a>(float&nbsp;x)</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.112">getNoise</a>(float&nbsp;x)</pre>
 </li>
 </ul>
 <a name="getNoise-float-float-">
@@ -487,7 +481,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.114">getNoise</a>(float&nbsp;x,
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.116">getNoise</a>(float&nbsp;x,
                       float&nbsp;y)</pre>
 </li>
 </ul>
@@ -497,7 +491,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.118">getNoise</a>(float&nbsp;x,
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.120">getNoise</a>(float&nbsp;x,
                       float&nbsp;y,
                       float&nbsp;z)</pre>
 </li>
@@ -508,23 +502,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>setScale</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.122">setScale</a>(float&nbsp;scale)</pre>
-</li>
-</ul>
-<a name="fastFloor-float-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>fastFloor</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.133">fastFloor</a>(float&nbsp;t)</pre>
-<div class="block">Like <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#floor-double-" title="class or interface in java.lang"><code>Math.floor(double)</code></a>, but returns an int. Doesn't consider weird floats like INFINITY and NaN.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>t</code> - the float to find the floor for</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the floor of t, as an int</dd>
-</dl>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.124">setScale</a>(float&nbsp;scale)</pre>
 </li>
 </ul>
 <a name="getRawNoise-float-float-float-long-">
@@ -533,7 +511,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getRawNoise</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.155">getRawNoise</a>(float&nbsp;x,
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.138">getRawNoise</a>(float&nbsp;x,
                          float&nbsp;y,
                          float&nbsp;z,
                          long&nbsp;seed)</pre>
@@ -557,7 +535,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>prepareBands</h4>
-<pre>public static&nbsp;float[]&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.215">prepareBands</a>(float...&nbsp;weights)</pre>
+<pre>public static&nbsp;float[]&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.198">prepareBands</a>(float...&nbsp;weights)</pre>
 <div class="block">Makes a float array that can be passed as bands to <a href="../../squidpony/squidmath/WaveletNoise.html#getBandedNoise-float-float-float-long-float:A-"><code>getBandedNoise(float, float, float, long, float[])</code></a>.
  This takes an array or varargs of floats, which are used in order as weights for successively doubled frequencies
  for the noise. It may be good to experiment with this; <code>0.5f, 1.1f, 1.9f, 1.2f, 0.6f</code> will be different
@@ -577,7 +555,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getBandedNoise</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.244">getBandedNoise</a>(float&nbsp;x,
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.227">getBandedNoise</a>(float&nbsp;x,
                             float&nbsp;y,
                             float&nbsp;z,
                             long&nbsp;seed,
@@ -606,7 +584,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>generate</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.264">generate</a>()</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.247">generate</a>()</pre>
 <div class="block">Only needs to be called if you change the <a href="../../squidpony/squidmath/WaveletNoise.html#seed"><code>seed</code></a> field and want the cube of random values re-created.</div>
 </li>
 </ul>
@@ -616,7 +594,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>downsample</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.338">downsample</a>(float[]&nbsp;from,
+<pre>protected&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.321">downsample</a>(float[]&nbsp;from,
                           float[]&nbsp;to,
                           int&nbsp;idx,
                           int&nbsp;n,
@@ -629,7 +607,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>upsample</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.358">upsample</a>(float[]&nbsp;from,
+<pre>protected&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/WaveletNoise.html#line.341">upsample</a>(float[]&nbsp;from,
                         float[]&nbsp;to,
                         int&nbsp;idx,
                         int&nbsp;n,
