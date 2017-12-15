@@ -1174,6 +1174,15 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedSet.html#remove-java.lang.Object-">remove(Object)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/ProbabilityTable.html#remove-T-">remove(T)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ProbabilityTable.html" title="class in squidpony.squidmath">ProbabilityTable</a></dt>
+<dd>
+<div class="block">Removes the possibility of generating the given T item, except by nested ProbabilityTable results.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/ProbabilityTable.html#remove-T-int-">remove(T, int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ProbabilityTable.html" title="class in squidpony.squidmath">ProbabilityTable</a></dt>
+<dd>
+<div class="block">Reduces the likelihood of generating the given T item by the given weight, which can reduce the chance below 0
+ and thus remove the item entirely.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/ShortSet.html#remove-short-">remove(short)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ShortSet.html" title="class in squidpony.squidmath">ShortSet</a></dt>
 <dd>
 <div class="block">Returns true if the key was removed.</div>
@@ -1254,6 +1263,16 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedSet.html#removeAll-java.util.Collection-">removeAll(Collection&lt;?&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a></dt>
 <dd>
 <div class="block">Remove from this collection all elements in the given collection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/ProbabilityTable.html#removeAll-java.lang.Iterable-">removeAll(Iterable&lt;T&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ProbabilityTable.html" title="class in squidpony.squidmath">ProbabilityTable</a></dt>
+<dd>
+<div class="block">Given an Iterable of T item keys to remove, this tries to remove each item in items, though it can't affect items
+ in nested ProbabilityTables, and returns true if any probabilities were changed.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/ProbabilityTable.html#removeAll-squidpony.squidmath.OrderedMap-">removeAll(OrderedMap&lt;T, Integer&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ProbabilityTable.html" title="class in squidpony.squidmath">ProbabilityTable</a></dt>
+<dd>
+<div class="block">Given an OrderedMap of T item keys and Integer weight values, reduces the weights in this ProbabilityTable for
+ all T keys by their corresponding weights, removing them if the weight becomes 0 or less.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/ShortVLA.html#removeAll-squidpony.squidmath.ShortVLA-">removeAll(ShortVLA)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ShortVLA.html" title="class in squidpony.squidmath">ShortVLA</a></dt>
 <dd>
