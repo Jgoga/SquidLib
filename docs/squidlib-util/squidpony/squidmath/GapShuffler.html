@@ -187,19 +187,22 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/GapShuffler.html#GapShuffler-T-">GapShuffler</a></span>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&nbsp;single)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/GapShuffler.html#GapShuffler-T:A-">GapShuffler</a></span>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>[]&nbsp;elements)</code>
 <div class="block">Constructor that takes any Collection of T, shuffles it with an unseeded RNG, and can then iterate infinitely
  through mostly-random shuffles of the given collection.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/GapShuffler.html#GapShuffler-T:A-java.lang.CharSequence-">GapShuffler</a></span>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>[]&nbsp;elements,
            <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;seed)</code>
 <div class="block">Constructor that takes any Collection of T, shuffles it with an unseeded RNG, and can then iterate infinitely
  through mostly-random shuffles of the given collection.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/GapShuffler.html#GapShuffler-T:A-squidpony.squidmath.RNG-">GapShuffler</a></span>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>[]&nbsp;elements,
            <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
 <div class="block">Constructor that takes any Collection of T, shuffles it with the given RNG, and can then iterate infinitely
@@ -298,13 +301,24 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
+<a name="GapShuffler-java.lang.Object-">
+<!--   -->
+</a><a name="GapShuffler-T-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>GapShuffler</h4>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.27">GapShuffler</a>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&nbsp;single)</pre>
+</li>
+</ul>
 <a name="GapShuffler-java.util.Collection-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>GapShuffler</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.34">GapShuffler</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&gt;&nbsp;elements)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.43">GapShuffler</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&gt;&nbsp;elements)</pre>
 <div class="block">Constructor that takes any Collection of T, shuffles it with an unseeded RNG, and can then iterate infinitely
  through mostly-random shuffles of the given collection. These shuffles are spaced so that a single element should
  always have a large amount of "gap" in order between one appearance and the next. It helps to keep the appearance
@@ -321,7 +335,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <ul class="blockList">
 <li class="blockList">
 <h4>GapShuffler</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.63">GapShuffler</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&gt;&nbsp;elements,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.72">GapShuffler</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&gt;&nbsp;elements,
                    <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;seed)</pre>
 <div class="block">Constructor that takes any Collection of T, shuffles it with an unseeded RNG, and can then iterate infinitely
  through mostly-random shuffles of the given collection. These shuffles are spaced so that a single element should
@@ -339,7 +353,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <ul class="blockList">
 <li class="blockList">
 <h4>GapShuffler</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.99">GapShuffler</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&gt;&nbsp;elements,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.108">GapShuffler</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&gt;&nbsp;elements,
                    <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
 <div class="block">Constructor that takes any Collection of T, shuffles it with the given RNG, and can then iterate infinitely
  through mostly-random shuffles of the given collection. These shuffles are spaced so that a single element should
@@ -366,7 +380,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <ul class="blockList">
 <li class="blockList">
 <h4>GapShuffler</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.128">GapShuffler</a>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>[]&nbsp;elements)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.137">GapShuffler</a>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>[]&nbsp;elements)</pre>
 <div class="block">Constructor that takes any Collection of T, shuffles it with an unseeded RNG, and can then iterate infinitely
  through mostly-random shuffles of the given collection. These shuffles are spaced so that a single element should
  always have a large amount of "gap" in order between one appearance and the next. It helps to keep the appearance
@@ -385,7 +399,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <ul class="blockList">
 <li class="blockList">
 <h4>GapShuffler</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.157">GapShuffler</a>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>[]&nbsp;elements,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.166">GapShuffler</a>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>[]&nbsp;elements,
                    <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;seed)</pre>
 <div class="block">Constructor that takes any Collection of T, shuffles it with an unseeded RNG, and can then iterate infinitely
  through mostly-random shuffles of the given collection. These shuffles are spaced so that a single element should
@@ -405,7 +419,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>GapShuffler</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.193">GapShuffler</a>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>[]&nbsp;elements,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.202">GapShuffler</a>(<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>[]&nbsp;elements,
                    <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
 <div class="block">Constructor that takes any Collection of T, shuffles it with the given RNG, and can then iterate infinitely
  through mostly-random shuffles of the given collection. These shuffles are spaced so that a single element should
@@ -438,7 +452,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <ul class="blockList">
 <li class="blockList">
 <h4>next</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.220">next</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.229">next</a>()</pre>
 <div class="block">Gets the next element of the infinite sequence of T this shuffles through. This class can be used as an
  Iterator or Iterable of type T.</div>
 <dl>
@@ -455,7 +469,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <ul class="blockList">
 <li class="blockList">
 <h4>hasNext</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.250">hasNext</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.263">hasNext</a>()</pre>
 <div class="block">Returns <code>true</code> if the iteration has more elements.
  This is always the case for GapShuffler.</div>
 <dl>
@@ -472,7 +486,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <ul class="blockList">
 <li class="blockList">
 <h4>remove</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.259">remove</a>()</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.272">remove</a>()</pre>
 <div class="block">Not supported.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -488,7 +502,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>iterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.271">iterator</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/GapShuffler.html" title="type parameter in GapShuffler">T</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/GapShuffler.html#line.284">iterator</a>()</pre>
 <div class="block">Returns an <b>infinite</b> iterator over elements of type <code>T</code>; the returned iterator is this object.
  You should be prepared to break out of any for loops that use this once you've gotten enough elements!
  The remove() method is not supported by this iterator and hasNext() will always return true.</div>

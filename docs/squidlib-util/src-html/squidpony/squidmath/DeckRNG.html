@@ -46,12 +46,12 @@
 <span class="sourceLineNo">038</span>     */<a name="line.38"></a>
 <span class="sourceLineNo">039</span>    public DeckRNG(final long seed) {<a name="line.39"></a>
 <span class="sourceLineNo">040</span>        lastShuffledState = seed;<a name="line.40"></a>
-<span class="sourceLineNo">041</span>        random = new LightRNG(seed);<a name="line.41"></a>
+<span class="sourceLineNo">041</span>        random = new ThrustAltRNG(seed);<a name="line.41"></a>
 <span class="sourceLineNo">042</span>        step = 0;<a name="line.42"></a>
 <span class="sourceLineNo">043</span>    }<a name="line.43"></a>
 <span class="sourceLineNo">044</span><a name="line.44"></a>
 <span class="sourceLineNo">045</span>    /**<a name="line.45"></a>
-<span class="sourceLineNo">046</span>     * String-seeded constructor uses the hash of the String as a seed for LightRNG, which is of high quality, but low<a name="line.46"></a>
+<span class="sourceLineNo">046</span>     * String-seeded constructor uses the hash of the String as a seed for ThrustAltRNG, which is of high quality, but low<a name="line.46"></a>
 <span class="sourceLineNo">047</span>     * period (which rarely matters for games), and has good speed and tiny state size.<a name="line.47"></a>
 <span class="sourceLineNo">048</span>     *<a name="line.48"></a>
 <span class="sourceLineNo">049</span>     * @param seedString a String to use as a seed; will be hashed in a uniform way across platforms.<a name="line.49"></a>
@@ -383,7 +383,7 @@
 <span class="sourceLineNo">375</span>    public Random asRandom() {<a name="line.375"></a>
 <span class="sourceLineNo">376</span>        if(ran == null)<a name="line.376"></a>
 <span class="sourceLineNo">377</span>        {<a name="line.377"></a>
-<span class="sourceLineNo">378</span>            ran = new CustomRandom(new LightRNG(getState()));<a name="line.378"></a>
+<span class="sourceLineNo">378</span>            ran = new CustomRandom(random.copy());<a name="line.378"></a>
 <span class="sourceLineNo">379</span>        }<a name="line.379"></a>
 <span class="sourceLineNo">380</span>        return ran;<a name="line.380"></a>
 <span class="sourceLineNo">381</span>    }<a name="line.381"></a>
@@ -513,15 +513,15 @@
 <span class="sourceLineNo">505</span>     */<a name="line.505"></a>
 <span class="sourceLineNo">506</span>    private void shuffleInPlace(double[] array)<a name="line.506"></a>
 <span class="sourceLineNo">507</span>    {<a name="line.507"></a>
-<span class="sourceLineNo">508</span>        lastShuffledState = ((LightRNG)random).getState();<a name="line.508"></a>
-<span class="sourceLineNo">509</span>        int n = array.length;<a name="line.509"></a>
+<span class="sourceLineNo">508</span>        lastShuffledState = ((StatefulRandomness)random).getState();<a name="line.508"></a>
+<span class="sourceLineNo">509</span>        final int n = array.length;<a name="line.509"></a>
 <span class="sourceLineNo">510</span>        System.arraycopy(baseDeck, 0, array, 0, n);<a name="line.510"></a>
 <span class="sourceLineNo">511</span>        for (int i = 0; i &lt; n; i++)<a name="line.511"></a>
 <span class="sourceLineNo">512</span>        {<a name="line.512"></a>
-<span class="sourceLineNo">513</span>            int r = i + ((LightRNG)random).nextInt(n - i);<a name="line.513"></a>
+<span class="sourceLineNo">513</span>            int r = i + ThrustAltRNG.determineBounded(lastShuffledState + (i &lt;&lt; 1), n - i);<a name="line.513"></a>
 <span class="sourceLineNo">514</span>            double t = array[r];<a name="line.514"></a>
 <span class="sourceLineNo">515</span>            array[r] = array[i];<a name="line.515"></a>
-<span class="sourceLineNo">516</span>            array[i] =((LightRNG)random).nextDouble(0.0625) + t;<a name="line.516"></a>
+<span class="sourceLineNo">516</span>            array[i] = ThrustAltRNG.determineDouble(lastShuffledState + (i &lt;&lt; 1) + 1) * 0.0625 + t;<a name="line.516"></a>
 <span class="sourceLineNo">517</span>        }<a name="line.517"></a>
 <span class="sourceLineNo">518</span>    }<a name="line.518"></a>
 <span class="sourceLineNo">519</span><a name="line.519"></a>
@@ -543,7 +543,7 @@
 <span class="sourceLineNo">535</span>     */<a name="line.535"></a>
 <span class="sourceLineNo">536</span>    @Override<a name="line.536"></a>
 <span class="sourceLineNo">537</span>    public void setState(long state) {<a name="line.537"></a>
-<span class="sourceLineNo">538</span>        ((LightRNG)random).setState(state);<a name="line.538"></a>
+<span class="sourceLineNo">538</span>        ((StatefulRandomness)random).setState(state);<a name="line.538"></a>
 <span class="sourceLineNo">539</span>        shuffleInPlace(deck);<a name="line.539"></a>
 <span class="sourceLineNo">540</span>        step = 0;<a name="line.540"></a>
 <span class="sourceLineNo">541</span>    }<a name="line.541"></a>

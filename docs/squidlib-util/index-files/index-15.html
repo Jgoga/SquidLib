@@ -508,6 +508,11 @@
 <dd>
 <div class="block">Generate a random vector.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#nextCurvedFloat--">nextCurvedFloat()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
+<dd>
+<div class="block">Generates a random float with a curved distribution that centers on 0 (where it has a bias) and can (rarely)
+ approach -1f and 1f, but not go beyond those bounds.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/CriticalRNG.html#nextDouble--">nextDouble()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/CriticalRNG.html" title="class in squidpony.squidmath">CriticalRNG</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/CriticalRNG.html#nextDouble-double-">nextDouble(double)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/CriticalRNG.html" title="class in squidpony.squidmath">CriticalRNG</a></dt>
@@ -672,7 +677,10 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/EditRNG.html#nextGaussian--">nextGaussian()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/EditRNG.html" title="class in squidpony.squidmath">EditRNG</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#nextGaussian--">nextGaussian()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Gets a pseudo-random double from the Gaussian distribution, which will usually be between -1.0 and 1.0 but is not
+ always in that range.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Arrangement.ValueIterator.html#nextInt--">nextInt()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Arrangement.ValueIterator.html" title="class in squidpony.squidmath">Arrangement.ValueIterator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/BardRNG.html#nextInt--">nextInt()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/BardRNG.html" title="class in squidpony.squidmath">BardRNG</a></dt>
@@ -869,7 +877,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#nextIntHasty-int-">nextIntHasty(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
 <dd>
-<div class="block">Returns a random non-negative integer below the given bound, or 0 if the bound is 0.</div>
+<div class="block">Returns a random non-negative integer between 0 (inclusive) and the given bound (exclusive),
+ or 0 if the bound is 0.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/SobolQRNG.html#nextIntVector--">nextIntVector()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/SobolQRNG.html" title="class in squidpony.squidmath">SobolQRNG</a></dt>
 <dd>

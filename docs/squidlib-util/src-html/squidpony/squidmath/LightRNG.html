@@ -48,7 +48,7 @@
 <span class="sourceLineNo">040</span> * @author Sebastiano Vigna<a name="line.40"></a>
 <span class="sourceLineNo">041</span> * @author Tommy Ettinger<a name="line.41"></a>
 <span class="sourceLineNo">042</span> */<a name="line.42"></a>
-<span class="sourceLineNo">043</span>public class LightRNG implements RandomnessSource, StatefulRandomness, Serializable<a name="line.43"></a>
+<span class="sourceLineNo">043</span>public final class LightRNG implements RandomnessSource, StatefulRandomness, SkippingRandomness, Serializable<a name="line.43"></a>
 <span class="sourceLineNo">044</span>{<a name="line.44"></a>
 <span class="sourceLineNo">045</span>        /** 2 raised to the 53, - 1. */<a name="line.45"></a>
 <span class="sourceLineNo">046</span>    private static final long DOUBLE_MASK = ( 1L &lt;&lt; 53 ) - 1;<a name="line.46"></a>
@@ -241,55 +241,56 @@
 <span class="sourceLineNo">233</span>     * @param advance Number of future generations to skip over; can be negative to backtrack, 0 gets the most recent generated number<a name="line.233"></a>
 <span class="sourceLineNo">234</span>     * @return the random long generated after skipping advance numbers<a name="line.234"></a>
 <span class="sourceLineNo">235</span>     */<a name="line.235"></a>
-<span class="sourceLineNo">236</span>    public long skip(long advance) {<a name="line.236"></a>
-<span class="sourceLineNo">237</span>        long z = (state += 0x9E3779B97F4A7C15L * advance);<a name="line.237"></a>
-<span class="sourceLineNo">238</span>        z = (z ^ (z &gt;&gt;&gt; 30)) * 0xBF58476D1CE4E5B9L;<a name="line.238"></a>
-<span class="sourceLineNo">239</span>        z = (z ^ (z &gt;&gt;&gt; 27)) * 0x94D049BB133111EBL;<a name="line.239"></a>
-<span class="sourceLineNo">240</span>        return z ^ (z &gt;&gt;&gt; 31);<a name="line.240"></a>
-<span class="sourceLineNo">241</span>    }<a name="line.241"></a>
-<span class="sourceLineNo">242</span><a name="line.242"></a>
+<span class="sourceLineNo">236</span>    @Override<a name="line.236"></a>
+<span class="sourceLineNo">237</span>    public long skip(long advance) {<a name="line.237"></a>
+<span class="sourceLineNo">238</span>        long z = (state += 0x9E3779B97F4A7C15L * advance);<a name="line.238"></a>
+<span class="sourceLineNo">239</span>        z = (z ^ (z &gt;&gt;&gt; 30)) * 0xBF58476D1CE4E5B9L;<a name="line.239"></a>
+<span class="sourceLineNo">240</span>        z = (z ^ (z &gt;&gt;&gt; 27)) * 0x94D049BB133111EBL;<a name="line.240"></a>
+<span class="sourceLineNo">241</span>        return z ^ (z &gt;&gt;&gt; 31);<a name="line.241"></a>
+<span class="sourceLineNo">242</span>    }<a name="line.242"></a>
 <span class="sourceLineNo">243</span><a name="line.243"></a>
-<span class="sourceLineNo">244</span>    @Override<a name="line.244"></a>
-<span class="sourceLineNo">245</span>    public String toString() {<a name="line.245"></a>
-<span class="sourceLineNo">246</span>        return "LightRNG with state 0x" + StringKit.hex(state) + 'L';<a name="line.246"></a>
-<span class="sourceLineNo">247</span>    }<a name="line.247"></a>
-<span class="sourceLineNo">248</span><a name="line.248"></a>
-<span class="sourceLineNo">249</span>    @Override<a name="line.249"></a>
-<span class="sourceLineNo">250</span>    public boolean equals(Object o) {<a name="line.250"></a>
-<span class="sourceLineNo">251</span>        if (this == o) return true;<a name="line.251"></a>
-<span class="sourceLineNo">252</span>        if (o == null || getClass() != o.getClass()) return false;<a name="line.252"></a>
-<span class="sourceLineNo">253</span><a name="line.253"></a>
-<span class="sourceLineNo">254</span>        LightRNG lightRNG = (LightRNG) o;<a name="line.254"></a>
-<span class="sourceLineNo">255</span><a name="line.255"></a>
-<span class="sourceLineNo">256</span>        return state == lightRNG.state;<a name="line.256"></a>
-<span class="sourceLineNo">257</span>    }<a name="line.257"></a>
-<span class="sourceLineNo">258</span><a name="line.258"></a>
-<span class="sourceLineNo">259</span>    @Override<a name="line.259"></a>
-<span class="sourceLineNo">260</span>    public int hashCode() {<a name="line.260"></a>
-<span class="sourceLineNo">261</span>        return (int) (state ^ (state &gt;&gt;&gt; 32));<a name="line.261"></a>
-<span class="sourceLineNo">262</span>    }<a name="line.262"></a>
-<span class="sourceLineNo">263</span><a name="line.263"></a>
-<span class="sourceLineNo">264</span>    public static long determine(long state)<a name="line.264"></a>
-<span class="sourceLineNo">265</span>    {<a name="line.265"></a>
-<span class="sourceLineNo">266</span>        state = (((state *= 0x9E3779B97F4A7C15L) &gt;&gt;&gt; 30) ^ state) * 0xBF58476D1CE4E5B9L;<a name="line.266"></a>
-<span class="sourceLineNo">267</span>        state = (state ^ (state &gt;&gt;&gt; 27)) * 0x94D049BB133111EBL;<a name="line.267"></a>
-<span class="sourceLineNo">268</span>        return state ^ (state &gt;&gt;&gt; 31);<a name="line.268"></a>
-<span class="sourceLineNo">269</span>    }<a name="line.269"></a>
-<span class="sourceLineNo">270</span>    public static long determine(final int a, final int b)<a name="line.270"></a>
-<span class="sourceLineNo">271</span>    {<a name="line.271"></a>
-<span class="sourceLineNo">272</span>        long state = 0x9E3779B97F4A7C15L + (a &amp; 0xFFFFFFFFL) + ((long)b &lt;&lt; 32);<a name="line.272"></a>
-<span class="sourceLineNo">273</span>        state = ((state &gt;&gt;&gt; 30) ^ state) * 0xBF58476D1CE4E5B9L;<a name="line.273"></a>
-<span class="sourceLineNo">274</span>        state = (state ^ (state &gt;&gt;&gt; 27)) * 0x94D049BB133111EBL;<a name="line.274"></a>
-<span class="sourceLineNo">275</span>        return state ^ (state &gt;&gt;&gt; 31);<a name="line.275"></a>
-<span class="sourceLineNo">276</span>    }<a name="line.276"></a>
-<span class="sourceLineNo">277</span><a name="line.277"></a>
-<span class="sourceLineNo">278</span>    public static int determineBounded(long state, final int bound)<a name="line.278"></a>
-<span class="sourceLineNo">279</span>    {<a name="line.279"></a>
-<span class="sourceLineNo">280</span>        state = (((state *= 0x9E3779B97F4A7C15L) &gt;&gt;&gt; 30) ^ state) * 0xBF58476D1CE4E5B9L;<a name="line.280"></a>
-<span class="sourceLineNo">281</span>        state = (state ^ (state &gt;&gt;&gt; 27)) * 0x94D049BB133111EBL;<a name="line.281"></a>
-<span class="sourceLineNo">282</span>        return (int)((bound * ((state ^ (state &gt;&gt;&gt; 31)) &amp; 0x7FFFFFFFL)) &gt;&gt; 31);<a name="line.282"></a>
-<span class="sourceLineNo">283</span>    }<a name="line.283"></a>
-<span class="sourceLineNo">284</span>}<a name="line.284"></a>
+<span class="sourceLineNo">244</span><a name="line.244"></a>
+<span class="sourceLineNo">245</span>    @Override<a name="line.245"></a>
+<span class="sourceLineNo">246</span>    public String toString() {<a name="line.246"></a>
+<span class="sourceLineNo">247</span>        return "LightRNG with state 0x" + StringKit.hex(state) + 'L';<a name="line.247"></a>
+<span class="sourceLineNo">248</span>    }<a name="line.248"></a>
+<span class="sourceLineNo">249</span><a name="line.249"></a>
+<span class="sourceLineNo">250</span>    @Override<a name="line.250"></a>
+<span class="sourceLineNo">251</span>    public boolean equals(Object o) {<a name="line.251"></a>
+<span class="sourceLineNo">252</span>        if (this == o) return true;<a name="line.252"></a>
+<span class="sourceLineNo">253</span>        if (o == null || getClass() != o.getClass()) return false;<a name="line.253"></a>
+<span class="sourceLineNo">254</span><a name="line.254"></a>
+<span class="sourceLineNo">255</span>        LightRNG lightRNG = (LightRNG) o;<a name="line.255"></a>
+<span class="sourceLineNo">256</span><a name="line.256"></a>
+<span class="sourceLineNo">257</span>        return state == lightRNG.state;<a name="line.257"></a>
+<span class="sourceLineNo">258</span>    }<a name="line.258"></a>
+<span class="sourceLineNo">259</span><a name="line.259"></a>
+<span class="sourceLineNo">260</span>    @Override<a name="line.260"></a>
+<span class="sourceLineNo">261</span>    public int hashCode() {<a name="line.261"></a>
+<span class="sourceLineNo">262</span>        return (int) (state ^ (state &gt;&gt;&gt; 32));<a name="line.262"></a>
+<span class="sourceLineNo">263</span>    }<a name="line.263"></a>
+<span class="sourceLineNo">264</span><a name="line.264"></a>
+<span class="sourceLineNo">265</span>    public static long determine(long state)<a name="line.265"></a>
+<span class="sourceLineNo">266</span>    {<a name="line.266"></a>
+<span class="sourceLineNo">267</span>        state = (((state *= 0x9E3779B97F4A7C15L) &gt;&gt;&gt; 30) ^ state) * 0xBF58476D1CE4E5B9L;<a name="line.267"></a>
+<span class="sourceLineNo">268</span>        state = (state ^ (state &gt;&gt;&gt; 27)) * 0x94D049BB133111EBL;<a name="line.268"></a>
+<span class="sourceLineNo">269</span>        return state ^ (state &gt;&gt;&gt; 31);<a name="line.269"></a>
+<span class="sourceLineNo">270</span>    }<a name="line.270"></a>
+<span class="sourceLineNo">271</span>    public static long determine(final int a, final int b)<a name="line.271"></a>
+<span class="sourceLineNo">272</span>    {<a name="line.272"></a>
+<span class="sourceLineNo">273</span>        long state = 0x9E3779B97F4A7C15L + (a &amp; 0xFFFFFFFFL) + ((long)b &lt;&lt; 32);<a name="line.273"></a>
+<span class="sourceLineNo">274</span>        state = ((state &gt;&gt;&gt; 30) ^ state) * 0xBF58476D1CE4E5B9L;<a name="line.274"></a>
+<span class="sourceLineNo">275</span>        state = (state ^ (state &gt;&gt;&gt; 27)) * 0x94D049BB133111EBL;<a name="line.275"></a>
+<span class="sourceLineNo">276</span>        return state ^ (state &gt;&gt;&gt; 31);<a name="line.276"></a>
+<span class="sourceLineNo">277</span>    }<a name="line.277"></a>
+<span class="sourceLineNo">278</span><a name="line.278"></a>
+<span class="sourceLineNo">279</span>    public static int determineBounded(long state, final int bound)<a name="line.279"></a>
+<span class="sourceLineNo">280</span>    {<a name="line.280"></a>
+<span class="sourceLineNo">281</span>        state = (((state *= 0x9E3779B97F4A7C15L) &gt;&gt;&gt; 30) ^ state) * 0xBF58476D1CE4E5B9L;<a name="line.281"></a>
+<span class="sourceLineNo">282</span>        state = (state ^ (state &gt;&gt;&gt; 27)) * 0x94D049BB133111EBL;<a name="line.282"></a>
+<span class="sourceLineNo">283</span>        return (int)((bound * ((state ^ (state &gt;&gt;&gt; 31)) &amp; 0x7FFFFFFFL)) &gt;&gt; 31);<a name="line.283"></a>
+<span class="sourceLineNo">284</span>    }<a name="line.284"></a>
+<span class="sourceLineNo">285</span>}<a name="line.285"></a>
 
 
 

@@ -3918,7 +3918,7 @@
 <span class="sourceLineNo">3910</span>        public final Alteration[] alterations;<a name="line.3910"></a>
 <span class="sourceLineNo">3911</span><a name="line.3911"></a>
 <span class="sourceLineNo">3912</span>        public Modifier() {<a name="line.3912"></a>
-<span class="sourceLineNo">3913</span>            this("[tţťțṭ]?[sśŝşšș]+h?", "th");<a name="line.3913"></a>
+<span class="sourceLineNo">3913</span>            alterations = new Alteration[0];<a name="line.3913"></a>
 <span class="sourceLineNo">3914</span>        }<a name="line.3914"></a>
 <span class="sourceLineNo">3915</span><a name="line.3915"></a>
 <span class="sourceLineNo">3916</span>        public Modifier(String pattern, String replacement) {<a name="line.3916"></a>
@@ -3936,12 +3936,12 @@
 <span class="sourceLineNo">3928</span>        public StringBuilder modify(RNG rng, StringBuilder sb) {<a name="line.3928"></a>
 <span class="sourceLineNo">3929</span>            Matcher m;<a name="line.3929"></a>
 <span class="sourceLineNo">3930</span>            Replacer.StringBuilderBuffer tb, working = Replacer.wrap(sb);<a name="line.3930"></a>
-<span class="sourceLineNo">3931</span>            String tmp;<a name="line.3931"></a>
+<span class="sourceLineNo">3931</span>            StringBuilder tmp;<a name="line.3931"></a>
 <span class="sourceLineNo">3932</span>            boolean found;<a name="line.3932"></a>
 <span class="sourceLineNo">3933</span>            Alteration alt;<a name="line.3933"></a>
 <span class="sourceLineNo">3934</span>            for (int a = 0; a &lt; alterations.length; a++) {<a name="line.3934"></a>
 <span class="sourceLineNo">3935</span>                alt = alterations[a];<a name="line.3935"></a>
-<span class="sourceLineNo">3936</span>                tmp = working.toString();<a name="line.3936"></a>
+<span class="sourceLineNo">3936</span>                tmp = working.sb;<a name="line.3936"></a>
 <span class="sourceLineNo">3937</span>                tb = Replacer.wrap(new StringBuilder(tmp.length()));<a name="line.3937"></a>
 <span class="sourceLineNo">3938</span>                m = alt.replacer.getPattern().matcher(tmp);<a name="line.3938"></a>
 <span class="sourceLineNo">3939</span><a name="line.3939"></a>
@@ -3965,7 +3965,7 @@
 <span class="sourceLineNo">3957</span>                    working = tb;<a name="line.3957"></a>
 <span class="sourceLineNo">3958</span>                }<a name="line.3958"></a>
 <span class="sourceLineNo">3959</span>            }<a name="line.3959"></a>
-<span class="sourceLineNo">3960</span>            return working.toStringBuilder();<a name="line.3960"></a>
+<span class="sourceLineNo">3960</span>            return working.sb;<a name="line.3960"></a>
 <span class="sourceLineNo">3961</span>        }<a name="line.3961"></a>
 <span class="sourceLineNo">3962</span><a name="line.3962"></a>
 <span class="sourceLineNo">3963</span>        /**<a name="line.3963"></a>
@@ -4426,8 +4426,8 @@
 <span class="sourceLineNo">4418</span>        /**<a name="line.4418"></a>
 <span class="sourceLineNo">4419</span>         * Builds a SentenceForm with all fields specified; each value is referenced directly except for {@code rng},<a name="line.4419"></a>
 <span class="sourceLineNo">4420</span>         * which will not change or be directly referenced (a new StatefulRNG will be used with the same state value).<a name="line.4420"></a>
-<span class="sourceLineNo">4421</span>         * Note that the StatefulRandomness used by this class' rng field will always be LightRNG, even if the given rng<a name="line.4421"></a>
-<span class="sourceLineNo">4422</span>         * parameter used a different StatefulRandomness implementation.<a name="line.4422"></a>
+<span class="sourceLineNo">4421</span>         * Note that the StatefulRandomness used by this class' rng field will always be ThrustAltRNG, even if the given<a name="line.4421"></a>
+<span class="sourceLineNo">4422</span>         * rng parameter used a different StatefulRandomness implementation.<a name="line.4422"></a>
 <span class="sourceLineNo">4423</span>         * @param language A FakeLanguageGen to use to generate words<a name="line.4423"></a>
 <span class="sourceLineNo">4424</span>         * @param rng a StatefulRNG that will not be directly referenced; the state will be copied into a new StatefulRNG<a name="line.4424"></a>
 <span class="sourceLineNo">4425</span>         * @param minWords minimum words per sentence<a name="line.4425"></a>

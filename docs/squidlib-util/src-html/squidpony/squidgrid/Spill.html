@@ -89,9 +89,9 @@
 <span class="sourceLineNo">081</span>     */<a name="line.81"></a>
 <span class="sourceLineNo">082</span>    public StatefulRNG rng;<a name="line.82"></a>
 <span class="sourceLineNo">083</span>    /**<a name="line.83"></a>
-<span class="sourceLineNo">084</span>     * The StatefulRandomness, usually a LightRNG, that this uses. Can have its state read and set.<a name="line.84"></a>
+<span class="sourceLineNo">084</span>     * The StatefulRandomness, usually a ThrustAltRNG, that this uses. Can have its state read and set.<a name="line.84"></a>
 <span class="sourceLineNo">085</span>     */<a name="line.85"></a>
-<span class="sourceLineNo">086</span>    public StatefulRandomness lrng;<a name="line.86"></a>
+<span class="sourceLineNo">086</span>    public StatefulRandomness sr;<a name="line.86"></a>
 <span class="sourceLineNo">087</span><a name="line.87"></a>
 <span class="sourceLineNo">088</span>    private boolean initialized = false;<a name="line.88"></a>
 <span class="sourceLineNo">089</span>    /**<a name="line.89"></a>
@@ -99,8 +99,8 @@
 <span class="sourceLineNo">091</span>     * initialize() method before using this class.<a name="line.91"></a>
 <span class="sourceLineNo">092</span>     */<a name="line.92"></a>
 <span class="sourceLineNo">093</span>    public Spill() {<a name="line.93"></a>
-<span class="sourceLineNo">094</span>        lrng = new LightRNG();<a name="line.94"></a>
-<span class="sourceLineNo">095</span>        rng = new StatefulRNG(lrng);<a name="line.95"></a>
+<span class="sourceLineNo">094</span>        sr = new ThrustAltRNG();<a name="line.94"></a>
+<span class="sourceLineNo">095</span>        rng = new StatefulRNG(sr);<a name="line.95"></a>
 <span class="sourceLineNo">096</span><a name="line.96"></a>
 <span class="sourceLineNo">097</span>        fresh = new OrderedSet&lt;&gt;();<a name="line.97"></a>
 <span class="sourceLineNo">098</span>    }<a name="line.98"></a>
@@ -112,22 +112,22 @@
 <span class="sourceLineNo">104</span>     * If you use this constructor, you must call an  initialize() method before using this class.<a name="line.104"></a>
 <span class="sourceLineNo">105</span>     */<a name="line.105"></a>
 <span class="sourceLineNo">106</span>    public Spill(RNG random) {<a name="line.106"></a>
-<span class="sourceLineNo">107</span>        lrng = new LightRNG(random.nextLong());<a name="line.107"></a>
-<span class="sourceLineNo">108</span>        rng = new StatefulRNG(lrng);<a name="line.108"></a>
+<span class="sourceLineNo">107</span>        sr = new ThrustAltRNG(random.nextLong());<a name="line.107"></a>
+<span class="sourceLineNo">108</span>        rng = new StatefulRNG(sr);<a name="line.108"></a>
 <span class="sourceLineNo">109</span><a name="line.109"></a>
 <span class="sourceLineNo">110</span>        fresh = new OrderedSet&lt;&gt;();<a name="line.110"></a>
 <span class="sourceLineNo">111</span>    }<a name="line.111"></a>
 <span class="sourceLineNo">112</span><a name="line.112"></a>
 <span class="sourceLineNo">113</span>    /**<a name="line.113"></a>
-<span class="sourceLineNo">114</span>     * Construct a Spill without a level to actually scan. This constructor allows you to specify a RandomnessSource<a name="line.114"></a>
-<span class="sourceLineNo">115</span>     * in the form of a LightRNG, which will be referenced in this class (if the state of random changes because this<a name="line.115"></a>
+<span class="sourceLineNo">114</span>     * Construct a Spill without a level to actually scan. This constructor allows you to specify a StatefulRandomness<a name="line.114"></a>
+<span class="sourceLineNo">115</span>     * such as ThrustAltRNG, which will be referenced in this class (if the state of random changes because this<a name="line.115"></a>
 <span class="sourceLineNo">116</span>     * object needed a random number, the state change will be reflected in the code that passed random to here).<a name="line.116"></a>
 <span class="sourceLineNo">117</span>     *<a name="line.117"></a>
 <span class="sourceLineNo">118</span>     * If you use this constructor, you must call an  initialize() method before using this class.<a name="line.118"></a>
 <span class="sourceLineNo">119</span>     */<a name="line.119"></a>
 <span class="sourceLineNo">120</span>    public Spill(StatefulRandomness random) {<a name="line.120"></a>
-<span class="sourceLineNo">121</span>        lrng = random;<a name="line.121"></a>
-<span class="sourceLineNo">122</span>        rng = new StatefulRNG(lrng);<a name="line.122"></a>
+<span class="sourceLineNo">121</span>        sr = random;<a name="line.121"></a>
+<span class="sourceLineNo">122</span>        rng = new StatefulRNG(sr);<a name="line.122"></a>
 <span class="sourceLineNo">123</span><a name="line.123"></a>
 <span class="sourceLineNo">124</span>        fresh = new OrderedSet&lt;&gt;();<a name="line.124"></a>
 <span class="sourceLineNo">125</span>    }<a name="line.125"></a>
@@ -137,8 +137,8 @@
 <span class="sourceLineNo">129</span>     * @param level the level as a 2D rectangular boolean array, using {@code false} to represent walls<a name="line.129"></a>
 <span class="sourceLineNo">130</span>     */<a name="line.130"></a>
 <span class="sourceLineNo">131</span>    public Spill(final boolean[][] level) {<a name="line.131"></a>
-<span class="sourceLineNo">132</span>        lrng = new LightRNG();<a name="line.132"></a>
-<span class="sourceLineNo">133</span>        rng = new StatefulRNG(lrng);<a name="line.133"></a>
+<span class="sourceLineNo">132</span>        sr = new ThrustAltRNG();<a name="line.132"></a>
+<span class="sourceLineNo">133</span>        rng = new StatefulRNG(sr);<a name="line.133"></a>
 <span class="sourceLineNo">134</span><a name="line.134"></a>
 <span class="sourceLineNo">135</span>        initialize(level);<a name="line.135"></a>
 <span class="sourceLineNo">136</span>    }<a name="line.136"></a>
@@ -148,8 +148,8 @@
 <span class="sourceLineNo">140</span>     * @param measurement a {@link Measurement} enum; usually {@link Measurement#MANHATTAN} is ideal<a name="line.140"></a>
 <span class="sourceLineNo">141</span>     */<a name="line.141"></a>
 <span class="sourceLineNo">142</span>    public Spill(final boolean[][] level, Measurement measurement) {<a name="line.142"></a>
-<span class="sourceLineNo">143</span>        lrng = new LightRNG();<a name="line.143"></a>
-<span class="sourceLineNo">144</span>        rng = new StatefulRNG(lrng);<a name="line.144"></a>
+<span class="sourceLineNo">143</span>        sr = new ThrustAltRNG();<a name="line.143"></a>
+<span class="sourceLineNo">144</span>        rng = new StatefulRNG(sr);<a name="line.144"></a>
 <span class="sourceLineNo">145</span><a name="line.145"></a>
 <span class="sourceLineNo">146</span>        this.measurement = measurement;<a name="line.146"></a>
 <span class="sourceLineNo">147</span><a name="line.147"></a>
@@ -165,8 +165,8 @@
 <span class="sourceLineNo">157</span>     * @param level the level as a 2D rectangular char array, using {@code '#'} to represent walls<a name="line.157"></a>
 <span class="sourceLineNo">158</span>     */<a name="line.158"></a>
 <span class="sourceLineNo">159</span>    public Spill(final char[][] level) {<a name="line.159"></a>
-<span class="sourceLineNo">160</span>        lrng = new LightRNG();<a name="line.160"></a>
-<span class="sourceLineNo">161</span>        rng = new StatefulRNG(lrng);<a name="line.161"></a>
+<span class="sourceLineNo">160</span>        sr = new ThrustAltRNG();<a name="line.160"></a>
+<span class="sourceLineNo">161</span>        rng = new StatefulRNG(sr);<a name="line.161"></a>
 <span class="sourceLineNo">162</span><a name="line.162"></a>
 <span class="sourceLineNo">163</span>        initialize(level);<a name="line.163"></a>
 <span class="sourceLineNo">164</span>    }<a name="line.164"></a>
@@ -180,8 +180,8 @@
 <span class="sourceLineNo">172</span>     * @param alternateWall the char that will be interpreted as a wall in {@code level}<a name="line.172"></a>
 <span class="sourceLineNo">173</span>     */<a name="line.173"></a>
 <span class="sourceLineNo">174</span>    public Spill(final char[][] level, char alternateWall) {<a name="line.174"></a>
-<span class="sourceLineNo">175</span>        lrng = new LightRNG();<a name="line.175"></a>
-<span class="sourceLineNo">176</span>        rng = new StatefulRNG(lrng);<a name="line.176"></a>
+<span class="sourceLineNo">175</span>        sr = new ThrustAltRNG();<a name="line.175"></a>
+<span class="sourceLineNo">176</span>        rng = new StatefulRNG(sr);<a name="line.176"></a>
 <span class="sourceLineNo">177</span><a name="line.177"></a>
 <span class="sourceLineNo">178</span>        initialize(level, alternateWall);<a name="line.178"></a>
 <span class="sourceLineNo">179</span>    }<a name="line.179"></a>
@@ -196,8 +196,8 @@
 <span class="sourceLineNo">188</span>     * @param measurement a {@link Measurement} enum; usually {@link Measurement#MANHATTAN} is ideal<a name="line.188"></a>
 <span class="sourceLineNo">189</span>     */<a name="line.189"></a>
 <span class="sourceLineNo">190</span>    public Spill(final char[][] level, Measurement measurement) {<a name="line.190"></a>
-<span class="sourceLineNo">191</span>        lrng = new LightRNG();<a name="line.191"></a>
-<span class="sourceLineNo">192</span>        rng = new StatefulRNG(lrng);<a name="line.192"></a>
+<span class="sourceLineNo">191</span>        sr = new ThrustAltRNG();<a name="line.191"></a>
+<span class="sourceLineNo">192</span>        rng = new StatefulRNG(sr);<a name="line.192"></a>
 <span class="sourceLineNo">193</span>        this.measurement = measurement;<a name="line.193"></a>
 <span class="sourceLineNo">194</span><a name="line.194"></a>
 <span class="sourceLineNo">195</span>        initialize(level);<a name="line.195"></a>
@@ -216,8 +216,8 @@
 <span class="sourceLineNo">208</span>     * @param measurement a {@link Measurement} enum; usually {@link Measurement#MANHATTAN} is ideal<a name="line.208"></a>
 <span class="sourceLineNo">209</span>     */<a name="line.209"></a>
 <span class="sourceLineNo">210</span>    public Spill(final char[][] level, Measurement measurement, RNG random) {<a name="line.210"></a>
-<span class="sourceLineNo">211</span>        lrng = new LightRNG(random.nextLong());<a name="line.211"></a>
-<span class="sourceLineNo">212</span>        rng = new StatefulRNG(lrng);<a name="line.212"></a>
+<span class="sourceLineNo">211</span>        sr = new ThrustAltRNG(random.nextLong());<a name="line.211"></a>
+<span class="sourceLineNo">212</span>        rng = new StatefulRNG(sr);<a name="line.212"></a>
 <span class="sourceLineNo">213</span>        this.measurement = measurement;<a name="line.213"></a>
 <span class="sourceLineNo">214</span><a name="line.214"></a>
 <span class="sourceLineNo">215</span>        initialize(level);<a name="line.215"></a>
@@ -235,8 +235,8 @@
 <span class="sourceLineNo">227</span>     * @param measurement a {@link Measurement} enum; usually {@link Measurement#MANHATTAN} is ideal<a name="line.227"></a>
 <span class="sourceLineNo">228</span>     */<a name="line.228"></a>
 <span class="sourceLineNo">229</span>    public Spill(final char[][] level, Measurement measurement, StatefulRandomness random) {<a name="line.229"></a>
-<span class="sourceLineNo">230</span>        lrng = random;<a name="line.230"></a>
-<span class="sourceLineNo">231</span>        rng = new StatefulRNG(lrng);<a name="line.231"></a>
+<span class="sourceLineNo">230</span>        sr = random;<a name="line.230"></a>
+<span class="sourceLineNo">231</span>        rng = new StatefulRNG(sr);<a name="line.231"></a>
 <span class="sourceLineNo">232</span>        this.measurement = measurement;<a name="line.232"></a>
 <span class="sourceLineNo">233</span><a name="line.233"></a>
 <span class="sourceLineNo">234</span>        initialize(level);<a name="line.234"></a>

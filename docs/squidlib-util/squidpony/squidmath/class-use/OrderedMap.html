@@ -137,11 +137,11 @@
 <td class="colLast"><span class="typeNameLabel">Thesaurus.</span><code><span class="memberNameLink"><a href="../../../squidpony/Thesaurus.html#categories">categories</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&gt;</code></td>
+<td class="colFirst"><code>static <a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>,<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Thesaurus.</span><code><span class="memberNameLink"><a href="../../../squidpony/Thesaurus.html#languages">languages</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../squidpony/squidmath/GapShuffler.html" title="class in squidpony.squidmath">GapShuffler</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>,<a href="../../../squidpony/squidmath/GapShuffler.html" title="class in squidpony.squidmath">GapShuffler</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Thesaurus.</span><code><span class="memberNameLink"><a href="../../../squidpony/Thesaurus.html#mappings">mappings</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -727,13 +727,22 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">K</a>,<a href="../../../squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">OrderedMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/OrderedMap.html#putPairs-K-V-java.lang.Object...-">putPairs</a></span>(<a href="../../../squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">K</a>&nbsp;k0,
+        <a href="../../../squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">V</a>&nbsp;v0,
+        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>...&nbsp;rest)</code>
+<div class="block">Given alternating key and value arguments in pairs, puts each key-value pair into this OrderedMap as if by
+ calling <a href="../../../squidpony/squidmath/OrderedMap.html#put-K-V-"><code>put(Object, Object)</code></a> repeatedly for each pair.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">K</a>,<a href="../../../squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">V</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">OrderedMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/OrderedMap.html#reorder-int...-">reorder</a></span>(int...&nbsp;ordering)</code>
 <div class="block">Given an array or varargs of replacement indices for this OrderedMap's iteration order, reorders this so the
  first item in the returned version is the same as <code>getAt(ordering[0])</code> (with some care taken for negative
  or too-large indices), the second item in the returned version is the same as <code>getAt(ordering[1])</code>, etc.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">K</a>,<a href="../../../squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">V</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">OrderedMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/OrderedMap.html#shuffle-squidpony.squidmath.RNG-">shuffle</a></span>(<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
 <div class="block">Randomly alters the iteration order for this OrderedMap using the given RNG to shuffle.</div>

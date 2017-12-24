@@ -171,41 +171,41 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/Spill.html#lrng">lrng</a></span></code>
-<div class="block">The StatefulRandomness, usually a LightRNG, that this uses.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidgrid/Spill.Measurement.html" title="enum in squidpony.squidgrid">Spill.Measurement</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/Spill.html#measurement">measurement</a></span></code>
 <div class="block">This affects how distance is measured on diagonal directions vs.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean[][]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/Spill.html#physicalMap">physicalMap</a></span></code>
 <div class="block">Stores which parts of the map are accessible (with a value of true) and which are not (with a value of false,
  including both walls and unreachable sections of the map).</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/Spill.html#rng">rng</a></span></code>
 <div class="block">The RNG used to decide which one of multiple equally-short paths to take.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean[][]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/Spill.html#spillMap">spillMap</a></span></code>
 <div class="block">The cells that are filled by the Spill when it reaches its volume or limits will be true; others will be false.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/Spill.html#spreadPattern">spreadPattern</a></span></code>
 <div class="block">The list of points that the Spill will randomly fill, starting with what is passed to start(), in order of when
  they are reached.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/Spill.html#sr">sr</a></span></code>
+<div class="block">The StatefulRandomness, usually a ThrustAltRNG, that this uses.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -486,14 +486,14 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="block">The RNG used to decide which one of multiple equally-short paths to take.</div>
 </li>
 </ul>
-<a name="lrng">
+<a name="sr">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>lrng</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a> <a href="../../src-html/squidpony/squidgrid/Spill.html#line.86">lrng</a></pre>
-<div class="block">The StatefulRandomness, usually a LightRNG, that this uses. Can have its state read and set.</div>
+<h4>sr</h4>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a> <a href="../../src-html/squidpony/squidgrid/Spill.html#line.86">sr</a></pre>
+<div class="block">The StatefulRandomness, usually a ThrustAltRNG, that this uses. Can have its state read and set.</div>
 </li>
 </ul>
 </li>
@@ -536,8 +536,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>Spill</h4>
 <pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/Spill.html#line.120">Spill</a>(<a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a>&nbsp;random)</pre>
-<div class="block">Construct a Spill without a level to actually scan. This constructor allows you to specify a RandomnessSource
- in the form of a LightRNG, which will be referenced in this class (if the state of random changes because this
+<div class="block">Construct a Spill without a level to actually scan. This constructor allows you to specify a StatefulRandomness
+ such as ThrustAltRNG, which will be referenced in this class (if the state of random changes because this
  object needed a random number, the state change will be reflected in the code that passed random to here).
 
  If you use this constructor, you must call an  initialize() method before using this class.</div>

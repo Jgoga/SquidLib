@@ -1526,7 +1526,16 @@
 <span class="sourceLineNo">1518</span>    public static final String LETTERS = LETTERS_UPPER + LETTERS_LOWER;<a name="line.1518"></a>
 <span class="sourceLineNo">1519</span>    public static final String LETTERS_AND_NUMBERS = LETTERS + DIGITS;<a name="line.1519"></a>
 <span class="sourceLineNo">1520</span><a name="line.1520"></a>
-<span class="sourceLineNo">1521</span>}<a name="line.1521"></a>
+<span class="sourceLineNo">1521</span>    public static String replace(CharSequence text, String before, String after) {<a name="line.1521"></a>
+<span class="sourceLineNo">1522</span>        if(text instanceof String)<a name="line.1522"></a>
+<span class="sourceLineNo">1523</span>        {<a name="line.1523"></a>
+<span class="sourceLineNo">1524</span>            return ((String)text).replace(before, after);<a name="line.1524"></a>
+<span class="sourceLineNo">1525</span>        }<a name="line.1525"></a>
+<span class="sourceLineNo">1526</span>        String t = text.toString();<a name="line.1526"></a>
+<span class="sourceLineNo">1527</span>        return t.replace(before, after);<a name="line.1527"></a>
+<span class="sourceLineNo">1528</span>    }<a name="line.1528"></a>
+<span class="sourceLineNo">1529</span><a name="line.1529"></a>
+<span class="sourceLineNo">1530</span>}<a name="line.1530"></a>
 
 
 
