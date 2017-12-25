@@ -375,20 +375,6 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/BeardRNG.html" title="class in squidpony.squidmath">BeardRNG</a></span></code>
-<div class="block">One of the highest-quality 64-bit-math generators present in this library, complete with a very long period and over
- 4096 bits of state (4128 if you include a necessary counter).</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/BirdRNG.html" title="class in squidpony.squidmath">BirdRNG</a></span></code>
-<div class="block">One of the highest-quality 32-bit-math generators present in this library, complete with a very long period and over
- 2048 bits of state (2080 if you include a necessary counter).</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/BundleBiMap.html" title="class in squidpony.squidmath">BundleBiMap</a>&lt;E,S&gt;</span></code>
 <div class="block">An ordered bidirectional map-like data structure, with "bundles" of unique E (for Element) keys and unique S (for
  Single) keys updated together like a map that can be queried by E key bundles, S keys, or int indices, as well as
@@ -454,26 +440,19 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/HerdRNG.html" title="class in squidpony.squidmath">HerdRNG</a></span></code>
-<div class="block">A mix of fast 32-bit-friendly RNGs like FlapRNG with the larger state size of LongPeriodRNG, in the hopes of
- improving Flap's period without seriously reducing speed.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/JabRNG.html" title="class in squidpony.squidmath">JabRNG</a></span></code>
+<div class="block">A very fast and high-quality generator, but one that is not equidistributed because it produces 64-bit longs from 63
+ bits of state (meaning at least half of all possible long values cannot be returned by this generator).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/HordeRNG.html" title="class in squidpony.squidmath">HordeRNG</a></span></code>
-<div class="block">A mix of something like the fast algorithm of LapRNG with the larger state size of LongPeriodRNG, in the hopes of
- improving Lap's period without seriously reducing speed.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/K2.html" title="class in squidpony.squidmath">K2</a>&lt;A,B&gt;</span></code>
 <div class="block">An ordered bidirectional map-like data structure, with unique A keys and unique B keys updated together like a map
  that can be queried by A keys, B keys, or int indices.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LapRNG.html" title="class in squidpony.squidmath">LapRNG</a></span></code>
 <div class="block">Like FlapRNG, this sacrifices quality for speed, but it uses 64-bit math and as such has a larger period (FlapRNG
@@ -481,76 +460,69 @@
  many more, probably 2 to the 65).</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LFSR.html" title="class in squidpony.squidmath">LFSR</a></span></code>
 <div class="block">A Linear Feedback Shift Register that may be used like a StatefulRandomness but is not truly random.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/MeadNoise.html" title="class in squidpony.squidmath">MeadNoise</a></span></code>
 <div class="block">Experiments with noise functions.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/MerlinNoise.html" title="class in squidpony.squidmath">MerlinNoise</a></span></code>
 <div class="block">Simple somewhat-continuous noise functions that use int coordinates instead of the traditional double (this approach
  works better on a grid).</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/MultiArrangement.html" title="class in squidpony.squidmath">MultiArrangement</a>&lt;K&gt;</span></code>
 <div class="block">A bi-directional mapping of non-unique objects to positions in an ordering (which this generates), and vice versa.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/MultiKey.html" title="class in squidpony.squidmath">MultiKey</a></span></code>
 <div class="block">An ordered multi-directional "map" that keeps 1 or more keysets organized so you can look up one key given a key in
  another keyset, and do the same for the indices of keys.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/MummyNoise.html" title="class in squidpony.squidmath">MummyNoise</a></span></code>
 <div class="block">A different kind of noise that has spotted and striped areas, like a tabby cat.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/NeuralParticle.html" title="class in squidpony.squidmath">NeuralParticle</a></span></code>
 <div class="block">Creates a field of particles that tend to form a neuron image type
  distribution.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/NLFSR.html" title="class in squidpony.squidmath">NLFSR</a></span></code>
 <div class="block">A Non-Linear Feedback Shift Register that may be used like a StatefulRandomness but is not truly random.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/ProbabilityTable.html" title="class in squidpony.squidmath">ProbabilityTable</a>&lt;T&gt;</span></code>
 <div class="block">A generic method of holding a probability table to determine weighted random
  outcomes.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/SaltyQRNG.html" title="class in squidpony.squidmath">SaltyQRNG</a></span></code>
 <div class="block">A different kind of quasi-random number generator (also called a sub-random sequence) that can be "salted" like some
  hashing functions can, to produce many distinct sub-random sequences without changing its performance qualities.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/SlapRNG.html" title="class in squidpony.squidmath">SlapRNG</a></span></code>
-<div class="block">Like PintRNG (uses int math primarily, making it good with 32-bit desktops and phones) and FlapRNG, but with a longer
- period than either, plus this implements StatefulRandomness.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -581,14 +553,14 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/WhirlingNoise.html" title="class in squidpony.squidmath">WhirlingNoise</a></span></code>
-<div class="block">Another experimental noise class.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/VortexRNG.html" title="class in squidpony.squidmath">VortexRNG</a></span></code>
+<div class="block">A 64-bit generator based on <a href="../../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> but with 2 to the 64 possible streams instead of 1 stream.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/ZapRNG.html" title="class in squidpony.squidmath">ZapRNG</a></span></code>
-<div class="block">A variant on LapRNG that improves the quality at the expense of some speed.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/WhirlingNoise.html" title="class in squidpony.squidmath">WhirlingNoise</a></span></code>
+<div class="block">Another experimental noise class.</div>
 </td>
 </tr>
 </tbody>
