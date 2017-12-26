@@ -118,10 +118,11 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.85">FOVCache</a>
+<pre>public class <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.90">FOVCache</a>
 extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a></pre>
 <div class="block">A combined FOV calculator, partial LOS calculator, FOV/LOS compressor, and tool to store/query/extract compressed
- FOV/LOS data. It operates on one level map at a time and stores FOV maps for all cells in a memory-efficient way,
+ FOV/LOS data; it is less generally-useful than it sounds, and using <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid"><code>FOV</code></a> is usually easier and faster.
+ This class operates on one level map at a time and stores FOV maps for all cells in a memory-efficient way,
  though it is likely to take too long to process large maps to be useful on those unless run before the player gets
  to that map. (Large here means more than 10,000 total cells, or 100 width * 100 height, but this rough upper bound is
  based on the capability of the machine running the calculations, and should be expected to be much lower on, for
@@ -183,7 +184,11 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
  nor this class' slope shadowcasting does, but getting 16 FOV levels from the cache for every walkable cell on a
  100x100 dungeon map takes approximately 19 ms while running Ripple FOV for the same set of cells takes over 700 ms.
  Benchmarks are conducted using JMH, a tool developed by the OpenJDK team, in a Maven module called
- squidlib-performance that is not distributed with SquidLib but is available if you download the SquidLib source code.</div>
+ squidlib-performance that is not distributed with SquidLib but is available if you download the SquidLib source code.
+ However, because the benchmarks don't take the initial calculations into account, they can be somewhat misleading;
+ there's also overhead and complexity involved with the background threads this uses. Newer benchmarks that test some
+ more recent additions to FOV, like <a href="../../squidpony/squidgrid/FOV.html#reuseFOV-double:A:A-double:A:A-int-int-double-"><code>FOV.reuseFOV(double[][], double[][], int, int, double)</code></a>, show those methods
+ as faster than retrieving a compressed FOV map from FOVCache, largely because they can avoid creating garbage.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>Tommy Ettinger</dd>
@@ -722,7 +727,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>maxRadius</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.87">maxRadius</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.92">maxRadius</a></pre>
 </li>
 </ul>
 <a name="maxLOSRadius">
@@ -731,7 +736,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>maxLOSRadius</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.87">maxLOSRadius</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.92">maxLOSRadius</a></pre>
 </li>
 </ul>
 <a name="width">
@@ -740,7 +745,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>width</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.88">width</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.93">width</a></pre>
 </li>
 </ul>
 <a name="height">
@@ -749,7 +754,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>height</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.89">height</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.94">height</a></pre>
 </li>
 </ul>
 <a name="mapLimit">
@@ -758,7 +763,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>mapLimit</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.90">mapLimit</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.95">mapLimit</a></pre>
 </li>
 </ul>
 <a name="limit">
@@ -767,7 +772,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>limit</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.91">limit</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.96">limit</a></pre>
 </li>
 </ul>
 <a name="resMap">
@@ -776,7 +781,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>resMap</h4>
-<pre>protected&nbsp;double[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.92">resMap</a></pre>
+<pre>protected&nbsp;double[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.97">resMap</a></pre>
 </li>
 </ul>
 <a name="radiusKind">
@@ -785,7 +790,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>radiusKind</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a> <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.93">radiusKind</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a> <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.98">radiusKind</a></pre>
 </li>
 </ul>
 <a name="cache">
@@ -794,7 +799,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>cache</h4>
-<pre>protected&nbsp;short[][][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.94">cache</a></pre>
+<pre>protected&nbsp;short[][][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.99">cache</a></pre>
 </li>
 </ul>
 <a name="tmpCache">
@@ -803,7 +808,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>tmpCache</h4>
-<pre>protected&nbsp;short[][][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.95">tmpCache</a></pre>
+<pre>protected&nbsp;short[][][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.100">tmpCache</a></pre>
 </li>
 </ul>
 <a name="losCache">
@@ -812,7 +817,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>losCache</h4>
-<pre>protected&nbsp;short[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.96">losCache</a></pre>
+<pre>protected&nbsp;short[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.101">losCache</a></pre>
 </li>
 </ul>
 <a name="complete">
@@ -821,7 +826,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>complete</h4>
-<pre>protected&nbsp;boolean <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.97">complete</a></pre>
+<pre>protected&nbsp;boolean <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.102">complete</a></pre>
 </li>
 </ul>
 <a name="qualityComplete">
@@ -830,7 +835,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>qualityComplete</h4>
-<pre>protected&nbsp;boolean <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.97">qualityComplete</a></pre>
+<pre>protected&nbsp;boolean <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.102">qualityComplete</a></pre>
 </li>
 </ul>
 <a name="refreshComplete">
@@ -839,7 +844,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>refreshComplete</h4>
-<pre>protected&nbsp;boolean <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.97">refreshComplete</a></pre>
+<pre>protected&nbsp;boolean <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.102">refreshComplete</a></pre>
 </li>
 </ul>
 <a name="fov">
@@ -848,7 +853,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>fov</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a> <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.98">fov</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a> <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.103">fov</a></pre>
 </li>
 </ul>
 <a name="gradedFOV">
@@ -857,7 +862,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>gradedFOV</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a> <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.98">gradedFOV</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a> <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.103">gradedFOV</a></pre>
 </li>
 </ul>
 <a name="ALL_WALLS">
@@ -866,7 +871,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>ALL_WALLS</h4>
-<pre>protected&nbsp;short[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.99">ALL_WALLS</a></pre>
+<pre>protected&nbsp;short[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.104">ALL_WALLS</a></pre>
 </li>
 </ul>
 <a name="wallMap">
@@ -875,7 +880,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>wallMap</h4>
-<pre>protected&nbsp;short[] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.100">wallMap</a></pre>
+<pre>protected&nbsp;short[] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.105">wallMap</a></pre>
 </li>
 </ul>
 <a name="atan2Cache">
@@ -884,7 +889,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>atan2Cache</h4>
-<pre>protected&nbsp;double[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.101">atan2Cache</a></pre>
+<pre>protected&nbsp;double[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.106">atan2Cache</a></pre>
 </li>
 </ul>
 <a name="directionAngles">
@@ -893,7 +898,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>directionAngles</h4>
-<pre>protected&nbsp;double[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.101">directionAngles</a></pre>
+<pre>protected&nbsp;double[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.106">directionAngles</a></pre>
 </li>
 </ul>
 <a name="distanceCache">
@@ -902,7 +907,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>distanceCache</h4>
-<pre>protected&nbsp;short[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.102">distanceCache</a></pre>
+<pre>protected&nbsp;short[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.107">distanceCache</a></pre>
 </li>
 </ul>
 <a name="waves">
@@ -911,7 +916,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>waves</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.103">waves</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[][] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.108">waves</a></pre>
 </li>
 </ul>
 <a name="NUM_THREADS">
@@ -920,7 +925,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>NUM_THREADS</h4>
-<pre>protected final&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.104">NUM_THREADS</a></pre>
+<pre>protected final&nbsp;int <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.109">NUM_THREADS</a></pre>
 </li>
 </ul>
 <a name="fovPermissiveness">
@@ -929,7 +934,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>fovPermissiveness</h4>
-<pre>protected&nbsp;double <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.106">fovPermissiveness</a></pre>
+<pre>protected&nbsp;double <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.111">fovPermissiveness</a></pre>
 </li>
 </ul>
 <a name="lights">
@@ -938,7 +943,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>lights</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt; <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.107">lights</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt; <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.112">lights</a></pre>
 </li>
 </ul>
 <a name="lightSources">
@@ -947,7 +952,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>lightSources</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.108">lightSources</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.113">lightSources</a></pre>
 </li>
 </ul>
 <a name="lightBrightnesses">
@@ -956,7 +961,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>lightBrightnesses</h4>
-<pre>protected&nbsp;int[] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.109">lightBrightnesses</a></pre>
+<pre>protected&nbsp;int[] <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.114">lightBrightnesses</a></pre>
 </li>
 </ul>
 <a name="decay">
@@ -965,7 +970,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockListLast">
 <li class="blockList">
 <h4>decay</h4>
-<pre>protected&nbsp;double <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.111">decay</a></pre>
+<pre>protected&nbsp;double <a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.116">decay</a></pre>
 </li>
 </ul>
 </li>
@@ -982,7 +987,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>FOVCache</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.128">FOVCache</a>(char[][]&nbsp;map,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.133">FOVCache</a>(char[][]&nbsp;map,
                 int&nbsp;maxRadius,
                 <a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;radiusKind)</pre>
 <div class="block">Create an FOVCache for a given map (as a char[][]), caching all FOV radii from 0 up to and including maxRadius,
@@ -1006,7 +1011,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>FOVCache</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.195">FOVCache</a>(char[][]&nbsp;map,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.200">FOVCache</a>(char[][]&nbsp;map,
                 int&nbsp;maxRadius,
                 int&nbsp;maxLOSRadius,
                 <a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;radiusKind,
@@ -1035,7 +1040,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockListLast">
 <li class="blockList">
 <h4>FOVCache</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.267">FOVCache</a>(char[][]&nbsp;map,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.272">FOVCache</a>(char[][]&nbsp;map,
                 int&nbsp;maxRadius,
                 int&nbsp;maxLOSRadius,
                 <a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;radiusKind,
@@ -1076,7 +1081,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>storeCellFOV</h4>
-<pre>protected&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.434">storeCellFOV</a>(int&nbsp;index)</pre>
+<pre>protected&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.439">storeCellFOV</a>(int&nbsp;index)</pre>
 <div class="block">Packs FOV for a point as a center, and returns it to be stored.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1092,7 +1097,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>storeCellLOS</h4>
-<pre>protected&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.446">storeCellLOS</a>(int&nbsp;index)</pre>
+<pre>protected&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.451">storeCellLOS</a>(int&nbsp;index)</pre>
 <div class="block">Packs FOV for a point as a center, and returns it to be stored.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1108,7 +1113,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>storeCellSymmetry</h4>
-<pre>protected&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.457">storeCellSymmetry</a>(int&nbsp;index)</pre>
+<pre>protected&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.462">storeCellSymmetry</a>(int&nbsp;index)</pre>
 <div class="block">Uses previously cached FOV and makes it symmetrical. Also handles distant lights</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1124,7 +1129,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>calculatePackedLOS</h4>
-<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.532">calculatePackedLOS</a>(int&nbsp;viewerX,
+<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.537">calculatePackedLOS</a>(int&nbsp;viewerX,
                                   int&nbsp;viewerY)</pre>
 <div class="block">Packs FOV for the given viewer's X and Y as a center, and returns the packed data to be stored.</div>
 <dl>
@@ -1142,7 +1147,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>calculatePackedSlopeShadowFOV</h4>
-<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.549">calculatePackedSlopeShadowFOV</a>(int&nbsp;viewerX,
+<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.554">calculatePackedSlopeShadowFOV</a>(int&nbsp;viewerX,
                                                int&nbsp;viewerY)</pre>
 <div class="block">Packs FOV for the given viewer's X and Y as a center, and returns the packed data to be stored.</div>
 <dl>
@@ -1160,7 +1165,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>calculatePackedWaveFOV</h4>
-<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.564">calculatePackedWaveFOV</a>(int&nbsp;viewerX,
+<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.569">calculatePackedWaveFOV</a>(int&nbsp;viewerX,
                                         int&nbsp;viewerY)</pre>
 <div class="block">Packs FOV for the given viewer's X and Y as a center, and returns the packed data to be stored.</div>
 <dl>
@@ -1178,7 +1183,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>getCacheEntry</h4>
-<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.572">getCacheEntry</a>(int&nbsp;x,
+<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.577">getCacheEntry</a>(int&nbsp;x,
                                int&nbsp;y)</pre>
 </li>
 </ul>
@@ -1188,7 +1193,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>getCacheEntry</h4>
-<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.576">getCacheEntry</a>(int&nbsp;x,
+<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.581">getCacheEntry</a>(int&nbsp;x,
                              int&nbsp;y,
                              int&nbsp;radius)</pre>
 </li>
@@ -1199,7 +1204,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>getLOSEntry</h4>
-<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.581">getLOSEntry</a>(int&nbsp;x,
+<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.586">getLOSEntry</a>(int&nbsp;x,
                            int&nbsp;y)</pre>
 </li>
 </ul>
@@ -1209,7 +1214,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>queryCache</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.586">queryCache</a>(int&nbsp;visionRange,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.591">queryCache</a>(int&nbsp;visionRange,
                           int&nbsp;viewerX,
                           int&nbsp;viewerY,
                           int&nbsp;targetX,
@@ -1222,7 +1227,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>isCellVisible</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.590">isCellVisible</a>(int&nbsp;visionRange,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.595">isCellVisible</a>(int&nbsp;visionRange,
                              int&nbsp;viewerX,
                              int&nbsp;viewerY,
                              int&nbsp;targetX,
@@ -1235,7 +1240,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>queryLOS</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.595">queryLOS</a>(int&nbsp;viewerX,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.600">queryLOS</a>(int&nbsp;viewerX,
                         int&nbsp;viewerY,
                         int&nbsp;targetX,
                         int&nbsp;targetY)</pre>
@@ -1247,7 +1252,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>arrayMemoryUsage</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.600">arrayMemoryUsage</a>(int&nbsp;length,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.605">arrayMemoryUsage</a>(int&nbsp;length,
                                     long&nbsp;bytesPerItem)</pre>
 </li>
 </ul>
@@ -1257,7 +1262,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>arrayMemoryUsage2D</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.605">arrayMemoryUsage2D</a>(int&nbsp;xSize,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.610">arrayMemoryUsage2D</a>(int&nbsp;xSize,
                                       int&nbsp;ySize,
                                       long&nbsp;bytesPerItem)</pre>
 </li>
@@ -1268,7 +1273,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>arrayMemoryUsageJagged</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.609">arrayMemoryUsageJagged</a>(short[][]&nbsp;arr)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.614">arrayMemoryUsageJagged</a>(short[][]&nbsp;arr)</pre>
 </li>
 </ul>
 <a name="approximateMemoryUsage--">
@@ -1277,7 +1282,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>approximateMemoryUsage</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.617">approximateMemoryUsage</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.622">approximateMemoryUsage</a>()</pre>
 </li>
 </ul>
 <a name="waveFOV-int-int-">
@@ -1286,7 +1291,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>waveFOV</h4>
-<pre>public&nbsp;byte[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.890">waveFOV</a>(int&nbsp;viewerX,
+<pre>public&nbsp;byte[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.895">waveFOV</a>(int&nbsp;viewerX,
                         int&nbsp;viewerY)</pre>
 </li>
 </ul>
@@ -1296,7 +1301,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>slopeShadowFOV</h4>
-<pre>public&nbsp;byte[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1057">slopeShadowFOV</a>(int&nbsp;viewerX,
+<pre>public&nbsp;byte[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1062">slopeShadowFOV</a>(int&nbsp;viewerX,
                                int&nbsp;viewerY)</pre>
 </li>
 </ul>
@@ -1306,7 +1311,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>improveQuality</h4>
-<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1123">improveQuality</a>(int&nbsp;viewerX,
+<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1128">improveQuality</a>(int&nbsp;viewerX,
                                 int&nbsp;viewerY)</pre>
 </li>
 </ul>
@@ -1316,7 +1321,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>cacheAll</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1260">cacheAll</a>()</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1265">cacheAll</a>()</pre>
 <div class="block">Runs FOV calculations on another thread, without interrupting this one, then performs additional quality tweaks
  and adds any distant lights, if there were any in the constructor. Before using the cache, you should call
  awaitCache() to ensure this method has finished on its own thread, but be aware that this will cause
@@ -1329,7 +1334,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>awaitCache</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1284">awaitCache</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1289">awaitCache</a>()</pre>
 <div class="block">If FOV calculations from cacheAll() are being done on another thread, calling this method will make
  the current thread wait for the FOV calculations' thread to finish, "freezing" the current thread until it does.
  This ensures the cache will be complete with the additional quality improvements such as distant lights after
@@ -1346,7 +1351,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>refreshCache</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1303">refreshCache</a>(char[][]&nbsp;newMap)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1308">refreshCache</a>(char[][]&nbsp;newMap)</pre>
 <div class="block">Runs FOV calculations for any cells that were changed as a result of newMap being different from the map passed
  to the FOVCache constructor. It runs these on another thread, without interrupting this one. Before using the
  cache, you should call awaitRefresh() to ensure this method has finished on its own thread, but be aware that
@@ -1359,7 +1364,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>awaitRefresh</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1316">awaitRefresh</a>(char[][]&nbsp;newMap)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1321">awaitRefresh</a>(char[][]&nbsp;newMap)</pre>
 <div class="block">If FOV calculations from refreshCache() are being done on another thread, calling this method will make
  the current thread wait for the FOV calculations' thread to finish, "freezing" the current thread until it does.
  This ensures the cache will be complete with the updates from things like opening a door after
@@ -1376,7 +1381,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>calculateFOV</h4>
-<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1394">calculateFOV</a>(double[][]&nbsp;resistanceMap,
+<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1399">calculateFOV</a>(double[][]&nbsp;resistanceMap,
                                int&nbsp;startx,
                                int&nbsp;starty)</pre>
 <div class="block">Calculates the Field Of View for the provided map from the given x, y
@@ -1409,7 +1414,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>calculateFOV</h4>
-<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1534">calculateFOV</a>(double[][]&nbsp;resistanceMap,
+<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1539">calculateFOV</a>(double[][]&nbsp;resistanceMap,
                                int&nbsp;startx,
                                int&nbsp;starty,
                                double&nbsp;radius)</pre>
@@ -1447,7 +1452,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>calculateFOV</h4>
-<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1571">calculateFOV</a>(double[][]&nbsp;resistanceMap,
+<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1576">calculateFOV</a>(double[][]&nbsp;resistanceMap,
                                int&nbsp;startX,
                                int&nbsp;startY,
                                double&nbsp;radius,
@@ -1490,7 +1495,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>calculateFOV</h4>
-<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1615">calculateFOV</a>(double[][]&nbsp;resistanceMap,
+<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1620">calculateFOV</a>(double[][]&nbsp;resistanceMap,
                                int&nbsp;startX,
                                int&nbsp;startY,
                                double&nbsp;radius,
@@ -1541,7 +1546,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>calculateLOS</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1638">calculateLOS</a>(int&nbsp;startX,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1643">calculateLOS</a>(int&nbsp;startX,
                             int&nbsp;startY,
                             int&nbsp;endX,
                             int&nbsp;endY)</pre>
@@ -1568,7 +1573,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>sortedLOS</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1697">sortedLOS</a>(int&nbsp;startX,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1702">sortedLOS</a>(int&nbsp;startX,
                          int&nbsp;startY,
                          int&nbsp;endX,
                          int&nbsp;endY)</pre>
@@ -1596,7 +1601,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>pathFOVPacked</h4>
-<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1722">pathFOVPacked</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;path,
+<pre>public&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1727">pathFOVPacked</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;path,
                                int&nbsp;fovRange)</pre>
 <div class="block">Given a path as a List of Coords (such as one produced by DijkstraMap.getPath()), this method will look up the
  FOV for the given fovRange at each Coord, and returns an array of packed FOV maps where each map is the union
@@ -1622,7 +1627,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>pathFOV</h4>
-<pre>public&nbsp;double[][][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1763">pathFOV</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;path,
+<pre>public&nbsp;double[][][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1768">pathFOV</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;path,
                             int&nbsp;fovRange)</pre>
 <div class="block">Given a path as a List of Coords (such as one produced by DijkstraMap.getPath()), this method will look up the
  FOV for the given fovRange at each Coord, and returns an array of full FOV maps where each map is the union
@@ -1649,7 +1654,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>teamFOVPacked</h4>
-<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1783">teamFOVPacked</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;team)</pre>
+<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1788">teamFOVPacked</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;team)</pre>
 <div class="block">In games that have multiple characters who should share one FOV map, this method should provide optimal
  performance when collecting several cached FOV maps into one packed map. It takes a Map of Coord keys to Integer
  values, and since it does not modify its parameter, nor does it need a particular iteration order, it doesn't
@@ -1670,7 +1675,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>teamFOV</h4>
-<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1821">teamFOV</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;team)</pre>
+<pre>public&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1826">teamFOV</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;team)</pre>
 <div class="block">In games that have multiple characters who should share one FOV map, this method should provide optimal
  performance when collecting several cached FOV maps into one full map. It takes a Map of Coord keys to Integer
  values, and since it does not modify its parameter, nor does it need a particular iteration order, it doesn't
@@ -1691,7 +1696,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>removeWalls</h4>
-<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1833">removeWalls</a>(short[]&nbsp;packed)</pre>
+<pre>public&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1838">removeWalls</a>(short[]&nbsp;packed)</pre>
 <div class="block">When you have some packed on/off data and want to make sure it does not include walls, you can use this. It does
  not need to unpack the given packed short[] to get the subset of it without walls. Of course, this needs the
  FOVCache to be</div>
@@ -1709,7 +1714,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>getMaxRadius</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1838">getMaxRadius</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1843">getMaxRadius</a>()</pre>
 </li>
 </ul>
 <a name="getRadiusKind--">
@@ -1718,7 +1723,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>getRadiusKind</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1842">getRadiusKind</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1847">getRadiusKind</a>()</pre>
 </li>
 </ul>
 <a name="getWidth--">
@@ -1727,7 +1732,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>getWidth</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1846">getWidth</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1851">getWidth</a>()</pre>
 </li>
 </ul>
 <a name="getHeight--">
@@ -1736,7 +1741,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockList">
 <li class="blockList">
 <h4>getHeight</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1850">getHeight</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.1855">getHeight</a>()</pre>
 </li>
 </ul>
 <a name="destroy--">
@@ -1745,7 +1750,7 @@ extends <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.s
 <ul class="blockListLast">
 <li class="blockList">
 <h4>destroy</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.2155">destroy</a>()</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/FOVCache.html#line.2160">destroy</a>()</pre>
 <div class="block">Shuts down any threads that may prevent the game from closing properly.
  It is recommended you call this at the end of the program to avoid threads lingering too long.
  You don't have to do anything special after you call this, other than not using this FOVCache any more.</div>
