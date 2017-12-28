@@ -228,7 +228,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/JabRNG.html#randomize-long-">randomize</a></span>(long&nbsp;z)</code>
-<div class="block">Call with <code>nextLong(z += 0x6A5D39EAE12657BAL)</code>.</div>
+<div class="block">Call with <code>nextLong(z += 0x3C6EF372FE94F82AL)</code>.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -240,7 +240,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/JabRNG.html#skip-long-">skip</a></span>(long&nbsp;advance)</code>
-<div class="block">Advances or rolls back the JabRNG's state without actually generating each number.</div>
+<div class="block">Advances or rolls back the Jab63RNG's state without actually generating each number.</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
@@ -373,13 +373,13 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <li class="blockList">
 <h4>randomize</h4>
 <pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.102">randomize</a>(long&nbsp;z)</pre>
-<div class="block">Call with <code>nextLong(z += 0x6A5D39EAE12657BAL)</code>. Using -= is also OK. The value for z must be odd; you
+<div class="block">Call with <code>nextLong(z += 0x3C6EF372FE94F82AL)</code>. Using -= is also OK. The value for z must be odd; you
  can ensure this initially with <code>z |= 1</code> if it is set from a random source or user input. Using the given
  increment (or decrement) value for z will keep an odd-number value for z as an odd number; this is important to
  the behavior of this algorithm.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>z</code> - an odd-number long that should change with <code>z += 0x6A5D39EAE12657BAL</code> each time this is called</dd>
+<dd><code>z</code> - an odd-number long that should change with <code>z += 0x3C6EF372FE94F82AL</code> each time this is called</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random long between Long.MIN_VALUE and Long.MAX_VALUE (both inclusive)</dd>
 </dl>
@@ -391,8 +391,8 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>skip</h4>
-<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.115">skip</a>(long&nbsp;advance)</pre>
-<div class="block">Advances or rolls back the JabRNG's state without actually generating each number. Skips forward
+<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.114">skip</a>(long&nbsp;advance)</pre>
+<div class="block">Advances or rolls back the Jab63RNG's state without actually generating each number. Skips forward
  or backward a number of steps specified by advance, where a step is equal to one call to nextLong(),
  and returns the random number produced at that step (you can get the state with <a href="../../squidpony/squidmath/JabRNG.html#getState--"><code>getState()</code></a>).</div>
 <dl>
@@ -409,7 +409,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/JabRNG.html" title="class in squidpony.squidmath">JabRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.131">copy</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/JabRNG.html" title="class in squidpony.squidmath">JabRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.129">copy</a>()</pre>
 <div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called. This just need to
  copy the state so it isn't shared, usually, and produce a new value with the same exact state.</div>
@@ -427,7 +427,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.135">toString</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.133">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -440,7 +440,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.140">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.138">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -453,7 +453,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.150">hashCode</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.148">hashCode</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -466,7 +466,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>determine</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.168">determine</a>(long&nbsp;state)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.166">determine</a>(long&nbsp;state)</pre>
 <div class="block">Returns a random permutation of state; if state is the same on two calls to this, this will return the same
  number. This is expected to be called with some changing variable, e.g. <code>determine(++state)</code>, where
  the increment for state should be odd but otherwise doesn't really matter. This uses state multiplied by
@@ -492,7 +492,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockListLast">
 <li class="blockList">
 <h4>determineBounded</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.187">determineBounded</a>(long&nbsp;state,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/JabRNG.html#line.185">determineBounded</a>(long&nbsp;state,
                                    int&nbsp;bound)</pre>
 <div class="block">Given a state that should usually change each time this is called, and a bound that limits the result to some
  (typically fairly small) int, produces a pseudo-random int between 0 and bound (exclusive). The bound can be
