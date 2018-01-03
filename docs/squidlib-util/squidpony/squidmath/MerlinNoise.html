@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":9,"i5":9,"i6":10,"i7":10,"i8":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":9,"i7":10,"i8":10,"i9":9,"i10":9,"i11":10,"i12":10,"i13":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -110,11 +110,17 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre><a href="../../squidpony/annotation/Beta.html" title="annotation in squidpony.annotation">@Beta</a>
-public class <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.11">MerlinNoise</a>
+public class <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.17">MerlinNoise</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
-<div class="block">Simple somewhat-continuous noise functions that use long coordinates instead of the traditional double (this approach
- works better on a grid). It's called this because it should be possible to replace PerlinNoise with MerlinNoise in
- some cases, and because working with noise functions makes me feel like a wizard.</div>
+<div class="block">Really strange noise functions that typically produce curving black and white shapes when rendered.
+ This technique uses no floating-point math, surprisingly, which helps its performance but means it does not implement
+ the <a href="../../squidpony/squidmath/Noise.html" title="class in squidpony.squidmath"><code>Noise</code></a> interface like other noise methods. It may get some form of compatibility methods for Noise later.
+ The shapes this produces <a href="https://i.imgur.com/mp23254.png">look like this in 2D</a> and
+ <a href="https://i.imgur.com/qPLZw0k.gifv">look like this in 3D</a>.
+ <br>
+ This is called Merlin noise because it has a roughly-similar implementation to "classic" Perlin Noise (with hashes
+ per grid point used to blend values), and because working with noise functions makes me feel like a wizard.
+ This was a completely unrelated noise algorithm that also avoided floating-point math, but was really pretty awful.</div>
 </li>
 </ul>
 </div>
@@ -160,12 +166,17 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#MerlinNoise--">MerlinNoise</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#MerlinNoise--">MerlinNoise</a></span>()</code>
+<div class="block">Constructor for a default MerlinNoise instance with 8-bit output and resolution 3 (yielding 8x8-cell zones that
+ share their corners).</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#MerlinNoise-long-int-int-">MerlinNoise</a></span>(long&nbsp;seed,
            int&nbsp;bits,
-           int&nbsp;resolution)</code>&nbsp;</td>
+           int&nbsp;resolution)</code>
+<div class="block">Constructor for a MerlinNoise instance that allows specification of all parameters.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -195,16 +206,52 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#getSeed--">getSeed</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#main-java.lang.String:A-">main</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;args)</code>&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#noise2D-long-long-">noise2D</a></span>(long&nbsp;x,
+       long&nbsp;y)</code>
+<div class="block">2D Merlin noise; black and white much of the time but curving instead of angular.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#noise2D-long-long-long-">noise2D</a></span>(long&nbsp;x,
+       long&nbsp;y,
+       long&nbsp;seed)</code>
+<div class="block">2D Merlin noise; black and white much of the time but curving instead of angular.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#noise2D-long-long-long-int-int-">noise2D</a></span>(long&nbsp;x,
        long&nbsp;y,
        long&nbsp;state,
        int&nbsp;resolution,
        int&nbsp;bits)</code>
-<div class="block">2D merlin noise.</div>
+<div class="block">2D Merlin noise; black and white much of the time but curving instead of angular.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#noise3D-long-long-long-">noise3D</a></span>(long&nbsp;x,
+       long&nbsp;y,
+       long&nbsp;z)</code>
+<div class="block">3D Merlin noise; black and white much of the time but curving instead of angular.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#noise3D-long-long-long-long-">noise3D</a></span>(long&nbsp;x,
+       long&nbsp;y,
+       long&nbsp;z,
+       long&nbsp;seed)</code>
+<div class="block">3D Merlin noise; black and white much of the time but curving instead of angular.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#noise3D-long-long-long-long-int-int-">noise3D</a></span>(long&nbsp;x,
        long&nbsp;y,
@@ -215,7 +262,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="block">3D merlin noise.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>static int[][]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#preCalcNoise2D-int-int-long-">preCalcNoise2D</a></span>(int&nbsp;width,
               int&nbsp;height,
@@ -223,15 +270,20 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="block">Generates higher-quality continuous-style noise than the other methods, but requires pre-calculating a grid.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#setBits-int-">setBits</a></span>(int&nbsp;bits)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#setBits-int-">setBits</a></span>(int&nbsp;bits)</code>
+<div class="block">Sets the number of bits this will output; 8 is common to produce byte-sized values between 0 and 255.</div>
+</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#setResolution-int-">setResolution</a></span>(int&nbsp;resolution)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#setResolution-int-">setResolution</a></span>(int&nbsp;resolution)</code>
+<div class="block">Sets the resolution, which is an exponent that determines the width/height of each zone that shares the same four
+ corners (where only the corners have their own hashed values).</div>
+</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MerlinNoise.html#setSeed-long-">setSeed</a></span>(long&nbsp;seed)</code>&nbsp;</td>
 </tr>
@@ -263,7 +315,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>seed</h4>
-<pre>public&nbsp;long <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.13">seed</a></pre>
+<pre>public&nbsp;long <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.19">seed</a></pre>
 </li>
 </ul>
 <a name="bits">
@@ -272,7 +324,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>bits</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.14">bits</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.20">bits</a></pre>
 </li>
 </ul>
 <a name="resolution">
@@ -281,7 +333,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>resolution</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.14">resolution</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.20">resolution</a></pre>
 </li>
 </ul>
 </li>
@@ -298,7 +350,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>MerlinNoise</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.15">MerlinNoise</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.26">MerlinNoise</a>()</pre>
+<div class="block">Constructor for a default MerlinNoise instance with 8-bit output and resolution 3 (yielding 8x8-cell zones that
+ share their corners). The seed can be set at any point, but it will start at 1.</div>
 </li>
 </ul>
 <a name="MerlinNoise-long-int-int-">
@@ -307,9 +361,16 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MerlinNoise</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.18">MerlinNoise</a>(long&nbsp;seed,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.36">MerlinNoise</a>(long&nbsp;seed,
                    int&nbsp;bits,
                    int&nbsp;resolution)</pre>
+<div class="block">Constructor for a MerlinNoise instance that allows specification of all parameters.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>seed</code> - the seed to use to alter the generated noise in <a href="../../squidpony/squidmath/MerlinNoise.html#noise2D-long-long-"><code>noise2D(long, long)</code></a> and <a href="../../squidpony/squidmath/MerlinNoise.html#noise3D-long-long-long-"><code>noise3D(long, long, long)</code></a></dd>
+<dd><code>bits</code> - the number of bits to output; typically 8 to produce byte-sized values</dd>
+<dd><code>resolution</code> - an exponent that determines the size of a "zone" of cells that blend between the values at the zone's corners; commonly 1-6</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -326,7 +387,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getSeed</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.25">getSeed</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.43">getSeed</a>()</pre>
 </li>
 </ul>
 <a name="setSeed-long-">
@@ -335,7 +396,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>setSeed</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.29">setSeed</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.47">setSeed</a>(long&nbsp;seed)</pre>
 </li>
 </ul>
 <a name="getBits--">
@@ -344,7 +405,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getBits</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.33">getBits</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.51">getBits</a>()</pre>
 </li>
 </ul>
 <a name="setBits-int-">
@@ -353,7 +414,14 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>setBits</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.37">setBits</a>(int&nbsp;bits)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.61">setBits</a>(int&nbsp;bits)</pre>
+<div class="block">Sets the number of bits this will output; 8 is common to produce byte-sized values between 0 and 255.
+ This value can be between 1 and 64. If bits is 8, then this should produce values of 255 or 0, plus or minus 1.
+ If bits is some other value, then it may produce more than two values, or only produce one.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>bits</code> - the number of bits of output each call should generate.</dd>
+</dl>
 </li>
 </ul>
 <a name="getResolution--">
@@ -362,7 +430,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getResolution</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.41">getResolution</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.65">getResolution</a>()</pre>
 </li>
 </ul>
 <a name="setResolution-int-">
@@ -371,7 +439,89 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>setResolution</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.45">setResolution</a>(int&nbsp;resolution)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.78">setResolution</a>(int&nbsp;resolution)</pre>
+<div class="block">Sets the resolution, which is an exponent that determines the width/height of each zone that shares the same four
+ corners (where only the corners have their own hashed values). If resolution is 1, the size of a zone is 2x2, if
+ it is 2, then the size of a zone is 4x4, if it is 3, then 8x8, and so on by powers of 2. The resolution can be as
+ low as 0 (which won't blend corners' hashes at all) or as high as 31, but cannot easily be increased above that
+ (10 is a really large size for a cell at 1024x1024, and 31 is over 2 billion by 2 billion). This doesn't slow
+ down significantly (or at all) if resolution is particularly high or low, but this is often between 1 and 6.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>resolution</code> - an int between 0 and 31</dd>
+</dl>
+</li>
+</ul>
+<a name="noise2D-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>noise2D</h4>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.94">noise2D</a>(long&nbsp;x,
+                    long&nbsp;y)</pre>
+<div class="block">2D Merlin noise; black and white much of the time but curving instead of angular.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - x input</dd>
+<dd><code>y</code> - y input</dd>
+</dl>
+</li>
+</ul>
+<a name="noise2D-long-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>noise2D</h4>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.106">noise2D</a>(long&nbsp;x,
+                    long&nbsp;y,
+                    long&nbsp;seed)</pre>
+<div class="block">2D Merlin noise; black and white much of the time but curving instead of angular.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - x input</dd>
+<dd><code>y</code> - y input</dd>
+<dd><code>seed</code> - the seed to use to alter the generated noise</dd>
+</dl>
+</li>
+</ul>
+<a name="noise3D-long-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>noise3D</h4>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.118">noise3D</a>(long&nbsp;x,
+                    long&nbsp;y,
+                    long&nbsp;z)</pre>
+<div class="block">3D Merlin noise; black and white much of the time but curving instead of angular.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - x input</dd>
+<dd><code>y</code> - y input</dd>
+<dd><code>z</code> - z input</dd>
+</dl>
+</li>
+</ul>
+<a name="noise3D-long-long-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>noise3D</h4>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.131">noise3D</a>(long&nbsp;x,
+                    long&nbsp;y,
+                    long&nbsp;z,
+                    long&nbsp;seed)</pre>
+<div class="block">3D Merlin noise; black and white much of the time but curving instead of angular.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - x input</dd>
+<dd><code>y</code> - y input</dd>
+<dd><code>z</code> - z input</dd>
+<dd><code>seed</code> - the seed to use to alter the generated noise</dd>
+</dl>
 </li>
 </ul>
 <a name="noise2D-long-long-long-int-int-">
@@ -380,18 +530,18 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>noise2D</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.64">noise2D</a>(long&nbsp;x,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.149">noise2D</a>(long&nbsp;x,
                            long&nbsp;y,
                            long&nbsp;state,
                            int&nbsp;resolution,
                            int&nbsp;bits)</pre>
-<div class="block">2D merlin noise.</div>
+<div class="block">2D Merlin noise; black and white much of the time but curving instead of angular.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>x</code> - x input</dd>
 <dd><code>y</code> - y input</dd>
 <dd><code>state</code> - state to adjust the output</dd>
-<dd><code>resolution</code> - the number of cells between "vertices" where one random number is used fully</dd>
+<dd><code>resolution</code> - the number of cells between "vertices" where one hashed value is used fully</dd>
 <dd><code>bits</code> - how many bits should be used for each (signed long) output; often this is 8 to output a byte</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>noise from <code>-(1L &lt;&lt; bits)</code> to <code>(1L &lt;&lt; bits) - 1L</code>, both inclusive</dd>
@@ -404,7 +554,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>noise3D</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.92">noise3D</a>(long&nbsp;x,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.175">noise3D</a>(long&nbsp;x,
                            long&nbsp;y,
                            long&nbsp;z,
                            long&nbsp;state,
@@ -417,7 +567,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>y</code> - y input</dd>
 <dd><code>z</code> - z input</dd>
 <dd><code>state</code> - state to adjust the output</dd>
-<dd><code>resolution</code> - the number of cells between "vertices" where one random number is used fully</dd>
+<dd><code>resolution</code> - the number of cells between "vertices" where one hashed value is used fully</dd>
 <dd><code>bits</code> - how many bits should be used for each (signed long) output; often this is 8 to output a byte</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>noise from <code>-(1L &lt;&lt; bits)</code> to <code>(1L &lt;&lt; bits) - 1L</code>, both inclusive</dd>
@@ -427,10 +577,10 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <a name="preCalcNoise2D-int-int-long-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>preCalcNoise2D</h4>
-<pre>public static&nbsp;int[][]&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.133">preCalcNoise2D</a>(int&nbsp;width,
+<pre>public static&nbsp;int[][]&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.216">preCalcNoise2D</a>(int&nbsp;width,
                                      int&nbsp;height,
                                      long&nbsp;seed)</pre>
 <div class="block">Generates higher-quality continuous-style noise than the other methods, but requires pre-calculating a grid.
@@ -448,6 +598,15 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a 2D int array where each int should be between 1 and 255, inclusive</dd>
 </dl>
+</li>
+</ul>
+<a name="main-java.lang.String:A-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>main</h4>
+<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.251">main</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;args)</pre>
 </li>
 </ul>
 </li>
