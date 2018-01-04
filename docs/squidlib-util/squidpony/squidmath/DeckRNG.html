@@ -258,7 +258,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></td>
+<td class="colFirst"><code><a href="../../squidpony/squidmath/DeckRNG.html" title="class in squidpony.squidmath">DeckRNG</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/DeckRNG.html#copy--">copy</a></span>()</code>
 <div class="block">Creates a copy of this DeckRNG; it will generate the same random numbers, given the same calls in order, as
  this DeckRNG at the point copy() is called.</div>
@@ -1088,7 +1088,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.448">copy</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/DeckRNG.html" title="class in squidpony.squidmath">DeckRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.449">copy</a>()</pre>
 <div class="block">Creates a copy of this DeckRNG; it will generate the same random numbers, given the same calls in order, as
  this DeckRNG at the point copy() is called. The copy will not share references with this DeckRNG.</div>
 <dl>
@@ -1107,7 +1107,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>randomPortion</h4>
-<pre>public&nbsp;&lt;T&gt;&nbsp;T[]&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.471">randomPortion</a>(T[]&nbsp;data,
+<pre>public&nbsp;&lt;T&gt;&nbsp;T[]&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.472">randomPortion</a>(T[]&nbsp;data,
                              T[]&nbsp;output)</pre>
 <div class="block">Gets a random portion of data (an array), assigns that portion to output (an array) so that it fills as much as
  it can, and then returns output. Will only use a given position in the given data at most once; does this by
@@ -1135,7 +1135,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>randomPortion</h4>
-<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.484">randomPortion</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;&nbsp;data,
+<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.485">randomPortion</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;&nbsp;data,
                                  int&nbsp;count)</pre>
 <div class="block">Gets a random portion of a List and returns it as a new List. Will only use a given position in the given
  List at most once; does this by shuffling a copy of the List and getting a section of it.</div>
@@ -1158,7 +1158,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>randomRange</h4>
-<pre>public&nbsp;int[]&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.498">randomRange</a>(int&nbsp;start,
+<pre>public&nbsp;int[]&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.499">randomRange</a>(int&nbsp;start,
                          int&nbsp;end,
                          int&nbsp;count)</pre>
 <div class="block">Gets a random subrange of the non-negative ints from start (inclusive) to end (exclusive), using count elements.
@@ -1181,7 +1181,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>getState</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.526">getState</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.527">getState</a>()</pre>
 <div class="block">Get a long that can be used to reproduce the sequence of random numbers this object will generate starting now.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
@@ -1197,7 +1197,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>setState</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.537">setState</a>(long&nbsp;state)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.538">setState</a>(long&nbsp;state)</pre>
 <div class="block">Sets the state of the random number generator to a given long, which will alter future random numbers this
  produces based on the state. Setting the state always causes the "deck" of random grades to be shuffled.</div>
 <dl>
@@ -1214,7 +1214,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.544">toString</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.545">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/StatefulRNG.html#toString--">toString</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a></code></dd>
@@ -1227,7 +1227,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.549">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/DeckRNG.html#line.550">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#equals-java.lang.Object-">equals</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
