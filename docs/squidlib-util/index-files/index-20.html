@@ -808,6 +808,10 @@
 <dd>
 <div class="block">Marks many cells as goals for pathfinding, ignoring cells in walls or unreachable areas.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/GreasedZOI.html#setInfluences-squidpony.squidmath.Coord:A:A-">setInfluences(Coord[][])</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/GreasedZOI.html" title="class in squidpony.squidai">GreasedZOI</a></dt>
+<dd>
+<div class="block">Changes the influencing groups.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/ZOI.html#setInfluences-squidpony.squidmath.Coord:A:A-">setInfluences(Coord[][])</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/ZOI.html" title="class in squidpony.squidai">ZOI</a></dt>
 <dd>
 <div class="block">Changes the influencing groups.</div>
@@ -1266,6 +1270,26 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/FOV.html#SHADOW">SHADOW</a></span> - Static variable in class squidpony.squidgrid.<a href="../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/LineKit.html#shallowerExteriorSquareLarge">shallowerExteriorSquareLarge</a></span> - Static variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/LineKit.html" title="class in squidpony.squidgrid.mapping">LineKit</a></dt>
+<dd>
+<div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
+ would extend to touch cells adjacent to the 4x4 area.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/LineKit.html#shallowerInteriorSquareLarge">shallowerInteriorSquareLarge</a></span> - Static variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/LineKit.html" title="class in squidpony.squidgrid.mapping">LineKit</a></dt>
+<dd>
+<div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
+ would extend to touch cells adjacent to the 4x4 area.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/LineKit.html#shallowExteriorSquareLarge">shallowExteriorSquareLarge</a></span> - Static variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/LineKit.html" title="class in squidpony.squidgrid.mapping">LineKit</a></dt>
+<dd>
+<div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
+ would extend to touch cells adjacent to the 4x4 area.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/LineKit.html#shallowInteriorSquareLarge">shallowInteriorSquareLarge</a></span> - Static variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/LineKit.html" title="class in squidpony.squidgrid.mapping">LineKit</a></dt>
+<dd>
+<div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
+ would extend to touch cells adjacent to the 4x4 area.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/SectionDungeonGenerator.html#shallowLakeGlyph">shallowLakeGlyph</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/SectionDungeonGenerator.html" title="class in squidpony.squidgrid.mapping">SectionDungeonGenerator</a></dt>
 <dd>
 <div class="block">The char to use for shallow lake cells.</div>
@@ -1578,6 +1602,11 @@
 <div class="block">English-like language that omits complex spelling and doesn't include any of the uncommon word endings of English
  like "ought" or "ation." A good choice when you want something that doesn't use any non-US-keyboard letters,
  looks somewhat similar to English, and tries to be pronounceable without too much effort.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/NumberTools.html#sin-double-">sin(double)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/NumberTools.html" title="class in squidpony.squidmath">NumberTools</a></dt>
+<dd>
+<div class="block">A fairly-close approximation of <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#sin-double-" title="class or interface in java.lang"><code>Math.sin(double)</code></a> that can be significantly faster (40x faster sin() calls
+ in benchmarking).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/BundleBiMap.html#singleAt-int-">singleAt(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/BundleBiMap.html" title="class in squidpony.squidmath">BundleBiMap</a></dt>
 <dd>
@@ -1957,6 +1986,42 @@
  have significantly-exaggerated-in-size features while the equator is not distorted.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#SphereMap-long-int-int-squidpony.squidmath.Noise.Noise3D-double-">SphereMap(long, int, int, Noise.Noise3D, double)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMap</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
+ 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
+ have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#SphereMapAlt--">SphereMapAlt()</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
+ 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
+ have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#SphereMapAlt-int-int-">SphereMapAlt(int, int)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
+ 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
+ have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#SphereMapAlt-long-int-int-">SphereMapAlt(long, int, int)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
+ 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
+ have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#SphereMapAlt-long-int-int-double-">SphereMapAlt(long, int, int, double)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
+ 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
+ have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#SphereMapAlt-long-int-int-squidpony.squidmath.Noise.Noise3D-">SphereMapAlt(long, int, int, Noise.Noise3D)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
+ 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
+ have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#SphereMapAlt-long-int-int-squidpony.squidmath.Noise.Noise3D-double-">SphereMapAlt(long, int, int, Noise.Noise3D, double)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a></dt>
 <dd>
 <div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
  3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to

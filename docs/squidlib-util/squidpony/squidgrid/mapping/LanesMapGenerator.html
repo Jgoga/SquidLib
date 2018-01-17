@@ -381,7 +381,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putCaveCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.177">putCaveCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.178">putCaveCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create caves from one room to the next. If count is 0 or less, no caves
  will be made. If count is at least 1, caves are possible, and higher numbers relative to the other carvers make
  caves more likely. Carvers are shuffled when used, then repeat if exhausted during generation. Since typically
@@ -401,7 +401,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putBoxRoomCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.193">putBoxRoomCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.194">putBoxRoomCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create right-angle corridors from one room to the next, create rooms
  with a random size in a box shape at the start and end, and a small room at the corner if there is one. If count
  is 0 or less, no box-shaped rooms will be made. If count is at least 1, box-shaped rooms are possible, and higher
@@ -424,7 +424,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putWalledBoxRoomCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.210">putWalledBoxRoomCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.211">putWalledBoxRoomCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create right-angle corridors from one room to the next, create rooms
  with a random size in a box shape at the start and end, and a small room at the corner if there is one. This also
  ensures walls will be placed around the room, only allowing corridors and small cave openings to pass. If count
@@ -448,7 +448,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putRoundRoomCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.226">putRoundRoomCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.227">putRoundRoomCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create right-angle corridors from one room to the next, create rooms
  with a random size in a circle shape at the start and end, and a small circular room at the corner if there is
  one. If count is 0 or less, no circular rooms will be made. If count is at least 1, circular rooms are possible,
@@ -471,7 +471,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putWalledRoundRoomCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.244">putWalledRoundRoomCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.245">putWalledRoundRoomCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create right-angle corridors from one room to the next, create rooms
  with a random size in a circle shape at the start and end, and a small circular room at the corner if there is
  one. This also ensures walls will be placed around the room, only allowing corridors and small cave openings to
@@ -495,7 +495,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>generate</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.258">generate</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.259">generate</a>()</pre>
 <div class="block">This generates a new map by stretching a 16x16 grid of potential rooms to fit the width and height passed to the
  constructor, randomly expanding columns and rows before contracting the whole to fit perfectly. This uses the
  Moore Curve, a space-filling curve that loops around on itself, to guarantee that the rooms will always have a
@@ -517,7 +517,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>getEnvironment</h4>
-<pre>public&nbsp;int[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.278">getEnvironment</a>()</pre>
+<pre>public&nbsp;int[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.279">getEnvironment</a>()</pre>
 <div class="block">Gets a 2D array of int constants, each representing a type of environment corresponding to a static field of
  MixedGenerator. This array will have the same size as the last char 2D array prduced by generate(), and the value
  of this method if called before generate() is undefined, but probably will be a 2D array of all 0 (UNTOUCHED).
@@ -542,7 +542,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getDungeon</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.283">getDungeon</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LanesMapGenerator.html#line.284">getDungeon</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html#getDungeon--">IDungeonGenerator</a></code></span></div>
 <div class="block">Gets the most recently-produced dungeon as a 2D char array, usually produced by calling <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html#generate--"><code>IDungeonGenerator.generate()</code></a> or
  some similar method present in a specific implementation. This normally passes a direct reference and not a copy,

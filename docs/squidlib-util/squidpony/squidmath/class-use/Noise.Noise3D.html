@@ -116,7 +116,15 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WorldMapGenerator.SphereMapAlt.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#heat">heat</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WorldMapGenerator.SphereMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#moisture">moisture</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WorldMapGenerator.SphereMapAlt.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#moisture">moisture</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
@@ -124,13 +132,25 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WorldMapGenerator.SphereMapAlt.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#otherRidged">otherRidged</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WorldMapGenerator.SphereMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#riverRidged">riverRidged</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WorldMapGenerator.SphereMapAlt.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#riverRidged">riverRidged</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WorldMapGenerator.SphereMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#terrain">terrain</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WorldMapGenerator.SphereMapAlt.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#terrain">terrain</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WorldMapGenerator.SphereMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#terrainRidged">terrainRidged</a></span></code>&nbsp;</td>
 </tr>
@@ -158,6 +178,27 @@
          int&nbsp;mapHeight,
          <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;noiseGenerator,
          double&nbsp;octaveMultiplier)</code>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
+ 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
+ have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#SphereMapAlt-long-int-int-squidpony.squidmath.Noise.Noise3D-">SphereMapAlt</a></span>(long&nbsp;initialSeed,
+            int&nbsp;mapWidth,
+            int&nbsp;mapHeight,
+            <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;noiseGenerator)</code>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
+ 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
+ have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#SphereMapAlt-long-int-int-squidpony.squidmath.Noise.Noise3D-double-">SphereMapAlt</a></span>(long&nbsp;initialSeed,
+            int&nbsp;mapWidth,
+            int&nbsp;mapHeight,
+            <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;noiseGenerator,
+            double&nbsp;octaveMultiplier)</code>
 <div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
  3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
  have significantly-exaggerated-in-size features while the equator is not distorted.</div>
@@ -391,60 +432,66 @@
          double&nbsp;frequency)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Ridged3D.html#Ridged3D-squidpony.squidmath.Noise.Noise3D-">Ridged3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Layered3D.html#Layered3D-squidpony.squidmath.Noise.Noise3D-int-double-double-">Layered3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
+         int&nbsp;octaves,
+         double&nbsp;frequency,
+         double&nbsp;lacunarity)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Ridged3D.html#Ridged3D-squidpony.squidmath.Noise.Noise3D-">Ridged3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Ridged3D.html#Ridged3D-squidpony.squidmath.Noise.Noise3D-int-double-">Ridged3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
         int&nbsp;octaves,
         double&nbsp;frequency)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Scaled3D.html#Scaled3D-squidpony.squidmath.Noise.Noise3D-">Scaled3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Scaled3D.html#Scaled3D-squidpony.squidmath.Noise.Noise3D-double-">Scaled3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
         double&nbsp;scale)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Scaled3D.html#Scaled3D-squidpony.squidmath.Noise.Noise3D-double-double-double-">Scaled3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
         double&nbsp;scaleX,
         double&nbsp;scaleY,
         double&nbsp;scaleZ)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Slick3D.html#Slick3D-squidpony.squidmath.Noise.Noise3D-squidpony.squidmath.Noise.Noise3D-">Slick3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
        <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;disturb)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Slick3D.html#Slick3D-squidpony.squidmath.Noise.Noise3D-squidpony.squidmath.Noise.Noise3D-int-">Slick3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
        <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;disturb,
        int&nbsp;octaves)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Turbulent3D.html#Turbulent3D-squidpony.squidmath.Noise.Noise3D-squidpony.squidmath.Noise.Noise3D-">Turbulent3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
            <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;disturb)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Turbulent3D.html#Turbulent3D-squidpony.squidmath.Noise.Noise3D-squidpony.squidmath.Noise.Noise3D-int-">Turbulent3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
            <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;disturb,
            int&nbsp;octaves)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Turbulent3D.html#Turbulent3D-squidpony.squidmath.Noise.Noise3D-squidpony.squidmath.Noise.Noise3D-int-double-">Turbulent3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
            <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;disturb,
            int&nbsp;octaves,
            double&nbsp;frequency)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Viny3D.html#Viny3D-squidpony.squidmath.Noise.Noise3D-squidpony.squidmath.Noise.Noise3D-">Viny3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
       <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;disturb)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Viny3D.html#Viny3D-squidpony.squidmath.Noise.Noise3D-squidpony.squidmath.Noise.Noise3D-int-">Viny3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
       <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;disturb,
       int&nbsp;octaves)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Noise.Viny3D.html#Viny3D-squidpony.squidmath.Noise.Noise3D-squidpony.squidmath.Noise.Noise3D-int-double-">Viny3D</a></span>(<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;basis,
       <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;disturb,
       int&nbsp;octaves,

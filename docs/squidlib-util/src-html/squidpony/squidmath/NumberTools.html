@@ -507,92 +507,155 @@
 <span class="sourceLineNo">499</span>    }<a name="line.499"></a>
 <span class="sourceLineNo">500</span><a name="line.500"></a>
 <span class="sourceLineNo">501</span>    /**<a name="line.501"></a>
-<span class="sourceLineNo">502</span>     * A different kind of determine-like method that expects to be given a random long and produces a random float with<a name="line.502"></a>
-<span class="sourceLineNo">503</span>     * a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.<a name="line.503"></a>
-<span class="sourceLineNo">504</span>     * The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near -1f or<a name="line.504"></a>
-<span class="sourceLineNo">505</span>     * 1f. It cannot produce values greater than or equal to 1f, or less than -1f, but it can produce -1f.<a name="line.505"></a>
-<span class="sourceLineNo">506</span>     * @param start a long, usually random, such as one produced by any RandomnessSource<a name="line.506"></a>
-<span class="sourceLineNo">507</span>     * @return a deterministic float between -1f (inclusive) and 1f (exclusive), that is very likely to be close to 0f<a name="line.507"></a>
+<span class="sourceLineNo">502</span>     * A different kind of determine-like method that expects to be given a random long and produces a random double<a name="line.502"></a>
+<span class="sourceLineNo">503</span>     * with a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.<a name="line.503"></a>
+<span class="sourceLineNo">504</span>     * The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near -1.0<a name="line.504"></a>
+<span class="sourceLineNo">505</span>     * or 1.0. It cannot produce 1.0, -1.0, or any values further from 0 than those bounds.<a name="line.505"></a>
+<span class="sourceLineNo">506</span>     * @param start a long, usually random, such as one produced by any RandomnessSource; all bits will be used<a name="line.506"></a>
+<span class="sourceLineNo">507</span>     * @return a deterministic double between -1.0 (exclusive) and 1.0 (exclusive); very likely to be close to 0.0<a name="line.507"></a>
 <span class="sourceLineNo">508</span>     */<a name="line.508"></a>
-<span class="sourceLineNo">509</span>    public static float formCurvedFloat(final long start) {<a name="line.509"></a>
-<span class="sourceLineNo">510</span>        return   (intBitsToFloat((int)start &gt;&gt;&gt; 9 | 0x3F000000)<a name="line.510"></a>
-<span class="sourceLineNo">511</span>                + intBitsToFloat((int) (start &gt;&gt;&gt; 41) | 0x3F000000)<a name="line.511"></a>
-<span class="sourceLineNo">512</span>                + intBitsToFloat(((int)(start ^ ~start &gt;&gt;&gt; 20) &amp; 0x007FFFFF) | 0x3F000000)<a name="line.512"></a>
-<span class="sourceLineNo">513</span>                + intBitsToFloat(((int) (~start ^ start &gt;&gt;&gt; 30) &amp; 0x007FFFFF) | 0x3F000000)<a name="line.513"></a>
-<span class="sourceLineNo">514</span>                - 3f);<a name="line.514"></a>
+<span class="sourceLineNo">509</span>    public static double formCurvedDouble(long start) {<a name="line.509"></a>
+<span class="sourceLineNo">510</span>        return    longBitsToDouble((start &gt;&gt;&gt; 12) | 0x3fe0000000000000L)<a name="line.510"></a>
+<span class="sourceLineNo">511</span>                + longBitsToDouble(((start *= 0x2545F4914F6CDD1DL) &gt;&gt;&gt; 12) | 0x3fe0000000000000L)<a name="line.511"></a>
+<span class="sourceLineNo">512</span>                - longBitsToDouble(((start *= 0x2545F4914F6CDD1DL) &gt;&gt;&gt; 12) | 0x3fe0000000000000L)<a name="line.512"></a>
+<span class="sourceLineNo">513</span>                - longBitsToDouble(((start *  0x2545F4914F6CDD1DL) &gt;&gt;&gt; 12) | 0x3fe0000000000000L)<a name="line.513"></a>
+<span class="sourceLineNo">514</span>                ;<a name="line.514"></a>
 <span class="sourceLineNo">515</span>    }<a name="line.515"></a>
-<span class="sourceLineNo">516</span><a name="line.516"></a>
-<span class="sourceLineNo">517</span>    /**<a name="line.517"></a>
-<span class="sourceLineNo">518</span>     * A different kind of determine-like method that expects to be given random ints and produces a random float with<a name="line.518"></a>
-<span class="sourceLineNo">519</span>     * a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.<a name="line.519"></a>
-<span class="sourceLineNo">520</span>     * The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near -1f or<a name="line.520"></a>
-<span class="sourceLineNo">521</span>     * 1f. It cannot produce values greater than or equal to 1f, or less than -1f, but it can produce -1f.<a name="line.521"></a>
-<span class="sourceLineNo">522</span>     * @param start1 an int usually random, such as one produced by any RandomnessSource<a name="line.522"></a>
-<span class="sourceLineNo">523</span>     * @param start2 an int usually random, such as one produced by any RandomnessSource<a name="line.523"></a>
-<span class="sourceLineNo">524</span>     * @return a deterministic float between -1f (inclusive) and 1f (exclusive), that is very likely to be close to 0f<a name="line.524"></a>
-<span class="sourceLineNo">525</span>     */<a name="line.525"></a>
-<span class="sourceLineNo">526</span>    public static float formCurvedFloat(final int start1, final int start2) {<a name="line.526"></a>
-<span class="sourceLineNo">527</span>        return   (intBitsToFloat(start1 &gt;&gt;&gt; 9 | 0x3F000000)<a name="line.527"></a>
-<span class="sourceLineNo">528</span>                + intBitsToFloat((~start1 &amp; 0x007FFFFF) | 0x3F000000)<a name="line.528"></a>
-<span class="sourceLineNo">529</span>                + intBitsToFloat(start2 &gt;&gt;&gt; 9 | 0x3F000000)<a name="line.529"></a>
-<span class="sourceLineNo">530</span>                + intBitsToFloat((~start2 &amp; 0x007FFFFF) | 0x3F000000)<a name="line.530"></a>
-<span class="sourceLineNo">531</span>                - 3f);<a name="line.531"></a>
-<span class="sourceLineNo">532</span>    }<a name="line.532"></a>
-<span class="sourceLineNo">533</span>    /**<a name="line.533"></a>
-<span class="sourceLineNo">534</span>     * A different kind of determine-like method that expects to be given a random int and produces a random float with<a name="line.534"></a>
-<span class="sourceLineNo">535</span>     * a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.<a name="line.535"></a>
-<span class="sourceLineNo">536</span>     * The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near -1f or<a name="line.536"></a>
-<span class="sourceLineNo">537</span>     * 1f. It cannot produce values greater than or equal to 1f, or less than -1f, but it can produce -1f.<a name="line.537"></a>
-<span class="sourceLineNo">538</span>     * @param start an int, usually random, such as one produced by any RandomnessSource<a name="line.538"></a>
-<span class="sourceLineNo">539</span>     * @return a deterministic float between -1f (inclusive) and 1f (exclusive), that is very likely to be close to 0f<a name="line.539"></a>
-<span class="sourceLineNo">540</span>     */<a name="line.540"></a>
-<span class="sourceLineNo">541</span>    public static float formCurvedFloat(final int start) {<a name="line.541"></a>
-<span class="sourceLineNo">542</span>        return   (intBitsToFloat(start &gt;&gt;&gt; 9 | 0x3F000000)<a name="line.542"></a>
-<span class="sourceLineNo">543</span>                + intBitsToFloat((start &amp; 0x007FFFFF) | 0x3F000000)<a name="line.543"></a>
-<span class="sourceLineNo">544</span>                + intBitsToFloat(((start &lt;&lt; 18 &amp; 0x007FFFFF) ^ ~start &gt;&gt;&gt; 14) | 0x3F000000)<a name="line.544"></a>
-<span class="sourceLineNo">545</span>                + intBitsToFloat(((start &lt;&lt; 13 &amp; 0x007FFFFF) ^ ~start &gt;&gt;&gt; 19) | 0x3F000000)<a name="line.545"></a>
-<span class="sourceLineNo">546</span>                - 3f);<a name="line.546"></a>
-<span class="sourceLineNo">547</span>    }<a name="line.547"></a>
-<span class="sourceLineNo">548</span><a name="line.548"></a>
-<span class="sourceLineNo">549</span>    /**<a name="line.549"></a>
-<span class="sourceLineNo">550</span>     * Returns an int value with at most a single one-bit, in the position of the lowest-order ("rightmost") one-bit in<a name="line.550"></a>
-<span class="sourceLineNo">551</span>     * the specified int value. Returns zero if the specified value has no one-bits in its two's complement binary<a name="line.551"></a>
-<span class="sourceLineNo">552</span>     * representation, that is, if it is equal to zero.<a name="line.552"></a>
-<span class="sourceLineNo">553</span>     * &lt;br&gt;<a name="line.553"></a>
-<span class="sourceLineNo">554</span>     * Identical to {@link Integer#lowestOneBit(int)}, but super-sourced to act correctly on GWT. If you have GWT as a<a name="line.554"></a>
-<span class="sourceLineNo">555</span>     * target and do bit manipulation work, double-check everything! An int can be higher than {@link Integer#MAX_VALUE}<a name="line.555"></a>
-<span class="sourceLineNo">556</span>     * or lower than {@link Integer#MIN_VALUE} on GWT, without actually being a long (internally it's a double). This<a name="line.556"></a>
-<span class="sourceLineNo">557</span>     * is especially relevant for the overload of this method that takes and returns a long;<a name="line.557"></a>
-<span class="sourceLineNo">558</span>     * {@link Long#lowestOneBit(long)} does not provide correct results for certain inputs on GWT, such as<a name="line.558"></a>
-<span class="sourceLineNo">559</span>     * -17592186044416L, which it mysteriously returns 0L on, so you should use {@link #lowestOneBit(long)}.<a name="line.559"></a>
-<span class="sourceLineNo">560</span>     * @param num the value whose lowest one bit is to be computed<a name="line.560"></a>
-<span class="sourceLineNo">561</span>     * @return an int value with a single one-bit, in the position of the lowest-order one-bit in the specified value,<a name="line.561"></a>
-<span class="sourceLineNo">562</span>     *         or zero if the specified value is itself equal to zero.<a name="line.562"></a>
-<span class="sourceLineNo">563</span>     */<a name="line.563"></a>
-<span class="sourceLineNo">564</span>    public static int lowestOneBit(int num)<a name="line.564"></a>
-<span class="sourceLineNo">565</span>    {<a name="line.565"></a>
-<span class="sourceLineNo">566</span>        return num &amp; -num;<a name="line.566"></a>
-<span class="sourceLineNo">567</span>    }<a name="line.567"></a>
-<span class="sourceLineNo">568</span>    /**<a name="line.568"></a>
-<span class="sourceLineNo">569</span>     * Returns an long value with at most a single one-bit, in the position of the lowest-order ("rightmost") one-bit in<a name="line.569"></a>
-<span class="sourceLineNo">570</span>     * the specified long value. Returns zero if the specified value has no one-bits in its two's complement binary<a name="line.570"></a>
-<span class="sourceLineNo">571</span>     * representation, that is, if it is equal to zero.<a name="line.571"></a>
-<span class="sourceLineNo">572</span>     * &lt;br&gt;<a name="line.572"></a>
-<span class="sourceLineNo">573</span>     * Identical to {@link Long#lowestOneBit(long)}, but super-sourced to act correctly on GWT. If you have GWT as a<a name="line.573"></a>
-<span class="sourceLineNo">574</span>     * target and do bit manipulation work, double-check everything! An int can be higher than {@link Integer#MAX_VALUE}<a name="line.574"></a>
-<span class="sourceLineNo">575</span>     * or lower than {@link Integer#MIN_VALUE} on GWT, without actually being a long (internally it's a double). This<a name="line.575"></a>
-<span class="sourceLineNo">576</span>     * is especially relevant for this overload (for longs more so than for ints); {@link Long#lowestOneBit(long)} does<a name="line.576"></a>
-<span class="sourceLineNo">577</span>     * not provide correct results for certain inputs on GWT, such as -17592186044416L, which it mysteriously returns 0L<a name="line.577"></a>
-<span class="sourceLineNo">578</span>     * on, so you should use this method.<a name="line.578"></a>
-<span class="sourceLineNo">579</span>     * @param num the value whose lowest one bit is to be computed<a name="line.579"></a>
-<span class="sourceLineNo">580</span>     * @return a long value with a single one-bit, in the position of the lowest-order one-bit in the specified value,<a name="line.580"></a>
-<span class="sourceLineNo">581</span>     *         or zero if the specified value is itself equal to zero.<a name="line.581"></a>
-<span class="sourceLineNo">582</span>     */<a name="line.582"></a>
-<span class="sourceLineNo">583</span>    public static long lowestOneBit(long num)<a name="line.583"></a>
-<span class="sourceLineNo">584</span>    {<a name="line.584"></a>
-<span class="sourceLineNo">585</span>        return num &amp; -num;<a name="line.585"></a>
-<span class="sourceLineNo">586</span>    }<a name="line.586"></a>
-<span class="sourceLineNo">587</span>}<a name="line.587"></a>
+<span class="sourceLineNo">516</span>    /**<a name="line.516"></a>
+<span class="sourceLineNo">517</span>     * A different kind of determine-like method that expects to be given a random long and produces a random double<a name="line.517"></a>
+<span class="sourceLineNo">518</span>     * with a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach 0.0 and 1.0.<a name="line.518"></a>
+<span class="sourceLineNo">519</span>     * The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near 0.0 or<a name="line.519"></a>
+<span class="sourceLineNo">520</span>     * 1.0. It cannot produce 0.0, 1.0, or any values further from 0.5 than those bounds.<a name="line.520"></a>
+<span class="sourceLineNo">521</span>     * @param start a long, usually random, such as one produced by any RandomnessSource; all bits will be used<a name="line.521"></a>
+<span class="sourceLineNo">522</span>     * @return a deterministic double between 0.0 (exclusive) and 1.0 (exclusive); very likely to be close to 0.5<a name="line.522"></a>
+<span class="sourceLineNo">523</span>     */<a name="line.523"></a>
+<span class="sourceLineNo">524</span>    public static double formCurvedDoubleTight(long start) {<a name="line.524"></a>
+<span class="sourceLineNo">525</span>        return  0.5<a name="line.525"></a>
+<span class="sourceLineNo">526</span>                + longBitsToDouble((start &gt;&gt;&gt; 12) | 0x3fd0000000000000L)<a name="line.526"></a>
+<span class="sourceLineNo">527</span>                + longBitsToDouble(((start *= 0x2545F4914F6CDD1DL) &gt;&gt;&gt; 12) | 0x3fd0000000000000L)<a name="line.527"></a>
+<span class="sourceLineNo">528</span>                - longBitsToDouble(((start *= 0x2545F4914F6CDD1DL) &gt;&gt;&gt; 12) | 0x3fd0000000000000L)<a name="line.528"></a>
+<span class="sourceLineNo">529</span>                - longBitsToDouble(((start *  0x2545F4914F6CDD1DL) &gt;&gt;&gt; 12) | 0x3fd0000000000000L);<a name="line.529"></a>
+<span class="sourceLineNo">530</span>    }<a name="line.530"></a>
+<span class="sourceLineNo">531</span><a name="line.531"></a>
+<span class="sourceLineNo">532</span>    /**<a name="line.532"></a>
+<span class="sourceLineNo">533</span>     * A different kind of determine-like method that expects to be given a random long and produces a random float with<a name="line.533"></a>
+<span class="sourceLineNo">534</span>     * a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.<a name="line.534"></a>
+<span class="sourceLineNo">535</span>     * The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near -1f or<a name="line.535"></a>
+<span class="sourceLineNo">536</span>     * 1f. It cannot produce 1f, -1f, or any values further from 0 than those bounds.<a name="line.536"></a>
+<span class="sourceLineNo">537</span>     * @param start a long, usually random, such as one produced by any RandomnessSource<a name="line.537"></a>
+<span class="sourceLineNo">538</span>     * @return a deterministic float between -1f (exclusive) and 1f (exclusive), that is very likely to be close to 0f<a name="line.538"></a>
+<span class="sourceLineNo">539</span>     */<a name="line.539"></a>
+<span class="sourceLineNo">540</span>    public static float formCurvedFloat(final long start) {<a name="line.540"></a>
+<span class="sourceLineNo">541</span>        return    intBitsToFloat((int)start &gt;&gt;&gt; 9 | 0x3F000000)<a name="line.541"></a>
+<span class="sourceLineNo">542</span>                + intBitsToFloat((int) (start &gt;&gt;&gt; 41) | 0x3F000000)<a name="line.542"></a>
+<span class="sourceLineNo">543</span>                - intBitsToFloat(((int)(start ^ ~start &gt;&gt;&gt; 20) &amp; 0x007FFFFF) | 0x3F000000)<a name="line.543"></a>
+<span class="sourceLineNo">544</span>                - intBitsToFloat(((int) (~start ^ start &gt;&gt;&gt; 30) &amp; 0x007FFFFF) | 0x3F000000)<a name="line.544"></a>
+<span class="sourceLineNo">545</span>                ;<a name="line.545"></a>
+<span class="sourceLineNo">546</span>    }<a name="line.546"></a>
+<span class="sourceLineNo">547</span><a name="line.547"></a>
+<span class="sourceLineNo">548</span>    /**<a name="line.548"></a>
+<span class="sourceLineNo">549</span>     * A different kind of determine-like method that expects to be given random ints and produces a random float with<a name="line.549"></a>
+<span class="sourceLineNo">550</span>     * a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.<a name="line.550"></a>
+<span class="sourceLineNo">551</span>     * The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near -1f or<a name="line.551"></a>
+<span class="sourceLineNo">552</span>     * 1f. It cannot produce 1f, -1f, or any values further from 0 than those bounds.<a name="line.552"></a>
+<span class="sourceLineNo">553</span>     * @param start1 an int usually random, such as one produced by any RandomnessSource<a name="line.553"></a>
+<span class="sourceLineNo">554</span>     * @param start2 an int usually random, such as one produced by any RandomnessSource<a name="line.554"></a>
+<span class="sourceLineNo">555</span>     * @return a deterministic float between -1f (exclusive) and 1f (exclusive), that is very likely to be close to 0f<a name="line.555"></a>
+<span class="sourceLineNo">556</span>     */<a name="line.556"></a>
+<span class="sourceLineNo">557</span>    public static float formCurvedFloat(final int start1, final int start2) {<a name="line.557"></a>
+<span class="sourceLineNo">558</span>        return    intBitsToFloat(start1 &gt;&gt;&gt; 9 | 0x3F000000)<a name="line.558"></a>
+<span class="sourceLineNo">559</span>                + intBitsToFloat((~start1 &amp; 0x007FFFFF) | 0x3F000000)<a name="line.559"></a>
+<span class="sourceLineNo">560</span>                - intBitsToFloat(start2 &gt;&gt;&gt; 9 | 0x3F000000)<a name="line.560"></a>
+<span class="sourceLineNo">561</span>                - intBitsToFloat((~start2 &amp; 0x007FFFFF) | 0x3F000000)<a name="line.561"></a>
+<span class="sourceLineNo">562</span>                ;<a name="line.562"></a>
+<span class="sourceLineNo">563</span>    }<a name="line.563"></a>
+<span class="sourceLineNo">564</span>    /**<a name="line.564"></a>
+<span class="sourceLineNo">565</span>     * A different kind of determine-like method that expects to be given a random int and produces a random float with<a name="line.565"></a>
+<span class="sourceLineNo">566</span>     * a curved distribution that centers on 0 (where it has a bias) and can (rarely) approach -1f and 1f.<a name="line.566"></a>
+<span class="sourceLineNo">567</span>     * The distribution for the values is similar to Irwin-Hall, and is frequently near 0 but not too-rarely near -1f or<a name="line.567"></a>
+<span class="sourceLineNo">568</span>     * 1f. It cannot produce 1f, -1f, or any values further from 0 than those bounds.<a name="line.568"></a>
+<span class="sourceLineNo">569</span>     * @param start an int, usually random, such as one produced by any RandomnessSource<a name="line.569"></a>
+<span class="sourceLineNo">570</span>     * @return a deterministic float between -1f (exclusive) and 1f (exclusive), that is very likely to be close to 0f<a name="line.570"></a>
+<span class="sourceLineNo">571</span>     */<a name="line.571"></a>
+<span class="sourceLineNo">572</span>    public static float formCurvedFloat(final int start) {<a name="line.572"></a>
+<span class="sourceLineNo">573</span>        return    intBitsToFloat(start &gt;&gt;&gt; 9 | 0x3F000000)<a name="line.573"></a>
+<span class="sourceLineNo">574</span>                + intBitsToFloat((start &amp; 0x007FFFFF) | 0x3F000000)<a name="line.574"></a>
+<span class="sourceLineNo">575</span>                - intBitsToFloat(((start &lt;&lt; 18 &amp; 0x007FFFFF) ^ ~start &gt;&gt;&gt; 14) | 0x3F000000)<a name="line.575"></a>
+<span class="sourceLineNo">576</span>                - intBitsToFloat(((start &lt;&lt; 13 &amp; 0x007FFFFF) ^ ~start &gt;&gt;&gt; 19) | 0x3F000000)<a name="line.576"></a>
+<span class="sourceLineNo">577</span>                ;<a name="line.577"></a>
+<span class="sourceLineNo">578</span>    }<a name="line.578"></a>
+<span class="sourceLineNo">579</span><a name="line.579"></a>
+<span class="sourceLineNo">580</span>    /**<a name="line.580"></a>
+<span class="sourceLineNo">581</span>     * Returns an int value with at most a single one-bit, in the position of the lowest-order ("rightmost") one-bit in<a name="line.581"></a>
+<span class="sourceLineNo">582</span>     * the specified int value. Returns zero if the specified value has no one-bits in its two's complement binary<a name="line.582"></a>
+<span class="sourceLineNo">583</span>     * representation, that is, if it is equal to zero.<a name="line.583"></a>
+<span class="sourceLineNo">584</span>     * &lt;br&gt;<a name="line.584"></a>
+<span class="sourceLineNo">585</span>     * Identical to {@link Integer#lowestOneBit(int)}, but super-sourced to act correctly on GWT. If you have GWT as a<a name="line.585"></a>
+<span class="sourceLineNo">586</span>     * target and do bit manipulation work, double-check everything! An int can be higher than {@link Integer#MAX_VALUE}<a name="line.586"></a>
+<span class="sourceLineNo">587</span>     * or lower than {@link Integer#MIN_VALUE} on GWT, without actually being a long (internally it's a double). This<a name="line.587"></a>
+<span class="sourceLineNo">588</span>     * is especially relevant for the overload of this method that takes and returns a long;<a name="line.588"></a>
+<span class="sourceLineNo">589</span>     * {@link Long#lowestOneBit(long)} does not provide correct results for certain inputs on GWT, such as<a name="line.589"></a>
+<span class="sourceLineNo">590</span>     * -17592186044416L, which it mysteriously returns 0L on, so you should use {@link #lowestOneBit(long)}.<a name="line.590"></a>
+<span class="sourceLineNo">591</span>     * @param num the value whose lowest one bit is to be computed<a name="line.591"></a>
+<span class="sourceLineNo">592</span>     * @return an int value with a single one-bit, in the position of the lowest-order one-bit in the specified value,<a name="line.592"></a>
+<span class="sourceLineNo">593</span>     *         or zero if the specified value is itself equal to zero.<a name="line.593"></a>
+<span class="sourceLineNo">594</span>     */<a name="line.594"></a>
+<span class="sourceLineNo">595</span>    public static int lowestOneBit(int num)<a name="line.595"></a>
+<span class="sourceLineNo">596</span>    {<a name="line.596"></a>
+<span class="sourceLineNo">597</span>        return num &amp; -num;<a name="line.597"></a>
+<span class="sourceLineNo">598</span>    }<a name="line.598"></a>
+<span class="sourceLineNo">599</span>    /**<a name="line.599"></a>
+<span class="sourceLineNo">600</span>     * Returns an long value with at most a single one-bit, in the position of the lowest-order ("rightmost") one-bit in<a name="line.600"></a>
+<span class="sourceLineNo">601</span>     * the specified long value. Returns zero if the specified value has no one-bits in its two's complement binary<a name="line.601"></a>
+<span class="sourceLineNo">602</span>     * representation, that is, if it is equal to zero.<a name="line.602"></a>
+<span class="sourceLineNo">603</span>     * &lt;br&gt;<a name="line.603"></a>
+<span class="sourceLineNo">604</span>     * Identical to {@link Long#lowestOneBit(long)}, but super-sourced to act correctly on GWT. If you have GWT as a<a name="line.604"></a>
+<span class="sourceLineNo">605</span>     * target and do bit manipulation work, double-check everything! An int can be higher than {@link Integer#MAX_VALUE}<a name="line.605"></a>
+<span class="sourceLineNo">606</span>     * or lower than {@link Integer#MIN_VALUE} on GWT, without actually being a long (internally it's a double). This<a name="line.606"></a>
+<span class="sourceLineNo">607</span>     * is especially relevant for this overload (for longs more so than for ints); {@link Long#lowestOneBit(long)} does<a name="line.607"></a>
+<span class="sourceLineNo">608</span>     * not provide correct results for certain inputs on GWT, such as -17592186044416L, which it mysteriously returns 0L<a name="line.608"></a>
+<span class="sourceLineNo">609</span>     * on, so you should use this method.<a name="line.609"></a>
+<span class="sourceLineNo">610</span>     * @param num the value whose lowest one bit is to be computed<a name="line.610"></a>
+<span class="sourceLineNo">611</span>     * @return a long value with a single one-bit, in the position of the lowest-order one-bit in the specified value,<a name="line.611"></a>
+<span class="sourceLineNo">612</span>     *         or zero if the specified value is itself equal to zero.<a name="line.612"></a>
+<span class="sourceLineNo">613</span>     */<a name="line.613"></a>
+<span class="sourceLineNo">614</span>    public static long lowestOneBit(long num)<a name="line.614"></a>
+<span class="sourceLineNo">615</span>    {<a name="line.615"></a>
+<span class="sourceLineNo">616</span>        return num &amp; -num;<a name="line.616"></a>
+<span class="sourceLineNo">617</span>    }<a name="line.617"></a>
+<span class="sourceLineNo">618</span><a name="line.618"></a>
+<span class="sourceLineNo">619</span>    /**<a name="line.619"></a>
+<span class="sourceLineNo">620</span>     * A fairly-close approximation of {@link Math#sin(double)} that can be significantly faster (40x faster sin() calls<a name="line.620"></a>
+<span class="sourceLineNo">621</span>     * in benchmarking). Takes the same arguments Math.sin() does, so one angle in radians, which may technically be any<a name="line.621"></a>
+<span class="sourceLineNo">622</span>     * double (but this will lose accuracy on extremely large doubles, such as those that are larger than the largest<a name="line.622"></a>
+<span class="sourceLineNo">623</span>     * long value). This is closely related to {@link #sway(float)}, but the shape of the output when graphed is almost<a name="line.623"></a>
+<span class="sourceLineNo">624</span>     * identical to sin().<a name="line.624"></a>
+<span class="sourceLineNo">625</span>     * @param radians an angle in radians, often from -pi to pi, though not required to be.<a name="line.625"></a>
+<span class="sourceLineNo">626</span>     * @return the sine of the given angle, as a double between -1.0 and 1.0 (probably exclusive on 1.0, but not -1.0)<a name="line.626"></a>
+<span class="sourceLineNo">627</span>     */<a name="line.627"></a>
+<span class="sourceLineNo">628</span>    public static double sin(final double radians)<a name="line.628"></a>
+<span class="sourceLineNo">629</span>    {<a name="line.629"></a>
+<span class="sourceLineNo">630</span>        final long s = Double.doubleToLongBits(radians * 0.3183098861837907f + (radians &lt; -1.5707963267948966 ? -1.5 : 2.5)), m = (s &gt;&gt;&gt; 52 &amp; 0x7FFL) - 0x400, sm = s &lt;&lt; m;<a name="line.630"></a>
+<span class="sourceLineNo">631</span>        final double a = (Double.longBitsToDouble(((sm ^ -((sm &amp; 0x8000000000000L) &gt;&gt; 51)) &amp; 0xfffffffffffffL) | 0x4000000000000000L) - 2.0);<a name="line.631"></a>
+<span class="sourceLineNo">632</span>        return a * a * (3.0 - 2.0 * a) * 2.0 - 1.0;<a name="line.632"></a>
+<span class="sourceLineNo">633</span>    }<a name="line.633"></a>
+<span class="sourceLineNo">634</span><a name="line.634"></a>
+<span class="sourceLineNo">635</span>    /**<a name="line.635"></a>
+<span class="sourceLineNo">636</span>     * A fairly-close approximation of {@link Math#cos(double)} that can be significantly faster (40x faster cos() calls<a name="line.636"></a>
+<span class="sourceLineNo">637</span>     * in benchmarking). Takes the same arguments Math.cos() does, so one angle in radians, which may technically be any<a name="line.637"></a>
+<span class="sourceLineNo">638</span>     * double (but this will lose accuracy on extremely large doubles, such as those that are larger than the largest<a name="line.638"></a>
+<span class="sourceLineNo">639</span>     * long value). This is closely related to {@link #sway(float)}, but the shape of the output when graphed is almost<a name="line.639"></a>
+<span class="sourceLineNo">640</span>     * identical to cos().<a name="line.640"></a>
+<span class="sourceLineNo">641</span>     * @param radians an angle in radians, often from -pi to pi, though not required to be.<a name="line.641"></a>
+<span class="sourceLineNo">642</span>     * @return the cosine of the given angle, as a double between -1.0 and 1.0 (probably exclusive on 1.0, but not -1.0)<a name="line.642"></a>
+<span class="sourceLineNo">643</span>     */<a name="line.643"></a>
+<span class="sourceLineNo">644</span>    public static double cos(final double radians)<a name="line.644"></a>
+<span class="sourceLineNo">645</span>    {<a name="line.645"></a>
+<span class="sourceLineNo">646</span>        final long s = Double.doubleToLongBits(radians * 0.3183098861837907f + (radians &lt; 0.0 ? -2.0 : 2.0)), m = (s &gt;&gt;&gt; 52 &amp; 0x7FFL) - 0x400, sm = s &lt;&lt; m;<a name="line.646"></a>
+<span class="sourceLineNo">647</span>        final double a = (Double.longBitsToDouble(((sm ^ -((sm &amp; 0x8000000000000L) &gt;&gt; 51)) &amp; 0xfffffffffffffL) | 0x4000000000000000L) - 2.0);<a name="line.647"></a>
+<span class="sourceLineNo">648</span>        return a * a * (3.0 - 2.0 * a) * -2.0 + 1.0;<a name="line.648"></a>
+<span class="sourceLineNo">649</span>    }<a name="line.649"></a>
+<span class="sourceLineNo">650</span>}<a name="line.650"></a>
 
 
 

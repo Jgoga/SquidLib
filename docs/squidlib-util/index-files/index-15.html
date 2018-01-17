@@ -160,6 +160,15 @@
 <dd>
 <div class="block">Copies another LanguageCipher and constructs this one with the information in the other.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/GreasedZOI.html#nearestInfluences-short:A:A-squidpony.squidmath.Coord-">nearestInfluences(short[][], Coord)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/GreasedZOI.html" title="class in squidpony.squidai">GreasedZOI</a></dt>
+<dd>
+<div class="block">Given the zones resulting from this class' calculate method and a Coord to check, finds the indices of all
+ influencing groups in zones that have the Coord in their area, and returns all such indices as an int array.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/GreasedZOI.html#nearestInfluences-squidpony.squidmath.Coord-">nearestInfluences(Coord)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/GreasedZOI.html" title="class in squidpony.squidai">GreasedZOI</a></dt>
+<dd>
+<div class="block">This can be given a Coord to check in the results of the latest calculate() call.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/ZOI.html#nearestInfluences-short:A:A-squidpony.squidmath.Coord-">nearestInfluences(short[][], Coord)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/ZOI.html" title="class in squidpony.squidai">ZOI</a></dt>
 <dd>
 <div class="block">Given the zones resulting from this class' calculate method and a Coord to check, finds the indices of all
@@ -513,10 +522,6 @@
 <div class="block">Generate a random double, altering the result if recently generated results have been leaning
  away from this class' fairness value.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/DharmaRNG.html#nextDouble-double-">nextDouble(double)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/DharmaRNG.html" title="class in squidpony.squidmath">DharmaRNG</a></dt>
-<dd>
-<div class="block">This returns a random double between 0.0 (inclusive) and max (exclusive).</div>
-</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/EditRNG.html#nextDouble--">nextDouble()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/EditRNG.html" title="class in squidpony.squidmath">EditRNG</a></dt>
 <dd>
 <div class="block">Generate a random double, altered to try to match the expected average and centrality.</div>
@@ -641,10 +646,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/DeckRNG.html#nextGaussian--">nextGaussian()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/DeckRNG.html" title="class in squidpony.squidmath">DeckRNG</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/DharmaRNG.html#nextGaussian--">nextGaussian()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/DharmaRNG.html" title="class in squidpony.squidmath">DharmaRNG</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/EditRNG.html#nextGaussian--">nextGaussian()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/EditRNG.html" title="class in squidpony.squidmath">EditRNG</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#nextGaussian--">nextGaussian()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
 <dd>
 <div class="block">Gets a pseudo-random double from the Gaussian distribution, which will usually be between -1.0 and 1.0 but is not
@@ -672,7 +673,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/DharmaRNG.html#nextInt--">nextInt()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/DharmaRNG.html" title="class in squidpony.squidmath">DharmaRNG</a></dt>
 <dd>
-<div class="block">Returns a random integer, which may be positive or negative.</div>
+<div class="block">Returns a random integer, which may be any positive or negative value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/EditRNG.html#nextInt-int-">nextInt(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/EditRNG.html" title="class in squidpony.squidmath">EditRNG</a></dt>
 <dd>
@@ -847,7 +848,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/DharmaRNG.html#nextLong--">nextLong()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/DharmaRNG.html" title="class in squidpony.squidmath">DharmaRNG</a></dt>
 <dd>
-<div class="block">Returns a random long, which may be positive or negative.</div>
+<div class="block">Returns a random long, which may be any positive or negative value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/DharmaRNG.html#nextLong-long-">nextLong(long)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/DharmaRNG.html" title="class in squidpony.squidmath">DharmaRNG</a></dt>
 <dd>
@@ -1091,6 +1092,8 @@
 <div class="block">Created by Tommy Ettinger on 3/17/2017.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Noise.html#Noise--">Noise()</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Noise.html" title="class in squidpony.squidmath">Noise</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Noise.Basic1D.html#noise-double-long-">noise(double, long)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/Noise.Basic1D.html" title="class in squidpony.squidmath">Noise.Basic1D</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/PerlinNoise.html#noise-double-double-">noise(double, double)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath">PerlinNoise</a></dt>
 <dd>

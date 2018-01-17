@@ -1878,13 +1878,24 @@
 <div class="block">Used to tweak the generator toward high or low values.</div>
 </li>
 <li class="blockList">
+<h4>offset</h4>
+<pre>double offset</pre>
+</li>
+<li class="blockList">
+<h4>range</h4>
+<pre>double range</pre>
+</li>
+<li class="blockList">
 <h4>centrality</h4>
 <pre>double centrality</pre>
 <div class="block">When positive, makes the generator more likely to generate values close to the average (bell curve).
  When zero (the default), makes no changes to the centering of values.
  When negative, makes the generator swing more toward extremes rather than gravitate toward the average.
- Values are typically between -100 and 100, but can have extreme weight and overshadow other parts of the RNG if
- they go much higher than 200.</div>
+ Values are typically between -100 and 100, but can go as low as -200 or as high as 200 (stopping there).</div>
+</li>
+<li class="blockList">
+<h4>centralityCalculated</h4>
+<pre>long centralityCalculated</pre>
 </li>
 <li class="blockListLast">
 <h4>rawLatest</h4>
