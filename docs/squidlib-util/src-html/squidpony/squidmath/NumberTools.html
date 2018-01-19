@@ -631,7 +631,7 @@
 <span class="sourceLineNo">623</span>     * long value). This is closely related to {@link #sway(float)}, but the shape of the output when graphed is almost<a name="line.623"></a>
 <span class="sourceLineNo">624</span>     * identical to sin().<a name="line.624"></a>
 <span class="sourceLineNo">625</span>     * @param radians an angle in radians, often from -pi to pi, though not required to be.<a name="line.625"></a>
-<span class="sourceLineNo">626</span>     * @return the sine of the given angle, as a double between -1.0 and 1.0 (probably exclusive on 1.0, but not -1.0)<a name="line.626"></a>
+<span class="sourceLineNo">626</span>     * @return the sine of the given angle, as a double between -1.0 and 1.0 (probably exclusive on -1.0, but not 1.0)<a name="line.626"></a>
 <span class="sourceLineNo">627</span>     */<a name="line.627"></a>
 <span class="sourceLineNo">628</span>    public static double sin(final double radians)<a name="line.628"></a>
 <span class="sourceLineNo">629</span>    {<a name="line.629"></a>
@@ -641,21 +641,54 @@
 <span class="sourceLineNo">633</span>    }<a name="line.633"></a>
 <span class="sourceLineNo">634</span><a name="line.634"></a>
 <span class="sourceLineNo">635</span>    /**<a name="line.635"></a>
-<span class="sourceLineNo">636</span>     * A fairly-close approximation of {@link Math#cos(double)} that can be significantly faster (40x faster cos() calls<a name="line.636"></a>
-<span class="sourceLineNo">637</span>     * in benchmarking). Takes the same arguments Math.cos() does, so one angle in radians, which may technically be any<a name="line.637"></a>
-<span class="sourceLineNo">638</span>     * double (but this will lose accuracy on extremely large doubles, such as those that are larger than the largest<a name="line.638"></a>
-<span class="sourceLineNo">639</span>     * long value). This is closely related to {@link #sway(float)}, but the shape of the output when graphed is almost<a name="line.639"></a>
-<span class="sourceLineNo">640</span>     * identical to cos().<a name="line.640"></a>
-<span class="sourceLineNo">641</span>     * @param radians an angle in radians, often from -pi to pi, though not required to be.<a name="line.641"></a>
-<span class="sourceLineNo">642</span>     * @return the cosine of the given angle, as a double between -1.0 and 1.0 (probably exclusive on 1.0, but not -1.0)<a name="line.642"></a>
+<span class="sourceLineNo">636</span>     * A fairly-close approximation of {@link Math#sin(double)} that can be significantly faster (40x faster sin() calls<a name="line.636"></a>
+<span class="sourceLineNo">637</span>     * in benchmarking), and both takes and returns floats. Takes the same arguments Math.sin() does, so one angle in<a name="line.637"></a>
+<span class="sourceLineNo">638</span>     * radians, which may technically be any float (but this will lose accuracy on extremely large floats, such as those<a name="line.638"></a>
+<span class="sourceLineNo">639</span>     * that are larger than the largest int value). This is closely related to {@link #sway(float)}, but the shape of<a name="line.639"></a>
+<span class="sourceLineNo">640</span>     * the output when graphed is almost identical to sin().<a name="line.640"></a>
+<span class="sourceLineNo">641</span>     * @param radians an angle in radians as a float, often from -pi to pi, though not required to be.<a name="line.641"></a>
+<span class="sourceLineNo">642</span>     * @return the sine of the given angle, as a float between -1f and 1f (probably exclusive on -1f, but not 1f)<a name="line.642"></a>
 <span class="sourceLineNo">643</span>     */<a name="line.643"></a>
-<span class="sourceLineNo">644</span>    public static double cos(final double radians)<a name="line.644"></a>
+<span class="sourceLineNo">644</span>    public static float sin(final float radians)<a name="line.644"></a>
 <span class="sourceLineNo">645</span>    {<a name="line.645"></a>
-<span class="sourceLineNo">646</span>        final long s = Double.doubleToLongBits(radians * 0.3183098861837907f + (radians &lt; 0.0 ? -2.0 : 2.0)), m = (s &gt;&gt;&gt; 52 &amp; 0x7FFL) - 0x400, sm = s &lt;&lt; m;<a name="line.646"></a>
-<span class="sourceLineNo">647</span>        final double a = (Double.longBitsToDouble(((sm ^ -((sm &amp; 0x8000000000000L) &gt;&gt; 51)) &amp; 0xfffffffffffffL) | 0x4000000000000000L) - 2.0);<a name="line.647"></a>
-<span class="sourceLineNo">648</span>        return a * a * (3.0 - 2.0 * a) * -2.0 + 1.0;<a name="line.648"></a>
+<span class="sourceLineNo">646</span>        final int s = Float.floatToIntBits(radians * 0.3183098861837907f + (radians &lt; -1.5707963267948966f ? -1.5f : 2.5f)), m = (s &gt;&gt;&gt; 23 &amp; 0xFF) - 0x80, sm = s &lt;&lt; m;<a name="line.646"></a>
+<span class="sourceLineNo">647</span>        final float a = (Float.intBitsToFloat(((sm ^ -((sm &amp; 0x00400000)&gt;&gt;22)) &amp; 0x007fffff) | 0x40000000) - 2f);<a name="line.647"></a>
+<span class="sourceLineNo">648</span>        return a * a * (3f - 2f * a) * 2f - 1f;<a name="line.648"></a>
 <span class="sourceLineNo">649</span>    }<a name="line.649"></a>
-<span class="sourceLineNo">650</span>}<a name="line.650"></a>
+<span class="sourceLineNo">650</span><a name="line.650"></a>
+<span class="sourceLineNo">651</span>    /**<a name="line.651"></a>
+<span class="sourceLineNo">652</span>     * A fairly-close approximation of {@link Math#cos(double)} that can be significantly faster (40x faster cos() calls<a name="line.652"></a>
+<span class="sourceLineNo">653</span>     * in benchmarking). Takes the same arguments Math.cos() does, so one angle in radians, which may technically be any<a name="line.653"></a>
+<span class="sourceLineNo">654</span>     * double (but this will lose accuracy on extremely large doubles, such as those that are larger than the largest<a name="line.654"></a>
+<span class="sourceLineNo">655</span>     * long value). This is closely related to {@link #sway(float)}, but the shape of the output when graphed is almost<a name="line.655"></a>
+<span class="sourceLineNo">656</span>     * identical to cos().<a name="line.656"></a>
+<span class="sourceLineNo">657</span>     * @param radians an angle in radians, often from -pi to pi, though not required to be.<a name="line.657"></a>
+<span class="sourceLineNo">658</span>     * @return the cosine of the given angle, as a double between -1.0 and 1.0 (probably exclusive on 1.0, but not -1.0)<a name="line.658"></a>
+<span class="sourceLineNo">659</span>     */<a name="line.659"></a>
+<span class="sourceLineNo">660</span>    public static double cos(final double radians)<a name="line.660"></a>
+<span class="sourceLineNo">661</span>    {<a name="line.661"></a>
+<span class="sourceLineNo">662</span>        final long s = Double.doubleToLongBits(radians * 0.3183098861837907f + (radians &lt; 0.0 ? -2.0 : 2.0)), m = (s &gt;&gt;&gt; 52 &amp; 0x7FFL) - 0x400, sm = s &lt;&lt; m;<a name="line.662"></a>
+<span class="sourceLineNo">663</span>        final double a = (Double.longBitsToDouble(((sm ^ -((sm &amp; 0x8000000000000L) &gt;&gt; 51)) &amp; 0xfffffffffffffL) | 0x4000000000000000L) - 2.0);<a name="line.663"></a>
+<span class="sourceLineNo">664</span>        return a * a * (3.0 - 2.0 * a) * -2.0 + 1.0;<a name="line.664"></a>
+<span class="sourceLineNo">665</span>    }<a name="line.665"></a>
+<span class="sourceLineNo">666</span><a name="line.666"></a>
+<span class="sourceLineNo">667</span>    /**<a name="line.667"></a>
+<span class="sourceLineNo">668</span>     * A fairly-close approximation of {@link Math#cos(double)} that can be significantly faster (40x faster cos() calls<a name="line.668"></a>
+<span class="sourceLineNo">669</span>     * in benchmarking), and both takes and returns floats. Takes the same arguments Math.cos() does, so one angle in<a name="line.669"></a>
+<span class="sourceLineNo">670</span>     * radians, which may technically be any float (but this will lose accuracy on extremely large floats, such as those<a name="line.670"></a>
+<span class="sourceLineNo">671</span>     * that are larger than the largest int value). This is closely related to {@link #sway(float)}, but the shape of<a name="line.671"></a>
+<span class="sourceLineNo">672</span>     * the output when graphed is almost identical to cos().<a name="line.672"></a>
+<span class="sourceLineNo">673</span>     * @param radians an angle in radians as a float, often from -pi to pi, though not required to be.<a name="line.673"></a>
+<span class="sourceLineNo">674</span>     * @return the cosine of the given angle, as a float between -1f and 1f (probably exclusive on 1f, but not -1f)<a name="line.674"></a>
+<span class="sourceLineNo">675</span>     */<a name="line.675"></a>
+<span class="sourceLineNo">676</span>    public static float cos(final float radians)<a name="line.676"></a>
+<span class="sourceLineNo">677</span>    {<a name="line.677"></a>
+<span class="sourceLineNo">678</span>        final int s = Float.floatToIntBits(radians * 0.3183098861837907f + (radians &lt; 0f ? -2f : 2f)), m = (s &gt;&gt;&gt; 23 &amp; 0xFF) - 0x80, sm = s &lt;&lt; m;<a name="line.678"></a>
+<span class="sourceLineNo">679</span>        final float a = (Float.intBitsToFloat(((sm ^ -((sm &amp; 0x00400000)&gt;&gt;22)) &amp; 0x007fffff) | 0x40000000) - 2f);<a name="line.679"></a>
+<span class="sourceLineNo">680</span>        return a * a * (3f - 2f * a) * -2f + 1f;<a name="line.680"></a>
+<span class="sourceLineNo">681</span>    }<a name="line.681"></a>
+<span class="sourceLineNo">682</span><a name="line.682"></a>
+<span class="sourceLineNo">683</span>}<a name="line.683"></a>
 
 
 
