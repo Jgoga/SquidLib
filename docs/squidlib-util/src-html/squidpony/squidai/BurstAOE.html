@@ -38,7 +38,7 @@
 <span class="sourceLineNo">030</span>    private double[][] map;<a name="line.30"></a>
 <span class="sourceLineNo">031</span>    private char[][] dungeon;<a name="line.31"></a>
 <span class="sourceLineNo">032</span>    private Radius radiusType;<a name="line.32"></a>
-<span class="sourceLineNo">033</span>    private Reach reach = new Reach(1, 1, Radius.SQUARE, null);<a name="line.33"></a>
+<span class="sourceLineNo">033</span>    private Reach reach = new Reach(1, 1, Radius.SQUARE, AimLimit.FREE);<a name="line.33"></a>
 <span class="sourceLineNo">034</span><a name="line.34"></a>
 <span class="sourceLineNo">035</span>    public BurstAOE(Coord center, int radius, Radius radiusType)<a name="line.35"></a>
 <span class="sourceLineNo">036</span>    {<a name="line.36"></a>
@@ -126,7 +126,7 @@
 <span class="sourceLineNo">118</span>        }<a name="line.118"></a>
 <span class="sourceLineNo">119</span>        Coord[] ts = targets.toArray(new Coord[targets.size()]);<a name="line.119"></a>
 <span class="sourceLineNo">120</span>        Coord[] exs = requiredExclusions.toArray(new Coord[requiredExclusions.size()]);<a name="line.120"></a>
-<span class="sourceLineNo">121</span>        Coord t = exs[0];<a name="line.121"></a>
+<span class="sourceLineNo">121</span>        Coord t;<a name="line.121"></a>
 <span class="sourceLineNo">122</span><a name="line.122"></a>
 <span class="sourceLineNo">123</span>        double[][][] compositeMap = new double[ts.length][dungeon.length][dungeon[0].length];<a name="line.123"></a>
 <span class="sourceLineNo">124</span><a name="line.124"></a>
@@ -262,7 +262,7 @@
 <span class="sourceLineNo">254</span>        Coord[] pts = priorityTargets.toArray(new Coord[priorityTargets.size()]);<a name="line.254"></a>
 <span class="sourceLineNo">255</span>        Coord[] lts = lesserTargets.toArray(new Coord[lesserTargets.size()]);<a name="line.255"></a>
 <span class="sourceLineNo">256</span>        Coord[] exs = requiredExclusions.toArray(new Coord[requiredExclusions.size()]);<a name="line.256"></a>
-<span class="sourceLineNo">257</span>        Coord t = exs[0];<a name="line.257"></a>
+<span class="sourceLineNo">257</span>        Coord t;<a name="line.257"></a>
 <span class="sourceLineNo">258</span><a name="line.258"></a>
 <span class="sourceLineNo">259</span>        double[][][] compositeMap = new double[totalTargets][dungeon.length][dungeon[0].length];<a name="line.259"></a>
 <span class="sourceLineNo">260</span><a name="line.260"></a>

@@ -109,14 +109,14 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interface in squidpony.squidmath">Noise.Noise2D</a>, <a href="../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></dd>
+<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interface in squidpony.squidmath">Noise.Noise2D</a>, <a href="../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></dd>
 </dl>
 <hr>
 <br>
 <pre><a href="../../squidpony/annotation/Beta.html" title="annotation in squidpony.annotation">@Beta</a>
-public class <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.17">MerlinNoise</a>
+public class <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.19">MerlinNoise</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interface in squidpony.squidmath">Noise.Noise2D</a>, <a href="../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></pre>
+implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interface in squidpony.squidmath">Noise.Noise2D</a>, <a href="../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">Really strange noise functions that typically produce curving black and white shapes when rendered.
  This technique uses no floating-point math, surprisingly, which helps its performance a little.
  The shapes this produces <a href="https://i.imgur.com/mp23254.png">look like this in 2D</a> and
@@ -126,6 +126,10 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
  This is called Merlin noise because it has a roughly-similar implementation to "classic" Perlin Noise (with hashes
  per grid point used to blend values), and because working with noise functions makes me feel like a wizard.
  This was a completely unrelated noise algorithm that also avoided floating-point math, but was really pretty awful.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../serialized-form.html#squidpony.squidmath.MerlinNoise">Serialized Form</a></dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -344,7 +348,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>instance</h4>
-<pre>public static final&nbsp;<a href="../../squidpony/squidmath/MerlinNoise.html" title="class in squidpony.squidmath">MerlinNoise</a> <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.19">instance</a></pre>
+<pre>public static final&nbsp;<a href="../../squidpony/squidmath/MerlinNoise.html" title="class in squidpony.squidmath">MerlinNoise</a> <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.22">instance</a></pre>
 </li>
 </ul>
 <a name="seed">
@@ -353,7 +357,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>seed</h4>
-<pre>public&nbsp;long <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.20">seed</a></pre>
+<pre>public&nbsp;long <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.23">seed</a></pre>
 </li>
 </ul>
 <a name="bits">
@@ -362,7 +366,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>bits</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.21">bits</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.24">bits</a></pre>
 </li>
 </ul>
 <a name="resolution">
@@ -371,7 +375,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>resolution</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.21">resolution</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.24">resolution</a></pre>
 </li>
 </ul>
 </li>
@@ -388,7 +392,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>MerlinNoise</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.27">MerlinNoise</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.30">MerlinNoise</a>()</pre>
 <div class="block">Constructor for a default MerlinNoise instance with 8-bit output and resolution 3 (yielding 8x8-cell zones that
  share their corners). The seed can be set at any point, but it will start at 1.</div>
 </li>
@@ -399,7 +403,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MerlinNoise</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.37">MerlinNoise</a>(long&nbsp;seed,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.40">MerlinNoise</a>(long&nbsp;seed,
                    int&nbsp;bits,
                    int&nbsp;resolution)</pre>
 <div class="block">Constructor for a MerlinNoise instance that allows specification of all parameters.</div>
@@ -425,7 +429,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getSeed</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.45">getSeed</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.48">getSeed</a>()</pre>
 </li>
 </ul>
 <a name="setSeed-long-">
@@ -434,7 +438,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>setSeed</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.49">setSeed</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.52">setSeed</a>(long&nbsp;seed)</pre>
 </li>
 </ul>
 <a name="getBits--">
@@ -443,7 +447,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getBits</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.53">getBits</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.56">getBits</a>()</pre>
 </li>
 </ul>
 <a name="setBits-int-">
@@ -452,7 +456,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>setBits</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.63">setBits</a>(int&nbsp;bits)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.66">setBits</a>(int&nbsp;bits)</pre>
 <div class="block">Sets the number of bits this will output; 8 is common to produce byte-sized values between 0 and 255.
  This value can be between 1 and 64. If bits is 8, then this should produce values of 255 or 0, plus or minus 1.
  If bits is some other value, then it may produce more than two values, or only produce one.</div>
@@ -468,7 +472,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getResolution</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.67">getResolution</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.70">getResolution</a>()</pre>
 </li>
 </ul>
 <a name="setResolution-int-">
@@ -477,7 +481,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>setResolution</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.80">setResolution</a>(int&nbsp;resolution)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.83">setResolution</a>(int&nbsp;resolution)</pre>
 <div class="block">Sets the resolution, which is an exponent that determines the width/height of each zone that shares the same four
  corners (where only the corners have their own hashed values). If resolution is 1, the size of a zone is 2x2, if
  it is 2, then the size of a zone is 4x4, if it is 3, then 8x8, and so on by powers of 2. The resolution can be as
@@ -496,7 +500,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise2D</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.97">noise2D</a>(long&nbsp;x,
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.100">noise2D</a>(long&nbsp;x,
                     long&nbsp;y)</pre>
 <div class="block">2D Merlin noise; black and white much of the time but curving instead of angular.</div>
 <dl>
@@ -512,7 +516,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise2D</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.109">noise2D</a>(long&nbsp;x,
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.112">noise2D</a>(long&nbsp;x,
                     long&nbsp;y,
                     long&nbsp;seed)</pre>
 <div class="block">2D Merlin noise; black and white much of the time but curving instead of angular.</div>
@@ -530,7 +534,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise3D</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.121">noise3D</a>(long&nbsp;x,
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.124">noise3D</a>(long&nbsp;x,
                     long&nbsp;y,
                     long&nbsp;z)</pre>
 <div class="block">3D Merlin noise; black and white much of the time but curving instead of angular.</div>
@@ -548,7 +552,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise3D</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.134">noise3D</a>(long&nbsp;x,
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.137">noise3D</a>(long&nbsp;x,
                     long&nbsp;y,
                     long&nbsp;z,
                     long&nbsp;seed)</pre>
@@ -568,7 +572,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise2D</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.152">noise2D</a>(long&nbsp;x,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.155">noise2D</a>(long&nbsp;x,
                            long&nbsp;y,
                            long&nbsp;state,
                            int&nbsp;resolution,
@@ -592,7 +596,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise3D</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.186">noise3D</a>(long&nbsp;x,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.189">noise3D</a>(long&nbsp;x,
                            long&nbsp;y,
                            long&nbsp;z,
                            long&nbsp;state,
@@ -618,7 +622,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>preCalcNoise2D</h4>
-<pre>public static&nbsp;int[][]&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.246">preCalcNoise2D</a>(int&nbsp;width,
+<pre>public static&nbsp;int[][]&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.249">preCalcNoise2D</a>(int&nbsp;width,
                                      int&nbsp;height,
                                      long&nbsp;seed)</pre>
 <div class="block">Generates higher-quality continuous-style noise than the other methods, but requires pre-calculating a grid.
@@ -644,7 +648,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.299">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.302">getNoise</a>(double&nbsp;x,
                        double&nbsp;y)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -658,7 +662,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.304">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.307">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                long&nbsp;seed)</pre>
 <dl>
@@ -673,7 +677,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.309">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.312">getNoise</a>(double&nbsp;x,
                        double&nbsp;y,
                        double&nbsp;z)</pre>
 <dl>
@@ -688,7 +692,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.314">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MerlinNoise.html#line.317">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                double&nbsp;z,
                                long&nbsp;seed)</pre>

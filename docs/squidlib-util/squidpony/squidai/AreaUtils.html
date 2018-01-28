@@ -352,9 +352,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
                                   <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;end)</pre>
 <div class="block">Checks that the given end Coord can be targeted from the given origin Coord given the complete targeting rules
  specified by reach. If any of the arguments are null, returns true (it assumes that any limits are not
- valid and don't restrict anything). If reach.limit is null, it also returns true. Otherwise, it uses the metric,
- minDistance, and maxDistance from reach to calculate if end is target-able from origin assuming an unobstructed
- playing field.</div>
+ valid and don't restrict anything). If reach.limit is null, it treats it as equivalent to <a href="../../squidpony/squidai/AimLimit.html#FREE"><code>AimLimit.FREE</code></a>.
+ Otherwise, it uses the metric, minDistance, and maxDistance from reach to calculate if end is target-able from
+ origin assuming an unobstructed playing field.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>reach</code> - a Reach object that, if non-null, gives limits for how targeting can proceed.</dd>
