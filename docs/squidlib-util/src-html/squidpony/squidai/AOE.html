@@ -8,12 +8,12 @@
 <div class="sourceContainer">
 <pre><span class="sourceLineNo">001</span>package squidpony.squidai;<a name="line.1"></a>
 <span class="sourceLineNo">002</span><a name="line.2"></a>
-<span class="sourceLineNo">003</span>import squidpony.annotation.GwtIncompatible;<a name="line.3"></a>
-<span class="sourceLineNo">004</span>import squidpony.squidgrid.FOVCache;<a name="line.4"></a>
-<span class="sourceLineNo">005</span>import squidpony.squidgrid.Radius;<a name="line.5"></a>
-<span class="sourceLineNo">006</span>import squidpony.squidmath.Coord;<a name="line.6"></a>
-<span class="sourceLineNo">007</span>import squidpony.squidmath.OrderedMap;<a name="line.7"></a>
-<span class="sourceLineNo">008</span><a name="line.8"></a>
+<span class="sourceLineNo">003</span>import squidpony.squidgrid.FOV;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import squidpony.squidgrid.Radius;<a name="line.4"></a>
+<span class="sourceLineNo">005</span>import squidpony.squidmath.Coord;<a name="line.5"></a>
+<span class="sourceLineNo">006</span>import squidpony.squidmath.OrderedMap;<a name="line.6"></a>
+<span class="sourceLineNo">007</span><a name="line.7"></a>
+<span class="sourceLineNo">008</span>import java.io.Serializable;<a name="line.8"></a>
 <span class="sourceLineNo">009</span>import java.util.ArrayList;<a name="line.9"></a>
 <span class="sourceLineNo">010</span>import java.util.Collection;<a name="line.10"></a>
 <span class="sourceLineNo">011</span><a name="line.11"></a>
@@ -21,7 +21,7 @@
 <span class="sourceLineNo">013</span> * Area of Effect interface meant to be implemented by various specific burst, line, flowing, and user-made AOE types.<a name="line.13"></a>
 <span class="sourceLineNo">014</span> * Created by Tommy Ettinger on 5/8/2015.<a name="line.14"></a>
 <span class="sourceLineNo">015</span> */<a name="line.15"></a>
-<span class="sourceLineNo">016</span>public interface AOE {<a name="line.16"></a>
+<span class="sourceLineNo">016</span>public interface AOE extends Serializable {<a name="line.16"></a>
 <span class="sourceLineNo">017</span>    /**<a name="line.17"></a>
 <span class="sourceLineNo">018</span>     * After an AOE has been constructed, it may need to have the affected area shifted over to a different position<a name="line.18"></a>
 <span class="sourceLineNo">019</span>     * without changing any other properties of the AOE. Some AOE implementations may have an origin where the AOE<a name="line.19"></a>
@@ -206,18 +206,15 @@
 <span class="sourceLineNo">198</span>    void setReach(Reach reach);<a name="line.198"></a>
 <span class="sourceLineNo">199</span><a name="line.199"></a>
 <span class="sourceLineNo">200</span>    /**<a name="line.200"></a>
-<span class="sourceLineNo">201</span>     * If you use FOVCache to pre-compute FOV maps for a level, you can share the speedup from using the cache with<a name="line.201"></a>
-<span class="sourceLineNo">202</span>     * some AOE implementations that rely on FOV. Not all implementations need to actually make use of the cache, but<a name="line.202"></a>
-<span class="sourceLineNo">203</span>     * those that use FOV for calculations should benefit. The cache parameter this receives should have completed its<a name="line.203"></a>
-<span class="sourceLineNo">204</span>     * calculations, which can be confirmed by calling awaitCache(). Ideally, the FOVCache will have done its initial<a name="line.204"></a>
-<span class="sourceLineNo">205</span>     * calculations in another thread while the previous level or menu was being displayed, and awaitCache() will only<a name="line.205"></a>
-<span class="sourceLineNo">206</span>     * be a formality.<a name="line.206"></a>
-<span class="sourceLineNo">207</span>     * @param cache The FOVCache for the current level; can be null to stop using the cache<a name="line.207"></a>
-<span class="sourceLineNo">208</span>     */<a name="line.208"></a>
-<span class="sourceLineNo">209</span>    @GwtIncompatible<a name="line.209"></a>
-<span class="sourceLineNo">210</span>    void setCache(FOVCache cache);<a name="line.210"></a>
-<span class="sourceLineNo">211</span><a name="line.211"></a>
-<span class="sourceLineNo">212</span>}<a name="line.212"></a>
+<span class="sourceLineNo">201</span>     * Unused because FOVCache rarely provides a speed boost and usually does the opposite. The implementation for this<a name="line.201"></a>
+<span class="sourceLineNo">202</span>     * method should be a no-op.<a name="line.202"></a>
+<span class="sourceLineNo">203</span>     * @param cache an FOV that could be an FOVCache for the current level; can be null to stop using the cache<a name="line.203"></a>
+<span class="sourceLineNo">204</span>     * @deprecated AOE doesn't really benefit from using an FOVCache<a name="line.204"></a>
+<span class="sourceLineNo">205</span>     */<a name="line.205"></a>
+<span class="sourceLineNo">206</span>    @Deprecated<a name="line.206"></a>
+<span class="sourceLineNo">207</span>    void setCache(FOV cache);<a name="line.207"></a>
+<span class="sourceLineNo">208</span><a name="line.208"></a>
+<span class="sourceLineNo">209</span>}<a name="line.209"></a>
 
 
 

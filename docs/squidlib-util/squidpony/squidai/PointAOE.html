@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":42,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -109,19 +109,23 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></dd>
+<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></dd>
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../src-html/squidpony/squidai/PointAOE.html#line.22">PointAOE</a>
+<pre>public class <a href="../../src-html/squidpony/squidai/PointAOE.html#line.21">PointAOE</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></pre>
+implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">An AOE type that has a center Coord only and only affects that single Coord. Useful if you need an AOE implementation
  for something that does not actually affect an area.
- This will produce doubles for its findArea() method which are equal to 1.0.
+ This will produce doubles for its <a href="../../squidpony/squidai/PointAOE.html#findArea--"><code>findArea()</code></a> method which are equal to 1.0.
 
  This class doesn't use any other SquidLib class to create its area of effect.
  Created by Tommy Ettinger on 7/13/2015.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../serialized-form.html#squidpony.squidai.PointAOE">Serialized Form</a></dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -157,7 +161,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">Deprecated Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -242,9 +246,10 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/PointAOE.html#setCache-squidpony.squidgrid.FOVCache-">setCache</a></span>(<a href="../../squidpony/squidgrid/FOVCache.html" title="class in squidpony.squidgrid">FOVCache</a>&nbsp;cache)</code>
-<div class="block">If you use FOVCache to pre-compute FOV maps for a level, you can share the speedup from using the cache with
- some AOE implementations that rely on FOV.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/PointAOE.html#setCache-squidpony.squidgrid.FOV-">setCache</a></span>(<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a>&nbsp;cache)</code>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">AOE doesn't really benefit from using an FOVCache</span></div>
+</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
@@ -761,24 +766,22 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 </dl>
 </li>
 </ul>
-<a name="setCache-squidpony.squidgrid.FOVCache-">
+<a name="setCache-squidpony.squidgrid.FOV-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>setCache</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/PointAOE.html#line.319">setCache</a>(<a href="../../squidpony/squidgrid/FOVCache.html" title="class in squidpony.squidgrid">FOVCache</a>&nbsp;cache)</pre>
-<div class="block">If you use FOVCache to pre-compute FOV maps for a level, you can share the speedup from using the cache with
- some AOE implementations that rely on FOV. Not all implementations need to actually make use of the cache, but
- those that use FOV for calculations should benefit. The cache parameter this receives should have completed its
- calculations, which can be confirmed by calling awaitCache(). Ideally, the FOVCache will have done its initial
- calculations in another thread while the previous level or menu was being displayed, and awaitCache() will only
- be a formality.</div>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/PointAOE.html#line.315">setCache</a>(<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a>&nbsp;cache)</pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">AOE doesn't really benefit from using an FOVCache</span></div>
+<div class="block">Unused because FOVCache rarely provides a speed boost and usually does the opposite. The implementation for this
+ method should be a no-op.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../squidpony/squidai/AOE.html#setCache-squidpony.squidgrid.FOVCache-">setCache</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></code></dd>
+<dd><code><a href="../../squidpony/squidai/AOE.html#setCache-squidpony.squidgrid.FOV-">setCache</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>cache</code> - The FOVCache for the current level; can be null to stop using the cache</dd>
+<dd><code>cache</code> - an FOV that could be an FOVCache for the current level; can be null to stop using the cache</dd>
 </dl>
 </li>
 </ul>

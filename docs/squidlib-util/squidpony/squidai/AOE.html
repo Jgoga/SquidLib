@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":38,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -100,12 +100,17 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt>All Superinterfaces:</dt>
+<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></dd>
+</dl>
+<dl>
 <dt>All Known Implementing Classes:</dt>
 <dd><a href="../../squidpony/squidai/BeamAOE.html" title="class in squidpony.squidai">BeamAOE</a>, <a href="../../squidpony/squidai/BlastAOE.html" title="class in squidpony.squidai">BlastAOE</a>, <a href="../../squidpony/squidai/BurstAOE.html" title="class in squidpony.squidai">BurstAOE</a>, <a href="../../squidpony/squidai/CloudAOE.html" title="class in squidpony.squidai">CloudAOE</a>, <a href="../../squidpony/squidai/ConeAOE.html" title="class in squidpony.squidai">ConeAOE</a>, <a href="../../squidpony/squidai/LineAOE.html" title="class in squidpony.squidai">LineAOE</a>, <a href="../../squidpony/squidai/PointAOE.html" title="class in squidpony.squidai">PointAOE</a></dd>
 </dl>
 <hr>
 <br>
-<pre>public interface <a href="../../src-html/squidpony/squidai/AOE.html#line.16">AOE</a></pre>
+<pre>public interface <a href="../../src-html/squidpony/squidai/AOE.html#line.16">AOE</a>
+extends <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">Area of Effect interface meant to be implemented by various specific burst, line, flowing, and user-made AOE types.
  Created by Tommy Ettinger on 5/8/2015.</div>
 </li>
@@ -121,7 +126,7 @@ var activeTableTab = "activeTableTab";
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">Deprecated Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -202,9 +207,10 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/AOE.html#setCache-squidpony.squidgrid.FOVCache-">setCache</a></span>(<a href="../../squidpony/squidgrid/FOVCache.html" title="class in squidpony.squidgrid">FOVCache</a>&nbsp;cache)</code>
-<div class="block">If you use FOVCache to pre-compute FOV maps for a level, you can share the speedup from using the cache with
- some AOE implementations that rely on FOV.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/AOE.html#setCache-squidpony.squidgrid.FOV-">setCache</a></span>(<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a>&nbsp;cache)</code>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">AOE doesn't really benefit from using an FOVCache</span></div>
+</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
@@ -594,22 +600,20 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="setCache-squidpony.squidgrid.FOVCache-">
+<a name="setCache-squidpony.squidgrid.FOV-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>setCache</h4>
-<pre>void&nbsp;<a href="../../src-html/squidpony/squidai/AOE.html#line.210">setCache</a>(<a href="../../squidpony/squidgrid/FOVCache.html" title="class in squidpony.squidgrid">FOVCache</a>&nbsp;cache)</pre>
-<div class="block">If you use FOVCache to pre-compute FOV maps for a level, you can share the speedup from using the cache with
- some AOE implementations that rely on FOV. Not all implementations need to actually make use of the cache, but
- those that use FOV for calculations should benefit. The cache parameter this receives should have completed its
- calculations, which can be confirmed by calling awaitCache(). Ideally, the FOVCache will have done its initial
- calculations in another thread while the previous level or menu was being displayed, and awaitCache() will only
- be a formality.</div>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+void&nbsp;<a href="../../src-html/squidpony/squidai/AOE.html#line.207">setCache</a>(<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a>&nbsp;cache)</pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">AOE doesn't really benefit from using an FOVCache</span></div>
+<div class="block">Unused because FOVCache rarely provides a speed boost and usually does the opposite. The implementation for this
+ method should be a no-op.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>cache</code> - The FOVCache for the current level; can be null to stop using the cache</dd>
+<dd><code>cache</code> - an FOV that could be an FOVCache for the current level; can be null to stop using the cache</dd>
 </dl>
 </li>
 </ul>

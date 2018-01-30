@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":42,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -109,23 +109,27 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></dd>
+<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <a href="../../src-html/squidpony/squidai/ConeAOE.html#line.27">ConeAOE</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></pre>
+implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">An AOE type that has an origin, a radius, an angle, and a span; it will blast from the origin to a length equal to
  radius along the angle (in degrees), moving somewhat around corners/obstacles, and also spread a total of span
  degrees around the angle (a span of 90 will affect a full quadrant, centered on angle). You can specify the
  RadiusType to Radius.DIAMOND for Manhattan distance, RADIUS.SQUARE for Chebyshev, or RADIUS.CIRCLE for Euclidean.
 
  RADIUS.CIRCLE (Euclidean measurement) will produce the most real-looking cones. This will produce doubles for its
- findArea() method which are greater than 0.0 and less than or equal to 1.0.
+ <a href="../../squidpony/squidai/ConeAOE.html#findArea--"><code>findArea()</code></a> method which are greater than 0.0 and less than or equal to 1.0.
 
- This class uses squidpony.squidgrid.FOV to create its area of effect.
+ This class uses <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid"><code>FOV</code></a> to create its area of effect.
  Created by Tommy Ettinger on 7/13/2015.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../serialized-form.html#squidpony.squidai.ConeAOE">Serialized Form</a></dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -166,7 +170,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">Deprecated Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -267,9 +271,10 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/ConeAOE.html#setCache-squidpony.squidgrid.FOVCache-">setCache</a></span>(<a href="../../squidpony/squidgrid/FOVCache.html" title="class in squidpony.squidgrid">FOVCache</a>&nbsp;cache)</code>
-<div class="block">If you use FOVCache to pre-compute FOV maps for a level, you can share the speedup from using the cache with
- some AOE implementations that rely on FOV.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/ConeAOE.html#setCache-squidpony.squidgrid.FOV-">setCache</a></span>(<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a>&nbsp;cache)</code>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">AOE doesn't really benefit from using an FOVCache</span></div>
+</div>
 </td>
 </tr>
 <tr id="i16" class="altColor">
@@ -376,7 +381,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>ConeAOE</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.36">ConeAOE</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;origin,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.37">ConeAOE</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;origin,
                <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;endCenter,
                double&nbsp;span,
                <a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;radiusType)</pre>
@@ -388,7 +393,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ConeAOE</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.47">ConeAOE</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;origin,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.48">ConeAOE</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;origin,
                int&nbsp;radius,
                double&nbsp;angle,
                double&nbsp;span,
@@ -409,7 +414,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getOrigin</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.60">getOrigin</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.61">getOrigin</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#getOrigin--">AOE</a></code></span></div>
 <div class="block">Get the position from which the AOE originates, which may be related to the location of the AOE's effect, as for
  lines, cones, and other emitted effects, or may be unrelated except for determining which enemies can be seen
@@ -427,7 +432,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setOrigin</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.65">setOrigin</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;origin)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.66">setOrigin</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;origin)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#setOrigin-squidpony.squidmath.Coord-">AOE</a></code></span></div>
 <div class="block">Set the position from which the AOE originates, which may be related to the location of the AOE's effect, as for
  lines, cones, and other emitted effects, or may be unrelated except for determining which enemies can be seen
@@ -445,7 +450,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getLimitType</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidai/AimLimit.html" title="enum in squidpony.squidai">AimLimit</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.70">getLimitType</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidai/AimLimit.html" title="enum in squidpony.squidai">AimLimit</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.71">getLimitType</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#getLimitType--">AOE</a></code></span></div>
 <div class="block">Gets the AimLimit enum that can be used to restrict points this checks (defaults to null if not set).
  You can use limitType to restrict any Points that might be processed based on the given origin (which will be
@@ -476,7 +481,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getMinRange</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.75">getMinRange</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.76">getMinRange</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#getMinRange--">AOE</a></code></span></div>
 <div class="block">The minimum inclusive range that the AOE can be shift()-ed to using the distance measurement from radiusType.</div>
 <dl>
@@ -491,7 +496,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getMaxRange</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.80">getMaxRange</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.81">getMaxRange</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#getMaxRange--">AOE</a></code></span></div>
 <div class="block">The maximum inclusive range that the AOE can be shift()-ed to using the distance measurement from radiusType.</div>
 <dl>
@@ -506,7 +511,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getMetric</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.85">getMetric</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.86">getMetric</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#getMetric--">AOE</a></code></span></div>
 <div class="block">Used to determine distance from origin for the purposes of selecting a target location that is within the bounds
  of minRange and maxRange. Not necessarily used for the implementation of the AOE (randomized-floodfill-based AOE
@@ -525,7 +530,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getReach</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidai/Reach.html" title="class in squidpony.squidai">Reach</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.96">getReach</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidai/Reach.html" title="class in squidpony.squidai">Reach</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.97">getReach</a>()</pre>
 <div class="block">Gets the same values returned by getLimitType(), getMinRange(), getMaxRange(), and getMetric() bundled into one
  Reach object.</div>
 <dl>
@@ -542,7 +547,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setLimitType</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.101">setLimitType</a>(<a href="../../squidpony/squidai/AimLimit.html" title="enum in squidpony.squidai">AimLimit</a>&nbsp;limitType)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.102">setLimitType</a>(<a href="../../squidpony/squidai/AimLimit.html" title="enum in squidpony.squidai">AimLimit</a>&nbsp;limitType)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#setLimitType-squidpony.squidai.AimLimit-">AOE</a></code></span></div>
 <div class="block">You can use limitType to restrict any Points that might be processed based on the given origin (which will be
  used as the geometric origin for any calculations this makes) with AimLimit values having the following meanings:
@@ -575,7 +580,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setMinRange</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.107">setMinRange</a>(int&nbsp;minRange)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.108">setMinRange</a>(int&nbsp;minRange)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#setMinRange-int-">AOE</a></code></span></div>
 <div class="block">The minimum inclusive range that the AOE can be shift()-ed to using the distance measurement from radiusType.</div>
 <dl>
@@ -590,7 +595,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setMaxRange</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.112">setMaxRange</a>(int&nbsp;maxRange)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.113">setMaxRange</a>(int&nbsp;maxRange)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#setMaxRange-int-">AOE</a></code></span></div>
 <div class="block">The maximum inclusive range that the AOE can be shift()-ed to using the distance measurement from radiusType.</div>
 <dl>
@@ -605,7 +610,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setMetric</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.118">setMetric</a>(<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;metric)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.119">setMetric</a>(<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;metric)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#setMetric-squidpony.squidgrid.Radius-">AOE</a></code></span></div>
 <div class="block">Used to determine distance from origin for the purposes of selecting a target location that is within the bounds
  of minRange and maxRange. Not necessarily used for the implementation of the AOE (randomized-floodfill-based AOE
@@ -624,7 +629,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setReach</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.128">setReach</a>(<a href="../../squidpony/squidai/Reach.html" title="class in squidpony.squidai">Reach</a>&nbsp;reach)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.129">setReach</a>(<a href="../../squidpony/squidai/Reach.html" title="class in squidpony.squidai">Reach</a>&nbsp;reach)</pre>
 <div class="block">Sets the same values as setLimitType(), setMinRange(), setMaxRange(), and setMetric() using one Reach object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -640,7 +645,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getRadius</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.133">getRadius</a>()</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.134">getRadius</a>()</pre>
 </li>
 </ul>
 <a name="setRadius-double-">
@@ -649,7 +654,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setRadius</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.137">setRadius</a>(double&nbsp;radius)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.138">setRadius</a>(double&nbsp;radius)</pre>
 </li>
 </ul>
 <a name="getAngle--">
@@ -658,7 +663,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getAngle</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.141">getAngle</a>()</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.142">getAngle</a>()</pre>
 </li>
 </ul>
 <a name="setAngle-double-">
@@ -667,7 +672,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setAngle</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.145">setAngle</a>(double&nbsp;angle)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.146">setAngle</a>(double&nbsp;angle)</pre>
 </li>
 </ul>
 <a name="setEndCenter-squidpony.squidmath.Coord-">
@@ -676,7 +681,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setEndCenter</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.156">setEndCenter</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;endCenter)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.157">setEndCenter</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;endCenter)</pre>
 </li>
 </ul>
 <a name="getSpan--">
@@ -685,7 +690,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getSpan</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.165">getSpan</a>()</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.166">getSpan</a>()</pre>
 </li>
 </ul>
 <a name="setSpan-double-">
@@ -694,7 +699,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setSpan</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.169">setSpan</a>(double&nbsp;span)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.170">setSpan</a>(double&nbsp;span)</pre>
 </li>
 </ul>
 <a name="getRadiusType--">
@@ -703,7 +708,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>getRadiusType</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.175">getRadiusType</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.176">getRadiusType</a>()</pre>
 </li>
 </ul>
 <a name="setRadiusType-squidpony.squidgrid.Radius-">
@@ -712,7 +717,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setRadiusType</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.179">setRadiusType</a>(<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;radiusType)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.180">setRadiusType</a>(<a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;radiusType)</pre>
 </li>
 </ul>
 <a name="shift-squidpony.squidmath.Coord-">
@@ -721,7 +726,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>shift</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.184">shift</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;aim)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.185">shift</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;aim)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#shift-squidpony.squidmath.Coord-">AOE</a></code></span></div>
 <div class="block">After an AOE has been constructed, it may need to have the affected area shifted over to a different position
  without changing any other properties of the AOE. Some AOE implementations may have an origin where the AOE
@@ -741,7 +746,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>mayContainTarget</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.189">mayContainTarget</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;targets)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.190">mayContainTarget</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;targets)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#mayContainTarget-java.util.Collection-">AOE</a></code></span></div>
 <div class="block">Given a Set of Points that the producer of the AOE wants to include in the region of this AOE, this method does
  a quick approximation to see if there is any possibility that the AOE as currently configured might include one
@@ -766,7 +771,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>idealLocations</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.203">idealLocations</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;targets,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.204">idealLocations</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;targets,
                                                          <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;requiredExclusions)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#idealLocations-java.util.Collection-java.util.Collection-">AOE</a></code></span></div>
 <div class="block">Returns a OrderedMap of Coord keys and ArrayList of Coord values, where each Coord key is an ideal location to
@@ -801,7 +806,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>idealLocations</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.333">idealLocations</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;priorityTargets,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.334">idealLocations</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;priorityTargets,
                                                          <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;lesserTargets,
                                                          <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;requiredExclusions)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#idealLocations-java.util.Collection-java.util.Collection-java.util.Collection-">AOE</a></code></span></div>
@@ -830,7 +835,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>setMap</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.613">setMap</a>(char[][]&nbsp;map)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.614">setMap</a>(char[][]&nbsp;map)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#setMap-char:A:A-">AOE</a></code></span></div>
 <div class="block">This must be called before any other methods, and takes a char[][] with '#' for walls, anything else for floors.
  It must be bounded with walls, which DungeonGenerator does automatically.</div>
@@ -848,7 +853,7 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 <ul class="blockList">
 <li class="blockList">
 <h4>findArea</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Double.html?is-external=true" title="class or interface in java.lang">Double</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.619">findArea</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Double.html?is-external=true" title="class or interface in java.lang">Double</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.620">findArea</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidai/AOE.html#findArea--">AOE</a></code></span></div>
 <div class="block">This is how an AOE interacts with anything that uses it. It expects a map to have already been set with setMap,
  with '#' for walls, '.' for floors and potentially other chars that implementors can use if they are present in
@@ -866,24 +871,22 @@ implements <a href="../../squidpony/squidai/AOE.html" title="interface in squidp
 </dl>
 </li>
 </ul>
-<a name="setCache-squidpony.squidgrid.FOVCache-">
+<a name="setCache-squidpony.squidgrid.FOV-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>setCache</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.638">setCache</a>(<a href="../../squidpony/squidgrid/FOVCache.html" title="class in squidpony.squidgrid">FOVCache</a>&nbsp;cache)</pre>
-<div class="block">If you use FOVCache to pre-compute FOV maps for a level, you can share the speedup from using the cache with
- some AOE implementations that rely on FOV. Not all implementations need to actually make use of the cache, but
- those that use FOV for calculations should benefit. The cache parameter this receives should have completed its
- calculations, which can be confirmed by calling awaitCache(). Ideally, the FOVCache will have done its initial
- calculations in another thread while the previous level or menu was being displayed, and awaitCache() will only
- be a formality.</div>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/ConeAOE.html#line.635">setCache</a>(<a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a>&nbsp;cache)</pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">AOE doesn't really benefit from using an FOVCache</span></div>
+<div class="block">Unused because FOVCache rarely provides a speed boost and usually does the opposite. The implementation for this
+ method should be a no-op.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../squidpony/squidai/AOE.html#setCache-squidpony.squidgrid.FOVCache-">setCache</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></code></dd>
+<dd><code><a href="../../squidpony/squidai/AOE.html#setCache-squidpony.squidgrid.FOV-">setCache</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>cache</code> - The FOVCache for the current level; can be null to stop using the cache</dd>
+<dd><code>cache</code> - an FOV that could be an FOVCache for the current level; can be null to stop using the cache</dd>
 </dl>
 </li>
 </ul>
