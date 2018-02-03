@@ -344,7 +344,7 @@
 <span class="sourceLineNo">336</span>    public static double swayRandomized(long seed, final double value)<a name="line.336"></a>
 <span class="sourceLineNo">337</span>    {<a name="line.337"></a>
 <span class="sourceLineNo">338</span>        final long floor = value &gt;= 0.0 ? (long) value : (long) value - 1L;<a name="line.338"></a>
-<span class="sourceLineNo">339</span>        final double start = (((seed = (floor + seed) * 0x6C8E9CF570932BD5L) ^ (seed &gt;&gt;&gt; 25)) * (seed | 0xA529L)) * 0x0.fffffffffffffbp-63,<a name="line.339"></a>
+<span class="sourceLineNo">339</span>        final double start = (((seed += floor * 0x6C8E9CF570932BD5L) ^ (seed &gt;&gt;&gt; 25)) * (seed | 0xA529L)) * 0x0.fffffffffffffbp-63,<a name="line.339"></a>
 <span class="sourceLineNo">340</span>                end = (((seed += 0x6C8E9CF570932BD5L) ^ (seed &gt;&gt;&gt; 25)) * (seed | 0xA529L)) * 0x0.fffffffffffffbp-63;<a name="line.340"></a>
 <span class="sourceLineNo">341</span>        double a = value - floor;<a name="line.341"></a>
 <span class="sourceLineNo">342</span>        a *= a * (3.0 - 2.0 * a);<a name="line.342"></a>
@@ -368,7 +368,7 @@
 <span class="sourceLineNo">360</span>    public static float swayRandomized(long seed, final float value)<a name="line.360"></a>
 <span class="sourceLineNo">361</span>    {<a name="line.361"></a>
 <span class="sourceLineNo">362</span>        final long floor = value &gt;= 0f ? (long) value : (long) value - 1L;<a name="line.362"></a>
-<span class="sourceLineNo">363</span>        final float start = (((seed = (floor + seed) * 0x6C8E9CF570932BD5L) ^ (seed &gt;&gt;&gt; 25)) * (seed | 0xA529L)) * 0x0.ffffffp-63f,<a name="line.363"></a>
+<span class="sourceLineNo">363</span>        final float start = (((seed += floor * 0x6C8E9CF570932BD5L) ^ (seed &gt;&gt;&gt; 25)) * (seed | 0xA529L)) * 0x0.ffffffp-63f,<a name="line.363"></a>
 <span class="sourceLineNo">364</span>                end = (((seed += 0x6C8E9CF570932BD5L) ^ (seed &gt;&gt;&gt; 25)) * (seed | 0xA529L)) * 0x0.ffffffbp-63f;<a name="line.364"></a>
 <span class="sourceLineNo">365</span>        float a = value - floor;<a name="line.365"></a>
 <span class="sourceLineNo">366</span>        a *= a * (3f - 2f * a);<a name="line.366"></a>
@@ -689,166 +689,227 @@
 <span class="sourceLineNo">681</span>    }<a name="line.681"></a>
 <span class="sourceLineNo">682</span><a name="line.682"></a>
 <span class="sourceLineNo">683</span>    /**<a name="line.683"></a>
-<span class="sourceLineNo">684</span>     * A fairly-close approximation of {@link Math#sin(double)} that can be significantly faster (between 4x and 40x<a name="line.684"></a>
-<span class="sourceLineNo">685</span>     * faster sin() calls in benchmarking, depending on whether HotSpot deoptimizes Math.sin() for its own inscrutable<a name="line.685"></a>
-<span class="sourceLineNo">686</span>     * reasons), and both takes and returns doubles. Takes the same arguments Math.sin() does, so one angle in radians,<a name="line.686"></a>
-<span class="sourceLineNo">687</span>     * which may technically be any double (but this will lose precision on fairly large doubles, such as those that<a name="line.687"></a>
-<span class="sourceLineNo">688</span>     * are larger than about 65536.0). This is closely related to {@link #sway(float)}, but the shape of the output when<a name="line.688"></a>
-<span class="sourceLineNo">689</span>     * graphed is almost identical to sin().  The difference between the result of this method and<a name="line.689"></a>
-<span class="sourceLineNo">690</span>     * {@link Math#sin(double)} should be under 0.001 at all points between -pi and pi, with an average difference of<a name="line.690"></a>
-<span class="sourceLineNo">691</span>     * about 0.0005; not all points have been checked for potentially higher errors, though. Coercion between float and<a name="line.691"></a>
-<span class="sourceLineNo">692</span>     * double takes about as long as this method normally takes to run, so if you have floats you should usually use<a name="line.692"></a>
-<span class="sourceLineNo">693</span>     * methods that take floats (or return floats, if assigning the result to a float), and likewise for doubles.<a name="line.693"></a>
-<span class="sourceLineNo">694</span>     * &lt;br&gt;<a name="line.694"></a>
-<span class="sourceLineNo">695</span>     * If you call this frequently, consider giving it either all positive numbers, i.e. 0 to PI * 2 instead of -PI to<a name="line.695"></a>
-<span class="sourceLineNo">696</span>     * PI; this can help the performance of this particular approximation by making its one branch easier to predict.<a name="line.696"></a>
-<span class="sourceLineNo">697</span>     * &lt;br&gt;<a name="line.697"></a>
-<span class="sourceLineNo">698</span>     * The technique for sine approximation is mostly from<a name="line.698"></a>
-<span class="sourceLineNo">699</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.699"></a>
-<span class="sourceLineNo">700</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any double to the valid input range,<a name="line.700"></a>
-<span class="sourceLineNo">701</span>     * using code extremely similar to {@link #zigzag(double)}.<a name="line.701"></a>
-<span class="sourceLineNo">702</span>     * @param radians an angle in radians as a double, often from 0 to pi * 2, though not required to be.<a name="line.702"></a>
-<span class="sourceLineNo">703</span>     * @return the sine of the given angle, as a double between -1.0 and 1.0 (probably exclusive on -1.0, but not 1.0)<a name="line.703"></a>
-<span class="sourceLineNo">704</span>     */<a name="line.704"></a>
-<span class="sourceLineNo">705</span>    public static double sin(final double radians)<a name="line.705"></a>
-<span class="sourceLineNo">706</span>    {<a name="line.706"></a>
-<span class="sourceLineNo">707</span>        long sign, s;<a name="line.707"></a>
-<span class="sourceLineNo">708</span>        if(radians &lt; 0.0) {<a name="line.708"></a>
-<span class="sourceLineNo">709</span>            s = Double.doubleToLongBits(radians * 0.3183098861837907 - 2.0);<a name="line.709"></a>
-<span class="sourceLineNo">710</span>            sign = 1L;<a name="line.710"></a>
-<span class="sourceLineNo">711</span>        }<a name="line.711"></a>
-<span class="sourceLineNo">712</span>        else {<a name="line.712"></a>
-<span class="sourceLineNo">713</span>            s = Double.doubleToLongBits(radians * 0.3183098861837907 + 2.0);<a name="line.713"></a>
-<span class="sourceLineNo">714</span>            sign = -1L;<a name="line.714"></a>
-<span class="sourceLineNo">715</span>        }<a name="line.715"></a>
-<span class="sourceLineNo">716</span>        final long m = (s &gt;&gt;&gt; 52 &amp; 0x7FFL) - 0x400L, sm = s &lt;&lt; m, sn = -((sm &amp; 0x8000000000000L) &gt;&gt; 51);<a name="line.716"></a>
-<span class="sourceLineNo">717</span>        double n = (Double.longBitsToDouble(((sm ^ sn) &amp; 0xfffffffffffffL) | 0x4010000000000000L) - 4.0);<a name="line.717"></a>
-<span class="sourceLineNo">718</span>        n *= 2.0 - n;<a name="line.718"></a>
-<span class="sourceLineNo">719</span>        return n * (-0.775 - 0.225 * n) * ((sn ^ sign) | 1L);<a name="line.719"></a>
-<span class="sourceLineNo">720</span>    }<a name="line.720"></a>
-<span class="sourceLineNo">721</span><a name="line.721"></a>
-<span class="sourceLineNo">722</span>    /**<a name="line.722"></a>
-<span class="sourceLineNo">723</span>     * A fairly-close approximation of {@link Math#sin(double)} that can be significantly faster (between 4x and 40x<a name="line.723"></a>
-<span class="sourceLineNo">724</span>     * faster sin() calls in benchmarking, depending on whether HotSpot deoptimizes Math.sin() for its own inscrutable<a name="line.724"></a>
-<span class="sourceLineNo">725</span>     * reasons), and both takes and returns floats. Takes the same arguments Math.sin() does, so one angle in radians,<a name="line.725"></a>
-<span class="sourceLineNo">726</span>     * which may technically be any float (but this will lose precision on fairly large floats, such as those that are<a name="line.726"></a>
-<span class="sourceLineNo">727</span>     * larger than about 4096f). This is closely related to {@link #sway(float)}, but the shape of the output when<a name="line.727"></a>
-<span class="sourceLineNo">728</span>     * graphed is almost identical to sin(). The difference between the result of this method and<a name="line.728"></a>
-<span class="sourceLineNo">729</span>     * {@link Math#sin(double)} should be under 0.001 at all points between -pi and pi, with an average difference of<a name="line.729"></a>
-<span class="sourceLineNo">730</span>     * about 0.0005; not all points have been checked for potentially higher errors, though. The error for this float<a name="line.730"></a>
-<span class="sourceLineNo">731</span>     * version is extremely close to the double version, {@link #sin(double)}, so you should choose based on what type<a name="line.731"></a>
-<span class="sourceLineNo">732</span>     * you have as input and/or want to return rather than on quality concerns. Coercion between float and double takes<a name="line.732"></a>
-<span class="sourceLineNo">733</span>     * about as long as this method normally takes to run, so if you have floats you should usually use methods that<a name="line.733"></a>
-<span class="sourceLineNo">734</span>     * take floats (or return floats, if assigning the result to a float), and likewise for doubles.<a name="line.734"></a>
-<span class="sourceLineNo">735</span>     * &lt;br&gt;<a name="line.735"></a>
-<span class="sourceLineNo">736</span>     * If you call this frequently, consider giving it either all positive numbers, i.e. 0 to PI * 2 instead of -PI to<a name="line.736"></a>
-<span class="sourceLineNo">737</span>     * PI; this can help the performance of this particular approximation by making its one branch easier to predict.<a name="line.737"></a>
-<span class="sourceLineNo">738</span>     * &lt;br&gt;<a name="line.738"></a>
-<span class="sourceLineNo">739</span>     * The technique for sine approximation is mostly from<a name="line.739"></a>
-<span class="sourceLineNo">740</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.740"></a>
-<span class="sourceLineNo">741</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any double to the valid input range,<a name="line.741"></a>
-<span class="sourceLineNo">742</span>     * using code extremely similar to {@link #zigzag(float)}.<a name="line.742"></a>
-<span class="sourceLineNo">743</span>     * @param radians an angle in radians as a float, often from 0 to pi * 2, though not required to be.<a name="line.743"></a>
-<span class="sourceLineNo">744</span>     * @return the sine of the given angle, as a float between -1f and 1f (probably exclusive on -1f, but not 1f)<a name="line.744"></a>
-<span class="sourceLineNo">745</span>     */<a name="line.745"></a>
-<span class="sourceLineNo">746</span>    public static float sin(final float radians)<a name="line.746"></a>
-<span class="sourceLineNo">747</span>    {<a name="line.747"></a>
-<span class="sourceLineNo">748</span>        int sign, s;<a name="line.748"></a>
-<span class="sourceLineNo">749</span>        if(radians &lt; 0.0f) {<a name="line.749"></a>
-<span class="sourceLineNo">750</span>            s = Float.floatToIntBits(radians * 0.3183098861837907f - 2f);<a name="line.750"></a>
-<span class="sourceLineNo">751</span>            sign = 1;<a name="line.751"></a>
-<span class="sourceLineNo">752</span>        }<a name="line.752"></a>
-<span class="sourceLineNo">753</span>        else {<a name="line.753"></a>
-<span class="sourceLineNo">754</span>            s = Float.floatToIntBits(radians * 0.3183098861837907f + 2f);<a name="line.754"></a>
-<span class="sourceLineNo">755</span>            sign = -1;<a name="line.755"></a>
-<span class="sourceLineNo">756</span>        }<a name="line.756"></a>
-<span class="sourceLineNo">757</span>        final int m = (s &gt;&gt;&gt; 23 &amp; 0xFF) - 0x80, sm = s &lt;&lt; m, sn = -((sm &amp; 0x00400000) &gt;&gt; 22);<a name="line.757"></a>
-<span class="sourceLineNo">758</span>        float n = (Float.intBitsToFloat(((sm ^ sn) &amp; 0x007fffff) | 0x40800000) - 4f);<a name="line.758"></a>
-<span class="sourceLineNo">759</span>        n *= 2f - n;<a name="line.759"></a>
-<span class="sourceLineNo">760</span>        return n * (-0.775f - 0.225f * n) * ((sn ^ sign) | 1);<a name="line.760"></a>
-<span class="sourceLineNo">761</span>    }<a name="line.761"></a>
-<span class="sourceLineNo">762</span><a name="line.762"></a>
-<span class="sourceLineNo">763</span>    /**<a name="line.763"></a>
-<span class="sourceLineNo">764</span>     * A fairly-close approximation of {@link Math#cos(double)} that can be significantly faster (between 4x and 40x<a name="line.764"></a>
-<span class="sourceLineNo">765</span>     * faster cos() calls in benchmarking, depending on whether HotSpot deoptimizes Math.cos() for its own inscrutable<a name="line.765"></a>
-<span class="sourceLineNo">766</span>     * reasons), and both takes and returns doubles. Takes the same arguments Math.cos() does, so one angle in radians,<a name="line.766"></a>
-<span class="sourceLineNo">767</span>     * which may technically be any double (but this will lose precision on fairly large doubles, such as those that<a name="line.767"></a>
-<span class="sourceLineNo">768</span>     * are larger than about 65536.0). This is closely related to {@link #sway(float)}, but the shape of the output when<a name="line.768"></a>
-<span class="sourceLineNo">769</span>     * graphed is almost identical to cos(). The difference between the result of this method and<a name="line.769"></a>
-<span class="sourceLineNo">770</span>     * {@link Math#cos(double)} should be under 0.001 at all points between -pi and pi, with an average difference of<a name="line.770"></a>
-<span class="sourceLineNo">771</span>     * about 0.0005; not all points have been checked for potentially higher errors, though.Coercion between float and<a name="line.771"></a>
-<span class="sourceLineNo">772</span>     * double takes about as long as this method normally takes to run, so if you have floats you should usually use<a name="line.772"></a>
-<span class="sourceLineNo">773</span>     * methods that take floats (or return floats, if assigning the result to a float), and likewise for doubles.<a name="line.773"></a>
-<span class="sourceLineNo">774</span>     * &lt;br&gt;<a name="line.774"></a>
-<span class="sourceLineNo">775</span>     * If you call this frequently, consider giving it either all positive numbers, i.e. 0 to PI * 2 instead of -PI to<a name="line.775"></a>
-<span class="sourceLineNo">776</span>     * PI; this can help the performance of this particular approximation by making its one branch easier to predict.<a name="line.776"></a>
-<span class="sourceLineNo">777</span>     * &lt;br&gt;<a name="line.777"></a>
-<span class="sourceLineNo">778</span>     * The technique for cosine approximation is mostly from<a name="line.778"></a>
-<span class="sourceLineNo">779</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.779"></a>
-<span class="sourceLineNo">780</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any double to the valid input range,<a name="line.780"></a>
-<span class="sourceLineNo">781</span>     * using code extremely similar to {@link #zigzag(double)}.<a name="line.781"></a>
-<span class="sourceLineNo">782</span>     * @param radians an angle in radians as a double, often from 0 to pi * 2, though not required to be.<a name="line.782"></a>
-<span class="sourceLineNo">783</span>     * @return the cosine of the given angle, as a double between -1.0 and 1.0 (probably exclusive on 1.0, but not -1.0)<a name="line.783"></a>
+<span class="sourceLineNo">684</span>     * A fairly-close approximation of {@link Math#sin(double)} that can be significantly faster (between 8x and 80x<a name="line.684"></a>
+<span class="sourceLineNo">685</span>     * faster sin() calls in benchmarking, and both takes and returns floats; if you have access to libGDX you should<a name="line.685"></a>
+<span class="sourceLineNo">686</span>     * consider its more-precise and sometimes-faster MathUtils.sin() method. Because this method doesn't rely on a<a name="line.686"></a>
+<span class="sourceLineNo">687</span>     * lookup table, where libGDX's MathUtils does, applications that have a bottleneck on memory may perform better<a name="line.687"></a>
+<span class="sourceLineNo">688</span>     * with this method than with MathUtils. Takes the same arguments Math.sin() does, so one angle in radians,<a name="line.688"></a>
+<span class="sourceLineNo">689</span>     * which may technically be any double (but this will lose precision on fairly large doubles, such as those that are<a name="line.689"></a>
+<span class="sourceLineNo">690</span>     * larger than {@link Long#MAX_VALUE}, because those doubles themselves will lose precision at that scale). This<a name="line.690"></a>
+<span class="sourceLineNo">691</span>     * is closely related to {@link #sway(double)}, but the shape of the output when graphed is almost identical to<a name="line.691"></a>
+<span class="sourceLineNo">692</span>     * sin(). The difference between the result of this method and {@link Math#sin(double)} should be under 0.0011 at<a name="line.692"></a>
+<span class="sourceLineNo">693</span>     * all points between -pi and pi, with an average difference of about 0.0005; not all points have been checked for<a name="line.693"></a>
+<span class="sourceLineNo">694</span>     * potentially higher errors, though.<a name="line.694"></a>
+<span class="sourceLineNo">695</span>     * &lt;br&gt;<a name="line.695"></a>
+<span class="sourceLineNo">696</span>     * The error for this double version is extremely close to the float version, {@link #sin(float)}, so you should<a name="line.696"></a>
+<span class="sourceLineNo">697</span>     * choose based on what type you have as input and/or want to return rather than on quality concerns. Coercion<a name="line.697"></a>
+<span class="sourceLineNo">698</span>     * between float and double takes about as long as this method normally takes to run (or longer), so if you have<a name="line.698"></a>
+<span class="sourceLineNo">699</span>     * floats you should usually use methods that take floats (or return floats, if assigning the result to a float),<a name="line.699"></a>
+<span class="sourceLineNo">700</span>     * and likewise for doubles.<a name="line.700"></a>
+<span class="sourceLineNo">701</span>     * &lt;br&gt;<a name="line.701"></a>
+<span class="sourceLineNo">702</span>     * Unlike in previous versions of this method, the sign of the input doesn't affect performance here, at least not<a name="line.702"></a>
+<span class="sourceLineNo">703</span>     * by a measurable amount.<a name="line.703"></a>
+<span class="sourceLineNo">704</span>     * &lt;br&gt;<a name="line.704"></a>
+<span class="sourceLineNo">705</span>     * The technique for sine approximation is mostly from<a name="line.705"></a>
+<span class="sourceLineNo">706</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.706"></a>
+<span class="sourceLineNo">707</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any double to the valid input range.<a name="line.707"></a>
+<span class="sourceLineNo">708</span>     * @param radians an angle in radians as a double, often from 0 to pi * 2, though not required to be.<a name="line.708"></a>
+<span class="sourceLineNo">709</span>     * @return the sine of the given angle, as a double between -1.0 and 1.0 (both inclusive)<a name="line.709"></a>
+<span class="sourceLineNo">710</span>     */<a name="line.710"></a>
+<span class="sourceLineNo">711</span><a name="line.711"></a>
+<span class="sourceLineNo">712</span>    public static double sin(double radians)<a name="line.712"></a>
+<span class="sourceLineNo">713</span>    {<a name="line.713"></a>
+<span class="sourceLineNo">714</span>        radians = radians * 0.6366197723675814;<a name="line.714"></a>
+<span class="sourceLineNo">715</span>        final long floor = (radians &gt;= 0.0 ? (long) radians : (long) radians - 1L) &amp; -2L;<a name="line.715"></a>
+<span class="sourceLineNo">716</span>        radians -= floor;<a name="line.716"></a>
+<span class="sourceLineNo">717</span>        radians *= 2.0 - radians;<a name="line.717"></a>
+<span class="sourceLineNo">718</span>        return radians * (-0.775 - 0.225 * radians) * ((floor &amp; 2L) - 1L);<a name="line.718"></a>
+<span class="sourceLineNo">719</span>    }<a name="line.719"></a>
+<span class="sourceLineNo">720</span><a name="line.720"></a>
+<span class="sourceLineNo">721</span>    /**<a name="line.721"></a>
+<span class="sourceLineNo">722</span>     * A fairly-close approximation of {@link Math#cos(double)} that can be significantly faster (between 8x and 80x<a name="line.722"></a>
+<span class="sourceLineNo">723</span>     * faster cos() calls in benchmarking, and both takes and returns floats; if you have access to libGDX you should<a name="line.723"></a>
+<span class="sourceLineNo">724</span>     * consider its more-precise and sometimes-faster MathUtils.cos() method. Because this method doesn't rely on a<a name="line.724"></a>
+<span class="sourceLineNo">725</span>     * lookup table, where libGDX's MathUtils does, applications that have a bottleneck on memory may perform better<a name="line.725"></a>
+<span class="sourceLineNo">726</span>     * with this method than with MathUtils. Takes the same arguments Math.cos() does, so one angle in radians,<a name="line.726"></a>
+<span class="sourceLineNo">727</span>     * which may technically be any double (but this will lose precision on fairly large doubles, such as those that are<a name="line.727"></a>
+<span class="sourceLineNo">728</span>     * larger than {@link Long#MAX_VALUE}, because those doubles themselves will lose precision at that scale). This<a name="line.728"></a>
+<span class="sourceLineNo">729</span>     * is closely related to {@link #sway(double)}, but the shape of the output when graphed is almost identical to<a name="line.729"></a>
+<span class="sourceLineNo">730</span>     * cos(). The difference between the result of this method and {@link Math#cos(double)} should be under 0.0011 at<a name="line.730"></a>
+<span class="sourceLineNo">731</span>     * all points between -pi and pi, with an average difference of about 0.0005; not all points have been checked for<a name="line.731"></a>
+<span class="sourceLineNo">732</span>     * potentially higher errors, though.<a name="line.732"></a>
+<span class="sourceLineNo">733</span>     * &lt;br&gt;<a name="line.733"></a>
+<span class="sourceLineNo">734</span>     * The error for this double version is extremely close to the float version, {@link #cos(float)}, so you should<a name="line.734"></a>
+<span class="sourceLineNo">735</span>     * choose based on what type you have as input and/or want to return rather than on quality concerns. Coercion<a name="line.735"></a>
+<span class="sourceLineNo">736</span>     * between float and double takes about as long as this method normally takes to run (or longer), so if you have<a name="line.736"></a>
+<span class="sourceLineNo">737</span>     * floats you should usually use methods that take floats (or return floats, if assigning the result to a float),<a name="line.737"></a>
+<span class="sourceLineNo">738</span>     * and likewise for doubles.<a name="line.738"></a>
+<span class="sourceLineNo">739</span>     * &lt;br&gt;<a name="line.739"></a>
+<span class="sourceLineNo">740</span>     * Unlike in previous versions of this method, the sign of the input doesn't affect performance here, at least not<a name="line.740"></a>
+<span class="sourceLineNo">741</span>     * by a measurable amount.<a name="line.741"></a>
+<span class="sourceLineNo">742</span>     * The technique for cosine approximation is mostly from<a name="line.742"></a>
+<span class="sourceLineNo">743</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.743"></a>
+<span class="sourceLineNo">744</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any double to the valid input range.<a name="line.744"></a>
+<span class="sourceLineNo">745</span>     * @param radians an angle in radians as a double, often from 0 to pi * 2, though not required to be.<a name="line.745"></a>
+<span class="sourceLineNo">746</span>     * @return the cosine of the given angle, as a double between -1.0 and 1.0 (both inclusive)<a name="line.746"></a>
+<span class="sourceLineNo">747</span>     */<a name="line.747"></a>
+<span class="sourceLineNo">748</span>    public static double cos(double radians)<a name="line.748"></a>
+<span class="sourceLineNo">749</span>    {<a name="line.749"></a>
+<span class="sourceLineNo">750</span>        radians = radians * 0.6366197723675814 + 1.0;<a name="line.750"></a>
+<span class="sourceLineNo">751</span>        final long floor = (radians &gt;= 0.0 ? (long) radians : (long) radians - 1L) &amp; -2L;<a name="line.751"></a>
+<span class="sourceLineNo">752</span>        radians -= floor;<a name="line.752"></a>
+<span class="sourceLineNo">753</span>        radians *= 2.0 - radians;<a name="line.753"></a>
+<span class="sourceLineNo">754</span>        return radians * (-0.775 - 0.225 * radians) * ((floor &amp; 2L) - 1L);<a name="line.754"></a>
+<span class="sourceLineNo">755</span>    }<a name="line.755"></a>
+<span class="sourceLineNo">756</span><a name="line.756"></a>
+<span class="sourceLineNo">757</span>    /**<a name="line.757"></a>
+<span class="sourceLineNo">758</span>     * A fairly-close approximation of {@link Math#sin(double)} that can be significantly faster (between 8x and 80x<a name="line.758"></a>
+<span class="sourceLineNo">759</span>     * faster sin() calls in benchmarking, and both takes and returns floats; if you have access to libGDX you should<a name="line.759"></a>
+<span class="sourceLineNo">760</span>     * consider its more-precise and sometimes-faster MathUtils.sin() method. Because this method doesn't rely on a<a name="line.760"></a>
+<span class="sourceLineNo">761</span>     * lookup table, where libGDX's MathUtils does, applications that have a bottleneck on memory may perform better<a name="line.761"></a>
+<span class="sourceLineNo">762</span>     * with this method than with MathUtils. Takes the same arguments Math.sin() does, so one angle in radians,<a name="line.762"></a>
+<span class="sourceLineNo">763</span>     * which may technically be any float (but this will lose precision on fairly large floats, such as those that are<a name="line.763"></a>
+<span class="sourceLineNo">764</span>     * larger than {@link Integer#MAX_VALUE}, because those floats themselves will lose precision at that scale). This<a name="line.764"></a>
+<span class="sourceLineNo">765</span>     * is closely related to {@link #sway(float)}, but the shape of the output when graphed is almost identical to<a name="line.765"></a>
+<span class="sourceLineNo">766</span>     * sin(). The difference between the result of this method and {@link Math#sin(double)} should be under 0.0011 at<a name="line.766"></a>
+<span class="sourceLineNo">767</span>     * all points between -pi and pi, with an average difference of about 0.0005; not all points have been checked for<a name="line.767"></a>
+<span class="sourceLineNo">768</span>     * potentially higher errors, though.<a name="line.768"></a>
+<span class="sourceLineNo">769</span>     * &lt;br&gt;<a name="line.769"></a>
+<span class="sourceLineNo">770</span>     * The error for this float version is extremely close to the double version, {@link #sin(double)}, so you should<a name="line.770"></a>
+<span class="sourceLineNo">771</span>     * choose based on what type you have as input and/or want to return rather than on quality concerns. Coercion<a name="line.771"></a>
+<span class="sourceLineNo">772</span>     * between float and double takes about as long as this method normally takes to run (or longer), so if you have<a name="line.772"></a>
+<span class="sourceLineNo">773</span>     * floats you should usually use methods that take floats (or return floats, if assigning the result to a float),<a name="line.773"></a>
+<span class="sourceLineNo">774</span>     * and likewise for doubles.<a name="line.774"></a>
+<span class="sourceLineNo">775</span>     * &lt;br&gt;<a name="line.775"></a>
+<span class="sourceLineNo">776</span>     * Unlike in previous versions of this method, the sign of the input doesn't affect performance here, at least not<a name="line.776"></a>
+<span class="sourceLineNo">777</span>     * by a measurable amount.<a name="line.777"></a>
+<span class="sourceLineNo">778</span>     * &lt;br&gt;<a name="line.778"></a>
+<span class="sourceLineNo">779</span>     * The technique for sine approximation is mostly from<a name="line.779"></a>
+<span class="sourceLineNo">780</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.780"></a>
+<span class="sourceLineNo">781</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any float to the valid input range.<a name="line.781"></a>
+<span class="sourceLineNo">782</span>     * @param radians an angle in radians as a float, often from 0 to pi * 2, though not required to be.<a name="line.782"></a>
+<span class="sourceLineNo">783</span>     * @return the sine of the given angle, as a float between -1f and 1f (both inclusive)<a name="line.783"></a>
 <span class="sourceLineNo">784</span>     */<a name="line.784"></a>
-<span class="sourceLineNo">785</span>    public static double cos(final double radians)<a name="line.785"></a>
+<span class="sourceLineNo">785</span>    public static float sin(float radians)<a name="line.785"></a>
 <span class="sourceLineNo">786</span>    {<a name="line.786"></a>
-<span class="sourceLineNo">787</span>        long sign, s;<a name="line.787"></a>
-<span class="sourceLineNo">788</span>        if(radians &lt; -1.5707963267948966) {<a name="line.788"></a>
-<span class="sourceLineNo">789</span>            s = Double.doubleToLongBits(radians * 0.3183098861837907 - 1.5);<a name="line.789"></a>
-<span class="sourceLineNo">790</span>            sign = 1L;<a name="line.790"></a>
-<span class="sourceLineNo">791</span>        }<a name="line.791"></a>
-<span class="sourceLineNo">792</span>        else {<a name="line.792"></a>
-<span class="sourceLineNo">793</span>            s = Double.doubleToLongBits(radians * 0.3183098861837907 + 2.5);<a name="line.793"></a>
-<span class="sourceLineNo">794</span>            sign = -1L;<a name="line.794"></a>
-<span class="sourceLineNo">795</span>        }<a name="line.795"></a>
-<span class="sourceLineNo">796</span>        final long m = (s &gt;&gt;&gt; 52 &amp; 0x7FFL) - 0x400L, sm = s &lt;&lt; m, sn = -((sm &amp; 0x8000000000000L) &gt;&gt; 51);<a name="line.796"></a>
-<span class="sourceLineNo">797</span>        double n = (Double.longBitsToDouble(((sm ^ sn) &amp; 0xfffffffffffffL) | 0x4010000000000000L) - 4.0);<a name="line.797"></a>
-<span class="sourceLineNo">798</span>        n *= 2.0 - n;<a name="line.798"></a>
-<span class="sourceLineNo">799</span>        return n * (-0.775 - 0.225 * n) * ((sn ^ sign) | 1L);<a name="line.799"></a>
-<span class="sourceLineNo">800</span>    }<a name="line.800"></a>
-<span class="sourceLineNo">801</span><a name="line.801"></a>
-<span class="sourceLineNo">802</span>    /**<a name="line.802"></a>
-<span class="sourceLineNo">803</span>     * A fairly-close approximation of {@link Math#cos(double)} that can be significantly faster (between 4x and 40x<a name="line.803"></a>
-<span class="sourceLineNo">804</span>     * faster cos() calls in benchmarking, depending on whether HotSpot deoptimizes Math.cos() for its own inscrutable<a name="line.804"></a>
-<span class="sourceLineNo">805</span>     * reasons), and both takes and returns floats. Takes the same arguments Math.cos() does, so one angle in radians,<a name="line.805"></a>
-<span class="sourceLineNo">806</span>     * which may technically be any float (but this will lose precision on fairly large floats, such as those that are<a name="line.806"></a>
-<span class="sourceLineNo">807</span>     * larger than about 4096f). This is closely related to {@link #sway(float)}, but the shape of the output when<a name="line.807"></a>
-<span class="sourceLineNo">808</span>     * graphed is almost identical to cos(). The difference between the result of this method and<a name="line.808"></a>
-<span class="sourceLineNo">809</span>     * {@link Math#cos(double)} should be under 0.001 at all points between -pi and pi, with an average difference of<a name="line.809"></a>
-<span class="sourceLineNo">810</span>     * about 0.0005; not all points have been checked for potentially higher errors, though. The error for this float<a name="line.810"></a>
-<span class="sourceLineNo">811</span>     * version is extremely close to the double version, {@link #cos(double)}, so you should choose based on what type<a name="line.811"></a>
-<span class="sourceLineNo">812</span>     * you have as input and/or want to return rather than on quality concerns. Coercion between float and double takes<a name="line.812"></a>
-<span class="sourceLineNo">813</span>     * about as long as this method normally takes to run, so if you have floats you should usually use methods that<a name="line.813"></a>
-<span class="sourceLineNo">814</span>     * take floats (or return floats, if assigning the result to a float), and likewise for doubles.<a name="line.814"></a>
+<span class="sourceLineNo">787</span>        radians = radians * 0.6366197723675814f;<a name="line.787"></a>
+<span class="sourceLineNo">788</span>        final int floor = (radians &gt;= 0.0 ? (int) radians : (int) radians - 1) &amp; -2;<a name="line.788"></a>
+<span class="sourceLineNo">789</span>        radians -= floor;<a name="line.789"></a>
+<span class="sourceLineNo">790</span>        radians *= 2f - radians;<a name="line.790"></a>
+<span class="sourceLineNo">791</span>        return radians * (-0.775f - 0.225f * radians) * ((floor &amp; 2) - 1);<a name="line.791"></a>
+<span class="sourceLineNo">792</span>    }<a name="line.792"></a>
+<span class="sourceLineNo">793</span><a name="line.793"></a>
+<span class="sourceLineNo">794</span>    /**<a name="line.794"></a>
+<span class="sourceLineNo">795</span>     * A fairly-close approximation of {@link Math#cos(double)} that can be significantly faster (between 8x and 80x<a name="line.795"></a>
+<span class="sourceLineNo">796</span>     * faster cos() calls in benchmarking, and both takes and returns floats; if you have access to libGDX you should<a name="line.796"></a>
+<span class="sourceLineNo">797</span>     * consider its more-precise and sometimes-faster MathUtils.cos() method. Because this method doesn't rely on a<a name="line.797"></a>
+<span class="sourceLineNo">798</span>     * lookup table, where libGDX's MathUtils does, applications that have a bottleneck on memory may perform better<a name="line.798"></a>
+<span class="sourceLineNo">799</span>     * with this method than with MathUtils. Takes the same arguments Math.cos() does, so one angle in radians,<a name="line.799"></a>
+<span class="sourceLineNo">800</span>     * which may technically be any float (but this will lose precision on fairly large floats, such as those that are<a name="line.800"></a>
+<span class="sourceLineNo">801</span>     * larger than {@link Integer#MAX_VALUE}, because those floats themselves will lose precision at that scale). This<a name="line.801"></a>
+<span class="sourceLineNo">802</span>     * is closely related to {@link #sway(float)}, but the shape of the output when graphed is almost identical to<a name="line.802"></a>
+<span class="sourceLineNo">803</span>     * cos(). The difference between the result of this method and {@link Math#cos(double)} should be under 0.0011 at<a name="line.803"></a>
+<span class="sourceLineNo">804</span>     * all points between -pi and pi, with an average difference of about 0.0005; not all points have been checked for<a name="line.804"></a>
+<span class="sourceLineNo">805</span>     * potentially higher errors, though.<a name="line.805"></a>
+<span class="sourceLineNo">806</span>     * &lt;br&gt;<a name="line.806"></a>
+<span class="sourceLineNo">807</span>     * The error for this float version is extremely close to the double version, {@link #cos(double)}, so you should<a name="line.807"></a>
+<span class="sourceLineNo">808</span>     * choose based on what type you have as input and/or want to return rather than on quality concerns. Coercion<a name="line.808"></a>
+<span class="sourceLineNo">809</span>     * between float and double takes about as long as this method normally takes to run (or longer), so if you have<a name="line.809"></a>
+<span class="sourceLineNo">810</span>     * floats you should usually use methods that take floats (or return floats, if assigning the result to a float),<a name="line.810"></a>
+<span class="sourceLineNo">811</span>     * and likewise for doubles.<a name="line.811"></a>
+<span class="sourceLineNo">812</span>     * &lt;br&gt;<a name="line.812"></a>
+<span class="sourceLineNo">813</span>     * Unlike in previous versions of this method, the sign of the input doesn't affect performance here, at least not<a name="line.813"></a>
+<span class="sourceLineNo">814</span>     * by a measurable amount.<a name="line.814"></a>
 <span class="sourceLineNo">815</span>     * &lt;br&gt;<a name="line.815"></a>
-<span class="sourceLineNo">816</span>     * If you call this frequently, consider giving it either all positive numbers, i.e. 0 to PI * 2 instead of -PI to<a name="line.816"></a>
-<span class="sourceLineNo">817</span>     * PI; this can help the performance of this particular approximation by making its one branch easier to predict.<a name="line.817"></a>
-<span class="sourceLineNo">818</span>     * &lt;br&gt;<a name="line.818"></a>
-<span class="sourceLineNo">819</span>     * The technique for cosine approximation is mostly from<a name="line.819"></a>
-<span class="sourceLineNo">820</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.820"></a>
-<span class="sourceLineNo">821</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any double to the valid input range,<a name="line.821"></a>
-<span class="sourceLineNo">822</span>     * using code extremely similar to {@link #zigzag(float)}.<a name="line.822"></a>
-<span class="sourceLineNo">823</span>     * @param radians an angle in radians as a float, often from 0 to pi * 2, though not required to be.<a name="line.823"></a>
-<span class="sourceLineNo">824</span>     * @return the cosine of the given angle, as a float between -1f and 1f (probably exclusive on 1f, but not -1f)<a name="line.824"></a>
-<span class="sourceLineNo">825</span>     */<a name="line.825"></a>
-<span class="sourceLineNo">826</span>    public static float cos(final float radians)<a name="line.826"></a>
-<span class="sourceLineNo">827</span>    {<a name="line.827"></a>
-<span class="sourceLineNo">828</span>        int sign, s;<a name="line.828"></a>
-<span class="sourceLineNo">829</span>        if(radians &lt; -1.5707963267948966f) {<a name="line.829"></a>
-<span class="sourceLineNo">830</span>            s = Float.floatToIntBits(radians * 0.3183098861837907f - 1.5f);<a name="line.830"></a>
-<span class="sourceLineNo">831</span>            sign = 1;<a name="line.831"></a>
-<span class="sourceLineNo">832</span>        }<a name="line.832"></a>
-<span class="sourceLineNo">833</span>        else {<a name="line.833"></a>
-<span class="sourceLineNo">834</span>            s = Float.floatToIntBits(radians * 0.3183098861837907f + 2.5f);<a name="line.834"></a>
-<span class="sourceLineNo">835</span>            sign = -1;<a name="line.835"></a>
-<span class="sourceLineNo">836</span>        }<a name="line.836"></a>
-<span class="sourceLineNo">837</span>        final int m = (s &gt;&gt;&gt; 23 &amp; 0xFF) - 0x80, sm = s &lt;&lt; m, sn = -((sm &amp; 0x00400000) &gt;&gt; 22);<a name="line.837"></a>
-<span class="sourceLineNo">838</span>        float n = (Float.intBitsToFloat(((sm ^ sn) &amp; 0x007fffff) | 0x40800000) - 4f);<a name="line.838"></a>
-<span class="sourceLineNo">839</span>        n *= 2f - n;<a name="line.839"></a>
-<span class="sourceLineNo">840</span>        return n * (-0.775f - 0.225f * n) * ((sn ^ sign) | 1);<a name="line.840"></a>
-<span class="sourceLineNo">841</span>    }<a name="line.841"></a>
-<span class="sourceLineNo">842</span><a name="line.842"></a>
-<span class="sourceLineNo">843</span>}<a name="line.843"></a>
+<span class="sourceLineNo">816</span>     * The technique for cosine approximation is mostly from<a name="line.816"></a>
+<span class="sourceLineNo">817</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.817"></a>
+<span class="sourceLineNo">818</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any float to the valid input range.<a name="line.818"></a>
+<span class="sourceLineNo">819</span>     * @param radians an angle in radians as a float, often from 0 to pi * 2, though not required to be.<a name="line.819"></a>
+<span class="sourceLineNo">820</span>     * @return the cosine of the given angle, as a float between -1f and 1f (both inclusive)<a name="line.820"></a>
+<span class="sourceLineNo">821</span>     */<a name="line.821"></a>
+<span class="sourceLineNo">822</span>    public static float cos(float radians)<a name="line.822"></a>
+<span class="sourceLineNo">823</span>    {<a name="line.823"></a>
+<span class="sourceLineNo">824</span>        radians = radians * 0.6366197723675814f + 1f;<a name="line.824"></a>
+<span class="sourceLineNo">825</span>        final int floor = (radians &gt;= 0.0 ? (int) radians : (int) radians - 1) &amp; -2;<a name="line.825"></a>
+<span class="sourceLineNo">826</span>        radians -= floor;<a name="line.826"></a>
+<span class="sourceLineNo">827</span>        radians *= 2f - radians;<a name="line.827"></a>
+<span class="sourceLineNo">828</span>        return radians * (-0.775f - 0.225f * radians) * ((floor &amp; 2) - 1);<a name="line.828"></a>
+<span class="sourceLineNo">829</span>    }<a name="line.829"></a>
+<span class="sourceLineNo">830</span>    /**<a name="line.830"></a>
+<span class="sourceLineNo">831</span>     * A fairly-close approximation of {@link Math#sin(double)} that can be significantly faster (between 8x and 80x<a name="line.831"></a>
+<span class="sourceLineNo">832</span>     * faster sin() calls in benchmarking, and both takes and returns floats; if you have access to libGDX, you should<a name="line.832"></a>
+<span class="sourceLineNo">833</span>     * consider its more-precise and sometimes-faster MathUtils.sinDeg() method. Because this method doesn't rely on a<a name="line.833"></a>
+<span class="sourceLineNo">834</span>     * lookup table, where libGDX's MathUtils does, applications that have a bottleneck on memory may perform better<a name="line.834"></a>
+<span class="sourceLineNo">835</span>     * with this method than with MathUtils. Takes one angle in degrees,<a name="line.835"></a>
+<span class="sourceLineNo">836</span>     * which may technically be any float (but this will lose precision on fairly large floats, such as those that are<a name="line.836"></a>
+<span class="sourceLineNo">837</span>     * larger than {@link Integer#MAX_VALUE}, because those floats themselves will lose precision at that scale). This<a name="line.837"></a>
+<span class="sourceLineNo">838</span>     * is closely related to {@link #sway(float)}, but the shape of the output when graphed is almost identical to<a name="line.838"></a>
+<span class="sourceLineNo">839</span>     * sin(). The difference between the result of this method and {@link Math#sin(double)} should be under 0.0011 at<a name="line.839"></a>
+<span class="sourceLineNo">840</span>     * all points between -360 and 360, with an average difference of about 0.0005; not all points have been checked for<a name="line.840"></a>
+<span class="sourceLineNo">841</span>     * potentially higher errors, though.<a name="line.841"></a>
+<span class="sourceLineNo">842</span>     * &lt;br&gt;<a name="line.842"></a>
+<span class="sourceLineNo">843</span>     * The error for this float version is extremely close to the double version, {@link #sin(double)}, so you should<a name="line.843"></a>
+<span class="sourceLineNo">844</span>     * choose based on what type you have as input and/or want to return rather than on quality concerns. Coercion<a name="line.844"></a>
+<span class="sourceLineNo">845</span>     * between float and double takes about as long as this method normally takes to run (or longer), so if you have<a name="line.845"></a>
+<span class="sourceLineNo">846</span>     * floats you should usually use methods that take floats (or return floats, if assigning the result to a float),<a name="line.846"></a>
+<span class="sourceLineNo">847</span>     * and likewise for doubles.<a name="line.847"></a>
+<span class="sourceLineNo">848</span>     * &lt;br&gt;<a name="line.848"></a>
+<span class="sourceLineNo">849</span>     * Unlike in previous versions of this method, the sign of the input doesn't affect performance here, at least not<a name="line.849"></a>
+<span class="sourceLineNo">850</span>     * by a measurable amount.<a name="line.850"></a>
+<span class="sourceLineNo">851</span>     * &lt;br&gt;<a name="line.851"></a>
+<span class="sourceLineNo">852</span>     * The technique for sine approximation is mostly from<a name="line.852"></a>
+<span class="sourceLineNo">853</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.853"></a>
+<span class="sourceLineNo">854</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any float to the valid input range.<a name="line.854"></a>
+<span class="sourceLineNo">855</span>     * @param degrees an angle in degrees as a float, often from 0 to 360, though not required to be.<a name="line.855"></a>
+<span class="sourceLineNo">856</span>     * @return the sine of the given angle, as a float between -1f and 1f (both inclusive)<a name="line.856"></a>
+<span class="sourceLineNo">857</span>     */<a name="line.857"></a>
+<span class="sourceLineNo">858</span>    public static float sinDegrees(float degrees)<a name="line.858"></a>
+<span class="sourceLineNo">859</span>    {<a name="line.859"></a>
+<span class="sourceLineNo">860</span>        degrees = degrees * 0.011111111111111112f;<a name="line.860"></a>
+<span class="sourceLineNo">861</span>        final int floor = (degrees &gt;= 0.0 ? (int) degrees : (int) degrees - 1) &amp; -2;<a name="line.861"></a>
+<span class="sourceLineNo">862</span>        degrees -= floor;<a name="line.862"></a>
+<span class="sourceLineNo">863</span>        degrees *= 2f - degrees;<a name="line.863"></a>
+<span class="sourceLineNo">864</span>        return degrees * (-0.775f - 0.225f * degrees) * ((floor &amp; 2) - 1);<a name="line.864"></a>
+<span class="sourceLineNo">865</span>    }<a name="line.865"></a>
+<span class="sourceLineNo">866</span><a name="line.866"></a>
+<span class="sourceLineNo">867</span>    /**<a name="line.867"></a>
+<span class="sourceLineNo">868</span>     * A fairly-close approximation of {@link Math#cos(double)} that can be significantly faster (between 8x and 80x<a name="line.868"></a>
+<span class="sourceLineNo">869</span>     * faster cos() calls in benchmarking, and both takes and returns floats; if you have access to libGDX, you should<a name="line.869"></a>
+<span class="sourceLineNo">870</span>     * consider its more-precise and sometimes-faster MathUtils.cosDeg() method. Because this method doesn't rely on a<a name="line.870"></a>
+<span class="sourceLineNo">871</span>     * lookup table, where libGDX's MathUtils does, applications that have a bottleneck on memory may perform better<a name="line.871"></a>
+<span class="sourceLineNo">872</span>     * with this method than with MathUtils. Takes one angle in degrees,<a name="line.872"></a>
+<span class="sourceLineNo">873</span>     * which may technically be any float (but this will lose precision on fairly large floats, such as those that are<a name="line.873"></a>
+<span class="sourceLineNo">874</span>     * larger than {@link Integer#MAX_VALUE}, because those floats themselves will lose precision at that scale). This<a name="line.874"></a>
+<span class="sourceLineNo">875</span>     * is closely related to {@link #sway(float)}, but the shape of the output when graphed is almost identical to<a name="line.875"></a>
+<span class="sourceLineNo">876</span>     * cos(). The difference between the result of this method and {@link Math#cos(double)} should be under 0.0011 at<a name="line.876"></a>
+<span class="sourceLineNo">877</span>     * all points between -360 and 360, with an average difference of about 0.0005; not all points have been checked for<a name="line.877"></a>
+<span class="sourceLineNo">878</span>     * potentially higher errors, though.<a name="line.878"></a>
+<span class="sourceLineNo">879</span>     * &lt;br&gt;<a name="line.879"></a>
+<span class="sourceLineNo">880</span>     * The error for this float version is extremely close to the double version, {@link #cos(double)}, so you should<a name="line.880"></a>
+<span class="sourceLineNo">881</span>     * choose based on what type you have as input and/or want to return rather than on quality concerns. Coercion<a name="line.881"></a>
+<span class="sourceLineNo">882</span>     * between float and double takes about as long as this method normally takes to run (or longer), so if you have<a name="line.882"></a>
+<span class="sourceLineNo">883</span>     * floats you should usually use methods that take floats (or return floats, if assigning the result to a float),<a name="line.883"></a>
+<span class="sourceLineNo">884</span>     * and likewise for doubles.<a name="line.884"></a>
+<span class="sourceLineNo">885</span>     * &lt;br&gt;<a name="line.885"></a>
+<span class="sourceLineNo">886</span>     * Unlike in previous versions of this method, the sign of the input doesn't affect performance here, at least not<a name="line.886"></a>
+<span class="sourceLineNo">887</span>     * by a measurable amount.<a name="line.887"></a>
+<span class="sourceLineNo">888</span>     * &lt;br&gt;<a name="line.888"></a>
+<span class="sourceLineNo">889</span>     * The technique for cosine approximation is mostly from<a name="line.889"></a>
+<span class="sourceLineNo">890</span>     * &lt;a href="https://web.archive.org/web/20080228213915/http://devmaster.net/forums/showthread.php?t=5784"&gt;this archived DevMaster thread&lt;/a&gt;,<a name="line.890"></a>
+<span class="sourceLineNo">891</span>     * with credit to "Nick". Changes have been made to accelerate wrapping from any float to the valid input range.<a name="line.891"></a>
+<span class="sourceLineNo">892</span>     * @param degrees an angle in degrees as a float, often from 0 to pi * 2, though not required to be.<a name="line.892"></a>
+<span class="sourceLineNo">893</span>     * @return the cosine of the given angle, as a float between -1f and 1f (both inclusive)<a name="line.893"></a>
+<span class="sourceLineNo">894</span>     */<a name="line.894"></a>
+<span class="sourceLineNo">895</span>    public static float cosDegrees(float degrees)<a name="line.895"></a>
+<span class="sourceLineNo">896</span>    {<a name="line.896"></a>
+<span class="sourceLineNo">897</span>        degrees = degrees * 0.011111111111111112f + 1f;<a name="line.897"></a>
+<span class="sourceLineNo">898</span>        final int floor = (degrees &gt;= 0.0 ? (int) degrees : (int) degrees - 1) &amp; -2;<a name="line.898"></a>
+<span class="sourceLineNo">899</span>        degrees -= floor;<a name="line.899"></a>
+<span class="sourceLineNo">900</span>        degrees *= 2f - degrees;<a name="line.900"></a>
+<span class="sourceLineNo">901</span>        return degrees * (-0.775f - 0.225f * degrees) * ((floor &amp; 2) - 1);<a name="line.901"></a>
+<span class="sourceLineNo">902</span>    }<a name="line.902"></a>
+<span class="sourceLineNo">903</span><a name="line.903"></a>
+<span class="sourceLineNo">904</span>}<a name="line.904"></a>
 
 
 
