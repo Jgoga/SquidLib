@@ -126,9 +126,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  don't need all the features of ProbabilityTable or if you want deeper control over the random aspects of it.
  <br>
  Internally, this uses ThrustAltRNG's algorithm as found in <a href="../../squidpony/squidmath/ThrustAltRNG.html#determineBounded-long-int-"><code>ThrustAltRNG.determineBounded(long, int)</code></a> and
- <a href="../../squidpony/squidmath/ThrustAltRNG.html#determineDouble-long-"><code>ThrustAltRNG.determineDouble(long)</code></a> to generate both an int and mid-precision double (roughly 32 of the 52
- bits of the double's significand are random, more than a float has) from one randomized 64-bit value, allowing the
- state to be just one long.
+ <a href="../../squidpony/squidmath/ThrustAltRNG.html#determine-long-"><code>ThrustAltRNG.determine(long)</code></a> to generate two ints, one used for probability and treated as a 31-bit integer
+ and the other used to determine the chosen column, which is bounded to an arbitrary positive int. It does thsi with
+ just one randomized 64-bit value, allowing the state given to <a href="../../squidpony/squidmath/WeightedTable.html#random-long-"><code>random(long)</code></a> to be just one long.
  <br>
  Created by Tommy Ettinger on 1/5/2018.</div>
 <dl>
@@ -155,13 +155,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected int[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WeightedTable.html#alias">alias</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WeightedTable.html#mixed">mixed</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected double[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WeightedTable.html#probability">probability</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WeightedTable.html#size">size</a></span></code>&nbsp;</td>
 </tr>
@@ -233,22 +229,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a name="alias">
+<a name="mixed">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>alias</h4>
-<pre>protected final&nbsp;int[] <a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.24">alias</a></pre>
-</li>
-</ul>
-<a name="probability">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>probability</h4>
-<pre>protected final&nbsp;double[] <a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.25">probability</a></pre>
+<h4>mixed</h4>
+<pre>protected final&nbsp;int[] <a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.26">mixed</a></pre>
 </li>
 </ul>
 <a name="size">
@@ -257,7 +244,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>size</h4>
-<pre>public final&nbsp;int <a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.26">size</a></pre>
+<pre>public final&nbsp;int <a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.27">size</a></pre>
 </li>
 </ul>
 </li>
@@ -274,7 +261,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>WeightedTable</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.31">WeightedTable</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.32">WeightedTable</a>()</pre>
 <div class="block">Constructs a useless WeightedTable that always returns the index 0.</div>
 </li>
 </ul>
@@ -284,7 +271,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>WeightedTable</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.43">WeightedTable</a>(double...&nbsp;prob)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.44">WeightedTable</a>(double...&nbsp;prob)</pre>
 <div class="block">Constructs a WeightedTable with the given array of weights for each index. The array can also be a varargs for
  convenience. The weights can be any positive non-zero doubles, but should usually not be so large or small that
  precision loss is risked. Each weight will be used to determine the likelihood of that weight's index being
@@ -309,7 +296,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>random</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.126">random</a>(long&nbsp;state)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/WeightedTable.html#line.128">random</a>(long&nbsp;state)</pre>
 <div class="block">Gets an index of one of the weights in this WeightedTable, with the choice determined deterministically by the
  given long, but higher weights will be returned by more possible inputs than lower weights. The state parameter
  can be from a random source, but this will randomize it again anyway, so it is also fine to just give sequential

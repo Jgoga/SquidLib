@@ -321,6 +321,34 @@
 </li>
 </ul>
 </li>
+<li class="blockList"><a name="squidpony.Markov">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/Markov.html" title="class in squidpony">squidpony.Markov</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>words</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[] words</pre>
+<div class="block">All words (case-sensitive and counting some punctuation as part of words) that this encountered during the latest
+ call to <a href="squidpony/Markov.html#analyze-java.lang.CharSequence-"><code>Markov.analyze(CharSequence)</code></a>. Will be null if analyze() was never called.</div>
+</li>
+<li class="blockListLast">
+<h4>processed</h4>
+<pre>int[][] processed</pre>
+<div class="block">Complicated data that mixes probabilities and the indices of words in <a href="squidpony/Markov.html#words"><code>Markov.words</code></a>, generated during the latest
+ call to <a href="squidpony/Markov.html#analyze-java.lang.CharSequence-"><code>Markov.analyze(CharSequence)</code></a>. Will be null if analyze() was never called.</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="blockList"><a name="squidpony.NaturalLanguageCipher">
 <!--   -->
 </a>
@@ -2023,7 +2051,7 @@
 <ul class="blockList">
 <li class="blockList">
 <h4>readObject</h4>
-<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/Arrangement.html#line.2352">readObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectInputStream.html?is-external=true" title="class or interface in java.io">ObjectInputStream</a>&nbsp;s)
+<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/Arrangement.html#line.2369">readObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectInputStream.html?is-external=true" title="class or interface in java.io">ObjectInputStream</a>&nbsp;s)
                  throws <a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a>,
                         <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/ClassNotFoundException.html?is-external=true" title="class or interface in java.lang">ClassNotFoundException</a></pre>
 <dl>
@@ -2034,7 +2062,7 @@
 </li>
 <li class="blockListLast">
 <h4>writeObject</h4>
-<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/Arrangement.html#line.2337">writeObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectOutputStream.html?is-external=true" title="class or interface in java.io">ObjectOutputStream</a>&nbsp;s)
+<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/Arrangement.html#line.2354">writeObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectOutputStream.html?is-external=true" title="class or interface in java.io">ObjectOutputStream</a>&nbsp;s)
                   throws <a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -4303,19 +4331,15 @@
 <h3>Class <a href="squidpony/squidmath/WeightedTable.html" title="class in squidpony.squidmath">squidpony.squidmath.WeightedTable</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
-<dd>100L</dd>
+<dd>101L</dd>
 </dl>
 <ul class="blockList">
 <li class="blockList">
 <h3>Serialized Fields</h3>
 <ul class="blockList">
 <li class="blockList">
-<h4>alias</h4>
-<pre>int[] alias</pre>
-</li>
-<li class="blockList">
-<h4>probability</h4>
-<pre>double[] probability</pre>
+<h4>mixed</h4>
+<pre>int[] mixed</pre>
 </li>
 <li class="blockListLast">
 <h4>size</h4>
