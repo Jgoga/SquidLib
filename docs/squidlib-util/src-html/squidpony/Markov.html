@@ -59,13 +59,13 @@
 <span class="sourceLineNo">051</span>     */<a name="line.51"></a>
 <span class="sourceLineNo">052</span>    public void analyze(CharSequence corpus)<a name="line.52"></a>
 <span class="sourceLineNo">053</span>    {<a name="line.53"></a>
-<span class="sourceLineNo">054</span>        Arrangement&lt;String&gt; body = new Arrangement&lt;&gt;(corpus.length() / 5);<a name="line.54"></a>
+<span class="sourceLineNo">054</span>        Arrangement&lt;String&gt; body = new Arrangement&lt;&gt;(corpus.length() / 5 + 5);<a name="line.54"></a>
 <span class="sourceLineNo">055</span>        body.add(INITIAL);<a name="line.55"></a>
 <span class="sourceLineNo">056</span>        body.add(FULL_STOP);<a name="line.56"></a>
 <span class="sourceLineNo">057</span>        body.add(EXCLAMATION);<a name="line.57"></a>
 <span class="sourceLineNo">058</span>        body.add(QUESTION);<a name="line.58"></a>
 <span class="sourceLineNo">059</span>        body.add(ELLIPSIS);<a name="line.59"></a>
-<span class="sourceLineNo">060</span>        ArrayList&lt;IntVLA&gt; working = new ArrayList&lt;&gt;(corpus.length() / 5);<a name="line.60"></a>
+<span class="sourceLineNo">060</span>        ArrayList&lt;IntVLA&gt; working = new ArrayList&lt;&gt;(corpus.length() / 5 + 5);<a name="line.60"></a>
 <span class="sourceLineNo">061</span>        working.add(new IntVLA(128));<a name="line.61"></a>
 <span class="sourceLineNo">062</span>        int[] links = {0};<a name="line.62"></a>
 <span class="sourceLineNo">063</span>        working.add(new IntVLA(links));<a name="line.63"></a>
