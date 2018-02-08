@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -218,19 +218,50 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
       long&nbsp;state)</code>&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.PointHash.html#hash64-long-long-long-">hash64</a></span>(long&nbsp;x,
+      long&nbsp;y,
+      long&nbsp;state)</code>&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.PointHash.html#hash64-long-long-long-long-">hash64</a></span>(long&nbsp;x,
+      long&nbsp;y,
+      long&nbsp;z,
+      long&nbsp;state)</code>&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.PointHash.html#hash64-long-long-long-long-long-">hash64</a></span>(long&nbsp;x,
+      long&nbsp;y,
+      long&nbsp;z,
+      long&nbsp;w,
+      long&nbsp;state)</code>&nbsp;</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.PointHash.html#hash64-long-long-long-long-long-long-long-">hash64</a></span>(long&nbsp;x,
+      long&nbsp;y,
+      long&nbsp;z,
+      long&nbsp;w,
+      long&nbsp;u,
+      long&nbsp;v,
+      long&nbsp;state)</code>&nbsp;</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.PointHash.html#hashAll-long-long-long-">hashAll</a></span>(long&nbsp;x,
        long&nbsp;y,
        long&nbsp;state)</code>&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.PointHash.html#hashAll-long-long-long-long-">hashAll</a></span>(long&nbsp;x,
        long&nbsp;y,
        long&nbsp;z,
        long&nbsp;state)</code>&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.PointHash.html#hashAll-long-long-long-long-long-">hashAll</a></span>(long&nbsp;x,
        long&nbsp;y,
@@ -238,7 +269,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
        long&nbsp;w,
        long&nbsp;state)</code>&nbsp;</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Noise.PointHash.html#hashAll-long-long-long-long-long-long-long-">hashAll</a></span>(long&nbsp;x,
        long&nbsp;y,
@@ -533,7 +564,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <a name="hash32-long-long-long-long-long-long-long-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>hash32</h4>
 <pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.PointHash.html#line.341">hash32</a>(long&nbsp;x,
@@ -554,6 +585,96 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>state</code> - </dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>5-bit hash of the x,y,z,w,u,v point with the given state</dd>
+</dl>
+</li>
+</ul>
+<a name="hash64-long-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hash64</h4>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.PointHash.html#line.359">hash64</a>(long&nbsp;x,
+                         long&nbsp;y,
+                         long&nbsp;state)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - </dd>
+<dd><code>y</code> - </dd>
+<dd><code>state</code> - </dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>6-bit hash of the x,y point with the given state</dd>
+</dl>
+</li>
+</ul>
+<a name="hash64-long-long-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hash64</h4>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.PointHash.html#line.373">hash64</a>(long&nbsp;x,
+                         long&nbsp;y,
+                         long&nbsp;z,
+                         long&nbsp;state)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - </dd>
+<dd><code>y</code> - </dd>
+<dd><code>z</code> - </dd>
+<dd><code>state</code> - </dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>6-bit hash of the x,y,z point with the given state</dd>
+</dl>
+</li>
+</ul>
+<a name="hash64-long-long-long-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hash64</h4>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.PointHash.html#line.389">hash64</a>(long&nbsp;x,
+                         long&nbsp;y,
+                         long&nbsp;z,
+                         long&nbsp;w,
+                         long&nbsp;state)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - </dd>
+<dd><code>y</code> - </dd>
+<dd><code>z</code> - </dd>
+<dd><code>w</code> - </dd>
+<dd><code>state</code> - </dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>6-bit hash of the x,y,z,w point with the given state</dd>
+</dl>
+</li>
+</ul>
+<a name="hash64-long-long-long-long-long-long-long-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>hash64</h4>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Noise.PointHash.html#line.408">hash64</a>(long&nbsp;x,
+                         long&nbsp;y,
+                         long&nbsp;z,
+                         long&nbsp;w,
+                         long&nbsp;u,
+                         long&nbsp;v,
+                         long&nbsp;state)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - </dd>
+<dd><code>y</code> - </dd>
+<dd><code>z</code> - </dd>
+<dd><code>w</code> - </dd>
+<dd><code>u</code> - </dd>
+<dd><code>v</code> - </dd>
+<dd><code>state</code> - </dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>6-bit hash of the x,y,z,w,u,v point with the given state</dd>
 </dl>
 </li>
 </ul>
