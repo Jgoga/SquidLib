@@ -182,8 +182,8 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected static float[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WhirlingNoise.html#grad4f">grad4f</a></span></code>&nbsp;</td>
+<td class="colFirst"><code>protected static double[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WhirlingNoise.html#grad4">grad4</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/WhirlingNoise.html" title="class in squidpony.squidmath">WhirlingNoise</a></code></td>
@@ -201,13 +201,19 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WhirlingNoise.html#seed">seed</a></span></code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected static int[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WhirlingNoise.html#SIMPLEX">SIMPLEX</a></span></code>
+<div class="block">Used by <a href="../../squidpony/squidmath/WhirlingNoise.html#noise-double-double-double-double-long-"><code>noise(double, double, double, double, long)</code></a> to look up the vertices of the 4D triangle analogue.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="fields.inherited.from.class.squidpony.squidmath.PerlinNoise">
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;squidpony.squidmath.<a href="../../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath">PerlinNoise</a></h3>
-<code><a href="../../squidpony/squidmath/PerlinNoise.html#epi">epi</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#F2">F2</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#F3">F3</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#F4">F4</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#G2">G2</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#G3">G3</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#G4">G4</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#grad2">grad2</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#grad3">grad3</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#grad4">grad4</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#perm">perm</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#phi">phi</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#phiGrad2">phiGrad2</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#simplex">simplex</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#unit1_4">unit1_4</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#unit1_8">unit1_8</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#unit3_8">unit3_8</a></code></li>
+<code><a href="../../squidpony/squidmath/PerlinNoise.html#epi">epi</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#F2">F2</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#F3">F3</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#F4">F4</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#G2">G2</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#G3">G3</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#G4">G4</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#grad2">grad2</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#grad3">grad3</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#perm">perm</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#phi">phi</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#phiGrad2">phiGrad2</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#simplex">simplex</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#unit1_4">unit1_4</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#unit1_8">unit1_8</a>, <a href="../../squidpony/squidmath/PerlinNoise.html#unit3_8">unit3_8</a></code></li>
 </ul>
 </li>
 </ul>
@@ -531,13 +537,23 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
  mathematical constants so copyright isn't an issue.</div>
 </li>
 </ul>
-<a name="grad4f">
+<a name="grad4">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>grad4</h4>
+<pre>protected static final&nbsp;double[] <a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.401">grad4</a></pre>
+</li>
+</ul>
+<a name="SIMPLEX">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>grad4f</h4>
-<pre>protected static final&nbsp;float[][] <a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.401">grad4f</a></pre>
+<h4>SIMPLEX</h4>
+<pre>protected static final&nbsp;int[] <a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1316">SIMPLEX</a></pre>
+<div class="block">Used by <a href="../../squidpony/squidmath/WhirlingNoise.html#noise-double-double-double-double-long-"><code>noise(double, double, double, double, long)</code></a> to look up the vertices of the 4D triangle analogue.</div>
 </li>
 </ul>
 </li>
@@ -580,7 +596,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>dotf</h4>
-<pre>protected static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.806">dotf</a>(float[]&nbsp;g,
+<pre>protected static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.872">dotf</a>(float[]&nbsp;g,
                             float&nbsp;x,
                             float&nbsp;y)</pre>
 </li>
@@ -591,7 +607,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>dotf</h4>
-<pre>protected static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.810">dotf</a>(int[]&nbsp;g,
+<pre>protected static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.876">dotf</a>(int[]&nbsp;g,
                             float&nbsp;x,
                             float&nbsp;y,
                             float&nbsp;z)</pre>
@@ -603,7 +619,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>dotf</h4>
-<pre>protected static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.813">dotf</a>(float[]&nbsp;g,
+<pre>protected static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.879">dotf</a>(float[]&nbsp;g,
                             float&nbsp;x,
                             float&nbsp;y,
                             float&nbsp;z)</pre>
@@ -615,7 +631,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>dot</h4>
-<pre>protected static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.817">dot</a>(float[]&nbsp;g,
+<pre>protected static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.883">dot</a>(float[]&nbsp;g,
                             double&nbsp;x,
                             double&nbsp;y,
                             double&nbsp;z)</pre>
@@ -627,7 +643,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>dot</h4>
-<pre>protected static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.820">dot</a>(float[]&nbsp;g,
+<pre>protected static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.886">dot</a>(float[]&nbsp;g,
                             double&nbsp;x,
                             double&nbsp;y,
                             double&nbsp;z,
@@ -640,7 +656,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.856">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.922">getNoise</a>(double&nbsp;x,
                        double&nbsp;y)</pre>
 <div class="block">2D simplex noise. Unlike <a href="../../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath"><code>PerlinNoise</code></a>, uses its parameters verbatim, so the scale of the result will be
  different when passing the same arguments to <a href="../../squidpony/squidmath/PerlinNoise.html#noise-double-double-"><code>PerlinNoise.noise(double, double)</code></a> and this method. Roughly
@@ -664,7 +680,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.867">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.933">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                long&nbsp;seed)</pre>
 <div class="block">Identical to <a href="../../squidpony/squidmath/WhirlingNoise.html#getNoise-double-double-"><code>getNoise(double, double)</code></a>; ignores seed.</div>
@@ -686,7 +702,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.881">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.947">getNoise</a>(double&nbsp;x,
                        double&nbsp;y,
                        double&nbsp;z)</pre>
 <div class="block">3D simplex noise. Unlike <a href="../../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath"><code>PerlinNoise</code></a>, uses its parameters verbatim, so the scale of the result will be
@@ -712,7 +728,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.892">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.958">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                double&nbsp;z,
                                long&nbsp;seed)</pre>
@@ -736,7 +752,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.908">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.974">getNoise</a>(double&nbsp;x,
                        double&nbsp;y,
                        double&nbsp;z,
                        double&nbsp;w)</pre>
@@ -764,7 +780,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.920">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.986">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                double&nbsp;z,
                                double&nbsp;w,
@@ -790,7 +806,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.936">noise</a>(double&nbsp;xin,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1002">noise</a>(double&nbsp;xin,
                            double&nbsp;yin)</pre>
 <div class="block">2D simplex noise. Unlike <a href="../../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath"><code>PerlinNoise</code></a>, uses its parameters verbatim, so the scale of the result will be
  different when passing the same arguments to <a href="../../squidpony/squidmath/PerlinNoise.html#noise-double-double-"><code>PerlinNoise.noise(double, double)</code></a> and this method. Roughly
@@ -812,7 +828,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.951">noise</a>(double&nbsp;xin,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1017">noise</a>(double&nbsp;xin,
                            double&nbsp;yin,
                            long&nbsp;seed)</pre>
 <div class="block">2D simplex noise. Unlike <a href="../../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath"><code>PerlinNoise</code></a>, uses its parameters verbatim, so the scale of the result will be
@@ -835,7 +851,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1052">noise</a>(double&nbsp;xin,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1118">noise</a>(double&nbsp;xin,
                            double&nbsp;yin,
                            double&nbsp;zin)</pre>
 <div class="block">3D simplex noise. Unlike <a href="../../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath"><code>PerlinNoise</code></a>, uses its parameters verbatim, so the scale of the result will be
@@ -859,7 +875,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1067">noise</a>(double&nbsp;xin,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1133">noise</a>(double&nbsp;xin,
                            double&nbsp;yin,
                            double&nbsp;zin,
                            long&nbsp;seed)</pre>
@@ -884,7 +900,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1243">noise</a>(double&nbsp;x,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1309">noise</a>(double&nbsp;x,
                            double&nbsp;y,
                            double&nbsp;z,
                            double&nbsp;w)</pre>
@@ -910,16 +926,14 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1260">noise</a>(double&nbsp;x,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1345">noise</a>(double&nbsp;x,
                            double&nbsp;y,
                            double&nbsp;z,
                            double&nbsp;w,
                            long&nbsp;seed)</pre>
 <div class="block">4D simplex noise. Unlike <a href="../../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath"><code>PerlinNoise</code></a>, uses its parameters verbatim, so the scale of the result will be
  different when passing the same arguments to <a href="../../squidpony/squidmath/PerlinNoise.html#noise-double-double-double-double-"><code>PerlinNoise.noise(double, double, double, double)</code></a> and this
- method. Roughly 20-25% faster than the equivalent method in PerlinNoise, plus it has less chance of repetition in
- chunks because it uses a pseudo-random function (curiously, <a href="../../squidpony/squidmath/ThrustAltRNG.html#determine-long-"><code>ThrustAltRNG.determine(long)</code></a>, which has veryf
- good distribution and is fast) instead of a number chosen by hash from a single 256-element array.</div>
+ method. Roughly 20-25% faster than the equivalent method in PerlinNoise.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>x</code> - X input</dd>
@@ -938,7 +952,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noiseAlt</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1403">noiseAlt</a>(double&nbsp;x,
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1574">noiseAlt</a>(double&nbsp;x,
                              double&nbsp;y)</pre>
 <div class="block">2D simplex noise returning a float; extremely similar to <a href="../../squidpony/squidmath/WhirlingNoise.html#noise-double-double-"><code>noise(double, double)</code></a>, but this may be slightly
  faster or slightly slower. Unlike <a href="../../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath"><code>PerlinNoise</code></a>, uses its parameters verbatim, so the scale of the result
@@ -958,7 +972,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>noiseAlt</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1485">noiseAlt</a>(double&nbsp;x,
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/WhirlingNoise.html#line.1656">noiseAlt</a>(double&nbsp;x,
                              double&nbsp;y,
                              double&nbsp;z)</pre>
 <div class="block">3D simplex noise returning a float; extremely similar to <a href="../../squidpony/squidmath/WhirlingNoise.html#noise-double-double-double-"><code>noise(double, double, double)</code></a>, but this may
