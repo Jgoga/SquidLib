@@ -82,7 +82,7 @@
 <span class="sourceLineNo">074</span><a name="line.74"></a>
 <span class="sourceLineNo">075</span>    public void add (int value) {<a name="line.75"></a>
 <span class="sourceLineNo">076</span>        int[] items = this.items;<a name="line.76"></a>
-<span class="sourceLineNo">077</span>        if (size == items.length) items = resize(Math.max(8, (int)(size * 1.75f)));<a name="line.77"></a>
+<span class="sourceLineNo">077</span>        if (size == items.length) items = resize(size &lt;&lt; 1 | 8);<a name="line.77"></a>
 <span class="sourceLineNo">078</span>        items[size++] = value;<a name="line.78"></a>
 <span class="sourceLineNo">079</span>    }<a name="line.79"></a>
 <span class="sourceLineNo">080</span>    <a name="line.80"></a>
@@ -103,7 +103,7 @@
 <span class="sourceLineNo">095</span>    public void addAll (int[] array, int offset, int length) {<a name="line.95"></a>
 <span class="sourceLineNo">096</span>        int[] items = this.items;<a name="line.96"></a>
 <span class="sourceLineNo">097</span>        int sizeNeeded = size + length;<a name="line.97"></a>
-<span class="sourceLineNo">098</span>        if (sizeNeeded &gt; items.length) items = resize(Math.max(8, (int)(sizeNeeded * 1.75f)));<a name="line.98"></a>
+<span class="sourceLineNo">098</span>        if (sizeNeeded &gt; items.length) items = resize(size &lt;&lt; 1 | 8);<a name="line.98"></a>
 <span class="sourceLineNo">099</span>        System.arraycopy(array, offset, items, size, length);<a name="line.99"></a>
 <span class="sourceLineNo">100</span>        size += length;<a name="line.100"></a>
 <span class="sourceLineNo">101</span>    }<a name="line.101"></a>
@@ -111,7 +111,7 @@
 <span class="sourceLineNo">103</span>    public void addRange (int start, int end) {<a name="line.103"></a>
 <span class="sourceLineNo">104</span>        int[] items = this.items;<a name="line.104"></a>
 <span class="sourceLineNo">105</span>        int sizeNeeded = size + end - start;<a name="line.105"></a>
-<span class="sourceLineNo">106</span>        if (sizeNeeded &gt; items.length) items = resize(Math.max(8, (int)(sizeNeeded * 1.75f)));<a name="line.106"></a>
+<span class="sourceLineNo">106</span>        if (sizeNeeded &gt; items.length) items = resize(size &lt;&lt; 1 | 8);<a name="line.106"></a>
 <span class="sourceLineNo">107</span>        for(int r = start, i = size; r &lt; end; r++, i++)<a name="line.107"></a>
 <span class="sourceLineNo">108</span>        {<a name="line.108"></a>
 <span class="sourceLineNo">109</span>            items[i] = r;<a name="line.109"></a>
@@ -122,7 +122,7 @@
 <span class="sourceLineNo">114</span>    public void addFractionRange (int start, int end, int fraction) {<a name="line.114"></a>
 <span class="sourceLineNo">115</span>        int[] items = this.items;<a name="line.115"></a>
 <span class="sourceLineNo">116</span>        int sizeNeeded = size + (end - start) / fraction + 2;<a name="line.116"></a>
-<span class="sourceLineNo">117</span>        if (sizeNeeded &gt; items.length) items = resize(Math.max(8, (int)(sizeNeeded * 1.75f)));<a name="line.117"></a>
+<span class="sourceLineNo">117</span>        if (sizeNeeded &gt; items.length) items = resize(size &lt;&lt; 1 | 8);<a name="line.117"></a>
 <span class="sourceLineNo">118</span>        for(int r = start, i = size; r &lt; end; r = fraction * ((r / fraction) + 1), i++, size++)<a name="line.118"></a>
 <span class="sourceLineNo">119</span>        {<a name="line.119"></a>
 <span class="sourceLineNo">120</span>            items[i] = r;<a name="line.120"></a>
@@ -157,7 +157,7 @@
 <span class="sourceLineNo">149</span>    public void insert (int index, int value) {<a name="line.149"></a>
 <span class="sourceLineNo">150</span>        if (index &gt; size) throw new IndexOutOfBoundsException("index can't be &gt; size: " + index + " &gt; " + size);<a name="line.150"></a>
 <span class="sourceLineNo">151</span>        int[] items = this.items;<a name="line.151"></a>
-<span class="sourceLineNo">152</span>        if (size == items.length) items = resize(Math.max(8, (int)(size * 1.75f)));<a name="line.152"></a>
+<span class="sourceLineNo">152</span>        if (size == items.length) items = resize(size &lt;&lt; 1 | 8);<a name="line.152"></a>
 <span class="sourceLineNo">153</span>        System.arraycopy(items, index, items, index + 1, size - index);<a name="line.153"></a>
 <span class="sourceLineNo">154</span>        size++;<a name="line.154"></a>
 <span class="sourceLineNo">155</span>        items[index] = value;<a name="line.155"></a>

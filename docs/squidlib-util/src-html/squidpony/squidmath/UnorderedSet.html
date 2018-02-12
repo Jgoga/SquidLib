@@ -447,7 +447,7 @@
 <span class="sourceLineNo">439</span>            K curr;<a name="line.439"></a>
 <span class="sourceLineNo">440</span>            final K[] key = this.key;<a name="line.440"></a>
 <span class="sourceLineNo">441</span>            // The starting point.<a name="line.441"></a>
-<span class="sourceLineNo">442</span>            if (!((curr = key[pos = HashCommon.mix(hasher.hash(k)) &amp; mask]) == null)) {<a name="line.442"></a>
+<span class="sourceLineNo">442</span>            if (!((curr = key[pos = (hasher.hash(k)) &amp; mask]) == null)) {<a name="line.442"></a>
 <span class="sourceLineNo">443</span>                if (hasher.areEqual(curr, k))<a name="line.443"></a>
 <span class="sourceLineNo">444</span>                    return false;<a name="line.444"></a>
 <span class="sourceLineNo">445</span>                while (!((curr = key[pos = pos + 1 &amp; mask]) == null))<a name="line.445"></a>
@@ -485,7 +485,7 @@
 <span class="sourceLineNo">477</span>            K curr;<a name="line.477"></a>
 <span class="sourceLineNo">478</span>            final K[] key = this.key;<a name="line.478"></a>
 <span class="sourceLineNo">479</span>            // The starting point.<a name="line.479"></a>
-<span class="sourceLineNo">480</span>            if (!((curr = key[pos = HashCommon.mix(hasher.hash(k)) &amp; mask]) == null)) {<a name="line.480"></a>
+<span class="sourceLineNo">480</span>            if (!((curr = key[pos = (hasher.hash(k)) &amp; mask]) == null)) {<a name="line.480"></a>
 <span class="sourceLineNo">481</span>                if (hasher.areEqual(curr, k))<a name="line.481"></a>
 <span class="sourceLineNo">482</span>                    return curr;<a name="line.482"></a>
 <span class="sourceLineNo">483</span>                while (!((curr = key[pos = pos + 1 &amp; mask]) == null))<a name="line.483"></a>
@@ -517,7 +517,7 @@
 <span class="sourceLineNo">509</span>                    key[last] = null;<a name="line.509"></a>
 <span class="sourceLineNo">510</span>                    return;<a name="line.510"></a>
 <span class="sourceLineNo">511</span>                }<a name="line.511"></a>
-<span class="sourceLineNo">512</span>                slot = HashCommon.mix(hasher.hash(curr))<a name="line.512"></a>
+<span class="sourceLineNo">512</span>                slot = (hasher.hash(curr))<a name="line.512"></a>
 <span class="sourceLineNo">513</span>                        &amp; mask;<a name="line.513"></a>
 <span class="sourceLineNo">514</span>                if (last &lt;= pos ? last &gt;= slot || slot &gt; pos : last &gt;= slot<a name="line.514"></a>
 <span class="sourceLineNo">515</span>                        &amp;&amp; slot &gt; pos)<a name="line.515"></a>
@@ -554,7 +554,7 @@
 <span class="sourceLineNo">546</span>        final K[] key = this.key;<a name="line.546"></a>
 <span class="sourceLineNo">547</span>        int pos;<a name="line.547"></a>
 <span class="sourceLineNo">548</span>        // The starting point.<a name="line.548"></a>
-<span class="sourceLineNo">549</span>        if ((curr = key[pos = HashCommon.mix(hasher.hash(k)) &amp; mask]) == null)<a name="line.549"></a>
+<span class="sourceLineNo">549</span>        if ((curr = key[pos = (hasher.hash(k)) &amp; mask]) == null)<a name="line.549"></a>
 <span class="sourceLineNo">550</span>            return false;<a name="line.550"></a>
 <span class="sourceLineNo">551</span>        if (hasher.areEqual(k, curr))<a name="line.551"></a>
 <span class="sourceLineNo">552</span>            return removeEntry(pos);<a name="line.552"></a>
@@ -581,7 +581,7 @@
 <span class="sourceLineNo">573</span>        final K[] key = this.key;<a name="line.573"></a>
 <span class="sourceLineNo">574</span>        int pos;<a name="line.574"></a>
 <span class="sourceLineNo">575</span>        // The starting point.<a name="line.575"></a>
-<span class="sourceLineNo">576</span>        if ((curr = key[pos = HashCommon.mix(hasher.hash(k)) &amp; mask]) == null)<a name="line.576"></a>
+<span class="sourceLineNo">576</span>        if ((curr = key[pos = (hasher.hash(k)) &amp; mask]) == null)<a name="line.576"></a>
 <span class="sourceLineNo">577</span>            return null;<a name="line.577"></a>
 <span class="sourceLineNo">578</span>        if (hasher.areEqual(k, curr))<a name="line.578"></a>
 <span class="sourceLineNo">579</span>            return curr;<a name="line.579"></a>
@@ -601,7 +601,7 @@
 <span class="sourceLineNo">593</span>        final K[] key = this.key;<a name="line.593"></a>
 <span class="sourceLineNo">594</span>        int pos;<a name="line.594"></a>
 <span class="sourceLineNo">595</span>        // The starting point.<a name="line.595"></a>
-<span class="sourceLineNo">596</span>        if ((curr = key[pos = HashCommon.mix(hasher.hash(k)) &amp; mask]) == null)<a name="line.596"></a>
+<span class="sourceLineNo">596</span>        if ((curr = key[pos = (hasher.hash(k)) &amp; mask]) == null)<a name="line.596"></a>
 <span class="sourceLineNo">597</span>            return false;<a name="line.597"></a>
 <span class="sourceLineNo">598</span>        if (hasher.areEqual(k, curr))<a name="line.598"></a>
 <span class="sourceLineNo">599</span>            return true;<a name="line.599"></a>
@@ -626,7 +626,7 @@
 <span class="sourceLineNo">618</span>        final K[] key = this.key;<a name="line.618"></a>
 <span class="sourceLineNo">619</span>        int pos;<a name="line.619"></a>
 <span class="sourceLineNo">620</span>        // The starting point.<a name="line.620"></a>
-<span class="sourceLineNo">621</span>        if ((curr = key[pos = HashCommon.mix(hasher.hash(k)) &amp; mask]) == null)<a name="line.621"></a>
+<span class="sourceLineNo">621</span>        if ((curr = key[pos = (hasher.hash(k)) &amp; mask]) == null)<a name="line.621"></a>
 <span class="sourceLineNo">622</span>            return -1;<a name="line.622"></a>
 <span class="sourceLineNo">623</span>        if (hasher.areEqual(k, curr))<a name="line.623"></a>
 <span class="sourceLineNo">624</span>            return pos;<a name="line.624"></a>
@@ -776,7 +776,7 @@
 <span class="sourceLineNo">768</span>                        key[ last ] = (null);<a name="line.768"></a>
 <span class="sourceLineNo">769</span>                        return;<a name="line.769"></a>
 <span class="sourceLineNo">770</span>                    }<a name="line.770"></a>
-<span class="sourceLineNo">771</span>                    slot = ( HashCommon.mix(hasher.hash(current)) ) &amp; mask;<a name="line.771"></a>
+<span class="sourceLineNo">771</span>                    slot = ( (hasher.hash(current)) ) &amp; mask;<a name="line.771"></a>
 <span class="sourceLineNo">772</span>                    if ( last &lt;= pos ? last &gt;= slot || slot &gt; pos : last &gt;= slot &amp;&amp; slot &gt; pos ) break;<a name="line.772"></a>
 <span class="sourceLineNo">773</span>                    pos = ( pos + 1 ) &amp; mask;<a name="line.773"></a>
 <span class="sourceLineNo">774</span>                }<a name="line.774"></a>
@@ -897,20 +897,20 @@
 <span class="sourceLineNo">889</span>    @SuppressWarnings("unchecked")<a name="line.889"></a>
 <span class="sourceLineNo">890</span>    protected void rehash(final int newN) {<a name="line.890"></a>
 <span class="sourceLineNo">891</span>        final K key[] = this.key;<a name="line.891"></a>
-<span class="sourceLineNo">892</span>        final int mask = newN - 1; // Note that this is used by the hashing<a name="line.892"></a>
-<span class="sourceLineNo">893</span>        // macro<a name="line.893"></a>
-<span class="sourceLineNo">894</span>        final K newKey[] = (K[]) new Object[newN + 1];<a name="line.894"></a>
+<span class="sourceLineNo">892</span>        final int mask = newN - 1;<a name="line.892"></a>
+<span class="sourceLineNo">893</span>        final K newKey[] = (K[]) new Object[newN + 1];<a name="line.893"></a>
+<span class="sourceLineNo">894</span>        K k;<a name="line.894"></a>
 <span class="sourceLineNo">895</span>        int i = -1, pos, sz = size;<a name="line.895"></a>
 <span class="sourceLineNo">896</span>        for (int q = 0; q &lt; sz; q++) {<a name="line.896"></a>
 <span class="sourceLineNo">897</span>            i = scanNext(i);<a name="line.897"></a>
-<span class="sourceLineNo">898</span>            if (key[i] == null)<a name="line.898"></a>
+<span class="sourceLineNo">898</span>            if ((k = key[i]) == null)<a name="line.898"></a>
 <span class="sourceLineNo">899</span>                pos = newN;<a name="line.899"></a>
 <span class="sourceLineNo">900</span>            else {<a name="line.900"></a>
-<span class="sourceLineNo">901</span>                pos = HashCommon.mix(hasher.hash(key[i])) &amp; mask;<a name="line.901"></a>
+<span class="sourceLineNo">901</span>                pos = (hasher.hash(k)) &amp; mask;<a name="line.901"></a>
 <span class="sourceLineNo">902</span>                while (!(newKey[pos] == null))<a name="line.902"></a>
 <span class="sourceLineNo">903</span>                    pos = pos + 1 &amp; mask;<a name="line.903"></a>
 <span class="sourceLineNo">904</span>            }<a name="line.904"></a>
-<span class="sourceLineNo">905</span>            newKey[pos] = key[i];<a name="line.905"></a>
+<span class="sourceLineNo">905</span>            newKey[pos] = k;<a name="line.905"></a>
 <span class="sourceLineNo">906</span>        }<a name="line.906"></a>
 <span class="sourceLineNo">907</span>        n = newN;<a name="line.907"></a>
 <span class="sourceLineNo">908</span>        this.mask = mask;<a name="line.908"></a>
@@ -1121,7 +1121,7 @@
 <span class="sourceLineNo">1113</span>                pos = n;<a name="line.1113"></a>
 <span class="sourceLineNo">1114</span>                containsNull = true;<a name="line.1114"></a>
 <span class="sourceLineNo">1115</span>            } else {<a name="line.1115"></a>
-<span class="sourceLineNo">1116</span>                if (!(key[pos = HashCommon.mix(hasher.hash(k)) &amp; mask] == null))<a name="line.1116"></a>
+<span class="sourceLineNo">1116</span>                if (!(key[pos = (hasher.hash(k)) &amp; mask] == null))<a name="line.1116"></a>
 <span class="sourceLineNo">1117</span>                    while (!(key[pos = pos + 1 &amp; mask] == null)) ;<a name="line.1117"></a>
 <span class="sourceLineNo">1118</span>            }<a name="line.1118"></a>
 <span class="sourceLineNo">1119</span>            key[pos] = k;<a name="line.1119"></a>
