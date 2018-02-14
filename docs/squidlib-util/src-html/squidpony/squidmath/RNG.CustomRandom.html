@@ -656,15 +656,15 @@
 <span class="sourceLineNo">648</span>    }<a name="line.648"></a>
 <span class="sourceLineNo">649</span><a name="line.649"></a>
 <span class="sourceLineNo">650</span>    /**<a name="line.650"></a>
-<span class="sourceLineNo">651</span>     * Gets a random portion of a List and returns it as a new List. Will only use a given position in the given<a name="line.651"></a>
-<span class="sourceLineNo">652</span>     * List at most once; does this by shuffling a copy of the List and getting a section of it.<a name="line.652"></a>
+<span class="sourceLineNo">651</span>     * Gets a random portion of a Collection and returns it as a new List. Will only use a given position in the given<a name="line.651"></a>
+<span class="sourceLineNo">652</span>     * Collection at most once; does this by shuffling a copy of the Collection and getting a section of it.<a name="line.652"></a>
 <span class="sourceLineNo">653</span>     *<a name="line.653"></a>
-<span class="sourceLineNo">654</span>     * @param data  a List of T; will not be modified.<a name="line.654"></a>
+<span class="sourceLineNo">654</span>     * @param data  a Collection of T; will not be modified.<a name="line.654"></a>
 <span class="sourceLineNo">655</span>     * @param count the non-negative number of elements to randomly take from data<a name="line.655"></a>
 <span class="sourceLineNo">656</span>     * @param &lt;T&gt;   can be any non-primitive type<a name="line.656"></a>
 <span class="sourceLineNo">657</span>     * @return a List of T that has length equal to the smaller of count or data.length<a name="line.657"></a>
 <span class="sourceLineNo">658</span>     */<a name="line.658"></a>
-<span class="sourceLineNo">659</span>    public &lt;T&gt; List&lt;T&gt; randomPortion(List&lt;T&gt; data, int count) {<a name="line.659"></a>
+<span class="sourceLineNo">659</span>    public &lt;T&gt; List&lt;T&gt; randomPortion(Collection&lt;T&gt; data, int count) {<a name="line.659"></a>
 <span class="sourceLineNo">660</span>        return shuffle(data).subList(0, Math.min(count, data.size()));<a name="line.660"></a>
 <span class="sourceLineNo">661</span>    }<a name="line.661"></a>
 <span class="sourceLineNo">662</span><a name="line.662"></a>

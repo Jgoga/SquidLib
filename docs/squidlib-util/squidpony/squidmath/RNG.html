@@ -613,9 +613,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i45" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/RNG.html#randomPortion-java.util.List-int-">randomPortion</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;&nbsp;data,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/RNG.html#randomPortion-java.util.Collection-int-">randomPortion</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;T&gt;&nbsp;data,
              int&nbsp;count)</code>
-<div class="block">Gets a random portion of a List and returns it as a new List.</div>
+<div class="block">Gets a random portion of a Collection and returns it as a new List.</div>
 </td>
 </tr>
 <tr id="i46" class="altColor">
@@ -1276,21 +1276,21 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </dl>
 </li>
 </ul>
-<a name="randomPortion-java.util.List-int-">
+<a name="randomPortion-java.util.Collection-int-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomPortion</h4>
-<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.659">randomPortion</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;&nbsp;data,
+<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.659">randomPortion</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;T&gt;&nbsp;data,
                                  int&nbsp;count)</pre>
-<div class="block">Gets a random portion of a List and returns it as a new List. Will only use a given position in the given
- List at most once; does this by shuffling a copy of the List and getting a section of it.</div>
+<div class="block">Gets a random portion of a Collection and returns it as a new List. Will only use a given position in the given
+ Collection at most once; does this by shuffling a copy of the Collection and getting a section of it.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - can be any non-primitive type</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>data</code> - a List of T; will not be modified.</dd>
+<dd><code>data</code> - a Collection of T; will not be modified.</dd>
 <dd><code>count</code> - the non-negative number of elements to randomly take from data</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a List of T that has length equal to the smaller of count or data.length</dd>

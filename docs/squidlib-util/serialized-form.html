@@ -1795,6 +1795,103 @@
 <li class="blockList">
 <h2 title="Package">Package&nbsp;squidpony.squidgrid.mapping</h2>
 <ul class="blockList">
+<li class="blockList"><a name="squidpony.squidgrid.mapping.FantasyPoliticalMapper">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidgrid/mapping/FantasyPoliticalMapper.html" title="class in squidpony.squidgrid.mapping">squidpony.squidgrid.mapping.FantasyPoliticalMapper</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>width</h4>
+<pre>int width</pre>
+</li>
+<li class="blockList">
+<h4>height</h4>
+<pre>int height</pre>
+</li>
+<li class="blockList">
+<h4>rng</h4>
+<pre><a href="squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a> rng</pre>
+</li>
+<li class="blockList">
+<h4>name</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> name</pre>
+</li>
+<li class="blockList">
+<h4>politicalMap</h4>
+<pre>char[][] politicalMap</pre>
+</li>
+<li class="blockList">
+<h4>wmg</h4>
+<pre><a href="squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a> wmg</pre>
+</li>
+<li class="blockList">
+<h4>biomeMapper</h4>
+<pre><a href="squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a> biomeMapper</pre>
+</li>
+<li class="blockListLast">
+<h4>atlas</h4>
+<pre><a href="squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">K</a>,<a href="squidpony/squidmath/OrderedMap.html" title="type parameter in OrderedMap">V</a>&gt; atlas</pre>
+<div class="block">Maps chars, as found in the returned array from generate(), to Strings that store the full name of nations.</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.squidgrid.mapping.FantasyPoliticalMapper.Faction">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping">squidpony.squidgrid.mapping.FantasyPoliticalMapper.Faction</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>name</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> name</pre>
+</li>
+<li class="blockList">
+<h4>shortName</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> shortName</pre>
+</li>
+<li class="blockList">
+<h4>language</h4>
+<pre><a href="squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a> language</pre>
+</li>
+<li class="blockList">
+<h4>preferredBiomes</h4>
+<pre><a href="squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="squidpony/squidmath/UnorderedSet.html" title="type parameter in UnorderedSet">K</a>&gt; preferredBiomes</pre>
+</li>
+<li class="blockList">
+<h4>blockedBiomes</h4>
+<pre><a href="squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="squidpony/squidmath/UnorderedSet.html" title="type parameter in UnorderedSet">K</a>&gt; blockedBiomes</pre>
+</li>
+<li class="blockList">
+<h4>preferredHeight</h4>
+<pre>int[] preferredHeight</pre>
+</li>
+<li class="blockList">
+<h4>preferredHeat</h4>
+<pre>int[] preferredHeat</pre>
+</li>
+<li class="blockListLast">
+<h4>preferredMoisture</h4>
+<pre>int[] preferredMoisture</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="blockList"><a name="squidpony.squidgrid.mapping.MapModule">
 <!--   -->
 </a>
@@ -1912,6 +2009,406 @@
 <li class="blockListLast">
 <h4>connections</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">E</a>&gt; connections</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.squidgrid.mapping.WorldMapGenerator">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">squidpony.squidgrid.mapping.WorldMapGenerator</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>width</h4>
+<pre>int width</pre>
+</li>
+<li class="blockList">
+<h4>height</h4>
+<pre>int height</pre>
+</li>
+<li class="blockList">
+<h4>seed</h4>
+<pre>long seed</pre>
+</li>
+<li class="blockList">
+<h4>cachedState</h4>
+<pre>long cachedState</pre>
+</li>
+<li class="blockList">
+<h4>rng</h4>
+<pre><a href="squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a> rng</pre>
+</li>
+<li class="blockList">
+<h4>generateRivers</h4>
+<pre>boolean generateRivers</pre>
+</li>
+<li class="blockList">
+<h4>heightData</h4>
+<pre>double[][] heightData</pre>
+</li>
+<li class="blockList">
+<h4>heatData</h4>
+<pre>double[][] heatData</pre>
+</li>
+<li class="blockList">
+<h4>moistureData</h4>
+<pre>double[][] moistureData</pre>
+</li>
+<li class="blockList">
+<h4>freshwaterData</h4>
+<pre>double[][] freshwaterData</pre>
+</li>
+<li class="blockList">
+<h4>landData</h4>
+<pre><a href="squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a> landData</pre>
+</li>
+<li class="blockList">
+<h4>heightCodeData</h4>
+<pre>int[][] heightCodeData</pre>
+</li>
+<li class="blockList">
+<h4>waterModifier</h4>
+<pre>double waterModifier</pre>
+</li>
+<li class="blockList">
+<h4>coolingModifier</h4>
+<pre>double coolingModifier</pre>
+</li>
+<li class="blockList">
+<h4>minHeight</h4>
+<pre>double minHeight</pre>
+</li>
+<li class="blockList">
+<h4>maxHeight</h4>
+<pre>double maxHeight</pre>
+</li>
+<li class="blockList">
+<h4>minHeightActual</h4>
+<pre>double minHeightActual</pre>
+</li>
+<li class="blockList">
+<h4>maxHeightActual</h4>
+<pre>double maxHeightActual</pre>
+</li>
+<li class="blockList">
+<h4>minHeat</h4>
+<pre>double minHeat</pre>
+</li>
+<li class="blockList">
+<h4>maxHeat</h4>
+<pre>double maxHeat</pre>
+</li>
+<li class="blockList">
+<h4>minWet</h4>
+<pre>double minWet</pre>
+</li>
+<li class="blockList">
+<h4>maxWet</h4>
+<pre>double maxWet</pre>
+</li>
+<li class="blockList">
+<h4>zoom</h4>
+<pre>int zoom</pre>
+</li>
+<li class="blockList">
+<h4>startCacheX</h4>
+<pre><a href="squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a> startCacheX</pre>
+</li>
+<li class="blockList">
+<h4>startCacheY</h4>
+<pre><a href="squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a> startCacheY</pre>
+</li>
+<li class="blockList">
+<h4>zoomStartX</h4>
+<pre>int zoomStartX</pre>
+</li>
+<li class="blockListLast">
+<h4>zoomStartY</h4>
+<pre>int zoomStartY</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" title="class in squidpony.squidgrid.mapping">squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap</a> extends <a href="squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a> implements Serializable</h3>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>minHeat0</h4>
+<pre>double minHeat0</pre>
+</li>
+<li class="blockList">
+<h4>maxHeat0</h4>
+<pre>double maxHeat0</pre>
+</li>
+<li class="blockList">
+<h4>minHeat1</h4>
+<pre>double minHeat1</pre>
+</li>
+<li class="blockList">
+<h4>maxHeat1</h4>
+<pre>double maxHeat1</pre>
+</li>
+<li class="blockList">
+<h4>minWet0</h4>
+<pre>double minWet0</pre>
+</li>
+<li class="blockList">
+<h4>maxWet0</h4>
+<pre>double maxWet0</pre>
+</li>
+<li class="blockList">
+<h4>terrain</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> terrain</pre>
+</li>
+<li class="blockList">
+<h4>heat</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> heat</pre>
+</li>
+<li class="blockList">
+<h4>moisture</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> moisture</pre>
+</li>
+<li class="blockList">
+<h4>otherRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> otherRidged</pre>
+</li>
+<li class="blockList">
+<h4>riverRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> riverRidged</pre>
+</li>
+<li class="blockList">
+<h4>terrain4D</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> terrain4D</pre>
+</li>
+<li class="blockList">
+<h4>xPositions</h4>
+<pre>double[][] xPositions</pre>
+</li>
+<li class="blockList">
+<h4>yPositions</h4>
+<pre>double[][] yPositions</pre>
+</li>
+<li class="blockList">
+<h4>zPositions</h4>
+<pre>double[][] zPositions</pre>
+</li>
+<li class="blockListLast">
+<h4>edges</h4>
+<pre>int[] edges</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.squidgrid.mapping.WorldMapGenerator.SphereMap">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html" title="class in squidpony.squidgrid.mapping">squidpony.squidgrid.mapping.WorldMapGenerator.SphereMap</a> extends <a href="squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a> implements Serializable</h3>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>minHeat0</h4>
+<pre>double minHeat0</pre>
+</li>
+<li class="blockList">
+<h4>maxHeat0</h4>
+<pre>double maxHeat0</pre>
+</li>
+<li class="blockList">
+<h4>minHeat1</h4>
+<pre>double minHeat1</pre>
+</li>
+<li class="blockList">
+<h4>maxHeat1</h4>
+<pre>double maxHeat1</pre>
+</li>
+<li class="blockList">
+<h4>minWet0</h4>
+<pre>double minWet0</pre>
+</li>
+<li class="blockList">
+<h4>maxWet0</h4>
+<pre>double maxWet0</pre>
+</li>
+<li class="blockList">
+<h4>terrain</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> terrain</pre>
+</li>
+<li class="blockList">
+<h4>terrainRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> terrainRidged</pre>
+</li>
+<li class="blockList">
+<h4>heat</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> heat</pre>
+</li>
+<li class="blockList">
+<h4>moisture</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> moisture</pre>
+</li>
+<li class="blockList">
+<h4>otherRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> otherRidged</pre>
+</li>
+<li class="blockList">
+<h4>riverRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> riverRidged</pre>
+</li>
+<li class="blockList">
+<h4>xPositions</h4>
+<pre>double[][] xPositions</pre>
+</li>
+<li class="blockList">
+<h4>yPositions</h4>
+<pre>double[][] yPositions</pre>
+</li>
+<li class="blockListLast">
+<h4>zPositions</h4>
+<pre>double[][] zPositions</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.squidgrid.mapping.WorldMapGenerator.SphereMapAlt">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">squidpony.squidgrid.mapping.WorldMapGenerator.SphereMapAlt</a> extends <a href="squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a> implements Serializable</h3>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>minHeat0</h4>
+<pre>double minHeat0</pre>
+</li>
+<li class="blockList">
+<h4>maxHeat0</h4>
+<pre>double maxHeat0</pre>
+</li>
+<li class="blockList">
+<h4>minHeat1</h4>
+<pre>double minHeat1</pre>
+</li>
+<li class="blockList">
+<h4>maxHeat1</h4>
+<pre>double maxHeat1</pre>
+</li>
+<li class="blockList">
+<h4>minWet0</h4>
+<pre>double minWet0</pre>
+</li>
+<li class="blockList">
+<h4>maxWet0</h4>
+<pre>double maxWet0</pre>
+</li>
+<li class="blockList">
+<h4>terrain</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> terrain</pre>
+</li>
+<li class="blockList">
+<h4>heat</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> heat</pre>
+</li>
+<li class="blockList">
+<h4>moisture</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> moisture</pre>
+</li>
+<li class="blockList">
+<h4>otherRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> otherRidged</pre>
+</li>
+<li class="blockList">
+<h4>riverRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> riverRidged</pre>
+</li>
+<li class="blockList">
+<h4>terrain4D</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> terrain4D</pre>
+</li>
+<li class="blockList">
+<h4>xPositions</h4>
+<pre>double[][] xPositions</pre>
+</li>
+<li class="blockList">
+<h4>yPositions</h4>
+<pre>double[][] yPositions</pre>
+</li>
+<li class="blockListLast">
+<h4>zPositions</h4>
+<pre>double[][] zPositions</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.squidgrid.mapping.WorldMapGenerator.TilingMap">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidgrid/mapping/WorldMapGenerator.TilingMap.html" title="class in squidpony.squidgrid.mapping">squidpony.squidgrid.mapping.WorldMapGenerator.TilingMap</a> extends <a href="squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a> implements Serializable</h3>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>minHeat0</h4>
+<pre>double minHeat0</pre>
+</li>
+<li class="blockList">
+<h4>maxHeat0</h4>
+<pre>double maxHeat0</pre>
+</li>
+<li class="blockList">
+<h4>minHeat1</h4>
+<pre>double minHeat1</pre>
+</li>
+<li class="blockList">
+<h4>maxHeat1</h4>
+<pre>double maxHeat1</pre>
+</li>
+<li class="blockList">
+<h4>minWet0</h4>
+<pre>double minWet0</pre>
+</li>
+<li class="blockList">
+<h4>maxWet0</h4>
+<pre>double maxWet0</pre>
+</li>
+<li class="blockList">
+<h4>terrain</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> terrain</pre>
+</li>
+<li class="blockList">
+<h4>terrainRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> terrainRidged</pre>
+</li>
+<li class="blockList">
+<h4>heat</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> heat</pre>
+</li>
+<li class="blockList">
+<h4>moisture</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> moisture</pre>
+</li>
+<li class="blockList">
+<h4>otherRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> otherRidged</pre>
+</li>
+<li class="blockListLast">
+<h4>riverRidged</h4>
+<pre><a href="squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> riverRidged</pre>
 </li>
 </ul>
 </li>
@@ -3333,7 +3830,7 @@
 <ul class="blockList">
 <li class="blockList">
 <h4>readObject</h4>
-<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/OrderedMap.html#line.2336">readObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectInputStream.html?is-external=true" title="class or interface in java.io">ObjectInputStream</a>&nbsp;s)
+<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/OrderedMap.html#line.2346">readObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectInputStream.html?is-external=true" title="class or interface in java.io">ObjectInputStream</a>&nbsp;s)
                  throws <a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a>,
                         <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/ClassNotFoundException.html?is-external=true" title="class or interface in java.lang">ClassNotFoundException</a></pre>
 <dl>
@@ -3344,7 +3841,7 @@
 </li>
 <li class="blockListLast">
 <h4>writeObject</h4>
-<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/OrderedMap.html#line.2321">writeObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectOutputStream.html?is-external=true" title="class or interface in java.io">ObjectOutputStream</a>&nbsp;s)
+<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/OrderedMap.html#line.2331">writeObject</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/io/ObjectOutputStream.html?is-external=true" title="class or interface in java.io">ObjectOutputStream</a>&nbsp;s)
                   throws <a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>

@@ -300,6 +300,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/DungeonGenerator.html#width">width</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/DungeonGenerator.html" title="class in squidpony.squidgrid.mapping">DungeonGenerator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#width">width</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html" title="class in squidpony.squidgrid.mapping">FantasyPoliticalMapper</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/FlowingCaveGenerator.html#width">width</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/FlowingCaveGenerator.html" title="class in squidpony.squidgrid.mapping">FlowingCaveGenerator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/locks/util/Rect2I.html#width">width</a></span> - Variable in class squidpony.squidgrid.mapping.locks.util.<a href="../squidpony/squidgrid/mapping/locks/util/Rect2I.html" title="class in squidpony.squidgrid.mapping.locks.util">Rect2I</a></dt>
@@ -352,6 +354,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/ShortVLA.html#with-short...-">with(short...)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/ShortVLA.html" title="class in squidpony.squidmath">ShortVLA</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#wmg">wmg</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html" title="class in squidpony.squidgrid.mapping">FantasyPoliticalMapper</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="../squidpony/squidmath/WobblyLine.html" title="class in squidpony.squidmath"><span class="typeNameLink">WobblyLine</span></a> - Class in <a href="../squidpony/squidmath/package-summary.html">squidpony.squidmath</a></dt>
 <dd>
 <div class="block">A drunkard's-walk-like algorithm for line drawing "wobbly" paths.</div>
@@ -383,8 +387,6 @@
 <div class="block">All words (case-sensitive and counting some punctuation as part of words) that this encountered during the latest
  call to <a href="../squidpony/Markov.html#analyze-java.lang.CharSequence-"><code>Markov.analyze(CharSequence)</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#workingData">workingData</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/styled/DungeonBoneGen.html#workingRegion">workingRegion</a></span> - Variable in class squidpony.squidgrid.mapping.styled.<a href="../squidpony/squidgrid/mapping/styled/DungeonBoneGen.html" title="class in squidpony.squidgrid.mapping.styled">DungeonBoneGen</a></dt>
 <dd>
 <div class="block">Not recommended for general usage; a GreasedRegion that is frequently modified by this generator and is kept
@@ -410,10 +412,19 @@
 <div class="block">Constructs a WorldMapGenerator (this class is abstract, so you should typically call this from a subclass or as
  part of an anonymous class that implements <a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#regenerate-int-int-int-int-double-double-long-"><code>WorldMapGenerator.regenerate(int, int, int, int, double, double, long)</code></a>).</div>
 </dd>
+<dt><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping"><span class="typeNameLink">WorldMapGenerator.BiomeMapper</span></a> - Interface in <a href="../squidpony/squidgrid/mapping/package-summary.html">squidpony.squidgrid.mapping</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.DetailedBiomeMapper.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">WorldMapGenerator.DetailedBiomeMapper</span></a> - Class in <a href="../squidpony/squidgrid/mapping/package-summary.html">squidpony.squidgrid.mapping</a></dt>
 <dd>
 <div class="block">A way to get biome information for the cells on a map when you want an area's biome to be a combination of two
  main biome types, such as "Grassland" or "TropicalRainforest", with the biomes varying in weight between areas.</div>
+</dd>
+<dt><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">WorldMapGenerator.EllipticalMap</span></a> - Class in <a href="../squidpony/squidgrid/mapping/package-summary.html">squidpony.squidgrid.mapping</a></dt>
+<dd>
+<div class="block">A concrete implementation of <a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping"><code>WorldMapGenerator</code></a> that distorts the map as it nears the poles, expanding the
+ smaller-diameter latitude lines in extreme north and south regions so they take up the same space as the equator;
+ this is an alternative implementation to WorldMapGenerator.SphereMap that is meant to avoid certain artifacts
+ commonly produced by that generator.</div>
 </dd>
 <dt><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SimpleBiomeMapper.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">WorldMapGenerator.SimpleBiomeMapper</span></a> - Class in <a href="../squidpony/squidgrid/mapping/package-summary.html">squidpony.squidgrid.mapping</a></dt>
 <dd>
@@ -456,13 +467,17 @@
  Strings as lines of text, with the given width as the maximum width for a line; appends the word-wrapped lines to
  the given List of Strings and does not create a new List.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#wrapX-int-">wrapX(int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#wrapX-int-int-">wrapX(int, int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.EllipticalMap</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#wrapY-int-">wrapY(int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMap</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#wrapX-int-int-">wrapX(int, int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#wrapY-int-">wrapY(int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#wrapY-int-int-">wrapY(int, int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.EllipticalMap</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#wrapY-int-">wrapY(int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#wrapY-int-int-">wrapY(int, int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMap</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#wrapY-int-int-">wrapY(int, int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#wrapY-int-int-">wrapY(int, int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#writeDoubles-double:A:A-double-">writeDoubles(double[][], double)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
 <dd>
