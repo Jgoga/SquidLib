@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -109,7 +109,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <hr>
 <br>
-<pre>public class <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.8">LineKit</a>
+<pre>public class <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.10">LineKit</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Tools for constructing patterns using box-drawing characters.
  <br>
@@ -336,20 +336,37 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code>static char[][]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/LineKit.html#pruneLines-char:A:A-squidpony.squidmath.GreasedRegion-char:A:A-">pruneLines</a></span>(char[][]&nbsp;map,
+          <a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a>&nbsp;seen,
+          char[][]&nbsp;writeInto)</code>
+<div class="block">Adjusts an existing map that uses box-drawing characters so non-visible line segments aren't rendered.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>static char[][]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/LineKit.html#pruneLines-char:A:A-squidpony.squidmath.GreasedRegion-char:A-char:A:A-">pruneLines</a></span>(char[][]&nbsp;map,
+          <a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a>&nbsp;seen,
+          char[]&nbsp;symbols,
+          char[][]&nbsp;writeInto)</code>
+<div class="block">Adjusts an existing map that uses box-drawing characters so non-visible line segments aren't rendered.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/LineKit.html#rotateClockwise-long-">rotateClockwise</a></span>(long&nbsp;encoded)</code>
 <div class="block">Makes a variant on the given encoded 4x4 pattern so the lines are rotated 90 degrees clockwise, changing their
  positions as well as what chars they will decode to.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/LineKit.html#rotateCounterclockwise-long-">rotateCounterclockwise</a></span>(long&nbsp;encoded)</code>
 <div class="block">Makes a variant on the given encoded 4x4 pattern so the lines are rotated 90 degrees counterclockwise, changing
  their positions as well as what chars they will decode to.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/LineKit.html#transpose4x4-long-">transpose4x4</a></span>(long&nbsp;encoded)</code>
 <div class="block">Makes a variant on the given encoded 4x4 pattern so the x and y axes are interchanged, making the top side become
@@ -384,7 +401,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>lightAlt</h4>
-<pre>public static final&nbsp;char[] <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.9">lightAlt</a></pre>
+<pre>public static final&nbsp;char[] <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.11">lightAlt</a></pre>
 </li>
 </ul>
 <a name="heavyAlt">
@@ -393,7 +410,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>heavyAlt</h4>
-<pre>public static final&nbsp;char[] <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.10">heavyAlt</a></pre>
+<pre>public static final&nbsp;char[] <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.12">heavyAlt</a></pre>
 </li>
 </ul>
 <a name="light">
@@ -402,7 +419,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>light</h4>
-<pre>public static final&nbsp;char[] <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.11">light</a></pre>
+<pre>public static final&nbsp;char[] <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.13">light</a></pre>
 </li>
 </ul>
 <a name="heavy">
@@ -411,7 +428,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>heavy</h4>
-<pre>public static final&nbsp;char[] <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.12">heavy</a></pre>
+<pre>public static final&nbsp;char[] <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.14">heavy</a></pre>
 </li>
 </ul>
 <a name="interiorSquare">
@@ -420,7 +437,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>interiorSquare</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.22">interiorSquare</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.24">interiorSquare</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -438,7 +455,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>exteriorSquare</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.29">exteriorSquare</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.31">exteriorSquare</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -456,7 +473,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>interiorPlus</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.36">interiorPlus</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.38">interiorPlus</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -474,7 +491,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>exteriorPlus</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.44">exteriorPlus</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.46">exteriorPlus</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -492,7 +509,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>interiorSquareLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.55">interiorSquareLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.57">interiorSquareLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -510,7 +527,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>exteriorSquareLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.63">exteriorSquareLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.65">exteriorSquareLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -528,7 +545,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>shallowInteriorSquareLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.71">shallowInteriorSquareLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.73">shallowInteriorSquareLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -546,7 +563,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>shallowExteriorSquareLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.80">shallowExteriorSquareLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.82">shallowExteriorSquareLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -564,7 +581,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>shallowerInteriorSquareLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.88">shallowerInteriorSquareLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.90">shallowerInteriorSquareLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -582,7 +599,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>shallowerExteriorSquareLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.97">shallowerExteriorSquareLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.99">shallowerExteriorSquareLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -600,7 +617,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>interiorPlusLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.105">interiorPlusLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.107">interiorPlusLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -618,7 +635,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>exteriorPlusLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.113">exteriorPlusLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.115">exteriorPlusLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -636,7 +653,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>interiorCircleLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.120">interiorCircleLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.122">interiorCircleLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -654,7 +671,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>exteriorCircleLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.128">exteriorCircleLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.130">exteriorCircleLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -672,7 +689,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>interiorDiamondLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.137">interiorDiamondLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.139">interiorDiamondLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -690,7 +707,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>exteriorDiamondLarge</h4>
-<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.146">exteriorDiamondLarge</a></pre>
+<pre>public static final&nbsp;long <a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.148">exteriorDiamondLarge</a></pre>
 <div class="block">A constant that represents the encoded pattern for a 4x4 square with all lines possible except those that
  would extend to touch cells adjacent to the 4x4 area. Meant to restrict cells within the square area by using
  bitwise AND with an existing encoded pattern as another long, as with <code>LineKit.interiorSquare &amp; encoded</code>.
@@ -716,7 +733,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>LineKit</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.8">LineKit</a>()</pre>
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.10">LineKit</a>()</pre>
 </li>
 </ul>
 </li>
@@ -733,7 +750,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>decode4x4</h4>
-<pre>public static&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.154">decode4x4</a>(long&nbsp;encoded)</pre>
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.156">decode4x4</a>(long&nbsp;encoded)</pre>
 <div class="block">Produces a 4x4 2D char array by interpreting the bits of the given long as line information. Uses the box drawing
  chars from <a href="../../../squidpony/squidgrid/mapping/LineKit.html#light"><code>light</code></a>, which are compatible with most fonts.</div>
 <dl>
@@ -750,7 +767,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>decode4x4</h4>
-<pre>public static&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.167">decode4x4</a>(long&nbsp;encoded,
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.169">decode4x4</a>(long&nbsp;encoded,
                                  char[]&nbsp;symbols)</pre>
 <div class="block">Produces a 4x4 2D char array by interpreting the bits of the given long as line information. Uses the given char
  array, which must have at least 16 elements and is usually one of <a href="../../../squidpony/squidgrid/mapping/LineKit.html#light"><code>light</code></a>, <a href="../../../squidpony/squidgrid/mapping/LineKit.html#heavy"><code>heavy</code></a>,
@@ -771,7 +788,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>decodeInto4x4</h4>
-<pre>public static&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.188">decodeInto4x4</a>(long&nbsp;encoded,
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.190">decodeInto4x4</a>(long&nbsp;encoded,
                                      char[]&nbsp;symbols,
                                      char[][]&nbsp;into,
                                      int&nbsp;startX,
@@ -799,7 +816,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>encode4x4</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.204">encode4x4</a>(char[][]&nbsp;decoded)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.206">encode4x4</a>(char[][]&nbsp;decoded)</pre>
 <div class="block">Reads a 2D char array <code>decoded</code>, which must be at least 4x4 in size, and returns a long that encodes the cells from 0,0 to
  3,3 in a way that this class can interpret and manipulate. The 2D array <code>decoded</code> must contain box drawing
  symbols, which can be any of those from <a href="../../../squidpony/squidgrid/mapping/LineKit.html#light"><code>light</code></a>, <a href="../../../squidpony/squidgrid/mapping/LineKit.html#heavy"><code>heavy</code></a>, <a href="../../../squidpony/squidgrid/mapping/LineKit.html#lightAlt"><code>lightAlt</code></a>, or <a href="../../../squidpony/squidgrid/mapping/LineKit.html#heavyAlt"><code>heavyAlt</code></a>.
@@ -818,7 +835,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>flipHorizontal4x4</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.283">flipHorizontal4x4</a>(long&nbsp;encoded)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.285">flipHorizontal4x4</a>(long&nbsp;encoded)</pre>
 <div class="block">Makes a variant on the given encoded 4x4 pattern so the left side is flipped to the right side and vice versa.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -834,7 +851,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>flipVertical4x4</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.296">flipVertical4x4</a>(long&nbsp;encoded)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.298">flipVertical4x4</a>(long&nbsp;encoded)</pre>
 <div class="block">Makes a variant on the given encoded 4x4 pattern so the top side is flipped to the bottom side and vice versa.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -850,7 +867,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>transpose4x4</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.311">transpose4x4</a>(long&nbsp;encoded)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.313">transpose4x4</a>(long&nbsp;encoded)</pre>
 <div class="block">Makes a variant on the given encoded 4x4 pattern so the x and y axes are interchanged, making the top side become
  the left side and vice versa, while the bottom side becomes the right side and vice versa.</div>
 <dl>
@@ -867,7 +884,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>rotateClockwise</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.326">rotateClockwise</a>(long&nbsp;encoded)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.328">rotateClockwise</a>(long&nbsp;encoded)</pre>
 <div class="block">Makes a variant on the given encoded 4x4 pattern so the lines are rotated 90 degrees clockwise, changing their
  positions as well as what chars they will decode to. This can be called twice to get a 180 degree rotation, but
  <a href="../../../squidpony/squidgrid/mapping/LineKit.html#rotateCounterclockwise-long-"><code>rotateCounterclockwise(long)</code></a> should be used for a 270 degree rotation.</div>
@@ -882,10 +899,10 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <a name="rotateCounterclockwise-long-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>rotateCounterclockwise</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.343">rotateCounterclockwise</a>(long&nbsp;encoded)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.345">rotateCounterclockwise</a>(long&nbsp;encoded)</pre>
 <div class="block">Makes a variant on the given encoded 4x4 pattern so the lines are rotated 90 degrees counterclockwise, changing
  their positions as well as what chars they will decode to. This can be called twice to get a 180 degree rotation,
  but <a href="../../../squidpony/squidgrid/mapping/LineKit.html#rotateClockwise-long-"><code>rotateClockwise(long)</code></a> should be used for a 270 degree rotation.</div>
@@ -894,6 +911,65 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>encoded</code> - an encoded pattern long that represents a 4x4 area</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a different encoded pattern long that represents the argument rotated 90 degrees counterclockwise</dd>
+</dl>
+</li>
+</ul>
+<a name="pruneLines-char:A:A-squidpony.squidmath.GreasedRegion-char:A:A-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>pruneLines</h4>
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.369">pruneLines</a>(char[][]&nbsp;map,
+                                  <a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a>&nbsp;seen,
+                                  char[][]&nbsp;writeInto)</pre>
+<div class="block">Adjusts an existing map that uses box-drawing characters so non-visible line segments aren't rendered.
+ Takes a map that was produced using <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#hashesToLines-char:A:A-"><code>DungeonUtility.hashesToLines(char[][])</code></a> and a GreasedRegion that
+ stores already-seen cells, and writes an altered version of the 2D char array <code>map</code> to <code>writeInto</code>,
+ leaving non-box-drawing chars unchanged. This method modifies writeInto in-place, and also returns it after those
+ changesare made. The way this works is explained well with an example: if the player is north of a T-junction
+ wall, '┬', then unless he has already explored the area south of his position, the bottom segment of the wall
+ isn't visible to him, and so '─' should be rendered instead of '┬'. If a cell has already been seen, it is
+ considered still visible for the purpose of calculating shown segments (it won't change once you leave an area).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>map</code> - a 2D char array that should have been produced by <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#hashesToLines-char:A:A-"><code>DungeonUtility.hashesToLines(char[][])</code></a></dd>
+<dd><code>seen</code> - a GreasedRegion where "on" cells are visible now or were visible in the past</dd>
+<dd><code>writeInto</code> - a 2D char array that must have at least the dimensions of map; will be modified</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>writeInto, after modifications</dd>
+</dl>
+</li>
+</ul>
+<a name="pruneLines-char:A:A-squidpony.squidmath.GreasedRegion-char:A-char:A:A-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>pruneLines</h4>
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/LineKit.html#line.391">pruneLines</a>(char[][]&nbsp;map,
+                                  <a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a>&nbsp;seen,
+                                  char[]&nbsp;symbols,
+                                  char[][]&nbsp;writeInto)</pre>
+<div class="block">Adjusts an existing map that uses box-drawing characters so non-visible line segments aren't rendered.
+ Takes a map that was produced using <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#hashesToLines-char:A:A-"><code>DungeonUtility.hashesToLines(char[][])</code></a> a GreasedRegion that stores
+ already-seen cells, an optional char array that refers to a line drawing style constant in this class (defaults
+ to <a href="../../../squidpony/squidgrid/mapping/LineKit.html#light"><code>light</code></a>, and writes an altered version of the 2D char array <code>map</code> to <code>writeInto</code>, leaving
+ non-box-drawing chars unchanged. This method modifies writeInto in-place, and also returns it after those changes
+ are made. The way this works is explained well with an example: if the player is north of a T-junction wall, '┬',
+ then unless he has already explored the area south of his position, the bottom segment of the wall isn't visible
+ to him, and so '─' should be rendered instead of '┬'. If a cell has already been seen, it is considered still
+ visible for the purpose of calculating shown segments (it won't change once you leave an area).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>map</code> - a 2D char array that should have been produced by <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#hashesToLines-char:A:A-"><code>DungeonUtility.hashesToLines(char[][])</code></a></dd>
+<dd><code>seen</code> - a GreasedRegion where "on" cells are visible now or were visible in the past</dd>
+<dd><code>symbols</code> - a char array that should be <a href="../../../squidpony/squidgrid/mapping/LineKit.html#light"><code>light</code></a> or <a href="../../../squidpony/squidgrid/mapping/LineKit.html#heavy"><code>heavy</code></a> unless you know your font supports
+                the chars "╴╵╶╷", in which case you can use <a href="../../../squidpony/squidgrid/mapping/LineKit.html#lightAlt"><code>lightAlt</code></a>, or the heavy-weight versions of 
+                those chars, in which case you can use <a href="../../../squidpony/squidgrid/mapping/LineKit.html#heavyAlt"><code>heavyAlt</code></a></dd>
+<dd><code>writeInto</code> - a 2D char array that must have at least the dimensions of map; will be modified</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>writeInto, after modifications</dd>
 </dl>
 </li>
 </ul>

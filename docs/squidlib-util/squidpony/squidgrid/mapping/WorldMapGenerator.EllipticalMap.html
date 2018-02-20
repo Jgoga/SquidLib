@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":9,"i1":10,"i2":10,"i3":10};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.DetailedBiomeMapper.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SimpleBiomeMapper.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.MimicMap.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" target="_top">Frames</a></li>
@@ -117,26 +117,22 @@ var activeTableTab = "activeTableTab";
 <dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></dd>
 </dl>
 <dl>
+<dt>Direct Known Subclasses:</dt>
+<dd><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.MimicMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.MimicMap</a></dd>
+</dl>
+<dl>
 <dt>Enclosing class:</dt>
 <dd><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dd>
 </dl>
 <hr>
 <br>
 <pre><a href="../../../squidpony/annotation/Beta.html" title="annotation in squidpony.annotation">@Beta</a>
-public static class <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.html#line.2129">WorldMapGenerator.EllipticalMap</a>
+public static class <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.html#line.2124">WorldMapGenerator.EllipticalMap</a>
 extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></pre>
-<div class="block">A concrete implementation of <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping"><code>WorldMapGenerator</code></a> that distorts the map as it nears the poles, expanding the
- smaller-diameter latitude lines in extreme north and south regions so they take up the same space as the equator;
- this is an alternative implementation to WorldMapGenerator.SphereMap that is meant to avoid certain artifacts
- commonly produced by that generator. This generator does not permit a choice of <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath"><code>Noise.Noise3D</code></a>, since it uses a
- mix of 3D and 4D noise.
- This is ideal for projecting onto a 3D sphere, which could squash the poles to counteract the stretch this does.
- You might also want to produce an oval map that more-accurately represents the changes in the diameter of a
- latitude line on a spherical world; this could be done by using one of the maps this class makes and removing a
- portion of each non-equator row, arranging the removal so if the map is n units wide at the equator, the height
- should be n divided by <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#PI" title="class or interface in java.lang"><code>Math.PI</code></a>, and progressively more cells are removed from rows as you move away from
- the equator (down to empty space or 1 cell left at the poles).
- <a href="http://i.imgur.com/wth01QD.png" >Example map, showing distortion</a></div>
+<div class="block">A concrete implementation of <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping"><code>WorldMapGenerator</code></a> that projects the world map onto an ellipse that should be
+ twice as wide as it is tall (although you can stretch it by width and height that don't have that ratio).
+
+ <a href="https://i.imgur.com/BBKrKjI.png" >Example map, showing ellipse shape</a></div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../serialized-form.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap">Serialized Form</a></dd>
@@ -158,7 +154,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from class&nbsp;squidpony.squidgrid.mapping.<a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></h3>
-<code><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.DetailedBiomeMapper.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.DetailedBiomeMapper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.EllipticalMap</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SimpleBiomeMapper.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SimpleBiomeMapper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMap</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.TilingMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.TilingMap</a></code></li>
+<code><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.DetailedBiomeMapper.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.DetailedBiomeMapper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.EllipticalMap</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.MimicMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.MimicMap</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SimpleBiomeMapper.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SimpleBiomeMapper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMap</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.TilingMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.TilingMap</a></code></li>
 </ul>
 </li>
 </ul>
@@ -175,62 +171,90 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected int[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#edges">edges</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#heat">heat</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#heatFreq">heatFreq</a></span></code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#maxHeat0">maxHeat0</a></span></code>&nbsp;</td>
+</tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#maxHeat1">maxHeat1</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#maxWet0">maxWet0</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#minHeat0">minHeat0</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#minHeat1">minHeat1</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#minWet0">minWet0</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#moisture">moisture</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#moistureFreq">moistureFreq</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#otherFreq">otherFreq</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#otherRidged">otherRidged</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#riverRidged">riverRidged</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#riverRidgedFreq">riverRidgedFreq</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#terrain">terrain</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#terrain4D">terrain4D</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#terrainFreq">terrainFreq</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#terrainRidgedFreq">terrainRidgedFreq</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>double[][]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#xPositions">xPositions</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>double[][]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#yPositions">yPositions</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>double[][]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#zPositions">zPositions</a></span></code>&nbsp;</td>
 </tr>
@@ -240,7 +264,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;squidpony.squidgrid.mapping.<a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></h3>
-<code><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#cachedState">cachedState</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#coastalWaterLower">coastalWaterLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#coastalWaterUpper">coastalWaterUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#coolingModifier">coolingModifier</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#deepWaterLower">deepWaterLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#deepWaterUpper">deepWaterUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#forestLower">forestLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#forestUpper">forestUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#freshwaterData">freshwaterData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#generateRivers">generateRivers</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#grassLower">grassLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#grassUpper">grassUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#heatData">heatData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#height">height</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#heightCodeData">heightCodeData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#heightData">heightData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#landData">landData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#lowers">lowers</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#maxHeat">maxHeat</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#maxHeight">maxHeight</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#maxHeightActual">maxHeightActual</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#maxWet">maxWet</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#mediumWaterLower">mediumWaterLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#mediumWaterUpper">mediumWaterUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#minHeat">minHeat</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#minHeight">minHeight</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#minHeightActual">minHeightActual</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#minWet">minWet</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#moistureData">moistureData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#rng">rng</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#rockLower">rockLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#rockUpper">rockUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#sandLower">sandLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#sandUpper">sandUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#seed">seed</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#shallowWaterLower">shallowWaterLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#shallowWaterUpper">shallowWaterUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#snowLower">snowLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#snowUpper">snowUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#startCacheX">startCacheX</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#startCacheY">startCacheY</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#waterModifier">waterModifier</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#width">width</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#zoom">zoom</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#zoomStartX">zoomStartX</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#zoomStartY">zoomStartY</a></code></li>
+<code><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#cachedState">cachedState</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#coastalWaterLower">coastalWaterLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#coastalWaterUpper">coastalWaterUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#coolingModifier">coolingModifier</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#deepWaterLower">deepWaterLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#deepWaterUpper">deepWaterUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#forestLower">forestLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#forestUpper">forestUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#freshwaterData">freshwaterData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#generateRivers">generateRivers</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#grassLower">grassLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#grassUpper">grassUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#heatData">heatData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#height">height</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#heightCodeData">heightCodeData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#heightData">heightData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#landData">landData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#lowers">lowers</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#maxHeat">maxHeat</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#maxHeight">maxHeight</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#maxHeightActual">maxHeightActual</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#maxWet">maxWet</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#mediumWaterLower">mediumWaterLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#mediumWaterUpper">mediumWaterUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#minHeat">minHeat</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#minHeight">minHeight</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#minHeightActual">minHeightActual</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#minWet">minWet</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#moistureData">moistureData</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#rng">rng</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#rockLower">rockLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#rockUpper">rockUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#sandLower">sandLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#sandUpper">sandUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#seed">seed</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#shallowWaterLower">shallowWaterLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#shallowWaterUpper">shallowWaterUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#snowLower">snowLower</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#snowUpper">snowUpper</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#startCacheX">startCacheX</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#startCacheY">startCacheY</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#startX">startX</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#startY">startY</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#usedHeight">usedHeight</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#usedWidth">usedWidth</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#waterModifier">waterModifier</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#width">width</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#zoom">zoom</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#zoomStartX">zoomStartX</a>, <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#zoomStartY">zoomStartY</a></code></li>
 </ul>
 </li>
 </ul>
@@ -320,12 +344,18 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>protected static double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#asin-double-">asin</a></span>(double&nbsp;a)</code>
+<div class="block">Arc sine approximation with fairly low error while still being faster than <a href="../../../squidpony/squidmath/NumberTools.html#sin-double-"><code>NumberTools.sin(double)</code></a>.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#regenerate-int-int-int-int-double-double-long-">regenerate</a></span>(int&nbsp;startX,
           int&nbsp;startY,
@@ -335,12 +365,12 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
           double&nbsp;coolMod,
           long&nbsp;state)</code>&nbsp;</td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#wrapX-int-int-">wrapX</a></span>(int&nbsp;x,
      int&nbsp;y)</code>&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#wrapY-int-int-">wrapY</a></span>(int&nbsp;x,
      int&nbsp;y)</code>&nbsp;</td>
@@ -380,7 +410,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>terrainFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">terrainFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2125">terrainFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.terrainFreq">Constant Field Values</a></dd>
@@ -393,7 +423,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>terrainRidgedFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">terrainRidgedFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2125">terrainRidgedFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.terrainRidgedFreq">Constant Field Values</a></dd>
@@ -406,7 +436,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>heatFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">heatFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2125">heatFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.heatFreq">Constant Field Values</a></dd>
@@ -419,7 +449,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>moistureFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">moistureFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2125">moistureFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.moistureFreq">Constant Field Values</a></dd>
@@ -432,7 +462,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>otherFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">otherFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2125">otherFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.otherFreq">Constant Field Values</a></dd>
@@ -445,11 +475,65 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>riverRidgedFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">riverRidgedFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2125">riverRidgedFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.riverRidgedFreq">Constant Field Values</a></dd>
 </dl>
+</li>
+</ul>
+<a name="minHeat0">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>minHeat0</h4>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2126">minHeat0</a></pre>
+</li>
+</ul>
+<a name="maxHeat0">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>maxHeat0</h4>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2126">maxHeat0</a></pre>
+</li>
+</ul>
+<a name="minHeat1">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>minHeat1</h4>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2127">minHeat1</a></pre>
+</li>
+</ul>
+<a name="maxHeat1">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>maxHeat1</h4>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2127">maxHeat1</a></pre>
+</li>
+</ul>
+<a name="minWet0">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>minWet0</h4>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2128">minWet0</a></pre>
+</li>
+</ul>
+<a name="maxWet0">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>maxWet0</h4>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2128">maxWet0</a></pre>
 </li>
 </ul>
 <a name="terrain">
@@ -458,7 +542,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>terrain</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2135">terrain</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">terrain</a></pre>
 </li>
 </ul>
 <a name="heat">
@@ -467,7 +551,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>heat</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2135">heat</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">heat</a></pre>
 </li>
 </ul>
 <a name="moisture">
@@ -476,7 +560,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>moisture</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2135">moisture</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">moisture</a></pre>
 </li>
 </ul>
 <a name="otherRidged">
@@ -485,7 +569,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>otherRidged</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2135">otherRidged</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">otherRidged</a></pre>
 </li>
 </ul>
 <a name="riverRidged">
@@ -494,7 +578,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>riverRidged</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2135">riverRidged</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2130">riverRidged</a></pre>
 </li>
 </ul>
 <a name="terrain4D">
@@ -503,7 +587,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>terrain4D</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2136">terrain4D</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2131">terrain4D</a></pre>
 </li>
 </ul>
 <a name="xPositions">
@@ -512,7 +596,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>xPositions</h4>
-<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2137">xPositions</a></pre>
+<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2132">xPositions</a></pre>
 </li>
 </ul>
 <a name="yPositions">
@@ -521,16 +605,25 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>yPositions</h4>
-<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2138">yPositions</a></pre>
+<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2133">yPositions</a></pre>
 </li>
 </ul>
 <a name="zPositions">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>zPositions</h4>
-<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2139">zPositions</a></pre>
+<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2134">zPositions</a></pre>
+</li>
+</ul>
+<a name="edges">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>edges</h4>
+<pre>protected final&nbsp;int[] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2135">edges</a></pre>
 </li>
 </ul>
 </li>
@@ -547,7 +640,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>EllipticalMap</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2152">EllipticalMap</a>()</pre>
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2147">EllipticalMap</a>()</pre>
 <div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
  3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
  have significantly-exaggerated-in-size features while the equator is not distorted.
@@ -563,7 +656,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>EllipticalMap</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2168">EllipticalMap</a>(int&nbsp;mapWidth,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2163">EllipticalMap</a>(int&nbsp;mapWidth,
                      int&nbsp;mapHeight)</pre>
 <div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
  3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
@@ -585,7 +678,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>EllipticalMap</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2185">EllipticalMap</a>(long&nbsp;initialSeed,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2180">EllipticalMap</a>(long&nbsp;initialSeed,
                      int&nbsp;mapWidth,
                      int&nbsp;mapHeight)</pre>
 <div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
@@ -609,7 +702,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>EllipticalMap</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2203">EllipticalMap</a>(long&nbsp;initialSeed,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2198">EllipticalMap</a>(long&nbsp;initialSeed,
                      int&nbsp;mapWidth,
                      int&nbsp;mapHeight,
                      double&nbsp;octaveMultiplier)</pre>
@@ -635,7 +728,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>EllipticalMap</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2221">EllipticalMap</a>(long&nbsp;initialSeed,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2216">EllipticalMap</a>(long&nbsp;initialSeed,
                      int&nbsp;mapWidth,
                      int&nbsp;mapHeight,
                      <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;noiseGenerator)</pre>
@@ -661,7 +754,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockListLast">
 <li class="blockList">
 <h4>EllipticalMap</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2247">EllipticalMap</a>(long&nbsp;initialSeed,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2242">EllipticalMap</a>(long&nbsp;initialSeed,
                      int&nbsp;mapWidth,
                      int&nbsp;mapHeight,
                      <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;noiseGenerator,
@@ -705,7 +798,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>wrapX</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2262">wrapX</a>(int&nbsp;x,
+<pre>public&nbsp;int&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2257">wrapX</a>(int&nbsp;x,
                  int&nbsp;y)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
@@ -719,11 +812,30 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>wrapY</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2271">wrapY</a>(int&nbsp;x,
+<pre>public&nbsp;int&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2267">wrapY</a>(int&nbsp;x,
                  int&nbsp;y)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#wrapY-int-int-">wrapY</a></code>&nbsp;in class&nbsp;<code><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="asin-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>asin</h4>
+<pre>protected static&nbsp;double&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2281">asin</a>(double&nbsp;a)</pre>
+<div class="block">Arc sine approximation with fairly low error while still being faster than <a href="../../../squidpony/squidmath/NumberTools.html#sin-double-"><code>NumberTools.sin(double)</code></a>.
+ This formula is number 201 in <a href=">http://www.fastcode.dk/fastcodeproject/articles/index.htm">Dennis
+ Kjaer Christensen's unfinished math work on arc sine approximation</a>. This method is about 40 times faster
+ than <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#asin-double-" title="class or interface in java.lang"><code>Math.asin(double)</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>a</code> - an input to the inverse sine function, from -1 to 1 inclusive (error is higher approaching -1 or 1)</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>an output from the inverse sine function, from -PI/2 to PI/2 inclusive.</dd>
 </dl>
 </li>
 </ul>
@@ -733,7 +845,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockListLast">
 <li class="blockList">
 <h4>regenerate</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2282">regenerate</a>(int&nbsp;startX,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2286">regenerate</a>(int&nbsp;startX,
                           int&nbsp;startY,
                           int&nbsp;usedWidth,
                           int&nbsp;usedHeight,
@@ -775,7 +887,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.DetailedBiomeMapper.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SimpleBiomeMapper.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.MimicMap.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" target="_top">Frames</a></li>
