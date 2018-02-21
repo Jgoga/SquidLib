@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidmath/TabbyNoise.html" title="class in squidpony.squidmath"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidmath/ThrustAlt32RNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidmath/TableSet.html" target="_top">Frames</a></li>
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre><a href="../../squidpony/annotation/Beta.html" title="annotation in squidpony.annotation">@Beta</a>
-public class <a href="../../src-html/squidpony/squidmath/TableSet.html#line.87">TableSet</a>&lt;C,R&gt;
+public class <a href="../../src-html/squidpony/squidmath/TableSet.html#line.93">TableSet</a>&lt;C,R&gt;
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">A generic linked hash set with with a fast implementation, originally from fastutil as ObjectLinkedOpenHashSet but
@@ -735,7 +735,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>cols</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[] <a href="../../src-html/squidpony/squidmath/TableSet.html#line.92">cols</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[] <a href="../../src-html/squidpony/squidmath/TableSet.html#line.98">cols</a></pre>
 <div class="block">The array of column keys.</div>
 </li>
 </ul>
@@ -745,7 +745,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>rows</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[] <a href="../../src-html/squidpony/squidmath/TableSet.html#line.96">rows</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[] <a href="../../src-html/squidpony/squidmath/TableSet.html#line.102">rows</a></pre>
 <div class="block">The array of row keys.</div>
 </li>
 </ul>
@@ -755,7 +755,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>mask</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.104">mask</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.110">mask</a></pre>
 <div class="block">The mask for wrapping a position counter.</div>
 </li>
 </ul>
@@ -765,7 +765,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>containsNull</h4>
-<pre>protected&nbsp;boolean <a href="../../src-html/squidpony/squidmath/TableSet.html#line.108">containsNull</a></pre>
+<pre>protected&nbsp;boolean <a href="../../src-html/squidpony/squidmath/TableSet.html#line.114">containsNull</a></pre>
 <div class="block">Whether this set contains the key zero.</div>
 </li>
 </ul>
@@ -775,7 +775,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>first</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.112">first</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.118">first</a></pre>
 <div class="block">The index of the first entry in iteration order. It is valid iff <a href="../../squidpony/squidmath/TableSet.html#size"><code>size</code></a> is nonzero; otherwise, it contains -1.</div>
 </li>
 </ul>
@@ -785,7 +785,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>last</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.116">last</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.122">last</a></pre>
 <div class="block">The index of the last entry in iteration order. It is valid iff <a href="../../squidpony/squidmath/TableSet.html#size"><code>size</code></a> is nonzero; otherwise, it contains -1.</div>
 </li>
 </ul>
@@ -795,7 +795,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>order</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a> <a href="../../src-html/squidpony/squidmath/TableSet.html#line.122">order</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a> <a href="../../src-html/squidpony/squidmath/TableSet.html#line.128">order</a></pre>
 </li>
 </ul>
 <a name="n">
@@ -804,7 +804,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>n</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.126">n</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.132">n</a></pre>
 <div class="block">The current table size.</div>
 </li>
 </ul>
@@ -814,7 +814,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>maxFill</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.130">maxFill</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.136">maxFill</a></pre>
 <div class="block">Threshold after which we rehash. It must be the table size times <a href="../../squidpony/squidmath/TableSet.html#f"><code>f</code></a>.</div>
 </li>
 </ul>
@@ -824,7 +824,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>size</h4>
-<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.134">size</a></pre>
+<pre>protected&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.140">size</a></pre>
 <div class="block">Number of entries in the set (including the key zero, if present).</div>
 </li>
 </ul>
@@ -834,7 +834,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>f</h4>
-<pre>public final&nbsp;float <a href="../../src-html/squidpony/squidmath/TableSet.html#line.138">f</a></pre>
+<pre>public final&nbsp;float <a href="../../src-html/squidpony/squidmath/TableSet.html#line.144">f</a></pre>
 <div class="block">The acceptable load factor.</div>
 </li>
 </ul>
@@ -844,7 +844,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>DEFAULT_INITIAL_SIZE</h4>
-<pre>public static final&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.143">DEFAULT_INITIAL_SIZE</a></pre>
+<pre>public static final&nbsp;int <a href="../../src-html/squidpony/squidmath/TableSet.html#line.149">DEFAULT_INITIAL_SIZE</a></pre>
 <div class="block">The initial default size of a hash table.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -858,7 +858,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>DEFAULT_LOAD_FACTOR</h4>
-<pre>public static final&nbsp;float <a href="../../src-html/squidpony/squidmath/TableSet.html#line.147">DEFAULT_LOAD_FACTOR</a></pre>
+<pre>public static final&nbsp;float <a href="../../src-html/squidpony/squidmath/TableSet.html#line.153">DEFAULT_LOAD_FACTOR</a></pre>
 <div class="block">The default load factor of a hash table.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -872,7 +872,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>FAST_LOAD_FACTOR</h4>
-<pre>public static final&nbsp;float <a href="../../src-html/squidpony/squidmath/TableSet.html#line.151">FAST_LOAD_FACTOR</a></pre>
+<pre>public static final&nbsp;float <a href="../../src-html/squidpony/squidmath/TableSet.html#line.157">FAST_LOAD_FACTOR</a></pre>
 <div class="block">The load factor for a (usually small) table that is meant to be particularly fast.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -886,7 +886,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>VERY_FAST_LOAD_FACTOR</h4>
-<pre>public static final&nbsp;float <a href="../../src-html/squidpony/squidmath/TableSet.html#line.155">VERY_FAST_LOAD_FACTOR</a></pre>
+<pre>public static final&nbsp;float <a href="../../src-html/squidpony/squidmath/TableSet.html#line.161">VERY_FAST_LOAD_FACTOR</a></pre>
 <div class="block">The load factor for a (usually very small) table that is meant to be extremely fast.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -900,7 +900,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>columnHasher</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/TableSet.html#line.157">columnHasher</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/TableSet.html#line.163">columnHasher</a></pre>
 </li>
 </ul>
 <a name="rowHasher">
@@ -909,7 +909,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>rowHasher</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/TableSet.html#line.157">rowHasher</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/TableSet.html#line.163">rowHasher</a></pre>
 </li>
 </ul>
 </li>
@@ -926,7 +926,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.169">TableSet</a>(int&nbsp;expected,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.175">TableSet</a>(int&nbsp;expected,
                 float&nbsp;f)</pre>
 <div class="block">Creates a new hash map.
  <p>
@@ -944,7 +944,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.189">TableSet</a>(int&nbsp;expected)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.195">TableSet</a>(int&nbsp;expected)</pre>
 <div class="block">Creates a new hash set with <a href="../../squidpony/squidmath/TableSet.html#DEFAULT_LOAD_FACTOR"><code>DEFAULT_LOAD_FACTOR</code></a> as load
  factor.</div>
 <dl>
@@ -959,7 +959,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.198">TableSet</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.204">TableSet</a>()</pre>
 <div class="block">Creates a new hash set with initial expected
  <a href="../../squidpony/squidmath/TableSet.html#DEFAULT_INITIAL_SIZE"><code>DEFAULT_INITIAL_SIZE</code></a> elements and
  <a href="../../squidpony/squidmath/TableSet.html#DEFAULT_LOAD_FACTOR"><code>DEFAULT_LOAD_FACTOR</code></a> as load factor.</div>
@@ -971,7 +971,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.208">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>,? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;t)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.214">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>,? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;t)</pre>
 <div class="block">Creates a new hash set with <a href="../../squidpony/squidmath/TableSet.html#DEFAULT_LOAD_FACTOR"><code>DEFAULT_LOAD_FACTOR</code></a> as load
  factor copying a given collection.</div>
 <dl>
@@ -986,7 +986,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.224">TableSet</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.230">TableSet</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
                 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;r,
                 float&nbsp;f)</pre>
 <div class="block">Creates a new hash set using elements provided by a type-specific
@@ -1005,7 +1005,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.237">TableSet</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.243">TableSet</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
                 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;r)</pre>
 <div class="block">Creates a new hash set with <a href="../../squidpony/squidmath/TableSet.html#DEFAULT_LOAD_FACTOR"><code>DEFAULT_LOAD_FACTOR</code></a> as load
  factor using elements provided by a type-specific iterator.</div>
@@ -1024,7 +1024,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.251">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.257">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
                 int&nbsp;offset_c,
                 <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[]&nbsp;r,
                 int&nbsp;offset_r,
@@ -1050,7 +1050,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.280">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.286">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
                 int&nbsp;offset_c,
                 <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[]&nbsp;r,
                 int&nbsp;offset_r,
@@ -1075,7 +1075,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.292">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.298">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
                 <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[]&nbsp;r,
                 float&nbsp;f)</pre>
 <div class="block">Creates a new hash set copying the elements of an array.</div>
@@ -1095,7 +1095,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.303">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.309">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
                 <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[]&nbsp;r)</pre>
 <div class="block">Creates a new hash set with <a href="../../squidpony/squidmath/TableSet.html#DEFAULT_LOAD_FACTOR"><code>DEFAULT_LOAD_FACTOR</code></a> as load
  factor copying the elements of an array.</div>
@@ -1112,7 +1112,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.317">TableSet</a>(int&nbsp;expected,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.323">TableSet</a>(int&nbsp;expected,
                 float&nbsp;f,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;columnHasher,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;rowHasher)</pre>
@@ -1133,7 +1133,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.340">TableSet</a>(<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;columnHasher,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.346">TableSet</a>(<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;columnHasher,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;rowHasher)</pre>
 <div class="block">Creates a new hash set with <a href="../../squidpony/squidmath/TableSet.html#DEFAULT_LOAD_FACTOR"><code>DEFAULT_LOAD_FACTOR</code></a> as load
  factor.</div>
@@ -1150,7 +1150,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.351">TableSet</a>(int&nbsp;expected,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.357">TableSet</a>(int&nbsp;expected,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;columnHasher,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;rowHasher)</pre>
 <div class="block">Creates a new hash set with <a href="../../squidpony/squidmath/TableSet.html#DEFAULT_LOAD_FACTOR"><code>DEFAULT_LOAD_FACTOR</code></a> as load
@@ -1168,7 +1168,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.362">TableSet</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.368">TableSet</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
                 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;r,
                 float&nbsp;f,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;columnHasher,
@@ -1188,7 +1188,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.375">TableSet</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.381">TableSet</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
                 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;r,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;columnHasher,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;rowHasher)</pre>
@@ -1209,7 +1209,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.389">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.395">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
                 int&nbsp;offset_c,
                 <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[]&nbsp;r,
                 int&nbsp;offset_r,
@@ -1237,7 +1237,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.418">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.424">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
                 int&nbsp;offset_c,
                 <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[]&nbsp;r,
                 int&nbsp;offset_r,
@@ -1264,7 +1264,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.430">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.436">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
                 <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[]&nbsp;r,
                 float&nbsp;f,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;columnHasher,
@@ -1286,7 +1286,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>TableSet</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.442">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.448">TableSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>[]&nbsp;c,
                 <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>[]&nbsp;r,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;columnHasher,
                 <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a>&nbsp;rowHasher)</pre>
@@ -1313,7 +1313,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>addAll</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.466">addAll</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.472">addAll</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;c,
                       <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;r)</pre>
 </li>
 </ul>
@@ -1325,7 +1325,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>add</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.485">add</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;c,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.491">add</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;c,
                    <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;r)</pre>
 </li>
 </ul>
@@ -1337,7 +1337,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>addAt</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.520">addAt</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;c,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.526">addAt</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;c,
                      <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;r,
                      int&nbsp;idx)</pre>
 </li>
@@ -1348,7 +1348,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>shiftKeys</h4>
-<pre>protected final&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.569">shiftKeys</a>(int&nbsp;pos)</pre>
+<pre>protected final&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.575">shiftKeys</a>(int&nbsp;pos)</pre>
 <div class="block">Shifts left entries with the specified hash code, starting at the
  specified position, and empties the resulting free entry.</div>
 <dl>
@@ -1363,7 +1363,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>remove</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.617">remove</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.623">remove</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
                       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;r)</pre>
 </li>
 </ul>
@@ -1373,7 +1373,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>column</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.639">column</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.645">column</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
                 <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;r)</pre>
 </li>
 </ul>
@@ -1383,7 +1383,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>row</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.646">row</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.652">row</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
              <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;r)</pre>
 </li>
 </ul>
@@ -1393,7 +1393,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>contains</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.653">contains</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.659">contains</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
                         <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;r)</pre>
 </li>
 </ul>
@@ -1403,7 +1403,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>positionOf</h4>
-<pre>protected&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.676">positionOf</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
+<pre>protected&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.682">positionOf</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;c,
                          <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;r)</pre>
 </li>
 </ul>
@@ -1413,7 +1413,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>clear</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.706">clear</a>()</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.712">clear</a>()</pre>
 </li>
 </ul>
 <a name="size--">
@@ -1422,7 +1422,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>size</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.716">size</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.722">size</a>()</pre>
 </li>
 </ul>
 <a name="containsAll-java.util.Collection-java.util.Collection-">
@@ -1431,7 +1431,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>containsAll</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.728">containsAll</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;c,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.734">containsAll</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;c,
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;r)</pre>
 <div class="block">Checks whether this collection contains all elements from the given
  collection.</div>
@@ -1450,7 +1450,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>removeAll</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.767">removeAll</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;c,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.773">removeAll</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;c,
                          <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;r)</pre>
 <div class="block">Remove from this collection all elements in the given collection. If the
  collection is an instance of this class, it uses faster iterators.</div>
@@ -1469,7 +1469,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>isEmpty</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.778">isEmpty</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.784">isEmpty</a>()</pre>
 </li>
 </ul>
 <a name="fixOrder-int-">
@@ -1478,7 +1478,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>fixOrder</h4>
-<pre>protected&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.788">fixOrder</a>(int&nbsp;i)</pre>
+<pre>protected&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.794">fixOrder</a>(int&nbsp;i)</pre>
 <div class="block">Modifies the link vector so that the given entry is removed. This method will complete in logarithmic time.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1492,7 +1492,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>fixOrder</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.812">fixOrder</a>(int&nbsp;s,
+<pre>protected&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.818">fixOrder</a>(int&nbsp;s,
                         int&nbsp;d)</pre>
 <div class="block">Modifies the ordering for a shift from s to d.
  <br>
@@ -1510,7 +1510,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>first</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.832">first</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.838">first</a>()</pre>
 <div class="block">Returns the first element of this set in iteration order.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1524,7 +1524,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>last</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.843">last</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.849">last</a>()</pre>
 <div class="block">Returns the last element of this set in iteration order.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1540,7 +1540,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>tailSet</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.849">tailSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;from)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.855">tailSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;from)</pre>
 </li>
 </ul>
 <a name="headSet-java.lang.Object-">
@@ -1551,7 +1551,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>headSet</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.853">headSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;to)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.859">headSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;to)</pre>
 </li>
 </ul>
 <a name="subSet-java.lang.Object-java.lang.Object-">
@@ -1562,7 +1562,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>subSet</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.857">subSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;from,
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.863">subSet</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;from,
                            <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;to)</pre>
 </li>
 </ul>
@@ -1572,7 +1572,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>comparator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;? super <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.861">comparator</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;? super <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.867">comparator</a>()</pre>
 </li>
 </ul>
 <a name="iterator--">
@@ -1581,7 +1581,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>iterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ListIterator.html?is-external=true" title="class or interface in java.util">ListIterator</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1075">iterator</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ListIterator.html?is-external=true" title="class or interface in java.util">ListIterator</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1081">iterator</a>()</pre>
 </li>
 </ul>
 <a name="trim--">
@@ -1590,7 +1590,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>trim</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1089">trim</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1095">trim</a>()</pre>
 <div class="block">Rehashes the map, making the table as small as possible.
  <p>
  <P>This method rehashes the table to the smallest size satisfying the load factor. It can be used when the set will not be changed anymore, so to optimize access speed and size.
@@ -1610,7 +1610,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>trim</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1113">trim</a>(int&nbsp;n)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1119">trim</a>(int&nbsp;n)</pre>
 <div class="block">Rehashes this map if the table is too large.
  <p>
  <P>Let <var>N</var> be the smallest table size that can hold <code>max(n,<a href="../../squidpony/squidmath/TableSet.html#size--"><code>size()</code></a>)</code> entries, still satisfying the load factor. If the current table size is smaller than or equal to
@@ -1634,7 +1634,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>rehash</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1137">rehash</a>(int&nbsp;newN)</pre>
+<pre>protected&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1143">rehash</a>(int&nbsp;newN)</pre>
 <div class="block">Rehashes the map.
  <p>
  <p>
@@ -1654,7 +1654,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1214">hashCode</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1220">hashCode</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -1667,7 +1667,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>maxFill</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1225">maxFill</a>(int&nbsp;n,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1231">maxFill</a>(int&nbsp;n,
                           float&nbsp;f)</pre>
 <div class="block">Returns the maximum number of entries that can be filled before rehashing.</div>
 <dl>
@@ -1685,7 +1685,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>maxFill</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1238">maxFill</a>(long&nbsp;n,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1244">maxFill</a>(long&nbsp;n,
                            float&nbsp;f)</pre>
 <div class="block">Returns the maximum number of entries that can be filled before rehashing.</div>
 <dl>
@@ -1703,7 +1703,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>arraySize</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1252">arraySize</a>(int&nbsp;expected,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1258">arraySize</a>(int&nbsp;expected,
                             float&nbsp;f)</pre>
 <div class="block">Returns the least power of two smaller than or equal to 2<sup>30</sup> and larger than or equal to <code>Math.ceil( expected / f )</code>.</div>
 <dl>
@@ -1723,7 +1723,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1260">toString</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1266">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -1736,7 +1736,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1275">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1281">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -1749,7 +1749,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>columnAt</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1340">columnAt</a>(int&nbsp;idx)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1346">columnAt</a>(int&nbsp;idx)</pre>
 <div class="block">Gets the item at the given index in the iteration order in constant time (random-access).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1765,7 +1765,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>rowAt</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1353">rowAt</a>(int&nbsp;idx)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1359">rowAt</a>(int&nbsp;idx)</pre>
 <div class="block">Gets the item at the given index in the iteration order in constant time (random-access).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1781,7 +1781,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>removeAt</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1367">removeAt</a>(int&nbsp;idx)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1373">removeAt</a>(int&nbsp;idx)</pre>
 <div class="block">Removes the item at the given index in the iteration order in not-exactly constant time (though it still should
  be efficient).</div>
 <dl>
@@ -1798,7 +1798,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>randomColumn</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1387">randomColumn</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1393">randomColumn</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a random value from this OrderedSet in constant time, using the given RNG to generate a random number.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1814,7 +1814,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>randomRow</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1397">randomRow</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1403">randomRow</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a random value from this OrderedSet in constant time, using the given RNG to generate a random number.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1830,7 +1830,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>shuffle</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>,<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1407">shuffle</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>,<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1413">shuffle</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
 <div class="block">Randomly alters the iteration order for this OrderedSet using the given RNG to shuffle.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1846,7 +1846,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>reorder</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>,<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1433">reorder</a>(int...&nbsp;ordering)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>,<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1439">reorder</a>(int...&nbsp;ordering)</pre>
 <div class="block">Given an array or varargs of replacement indices for this OrderedSet's iteration order, reorders this so the
  first item in the returned version is the same as <code>getAt(ordering[0])</code> (with some care taken for negative
  or too-large indices), the second item in the returned version is the same as <code>getAt(ordering[1])</code>, etc.
@@ -1875,7 +1875,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>alter</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1555">alter</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;originalC,
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1561">alter</a>(<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;originalC,
                      <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;originalR,
                      <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;replacementC,
                      <a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;replacementR)</pre>
@@ -1921,7 +1921,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidmath/TabbyNoise.html" title="class in squidpony.squidmath"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidmath/ThrustAlt32RNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidmath/TableSet.html" target="_top">Frames</a></li>
