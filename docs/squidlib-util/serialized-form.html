@@ -1828,6 +1828,10 @@
 <pre>char[][] politicalMap</pre>
 </li>
 <li class="blockList">
+<h4>zoomedMap</h4>
+<pre>char[][] zoomedMap</pre>
+</li>
+<li class="blockList">
 <h4>wmg</h4>
 <pre><a href="squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a> wmg</pre>
 </li>
@@ -1871,22 +1875,33 @@
 <li class="blockList">
 <h4>preferredBiomes</h4>
 <pre><a href="squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="squidpony/squidmath/UnorderedSet.html" title="type parameter in UnorderedSet">K</a>&gt; preferredBiomes</pre>
+<div class="block">An UnorderedSet of String keys, where each key is the name of a biome this Faction wants to occupy.
+ May be null if no biomes are specifically preferred.</div>
 </li>
 <li class="blockList">
 <h4>blockedBiomes</h4>
 <pre><a href="squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="squidpony/squidmath/UnorderedSet.html" title="type parameter in UnorderedSet">K</a>&gt; blockedBiomes</pre>
+<div class="block">An UnorderedSet of String keys, where each key is the name of a biome this Faction will never occupy.
+ May be null if all biomes are available, but unless this is specified in a constructor, the default will be
+ to consider "Ocean" blocked.</div>
 </li>
 <li class="blockList">
 <h4>preferredHeight</h4>
 <pre>int[] preferredHeight</pre>
+<div class="block">An int array of height codes that this Faction prefers; 0, 1, 2, and 3 are all oceans, while 4 is shoreline
+ or low-lying land and higher numbers (up to 8, inclusive) are used for increasing elevations.</div>
 </li>
 <li class="blockList">
 <h4>preferredHeat</h4>
 <pre>int[] preferredHeat</pre>
+<div class="block">An int array of heat codes that this Faction prefers; typically a 6-code scale is used where 0, 1, and 2 are
+ cold and getting progressively warmer, while 3, 4, and 5 are warm to warmest.</div>
 </li>
 <li class="blockListLast">
 <h4>preferredMoisture</h4>
 <pre>int[] preferredMoisture</pre>
+<div class="block">An int array of moisture codes that this Faction prefers; typically a 6-code scale is used where 0, 1, and 2
+ are dry and getting progressively more precipitation, while 3, 4, and 5 are wet to wettest.</div>
 </li>
 </ul>
 </li>

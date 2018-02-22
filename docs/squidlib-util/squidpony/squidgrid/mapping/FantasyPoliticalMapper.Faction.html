@@ -111,9 +111,14 @@
 </dl>
 <hr>
 <br>
-<pre>public static class <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.27">FantasyPoliticalMapper.Faction</a>
+<pre>public static class <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.34">FantasyPoliticalMapper.Faction</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
+<div class="block">Represents a group that claims territory on a world-map, such as a nation. Each Faction has a name, a short name
+ that may be the same as the regular name, a FakeLanguageGen that would be used to generate place names in that
+ Faction's territory, and a number of (possibly null) arrays and Sets that represent what terrains this Faction
+ wants to claim and which it will avoid (e.g. elves may prefer claiming forests, while frost giants won't claim
+ anywhere that's even remotely warm).</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../serialized-form.html#squidpony.squidgrid.mapping.FantasyPoliticalMapper.Faction">Serialized Form</a></dd>
@@ -138,7 +143,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#blockedBiomes">blockedBiomes</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#blockedBiomes">blockedBiomes</a></span></code>
+<div class="block">An UnorderedSet of String keys, where each key is the name of a biome this Faction will never occupy.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a></code></td>
@@ -150,19 +157,30 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#preferredBiomes">preferredBiomes</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#preferredBiomes">preferredBiomes</a></span></code>
+<div class="block">An UnorderedSet of String keys, where each key is the name of a biome this Faction wants to occupy.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>int[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#preferredHeat">preferredHeat</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#preferredHeat">preferredHeat</a></span></code>
+<div class="block">An int array of heat codes that this Faction prefers; typically a 6-code scale is used where 0, 1, and 2 are
+ cold and getting progressively warmer, while 3, 4, and 5 are warm to warmest.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>int[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#preferredHeight">preferredHeight</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#preferredHeight">preferredHeight</a></span></code>
+<div class="block">An int array of height codes that this Faction prefers; 0, 1, 2, and 3 are all oceans, while 4 is shoreline
+ or low-lying land and higher numbers (up to 8, inclusive) are used for increasing elevations.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>int[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#preferredMoisture">preferredMoisture</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#preferredMoisture">preferredMoisture</a></span></code>
+<div class="block">An int array of moisture codes that this Faction prefers; typically a 6-code scale is used where 0, 1, and 2
+ are dry and getting progressively more precipitation, while 3, 4, and 5 are wet to wettest.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
@@ -183,32 +201,54 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction--">Faction</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction--">Faction</a></span>()</code>
+<div class="block">Zero-arg constructor that sets the language to a random FakeLanguageGen (using
+ <a href="../../../squidpony/FakeLanguageGen.html#randomLanguage-long-"><code>FakeLanguageGen.randomLanguage(long)</code></a>), then generates a name/shortName with that FakeLanguageGen, and
+ makes the only blocked biome "Ocean".</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction-squidpony.FakeLanguageGen-">Faction</a></span>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction-squidpony.FakeLanguageGen-">Faction</a></span>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language)</code>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, then generates a name/shortName with
+ that FakeLanguageGen, and makes the only blocked biome "Ocean".</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction-squidpony.FakeLanguageGen-java.lang.String-">Faction</a></span>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>&nbsp;</td>
+       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name and shortName to the
+ specified name, and makes the only blocked biome "Ocean".</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-">Faction</a></span>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName)</code>&nbsp;</td>
+       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName)</code>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, and makes the only blocked biome "Ocean".</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-">Faction</a></span>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes)</code>&nbsp;</td>
+       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes)</code>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, and makes the only blocked biome "Ocean".</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-java.lang.String:A-">Faction</a></span>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName,
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;blockedBiomes)</code>&nbsp;</td>
+       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;blockedBiomes)</code>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, and sets the blocked biomes to be a Set containing exactly the given Strings in
+ blockedBiomes.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-java.lang.String:A-int:A-">Faction</a></span>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
@@ -216,7 +256,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName,
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes,
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;blockedBiomes,
-       int[]&nbsp;preferredHeight)</code>&nbsp;</td>
+       int[]&nbsp;preferredHeight)</code>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, sets the blocked biomes to be a Set containing exactly the given Strings in
+ blockedBiomes, and sets the preferred height codes to the ints in preferredHeight (with 4 being sea level and
+ 8 being the highest peaks).</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-java.lang.String:A-int:A-int:A-">Faction</a></span>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
@@ -225,7 +271,14 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes,
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;blockedBiomes,
        int[]&nbsp;preferredHeight,
-       int[]&nbsp;preferredHeat)</code>&nbsp;</td>
+       int[]&nbsp;preferredHeat)</code>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, sets the blocked biomes to be a Set containing exactly the given Strings in
+ blockedBiomes, sets the preferred height codes to the ints in preferredHeight (with 4 being sea level and 8
+ being the highest peaks), and sets the preferred heat codes to the ints in preferredHeat (with the exact
+ values depending on the BiomeMapper, but usually 0-5 range from coldest to hottest).</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-java.lang.String:A-int:A-int:A-int:A-">Faction</a></span>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
@@ -235,7 +288,16 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
        <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;blockedBiomes,
        int[]&nbsp;preferredHeight,
        int[]&nbsp;preferredHeat,
-       int[]&nbsp;preferredMoisture)</code>&nbsp;</td>
+       int[]&nbsp;preferredMoisture)</code>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, sets the blocked biomes to be a Set containing exactly the given Strings in
+ blockedBiomes, sets the preferred height codes to the ints in preferredHeight (with 4 being sea level and 8
+ being the highest peaks), sets the preferred heat codes to the ints in preferredHeat (with the exact values
+ depending on the BiomeMapper, but usually 0-5 range from coldest to hottest), and sets the preferred moisture
+ codes to the ints in preferredMoisture (withe the exact values depending on the BiomeMapper, but usually 0-5
+ range from driest to wettest).</div>
+</td>
 </tr>
 </table>
 </li>
@@ -273,7 +335,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>name</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.31">name</a></pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.38">name</a></pre>
 </li>
 </ul>
 <a name="shortName">
@@ -282,7 +344,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>shortName</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.31">shortName</a></pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.38">shortName</a></pre>
 </li>
 </ul>
 <a name="language">
@@ -291,7 +353,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>language</h4>
-<pre>public&nbsp;<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.32">language</a></pre>
+<pre>public&nbsp;<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.39">language</a></pre>
 </li>
 </ul>
 <a name="preferredBiomes">
@@ -300,7 +362,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>preferredBiomes</h4>
-<pre>public&nbsp;<a href="../../../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt; <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.33">preferredBiomes</a></pre>
+<pre>public&nbsp;<a href="../../../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt; <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.44">preferredBiomes</a></pre>
+<div class="block">An UnorderedSet of String keys, where each key is the name of a biome this Faction wants to occupy.
+ May be null if no biomes are specifically preferred.</div>
 </li>
 </ul>
 <a name="blockedBiomes">
@@ -309,7 +373,10 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>blockedBiomes</h4>
-<pre>public&nbsp;<a href="../../../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt; <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.34">blockedBiomes</a></pre>
+<pre>public&nbsp;<a href="../../../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt; <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.50">blockedBiomes</a></pre>
+<div class="block">An UnorderedSet of String keys, where each key is the name of a biome this Faction will never occupy.
+ May be null if all biomes are available, but unless this is specified in a constructor, the default will be
+ to consider "Ocean" blocked.</div>
 </li>
 </ul>
 <a name="preferredHeight">
@@ -318,7 +385,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>preferredHeight</h4>
-<pre>public&nbsp;int[] <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.35">preferredHeight</a></pre>
+<pre>public&nbsp;int[] <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.56">preferredHeight</a></pre>
+<div class="block">An int array of height codes that this Faction prefers; 0, 1, 2, and 3 are all oceans, while 4 is shoreline
+ or low-lying land and higher numbers (up to 8, inclusive) are used for increasing elevations.</div>
 </li>
 </ul>
 <a name="preferredHeat">
@@ -327,7 +396,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>preferredHeat</h4>
-<pre>public&nbsp;int[] <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.36">preferredHeat</a></pre>
+<pre>public&nbsp;int[] <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.61">preferredHeat</a></pre>
+<div class="block">An int array of heat codes that this Faction prefers; typically a 6-code scale is used where 0, 1, and 2 are
+ cold and getting progressively warmer, while 3, 4, and 5 are warm to warmest.</div>
 </li>
 </ul>
 <a name="preferredMoisture">
@@ -336,7 +407,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>preferredMoisture</h4>
-<pre>public&nbsp;int[] <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.37">preferredMoisture</a></pre>
+<pre>public&nbsp;int[] <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.66">preferredMoisture</a></pre>
+<div class="block">An int array of moisture codes that this Faction prefers; typically a 6-code scale is used where 0, 1, and 2
+ are dry and getting progressively more precipitation, while 3, 4, and 5 are wet to wettest.</div>
 </li>
 </ul>
 </li>
@@ -353,7 +426,10 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>Faction</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.38">Faction</a>()</pre>
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.73">Faction</a>()</pre>
+<div class="block">Zero-arg constructor that sets the language to a random FakeLanguageGen (using
+ <a href="../../../squidpony/FakeLanguageGen.html#randomLanguage-long-"><code>FakeLanguageGen.randomLanguage(long)</code></a>), then generates a name/shortName with that FakeLanguageGen, and
+ makes the only blocked biome "Ocean".</div>
 </li>
 </ul>
 <a name="Faction-squidpony.FakeLanguageGen-">
@@ -362,7 +438,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>Faction</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.47">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language)</pre>
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.88">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language)</pre>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, then generates a name/shortName with
+ that FakeLanguageGen, and makes the only blocked biome "Ocean".</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>language</code> - the FakeLanguageGen to use for generating the name of the Faction and potentially place names</dd>
+</dl>
 </li>
 </ul>
 <a name="Faction-squidpony.FakeLanguageGen-java.lang.String-">
@@ -371,8 +453,15 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>Faction</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.54">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.101">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name and shortName to the
+ specified name, and makes the only blocked biome "Ocean".</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>language</code> - the FakeLanguageGen to use for potentially generating place names</dd>
+<dd><code>name</code> - the name of the Faction, such as "The United States of America"; will also be the shortName</dd>
+</dl>
 </li>
 </ul>
 <a name="Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-">
@@ -381,9 +470,17 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>Faction</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.61">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.115">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName)</pre>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, and makes the only blocked biome "Ocean".</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>language</code> - the FakeLanguageGen to use for potentially generating place names</dd>
+<dd><code>name</code> - the name of the Faction, such as "The United States of America"</dd>
+<dd><code>shortName</code> - the short name of the Faction, such as "America"</dd>
+</dl>
 </li>
 </ul>
 <a name="Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-">
@@ -392,10 +489,21 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>Faction</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.69">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.134">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes)</pre>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, and makes the only blocked biome "Ocean". The exact String names that are viable for
+ biomes can be obtained from a BiomeMapper with <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>language</code> - the FakeLanguageGen to use for potentially generating place names</dd>
+<dd><code>name</code> - the name of the Faction, such as "The United States of America"</dd>
+<dd><code>shortName</code> - the short name of the Faction, such as "America"</dd>
+<dd><code>preferredBiomes</code> - a String array of biome names that this Faction prefers, typically taken from a BiomeMapper's <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a> value</dd>
+</dl>
 </li>
 </ul>
 <a name="Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-java.lang.String:A-">
@@ -404,11 +512,24 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>Faction</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.78">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.155">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;blockedBiomes)</pre>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, and sets the blocked biomes to be a Set containing exactly the given Strings in
+ blockedBiomes. The exact String names that are viable for biomes can be obtained from a BiomeMapper with
+ <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>language</code> - the FakeLanguageGen to use for potentially generating place names</dd>
+<dd><code>name</code> - the name of the Faction, such as "The United States of America"</dd>
+<dd><code>shortName</code> - the short name of the Faction, such as "America"</dd>
+<dd><code>preferredBiomes</code> - a String array of biome names that this Faction prefers, typically taken from a BiomeMapper's <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a> value</dd>
+<dd><code>blockedBiomes</code> - a String array of biome names that this Faction will never claim; if empty, this Faction may claim oceans</dd>
+</dl>
 </li>
 </ul>
 <a name="Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-java.lang.String:A-int:A-">
@@ -417,12 +538,27 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>Faction</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.86">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.177">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;blockedBiomes,
                int[]&nbsp;preferredHeight)</pre>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, sets the blocked biomes to be a Set containing exactly the given Strings in
+ blockedBiomes, and sets the preferred height codes to the ints in preferredHeight (with 4 being sea level and
+ 8 being the highest peaks). The exact String names that are viable for biomes can be obtained from a
+ BiomeMapper with <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>language</code> - the FakeLanguageGen to use for potentially generating place names</dd>
+<dd><code>name</code> - the name of the Faction, such as "The United States of America"</dd>
+<dd><code>shortName</code> - the short name of the Faction, such as "America"</dd>
+<dd><code>preferredBiomes</code> - a String array of biome names that this Faction prefers, typically taken from a BiomeMapper's <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a> value</dd>
+<dd><code>blockedBiomes</code> - a String array of biome names that this Faction will never claim; if empty, this Faction may claim oceans</dd>
+<dd><code>preferredHeight</code> - an int array of height codes this Faction prefers to claim; 4 is sea level and 8 is highest</dd>
+</dl>
 </li>
 </ul>
 <a name="Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-java.lang.String:A-int:A-int:A-">
@@ -431,13 +567,31 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>Faction</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.95">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.204">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;blockedBiomes,
                int[]&nbsp;preferredHeight,
                int[]&nbsp;preferredHeat)</pre>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, sets the blocked biomes to be a Set containing exactly the given Strings in
+ blockedBiomes, sets the preferred height codes to the ints in preferredHeight (with 4 being sea level and 8
+ being the highest peaks), and sets the preferred heat codes to the ints in preferredHeat (with the exact
+ values depending on the BiomeMapper, but usually 0-5 range from coldest to hottest). The exact String names
+ that are viable for biomes can be obtained from a BiomeMapper with
+ <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>language</code> - the FakeLanguageGen to use for potentially generating place names</dd>
+<dd><code>name</code> - the name of the Faction, such as "The United States of America"</dd>
+<dd><code>shortName</code> - the short name of the Faction, such as "America"</dd>
+<dd><code>preferredBiomes</code> - a String array of biome names that this Faction prefers, typically taken from a BiomeMapper's <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a> value</dd>
+<dd><code>blockedBiomes</code> - a String array of biome names that this Faction will never claim; if empty, this Faction may claim oceans</dd>
+<dd><code>preferredHeight</code> - an int array of height codes this Faction prefers to claim; 4 is sea level and 8 is highest</dd>
+<dd><code>preferredHeat</code> - an int array of heat codes this Faction prefers to claim; typically 0 is coldest and 5 is hottest</dd>
+</dl>
 </li>
 </ul>
 <a name="Faction-squidpony.FakeLanguageGen-java.lang.String-java.lang.String-java.lang.String:A-java.lang.String:A-int:A-int:A-int:A-">
@@ -446,7 +600,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Faction</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.106">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html#line.234">Faction</a>(<a href="../../../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a>&nbsp;language,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;shortName,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;preferredBiomes,
@@ -454,6 +608,26 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
                int[]&nbsp;preferredHeight,
                int[]&nbsp;preferredHeat,
                int[]&nbsp;preferredMoisture)</pre>
+<div class="block">Constructor that sets the language to the specified FakeLanguageGen, sets the name to the specified name and
+ the shortName to the specified shortName, sets the preferredBiomes to be a Set containing the given Strings
+ in preferredBiomes, sets the blocked biomes to be a Set containing exactly the given Strings in
+ blockedBiomes, sets the preferred height codes to the ints in preferredHeight (with 4 being sea level and 8
+ being the highest peaks), sets the preferred heat codes to the ints in preferredHeat (with the exact values
+ depending on the BiomeMapper, but usually 0-5 range from coldest to hottest), and sets the preferred moisture
+ codes to the ints in preferredMoisture (withe the exact values depending on the BiomeMapper, but usually 0-5
+ range from driest to wettest). The exact String names that are viable for biomes can be obtained from a
+ BiomeMapper with <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>language</code> - the FakeLanguageGen to use for potentially generating place names</dd>
+<dd><code>name</code> - the name of the Faction, such as "The United States of America"</dd>
+<dd><code>shortName</code> - the short name of the Faction, such as "America"</dd>
+<dd><code>preferredBiomes</code> - a String array of biome names that this Faction prefers, typically taken from a BiomeMapper's <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>WorldMapGenerator.BiomeMapper.getBiomeNameTable()</code></a> value</dd>
+<dd><code>blockedBiomes</code> - a String array of biome names that this Faction will never claim; if empty, this Faction may claim oceans</dd>
+<dd><code>preferredHeight</code> - an int array of height codes this Faction prefers to claim; 4 is sea level and 8 is highest</dd>
+<dd><code>preferredHeat</code> - an int array of heat codes this Faction prefers to claim; typically 0 is coldest and 5 is hottest</dd>
+<dd><code>preferredMoisture</code> - an int array of moisture codes this Faction prefers to claim; typically 0 is driest and 5 is wettest</dd>
+</dl>
 </li>
 </ul>
 </li>

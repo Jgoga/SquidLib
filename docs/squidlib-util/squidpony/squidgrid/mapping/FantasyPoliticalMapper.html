@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -150,7 +150,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping">FantasyPoliticalMapper.Faction</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping">FantasyPoliticalMapper.Faction</a></span></code>
+<div class="block">Represents a group that claims territory on a world-map, such as a nation.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -201,6 +203,10 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <td class="colFirst"><code><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#wmg">wmg</a></span></code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>char[][]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#zoomedMap">zoomedMap</a></span></code>&nbsp;</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -216,7 +222,10 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#FantasyPoliticalMapper--">FantasyPoliticalMapper</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#FantasyPoliticalMapper--">FantasyPoliticalMapper</a></span>()</code>
+<div class="block">Constructs a FantasyPoliticalMapper, but doesn't do anything with a map; you need to call
+ <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-java.util.Collection-int-double-"><code>generate(long, WorldMapGenerator, WorldMapGenerator.BiomeMapper, Collection, int, double)</code></a> for results.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -235,16 +244,53 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>char[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#adjustZoom--">adjustZoom</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#adjustZoom--">adjustZoom</a></span>()</code>
+<div class="block">If the WorldMapGenerator used by
+ <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-java.util.Collection-int-double-"><code>generate(long, WorldMapGenerator, WorldMapGenerator.BiomeMapper, Collection, int, double)</code></a> zooms in or
+ out, you can call this method to make the <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#zoomedMap"><code>zoomedMap</code></a> 2D char array match its zoom.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>char[][]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#generate--">generate</a></span>()</code>
+<div class="block">For when you really don't care what arguments you give this, you can use this zero-parameter overload of
+ generate() to produce a 128x128 <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.TilingMap.html" title="class in squidpony.squidgrid.mapping"><code>WorldMapGenerator.TilingMap</code></a> world map with a
+ <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SimpleBiomeMapper.html" title="class in squidpony.squidgrid.mapping"><code>WorldMapGenerator.SimpleBiomeMapper</code></a> biome mapper, filling it with 30 random
+ Factions and trying to avoid unclaimed land.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>char[][]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-java.util.Collection-int-double-">generate</a></span>(long&nbsp;seed,
         <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a>&nbsp;wmg,
         <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a>&nbsp;biomeMapper,
         <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping">FantasyPoliticalMapper.Faction</a>&gt;&nbsp;factions,
         int&nbsp;factionCount,
-        double&nbsp;controlledFraction)</code>&nbsp;</td>
+        double&nbsp;controlledFraction)</code>
+<div class="block">Generates a 2D char array that represents the claims to the land described by the WorldMapGenerator <code>wmg</code>
+ and the BiomeMapper <code>biomeMapper</code> by various Factions, where <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping"><code>FantasyPoliticalMapper.Faction</code></a> is an inner class.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>char[][]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-int-">generate</a></span>(long&nbsp;seed,
+        <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a>&nbsp;wmg,
+        <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a>&nbsp;biomeMapper,
+        int&nbsp;factionCount)</code>
+<div class="block">Generates a 2D char array that represents the claims to the land described by the WorldMapGenerator <code>wmg</code>
+ and the BiomeMapper <code>biomeMapper</code> by various Factions, where <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping"><code>FantasyPoliticalMapper.Faction</code></a> is an inner class.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>char[][]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-int-double-">generate</a></span>(long&nbsp;seed,
+        <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a>&nbsp;wmg,
+        <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a>&nbsp;biomeMapper,
+        int&nbsp;factionCount,
+        double&nbsp;controlledFraction)</code>
+<div class="block">Generates a 2D char array that represents the claims to the land described by the WorldMapGenerator <code>wmg</code>
+ and the BiomeMapper <code>biomeMapper</code> by various Factions, where <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping"><code>FantasyPoliticalMapper.Faction</code></a> is an inner class.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -274,7 +320,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>width</h4>
-<pre>public&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.120">width</a></pre>
+<pre>public&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.248">width</a></pre>
 </li>
 </ul>
 <a name="height">
@@ -283,7 +329,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>height</h4>
-<pre>public&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.121">height</a></pre>
+<pre>public&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.249">height</a></pre>
 </li>
 </ul>
 <a name="rng">
@@ -292,7 +338,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>rng</h4>
-<pre>public&nbsp;<a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.122">rng</a></pre>
+<pre>public&nbsp;<a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.250">rng</a></pre>
 </li>
 </ul>
 <a name="name">
@@ -301,7 +347,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>name</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.123">name</a></pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.251">name</a></pre>
 </li>
 </ul>
 <a name="politicalMap">
@@ -310,7 +356,16 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>politicalMap</h4>
-<pre>public&nbsp;char[][] <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.124">politicalMap</a></pre>
+<pre>public&nbsp;char[][] <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.252">politicalMap</a></pre>
+</li>
+</ul>
+<a name="zoomedMap">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>zoomedMap</h4>
+<pre>public&nbsp;char[][] <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.253">zoomedMap</a></pre>
 </li>
 </ul>
 <a name="wmg">
@@ -319,7 +374,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>wmg</h4>
-<pre>public&nbsp;<a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.125">wmg</a></pre>
+<pre>public&nbsp;<a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.254">wmg</a></pre>
 </li>
 </ul>
 <a name="biomeMapper">
@@ -328,7 +383,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>biomeMapper</h4>
-<pre>public&nbsp;<a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.126">biomeMapper</a></pre>
+<pre>public&nbsp;<a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a> <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.255">biomeMapper</a></pre>
 </li>
 </ul>
 <a name="atlas">
@@ -337,7 +392,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>atlas</h4>
-<pre>public&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</a>,<a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping">FantasyPoliticalMapper.Faction</a>&gt; <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.141">atlas</a></pre>
+<pre>public&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</a>,<a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping">FantasyPoliticalMapper.Faction</a>&gt; <a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.270">atlas</a></pre>
 <div class="block">Maps chars, as found in the returned array from generate(), to Strings that store the full name of nations.</div>
 </li>
 </ul>
@@ -355,7 +410,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>FantasyPoliticalMapper</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.143">FantasyPoliticalMapper</a>()</pre>
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.276">FantasyPoliticalMapper</a>()</pre>
+<div class="block">Constructs a FantasyPoliticalMapper, but doesn't do anything with a map; you need to call
+ <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-java.util.Collection-int-double-"><code>generate(long, WorldMapGenerator, WorldMapGenerator.BiomeMapper, Collection, int, double)</code></a> for results.</div>
 </li>
 </ul>
 </li>
@@ -366,24 +423,121 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="generate--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>generate</h4>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.289">generate</a>()</pre>
+<div class="block">For when you really don't care what arguments you give this, you can use this zero-parameter overload of
+ generate() to produce a 128x128 <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.TilingMap.html" title="class in squidpony.squidgrid.mapping"><code>WorldMapGenerator.TilingMap</code></a> world map with a
+ <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.SimpleBiomeMapper.html" title="class in squidpony.squidgrid.mapping"><code>WorldMapGenerator.SimpleBiomeMapper</code></a> biome mapper, filling it with 30 random
+ Factions and trying to avoid unclaimed land. You may need to use <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#atlas"><code>atlas</code></a> to make sense of the randomly
+ generated Factions. The seed will be random here.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a 2D char array where each char can be used as a key into <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#atlas"><code>atlas</code></a> to find the Faction that claims it</dd>
+</dl>
+</li>
+</ul>
+<a name="generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>generate</h4>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.314">generate</a>(long&nbsp;seed,
+                         <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a>&nbsp;wmg,
+                         <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a>&nbsp;biomeMapper,
+                         int&nbsp;factionCount)</pre>
+<div class="block">Generates a 2D char array that represents the claims to the land described by the WorldMapGenerator <code>wmg</code>
+ and the BiomeMapper <code>biomeMapper</code> by various Factions, where <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping"><code>FantasyPoliticalMapper.Faction</code></a> is an inner class.
+ This starts with two default Factions for "Ocean" and "Wilderness" (unclaimed land) and adds randomly generated
+ Factions to fill factionCount (the two default factions aren't counted against this limit). These Factions
+ typically claim contiguous spans of land stretching out from a starting point that matches the Faction's
+ preferences for biome, land height, heat, and moisture. If a Faction requires a biome (like "TropicalRainforest") 
+ and the world has none of that type, then that Faction won't claim any land. If the WorldMapGenerator zooms in or
+ out, you should call <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#adjustZoom--"><code>adjustZoom()</code></a> to get a different 2D char array that represents the zoomed-in area.
+ This overload tries to claim all land that can be reached by an existing Faction, though islands will often be
+ unclaimed.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>seed</code> - the seed that determines how Factions will randomly spread around the world</dd>
+<dd><code>wmg</code> - a WorldMapGenerator, which must have produced a map by calling its generate() method</dd>
+<dd><code>biomeMapper</code> - a WorldMapGenerator.BiomeMapper, which must have been initialized with wmg and refer to the same world</dd>
+<dd><code>factionCount</code> - the number of factions to have claiming land; cannot be negative or more than 253</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a 2D char array where each char can be used as a key into <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#atlas"><code>atlas</code></a> to find the Faction that claims it</dd>
+</dl>
+</li>
+</ul>
+<a name="generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-int-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>generate</h4>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.336">generate</a>(long&nbsp;seed,
+                         <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a>&nbsp;wmg,
+                         <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a>&nbsp;biomeMapper,
+                         int&nbsp;factionCount,
+                         double&nbsp;controlledFraction)</pre>
+<div class="block">Generates a 2D char array that represents the claims to the land described by the WorldMapGenerator <code>wmg</code>
+ and the BiomeMapper <code>biomeMapper</code> by various Factions, where <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping"><code>FantasyPoliticalMapper.Faction</code></a> is an inner class.
+ This starts with two default Factions for "Ocean" and "Wilderness" (unclaimed land) and adds randomly generated
+ Factions to fill factionCount (the two default factions aren't counted against this limit). These Factions
+ typically claim contiguous spans of land stretching out from a starting point that matches the Faction's
+ preferences for biome, land height, heat, and moisture. If a Faction requires a biome (like "TropicalRainforest") 
+ and the world has none of that type, then that Faction won't claim any land. If the WorldMapGenerator zooms in or
+ out, you should call <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#adjustZoom--"><code>adjustZoom()</code></a> to get a different 2D char array that represents the zoomed-in area.
+ This overload tries to claim the given <code>controlledFraction</code> of land in total, though 1.0 can rarely be
+ reached unless there are many factions and few islands.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>seed</code> - the seed that determines how Factions will randomly spread around the world</dd>
+<dd><code>wmg</code> - a WorldMapGenerator, which must have produced a map by calling its generate() method</dd>
+<dd><code>biomeMapper</code> - a WorldMapGenerator.BiomeMapper, which must have been initialized with wmg and refer to the same world</dd>
+<dd><code>factionCount</code> - the number of factions to have claiming land; cannot be negative or more than 253</dd>
+<dd><code>controlledFraction</code> - between 0.0 and 1.0 inclusive; higher means more land has a letter, lower has more '%'</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a 2D char array where each char can be used as a key into <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#atlas"><code>atlas</code></a> to find the Faction that claims it</dd>
+</dl>
+</li>
+</ul>
 <a name="generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-java.util.Collection-int-double-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>generate</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.154">generate</a>(long&nbsp;seed,
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.361">generate</a>(long&nbsp;seed,
                          <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a>&nbsp;wmg,
                          <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html" title="interface in squidpony.squidgrid.mapping">WorldMapGenerator.BiomeMapper</a>&nbsp;biomeMapper,
                          <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping">FantasyPoliticalMapper.Faction</a>&gt;&nbsp;factions,
                          int&nbsp;factionCount,
                          double&nbsp;controlledFraction)</pre>
+<div class="block">Generates a 2D char array that represents the claims to the land described by the WorldMapGenerator <code>wmg</code>
+ and the BiomeMapper <code>biomeMapper</code> by various Factions, where <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping"><code>FantasyPoliticalMapper.Faction</code></a> is an inner class.
+ This starts with two default Factions for "Ocean" and "Wilderness" (unclaimed land) and adds all of
+ <code>factions</code> until <code>factionCount</code> is reached; if it isn't reached, random Factions will be generated to
+ fill factionCount (the two default factions aren't counted against this limit). These Factions typically claim
+ contiguous spans of land stretching out from a starting point that matches the Faction's preferences for biome,
+ land height, heat, and moisture. If a Faction requires a biome (like "TropicalRainforest") and the world has none
+ of that type, then that Faction won't claim any land. If the WorldMapGenerator zooms in or out, you should call
+ <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#adjustZoom--"><code>adjustZoom()</code></a> to get a different 2D char array that represents the zoomed-in area. This overload tries to
+ claim the given <code>controlledFraction</code> of land in total, though 1.0 can rarely be reached unless there are
+ many factions and few islands.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>seed</code> - the seed that determines how Factions will randomly spread around the world</dd>
 <dd><code>wmg</code> - a WorldMapGenerator, which must have produced a map by calling its generate() method</dd>
 <dd><code>biomeMapper</code> - a WorldMapGenerator.BiomeMapper, which must have been initialized with wmg and refer to the same world</dd>
-<dd><code>factionCount</code> - the number of factions to have claiming land, cannot be negative or more than 253</dd>
+<dd><code>factions</code> - a Collection of <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.Faction.html" title="class in squidpony.squidgrid.mapping"><code>FantasyPoliticalMapper.Faction</code></a> that will be copied, shuffled and used before adding any random Factions</dd>
+<dd><code>factionCount</code> - the number of factions to have claiming land; cannot be negative or more than 253</dd>
 <dd><code>controlledFraction</code> - between 0.0 and 1.0 inclusive; higher means more land has a letter, lower has more '%'</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a 2D char array where each char can be used as a key into <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#atlas"><code>atlas</code></a> to find the Faction that claims it</dd>
 </dl>
 </li>
 </ul>
@@ -393,7 +547,20 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>adjustZoom</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.301">adjustZoom</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#line.521">adjustZoom</a>()</pre>
+<div class="block">If the WorldMapGenerator used by
+ <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#generate-long-squidpony.squidgrid.mapping.WorldMapGenerator-squidpony.squidgrid.mapping.WorldMapGenerator.BiomeMapper-java.util.Collection-int-double-"><code>generate(long, WorldMapGenerator, WorldMapGenerator.BiomeMapper, Collection, int, double)</code></a> zooms in or
+ out, you can call this method to make the <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#zoomedMap"><code>zoomedMap</code></a> 2D char array match its zoom. The world-scale map,
+ <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#politicalMap"><code>politicalMap</code></a>, will remain unchanged unless generate() is called again, but zoomedMap will change each
+ time either generate() or adjustZoom() is called. This method isn't 100% precise on how it places borders; for
+ aesthetic reasons, the borders are tattered with <a href="../../../squidpony/squidmath/GreasedRegion.html#fray-double-"><code>GreasedRegion.fray(double)</code></a> so they don't look like a
+ wall of angular bubbles. Using fray() at each level of zoom is quasi-random, so if you zoom in on the same
+ sequence of points on two different occasions, the change from fray() will be the same, but it may be slightly
+ different if any point of zoom is different.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a direct reference to <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#zoomedMap"><code>zoomedMap</code></a>, which will hold the correctly-zoomed version of <a href="../../../squidpony/squidgrid/mapping/FantasyPoliticalMapper.html#politicalMap"><code>politicalMap</code></a></dd>
+</dl>
 </li>
 </ul>
 </li>

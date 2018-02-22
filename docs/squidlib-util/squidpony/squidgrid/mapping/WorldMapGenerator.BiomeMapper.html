@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -155,6 +155,13 @@ var activeTableTab = "activeTableTab";
 <div class="block">Gets a moisture code for a given x,y point on a map, usually as an int between 0 and 5 inclusive.</div>
 </td>
 </tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#makeBiomes-squidpony.squidgrid.mapping.WorldMapGenerator-">makeBiomes</a></span>(<a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a>&nbsp;world)</code>
+<div class="block">Analyzes the last world produced by the given WorldMapGenerator and uses all of its generated information to
+ assign biome codes for each cell (along with heat and moisture codes).</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -239,7 +246,7 @@ var activeTableTab = "activeTableTab";
 <a name="getBiomeNameTable--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getBiomeNameTable</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#line.650">getBiomeNameTable</a>()</pre>
@@ -252,6 +259,23 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a String array that often contains 61 elements, to be used with biome codes as indices.</dd>
+</dl>
+</li>
+</ul>
+<a name="makeBiomes-squidpony.squidgrid.mapping.WorldMapGenerator-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>makeBiomes</h4>
+<pre>void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#line.658">makeBiomes</a>(<a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a>&nbsp;world)</pre>
+<div class="block">Analyzes the last world produced by the given WorldMapGenerator and uses all of its generated information to
+ assign biome codes for each cell (along with heat and moisture codes). After calling this, biome codes can be
+ retrieved with <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeCode-int-int-"><code>getBiomeCode(int, int)</code></a> and used as indices into <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.BiomeMapper.html#getBiomeNameTable--"><code>getBiomeNameTable()</code></a> or a
+ custom biome table.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>world</code> - a WorldMapGenerator that should have generated at least one map; it may be at any zoom</dd>
 </dl>
 </li>
 </ul>
