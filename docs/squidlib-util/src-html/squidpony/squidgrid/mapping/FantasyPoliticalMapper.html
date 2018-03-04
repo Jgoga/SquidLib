@@ -528,26 +528,39 @@
 <span class="sourceLineNo">520</span>     */<a name="line.520"></a>
 <span class="sourceLineNo">521</span>    public char[][] adjustZoom() {<a name="line.521"></a>
 <span class="sourceLineNo">522</span>        if(wmg.zoom &lt;= 0)<a name="line.522"></a>
-<span class="sourceLineNo">523</span>            return zoomedMap;<a name="line.523"></a>
-<span class="sourceLineNo">524</span>        ArrayTools.fill(zoomedMap, '~');<a name="line.524"></a>
-<span class="sourceLineNo">525</span>        GreasedRegion nation = new GreasedRegion(width, height);<a name="line.525"></a>
-<span class="sourceLineNo">526</span>        char c;<a name="line.526"></a>
-<span class="sourceLineNo">527</span>        int stx = Math.min(Math.max((wmg.zoomStartX - (width  &gt;&gt; 1)) / ((2 &lt;&lt; wmg.zoom) - 2), 0), width ),<a name="line.527"></a>
-<span class="sourceLineNo">528</span>                sty = Math.min(Math.max((wmg.zoomStartY - (height &gt;&gt; 1)) / ((2 &lt;&lt; wmg.zoom) - 2), 0), height);<a name="line.528"></a>
-<span class="sourceLineNo">529</span>        for (int i = 2; i &lt; atlas.size(); i++) {<a name="line.529"></a>
-<span class="sourceLineNo">530</span>            nation.refill(politicalMap, c = atlas.keyAt(i));<a name="line.530"></a>
-<span class="sourceLineNo">531</span>            if(nation.isEmpty()) continue;<a name="line.531"></a>
-<span class="sourceLineNo">532</span>            for (int z = 1; z &lt;= wmg.zoom; z++) {<a name="line.532"></a>
-<span class="sourceLineNo">533</span>                nation.zoom(stx, sty).expand8way().expand().fray(0.5);<a name="line.533"></a>
-<span class="sourceLineNo">534</span>            }<a name="line.534"></a>
-<span class="sourceLineNo">535</span>            nation.intoChars(zoomedMap, c);<a name="line.535"></a>
-<span class="sourceLineNo">536</span>        }<a name="line.536"></a>
-<span class="sourceLineNo">537</span>        nation.refill(wmg.heightCodeData, 4, 999).and(new GreasedRegion(zoomedMap, '~')).intoChars(zoomedMap, '%');<a name="line.537"></a>
-<span class="sourceLineNo">538</span>        nation.refill(wmg.heightCodeData, -999, 4).intoChars(zoomedMap, '~');<a name="line.538"></a>
-<span class="sourceLineNo">539</span>        return zoomedMap;<a name="line.539"></a>
-<span class="sourceLineNo">540</span>    }<a name="line.540"></a>
-<span class="sourceLineNo">541</span><a name="line.541"></a>
-<span class="sourceLineNo">542</span>}<a name="line.542"></a>
+<span class="sourceLineNo">523</span>        {<a name="line.523"></a>
+<span class="sourceLineNo">524</span>            return ArrayTools.insert(politicalMap, zoomedMap, 0, 0);<a name="line.524"></a>
+<span class="sourceLineNo">525</span>        }<a name="line.525"></a>
+<span class="sourceLineNo">526</span>        ArrayTools.fill(zoomedMap, ' ');<a name="line.526"></a>
+<span class="sourceLineNo">527</span>        char c;<a name="line.527"></a>
+<span class="sourceLineNo">528</span>        int stx = Math.min(Math.max((wmg.zoomStartX - (width  &gt;&gt; 1)) / ((2 &lt;&lt; wmg.zoom) - 2), 0), width ),<a name="line.528"></a>
+<span class="sourceLineNo">529</span>                sty = Math.min(Math.max((wmg.zoomStartY - (height &gt;&gt; 1)) / ((2 &lt;&lt; wmg.zoom) - 2), 0), height);<a name="line.529"></a>
+<span class="sourceLineNo">530</span>        GreasedRegion nation = new GreasedRegion(wmg.landData);<a name="line.530"></a>
+<span class="sourceLineNo">531</span>        GreasedRegion fillable = new GreasedRegion(politicalMap, '~').not();<a name="line.531"></a>
+<span class="sourceLineNo">532</span>        for (int i = 0; i &lt; wmg.zoom; i++) {<a name="line.532"></a>
+<span class="sourceLineNo">533</span>            fillable.zoom(stx, sty);<a name="line.533"></a>
+<span class="sourceLineNo">534</span>        }<a name="line.534"></a>
+<span class="sourceLineNo">535</span>        fillable.flood(nation, width + height);<a name="line.535"></a>
+<span class="sourceLineNo">536</span>        for (int i = 1; i &lt; atlas.size(); i++) {<a name="line.536"></a>
+<span class="sourceLineNo">537</span>            nation.refill(politicalMap, c = atlas.keyAt(i));<a name="line.537"></a>
+<span class="sourceLineNo">538</span>            if(nation.isEmpty()) continue;<a name="line.538"></a>
+<span class="sourceLineNo">539</span>            for (int z = 0; z &lt; wmg.zoom; z++) {<a name="line.539"></a>
+<span class="sourceLineNo">540</span>                nation.zoom(stx, sty).expand8way().expand().fray(0.5);<a name="line.540"></a>
+<span class="sourceLineNo">541</span>            }<a name="line.541"></a>
+<span class="sourceLineNo">542</span>            fillable.andNot(nation);<a name="line.542"></a>
+<span class="sourceLineNo">543</span>            nation.intoChars(zoomedMap, c);<a name="line.543"></a>
+<span class="sourceLineNo">544</span>        }<a name="line.544"></a>
+<span class="sourceLineNo">545</span>        for (int i = 1; i &lt; atlas.size(); i++) {<a name="line.545"></a>
+<span class="sourceLineNo">546</span>            nation.refill(zoomedMap, c = atlas.keyAt(i));<a name="line.546"></a>
+<span class="sourceLineNo">547</span>            if(nation.isEmpty()) continue;<a name="line.547"></a>
+<span class="sourceLineNo">548</span>            nation.flood(fillable, 4 &lt;&lt; wmg.zoom).intoChars(zoomedMap, c);<a name="line.548"></a>
+<span class="sourceLineNo">549</span>        }<a name="line.549"></a>
+<span class="sourceLineNo">550</span>        nation.refill(wmg.heightCodeData, 4, 999).and(new GreasedRegion(zoomedMap, ' ')).intoChars(zoomedMap, '%');<a name="line.550"></a>
+<span class="sourceLineNo">551</span>        nation.refill(wmg.heightCodeData, -999, 4).intoChars(zoomedMap, '~');<a name="line.551"></a>
+<span class="sourceLineNo">552</span>        return zoomedMap;<a name="line.552"></a>
+<span class="sourceLineNo">553</span>    }<a name="line.553"></a>
+<span class="sourceLineNo">554</span><a name="line.554"></a>
+<span class="sourceLineNo">555</span>}<a name="line.555"></a>
 
 
 

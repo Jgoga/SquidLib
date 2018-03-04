@@ -1259,7 +1259,7 @@
 <span class="sourceLineNo">1251</span>        }<a name="line.1251"></a>
 <span class="sourceLineNo">1252</span><a name="line.1252"></a>
 <span class="sourceLineNo">1253</span>        if(islandSpacing &gt; 1 &amp;&amp; targetWater &gt; 0) {<a name="line.1253"></a>
-<span class="sourceLineNo">1254</span>            ArrayList&lt;Coord&gt; islands = PoissonDisk.sampleMap(map, 1f * islandSpacing, rng, '#', '.', '"', '+', '/', '^', '&lt;', '&gt;');<a name="line.1254"></a>
+<span class="sourceLineNo">1254</span>            OrderedSet&lt;Coord&gt; islands = PoissonDisk.sampleMap(map, 1f * islandSpacing, rng, '#', '.', '"', '+', '/', '^', '&lt;', '&gt;');<a name="line.1254"></a>
 <span class="sourceLineNo">1255</span>            for (Coord c : islands) {<a name="line.1255"></a>
 <span class="sourceLineNo">1256</span>                map[c.x][c.y] = '.';<a name="line.1256"></a>
 <span class="sourceLineNo">1257</span>                if (map[c.x - 1][c.y] != '#' &amp;&amp; map[c.x - 1][c.y] != '&lt;' &amp;&amp; map[c.x - 1][c.y] != '&gt;')<a name="line.1257"></a>

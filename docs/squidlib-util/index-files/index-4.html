@@ -349,26 +349,36 @@
 <dd>
 <div class="block">Cubic-interpolates between start and end (valid floats), with a between 0 (yields start) and 1 (yields end).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/Markov.html#chain-long-">chain(long)</a></span> - Method in class squidpony.<a href="../squidpony/Markov.html" title="class in squidpony">Markov</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#chain-long-">chain(long)</a></span> - Method in class squidpony.<a href="../squidpony/MarkovObject.html" title="class in squidpony">MarkovObject</a></dt>
+<dd>
+<div class="block">Generates a 32-element List of T based on the given seed and previously analyzed corpus data (using
+ <a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>MarkovObject.analyze(Iterable)</code></a>).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#chain-long-int-boolean-java.util.List-">chain(long, int, boolean, List&lt;T&gt;)</a></span> - Method in class squidpony.<a href="../squidpony/MarkovObject.html" title="class in squidpony">MarkovObject</a></dt>
+<dd>
+<div class="block">Adds T items to buffer to fill it up to maxLength, based on the given seed and previously analyzed corpus
+ data (using <a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>MarkovObject.analyze(Iterable)</code></a>).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/MarkovText.html#chain-long-">chain(long)</a></span> - Method in class squidpony.<a href="../squidpony/MarkovText.html" title="class in squidpony">MarkovText</a></dt>
 <dd>
 <div class="block">Generate a roughly-sentence-sized piece of text based on the previously analyzed corpus text (using
- <a href="../squidpony/Markov.html#analyze-java.lang.CharSequence-"><code>Markov.analyze(CharSequence)</code></a>) that terminates when stop punctuation is used (".", "!", "?", or "..."), or once
+ <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a>) that terminates when stop punctuation is used (".", "!", "?", or "..."), or once
  the length would be greater than 200 characters without encountering stop punctuation(it terminates such a
  sentence with "." or "...").</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/Markov.html#chain-long-int-">chain(long, int)</a></span> - Method in class squidpony.<a href="../squidpony/Markov.html" title="class in squidpony">Markov</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/MarkovText.html#chain-long-int-">chain(long, int)</a></span> - Method in class squidpony.<a href="../squidpony/MarkovText.html" title="class in squidpony">MarkovText</a></dt>
 <dd>
 <div class="block">Generate a roughly-sentence-sized piece of text based on the previously analyzed corpus text (using
- <a href="../squidpony/Markov.html#analyze-java.lang.CharSequence-"><code>Markov.analyze(CharSequence)</code></a>) that terminates when stop punctuation is used (".", "!", "?", or "...") or once
+ <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a>) that terminates when stop punctuation is used (".", "!", "?", or "...") or once
  the maxLength would be exceeded by any other words (it terminates such a sentence with "." or "...").</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/FakeLanguageGen.Alteration.html#chance">chance</a></span> - Variable in class squidpony.<a href="../squidpony/FakeLanguageGen.Alteration.html" title="class in squidpony">FakeLanguageGen.Alteration</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/AStarSearch.html#changeCellWeight-int-int-double-">changeCellWeight(int, int, double)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/AStarSearch.html" title="class in squidpony.squidmath">AStarSearch</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/Markov.html#changeNames-squidpony.NaturalLanguageCipher-">changeNames(NaturalLanguageCipher)</a></span> - Method in class squidpony.<a href="../squidpony/Markov.html" title="class in squidpony">Markov</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/MarkovText.html#changeNames-squidpony.NaturalLanguageCipher-">changeNames(NaturalLanguageCipher)</a></span> - Method in class squidpony.<a href="../squidpony/MarkovText.html" title="class in squidpony">MarkovText</a></dt>
 <dd>
-<div class="block">After calling <a href="../squidpony/Markov.html#analyze-java.lang.CharSequence-"><code>Markov.analyze(CharSequence)</code></a>, you can optionally call this to alter any words in this Markov that
+<div class="block">After calling <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a>, you can optionally call this to alter any words in this MarkovText that
  were used as a proper noun (determined by whether they were capitalized in the middle of a sentence), changing
  them to a ciphered version using the given <a href="../squidpony/NaturalLanguageCipher.html" title="class in squidpony"><code>NaturalLanguageCipher</code></a>.</div>
 </dd>
@@ -432,10 +442,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/CrossHash.Mist.html#chi_">chi_</a></span> - Static variable in class squidpony.squidmath.<a href="../squidpony/squidmath/CrossHash.Mist.html" title="class in squidpony.squidmath">CrossHash.Mist</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/ObText.ItemIterator.html#children--">children()</a></span> - Method in class squidpony.<a href="../squidpony/ObText.ItemIterator.html" title="class in squidpony">ObText.ItemIterator</a></dt>
-<dd>
-<div class="block">Returns the first child of this ObText.Item and descends into the sequence of child elements.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/locks/Room.html#children">children</a></span> - Variable in class squidpony.squidgrid.mapping.locks.<a href="../squidpony/squidgrid/mapping/locks/Room.html" title="class in squidpony.squidgrid.mapping.locks">Room</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/MonsterGen.Chimera.html#Chimera-java.lang.String-squidpony.MonsterGen.Chimera-">Chimera(String, MonsterGen.Chimera)</a></span> - Constructor for class squidpony.<a href="../squidpony/MonsterGen.Chimera.html" title="class in squidpony">MonsterGen.Chimera</a></dt>
@@ -530,7 +536,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/MixedGenerator.html#cleanPoints-int-int-squidpony.squidmath.RNG-">cleanPoints(int, int, RNG)</a></span> - Static method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/MixedGenerator.html" title="class in squidpony.squidgrid.mapping">MixedGenerator</a></dt>
 <dd>
-<div class="block">Mainly for internal use; this is used by <a href="../squidpony/squidgrid/mapping/MixedGenerator.html#MixedGenerator-int-int-squidpony.squidmath.RNG-"><code>MixedGenerator.MixedGenerator(int, int, RNG)</code></a> to get its room positions.</div>
+<div class="block">Mainly for internal use; this was used by <a href="../squidpony/squidgrid/mapping/MixedGenerator.html#MixedGenerator-int-int-squidpony.squidmath.RNG-"><code>MixedGenerator.MixedGenerator(int, int, RNG)</code></a> to get its room positions, and
+ you can choose to use it with <code>new MixedGenerator(width, height, rng, cleanPoints(width, height, rng))</code>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/ObText.html#clear--">clear()</a></span> - Method in class squidpony.<a href="../squidpony/ObText.html" title="class in squidpony">ObText</a></dt>
 <dd>&nbsp;</dd>
@@ -701,6 +708,8 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#coastalWaterLower">coastalWaterLower</a></span> - Static variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#coastalWaterUpper">coastalWaterUpper</a></span> - Static variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.MimicMap.html#coastOriginal">coastOriginal</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.MimicMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.MimicMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#codeHeight-double-">codeHeight(double)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dt>
 <dd>&nbsp;</dd>
@@ -1338,6 +1347,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/Converters.html#convertLong">convertLong</a></span> - Static variable in class squidpony.<a href="../squidpony/Converters.html" title="class in squidpony">Converters</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/Converters.html#convertMarkovText">convertMarkovText</a></span> - Static variable in class squidpony.<a href="../squidpony/Converters.html" title="class in squidpony">Converters</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/Converters.html#convertObText">convertObText</a></span> - Static variable in class squidpony.<a href="../squidpony/Converters.html" title="class in squidpony">Converters</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/Converters.html#convertOrderedMap-squidpony.StringConvert-squidpony.StringConvert-">convertOrderedMap(StringConvert&lt;K&gt;, StringConvert&lt;V&gt;)</a></span> - Static method in class squidpony.<a href="../squidpony/Converters.html" title="class in squidpony">Converters</a></dt>
@@ -1442,6 +1453,14 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/FakeLanguageGen.html#copy--">copy()</a></span> - Method in class squidpony.<a href="../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#copy--">copy()</a></span> - Method in class squidpony.<a href="../squidpony/MarkovObject.html" title="class in squidpony">MarkovObject</a></dt>
+<dd>
+<div class="block">Copies the T items in <a href="../squidpony/MarkovObject.html#body"><code>MarkovObject.body</code></a> and the int-based data structure <a href="../squidpony/MarkovObject.html#processed"><code>MarkovObject.processed</code></a> into a new MarkovObject.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/MarkovText.html#copy--">copy()</a></span> - Method in class squidpony.<a href="../squidpony/MarkovText.html" title="class in squidpony">MarkovText</a></dt>
+<dd>
+<div class="block">Copies the String array <a href="../squidpony/MarkovText.html#words"><code>MarkovText.words</code></a> and the 2D jagged int array <a href="../squidpony/MarkovText.html#processed"><code>MarkovText.processed</code></a> into a new MarkovText.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/ChaosRNG.html#copy--">copy()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ChaosRNG.html" title="class in squidpony.squidmath">ChaosRNG</a></dt>
 <dd>
 <div class="block">Produces another ChaosRNG with no relation to this one; this breaks the normal rules that RandomnessSource.copy
@@ -1919,6 +1938,8 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/FastNoise.html#CUBIC">CUBIC</a></span> - Static variable in class squidpony.squidmath.<a href="../squidpony/squidmath/FastNoise.html" title="class in squidpony.squidmath">FastNoise</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/FastNoise.html#CUBIC_FRACTAL">CUBIC_FRACTAL</a></span> - Static variable in class squidpony.squidmath.<a href="../squidpony/squidmath/FastNoise.html" title="class in squidpony.squidmath">FastNoise</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Noise.Basic1D.html#cubicSway-double-">cubicSway(double)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/Noise.Basic1D.html" title="class in squidpony.squidmath">Noise.Basic1D</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/StringKit.html#CURRENCY">CURRENCY</a></span> - Static variable in class squidpony.<a href="../squidpony/StringKit.html" title="class in squidpony">StringKit</a></dt>
 <dd>&nbsp;</dd>

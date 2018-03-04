@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":9,"i6":9,"i7":10};
+var methods = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":9,"i6":9,"i7":9,"i8":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -118,7 +118,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.17">SymmetryDungeonGenerator</a>
+<pre>public class <a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.14">SymmetryDungeonGenerator</a>
 extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title="class in squidpony.squidgrid.mapping">MixedGenerator</a></pre>
 <div class="block">A variant on <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title="class in squidpony.squidgrid.mapping"><code>MixedGenerator</code></a> that creates bi-radially symmetric maps (basically a yin-yang shape). Useful for
  strategy games and possibly competitive multi-player games. The Coords passed to constructors as room positions do
@@ -204,6 +204,14 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given RNG.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#SymmetryDungeonGenerator-int-int-squidpony.squidmath.RNG-squidpony.squidmath.OrderedSet-">SymmetryDungeonGenerator</a></span>(int&nbsp;width,
+                        int&nbsp;height,
+                        <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+                        <a href="../../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</code>
+<div class="block">This prepares a map generator that will generate a map with the given width and height, using the given RNG.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -253,9 +261,9 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#removeSomeOverlap-int-int-java.util.List-">removeSomeOverlap</a></span>(int&nbsp;width,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#removeSomeOverlap-int-int-java.util.Collection-">removeSomeOverlap</a></span>(int&nbsp;width,
                  int&nbsp;height,
-                 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</code>&nbsp;</td>
+                 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</code>&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>static <a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;</code></td>
@@ -264,6 +272,10 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
                  <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;connections)</code>&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
+<td class="colFirst"><code>protected static <a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#setToMap-squidpony.squidmath.OrderedSet-">setToMap</a></span>(<a href="../../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</code>&nbsp;</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#wallOff-int-int-">wallOff</a></span>(int&nbsp;x,
        int&nbsp;y)</code>
@@ -305,7 +317,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>SymmetryDungeonGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.69">SymmetryDungeonGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.66">SymmetryDungeonGenerator</a>(int&nbsp;width,
                                 int&nbsp;height,
                                 <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given RNG.
@@ -330,10 +342,36 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>SymmetryDungeonGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.86">SymmetryDungeonGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.83">SymmetryDungeonGenerator</a>(int&nbsp;width,
                                 int&nbsp;height,
                                 <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
                                 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</pre>
+<div class="block">This prepares a map generator that will generate a map with the given width and height, using the given RNG.
+ This version of the constructor uses a List of Coord points from some other source to determine the path to add
+ rooms or caves to and then connect. You call the different carver-adding methods to affect what the
+ dungeon will look like, putCaveCarvers(), putBoxRoomCarvers(), and putRoundRoomCarvers(), defaulting to only
+ caves if none are called. You call generate() after adding carvers, which returns a char[][] for a map.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>width</code> - the width of the final map in cells</dd>
+<dd><code>height</code> - the height of the final map in cells</dd>
+<dd><code>rng</code> - an RNG object to use for random choices; this make a lot of random choices.</dd>
+<dd><code>sequence</code> - a List of Coord to connect in order; index 0 is the start, index size() - 1 is the end.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../squidpony/squidgrid/mapping/SerpentMapGenerator.html" title="class in squidpony.squidgrid.mapping"><code>a class that uses this technique</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="SymmetryDungeonGenerator-int-int-squidpony.squidmath.RNG-squidpony.squidmath.OrderedSet-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SymmetryDungeonGenerator</h4>
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.100">SymmetryDungeonGenerator</a>(int&nbsp;width,
+                                int&nbsp;height,
+                                <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+                                <a href="../../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</pre>
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given RNG.
  This version of the constructor uses a List of Coord points from some other source to determine the path to add
  rooms or caves to and then connect. You call the different carver-adding methods to affect what the
@@ -356,7 +394,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>SymmetryDungeonGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.104">SymmetryDungeonGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.118">SymmetryDungeonGenerator</a>(int&nbsp;width,
                                 int&nbsp;height,
                                 <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
                                 <a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;connections)</pre>
@@ -383,7 +421,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SymmetryDungeonGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.123">SymmetryDungeonGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.137">SymmetryDungeonGenerator</a>(int&nbsp;width,
                                 int&nbsp;height,
                                 <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
                                 <a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;connections,
@@ -414,15 +452,15 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="removeSomeOverlap-int-int-java.util.List-">
+<a name="removeSomeOverlap-int-int-java.util.Collection-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeSomeOverlap</h4>
-<pre>public static&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.19">removeSomeOverlap</a>(int&nbsp;width,
+<pre>public static&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.16">removeSomeOverlap</a>(int&nbsp;width,
                                                               int&nbsp;height,
-                                                              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</pre>
+                                                              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</pre>
 </li>
 </ul>
 <a name="removeSomeOverlap-int-int-java.util.Map-">
@@ -431,7 +469,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>removeSomeOverlap</h4>
-<pre>public static&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.29">removeSomeOverlap</a>(int&nbsp;width,
+<pre>public static&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.26">removeSomeOverlap</a>(int&nbsp;width,
                                                               int&nbsp;height,
                                                               <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;connections)</pre>
 </li>
@@ -442,7 +480,16 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>listToMap</h4>
-<pre>protected static&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.127">listToMap</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</pre>
+<pre>protected static&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.141">listToMap</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</pre>
+</li>
+</ul>
+<a name="setToMap-squidpony.squidmath.OrderedSet-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setToMap</h4>
+<pre>protected static&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.152">setToMap</a>(<a href="../../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;sequence)</pre>
 </li>
 </ul>
 <a name="crossConnect-int-int-java.util.Map-">
@@ -451,7 +498,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>crossConnect</h4>
-<pre>protected static&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.139">crossConnect</a>(int&nbsp;width,
+<pre>protected static&nbsp;<a href="../../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.164">crossConnect</a>(int&nbsp;width,
                                                             int&nbsp;height,
                                                             <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&gt;&nbsp;connections)</pre>
 </li>
@@ -462,7 +509,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>mark</h4>
-<pre>protected&nbsp;boolean&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.246">mark</a>(int&nbsp;x,
+<pre>protected&nbsp;boolean&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.271">mark</a>(int&nbsp;x,
                        int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point to be made into floor.</div>
 <dl>
@@ -482,7 +529,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>markPiercing</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.257">markPiercing</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.282">markPiercing</a>(int&nbsp;x,
                             int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point to be made into floor.</div>
 <dl>
@@ -500,7 +547,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockList">
 <li class="blockList">
 <h4>wallOff</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.269">wallOff</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.294">wallOff</a>(int&nbsp;x,
                        int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point to be made into floor.</div>
 <dl>
@@ -518,7 +565,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title
 <ul class="blockListLast">
 <li class="blockList">
 <h4>markEnvironment</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.280">markEnvironment</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SymmetryDungeonGenerator.html#line.305">markEnvironment</a>(int&nbsp;x,
                                int&nbsp;y,
                                int&nbsp;kind)</pre>
 <div class="block">Internal use. Marks a point's environment type as the appropriate kind of environment.</div>

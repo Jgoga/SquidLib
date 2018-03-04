@@ -28,7 +28,7 @@
 <span class="sourceLineNo">020</span> */<a name="line.20"></a>
 <span class="sourceLineNo">021</span>public class PoissonDisk {<a name="line.21"></a>
 <span class="sourceLineNo">022</span>    private static final float rootTwo = (float) Math.sqrt(2),<a name="line.22"></a>
-<span class="sourceLineNo">023</span>            pi = (float) Math.PI, pi2 = pi * 2f, halfPi = pi * 0.5f;<a name="line.23"></a>
+<span class="sourceLineNo">023</span>            pi2 = (float) (Math.PI * 2.0);<a name="line.23"></a>
 <span class="sourceLineNo">024</span>    <a name="line.24"></a>
 <span class="sourceLineNo">025</span>    private static final int defaultPointsPlaced = 10;<a name="line.25"></a>
 <span class="sourceLineNo">026</span>    private static final Radius disk = Radius.CIRCLE;<a name="line.26"></a>
@@ -49,7 +49,7 @@
 <span class="sourceLineNo">041</span>     * @param maxY one more than the highest y that can be assigned; typically an array length<a name="line.41"></a>
 <span class="sourceLineNo">042</span>     * @return an ArrayList of Coord that satisfy the minimum distance; the length of the array can vary<a name="line.42"></a>
 <span class="sourceLineNo">043</span>     */<a name="line.43"></a>
-<span class="sourceLineNo">044</span>    public static ArrayList&lt;Coord&gt; sampleCircle(Coord center, float radius, float minimumDistance,<a name="line.44"></a>
+<span class="sourceLineNo">044</span>    public static OrderedSet&lt;Coord&gt; sampleCircle(Coord center, float radius, float minimumDistance,<a name="line.44"></a>
 <span class="sourceLineNo">045</span>                                                int maxX, int maxY)<a name="line.45"></a>
 <span class="sourceLineNo">046</span>    {<a name="line.46"></a>
 <span class="sourceLineNo">047</span>        return sampleCircle(center, radius, minimumDistance, maxX, maxY, defaultPointsPlaced, new StatefulRNG());<a name="line.47"></a>
@@ -70,7 +70,7 @@
 <span class="sourceLineNo">062</span>     * @param rng an RNG to use for all random sampling.<a name="line.62"></a>
 <span class="sourceLineNo">063</span>     * @return an ArrayList of Coord that satisfy the minimum distance; the length of the array can vary<a name="line.63"></a>
 <span class="sourceLineNo">064</span>     */<a name="line.64"></a>
-<span class="sourceLineNo">065</span>    public static ArrayList&lt;Coord&gt; sampleCircle(Coord center, float radius, float minimumDistance,<a name="line.65"></a>
+<span class="sourceLineNo">065</span>    public static OrderedSet&lt;Coord&gt; sampleCircle(Coord center, float radius, float minimumDistance,<a name="line.65"></a>
 <span class="sourceLineNo">066</span>                                                int maxX, int maxY, int pointsPerIteration, RNG rng)<a name="line.66"></a>
 <span class="sourceLineNo">067</span>    {<a name="line.67"></a>
 <span class="sourceLineNo">068</span>        int radius2 = Math.round(radius);<a name="line.68"></a>
@@ -90,7 +90,7 @@
 <span class="sourceLineNo">082</span>     * @param maxY one more than the highest y that can be assigned; typically an array length<a name="line.82"></a>
 <span class="sourceLineNo">083</span>     * @return an ArrayList of Coord that satisfy the minimum distance; the length of the array can vary<a name="line.83"></a>
 <span class="sourceLineNo">084</span>     */<a name="line.84"></a>
-<span class="sourceLineNo">085</span>    public static ArrayList&lt;Coord&gt; sampleRectangle(Coord minPosition, Coord maxPosition, float minimumDistance,<a name="line.85"></a>
+<span class="sourceLineNo">085</span>    public static OrderedSet&lt;Coord&gt; sampleRectangle(Coord minPosition, Coord maxPosition, float minimumDistance,<a name="line.85"></a>
 <span class="sourceLineNo">086</span>                                                   int maxX, int maxY)<a name="line.86"></a>
 <span class="sourceLineNo">087</span>    {<a name="line.87"></a>
 <span class="sourceLineNo">088</span>        return sampleRectangle(minPosition, maxPosition, minimumDistance, maxX, maxY, defaultPointsPlaced, new StatefulRNG());<a name="line.88"></a>
@@ -111,13 +111,13 @@
 <span class="sourceLineNo">103</span>     * @param rng an RNG to use for all random sampling.<a name="line.103"></a>
 <span class="sourceLineNo">104</span>     * @return an ArrayList of Coord that satisfy the minimum distance; the length of the array can vary<a name="line.104"></a>
 <span class="sourceLineNo">105</span>     */<a name="line.105"></a>
-<span class="sourceLineNo">106</span>    public static ArrayList&lt;Coord&gt; sampleRectangle(Coord minPosition, Coord maxPosition, float minimumDistance,<a name="line.106"></a>
+<span class="sourceLineNo">106</span>    public static OrderedSet&lt;Coord&gt; sampleRectangle(Coord minPosition, Coord maxPosition, float minimumDistance,<a name="line.106"></a>
 <span class="sourceLineNo">107</span>                                                   int maxX, int maxY, int pointsPerIteration, RNG rng)<a name="line.107"></a>
 <span class="sourceLineNo">108</span>    {<a name="line.108"></a>
 <span class="sourceLineNo">109</span>        return sample(minPosition, maxPosition, 0f, minimumDistance, maxX, maxY, pointsPerIteration, rng);<a name="line.109"></a>
 <span class="sourceLineNo">110</span>    }<a name="line.110"></a>
 <span class="sourceLineNo">111</span><a name="line.111"></a>
-<span class="sourceLineNo">112</span>    private static ArrayList&lt;Coord&gt; sample(Coord minPosition, Coord maxPosition, float rejectionDistance,<a name="line.112"></a>
+<span class="sourceLineNo">112</span>    private static OrderedSet&lt;Coord&gt; sample(Coord minPosition, Coord maxPosition, float rejectionDistance,<a name="line.112"></a>
 <span class="sourceLineNo">113</span>                                           float minimumDistance, int maxX, int maxY, int pointsPerIteration, RNG rng)<a name="line.113"></a>
 <span class="sourceLineNo">114</span>    {<a name="line.114"></a>
 <span class="sourceLineNo">115</span><a name="line.115"></a>
@@ -166,201 +166,198 @@
 <span class="sourceLineNo">158</span>                //get random point around<a name="line.158"></a>
 <span class="sourceLineNo">159</span>                float d = rng.nextFloat();<a name="line.159"></a>
 <span class="sourceLineNo">160</span>                float radius = minimumDistance + minimumDistance * d;<a name="line.160"></a>
-<span class="sourceLineNo">161</span>                d = rng.nextFloat();<a name="line.161"></a>
-<span class="sourceLineNo">162</span>                float angle = pi2 * d;<a name="line.162"></a>
-<span class="sourceLineNo">163</span><a name="line.163"></a>
-<span class="sourceLineNo">164</span>                float newX = radius * NumberTools.sin(angle);<a name="line.164"></a>
-<span class="sourceLineNo">165</span>                float newY = radius * NumberTools.cos(angle);<a name="line.165"></a>
-<span class="sourceLineNo">166</span>                Coord q = point.translateCapped(Math.round(newX), Math.round(newY), maxX, maxY);<a name="line.166"></a>
-<span class="sourceLineNo">167</span>                //end get random point around<a name="line.167"></a>
-<span class="sourceLineNo">168</span><a name="line.168"></a>
-<span class="sourceLineNo">169</span>                if (q.x &gt;= minPosition.x &amp;&amp; q.x &lt;= maxPosition.x &amp;&amp;<a name="line.169"></a>
-<span class="sourceLineNo">170</span>                        q.y &gt;= minPosition.y &amp;&amp; q.y &lt;= maxPosition.y &amp;&amp;<a name="line.170"></a>
-<span class="sourceLineNo">171</span>                        (rejectionDistance &lt;= 0 || disk.radius(center.x, center.y, q.x, q.y) &lt;= rejectionDistance))<a name="line.171"></a>
-<span class="sourceLineNo">172</span>                {<a name="line.172"></a>
-<span class="sourceLineNo">173</span>                    Coord qIndex = q.subtract(minPosition).divide((int)Math.ceil(cellSize));<a name="line.173"></a>
-<span class="sourceLineNo">174</span>                    boolean tooClose = false;<a name="line.174"></a>
-<span class="sourceLineNo">175</span><a name="line.175"></a>
-<span class="sourceLineNo">176</span>                    for (int i = Math.max(0, qIndex.x - 2); i &lt; Math.min(gridWidth, qIndex.x + 3) &amp;&amp; !tooClose; i++) {<a name="line.176"></a>
-<span class="sourceLineNo">177</span>                        for (int j = Math.max(0, qIndex.y - 2); j &lt; Math.min(gridHeight, qIndex.y + 3); j++) {<a name="line.177"></a>
-<span class="sourceLineNo">178</span>                            if (grid[i][j] != null &amp;&amp; disk.radius(grid[i][j], q) &lt; minimumDistance) {<a name="line.178"></a>
-<span class="sourceLineNo">179</span>                                tooClose = true;<a name="line.179"></a>
-<span class="sourceLineNo">180</span>                                break;<a name="line.180"></a>
-<span class="sourceLineNo">181</span>                            }<a name="line.181"></a>
-<span class="sourceLineNo">182</span>                        }<a name="line.182"></a>
-<span class="sourceLineNo">183</span>                    }<a name="line.183"></a>
-<span class="sourceLineNo">184</span>                    if (!tooClose)<a name="line.184"></a>
-<span class="sourceLineNo">185</span>                    {<a name="line.185"></a>
-<span class="sourceLineNo">186</span>                        found = true;<a name="line.186"></a>
-<span class="sourceLineNo">187</span>                        activePoints.add(q);<a name="line.187"></a>
-<span class="sourceLineNo">188</span>                        points.add(q);<a name="line.188"></a>
-<span class="sourceLineNo">189</span>                        grid[qIndex.x][qIndex.y] = q;<a name="line.189"></a>
-<span class="sourceLineNo">190</span>                    }<a name="line.190"></a>
-<span class="sourceLineNo">191</span>                }<a name="line.191"></a>
-<span class="sourceLineNo">192</span>                //end add next point<a name="line.192"></a>
-<span class="sourceLineNo">193</span>            }<a name="line.193"></a>
-<span class="sourceLineNo">194</span><a name="line.194"></a>
-<span class="sourceLineNo">195</span>            if (!found)<a name="line.195"></a>
-<span class="sourceLineNo">196</span>            {<a name="line.196"></a>
-<span class="sourceLineNo">197</span>                activePoints.remove(listIndex);<a name="line.197"></a>
-<span class="sourceLineNo">198</span>            }<a name="line.198"></a>
-<span class="sourceLineNo">199</span>        }<a name="line.199"></a>
-<span class="sourceLineNo">200</span>        activePoints = new ArrayList&lt;&gt;(points);<a name="line.200"></a>
-<span class="sourceLineNo">201</span>        return activePoints;<a name="line.201"></a>
-<span class="sourceLineNo">202</span>    }<a name="line.202"></a>
-<span class="sourceLineNo">203</span><a name="line.203"></a>
-<span class="sourceLineNo">204</span>    public static ArrayList&lt;Coord&gt; sampleMap(char[][] map,<a name="line.204"></a>
-<span class="sourceLineNo">205</span>                                             float minimumDistance, RNG rng, Character... blocking)<a name="line.205"></a>
-<span class="sourceLineNo">206</span>    {<a name="line.206"></a>
-<span class="sourceLineNo">207</span>        return sampleMap(Coord.get(1, 1), Coord.get(map.length - 2, map[0].length - 2),<a name="line.207"></a>
-<span class="sourceLineNo">208</span>                map, minimumDistance, rng, blocking);<a name="line.208"></a>
-<span class="sourceLineNo">209</span>    }<a name="line.209"></a>
-<span class="sourceLineNo">210</span><a name="line.210"></a>
-<span class="sourceLineNo">211</span>    public static ArrayList&lt;Coord&gt; sampleMap(Coord minPosition, Coord maxPosition, char[][] map,<a name="line.211"></a>
-<span class="sourceLineNo">212</span>                                             float minimumDistance, RNG rng, Character... blocking) {<a name="line.212"></a>
-<span class="sourceLineNo">213</span>        int width = map.length;<a name="line.213"></a>
-<span class="sourceLineNo">214</span>        int height = map[0].length;<a name="line.214"></a>
-<span class="sourceLineNo">215</span>        HashSet&lt;Character&gt; blocked = new HashSet&lt;&gt;();<a name="line.215"></a>
-<span class="sourceLineNo">216</span>        Collections.addAll(blocked, blocking);<a name="line.216"></a>
-<span class="sourceLineNo">217</span>        boolean restricted = false;<a name="line.217"></a>
-<span class="sourceLineNo">218</span>        if (blocked.size() &gt; 0) {<a name="line.218"></a>
-<span class="sourceLineNo">219</span>            restricted = true;<a name="line.219"></a>
-<span class="sourceLineNo">220</span>        }<a name="line.220"></a>
-<span class="sourceLineNo">221</span>        Coord dimensions = maxPosition.subtract(minPosition);<a name="line.221"></a>
-<span class="sourceLineNo">222</span>        float cellSize = Math.max(minimumDistance / rootTwo, 1f);<a name="line.222"></a>
-<span class="sourceLineNo">223</span>        int gridWidth = (int) (dimensions.x / cellSize) + 1;<a name="line.223"></a>
-<span class="sourceLineNo">224</span>        int gridHeight = (int) (dimensions.y / cellSize) + 1;<a name="line.224"></a>
-<span class="sourceLineNo">225</span>        Coord[][] grid = new Coord[gridWidth][gridHeight];<a name="line.225"></a>
-<span class="sourceLineNo">226</span>        ArrayList&lt;Coord&gt; activePoints = new ArrayList&lt;&gt;();<a name="line.226"></a>
-<span class="sourceLineNo">227</span>        OrderedSet&lt;Coord&gt; points = new OrderedSet&lt;&gt;(128);<a name="line.227"></a>
+<span class="sourceLineNo">161</span>                float angle = pi2 * rng.nextFloat();<a name="line.161"></a>
+<span class="sourceLineNo">162</span><a name="line.162"></a>
+<span class="sourceLineNo">163</span>                float newX = radius * NumberTools.sin(angle);<a name="line.163"></a>
+<span class="sourceLineNo">164</span>                float newY = radius * NumberTools.cos(angle);<a name="line.164"></a>
+<span class="sourceLineNo">165</span>                Coord q = point.translateCapped(Math.round(newX), Math.round(newY), maxX, maxY);<a name="line.165"></a>
+<span class="sourceLineNo">166</span>                //end get random point around<a name="line.166"></a>
+<span class="sourceLineNo">167</span><a name="line.167"></a>
+<span class="sourceLineNo">168</span>                if (q.x &gt;= minPosition.x &amp;&amp; q.x &lt;= maxPosition.x &amp;&amp;<a name="line.168"></a>
+<span class="sourceLineNo">169</span>                        q.y &gt;= minPosition.y &amp;&amp; q.y &lt;= maxPosition.y &amp;&amp;<a name="line.169"></a>
+<span class="sourceLineNo">170</span>                        (rejectionDistance &lt;= 0 || disk.radius(center.x, center.y, q.x, q.y) &lt;= rejectionDistance))<a name="line.170"></a>
+<span class="sourceLineNo">171</span>                {<a name="line.171"></a>
+<span class="sourceLineNo">172</span>                    Coord qIndex = q.subtract(minPosition).divide((int)Math.ceil(cellSize));<a name="line.172"></a>
+<span class="sourceLineNo">173</span>                    boolean tooClose = false;<a name="line.173"></a>
+<span class="sourceLineNo">174</span><a name="line.174"></a>
+<span class="sourceLineNo">175</span>                    for (int i = Math.max(0, qIndex.x - 2); i &lt; Math.min(gridWidth, qIndex.x + 3) &amp;&amp; !tooClose; i++) {<a name="line.175"></a>
+<span class="sourceLineNo">176</span>                        for (int j = Math.max(0, qIndex.y - 2); j &lt; Math.min(gridHeight, qIndex.y + 3); j++) {<a name="line.176"></a>
+<span class="sourceLineNo">177</span>                            if (grid[i][j] != null &amp;&amp; disk.radius(grid[i][j], q) &lt; minimumDistance) {<a name="line.177"></a>
+<span class="sourceLineNo">178</span>                                tooClose = true;<a name="line.178"></a>
+<span class="sourceLineNo">179</span>                                break;<a name="line.179"></a>
+<span class="sourceLineNo">180</span>                            }<a name="line.180"></a>
+<span class="sourceLineNo">181</span>                        }<a name="line.181"></a>
+<span class="sourceLineNo">182</span>                    }<a name="line.182"></a>
+<span class="sourceLineNo">183</span>                    if (!tooClose)<a name="line.183"></a>
+<span class="sourceLineNo">184</span>                    {<a name="line.184"></a>
+<span class="sourceLineNo">185</span>                        found = true;<a name="line.185"></a>
+<span class="sourceLineNo">186</span>                        activePoints.add(q);<a name="line.186"></a>
+<span class="sourceLineNo">187</span>                        points.add(q);<a name="line.187"></a>
+<span class="sourceLineNo">188</span>                        grid[qIndex.x][qIndex.y] = q;<a name="line.188"></a>
+<span class="sourceLineNo">189</span>                    }<a name="line.189"></a>
+<span class="sourceLineNo">190</span>                }<a name="line.190"></a>
+<span class="sourceLineNo">191</span>                //end add next point<a name="line.191"></a>
+<span class="sourceLineNo">192</span>            }<a name="line.192"></a>
+<span class="sourceLineNo">193</span><a name="line.193"></a>
+<span class="sourceLineNo">194</span>            if (!found)<a name="line.194"></a>
+<span class="sourceLineNo">195</span>            {<a name="line.195"></a>
+<span class="sourceLineNo">196</span>                activePoints.remove(listIndex);<a name="line.196"></a>
+<span class="sourceLineNo">197</span>            }<a name="line.197"></a>
+<span class="sourceLineNo">198</span>        }<a name="line.198"></a>
+<span class="sourceLineNo">199</span>        return points;<a name="line.199"></a>
+<span class="sourceLineNo">200</span>    }<a name="line.200"></a>
+<span class="sourceLineNo">201</span><a name="line.201"></a>
+<span class="sourceLineNo">202</span>    public static OrderedSet&lt;Coord&gt; sampleMap(char[][] map,<a name="line.202"></a>
+<span class="sourceLineNo">203</span>                                              float minimumDistance, RNG rng, Character... blocking)<a name="line.203"></a>
+<span class="sourceLineNo">204</span>    {<a name="line.204"></a>
+<span class="sourceLineNo">205</span>        return sampleMap(Coord.get(1, 1), Coord.get(map.length - 2, map[0].length - 2),<a name="line.205"></a>
+<span class="sourceLineNo">206</span>                map, minimumDistance, rng, blocking);<a name="line.206"></a>
+<span class="sourceLineNo">207</span>    }<a name="line.207"></a>
+<span class="sourceLineNo">208</span><a name="line.208"></a>
+<span class="sourceLineNo">209</span>    public static OrderedSet&lt;Coord&gt; sampleMap(Coord minPosition, Coord maxPosition, char[][] map,<a name="line.209"></a>
+<span class="sourceLineNo">210</span>                                             float minimumDistance, RNG rng, Character... blocking) {<a name="line.210"></a>
+<span class="sourceLineNo">211</span>        int width = map.length;<a name="line.211"></a>
+<span class="sourceLineNo">212</span>        int height = map[0].length;<a name="line.212"></a>
+<span class="sourceLineNo">213</span>        HashSet&lt;Character&gt; blocked = new HashSet&lt;&gt;();<a name="line.213"></a>
+<span class="sourceLineNo">214</span>        Collections.addAll(blocked, blocking);<a name="line.214"></a>
+<span class="sourceLineNo">215</span>        boolean restricted = false;<a name="line.215"></a>
+<span class="sourceLineNo">216</span>        if (blocked.size() &gt; 0) {<a name="line.216"></a>
+<span class="sourceLineNo">217</span>            restricted = true;<a name="line.217"></a>
+<span class="sourceLineNo">218</span>        }<a name="line.218"></a>
+<span class="sourceLineNo">219</span>        Coord dimensions = maxPosition.subtract(minPosition);<a name="line.219"></a>
+<span class="sourceLineNo">220</span>        float cellSize = Math.max(minimumDistance / rootTwo, 1f);<a name="line.220"></a>
+<span class="sourceLineNo">221</span>        int gridWidth = (int) (dimensions.x / cellSize) + 1;<a name="line.221"></a>
+<span class="sourceLineNo">222</span>        int gridHeight = (int) (dimensions.y / cellSize) + 1;<a name="line.222"></a>
+<span class="sourceLineNo">223</span>        Coord[][] grid = new Coord[gridWidth][gridHeight];<a name="line.223"></a>
+<span class="sourceLineNo">224</span>        ArrayList&lt;Coord&gt; activePoints = new ArrayList&lt;&gt;();<a name="line.224"></a>
+<span class="sourceLineNo">225</span>        OrderedSet&lt;Coord&gt; points = new OrderedSet&lt;&gt;(128);<a name="line.225"></a>
+<span class="sourceLineNo">226</span><a name="line.226"></a>
+<span class="sourceLineNo">227</span>        //add first point<a name="line.227"></a>
 <span class="sourceLineNo">228</span><a name="line.228"></a>
-<span class="sourceLineNo">229</span>        //add first point<a name="line.229"></a>
-<span class="sourceLineNo">230</span><a name="line.230"></a>
-<span class="sourceLineNo">231</span>        Coord p = randomUnblockedTile(minPosition, maxPosition, map, rng, blocked);<a name="line.231"></a>
-<span class="sourceLineNo">232</span>        if (p == null)<a name="line.232"></a>
-<span class="sourceLineNo">233</span>            return activePoints;<a name="line.233"></a>
-<span class="sourceLineNo">234</span>        Coord index = p.subtract(minPosition).divide(cellSize);<a name="line.234"></a>
+<span class="sourceLineNo">229</span>        Coord p = randomUnblockedTile(minPosition, maxPosition, map, rng, blocked);<a name="line.229"></a>
+<span class="sourceLineNo">230</span>        if (p == null)<a name="line.230"></a>
+<span class="sourceLineNo">231</span>            return points;<a name="line.231"></a>
+<span class="sourceLineNo">232</span>        Coord index = p.subtract(minPosition).divide(cellSize);<a name="line.232"></a>
+<span class="sourceLineNo">233</span><a name="line.233"></a>
+<span class="sourceLineNo">234</span>        grid[index.x][index.y] = p;<a name="line.234"></a>
 <span class="sourceLineNo">235</span><a name="line.235"></a>
-<span class="sourceLineNo">236</span>        grid[index.x][index.y] = p;<a name="line.236"></a>
-<span class="sourceLineNo">237</span><a name="line.237"></a>
-<span class="sourceLineNo">238</span>        activePoints.add(p);<a name="line.238"></a>
-<span class="sourceLineNo">239</span>        points.add(p);<a name="line.239"></a>
+<span class="sourceLineNo">236</span>        activePoints.add(p);<a name="line.236"></a>
+<span class="sourceLineNo">237</span>        points.add(p);<a name="line.237"></a>
+<span class="sourceLineNo">238</span><a name="line.238"></a>
+<span class="sourceLineNo">239</span>        //end add first point<a name="line.239"></a>
 <span class="sourceLineNo">240</span><a name="line.240"></a>
-<span class="sourceLineNo">241</span>        //end add first point<a name="line.241"></a>
-<span class="sourceLineNo">242</span><a name="line.242"></a>
-<span class="sourceLineNo">243</span>        while (activePoints.size() != 0) {<a name="line.243"></a>
-<span class="sourceLineNo">244</span>            int listIndex = rng.nextInt(activePoints.size());<a name="line.244"></a>
-<span class="sourceLineNo">245</span><a name="line.245"></a>
-<span class="sourceLineNo">246</span>            Coord point = activePoints.get(listIndex);<a name="line.246"></a>
-<span class="sourceLineNo">247</span>            boolean found = false;<a name="line.247"></a>
-<span class="sourceLineNo">248</span><a name="line.248"></a>
-<span class="sourceLineNo">249</span>            for (int k = 0; k &lt; 20; k++) {<a name="line.249"></a>
-<span class="sourceLineNo">250</span>                //add next point<a name="line.250"></a>
-<span class="sourceLineNo">251</span>                //get random point around<a name="line.251"></a>
-<span class="sourceLineNo">252</span>                float d = rng.nextFloat();<a name="line.252"></a>
-<span class="sourceLineNo">253</span>                float radius = minimumDistance + minimumDistance * d;<a name="line.253"></a>
-<span class="sourceLineNo">254</span>                d = rng.nextFloat();<a name="line.254"></a>
-<span class="sourceLineNo">255</span>                float angle = pi2 * d;<a name="line.255"></a>
-<span class="sourceLineNo">256</span><a name="line.256"></a>
-<span class="sourceLineNo">257</span>                float newX = radius * NumberTools.sin(angle);<a name="line.257"></a>
-<span class="sourceLineNo">258</span>                float newY = radius * NumberTools.cos(angle);<a name="line.258"></a>
-<span class="sourceLineNo">259</span>                Coord q = point.translateCapped(Math.round(newX), Math.round(newY), width, height);<a name="line.259"></a>
-<span class="sourceLineNo">260</span>                int frustration = 0;<a name="line.260"></a>
-<span class="sourceLineNo">261</span>                while(blocked.contains(map[q.x][q.y]) &amp;&amp; frustration &lt; 8)<a name="line.261"></a>
-<span class="sourceLineNo">262</span>                {<a name="line.262"></a>
-<span class="sourceLineNo">263</span>                    d = rng.nextFloat();<a name="line.263"></a>
-<span class="sourceLineNo">264</span>                    angle = pi2 * d;<a name="line.264"></a>
-<span class="sourceLineNo">265</span>                    newX = radius * NumberTools.sin(angle);<a name="line.265"></a>
-<span class="sourceLineNo">266</span>                    newY = radius * NumberTools.cos(angle);<a name="line.266"></a>
-<span class="sourceLineNo">267</span>                    q = point.translateCapped(Math.round(newX), Math.round(newY), width, height);<a name="line.267"></a>
-<span class="sourceLineNo">268</span>                    frustration++;<a name="line.268"></a>
-<span class="sourceLineNo">269</span>                }<a name="line.269"></a>
+<span class="sourceLineNo">241</span>        while (activePoints.size() != 0) {<a name="line.241"></a>
+<span class="sourceLineNo">242</span>            int listIndex = rng.nextInt(activePoints.size());<a name="line.242"></a>
+<span class="sourceLineNo">243</span><a name="line.243"></a>
+<span class="sourceLineNo">244</span>            Coord point = activePoints.get(listIndex);<a name="line.244"></a>
+<span class="sourceLineNo">245</span>            boolean found = false;<a name="line.245"></a>
+<span class="sourceLineNo">246</span><a name="line.246"></a>
+<span class="sourceLineNo">247</span>            for (int k = 0; k &lt; 20; k++) {<a name="line.247"></a>
+<span class="sourceLineNo">248</span>                //add next point<a name="line.248"></a>
+<span class="sourceLineNo">249</span>                //get random point around<a name="line.249"></a>
+<span class="sourceLineNo">250</span>                float d = rng.nextFloat();<a name="line.250"></a>
+<span class="sourceLineNo">251</span>                float radius = minimumDistance + minimumDistance * d;<a name="line.251"></a>
+<span class="sourceLineNo">252</span>                d = rng.nextFloat();<a name="line.252"></a>
+<span class="sourceLineNo">253</span>                float angle = pi2 * d;<a name="line.253"></a>
+<span class="sourceLineNo">254</span><a name="line.254"></a>
+<span class="sourceLineNo">255</span>                float newX = radius * NumberTools.sin(angle);<a name="line.255"></a>
+<span class="sourceLineNo">256</span>                float newY = radius * NumberTools.cos(angle);<a name="line.256"></a>
+<span class="sourceLineNo">257</span>                Coord q = point.translateCapped(Math.round(newX), Math.round(newY), width, height);<a name="line.257"></a>
+<span class="sourceLineNo">258</span>                int frustration = 0;<a name="line.258"></a>
+<span class="sourceLineNo">259</span>                while(restricted &amp;&amp; blocked.contains(map[q.x][q.y]) &amp;&amp; frustration &lt; 8)<a name="line.259"></a>
+<span class="sourceLineNo">260</span>                {<a name="line.260"></a>
+<span class="sourceLineNo">261</span>                    d = rng.nextFloat();<a name="line.261"></a>
+<span class="sourceLineNo">262</span>                    angle = pi2 * d;<a name="line.262"></a>
+<span class="sourceLineNo">263</span>                    newX = radius * NumberTools.sin(angle);<a name="line.263"></a>
+<span class="sourceLineNo">264</span>                    newY = radius * NumberTools.cos(angle);<a name="line.264"></a>
+<span class="sourceLineNo">265</span>                    q = point.translateCapped(Math.round(newX), Math.round(newY), width, height);<a name="line.265"></a>
+<span class="sourceLineNo">266</span>                    frustration++;<a name="line.266"></a>
+<span class="sourceLineNo">267</span>                }<a name="line.267"></a>
+<span class="sourceLineNo">268</span><a name="line.268"></a>
+<span class="sourceLineNo">269</span>                //end get random point around<a name="line.269"></a>
 <span class="sourceLineNo">270</span><a name="line.270"></a>
-<span class="sourceLineNo">271</span>                //end get random point around<a name="line.271"></a>
-<span class="sourceLineNo">272</span><a name="line.272"></a>
-<span class="sourceLineNo">273</span>                if (q.x &gt;= minPosition.x &amp;&amp; q.x &lt;= maxPosition.x &amp;&amp;<a name="line.273"></a>
-<span class="sourceLineNo">274</span>                        q.y &gt;= minPosition.y &amp;&amp; q.y &lt;= maxPosition.y) {<a name="line.274"></a>
-<span class="sourceLineNo">275</span>                    Coord qIndex = q.subtract(minPosition).divide((int) Math.ceil(cellSize));<a name="line.275"></a>
-<span class="sourceLineNo">276</span>                    boolean tooClose = false;<a name="line.276"></a>
-<span class="sourceLineNo">277</span><a name="line.277"></a>
-<span class="sourceLineNo">278</span>                    for (int i = Math.max(0, qIndex.x - 2); i &lt; Math.min(gridWidth, qIndex.x + 3) &amp;&amp; !tooClose; i++) {<a name="line.278"></a>
-<span class="sourceLineNo">279</span>                        for (int j = Math.max(0, qIndex.y - 2); j &lt; Math.min(gridHeight, qIndex.y + 3); j++) {<a name="line.279"></a>
-<span class="sourceLineNo">280</span>                            if (grid[i][j] != null &amp;&amp; disk.radius(grid[i][j], q) &lt; minimumDistance) {<a name="line.280"></a>
-<span class="sourceLineNo">281</span>                                tooClose = true;<a name="line.281"></a>
-<span class="sourceLineNo">282</span>                                break;<a name="line.282"></a>
-<span class="sourceLineNo">283</span>                            }<a name="line.283"></a>
-<span class="sourceLineNo">284</span>                        }<a name="line.284"></a>
-<span class="sourceLineNo">285</span>                    }<a name="line.285"></a>
-<span class="sourceLineNo">286</span>                    if (!tooClose) {<a name="line.286"></a>
-<span class="sourceLineNo">287</span>                        found = true;<a name="line.287"></a>
-<span class="sourceLineNo">288</span>                        activePoints.add(q);<a name="line.288"></a>
-<span class="sourceLineNo">289</span>                        if(!blocked.contains(map[q.x][q.y]))<a name="line.289"></a>
-<span class="sourceLineNo">290</span>                            points.add(q);<a name="line.290"></a>
-<span class="sourceLineNo">291</span>                        grid[qIndex.x][qIndex.y] = q;<a name="line.291"></a>
-<span class="sourceLineNo">292</span>                    }<a name="line.292"></a>
-<span class="sourceLineNo">293</span>                }<a name="line.293"></a>
-<span class="sourceLineNo">294</span>                //end add next point<a name="line.294"></a>
-<span class="sourceLineNo">295</span>            }<a name="line.295"></a>
-<span class="sourceLineNo">296</span><a name="line.296"></a>
-<span class="sourceLineNo">297</span>            if (!found)<a name="line.297"></a>
-<span class="sourceLineNo">298</span>                activePoints.remove(listIndex);<a name="line.298"></a>
-<span class="sourceLineNo">299</span>        }<a name="line.299"></a>
-<span class="sourceLineNo">300</span>        activePoints = new ArrayList&lt;&gt;(points);<a name="line.300"></a>
-<span class="sourceLineNo">301</span>        return activePoints;<a name="line.301"></a>
-<span class="sourceLineNo">302</span>    }<a name="line.302"></a>
-<span class="sourceLineNo">303</span>    /**<a name="line.303"></a>
-<span class="sourceLineNo">304</span>     * Finds a random Coord where the x and y match up to a [x][y] location on map that has any value not in blocking.<a name="line.304"></a>
-<span class="sourceLineNo">305</span>     * Uses the given RNG for pseudo-random number generation.<a name="line.305"></a>
-<span class="sourceLineNo">306</span>     * @param minPosition the Coord with the lowest x and lowest y to be used as a corner for the bounding box<a name="line.306"></a>
-<span class="sourceLineNo">307</span>     * @param maxPosition the Coord with the highest x and highest y to be used as a corner for the bounding box<a name="line.307"></a>
-<span class="sourceLineNo">308</span>     * @param map a dungeon map or something, x then y<a name="line.308"></a>
-<span class="sourceLineNo">309</span>     * @param rng a RNG to generate random choices<a name="line.309"></a>
-<span class="sourceLineNo">310</span>     * @param blocked a Set of Characters that block a tile from being chosen<a name="line.310"></a>
-<span class="sourceLineNo">311</span>     * @return a Coord that corresponds to a map element equal to tile, or null if tile cannot be found or if map is too small.<a name="line.311"></a>
-<span class="sourceLineNo">312</span>     */<a name="line.312"></a>
-<span class="sourceLineNo">313</span>    public static Coord randomUnblockedTile(Coord minPosition, Coord maxPosition, char[][] map, RNG rng, HashSet&lt;Character&gt; blocked)<a name="line.313"></a>
-<span class="sourceLineNo">314</span>    {<a name="line.314"></a>
-<span class="sourceLineNo">315</span>        int width = map.length;<a name="line.315"></a>
-<span class="sourceLineNo">316</span>        int height = map[0].length;<a name="line.316"></a>
-<span class="sourceLineNo">317</span>        if(width &lt; 3 || height &lt; 3)<a name="line.317"></a>
-<span class="sourceLineNo">318</span>            return null;<a name="line.318"></a>
-<span class="sourceLineNo">319</span>        if(blocked.size() == 0) {<a name="line.319"></a>
-<span class="sourceLineNo">320</span>            return Coord.get(rng.between(minPosition.x, maxPosition.x), rng.between(minPosition.y, maxPosition.y));<a name="line.320"></a>
-<span class="sourceLineNo">321</span>        }<a name="line.321"></a>
-<span class="sourceLineNo">322</span><a name="line.322"></a>
-<span class="sourceLineNo">323</span>        int x = rng.between(minPosition.x, maxPosition.x), y = rng.between(minPosition.y, maxPosition.y);<a name="line.323"></a>
-<span class="sourceLineNo">324</span>        for(int i = 0; i &lt; (width + height) / 4; i++)<a name="line.324"></a>
-<span class="sourceLineNo">325</span>        {<a name="line.325"></a>
-<span class="sourceLineNo">326</span>            if(!blocked.contains(map[x][y]))<a name="line.326"></a>
-<span class="sourceLineNo">327</span>            {<a name="line.327"></a>
-<span class="sourceLineNo">328</span>                return Coord.get(x, y);<a name="line.328"></a>
-<span class="sourceLineNo">329</span>            }<a name="line.329"></a>
-<span class="sourceLineNo">330</span>            else<a name="line.330"></a>
-<span class="sourceLineNo">331</span>            {<a name="line.331"></a>
-<span class="sourceLineNo">332</span>                x = rng.between(minPosition.x, maxPosition.x);<a name="line.332"></a>
-<span class="sourceLineNo">333</span>                y = rng.between(minPosition.y, maxPosition.y);<a name="line.333"></a>
-<span class="sourceLineNo">334</span>            }<a name="line.334"></a>
-<span class="sourceLineNo">335</span>        }<a name="line.335"></a>
-<span class="sourceLineNo">336</span>        x = 1;<a name="line.336"></a>
-<span class="sourceLineNo">337</span>        y = 1;<a name="line.337"></a>
-<span class="sourceLineNo">338</span>        if(!blocked.contains(map[x][y]))<a name="line.338"></a>
-<span class="sourceLineNo">339</span>            return Coord.get(x, y);<a name="line.339"></a>
-<span class="sourceLineNo">340</span><a name="line.340"></a>
-<span class="sourceLineNo">341</span>        while(blocked.contains(map[x][y]))<a name="line.341"></a>
-<span class="sourceLineNo">342</span>        {<a name="line.342"></a>
-<span class="sourceLineNo">343</span>            x += 1;<a name="line.343"></a>
-<span class="sourceLineNo">344</span>            if(x &gt;= width - 1)<a name="line.344"></a>
-<span class="sourceLineNo">345</span>            {<a name="line.345"></a>
-<span class="sourceLineNo">346</span>                x = 1;<a name="line.346"></a>
-<span class="sourceLineNo">347</span>                y += 1;<a name="line.347"></a>
-<span class="sourceLineNo">348</span>            }<a name="line.348"></a>
-<span class="sourceLineNo">349</span>            if(y &gt;= height - 1)<a name="line.349"></a>
-<span class="sourceLineNo">350</span>                return null;<a name="line.350"></a>
-<span class="sourceLineNo">351</span>        }<a name="line.351"></a>
-<span class="sourceLineNo">352</span>        return Coord.get(x, y);<a name="line.352"></a>
-<span class="sourceLineNo">353</span>    }<a name="line.353"></a>
-<span class="sourceLineNo">354</span><a name="line.354"></a>
-<span class="sourceLineNo">355</span>}<a name="line.355"></a>
+<span class="sourceLineNo">271</span>                if (q.x &gt;= minPosition.x &amp;&amp; q.x &lt;= maxPosition.x &amp;&amp;<a name="line.271"></a>
+<span class="sourceLineNo">272</span>                        q.y &gt;= minPosition.y &amp;&amp; q.y &lt;= maxPosition.y) {<a name="line.272"></a>
+<span class="sourceLineNo">273</span>                    Coord qIndex = q.subtract(minPosition).divide((int) Math.ceil(cellSize));<a name="line.273"></a>
+<span class="sourceLineNo">274</span>                    boolean tooClose = false;<a name="line.274"></a>
+<span class="sourceLineNo">275</span><a name="line.275"></a>
+<span class="sourceLineNo">276</span>                    for (int i = Math.max(0, qIndex.x - 2); i &lt; Math.min(gridWidth, qIndex.x + 3) &amp;&amp; !tooClose; i++) {<a name="line.276"></a>
+<span class="sourceLineNo">277</span>                        for (int j = Math.max(0, qIndex.y - 2); j &lt; Math.min(gridHeight, qIndex.y + 3); j++) {<a name="line.277"></a>
+<span class="sourceLineNo">278</span>                            if (grid[i][j] != null &amp;&amp; disk.radius(grid[i][j], q) &lt; minimumDistance) {<a name="line.278"></a>
+<span class="sourceLineNo">279</span>                                tooClose = true;<a name="line.279"></a>
+<span class="sourceLineNo">280</span>                                break;<a name="line.280"></a>
+<span class="sourceLineNo">281</span>                            }<a name="line.281"></a>
+<span class="sourceLineNo">282</span>                        }<a name="line.282"></a>
+<span class="sourceLineNo">283</span>                    }<a name="line.283"></a>
+<span class="sourceLineNo">284</span>                    if (!tooClose) {<a name="line.284"></a>
+<span class="sourceLineNo">285</span>                        found = true;<a name="line.285"></a>
+<span class="sourceLineNo">286</span>                        activePoints.add(q);<a name="line.286"></a>
+<span class="sourceLineNo">287</span>                        if(!restricted || !blocked.contains(map[q.x][q.y]))<a name="line.287"></a>
+<span class="sourceLineNo">288</span>                            points.add(q);<a name="line.288"></a>
+<span class="sourceLineNo">289</span>                        grid[qIndex.x][qIndex.y] = q;<a name="line.289"></a>
+<span class="sourceLineNo">290</span>                    }<a name="line.290"></a>
+<span class="sourceLineNo">291</span>                }<a name="line.291"></a>
+<span class="sourceLineNo">292</span>                //end add next point<a name="line.292"></a>
+<span class="sourceLineNo">293</span>            }<a name="line.293"></a>
+<span class="sourceLineNo">294</span><a name="line.294"></a>
+<span class="sourceLineNo">295</span>            if (!found)<a name="line.295"></a>
+<span class="sourceLineNo">296</span>                activePoints.remove(listIndex);<a name="line.296"></a>
+<span class="sourceLineNo">297</span>        }<a name="line.297"></a>
+<span class="sourceLineNo">298</span>        return points;<a name="line.298"></a>
+<span class="sourceLineNo">299</span>    }<a name="line.299"></a>
+<span class="sourceLineNo">300</span>    /**<a name="line.300"></a>
+<span class="sourceLineNo">301</span>     * Finds a random Coord where the x and y match up to a [x][y] location on map that has any value not in blocking.<a name="line.301"></a>
+<span class="sourceLineNo">302</span>     * Uses the given RNG for pseudo-random number generation.<a name="line.302"></a>
+<span class="sourceLineNo">303</span>     * @param minPosition the Coord with the lowest x and lowest y to be used as a corner for the bounding box<a name="line.303"></a>
+<span class="sourceLineNo">304</span>     * @param maxPosition the Coord with the highest x and highest y to be used as a corner for the bounding box<a name="line.304"></a>
+<span class="sourceLineNo">305</span>     * @param map a dungeon map or something, x then y<a name="line.305"></a>
+<span class="sourceLineNo">306</span>     * @param rng a RNG to generate random choices<a name="line.306"></a>
+<span class="sourceLineNo">307</span>     * @param blocked a Set of Characters that block a tile from being chosen<a name="line.307"></a>
+<span class="sourceLineNo">308</span>     * @return a Coord that corresponds to a map element equal to tile, or null if tile cannot be found or if map is too small.<a name="line.308"></a>
+<span class="sourceLineNo">309</span>     */<a name="line.309"></a>
+<span class="sourceLineNo">310</span>    public static Coord randomUnblockedTile(Coord minPosition, Coord maxPosition, char[][] map, RNG rng, HashSet&lt;Character&gt; blocked)<a name="line.310"></a>
+<span class="sourceLineNo">311</span>    {<a name="line.311"></a>
+<span class="sourceLineNo">312</span>        int width = map.length;<a name="line.312"></a>
+<span class="sourceLineNo">313</span>        int height = map[0].length;<a name="line.313"></a>
+<span class="sourceLineNo">314</span>        if(width &lt; 3 || height &lt; 3)<a name="line.314"></a>
+<span class="sourceLineNo">315</span>            return null;<a name="line.315"></a>
+<span class="sourceLineNo">316</span>        if(blocked.size() == 0) {<a name="line.316"></a>
+<span class="sourceLineNo">317</span>            return Coord.get(rng.between(minPosition.x, maxPosition.x), rng.between(minPosition.y, maxPosition.y));<a name="line.317"></a>
+<span class="sourceLineNo">318</span>        }<a name="line.318"></a>
+<span class="sourceLineNo">319</span><a name="line.319"></a>
+<span class="sourceLineNo">320</span>        int x = rng.between(minPosition.x, maxPosition.x), y = rng.between(minPosition.y, maxPosition.y);<a name="line.320"></a>
+<span class="sourceLineNo">321</span>        for(int i = 0; i &lt; (width + height) / 4; i++)<a name="line.321"></a>
+<span class="sourceLineNo">322</span>        {<a name="line.322"></a>
+<span class="sourceLineNo">323</span>            if(!blocked.contains(map[x][y]))<a name="line.323"></a>
+<span class="sourceLineNo">324</span>            {<a name="line.324"></a>
+<span class="sourceLineNo">325</span>                return Coord.get(x, y);<a name="line.325"></a>
+<span class="sourceLineNo">326</span>            }<a name="line.326"></a>
+<span class="sourceLineNo">327</span>            else<a name="line.327"></a>
+<span class="sourceLineNo">328</span>            {<a name="line.328"></a>
+<span class="sourceLineNo">329</span>                x = rng.between(minPosition.x, maxPosition.x);<a name="line.329"></a>
+<span class="sourceLineNo">330</span>                y = rng.between(minPosition.y, maxPosition.y);<a name="line.330"></a>
+<span class="sourceLineNo">331</span>            }<a name="line.331"></a>
+<span class="sourceLineNo">332</span>        }<a name="line.332"></a>
+<span class="sourceLineNo">333</span>        x = 1;<a name="line.333"></a>
+<span class="sourceLineNo">334</span>        y = 1;<a name="line.334"></a>
+<span class="sourceLineNo">335</span>        if(!blocked.contains(map[x][y]))<a name="line.335"></a>
+<span class="sourceLineNo">336</span>            return Coord.get(x, y);<a name="line.336"></a>
+<span class="sourceLineNo">337</span><a name="line.337"></a>
+<span class="sourceLineNo">338</span>        while(blocked.contains(map[x][y]))<a name="line.338"></a>
+<span class="sourceLineNo">339</span>        {<a name="line.339"></a>
+<span class="sourceLineNo">340</span>            x += 1;<a name="line.340"></a>
+<span class="sourceLineNo">341</span>            if(x &gt;= width - 1)<a name="line.341"></a>
+<span class="sourceLineNo">342</span>            {<a name="line.342"></a>
+<span class="sourceLineNo">343</span>                x = 1;<a name="line.343"></a>
+<span class="sourceLineNo">344</span>                y += 1;<a name="line.344"></a>
+<span class="sourceLineNo">345</span>            }<a name="line.345"></a>
+<span class="sourceLineNo">346</span>            if(y &gt;= height - 1)<a name="line.346"></a>
+<span class="sourceLineNo">347</span>                return null;<a name="line.347"></a>
+<span class="sourceLineNo">348</span>        }<a name="line.348"></a>
+<span class="sourceLineNo">349</span>        return Coord.get(x, y);<a name="line.349"></a>
+<span class="sourceLineNo">350</span>    }<a name="line.350"></a>
+<span class="sourceLineNo">351</span><a name="line.351"></a>
+<span class="sourceLineNo">352</span>}<a name="line.352"></a>
 
 
 

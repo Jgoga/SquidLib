@@ -321,10 +321,42 @@
 </li>
 </ul>
 </li>
-<li class="blockList"><a name="squidpony.Markov">
+<li class="blockList"><a name="squidpony.MarkovObject">
 <!--   -->
 </a>
-<h3>Class <a href="squidpony/Markov.html" title="class in squidpony">squidpony.Markov</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<h3>Class <a href="squidpony/MarkovObject.html" title="class in squidpony">squidpony.MarkovObject</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>body</h4>
+<pre><a href="squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a>&lt;<a href="squidpony/squidmath/Arrangement.html" title="type parameter in Arrangement">K</a>&gt; body</pre>
+<div class="block">All unique T items that this encountered during the latest call to <a href="squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>MarkovObject.analyze(Iterable)</code></a>.
+ Will be null if analyze() was never called.</div>
+</li>
+<li class="blockList">
+<h4>processed</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">E</a>&gt; processed</pre>
+<div class="block">Complicated data that mixes probabilities and the indices of items in <a href="squidpony/MarkovObject.html#body"><code>MarkovObject.body</code></a>, generated during the latest
+ call to <a href="squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>MarkovObject.analyze(Iterable)</code></a>. Will be null if analyze() was never called.</div>
+</li>
+<li class="blockListLast">
+<h4>raw</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">E</a>&gt; raw</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.MarkovText">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/MarkovText.html" title="class in squidpony">squidpony.MarkovText</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
 <dd>0L</dd>
@@ -337,13 +369,13 @@
 <h4>words</h4>
 <pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[] words</pre>
 <div class="block">All words (case-sensitive and counting some punctuation as part of words) that this encountered during the latest
- call to <a href="squidpony/Markov.html#analyze-java.lang.CharSequence-"><code>Markov.analyze(CharSequence)</code></a>. Will be null if analyze() was never called.</div>
+ call to <a href="squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a>. Will be null if analyze() was never called.</div>
 </li>
 <li class="blockListLast">
 <h4>processed</h4>
 <pre>int[][] processed</pre>
-<div class="block">Complicated data that mixes probabilities and the indices of words in <a href="squidpony/Markov.html#words"><code>Markov.words</code></a>, generated during the latest
- call to <a href="squidpony/Markov.html#analyze-java.lang.CharSequence-"><code>Markov.analyze(CharSequence)</code></a>. Will be null if analyze() was never called.</div>
+<div class="block">Complicated data that mixes probabilities and the indices of words in <a href="squidpony/MarkovText.html#words"><code>MarkovText.words</code></a>, generated during the latest
+ call to <a href="squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a>. This is a jagged 2D array. Will be null if analyze() was never called.</div>
 </li>
 </ul>
 </li>
@@ -505,10 +537,54 @@
 </li>
 </ul>
 </li>
+<li class="blockList"><a name="squidpony.ObText">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/ObText.html" title="class in squidpony">squidpony.ObText</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/util/AbstractList.html?is-external=true" title="class or interface in java.util">AbstractList</a>&lt;<a href="squidpony/ObText.ObTextEntry.html" title="class in squidpony">ObText.ObTextEntry</a>&gt; implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>5L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockListLast">
+<h4>entries</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">E</a>&gt; entries</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="blockList"><a name="squidpony.ObText.ContentMatcher">
 <!--   -->
 </a>
 <h3>Class <a href="squidpony/ObText.ContentMatcher.html" title="class in squidpony">squidpony.ObText.ContentMatcher</a> extends regexodus.Matcher implements Serializable</h3>
+</li>
+<li class="blockList"><a name="squidpony.ObText.ObTextEntry">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/ObText.ObTextEntry.html" title="class in squidpony">squidpony.ObText.ObTextEntry</a> extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>5L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>primary</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> primary</pre>
+</li>
+<li class="blockListLast">
+<h4>associated</h4>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">E</a>&gt; associated</pre>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 <li class="blockList"><a name="squidpony.Thesaurus">
 <!--   -->
@@ -2257,9 +2333,21 @@
 <h4>shallow</h4>
 <pre><a href="squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a> shallow</pre>
 </li>
-<li class="blockListLast">
+<li class="blockList">
 <h4>coast</h4>
 <pre><a href="squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a> coast</pre>
+</li>
+<li class="blockList">
+<h4>earthOriginal</h4>
+<pre><a href="squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a> earthOriginal</pre>
+</li>
+<li class="blockList">
+<h4>shallowOriginal</h4>
+<pre><a href="squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a> shallowOriginal</pre>
+</li>
+<li class="blockListLast">
+<h4>coastOriginal</h4>
+<pre><a href="squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a> coastOriginal</pre>
 </li>
 </ul>
 </li>

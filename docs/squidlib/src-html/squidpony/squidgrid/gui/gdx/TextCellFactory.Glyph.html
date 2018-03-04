@@ -239,7 +239,7 @@
 <span class="sourceLineNo">231</span>            //lineTweak = lineHeight * 0.0625f;<a name="line.231"></a>
 <span class="sourceLineNo">232</span>        }<a name="line.232"></a>
 <span class="sourceLineNo">233</span>        lineHeight = bmpFont.getLineHeight();<a name="line.233"></a>
-<span class="sourceLineNo">234</span>        descent = bmpFont.getDescent();//(msdf ? -8 * bmpFont.getDescent(): bmpFont.getDescent());<a name="line.234"></a>
+<span class="sourceLineNo">234</span>        descent = bmpFont.getDescent();//(msdf &amp;&amp; bmpFont.getAscent() &gt; 0 ? -bmpFont.getDescent(): bmpFont.getDescent());<a name="line.234"></a>
 <span class="sourceLineNo">235</span>        style = new Label.LabelStyle(bmpFont, null);<a name="line.235"></a>
 <span class="sourceLineNo">236</span>        BitmapFont.Glyph g = bmpFont.getData().getGlyph(directionGlyph);<a name="line.236"></a>
 <span class="sourceLineNo">237</span>        dirMarker = new TextureRegion(bmpFont.getRegion(g.page), g.srcX, g.srcY, g.width, g.height);<a name="line.237"></a>
@@ -464,7 +464,7 @@
 <span class="sourceLineNo">456</span>        //bmpFont.getData().padBottom = bmpFont.getDescent();<a name="line.456"></a>
 <span class="sourceLineNo">457</span>        if(msdf)<a name="line.457"></a>
 <span class="sourceLineNo">458</span>        {<a name="line.458"></a>
-<span class="sourceLineNo">459</span>            bmpFont.getData().setScale(0.75f, 1.0f);<a name="line.459"></a>
+<span class="sourceLineNo">459</span>            bmpFont.getData().setScale(0.75f, 1f);<a name="line.459"></a>
 <span class="sourceLineNo">460</span>        }<a name="line.460"></a>
 <span class="sourceLineNo">461</span>        distanceFieldScaleX = bmpFont.getSpaceWidth() - 1f;<a name="line.461"></a>
 <span class="sourceLineNo">462</span>        distanceFieldScaleY = bmpFont.getLineHeight() - 1f;<a name="line.462"></a>

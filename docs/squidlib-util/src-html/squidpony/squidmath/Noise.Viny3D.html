@@ -2662,29 +2662,64 @@
 <span class="sourceLineNo">2654</span>    public static class Basic1D implements Noise1D<a name="line.2654"></a>
 <span class="sourceLineNo">2655</span>    {<a name="line.2655"></a>
 <span class="sourceLineNo">2656</span>        public static final Basic1D instance = new Basic1D();<a name="line.2656"></a>
-<span class="sourceLineNo">2657</span>        public Basic1D()<a name="line.2657"></a>
-<span class="sourceLineNo">2658</span>        {<a name="line.2658"></a>
-<span class="sourceLineNo">2659</span>        }<a name="line.2659"></a>
-<span class="sourceLineNo">2660</span>        @Override<a name="line.2660"></a>
-<span class="sourceLineNo">2661</span>        public double getNoise(double x) {<a name="line.2661"></a>
-<span class="sourceLineNo">2662</span>            final long x0 = longFloor(x);<a name="line.2662"></a>
-<span class="sourceLineNo">2663</span>            return cerp(NumberTools.randomFloatCurved(x0), NumberTools.randomFloatCurved(x0 + 1L), x - x0);<a name="line.2663"></a>
-<span class="sourceLineNo">2664</span>        }<a name="line.2664"></a>
-<span class="sourceLineNo">2665</span><a name="line.2665"></a>
-<span class="sourceLineNo">2666</span>        @Override<a name="line.2666"></a>
-<span class="sourceLineNo">2667</span>        public double getNoiseWithSeed(double x, long seed) {<a name="line.2667"></a>
-<span class="sourceLineNo">2668</span>            x += NumberTools.bounce(seed + x);<a name="line.2668"></a>
-<span class="sourceLineNo">2669</span>            final long x0 = longFloor(x);<a name="line.2669"></a>
-<span class="sourceLineNo">2670</span>            return cerp(NumberTools.randomFloatCurved(x0 + seed), NumberTools.randomFloatCurved(x0 + 1L + seed), x - x0);<a name="line.2670"></a>
-<span class="sourceLineNo">2671</span>        }<a name="line.2671"></a>
-<span class="sourceLineNo">2672</span><a name="line.2672"></a>
-<span class="sourceLineNo">2673</span>        public static double noise(double x, long seed) {<a name="line.2673"></a>
-<span class="sourceLineNo">2674</span>            //x += NumberTools.sway(seed * 0x1.61p-16 * x);<a name="line.2674"></a>
-<span class="sourceLineNo">2675</span>            final long x0 = longFloor(x);<a name="line.2675"></a>
-<span class="sourceLineNo">2676</span>            return cerp(NumberTools.randomFloatCurved(x0 + seed), NumberTools.randomFloatCurved(x0 + 1L + seed), x - x0);<a name="line.2676"></a>
-<span class="sourceLineNo">2677</span>        }<a name="line.2677"></a>
-<span class="sourceLineNo">2678</span>    }<a name="line.2678"></a>
-<span class="sourceLineNo">2679</span>}<a name="line.2679"></a>
+<span class="sourceLineNo">2657</span>        public double alter1, alter2, alter3, alter4;<a name="line.2657"></a>
+<span class="sourceLineNo">2658</span>        public long lastSeed;<a name="line.2658"></a>
+<span class="sourceLineNo">2659</span>        public Basic1D()<a name="line.2659"></a>
+<span class="sourceLineNo">2660</span>        {<a name="line.2660"></a>
+<span class="sourceLineNo">2661</span>            this(1L);<a name="line.2661"></a>
+<span class="sourceLineNo">2662</span>        }<a name="line.2662"></a>
+<span class="sourceLineNo">2663</span>        public Basic1D(long seed)<a name="line.2663"></a>
+<span class="sourceLineNo">2664</span>        {<a name="line.2664"></a>
+<span class="sourceLineNo">2665</span>            lastSeed = seed;<a name="line.2665"></a>
+<span class="sourceLineNo">2666</span>            alter1 = (ThrustAltRNG.determine(seed) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25;<a name="line.2666"></a>
+<span class="sourceLineNo">2667</span>            alter2 = (ThrustAltRNG.determine(seed + 1) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25;<a name="line.2667"></a>
+<span class="sourceLineNo">2668</span>            alter3 = (ThrustAltRNG.determine(seed + 2) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25;<a name="line.2668"></a>
+<span class="sourceLineNo">2669</span>            alter4 = (ThrustAltRNG.determine(seed + 3) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25;<a name="line.2669"></a>
+<span class="sourceLineNo">2670</span>        }<a name="line.2670"></a>
+<span class="sourceLineNo">2671</span>        @Override<a name="line.2671"></a>
+<span class="sourceLineNo">2672</span>        public double getNoise(double x) {<a name="line.2672"></a>
+<span class="sourceLineNo">2673</span><a name="line.2673"></a>
+<span class="sourceLineNo">2674</span>            return (cubicSway(alter2 + x * alter1) +<a name="line.2674"></a>
+<span class="sourceLineNo">2675</span>                    cubicSway(alter3 - x * alter2) +<a name="line.2675"></a>
+<span class="sourceLineNo">2676</span>                    cubicSway(alter4 + x * alter3) +<a name="line.2676"></a>
+<span class="sourceLineNo">2677</span>                    cubicSway(alter1 - x * alter4)) * 0.25f;<a name="line.2677"></a>
+<span class="sourceLineNo">2678</span>        }<a name="line.2678"></a>
+<span class="sourceLineNo">2679</span><a name="line.2679"></a>
+<span class="sourceLineNo">2680</span>        @Override<a name="line.2680"></a>
+<span class="sourceLineNo">2681</span>        public double getNoiseWithSeed(double x, long seed) {<a name="line.2681"></a>
+<span class="sourceLineNo">2682</span>            if(lastSeed != seed)<a name="line.2682"></a>
+<span class="sourceLineNo">2683</span>            {<a name="line.2683"></a>
+<span class="sourceLineNo">2684</span>                lastSeed = seed;<a name="line.2684"></a>
+<span class="sourceLineNo">2685</span>                alter1 = (ThrustAltRNG.determine(seed) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25;<a name="line.2685"></a>
+<span class="sourceLineNo">2686</span>                alter2 = (ThrustAltRNG.determine(seed + 1) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25;<a name="line.2686"></a>
+<span class="sourceLineNo">2687</span>                alter3 = (ThrustAltRNG.determine(seed + 2) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25;<a name="line.2687"></a>
+<span class="sourceLineNo">2688</span>                alter4 = (ThrustAltRNG.determine(seed + 3) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25;<a name="line.2688"></a>
+<span class="sourceLineNo">2689</span>            }<a name="line.2689"></a>
+<span class="sourceLineNo">2690</span>            return (cubicSway(alter2 + x * alter1) +<a name="line.2690"></a>
+<span class="sourceLineNo">2691</span>                    cubicSway(alter3 - x * alter2) +<a name="line.2691"></a>
+<span class="sourceLineNo">2692</span>                    cubicSway(alter4 + x * alter3) +<a name="line.2692"></a>
+<span class="sourceLineNo">2693</span>                    cubicSway(alter1 - x * alter4)) * 0.25f;<a name="line.2693"></a>
+<span class="sourceLineNo">2694</span>        }<a name="line.2694"></a>
+<span class="sourceLineNo">2695</span>        public static double cubicSway(double value)<a name="line.2695"></a>
+<span class="sourceLineNo">2696</span>        {<a name="line.2696"></a>
+<span class="sourceLineNo">2697</span>            long floor = (value &gt;= 0.0 ? (long) value : (long) value - 1L);<a name="line.2697"></a>
+<span class="sourceLineNo">2698</span>            value -= floor;<a name="line.2698"></a>
+<span class="sourceLineNo">2699</span>            floor = (-(floor &amp; 1L) | 1L);<a name="line.2699"></a>
+<span class="sourceLineNo">2700</span>            return value * value * (3.0 - 2.0 * value) * (floor &lt;&lt; 1) - floor;<a name="line.2700"></a>
+<span class="sourceLineNo">2701</span>        }<a name="line.2701"></a>
+<span class="sourceLineNo">2702</span><a name="line.2702"></a>
+<span class="sourceLineNo">2703</span>        public static double noise(double x, long seed) {<a name="line.2703"></a>
+<span class="sourceLineNo">2704</span>            final double alter1 = (ThrustAltRNG.determine(seed) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25,<a name="line.2704"></a>
+<span class="sourceLineNo">2705</span>                    alter2 = (ThrustAltRNG.determine(seed + 1) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25,<a name="line.2705"></a>
+<span class="sourceLineNo">2706</span>                    alter3 = (ThrustAltRNG.determine(seed + 2) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25, <a name="line.2706"></a>
+<span class="sourceLineNo">2707</span>                    alter4 = (ThrustAltRNG.determine(seed + 3) &gt;&gt;&gt; 11) * 0x1.5p-54 + 0.25;                    <a name="line.2707"></a>
+<span class="sourceLineNo">2708</span>            return (cubicSway(alter2 + x * alter1) +<a name="line.2708"></a>
+<span class="sourceLineNo">2709</span>                    cubicSway(alter3 - x * alter2) +<a name="line.2709"></a>
+<span class="sourceLineNo">2710</span>                    cubicSway(alter4 + x * alter3) +<a name="line.2710"></a>
+<span class="sourceLineNo">2711</span>                    cubicSway(alter1 - x * alter4)) * 0.25f;<a name="line.2711"></a>
+<span class="sourceLineNo">2712</span>        }<a name="line.2712"></a>
+<span class="sourceLineNo">2713</span>    }<a name="line.2713"></a>
+<span class="sourceLineNo">2714</span>}<a name="line.2714"></a>
 
 
 
