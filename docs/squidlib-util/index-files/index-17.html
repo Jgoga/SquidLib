@@ -573,6 +573,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/TableSet.html#positionOf-java.lang.Object-java.lang.Object-">positionOf(Object, Object)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#positionOf-java.lang.Object-">positionOf(Object)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedSet.html#positionOf-java.lang.Object-">positionOf(Object)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/SpatialMap.html#positions--">positions()</a></span> - Method in class squidpony.squidgrid.<a href="../squidpony/squidgrid/SpatialMap.html" title="class in squidpony.squidgrid">SpatialMap</a></dt>
@@ -961,6 +963,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedMap.html#put-K-V-">put(K, V)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#put-K-V-">put(K, V)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Arrangement.html#putAll-java.util.Map-">putAll(Map&lt;? extends K, ? extends Integer&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Arrangement.html#putAll-K:A-">putAll(K[])</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a></dt>
@@ -1016,6 +1020,14 @@
 <div class="block">Puts the first key in keyArray with the first value in valueArray, then the second in each and so on.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedMap.html#putAll-java.util.Map-">putAll(Map&lt;? extends K, ? extends V&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a></dt>
+<dd>
+<div class="block">Puts all key-value pairs in the Map m into this OrderedMap.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#putAll-K:A-V:A-">putAll(K[], V[])</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>
+<div class="block">Puts the first key in keyArray with the first value in valueArray, then the second in each and so on.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#putAll-java.util.Map-">putAll(Map&lt;? extends K, ? extends V&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
 <dd>
 <div class="block">Puts all key-value pairs in the Map m into this OrderedMap.</div>
 </dd>
@@ -1167,12 +1179,23 @@
  to <code>null</code>) associates it with the given value and returns
  <code>null</code>, else returns the current value.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#putIfAbsent-K-V-">putIfAbsent(K, V)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>
+<div class="block">If the specified key is not already associated with a value (or is mapped
+ to <code>null</code>) associates it with the given value and returns
+ <code>null</code>, else returns the current value.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/GridData.html#putInts-java.lang.CharSequence-int:A:A-">putInts(CharSequence, int[][])</a></span> - Method in class squidpony.squidgrid.<a href="../squidpony/squidgrid/GridData.html" title="class in squidpony.squidgrid">GridData</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedMap.html#putPairs-K-V-java.lang.Object...-">putPairs(K, V, Object...)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a></dt>
 <dd>
 <div class="block">Given alternating key and value arguments in pairs, puts each key-value pair into this OrderedMap as if by
  calling <a href="../squidpony/squidmath/OrderedMap.html#put-K-V-"><code>OrderedMap.put(Object, Object)</code></a> repeatedly for each pair.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#putPairs-K-V-java.lang.Object...-">putPairs(K, V, Object...)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>
+<div class="block">Given alternating key and value arguments in pairs, puts each key-value pair into this OrderedMap as if by
+ calling <a href="../squidpony/squidmath/UnorderedMap.html#put-K-V-"><code>UnorderedMap.put(Object, Object)</code></a> repeatedly for each pair.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/LanesMapGenerator.html#putRoundRoomCarvers-int-">putRoundRoomCarvers(int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/LanesMapGenerator.html" title="class in squidpony.squidgrid.mapping">LanesMapGenerator</a></dt>
 <dd>

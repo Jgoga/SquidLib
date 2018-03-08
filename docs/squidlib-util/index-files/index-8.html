@@ -587,6 +587,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/ShortVLA.html#get-int-">get(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ShortVLA.html" title="class in squidpony.squidmath">ShortVLA</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#get-java.lang.Object-">get(Object)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedSet.html#get-java.lang.Object-">get(Object)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a></dt>
 <dd>
 <div class="block">Returns the element of this set that is equal to the given key, or
@@ -687,6 +689,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/MultiArrangement.html#getArray-java.util.Collection-">getArray(Collection&lt;? extends K&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/MultiArrangement.html" title="class in squidpony.squidmath">MultiArrangement</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/K2V1.html#getArrayListQ--">getArrayListQ()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a></dt>
+<dd>
+<div class="block">Gets the Q values as a freshly-copied ArrayList of Q; unlike <a href="../squidpony/squidmath/K2V1.html#getSetA--"><code>K2V1.getSetA()</code></a> or <a href="../squidpony/squidmath/K2V1.html#getSetB--"><code>K2V1.getSetB()</code></a>, this does
+ not cache the value list.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Arrangement.html#getAt-int-">getAt(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a></dt>
 <dd>
 <div class="block">Gets the value at the given index in the iteration order in constant time (random-access).</div>
@@ -1325,8 +1332,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/K2V1.html#getListQ--">getListQ()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a></dt>
 <dd>
-<div class="block">Gets the Q values as a freshly-copied ArrayList of Q; unlike <a href="../squidpony/squidmath/K2V1.html#getSetA--"><code>K2V1.getSetA()</code></a> or <a href="../squidpony/squidmath/K2V1.html#getSetB--"><code>K2V1.getSetB()</code></a>, this does
- not cache the value list.</div>
+<div class="block">Gets the Q values as a shared reference to the ArrayList of Q this uses; like <a href="../squidpony/squidmath/K2V1.html#getSetA--"><code>K2V1.getSetA()</code></a> and
+ <a href="../squidpony/squidmath/K2V1.html#getSetB--"><code>K2V1.getSetB()</code></a>, changes made to the returned list will also change this data structure.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Coord.html#getLocation--">getLocation()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></dt>
 <dd>
@@ -1341,6 +1348,8 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/MultiArrangement.html#getMany-java.lang.Iterable-">getMany(Iterable&lt;? extends K&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/MultiArrangement.html" title="class in squidpony.squidmath">MultiArrangement</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedMap.html#getMany-java.util.Collection-">getMany(Collection&lt;K&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#getMany-java.util.Collection-">getMany(Collection&lt;K&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/BundleBiMap.html#getManyCoded-E-">getManyCoded(E)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/BundleBiMap.html" title="class in squidpony.squidmath">BundleBiMap</a></dt>
 <dd>
@@ -1867,17 +1876,27 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedMap.html#getOrDefault-java.lang.Object-V-">getOrDefault(Object, V)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#getOrDefault-java.lang.Object-V-">getOrDefault(Object, V)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/MultiKey.html#getOrderedSet-int-">getOrderedSet(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/MultiKey.html" title="class in squidpony.squidmath">MultiKey</a></dt>
 <dd>
 <div class="block">To be called sparingly, since this allocates a new OrderedSet instead of reusing one.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/K2.html#getOrderedSetA--">getOrderedSetA()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/K2.html" title="class in squidpony.squidmath">K2</a></dt>
 <dd>
-<div class="block">To be called sparingly, since this allocates a new OrderedSet instead of reusing one.</div>
+<div class="block">Returns a separate (shallow) copy of the set of A keys as an <a href="../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/K2V1.html#getOrderedSetA--">getOrderedSetA()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a></dt>
+<dd>
+<div class="block">Returns a separate (shallow) copy of the set of A keys as an <a href="../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/K2.html#getOrderedSetB--">getOrderedSetB()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/K2.html" title="class in squidpony.squidmath">K2</a></dt>
 <dd>
-<div class="block">To be called sparingly, since this allocates a new OrderedSet instead of reusing one.</div>
+<div class="block">Returns a separate (shallow) copy of the set of B keys as an <a href="../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/K2V1.html#getOrderedSetB--">getOrderedSetB()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a></dt>
+<dd>
+<div class="block">Returns a separate (shallow) copy of the set of B keys as an <a href="../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/AOE.html#getOrigin--">getOrigin()</a></span> - Method in interface squidpony.squidai.<a href="../squidpony/squidai/AOE.html" title="interface in squidpony.squidai">AOE</a></dt>
 <dd>

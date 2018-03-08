@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -75,13 +75,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -123,6 +123,29 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../squidpony/squidmath/K2.html" title="class in squidpony.squidmath">K2</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#keys">keys</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#values">values</a></span></code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.summary">
@@ -254,101 +277,120 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getArrayListQ--">getArrayListQ</a></span>()</code>
+<div class="block">Gets the Q values as a freshly-copied ArrayList of Q; unlike <a href="../../squidpony/squidmath/K2V1.html#getSetA--"><code>getSetA()</code></a> or <a href="../../squidpony/squidmath/K2V1.html#getSetB--"><code>getSetB()</code></a>, this does
+ not cache the value list.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getBAt-int-">getBAt</a></span>(int&nbsp;index)</code>
 <div class="block">Given an int index, finds the associated B key (using index as a point in the ordering).</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getBFromA-java.lang.Object-">getBFromA</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</code>
 <div class="block">Given an A object, finds the associated B object (it will be at the same point in the ordering).</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getListQ--">getListQ</a></span>()</code>
-<div class="block">Gets the Q values as a freshly-copied ArrayList of Q; unlike <a href="../../squidpony/squidmath/K2V1.html#getSetA--"><code>getSetA()</code></a> or <a href="../../squidpony/squidmath/K2V1.html#getSetB--"><code>getSetB()</code></a>, this does
- not cache the value list.</div>
+<div class="block">Gets the Q values as a shared reference to the ArrayList of Q this uses; like <a href="../../squidpony/squidmath/K2V1.html#getSetA--"><code>getSetA()</code></a> and
+ <a href="../../squidpony/squidmath/K2V1.html#getSetB--"><code>getSetB()</code></a>, changes made to the returned list will also change this data structure.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code><a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getOrderedSetA--">getOrderedSetA</a></span>()</code>
+<div class="block">Returns a separate (shallow) copy of the set of A keys as an <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code><a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getOrderedSetB--">getOrderedSetB</a></span>()</code>
+<div class="block">Returns a separate (shallow) copy of the set of B keys as an <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getQAt-int-">getQAt</a></span>(int&nbsp;index)</code>
 <div class="block">Given an int index, finds the associated Q value (using index as a point in the ordering).</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getQFromA-java.lang.Object-">getQFromA</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</code>
 <div class="block">Given an A object, finds the associated Q value (it will be at the same point in the ordering).</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getQFromB-java.lang.Object-">getQFromB</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</code>
 <div class="block">Given a B object, finds the associated Q value (it will be at the same point in the ordering).</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getSetA--">getSetA</a></span>()</code>
 <div class="block">Gets and caches the A keys as a Collection that implements SortedSet (and so also implements Set).</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#getSetB--">getSetB</a></span>()</code>
 <div class="block">Gets and caches the B keys as a Collection that implements SortedSet (and so also implements Set).</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#indexOfA-java.lang.Object-">indexOfA</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</code>
 <div class="block">Given an A object key, finds the position in the ordering which that A has, or -1 if key is not present.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#indexOfB-java.lang.Object-">indexOfB</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</code>
 <div class="block">Given a B object key, finds the position in the ordering which that B has, or -1 if key is not present.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#indexOfQ-java.lang.Object-">indexOfQ</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>
 <div class="block">Given a Q value, finds the first position in the ordering which contains that value, or -1 if not present.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#isEmpty--">isEmpty</a></span>()</code>
 <div class="block">I think you can guess what this does.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#iteratorA--">iteratorA</a></span>()</code>
 <div class="block">Creates a new iterator over the A keys this holds.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#iteratorB--">iteratorB</a></span>()</code>
 <div class="block">Creates a new iterator over the B keys this holds.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#iteratorQ--">iteratorQ</a></span>()</code>
 <div class="block">Creates a new iterator over the Q values this holds.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#keyCount--">keyCount</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#put-A-B-Q-">put</a></span>(<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&nbsp;aKey,
    <a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&nbsp;bKey,
@@ -356,19 +398,19 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="block">Adds an A key, a B key, and a Q value at the same point in the ordering (the end) to this K2V1.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#putAll-java.lang.Iterable-java.lang.Iterable-java.lang.Iterable-">putAll</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&gt;&nbsp;aKeys,
       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&gt;&nbsp;bKeys,
       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;&nbsp;qValues)</code>&nbsp;</td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#putAll-squidpony.squidmath.K2V1-">putAll</a></span>(<a href="../../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;&nbsp;other)</code>
 <div class="block">Puts all unique A and B keys in <code>other</code> into this K2V1, respecting other's ordering.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#putAt-int-A-B-Q-">putAt</a></span>(int&nbsp;index,
      <a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&nbsp;a,
@@ -377,45 +419,45 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="block">Adds an A key, a B key, and a Q value at the given index in the ordering to this K2V1.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#randomA-squidpony.squidmath.RNG-">randomA</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
 <div class="block">Gets a random A from this K2V1 using the given RNG.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i35" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#randomB-squidpony.squidmath.RNG-">randomB</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
 <div class="block">Gets a random B from this K2V1 using the given RNG.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i36" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#randomQ-squidpony.squidmath.RNG-">randomQ</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
 <div class="block">Gets a random Q from this K2V1 using the given RNG.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i37" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#removeA-A-">removeA</a></span>(<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&nbsp;removing)</code>
 <div class="block">Removes a given A key, if <code>removing</code> exists in this K2V1's A keys, and also removes any B key or Q value
  associated with its point in the ordering.</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i38" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#removeAt-int-">removeAt</a></span>(int&nbsp;index)</code>
 <div class="block">Removes a given point in the ordering, if <code>index</code> is at least 0 and less than <a href="../../squidpony/squidmath/K2V1.html#size--"><code>size()</code></a>.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i39" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#removeB-B-">removeB</a></span>(<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&nbsp;removing)</code>
 <div class="block">Removes a given B key, if <code>removing</code> exists in this K2V1's B keys, and also removes any A key or Q value
  associated with its point in the ordering.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i40" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#reorder-int...-">reorder</a></span>(int...&nbsp;ordering)</code>
 <div class="block">Reorders this K2V1 using <code>ordering</code>, which have the same length as this K2V1's <a href="../../squidpony/squidmath/K2V1.html#size--"><code>size()</code></a>
@@ -424,20 +466,20 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  applied immediately would be the same as calling <a href="../../squidpony/squidmath/K2V1.html#shuffle-squidpony.squidmath.RNG-"><code>shuffle(RNG)</code></a>), or made in some other way.</div>
 </td>
 </tr>
-<tr id="i38" class="altColor">
+<tr id="i41" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/K2V1.html" title="class in squidpony.squidmath">K2V1</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#shuffle-squidpony.squidmath.RNG-">shuffle</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
 <div class="block">Generates a random ordering with rng and applies the same ordering to all keys and values this has; they will
  maintain their current association to other keys and values but their ordering/indices will change.</div>
 </td>
 </tr>
-<tr id="i39" class="rowColor">
+<tr id="i42" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#size--">size</a></span>()</code>
 <div class="block">Gets the size of this collection.</div>
 </td>
 </tr>
-<tr id="i40" class="altColor">
+<tr id="i43" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2V1.html#valueCount--">valueCount</a></span>()</code>&nbsp;</td>
 </tr>
@@ -457,6 +499,32 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="keys">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>keys</h4>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/K2.html" title="class in squidpony.squidmath">K2</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>,<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&gt; <a href="../../src-html/squidpony/squidmath/K2V1.html#line.18">keys</a></pre>
+</li>
+</ul>
+<a name="values">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>values</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt; <a href="../../src-html/squidpony/squidmath/K2V1.html#line.19">values</a></pre>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
@@ -1169,9 +1237,10 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getSetA</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.497">getSetA</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.498">getSetA</a>()</pre>
 <div class="block">Gets and caches the A keys as a Collection that implements SortedSet (and so also implements Set). It retains the
- current ordering.</div>
+ current ordering. This Set is shared with this collection; it is not a copy, and changes to the returned Set will
+ affect this data structure.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the A keys as a SortedSet</dd>
@@ -1184,12 +1253,45 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getSetB</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.507">getSetB</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.509">getSetB</a>()</pre>
 <div class="block">Gets and caches the B keys as a Collection that implements SortedSet (and so also implements Set). It retains the
- current ordering.</div>
+ current ordering. This Set is shared with this collection; it is not a copy, and changes to the returned Set will
+ affect this data structure.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the B keys as a SortedSet</dd>
+</dl>
+</li>
+</ul>
+<a name="getOrderedSetA--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOrderedSetA</h4>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">A</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.520">getOrderedSetA</a>()</pre>
+<div class="block">Returns a separate (shallow) copy of the set of A keys as an <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.
+ To be called sparingly, since this allocates a new OrderedSet instead of reusing one. This can be useful if you
+ were going to copy the set produced by <a href="../../squidpony/squidmath/K2V1.html#getSetA--"><code>getSetA()</code></a> anyway.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the A keys as an OrderedSet</dd>
+</dl>
+</li>
+</ul>
+<a name="getOrderedSetB--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOrderedSetB</h4>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">B</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.530">getOrderedSetB</a>()</pre>
+<div class="block">Returns a separate (shallow) copy of the set of B keys as an <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.
+ To be called sparingly, since this allocates a new OrderedSet instead of reusing one. This can be useful if you
+ were going to copy the set produced by <a href="../../squidpony/squidmath/K2V1.html#getSetB--"><code>getSetB()</code></a> anyway.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the B keys as an OrderedSet</dd>
 </dl>
 </li>
 </ul>
@@ -1199,12 +1301,28 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getListQ</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.517">getListQ</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.540">getListQ</a>()</pre>
+<div class="block">Gets the Q values as a shared reference to the ArrayList of Q this uses; like <a href="../../squidpony/squidmath/K2V1.html#getSetA--"><code>getSetA()</code></a> and
+ <a href="../../squidpony/squidmath/K2V1.html#getSetB--"><code>getSetB()</code></a>, changes made to the returned list will also change this data structure.
+ It retains the current ordering.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Q values as an ArrayList, shared with this K2V1</dd>
+</dl>
+</li>
+</ul>
+<a name="getArrayListQ--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getArrayListQ</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/K2V1.html" title="type parameter in K2V1">Q</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.550">getArrayListQ</a>()</pre>
 <div class="block">Gets the Q values as a freshly-copied ArrayList of Q; unlike <a href="../../squidpony/squidmath/K2V1.html#getSetA--"><code>getSetA()</code></a> or <a href="../../squidpony/squidmath/K2V1.html#getSetB--"><code>getSetB()</code></a>, this does
  not cache the value list. It retains the current ordering.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the Q values as an ArrayList</dd>
+<dd>the Q values as an ArrayList, copied from this K2V1's internal list</dd>
 </dl>
 </li>
 </ul>
@@ -1214,7 +1332,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>size</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.527">size</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.560">size</a>()</pre>
 <div class="block">Gets the size of this collection. That's the number of A keys, which is always the same as the number of B keys,
  which is always the same as the number of indices, which is also always the same as the size of the values List.</div>
 <dl>
@@ -1229,7 +1347,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>isEmpty</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.536">isEmpty</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.569">isEmpty</a>()</pre>
 <div class="block">I think you can guess what this does.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1243,7 +1361,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>keyCount</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.541">keyCount</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.574">keyCount</a>()</pre>
 </li>
 </ul>
 <a name="valueCount--">
@@ -1252,7 +1370,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>valueCount</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.544">valueCount</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2V1.html#line.577">valueCount</a>()</pre>
 </li>
 </ul>
 </li>
@@ -1309,13 +1427,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

@@ -26,8 +26,8 @@
 <span class="sourceLineNo">018</span>@Beta<a name="line.18"></a>
 <span class="sourceLineNo">019</span>public class K2&lt;A, B&gt;<a name="line.19"></a>
 <span class="sourceLineNo">020</span>{<a name="line.20"></a>
-<span class="sourceLineNo">021</span>    Arrangement&lt;A&gt; keysA;<a name="line.21"></a>
-<span class="sourceLineNo">022</span>    Arrangement&lt;B&gt; keysB;<a name="line.22"></a>
+<span class="sourceLineNo">021</span>    public Arrangement&lt;A&gt; keysA;<a name="line.21"></a>
+<span class="sourceLineNo">022</span>    public Arrangement&lt;B&gt; keysB;<a name="line.22"></a>
 <span class="sourceLineNo">023</span><a name="line.23"></a>
 <span class="sourceLineNo">024</span>    /**<a name="line.24"></a>
 <span class="sourceLineNo">025</span>     * Constructs an empty K2.<a name="line.25"></a>
@@ -449,53 +449,59 @@
 <span class="sourceLineNo">441</span>    }<a name="line.441"></a>
 <span class="sourceLineNo">442</span><a name="line.442"></a>
 <span class="sourceLineNo">443</span>    /**<a name="line.443"></a>
-<span class="sourceLineNo">444</span>     * Gets and caches the A keys as a Collection that implements SortedSet (and so also implements Set).<a name="line.444"></a>
-<span class="sourceLineNo">445</span>     * @return the A keys as a SortedSet<a name="line.445"></a>
-<span class="sourceLineNo">446</span>     */<a name="line.446"></a>
-<span class="sourceLineNo">447</span>    public SortedSet&lt;A&gt; getSetA() {<a name="line.447"></a>
-<span class="sourceLineNo">448</span>        return keysA.keySet();<a name="line.448"></a>
-<span class="sourceLineNo">449</span>    }<a name="line.449"></a>
-<span class="sourceLineNo">450</span>    /**<a name="line.450"></a>
-<span class="sourceLineNo">451</span>     * Gets and caches the B keys as a Collection that implements SortedSet (and so also implements Set).<a name="line.451"></a>
-<span class="sourceLineNo">452</span>     * @return the B keys as a SortedSet<a name="line.452"></a>
-<span class="sourceLineNo">453</span>     */<a name="line.453"></a>
-<span class="sourceLineNo">454</span>    public SortedSet&lt;B&gt; getSetB() {<a name="line.454"></a>
-<span class="sourceLineNo">455</span>        return keysB.keySet();<a name="line.455"></a>
-<span class="sourceLineNo">456</span>    }<a name="line.456"></a>
-<span class="sourceLineNo">457</span><a name="line.457"></a>
-<span class="sourceLineNo">458</span>    /**<a name="line.458"></a>
-<span class="sourceLineNo">459</span>     * To be called sparingly, since this allocates a new OrderedSet instead of reusing one.<a name="line.459"></a>
-<span class="sourceLineNo">460</span>     * @return the A keys as an OrderedSet<a name="line.460"></a>
-<span class="sourceLineNo">461</span>     */<a name="line.461"></a>
-<span class="sourceLineNo">462</span>    public OrderedSet&lt;A&gt; getOrderedSetA() {<a name="line.462"></a>
-<span class="sourceLineNo">463</span>        return keysA.keysAsOrderedSet();<a name="line.463"></a>
-<span class="sourceLineNo">464</span>    }<a name="line.464"></a>
-<span class="sourceLineNo">465</span><a name="line.465"></a>
-<span class="sourceLineNo">466</span>    /**<a name="line.466"></a>
-<span class="sourceLineNo">467</span>     * To be called sparingly, since this allocates a new OrderedSet instead of reusing one.<a name="line.467"></a>
-<span class="sourceLineNo">468</span>     * @return the B keys as an OrderedSet<a name="line.468"></a>
-<span class="sourceLineNo">469</span>     */<a name="line.469"></a>
-<span class="sourceLineNo">470</span>    public OrderedSet&lt;B&gt; getOrderedSetB() {<a name="line.470"></a>
-<span class="sourceLineNo">471</span>        return keysB.keysAsOrderedSet();<a name="line.471"></a>
-<span class="sourceLineNo">472</span>    }<a name="line.472"></a>
-<span class="sourceLineNo">473</span><a name="line.473"></a>
-<span class="sourceLineNo">474</span>    public int keyCount() {<a name="line.474"></a>
-<span class="sourceLineNo">475</span>        return 2;<a name="line.475"></a>
-<span class="sourceLineNo">476</span>    }<a name="line.476"></a>
-<span class="sourceLineNo">477</span>    public int valueCount() {<a name="line.477"></a>
-<span class="sourceLineNo">478</span>        return 0;<a name="line.478"></a>
-<span class="sourceLineNo">479</span>    }<a name="line.479"></a>
-<span class="sourceLineNo">480</span><a name="line.480"></a>
-<span class="sourceLineNo">481</span>    public int size() {<a name="line.481"></a>
-<span class="sourceLineNo">482</span>        return keysA.size;<a name="line.482"></a>
-<span class="sourceLineNo">483</span>    }<a name="line.483"></a>
-<span class="sourceLineNo">484</span>    <a name="line.484"></a>
-<span class="sourceLineNo">485</span>    public boolean isEmpty()<a name="line.485"></a>
-<span class="sourceLineNo">486</span>    {<a name="line.486"></a>
-<span class="sourceLineNo">487</span>        return keysA.isEmpty();<a name="line.487"></a>
-<span class="sourceLineNo">488</span>    }<a name="line.488"></a>
-<span class="sourceLineNo">489</span><a name="line.489"></a>
-<span class="sourceLineNo">490</span>}<a name="line.490"></a>
+<span class="sourceLineNo">444</span>     * Gets and caches the A keys as a Collection that implements SortedSet (and so also implements Set). This Set is<a name="line.444"></a>
+<span class="sourceLineNo">445</span>     * shared with this collection; it is not a copy.<a name="line.445"></a>
+<span class="sourceLineNo">446</span>     * @return the A keys as a SortedSet<a name="line.446"></a>
+<span class="sourceLineNo">447</span>     */<a name="line.447"></a>
+<span class="sourceLineNo">448</span>    public SortedSet&lt;A&gt; getSetA() {<a name="line.448"></a>
+<span class="sourceLineNo">449</span>        return keysA.keySet();<a name="line.449"></a>
+<span class="sourceLineNo">450</span>    }<a name="line.450"></a>
+<span class="sourceLineNo">451</span>    /**<a name="line.451"></a>
+<span class="sourceLineNo">452</span>     * Gets and caches the B keys as a Collection that implements SortedSet (and so also implements Set). This Set is<a name="line.452"></a>
+<span class="sourceLineNo">453</span>     * shared with this collection; it is not a copy.<a name="line.453"></a>
+<span class="sourceLineNo">454</span>     * @return the B keys as a SortedSet<a name="line.454"></a>
+<span class="sourceLineNo">455</span>     */<a name="line.455"></a>
+<span class="sourceLineNo">456</span>    public SortedSet&lt;B&gt; getSetB() {<a name="line.456"></a>
+<span class="sourceLineNo">457</span>        return keysB.keySet();<a name="line.457"></a>
+<span class="sourceLineNo">458</span>    }<a name="line.458"></a>
+<span class="sourceLineNo">459</span><a name="line.459"></a>
+<span class="sourceLineNo">460</span>    /**<a name="line.460"></a>
+<span class="sourceLineNo">461</span>     * Returns a separate (shallow) copy of the set of A keys as an {@link OrderedSet}.<a name="line.461"></a>
+<span class="sourceLineNo">462</span>     * To be called sparingly, since this allocates a new OrderedSet instead of reusing one. This can be useful if you<a name="line.462"></a>
+<span class="sourceLineNo">463</span>     * were going to copy the set produced by {@link #getSetA()} anyway.<a name="line.463"></a>
+<span class="sourceLineNo">464</span>     * @return the A keys as an OrderedSet<a name="line.464"></a>
+<span class="sourceLineNo">465</span>     */<a name="line.465"></a>
+<span class="sourceLineNo">466</span>    public OrderedSet&lt;A&gt; getOrderedSetA() {<a name="line.466"></a>
+<span class="sourceLineNo">467</span>        return keysA.keysAsOrderedSet();<a name="line.467"></a>
+<span class="sourceLineNo">468</span>    }<a name="line.468"></a>
+<span class="sourceLineNo">469</span><a name="line.469"></a>
+<span class="sourceLineNo">470</span>    /**<a name="line.470"></a>
+<span class="sourceLineNo">471</span>     * Returns a separate (shallow) copy of the set of B keys as an {@link OrderedSet}.<a name="line.471"></a>
+<span class="sourceLineNo">472</span>     * To be called sparingly, since this allocates a new OrderedSet instead of reusing one. This can be useful if you<a name="line.472"></a>
+<span class="sourceLineNo">473</span>     * were going to copy the set produced by {@link #getSetB()} anyway.<a name="line.473"></a>
+<span class="sourceLineNo">474</span>     * @return the B keys as an OrderedSet<a name="line.474"></a>
+<span class="sourceLineNo">475</span>     */<a name="line.475"></a>
+<span class="sourceLineNo">476</span>    public OrderedSet&lt;B&gt; getOrderedSetB() {<a name="line.476"></a>
+<span class="sourceLineNo">477</span>        return keysB.keysAsOrderedSet();<a name="line.477"></a>
+<span class="sourceLineNo">478</span>    }<a name="line.478"></a>
+<span class="sourceLineNo">479</span><a name="line.479"></a>
+<span class="sourceLineNo">480</span>    public int keyCount() {<a name="line.480"></a>
+<span class="sourceLineNo">481</span>        return 2;<a name="line.481"></a>
+<span class="sourceLineNo">482</span>    }<a name="line.482"></a>
+<span class="sourceLineNo">483</span>    public int valueCount() {<a name="line.483"></a>
+<span class="sourceLineNo">484</span>        return 0;<a name="line.484"></a>
+<span class="sourceLineNo">485</span>    }<a name="line.485"></a>
+<span class="sourceLineNo">486</span><a name="line.486"></a>
+<span class="sourceLineNo">487</span>    public int size() {<a name="line.487"></a>
+<span class="sourceLineNo">488</span>        return keysA.size;<a name="line.488"></a>
+<span class="sourceLineNo">489</span>    }<a name="line.489"></a>
+<span class="sourceLineNo">490</span>    <a name="line.490"></a>
+<span class="sourceLineNo">491</span>    public boolean isEmpty()<a name="line.491"></a>
+<span class="sourceLineNo">492</span>    {<a name="line.492"></a>
+<span class="sourceLineNo">493</span>        return keysA.isEmpty();<a name="line.493"></a>
+<span class="sourceLineNo">494</span>    }<a name="line.494"></a>
+<span class="sourceLineNo">495</span><a name="line.495"></a>
+<span class="sourceLineNo">496</span>}<a name="line.496"></a>
 
 
 

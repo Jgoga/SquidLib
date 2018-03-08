@@ -23,8 +23,8 @@
 <span class="sourceLineNo">015</span> * Created by Tommy Ettinger on 10/27/2016.<a name="line.15"></a>
 <span class="sourceLineNo">016</span> */<a name="line.16"></a>
 <span class="sourceLineNo">017</span>public class K2V1&lt;A, B, Q&gt; {<a name="line.17"></a>
-<span class="sourceLineNo">018</span>    K2&lt;A, B&gt; keys;<a name="line.18"></a>
-<span class="sourceLineNo">019</span>    ArrayList&lt;Q&gt; values;<a name="line.19"></a>
+<span class="sourceLineNo">018</span>    public K2&lt;A, B&gt; keys;<a name="line.18"></a>
+<span class="sourceLineNo">019</span>    public ArrayList&lt;Q&gt; values;<a name="line.19"></a>
 <span class="sourceLineNo">020</span><a name="line.20"></a>
 <span class="sourceLineNo">021</span>    /**<a name="line.21"></a>
 <span class="sourceLineNo">022</span>     * Constructs an empty K2V1 with the default parameters: 32 expected indices and a load factor of 0.5f.<a name="line.22"></a>
@@ -499,61 +499,94 @@
 <span class="sourceLineNo">491</span><a name="line.491"></a>
 <span class="sourceLineNo">492</span>    /**<a name="line.492"></a>
 <span class="sourceLineNo">493</span>     * Gets and caches the A keys as a Collection that implements SortedSet (and so also implements Set). It retains the<a name="line.493"></a>
-<span class="sourceLineNo">494</span>     * current ordering.<a name="line.494"></a>
-<span class="sourceLineNo">495</span>     * @return the A keys as a SortedSet<a name="line.495"></a>
-<span class="sourceLineNo">496</span>     */<a name="line.496"></a>
-<span class="sourceLineNo">497</span>    public SortedSet&lt;A&gt; getSetA()<a name="line.497"></a>
-<span class="sourceLineNo">498</span>    {<a name="line.498"></a>
-<span class="sourceLineNo">499</span>        return keys.getSetA();<a name="line.499"></a>
-<span class="sourceLineNo">500</span>    }<a name="line.500"></a>
-<span class="sourceLineNo">501</span><a name="line.501"></a>
-<span class="sourceLineNo">502</span>    /**<a name="line.502"></a>
-<span class="sourceLineNo">503</span>     * Gets and caches the B keys as a Collection that implements SortedSet (and so also implements Set). It retains the<a name="line.503"></a>
-<span class="sourceLineNo">504</span>     * current ordering.<a name="line.504"></a>
-<span class="sourceLineNo">505</span>     * @return the B keys as a SortedSet<a name="line.505"></a>
-<span class="sourceLineNo">506</span>     */<a name="line.506"></a>
-<span class="sourceLineNo">507</span>    public SortedSet&lt;B&gt; getSetB()<a name="line.507"></a>
-<span class="sourceLineNo">508</span>    {<a name="line.508"></a>
-<span class="sourceLineNo">509</span>        return keys.getSetB();<a name="line.509"></a>
-<span class="sourceLineNo">510</span>    }<a name="line.510"></a>
-<span class="sourceLineNo">511</span><a name="line.511"></a>
-<span class="sourceLineNo">512</span>    /**<a name="line.512"></a>
-<span class="sourceLineNo">513</span>     * Gets the Q values as a freshly-copied ArrayList of Q; unlike {@link #getSetA()} or {@link #getSetB()}, this does<a name="line.513"></a>
-<span class="sourceLineNo">514</span>     * not cache the value list. It retains the current ordering.<a name="line.514"></a>
-<span class="sourceLineNo">515</span>     * @return the Q values as an ArrayList<a name="line.515"></a>
-<span class="sourceLineNo">516</span>     */<a name="line.516"></a>
-<span class="sourceLineNo">517</span>    public ArrayList&lt;Q&gt; getListQ()<a name="line.517"></a>
-<span class="sourceLineNo">518</span>    {<a name="line.518"></a>
-<span class="sourceLineNo">519</span>        return new ArrayList&lt;&gt;(values);<a name="line.519"></a>
-<span class="sourceLineNo">520</span>    }<a name="line.520"></a>
-<span class="sourceLineNo">521</span><a name="line.521"></a>
-<span class="sourceLineNo">522</span>    /**<a name="line.522"></a>
-<span class="sourceLineNo">523</span>     * Gets the size of this collection. That's the number of A keys, which is always the same as the number of B keys,<a name="line.523"></a>
-<span class="sourceLineNo">524</span>     * which is always the same as the number of indices, which is also always the same as the size of the values List.<a name="line.524"></a>
-<span class="sourceLineNo">525</span>     * @return the current number of indices in this K2V1, which can be thought of as the number of A keys<a name="line.525"></a>
-<span class="sourceLineNo">526</span>     */<a name="line.526"></a>
-<span class="sourceLineNo">527</span>    public int size()<a name="line.527"></a>
-<span class="sourceLineNo">528</span>    {<a name="line.528"></a>
-<span class="sourceLineNo">529</span>        return keys.keysA.size;<a name="line.529"></a>
-<span class="sourceLineNo">530</span>    }<a name="line.530"></a>
-<span class="sourceLineNo">531</span><a name="line.531"></a>
-<span class="sourceLineNo">532</span>    /**<a name="line.532"></a>
-<span class="sourceLineNo">533</span>     * I think you can guess what this does.<a name="line.533"></a>
-<span class="sourceLineNo">534</span>     * @return true if there are no items in this K2V1; false if there are items present<a name="line.534"></a>
-<span class="sourceLineNo">535</span>     */<a name="line.535"></a>
-<span class="sourceLineNo">536</span>    public boolean isEmpty()<a name="line.536"></a>
-<span class="sourceLineNo">537</span>    {<a name="line.537"></a>
-<span class="sourceLineNo">538</span>        return values.isEmpty();<a name="line.538"></a>
-<span class="sourceLineNo">539</span>    }<a name="line.539"></a>
-<span class="sourceLineNo">540</span><a name="line.540"></a>
-<span class="sourceLineNo">541</span>    public int keyCount() {<a name="line.541"></a>
-<span class="sourceLineNo">542</span>        return 2;<a name="line.542"></a>
+<span class="sourceLineNo">494</span>     * current ordering. This Set is shared with this collection; it is not a copy, and changes to the returned Set will<a name="line.494"></a>
+<span class="sourceLineNo">495</span>     * affect this data structure.<a name="line.495"></a>
+<span class="sourceLineNo">496</span>     * @return the A keys as a SortedSet<a name="line.496"></a>
+<span class="sourceLineNo">497</span>     */<a name="line.497"></a>
+<span class="sourceLineNo">498</span>    public SortedSet&lt;A&gt; getSetA()<a name="line.498"></a>
+<span class="sourceLineNo">499</span>    {<a name="line.499"></a>
+<span class="sourceLineNo">500</span>        return keys.getSetA();<a name="line.500"></a>
+<span class="sourceLineNo">501</span>    }<a name="line.501"></a>
+<span class="sourceLineNo">502</span><a name="line.502"></a>
+<span class="sourceLineNo">503</span>    /**<a name="line.503"></a>
+<span class="sourceLineNo">504</span>     * Gets and caches the B keys as a Collection that implements SortedSet (and so also implements Set). It retains the<a name="line.504"></a>
+<span class="sourceLineNo">505</span>     * current ordering. This Set is shared with this collection; it is not a copy, and changes to the returned Set will<a name="line.505"></a>
+<span class="sourceLineNo">506</span>     * affect this data structure.<a name="line.506"></a>
+<span class="sourceLineNo">507</span>     * @return the B keys as a SortedSet<a name="line.507"></a>
+<span class="sourceLineNo">508</span>     */<a name="line.508"></a>
+<span class="sourceLineNo">509</span>    public SortedSet&lt;B&gt; getSetB()<a name="line.509"></a>
+<span class="sourceLineNo">510</span>    {<a name="line.510"></a>
+<span class="sourceLineNo">511</span>        return keys.getSetB();<a name="line.511"></a>
+<span class="sourceLineNo">512</span>    }<a name="line.512"></a>
+<span class="sourceLineNo">513</span><a name="line.513"></a>
+<span class="sourceLineNo">514</span>    /**<a name="line.514"></a>
+<span class="sourceLineNo">515</span>     * Returns a separate (shallow) copy of the set of A keys as an {@link OrderedSet}.<a name="line.515"></a>
+<span class="sourceLineNo">516</span>     * To be called sparingly, since this allocates a new OrderedSet instead of reusing one. This can be useful if you<a name="line.516"></a>
+<span class="sourceLineNo">517</span>     * were going to copy the set produced by {@link #getSetA()} anyway.<a name="line.517"></a>
+<span class="sourceLineNo">518</span>     * @return the A keys as an OrderedSet<a name="line.518"></a>
+<span class="sourceLineNo">519</span>     */<a name="line.519"></a>
+<span class="sourceLineNo">520</span>    public OrderedSet&lt;A&gt; getOrderedSetA() {<a name="line.520"></a>
+<span class="sourceLineNo">521</span>        return keys.getOrderedSetA();<a name="line.521"></a>
+<span class="sourceLineNo">522</span>    }<a name="line.522"></a>
+<span class="sourceLineNo">523</span>    <a name="line.523"></a>
+<span class="sourceLineNo">524</span>    /**<a name="line.524"></a>
+<span class="sourceLineNo">525</span>     * Returns a separate (shallow) copy of the set of B keys as an {@link OrderedSet}.<a name="line.525"></a>
+<span class="sourceLineNo">526</span>     * To be called sparingly, since this allocates a new OrderedSet instead of reusing one. This can be useful if you<a name="line.526"></a>
+<span class="sourceLineNo">527</span>     * were going to copy the set produced by {@link #getSetB()} anyway.<a name="line.527"></a>
+<span class="sourceLineNo">528</span>     * @return the B keys as an OrderedSet<a name="line.528"></a>
+<span class="sourceLineNo">529</span>     */<a name="line.529"></a>
+<span class="sourceLineNo">530</span>    public OrderedSet&lt;B&gt; getOrderedSetB() {<a name="line.530"></a>
+<span class="sourceLineNo">531</span>        return keys.getOrderedSetB();<a name="line.531"></a>
+<span class="sourceLineNo">532</span>    }<a name="line.532"></a>
+<span class="sourceLineNo">533</span><a name="line.533"></a>
+<span class="sourceLineNo">534</span>    /**<a name="line.534"></a>
+<span class="sourceLineNo">535</span>     * Gets the Q values as a shared reference to the ArrayList of Q this uses; like {@link #getSetA()} and<a name="line.535"></a>
+<span class="sourceLineNo">536</span>     * {@link #getSetB()}, changes made to the returned list will also change this data structure.<a name="line.536"></a>
+<span class="sourceLineNo">537</span>     * It retains the current ordering.<a name="line.537"></a>
+<span class="sourceLineNo">538</span>     * @return the Q values as an ArrayList, shared with this K2V1<a name="line.538"></a>
+<span class="sourceLineNo">539</span>     */<a name="line.539"></a>
+<span class="sourceLineNo">540</span>    public ArrayList&lt;Q&gt; getListQ()<a name="line.540"></a>
+<span class="sourceLineNo">541</span>    {<a name="line.541"></a>
+<span class="sourceLineNo">542</span>        return values;<a name="line.542"></a>
 <span class="sourceLineNo">543</span>    }<a name="line.543"></a>
-<span class="sourceLineNo">544</span>    public int valueCount() {<a name="line.544"></a>
-<span class="sourceLineNo">545</span>        return 1;<a name="line.545"></a>
-<span class="sourceLineNo">546</span>    }<a name="line.546"></a>
-<span class="sourceLineNo">547</span><a name="line.547"></a>
-<span class="sourceLineNo">548</span>}<a name="line.548"></a>
+<span class="sourceLineNo">544</span><a name="line.544"></a>
+<span class="sourceLineNo">545</span>    /**<a name="line.545"></a>
+<span class="sourceLineNo">546</span>     * Gets the Q values as a freshly-copied ArrayList of Q; unlike {@link #getSetA()} or {@link #getSetB()}, this does<a name="line.546"></a>
+<span class="sourceLineNo">547</span>     * not cache the value list. It retains the current ordering.<a name="line.547"></a>
+<span class="sourceLineNo">548</span>     * @return the Q values as an ArrayList, copied from this K2V1's internal list<a name="line.548"></a>
+<span class="sourceLineNo">549</span>     */<a name="line.549"></a>
+<span class="sourceLineNo">550</span>    public ArrayList&lt;Q&gt; getArrayListQ()<a name="line.550"></a>
+<span class="sourceLineNo">551</span>    {<a name="line.551"></a>
+<span class="sourceLineNo">552</span>        return new ArrayList&lt;&gt;(values);<a name="line.552"></a>
+<span class="sourceLineNo">553</span>    }<a name="line.553"></a>
+<span class="sourceLineNo">554</span><a name="line.554"></a>
+<span class="sourceLineNo">555</span>    /**<a name="line.555"></a>
+<span class="sourceLineNo">556</span>     * Gets the size of this collection. That's the number of A keys, which is always the same as the number of B keys,<a name="line.556"></a>
+<span class="sourceLineNo">557</span>     * which is always the same as the number of indices, which is also always the same as the size of the values List.<a name="line.557"></a>
+<span class="sourceLineNo">558</span>     * @return the current number of indices in this K2V1, which can be thought of as the number of A keys<a name="line.558"></a>
+<span class="sourceLineNo">559</span>     */<a name="line.559"></a>
+<span class="sourceLineNo">560</span>    public int size()<a name="line.560"></a>
+<span class="sourceLineNo">561</span>    {<a name="line.561"></a>
+<span class="sourceLineNo">562</span>        return keys.keysA.size;<a name="line.562"></a>
+<span class="sourceLineNo">563</span>    }<a name="line.563"></a>
+<span class="sourceLineNo">564</span><a name="line.564"></a>
+<span class="sourceLineNo">565</span>    /**<a name="line.565"></a>
+<span class="sourceLineNo">566</span>     * I think you can guess what this does.<a name="line.566"></a>
+<span class="sourceLineNo">567</span>     * @return true if there are no items in this K2V1; false if there are items present<a name="line.567"></a>
+<span class="sourceLineNo">568</span>     */<a name="line.568"></a>
+<span class="sourceLineNo">569</span>    public boolean isEmpty()<a name="line.569"></a>
+<span class="sourceLineNo">570</span>    {<a name="line.570"></a>
+<span class="sourceLineNo">571</span>        return values.isEmpty();<a name="line.571"></a>
+<span class="sourceLineNo">572</span>    }<a name="line.572"></a>
+<span class="sourceLineNo">573</span><a name="line.573"></a>
+<span class="sourceLineNo">574</span>    public int keyCount() {<a name="line.574"></a>
+<span class="sourceLineNo">575</span>        return 2;<a name="line.575"></a>
+<span class="sourceLineNo">576</span>    }<a name="line.576"></a>
+<span class="sourceLineNo">577</span>    public int valueCount() {<a name="line.577"></a>
+<span class="sourceLineNo">578</span>        return 1;<a name="line.578"></a>
+<span class="sourceLineNo">579</span>    }<a name="line.579"></a>
+<span class="sourceLineNo">580</span><a name="line.580"></a>
+<span class="sourceLineNo">581</span>}<a name="line.581"></a>
 
 
 

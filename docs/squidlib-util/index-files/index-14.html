@@ -176,6 +176,16 @@
 <dd>
 <div class="block">Makes an empty OrderedMap (OM); needs key and value types to be specified in order to work.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#makeMap-K-V-java.lang.Object...-">makeMap(K, V, Object...)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>
+<div class="block">Makes an OrderedMap (OM) with the given load factor (which should be between 0.1 and 0.9), key and value types
+ inferred from the types of k0 and v0, and considers all remaining parameters key-value pairs, casting the Objects
+ at positions 0, 2, 4...</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#makeMap--">makeMap()</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>
+<div class="block">Makes an empty OrderedMap (OM); needs key and value types to be specified in order to work.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/Converters.html#makeMatcher-java.lang.CharSequence-">makeMatcher(CharSequence)</a></span> - Static method in class squidpony.<a href="../squidpony/Converters.html" title="class in squidpony">Converters</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/ObText.html#makeMatcher--">makeMatcher()</a></span> - Static method in class squidpony.<a href="../squidpony/ObText.html" title="class in squidpony">ObText</a></dt>
@@ -438,6 +448,10 @@
 <dd>
 <div class="block">The mask for wrapping a position counter.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#mask">mask</a></span> - Variable in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>
+<div class="block">The mask for wrapping a position counter.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedSet.html#mask">mask</a></span> - Variable in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath">UnorderedSet</a></dt>
 <dd>
 <div class="block">The mask for wrapping a position counter.</div>
@@ -570,6 +584,14 @@
 <div class="block">Returns the maximum number of entries that can be filled before rehashing.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/TableSet.html#maxFill-long-float-">maxFill(long, float)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a></dt>
+<dd>
+<div class="block">Returns the maximum number of entries that can be filled before rehashing.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#maxFill">maxFill</a></span> - Variable in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
+<dd>
+<div class="block">Threshold after which we rehash.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/UnorderedMap.html#maxFill-int-float-">maxFill(int, float)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/UnorderedMap.html" title="class in squidpony.squidmath">UnorderedMap</a></dt>
 <dd>
 <div class="block">Returns the maximum number of entries that can be filled before rehashing.</div>
 </dd>
@@ -975,9 +997,26 @@
 <div class="block">A utility class to print (typically very large) numbers in a way that players can more-meaningfully tell them apart.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/Mnemonic.html#Mnemonic--">Mnemonic()</a></span> - Constructor for class squidpony.<a href="../squidpony/Mnemonic.html" title="class in squidpony">Mnemonic</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Default constructor for a Mnemonic generator; equivalent to <code>new Mnemonic(1L)</code>, and probably a good choice
+ unless you know you need different seeds.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/Mnemonic.html#Mnemonic-long-">Mnemonic(long)</a></span> - Constructor for class squidpony.<a href="../squidpony/Mnemonic.html" title="class in squidpony">Mnemonic</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructor for a Mnemonic generator that allows a different seed to be chosen, which will alter the syllables
+ produced by <a href="../squidpony/Mnemonic.html#toMnemonic-long-"><code>Mnemonic.toMnemonic(long)</code></a> and the words produced by <a href="../squidpony/Mnemonic.html#toWordMnemonic-int-boolean-"><code>Mnemonic.toWordMnemonic(int, boolean)</code></a> if you give
+ the same numeric argument to differently-seeded Mnemonic generators.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/Mnemonic.html#Mnemonic-long-java.util.Collection-java.util.Collection-">Mnemonic(long, Collection&lt;String&gt;, Collection&lt;String&gt;)</a></span> - Constructor for class squidpony.<a href="../squidpony/Mnemonic.html" title="class in squidpony">Mnemonic</a></dt>
+<dd>
+<div class="block">Constructor that allows you to specify the adjective and noun collections used by
+ <a href="../squidpony/Mnemonic.html#toWordMnemonic-int-boolean-"><code>Mnemonic.toWordMnemonic(int, boolean)</code></a> as well as a seed.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/Mnemonic.html#Mnemonic-long-java.lang.String:A-java.lang.String:A-">Mnemonic(long, String[], String[])</a></span> - Constructor for class squidpony.<a href="../squidpony/Mnemonic.html" title="class in squidpony">Mnemonic</a></dt>
+<dd>
+<div class="block">Constructor that allows you to specify the adjective and noun collections (given as arrays) used by
+ <a href="../squidpony/Mnemonic.html#toWordMnemonic-int-boolean-"><code>Mnemonic.toWordMnemonic(int, boolean)</code></a> as well as a seed.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/StringKit.html#MODERN_PUNCTUATION">MODERN_PUNCTUATION</a></span> - Static variable in class squidpony.<a href="../squidpony/StringKit.html" title="class in squidpony">StringKit</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/FakeLanguageGen.html#modifier-java.lang.String-java.lang.String-">modifier(String, String)</a></span> - Static method in class squidpony.<a href="../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a></dt>

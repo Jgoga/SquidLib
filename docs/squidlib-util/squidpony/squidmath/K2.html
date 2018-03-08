@@ -75,13 +75,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -125,6 +125,29 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">A</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2.html#keysA">keysA</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">B</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2.html#keysB">keysB</a></span></code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.summary">
@@ -273,13 +296,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">A</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2.html#getOrderedSetA--">getOrderedSetA</a></span>()</code>
-<div class="block">To be called sparingly, since this allocates a new OrderedSet instead of reusing one.</div>
+<div class="block">Returns a separate (shallow) copy of the set of A keys as an <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">B</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/K2.html#getOrderedSetB--">getOrderedSetB</a></span>()</code>
-<div class="block">To be called sparingly, since this allocates a new OrderedSet instead of reusing one.</div>
+<div class="block">Returns a separate (shallow) copy of the set of B keys as an <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.</div>
 </td>
 </tr>
 <tr id="i13" class="rowColor">
@@ -426,6 +449,32 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="keysA">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>keysA</h4>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">A</a>&gt; <a href="../../src-html/squidpony/squidmath/K2.html#line.21">keysA</a></pre>
+</li>
+</ul>
+<a name="keysB">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>keysB</h4>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">B</a>&gt; <a href="../../src-html/squidpony/squidmath/K2.html#line.22">keysB</a></pre>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
@@ -1034,8 +1083,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getSetA</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">A</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.447">getSetA</a>()</pre>
-<div class="block">Gets and caches the A keys as a Collection that implements SortedSet (and so also implements Set).</div>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">A</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.448">getSetA</a>()</pre>
+<div class="block">Gets and caches the A keys as a Collection that implements SortedSet (and so also implements Set). This Set is
+ shared with this collection; it is not a copy.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the A keys as a SortedSet</dd>
@@ -1048,8 +1098,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getSetB</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">B</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.454">getSetB</a>()</pre>
-<div class="block">Gets and caches the B keys as a Collection that implements SortedSet (and so also implements Set).</div>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet.html?is-external=true" title="class or interface in java.util">SortedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">B</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.456">getSetB</a>()</pre>
+<div class="block">Gets and caches the B keys as a Collection that implements SortedSet (and so also implements Set). This Set is
+ shared with this collection; it is not a copy.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the B keys as a SortedSet</dd>
@@ -1062,8 +1113,10 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getOrderedSetA</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">A</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.462">getOrderedSetA</a>()</pre>
-<div class="block">To be called sparingly, since this allocates a new OrderedSet instead of reusing one.</div>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">A</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.466">getOrderedSetA</a>()</pre>
+<div class="block">Returns a separate (shallow) copy of the set of A keys as an <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.
+ To be called sparingly, since this allocates a new OrderedSet instead of reusing one. This can be useful if you
+ were going to copy the set produced by <a href="../../squidpony/squidmath/K2.html#getSetA--"><code>getSetA()</code></a> anyway.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the A keys as an OrderedSet</dd>
@@ -1076,8 +1129,10 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getOrderedSetB</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">B</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.470">getOrderedSetB</a>()</pre>
-<div class="block">To be called sparingly, since this allocates a new OrderedSet instead of reusing one.</div>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/K2.html" title="type parameter in K2">B</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.476">getOrderedSetB</a>()</pre>
+<div class="block">Returns a separate (shallow) copy of the set of B keys as an <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>.
+ To be called sparingly, since this allocates a new OrderedSet instead of reusing one. This can be useful if you
+ were going to copy the set produced by <a href="../../squidpony/squidmath/K2.html#getSetB--"><code>getSetB()</code></a> anyway.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the B keys as an OrderedSet</dd>
@@ -1090,7 +1145,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>keyCount</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.474">keyCount</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.480">keyCount</a>()</pre>
 </li>
 </ul>
 <a name="valueCount--">
@@ -1099,7 +1154,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>valueCount</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.477">valueCount</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.483">valueCount</a>()</pre>
 </li>
 </ul>
 <a name="size--">
@@ -1108,7 +1163,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>size</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.481">size</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.487">size</a>()</pre>
 </li>
 </ul>
 <a name="isEmpty--">
@@ -1117,7 +1172,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>isEmpty</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.485">isEmpty</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/K2.html#line.491">isEmpty</a>()</pre>
 </li>
 </ul>
 </li>
@@ -1174,13 +1229,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
