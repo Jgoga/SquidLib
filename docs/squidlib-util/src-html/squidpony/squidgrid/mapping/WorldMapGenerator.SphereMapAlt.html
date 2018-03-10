@@ -2686,7 +2686,7 @@
 <span class="sourceLineNo">2678</span>                                  double waterMod, double coolMod, long state)<a name="line.2678"></a>
 <span class="sourceLineNo">2679</span>        {<a name="line.2679"></a>
 <span class="sourceLineNo">2680</span>            boolean fresh = false;<a name="line.2680"></a>
-<span class="sourceLineNo">2681</span>            if(cachedState != state || (waterMod *= 1.2) != waterModifier || (coolMod *= 1.375) != coolingModifier)<a name="line.2681"></a>
+<span class="sourceLineNo">2681</span>            if(cachedState != state || waterMod != waterModifier || coolMod != coolingModifier)<a name="line.2681"></a>
 <span class="sourceLineNo">2682</span>            {<a name="line.2682"></a>
 <span class="sourceLineNo">2683</span>                minHeight = Double.POSITIVE_INFINITY;<a name="line.2683"></a>
 <span class="sourceLineNo">2684</span>                maxHeight = Double.NEGATIVE_INFINITY;<a name="line.2684"></a>
@@ -2772,7 +2772,7 @@
 <span class="sourceLineNo">2764</span>                    {<a name="line.2764"></a>
 <span class="sourceLineNo">2765</span>                        h = NumberTools.swayTight(terrain4D.getNoiseWithSeed(pc, ps, qs, terrain.getNoiseWithSeed(pc, ps, qs, seedB - seedA), seedA)) * 0.85;<a name="line.2765"></a>
 <span class="sourceLineNo">2766</span>                        if(coast.contains(x, y))<a name="line.2766"></a>
-<span class="sourceLineNo">2767</span>                            h *= 0.125;<a name="line.2767"></a>
+<span class="sourceLineNo">2767</span>                            h += 0.05;<a name="line.2767"></a>
 <span class="sourceLineNo">2768</span>                        else<a name="line.2768"></a>
 <span class="sourceLineNo">2769</span>                            h += 0.15;<a name="line.2769"></a>
 <span class="sourceLineNo">2770</span>                    }<a name="line.2770"></a>

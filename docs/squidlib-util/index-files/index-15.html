@@ -333,7 +333,10 @@
  can interface with this randomness source.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/LightRNG.html#next-int-">next(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath">LightRNG</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Gets a pseudo-random int with at most the specified count of bits; for example, if bits is 3 this can return any
+ int between 0 and 2 to the 3 (that is, 8), exclusive on the upper end.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/LongPeriodRNG.html#next-int-">next(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/LongPeriodRNG.html" title="class in squidpony.squidmath">LongPeriodRNG</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/MersenneTwister.html#next-int-">next(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/MersenneTwister.html" title="class in squidpony.squidmath">MersenneTwister</a></dt>
@@ -605,6 +608,14 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/XorRNG.html#nextDouble--">nextDouble()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/XorRNG.html" title="class in squidpony.squidmath">XorRNG</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#nextDoubleInclusive--">nextDoubleInclusive()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
+<dd>
+<div class="block">Gets a random double between 0.0 inclusive and 1.0 inclusive.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#nextDoubleInclusive-double-">nextDoubleInclusive(double)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
+<dd>
+<div class="block">This returns a random double between 0.0 (inclusive) and outer (inclusive).</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/CriticalRNG.html#nextFloat--">nextFloat()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/CriticalRNG.html" title="class in squidpony.squidmath">CriticalRNG</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/DeckRNG.html#nextFloat--">nextFloat()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/DeckRNG.html" title="class in squidpony.squidmath">DeckRNG</a></dt>
@@ -651,6 +662,14 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/XorRNG.html#nextFloat--">nextFloat()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/XorRNG.html" title="class in squidpony.squidmath">XorRNG</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#nextFloatInclusive--">nextFloatInclusive()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
+<dd>
+<div class="block">Gets a random float between 0.0f inclusive and 1.0f inclusive.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#nextFloatInclusive-float-">nextFloatInclusive(float)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
+<dd>
+<div class="block">This returns a random float between 0.0f (inclusive) and outer (inclusive).</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/CriticalRNG.html#nextGaussian--">nextGaussian()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/CriticalRNG.html" title="class in squidpony.squidmath">CriticalRNG</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/DeckRNG.html#nextGaussian--">nextGaussian()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/DeckRNG.html" title="class in squidpony.squidmath">DeckRNG</a></dt>
@@ -735,7 +754,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/LightRNG.html#nextInt-int-">nextInt(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath">LightRNG</a></dt>
 <dd>
-<div class="block">Exclusive on the upper bound.</div>
+<div class="block">Returns a random non-negative integer between 0 (inclusive) and the given bound (exclusive),
+ or 0 if the bound is 0.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/LightRNG.html#nextInt-int-int-">nextInt(int, int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath">LightRNG</a></dt>
 <dd>

@@ -103,6 +103,38 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SquidPanel.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SquidPanel.html#cellToActor-int-int-">cellToActor</a></span>(int&nbsp;x,
+           int&nbsp;y)</code>
+<div class="block">Created an Actor from the contents of the given x,y position on the grid.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SquidPanel.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SquidPanel.html#cellToActor-int-int-boolean-">cellToActor</a></span>(int&nbsp;x,
+           int&nbsp;y,
+           boolean&nbsp;doubleWidth)</code>
+<div class="block">Created an Actor from the contents of the given x,y position on the grid; deleting
+ the grid's String content at this cell.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SquidPanel.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SquidPanel.html#createActor-int-int-char-com.badlogic.gdx.graphics.Color-boolean-">createActor</a></span>(int&nbsp;x,
+           int&nbsp;y,
+           char&nbsp;name,
+           com.badlogic.gdx.graphics.Color&nbsp;color,
+           boolean&nbsp;doubleWidth)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SquidPanel.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SquidPanel.html#createActor-int-int-char-float-boolean-">createActor</a></span>(int&nbsp;x,
+           int&nbsp;y,
+           char&nbsp;name,
+           float&nbsp;encodedColor,
+           boolean&nbsp;doubleWidth)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a></code></td>
 <td class="colLast"><span class="typeNameLabel">TextCellFactory.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#glyph-char-com.badlogic.gdx.graphics.Color-float-float-">glyph</a></span>(char&nbsp;shown,
      com.badlogic.gdx.graphics.Color&nbsp;color,
      float&nbsp;x,
@@ -184,12 +216,19 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">SquidPanel.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SquidPanel.html#recallActor-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-boolean-int-int-">recallActor</a></span>(<a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;a,
+           boolean&nbsp;restoreSym,
+           int&nbsp;nextX,
+           int&nbsp;nextY)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SparseLayers.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#recallToGrid-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-">recallToGrid</a></span>(<a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph)</code>
 <div class="block">Brings a Glyph back into normal rendering, removing it from the Glyphs this class knows about and filling the
  grid's char at the Glyph's position in the first layer with the Glyph's char and color.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SparseLayers.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#recallToGrid-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-int-">recallToGrid</a></span>(<a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
             int&nbsp;layer)</code>
@@ -197,14 +236,14 @@
  grid's char at the Glyph's position in the given layer with the Glyph's char and color.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SparseLayers.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#removeGlyph-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-">removeGlyph</a></span>(<a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph)</code>
 <div class="block">A way to remove a Glyph from the group of glyphs this renders, while also ending any animations or other Actions
  that the removed Glyph was scheduled to perform.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SparseLayers.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#slide-float-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-int-int-int-int-float-java.lang.Runnable-">slide</a></span>(float&nbsp;delay,
      <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
@@ -217,7 +256,7 @@
 <div class="block">Slides <code>glyph</code> from <code>(xstartX,startY)</code> to <code>(newx, newy)</code> after waiting <code>delay</code> seconds.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SparseLayers.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#slide-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-int-int-int-int-float-java.lang.Runnable-">slide</a></span>(<a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
      int&nbsp;startX,
@@ -229,7 +268,7 @@
 <div class="block">Slides <code>glyph</code> from <code>(xstartX,startY)</code> to <code>(newx, newy)</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SparseLayers.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#tint-float-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-float-float-java.lang.Runnable-">tint</a></span>(float&nbsp;delay,
     <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
@@ -241,7 +280,7 @@
  it returns the cell to its original color, taking duration seconds.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SparseLayers.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#tint-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-float-float-">tint</a></span>(<a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
     float&nbsp;encodedColor,
@@ -251,7 +290,7 @@
  seconds.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SparseLayers.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#wiggle-float-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-float-java.lang.Runnable-">wiggle</a></span>(float&nbsp;delay,
       <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
@@ -261,7 +300,7 @@
  duration in seconds; runs postRunnable afterwards if it is non-null.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SparseLayers.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#wiggle-squidpony.squidgrid.gui.gdx.TextCellFactory.Glyph-float-">wiggle</a></span>(<a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
       float&nbsp;duration)</code>

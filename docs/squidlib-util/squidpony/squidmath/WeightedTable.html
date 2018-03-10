@@ -125,8 +125,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  generation time in use, and O(n) time to construct a WeightedTable instance), this may be useful to consider if you
  don't need all the features of ProbabilityTable or if you want deeper control over the random aspects of it.
  <br>
- Internally, this uses ThrustAltRNG's algorithm as found in <a href="../../squidpony/squidmath/ThrustAltRNG.html#determineBounded-long-int-"><code>ThrustAltRNG.determineBounded(long, int)</code></a> and
- <a href="../../squidpony/squidmath/ThrustAltRNG.html#determine-long-"><code>ThrustAltRNG.determine(long)</code></a> to generate two ints, one used for probability and treated as a 31-bit integer
+ Internally, this uses LightRNG's algorithm as found in <a href="../../squidpony/squidmath/LightRNG.html#determineBounded-long-int-"><code>LightRNG.determineBounded(long, int)</code></a> and
+ <a href="../../squidpony/squidmath/LightRNG.html#determine-long-"><code>LightRNG.determine(long)</code></a> to generate two ints, one used for probability and treated as a 31-bit integer
  and the other used to determine the chosen column, which is bounded to an arbitrary positive int. It does thsi with
  just one randomized 64-bit value, allowing the state given to <a href="../../squidpony/squidmath/WeightedTable.html#random-long-"><code>random(long)</code></a> to be just one long.
  <br>

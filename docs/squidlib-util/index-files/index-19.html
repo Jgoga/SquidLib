@@ -198,7 +198,7 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/NumberTools.html#randomDouble-long-">randomDouble(long)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/NumberTools.html" title="class in squidpony.squidmath">NumberTools</a></dt>
 <dd>
 <div class="block">Generates a pseudo-random double between 0.0 (inclusive) and 1.0 (exclusive) using the given long seed, passing
- it once through the (high-quality and very fast) <a href="../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm.</div>
+ it once through the (high-quality and very fast) <a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/SpatialMap.html#randomElement-squidpony.squidmath.RNG-">randomElement(RNG)</a></span> - Method in class squidpony.squidgrid.<a href="../squidpony/squidgrid/SpatialMap.html" title="class in squidpony.squidgrid">SpatialMap</a></dt>
 <dd>&nbsp;</dd>
@@ -280,7 +280,7 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/NumberTools.html#randomFloat-long-">randomFloat(long)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/NumberTools.html" title="class in squidpony.squidmath">NumberTools</a></dt>
 <dd>
 <div class="block">Generates a pseudo-random float between 0f (inclusive) and 1f (exclusive) using the given long seed, passing it
- once through the (high-quality and very fast) <a href="../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm.</div>
+ once through the (high-quality and very fast) <a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/NumberTools.html#randomFloatCurved-long-">randomFloatCurved(long)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/NumberTools.html" title="class in squidpony.squidmath">NumberTools</a></dt>
 <dd>
@@ -515,7 +515,7 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/NumberTools.html#randomSignedDouble-long-">randomSignedDouble(long)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/NumberTools.html" title="class in squidpony.squidmath">NumberTools</a></dt>
 <dd>
 <div class="block">Generates a pseudo-random double between -1.0 (inclusive) and 1.0 (exclusive) using the given long seed, passing
- it once through the (high-quality and very fast) <a href="../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm.</div>
+ it once through the (high-quality and very fast) <a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/FlapRNG.html#randomSignedFloat-int-">randomSignedFloat(int)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/FlapRNG.html" title="class in squidpony.squidmath">FlapRNG</a></dt>
 <dd>
@@ -528,7 +528,7 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/NumberTools.html#randomSignedFloat-long-">randomSignedFloat(long)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/NumberTools.html" title="class in squidpony.squidmath">NumberTools</a></dt>
 <dd>
 <div class="block">Generates a pseudo-random float between -1f (inclusive) and 1f (exclusive) using the given long seed, passing
- it once through the (high-quality and very fast) <a href="../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> algorithm.</div>
+ it once through the (high-quality and very fast) <a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> algorithm.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/BundleBiMap.html#randomSingle-squidpony.squidmath.RNG-">randomSingle(RNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/BundleBiMap.html" title="class in squidpony.squidmath">BundleBiMap</a></dt>
 <dd>
@@ -2067,18 +2067,18 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#RNG--">RNG()</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
 <dd>
-<div class="block">Default constructor; uses <a href="../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a>, which is of high quality, but low period (which rarely matters
+<div class="block">Default constructor; uses <a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a>, which is of high quality, but low period (which rarely matters
  for games), and has excellent speed, tiny state size, and natively generates 64-bit numbers.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#RNG-long-">RNG(long)</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
 <dd>
-<div class="block">Default constructor; uses <a href="../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a>, which is of high quality, but low period (which rarely matters
+<div class="block">Default constructor; uses <a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a>, which is of high quality, but low period (which rarely matters
  for games), and has excellent speed, tiny state size, and natively generates 64-bit numbers.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#RNG-java.lang.CharSequence-">RNG(CharSequence)</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
 <dd>
 <div class="block">String-seeded constructor; uses a platform-independent hash of the String (it does not use String.hashCode) as a
- seed for <a href="../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a>, which is of high quality, but low period (which rarely matters for games), and has
+ seed for <a href="../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a>, which is of high quality, but low period (which rarely matters for games), and has
  excellent speed, tiny state size, and natively generates 64-bit numbers.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#RNG-squidpony.squidmath.RandomnessSource-">RNG(RandomnessSource)</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>

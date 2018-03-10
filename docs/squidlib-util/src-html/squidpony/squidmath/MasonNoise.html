@@ -1112,25 +1112,25 @@
 <span class="sourceLineNo">1104</span>        final long<a name="line.1104"></a>
 <span class="sourceLineNo">1105</span>                xx0 = longFloor(x),<a name="line.1105"></a>
 <span class="sourceLineNo">1106</span>                yy0 = longFloor(y),<a name="line.1106"></a>
-<span class="sourceLineNo">1107</span>                ry0 = ThrustAltRNG.determine(yy0 + seed), ry1 = ThrustAltRNG.determine(yy0 + 1 + seed);<a name="line.1107"></a>
+<span class="sourceLineNo">1107</span>                ry0 = LightRNG.determine(yy0 + seed), ry1 = LightRNG.determine(yy0 + 1 + seed);<a name="line.1107"></a>
 <span class="sourceLineNo">1108</span>        final float<a name="line.1108"></a>
 <span class="sourceLineNo">1109</span>                dx = carp2(x - xx0), dy = carp2(y - yy0),<a name="line.1109"></a>
-<span class="sourceLineNo">1110</span>                rx0y0 = ThrustAltRNG.determineFloat(xx0 + ry0),<a name="line.1110"></a>
-<span class="sourceLineNo">1111</span>                rx0y1 = ThrustAltRNG.determineFloat(xx0 + ry1),<a name="line.1111"></a>
-<span class="sourceLineNo">1112</span>                rx1y0 = ThrustAltRNG.determineFloat(xx0 + 1 + ry0),<a name="line.1112"></a>
-<span class="sourceLineNo">1113</span>                rx1y1 = ThrustAltRNG.determineFloat(xx0 + 1 + ry1);<a name="line.1113"></a>
+<span class="sourceLineNo">1110</span>                rx0y0 = LightRNG.determineFloat(xx0 + ry0),<a name="line.1110"></a>
+<span class="sourceLineNo">1111</span>                rx0y1 = LightRNG.determineFloat(xx0 + ry1),<a name="line.1111"></a>
+<span class="sourceLineNo">1112</span>                rx1y0 = LightRNG.determineFloat(xx0 + 1 + ry0),<a name="line.1112"></a>
+<span class="sourceLineNo">1113</span>                rx1y1 = LightRNG.determineFloat(xx0 + 1 + ry1);<a name="line.1113"></a>
 <span class="sourceLineNo">1114</span>        return Noise.lerp(Noise.lerp(rx0y0, rx1y0, dx), Noise.lerp(rx0y1, rx1y1, dx), dy) * 2f - 1f;<a name="line.1114"></a>
 <span class="sourceLineNo">1115</span>    }<a name="line.1115"></a>
 <span class="sourceLineNo">1116</span>    public static float noiseAlt(final float x, final float y, final long seed) {<a name="line.1116"></a>
 <span class="sourceLineNo">1117</span>        final long<a name="line.1117"></a>
 <span class="sourceLineNo">1118</span>                xx0 = longFloor(x), yy0 = longFloor(y),<a name="line.1118"></a>
-<span class="sourceLineNo">1119</span>                ry0 = ThrustAltRNG.determine(yy0 + seed), ry1 = ThrustAltRNG.determine(yy0 + 1 + seed);<a name="line.1119"></a>
+<span class="sourceLineNo">1119</span>                ry0 = LightRNG.determine(yy0 + seed), ry1 = LightRNG.determine(yy0 + 1 + seed);<a name="line.1119"></a>
 <span class="sourceLineNo">1120</span>        final float<a name="line.1120"></a>
 <span class="sourceLineNo">1121</span>                dx = carp2(x - xx0), dy = carp2(y - yy0),<a name="line.1121"></a>
-<span class="sourceLineNo">1122</span>                rx0y0 = ThrustAltRNG.determineFloat(xx0 + ry0),<a name="line.1122"></a>
-<span class="sourceLineNo">1123</span>                rx0y1 = ThrustAltRNG.determineFloat(xx0 + ry1),<a name="line.1123"></a>
-<span class="sourceLineNo">1124</span>                rx1y0 = ThrustAltRNG.determineFloat(xx0 + 1 + ry0),<a name="line.1124"></a>
-<span class="sourceLineNo">1125</span>                rx1y1 = ThrustAltRNG.determineFloat(xx0 + 1 + ry1);<a name="line.1125"></a>
+<span class="sourceLineNo">1122</span>                rx0y0 = LightRNG.determineFloat(xx0 + ry0),<a name="line.1122"></a>
+<span class="sourceLineNo">1123</span>                rx0y1 = LightRNG.determineFloat(xx0 + ry1),<a name="line.1123"></a>
+<span class="sourceLineNo">1124</span>                rx1y0 = LightRNG.determineFloat(xx0 + 1 + ry0),<a name="line.1124"></a>
+<span class="sourceLineNo">1125</span>                rx1y1 = LightRNG.determineFloat(xx0 + 1 + ry1);<a name="line.1125"></a>
 <span class="sourceLineNo">1126</span>        return Noise.cerp(Noise.cerp(rx0y0, rx1y0, dx), Noise.cerp(rx0y1, rx1y1, dx), dy) * 2f - 1f;<a name="line.1126"></a>
 <span class="sourceLineNo">1127</span>    }<a name="line.1127"></a>
 <span class="sourceLineNo">1128</span><a name="line.1128"></a>
