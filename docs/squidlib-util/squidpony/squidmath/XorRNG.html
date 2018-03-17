@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -144,11 +144,20 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#XorRNG--">XorRNG</a></span>()</code>
-<div class="block">Creates a new generator seeded using Math.random.</div>
+<div class="block">Creates a new generator seeded using four calls to Math.random().</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#XorRNG-long-">XorRNG</a></span>(long&nbsp;seed)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#XorRNG-long-">XorRNG</a></span>(long&nbsp;seed)</code>
+<div class="block">Constructs this XorRNG by dispersing the bits of seed using a unary hash across the two parts of state this has.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#XorRNG-long-long-">XorRNG</a></span>(long&nbsp;stateA,
+      long&nbsp;stateB)</code>
+<div class="block">Constructs this XorRNG by calling <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-long-"><code>setSeed(long, long)</code></a> on the arguments as given; see that method for the
+ specific details (stateA and stateB are kept as-is unless they are both 0).</div>
+</td>
 </tr>
 </table>
 </li>
@@ -173,54 +182,74 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#getStateA--">getStateA</a></span>()</code>
+<div class="block">Gets the first component of this generator's two-part state, as a long.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#getStateB--">getStateB</a></span>()</code>
+<div class="block">Gets the second component of this generator's two-part state, as a long.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#next-int-">next</a></span>(int&nbsp;bits)</code>
 <div class="block">Using this method, any algorithm that might use the built-in Java Random
  can interface with this randomness source.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextBoolean--">nextBoolean</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextBytes-byte:A-">nextBytes</a></span>(byte[]&nbsp;bytes)</code>&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextDouble--">nextDouble</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextFloat--">nextFloat</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextInt--">nextInt</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextInt-int-">nextInt</a></span>(int&nbsp;n)</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextLong--">nextLong</a></span>()</code>
 <div class="block">Using this method, any algorithm that needs to efficiently generate more
  than 32 bits of random data can interface with this randomness source.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextLong-long-">nextLong</a></span>(long&nbsp;n)</code>&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-">setSeed</a></span>(long&nbsp;seed)</code>
 <div class="block">Sets the seed of this generator.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-long-">setSeed</a></span>(long&nbsp;stateA,
+       long&nbsp;stateB)</code>
+<div class="block">Sets the seed of this generator using two longs, using them without changes unless both are 0 (then it makes the
+ state variable corresponding to stateA 1 instead).</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -253,16 +282,38 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <li class="blockList">
 <h4>XorRNG</h4>
 <pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.34">XorRNG</a>()</pre>
-<div class="block">Creates a new generator seeded using Math.random.</div>
+<div class="block">Creates a new generator seeded using four calls to Math.random().</div>
 </li>
 </ul>
 <a name="XorRNG-long-">
 <!--   -->
 </a>
+<ul class="blockList">
+<li class="blockList">
+<h4>XorRNG</h4>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.45">XorRNG</a>(long&nbsp;seed)</pre>
+<div class="block">Constructs this XorRNG by dispersing the bits of seed using a unary hash across the two parts of state this has.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>seed</code> - a long that won't be used exactly, but will affect both components of state</dd>
+</dl>
+</li>
+</ul>
+<a name="XorRNG-long-long-">
+<!--   -->
+</a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>XorRNG</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.38">XorRNG</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.55">XorRNG</a>(long&nbsp;stateA,
+              long&nbsp;stateB)</pre>
+<div class="block">Constructs this XorRNG by calling <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-long-"><code>setSeed(long, long)</code></a> on the arguments as given; see that method for the
+ specific details (stateA and stateB are kept as-is unless they are both 0).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>stateA</code> - the number to use as the first part of the state; this will be 1 instead if both seeds are 0</dd>
+<dd><code>stateB</code> - the number to use as the second part of the state</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -279,7 +330,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>next</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.43">next</a>(int&nbsp;bits)</pre>
+<pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.60">next</a>(int&nbsp;bits)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html#next-int-">RandomnessSource</a></code></span></div>
 <div class="block">Using this method, any algorithm that might use the built-in Java Random
  can interface with this randomness source.</div>
@@ -299,7 +350,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.48">nextLong</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.65">nextLong</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html#nextLong--">RandomnessSource</a></code></span></div>
 <div class="block">Using this method, any algorithm that needs to efficiently generate more
  than 32 bits of random data can interface with this randomness source.
@@ -319,7 +370,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.56">nextInt</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.73">nextInt</a>()</pre>
 </li>
 </ul>
 <a name="nextInt-int-">
@@ -328,7 +379,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.60">nextInt</a>(int&nbsp;n)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.77">nextInt</a>(int&nbsp;n)</pre>
 </li>
 </ul>
 <a name="nextLong-long-">
@@ -337,7 +388,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.67">nextLong</a>(long&nbsp;n)</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.84">nextLong</a>(long&nbsp;n)</pre>
 </li>
 </ul>
 <a name="nextDouble--">
@@ -346,7 +397,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDouble</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.80">nextDouble</a>()</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.97">nextDouble</a>()</pre>
 </li>
 </ul>
 <a name="nextFloat--">
@@ -355,7 +406,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextFloat</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.84">nextFloat</a>()</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.101">nextFloat</a>()</pre>
 </li>
 </ul>
 <a name="nextBoolean--">
@@ -364,7 +415,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBoolean</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.88">nextBoolean</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.105">nextBoolean</a>()</pre>
 </li>
 </ul>
 <a name="nextBytes-byte:A-">
@@ -373,7 +424,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBytes</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.92">nextBytes</a>(byte[]&nbsp;bytes)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.109">nextBytes</a>(byte[]&nbsp;bytes)</pre>
 </li>
 </ul>
 <a name="setSeed-long-">
@@ -382,12 +433,63 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>setSeed</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.119">setSeed</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.136">setSeed</a>(long&nbsp;seed)</pre>
 <div class="block">Sets the seed of this generator. Passing this 0 will just set it to -1
  instead.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>seed</code> - the number to use as the seed</dd>
+</dl>
+</li>
+</ul>
+<a name="setSeed-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setSeed</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.148">setSeed</a>(long&nbsp;stateA,
+                    long&nbsp;stateB)</pre>
+<div class="block">Sets the seed of this generator using two longs, using them without changes unless both are 0 (then it makes the
+ state variable corresponding to stateA 1 instead).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>stateA</code> - the number to use as the first part of the state; this will be 1 instead if both seeds are 0</dd>
+<dd><code>stateB</code> - the number to use as the second part of the state</dd>
+</dl>
+</li>
+</ul>
+<a name="getStateA--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getStateA</h4>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.163">getStateA</a>()</pre>
+<div class="block">Gets the first component of this generator's two-part state, as a long. This can be 0 on its own, but will never
+ be 0 at the same time as the other component of state, <a href="../../squidpony/squidmath/XorRNG.html#getStateB--"><code>getStateB()</code></a>. You can set the state with two exact
+ values using <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-long-"><code>setSeed(long, long)</code></a>, but the alternative overload <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-"><code>setSeed(long)</code></a> won't use the
+ state without changing it (it needs to cover 128 bits with a 64-bit value).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the first component of this generator's state</dd>
+</dl>
+</li>
+</ul>
+<a name="getStateB--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getStateB</h4>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.174">getStateB</a>()</pre>
+<div class="block">Gets the second component of this generator's two-part state, as a long. This can be 0 on its own, but will never
+ be 0 at the same time as the other component of state, <a href="../../squidpony/squidmath/XorRNG.html#getStateA--"><code>getStateA()</code></a>. You can set the state with two exact
+ values using <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-long-"><code>setSeed(long, long)</code></a>, but the alternative overload <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-"><code>setSeed(long)</code></a> won't use the
+ state without changing it (it needs to cover 128 bits with a 64-bit value).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the second component of this generator's state</dd>
 </dl>
 </li>
 </ul>
@@ -397,7 +499,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.126">toString</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.180">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -410,7 +512,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockListLast">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/XorRNG.html" title="class in squidpony.squidmath">XorRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.138">copy</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/XorRNG.html" title="class in squidpony.squidmath">XorRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.192">copy</a>()</pre>
 <div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called. This just needs to
  copy the state so it isn't shared, usually, and produce a new value with the same exact state.</div>
