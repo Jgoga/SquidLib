@@ -194,8 +194,8 @@
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LongPeriodRNG.html" title="class in squidpony.squidmath">LongPeriodRNG</a></span></code>
-<div class="block">An RNG that has a drastically longer period than the other generators in SquidLib, other than IsaacRNG, without
- sacrificing speed or HTML target compatibility.</div>
+<div class="block">An RNG that has a drastically longer period than the other generators in SquidLib, other than <a href="../../../squidpony/squidmath/IsaacRNG.html" title="class in squidpony.squidmath"><code>IsaacRNG</code></a>,
+ without sacrificing speed or GWT support.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -283,6 +283,13 @@
 <div class="block">A port of Sebastiano Vigna's XorShift 128+ generator.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Zag32RNG.html" title="class in squidpony.squidmath">Zag32RNG</a></span></code>
+<div class="block">A 32-bit generator that needs no math on 64-bit values to calculate high-quality pseudo-random numbers, and has been
+ adapted to meet the needs of GWT while maintaining compatibility with other JDK platforms.</div>
+</td>
+</tr>
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
@@ -307,141 +314,9 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">XorRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/XorRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">XoRoRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/XoRoRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ThunderRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/ThunderRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ThrustRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/ThrustRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ThrustAltRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/ThrustAltRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SobolQRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/SobolQRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SaltyQRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/SaltyQRNG.html#copy--">copy</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
 <td class="colLast"><span class="typeNameLabel">RandomnessSource.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/RandomnessSource.html#copy--">copy</a></span>()</code>
 <div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PintRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/PintRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PermutedRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/PermutedRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NLFSR.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/NLFSR.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">LongPeriodRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LongPeriodRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">LightRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LightRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Light32RNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Light32RNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">LFSR.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LFSR.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">LapRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LapRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">JavaRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/JavaRNG.html#copy--">copy</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">IsaacRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/IsaacRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces another RandomnessSource, but the new one will not produce the same data as this one.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Isaac32RNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Isaac32RNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces another RandomnessSource, but the new one will not produce the same data as this one.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">FlapRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/FlapRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
- copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ChaosRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/ChaosRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces another ChaosRNG with no relation to this one; this breaks the normal rules that RandomnessSource.copy
- abides by because this class should never have its generated number sequence be predictable.</div>
 </td>
 </tr>
 <tr class="rowColor">

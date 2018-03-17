@@ -116,8 +116,8 @@ var activeTableTab = "activeTableTab";
 <pre>public final class <a href="../../src-html/squidpony/squidmath/LongPeriodRNG.html#line.44">LongPeriodRNG</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
-<div class="block">An RNG that has a drastically longer period than the other generators in SquidLib, other than IsaacRNG, without
- sacrificing speed or HTML target compatibility. If you don't already know what the period of an RNG is, this probably
+<div class="block">An RNG that has a drastically longer period than the other generators in SquidLib, other than <a href="../../squidpony/squidmath/IsaacRNG.html" title="class in squidpony.squidmath"><code>IsaacRNG</code></a>,
+ without sacrificing speed or GWT support. If you don't already know what the period of an RNG is, this probably
  isn't needed for your purposes, or many purposes in games at all. It is primarily meant for applications that need to
  generate massive amounts of random numbers, more than pow(2, 64) (18,446,744,073,709,551,616), without repeating
  the sequence of generated numbers. An RNG's period refers to the number of numbers it generates given a single
@@ -239,7 +239,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></td>
+<td class="colFirst"><code><a href="../../squidpony/squidmath/LongPeriodRNG.html" title="class in squidpony.squidmath">LongPeriodRNG</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LongPeriodRNG.html#copy--">copy</a></span>()</code>
 <div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
@@ -568,7 +568,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;<a href="../../src-html/squidpony/squidmath/LongPeriodRNG.html#line.249">copy</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/LongPeriodRNG.html" title="class in squidpony.squidmath">LongPeriodRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/LongPeriodRNG.html#line.249">copy</a>()</pre>
 <div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called. This just need to
  copy the state so it isn't shared, usually, and produce a new value with the same exact state.</div>

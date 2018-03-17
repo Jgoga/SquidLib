@@ -45,7 +45,7 @@
 <span class="sourceLineNo">037</span> * @author David Blackman<a name="line.37"></a>
 <span class="sourceLineNo">038</span> * @author Tommy Ettinger<a name="line.38"></a>
 <span class="sourceLineNo">039</span> */<a name="line.39"></a>
-<span class="sourceLineNo">040</span>public class XoRoRNG implements RandomnessSource, Serializable {<a name="line.40"></a>
+<span class="sourceLineNo">040</span>public final class XoRoRNG implements RandomnessSource, Serializable {<a name="line.40"></a>
 <span class="sourceLineNo">041</span><a name="line.41"></a>
 <span class="sourceLineNo">042</span>        private static final long DOUBLE_MASK = (1L &lt;&lt; 53) - 1;<a name="line.42"></a>
 <span class="sourceLineNo">043</span>    private static final double NORM_53 = 1. / (1L &lt;&lt; 53);<a name="line.43"></a>
@@ -96,7 +96,7 @@
 <span class="sourceLineNo">088</span>     * @return a copy of this RandomnessSource<a name="line.88"></a>
 <span class="sourceLineNo">089</span>     */<a name="line.89"></a>
 <span class="sourceLineNo">090</span>    @Override<a name="line.90"></a>
-<span class="sourceLineNo">091</span>    public RandomnessSource copy() {<a name="line.91"></a>
+<span class="sourceLineNo">091</span>    public XoRoRNG copy() {<a name="line.91"></a>
 <span class="sourceLineNo">092</span>        XoRoRNG next = new XoRoRNG(state0);<a name="line.92"></a>
 <span class="sourceLineNo">093</span>        next.state0 = state0;<a name="line.93"></a>
 <span class="sourceLineNo">094</span>        next.state1 = state1;<a name="line.94"></a>

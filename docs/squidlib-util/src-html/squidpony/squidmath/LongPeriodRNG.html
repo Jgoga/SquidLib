@@ -14,8 +14,8 @@
 <span class="sourceLineNo">006</span>import java.util.Arrays;<a name="line.6"></a>
 <span class="sourceLineNo">007</span><a name="line.7"></a>
 <span class="sourceLineNo">008</span>/**<a name="line.8"></a>
-<span class="sourceLineNo">009</span> * An RNG that has a drastically longer period than the other generators in SquidLib, other than IsaacRNG, without<a name="line.9"></a>
-<span class="sourceLineNo">010</span> * sacrificing speed or HTML target compatibility. If you don't already know what the period of an RNG is, this probably<a name="line.10"></a>
+<span class="sourceLineNo">009</span> * An RNG that has a drastically longer period than the other generators in SquidLib, other than {@link IsaacRNG},<a name="line.9"></a>
+<span class="sourceLineNo">010</span> * without sacrificing speed or GWT support. If you don't already know what the period of an RNG is, this probably<a name="line.10"></a>
 <span class="sourceLineNo">011</span> * isn't needed for your purposes, or many purposes in games at all. It is primarily meant for applications that need to<a name="line.11"></a>
 <span class="sourceLineNo">012</span> * generate massive amounts of random numbers, more than pow(2, 64) (18,446,744,073,709,551,616), without repeating<a name="line.12"></a>
 <span class="sourceLineNo">013</span> * the sequence of generated numbers. An RNG's period refers to the number of numbers it generates given a single<a name="line.13"></a>
@@ -254,7 +254,7 @@
 <span class="sourceLineNo">246</span>     * @return a copy of this RandomnessSource<a name="line.246"></a>
 <span class="sourceLineNo">247</span>     */<a name="line.247"></a>
 <span class="sourceLineNo">248</span>    @Override<a name="line.248"></a>
-<span class="sourceLineNo">249</span>    public RandomnessSource copy() {<a name="line.249"></a>
+<span class="sourceLineNo">249</span>    public LongPeriodRNG copy() {<a name="line.249"></a>
 <span class="sourceLineNo">250</span>        LongPeriodRNG next = new LongPeriodRNG();<a name="line.250"></a>
 <span class="sourceLineNo">251</span>        System.arraycopy(state, 0, next.state, 0, 16);<a name="line.251"></a>
 <span class="sourceLineNo">252</span>        next.choice = choice;<a name="line.252"></a>
