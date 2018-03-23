@@ -368,7 +368,7 @@
 <span class="sourceLineNo">360</span>     * Returns a random float that is deterministic based on state; if state is the same on two calls to this, this will<a name="line.360"></a>
 <span class="sourceLineNo">361</span>     * return the same float. This is expected to be called with a changing variable, e.g. {@code determine(++state)},<a name="line.361"></a>
 <span class="sourceLineNo">362</span>     * where the increment for state should be odd but otherwise doesn't really matter. This multiplies state by<a name="line.362"></a>
-<span class="sourceLineNo">363</span>     * {@code 0x6C8E9CF570932BD5L} within this method, so using a small increment won't be much different from using a<a name="line.363"></a>
+<span class="sourceLineNo">363</span>     * {@code 0x9E3779B97F4A7C15L} within this method, so using a small increment won't be much different from using a<a name="line.363"></a>
 <span class="sourceLineNo">364</span>     * very large one, as long as it is odd. The period is 2 to the 64 if you increment or decrement by 1, but there are<a name="line.364"></a>
 <span class="sourceLineNo">365</span>     * only 2 to the 30 possible floats between 0 and 1.<a name="line.365"></a>
 <span class="sourceLineNo">366</span>     * @param state a variable that should be different every time you want a different random result;<a name="line.366"></a>
@@ -382,7 +382,7 @@
 <span class="sourceLineNo">374</span>     * Returns a random double that is deterministic based on state; if state is the same on two calls to this, this<a name="line.374"></a>
 <span class="sourceLineNo">375</span>     * will return the same float. This is expected to be called with a changing variable, e.g.<a name="line.375"></a>
 <span class="sourceLineNo">376</span>     * {@code determine(++state)}, where the increment for state should be odd but otherwise doesn't really matter. This<a name="line.376"></a>
-<span class="sourceLineNo">377</span>     * multiplies state by {@code 0x6C8E9CF570932BD5L} within this method, so using a small increment won't be much<a name="line.377"></a>
+<span class="sourceLineNo">377</span>     * multiplies state by {@code 0x9E3779B97F4A7C15L} within this method, so using a small increment won't be much<a name="line.377"></a>
 <span class="sourceLineNo">378</span>     * different from using a very large one, as long as it is odd. The period is 2 to the 64 if you increment or<a name="line.378"></a>
 <span class="sourceLineNo">379</span>     * decrement by 1, but there are only 2 to the 62 possible doubles between 0 and 1.<a name="line.379"></a>
 <span class="sourceLineNo">380</span>     * @param state a variable that should be different every time you want a different random result;<a name="line.380"></a>

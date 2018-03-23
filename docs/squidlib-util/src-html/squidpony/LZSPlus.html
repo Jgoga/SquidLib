@@ -34,25 +34,25 @@
 <span class="sourceLineNo">026</span> */<a name="line.26"></a>
 <span class="sourceLineNo">027</span>package squidpony;<a name="line.27"></a>
 <span class="sourceLineNo">028</span><a name="line.28"></a>
-<span class="sourceLineNo">029</span>//import com.badlogic.gdx.utils.Array;<a name="line.29"></a>
-<span class="sourceLineNo">030</span>//import com.badlogic.gdx.utils.ObjectIntMap;<a name="line.30"></a>
-<span class="sourceLineNo">031</span>//import com.badlogic.gdx.utils.ObjectSet;<a name="line.31"></a>
-<span class="sourceLineNo">032</span><a name="line.32"></a>
-<span class="sourceLineNo">033</span>import squidpony.squidmath.CrossHash;<a name="line.33"></a>
-<span class="sourceLineNo">034</span>import squidpony.squidmath.UnorderedSet;<a name="line.34"></a>
-<span class="sourceLineNo">035</span><a name="line.35"></a>
-<span class="sourceLineNo">036</span>import java.util.ArrayList;<a name="line.36"></a>
-<span class="sourceLineNo">037</span>import java.util.Objects;<a name="line.37"></a>
-<span class="sourceLineNo">038</span><a name="line.38"></a>
-<span class="sourceLineNo">039</span>/**<a name="line.39"></a>
-<span class="sourceLineNo">040</span> * LZ-String compression, taking Strings and compressing them to other Strings, optionally with some encryption.<a name="line.40"></a>
-<span class="sourceLineNo">041</span> * This role was performed by the &lt;a href="https://github.com/tommyettinger/BlazingChain"&gt;BlazingChain library&lt;/a&gt;,<a name="line.41"></a>
-<span class="sourceLineNo">042</span> * which was a dependency of squidlib-extra, but recent developments have allowed all dependencies to be removed other<a name="line.42"></a>
-<span class="sourceLineNo">043</span> * than SquidLib, while also probably reducing memory usage by a fair amount. The actual implementation of this class is<a name="line.43"></a>
-<span class="sourceLineNo">044</span> * very unusual, with the LZ-String encoding part derived from<a name="line.44"></a>
-<span class="sourceLineNo">045</span> * &lt;a href="https://github.com/rufushuang/lz-string4java"&gt;rufushuang's lz-string4java&lt;/a&gt; (which is a port of<a name="line.45"></a>
-<span class="sourceLineNo">046</span> * &lt;a href="https://github.com/pieroxy/lz-string"&gt;pieroxy's lz-string&lt;/a&gt;), while the encryption-like part (which is not<a name="line.46"></a>
-<span class="sourceLineNo">047</span> * very strong) was added in SquidLib.<a name="line.47"></a>
+<span class="sourceLineNo">029</span>import squidpony.squidmath.CrossHash;<a name="line.29"></a>
+<span class="sourceLineNo">030</span>import squidpony.squidmath.UnorderedSet;<a name="line.30"></a>
+<span class="sourceLineNo">031</span><a name="line.31"></a>
+<span class="sourceLineNo">032</span>import java.util.ArrayList;<a name="line.32"></a>
+<span class="sourceLineNo">033</span>import java.util.Objects;<a name="line.33"></a>
+<span class="sourceLineNo">034</span><a name="line.34"></a>
+<span class="sourceLineNo">035</span>/**<a name="line.35"></a>
+<span class="sourceLineNo">036</span> * LZ-String compression, taking Strings and compressing them to other Strings, optionally with some encryption.<a name="line.36"></a>
+<span class="sourceLineNo">037</span> * This role was performed by the &lt;a href="https://github.com/tommyettinger/BlazingChain"&gt;BlazingChain library&lt;/a&gt;,<a name="line.37"></a>
+<span class="sourceLineNo">038</span> * which was a dependency of squidlib-extra, but recent developments have allowed all dependencies to be removed other<a name="line.38"></a>
+<span class="sourceLineNo">039</span> * than SquidLib, while also probably reducing memory usage by a fair amount. The actual implementation of this class is<a name="line.39"></a>
+<span class="sourceLineNo">040</span> * very unusual, with the LZ-String encoding part derived from<a name="line.40"></a>
+<span class="sourceLineNo">041</span> * &lt;a href="https://github.com/rufushuang/lz-string4java"&gt;rufushuang's lz-string4java&lt;/a&gt; (which is a port of<a name="line.41"></a>
+<span class="sourceLineNo">042</span> * &lt;a href="https://github.com/pieroxy/lz-string"&gt;pieroxy's lz-string&lt;/a&gt;), while the encryption-like part (which is not<a name="line.42"></a>
+<span class="sourceLineNo">043</span> * very strong) was added in SquidLib. The unusual part is how instead of relying on a HashMap of String keys to boxed<a name="line.43"></a>
+<span class="sourceLineNo">044</span> * Integer values as BlazingChain did, this uses an UnorderedSet of char arrays, using a custom IHasher to consider some<a name="line.44"></a>
+<span class="sourceLineNo">045</span> * of the array a key to hash and some only to read in as a value (producing an int like the Integer from before). This<a name="line.45"></a>
+<span class="sourceLineNo">046</span> * allows quite a bit of RAM to be conserved on larger texts. This version includes the fixes present in version 1.4.4.2<a name="line.46"></a>
+<span class="sourceLineNo">047</span> * of BlazingChain, which allow decompression for very large texts to work.<a name="line.47"></a>
 <span class="sourceLineNo">048</span> * &lt;br&gt;<a name="line.48"></a>
 <span class="sourceLineNo">049</span> * Created by Tommy Ettinger on 7/13/2017.<a name="line.49"></a>
 <span class="sourceLineNo">050</span> */<a name="line.50"></a>
@@ -480,7 +480,7 @@
 <span class="sourceLineNo">472</span>                return "";<a name="line.472"></a>
 <span class="sourceLineNo">473</span>            }<a name="line.473"></a>
 <span class="sourceLineNo">474</span><a name="line.474"></a>
-<span class="sourceLineNo">475</span>            bits = 0;<a name="line.475"></a>
+<span class="sourceLineNo">475</span>            int cc = 0;<a name="line.475"></a>
 <span class="sourceLineNo">476</span>            maxpower = numBits;<a name="line.476"></a>
 <span class="sourceLineNo">477</span>            power = 0;<a name="line.477"></a>
 <span class="sourceLineNo">478</span>            while (power != maxpower) {<a name="line.478"></a>
@@ -490,10 +490,10 @@
 <span class="sourceLineNo">482</span>                    position = 16384;<a name="line.482"></a>
 <span class="sourceLineNo">483</span>                    val = (char) (comp[index++] - 32);<a name="line.483"></a>
 <span class="sourceLineNo">484</span>                }<a name="line.484"></a>
-<span class="sourceLineNo">485</span>                bits |= (resb &gt; 0 ? 1 : 0) &lt;&lt; power++;<a name="line.485"></a>
+<span class="sourceLineNo">485</span>                cc |= (resb &gt; 0 ? 1 : 0) &lt;&lt; power++;<a name="line.485"></a>
 <span class="sourceLineNo">486</span>            }<a name="line.486"></a>
-<span class="sourceLineNo">487</span>            int cc;<a name="line.487"></a>
-<span class="sourceLineNo">488</span>            switch (cc = bits) {<a name="line.488"></a>
+<span class="sourceLineNo">487</span>            <a name="line.487"></a>
+<span class="sourceLineNo">488</span>            switch (cc) {<a name="line.488"></a>
 <span class="sourceLineNo">489</span>                case 0:<a name="line.489"></a>
 <span class="sourceLineNo">490</span>                    bits = 0;<a name="line.490"></a>
 <span class="sourceLineNo">491</span>                    maxpower = 8;<a name="line.491"></a>
