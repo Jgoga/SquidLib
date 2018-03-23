@@ -157,7 +157,9 @@
     boolean&nbsp;capitalize,
     int&nbsp;approxSyllables,
     long...&nbsp;reseeds)</code>
-<div class="block">Generate a word from this FakeLanguageGen using the specified RNG.</div>
+<div class="block">Generate a word from this FakeLanguageGen using the specified StatefulRNG with an approximate number of
+ syllables, potentially setting the state of rng mid-way through the word to another seed from <code>reseeds</code>
+ more than once if the word is long enough.</div>
 </td>
 </tr>
 </tbody>
