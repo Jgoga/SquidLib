@@ -590,7 +590,7 @@
 <span class="sourceLineNo">582</span>                        || radiusStrategy.radius(startx, starty, x2, y2) &gt;= radius + 1) {//+1 to cover starting tile<a name="line.582"></a>
 <span class="sourceLineNo">583</span>                    continue;<a name="line.583"></a>
 <span class="sourceLineNo">584</span>                }<a name="line.584"></a>
-<span class="sourceLineNo">585</span>                double newAngle = Math.atan2(y2 - starty, x2 - startx) + Math.PI * 2;<a name="line.585"></a>
+<span class="sourceLineNo">585</span>                double newAngle = NumberTools.atan2(y2 - starty, x2 - startx) + Math.PI * 2;<a name="line.585"></a>
 <span class="sourceLineNo">586</span>                                if (Math.abs(GwtCompatibility.IEEEremainder(angle - newAngle + Math.PI * 8, Math.PI * 2)) &gt; span / 2.0)<a name="line.586"></a>
 <span class="sourceLineNo">587</span>                                        continue;<a name="line.587"></a>
 <span class="sourceLineNo">588</span><a name="line.588"></a>
@@ -742,7 +742,7 @@
 <span class="sourceLineNo">734</span>                } else if (end &gt; leftSlope) {<a name="line.734"></a>
 <span class="sourceLineNo">735</span>                    break;<a name="line.735"></a>
 <span class="sourceLineNo">736</span>                }<a name="line.736"></a>
-<span class="sourceLineNo">737</span>                double newAngle = (Math.atan2(currentY - starty, currentX - startx) + Math.PI * 8.0) % (Math.PI * 2),<a name="line.737"></a>
+<span class="sourceLineNo">737</span>                double newAngle = (NumberTools.atan2(currentY - starty, currentX - startx) + Math.PI * 8.0) % (Math.PI * 2),<a name="line.737"></a>
 <span class="sourceLineNo">738</span>                        rem = (angle - newAngle + Math.PI * 2) % (Math.PI * 2), irem = (newAngle - angle + Math.PI * 2) % (Math.PI * 2);<a name="line.738"></a>
 <span class="sourceLineNo">739</span>                                if (Math.abs(rem) &gt; span * 0.5 &amp;&amp; Math.abs(irem) &gt; span * 0.5)<a name="line.739"></a>
 <span class="sourceLineNo">740</span>                                        continue;<a name="line.740"></a>
