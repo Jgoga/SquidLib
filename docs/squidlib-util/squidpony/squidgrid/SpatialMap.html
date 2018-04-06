@@ -113,7 +113,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.20">SpatialMap</a>&lt;I,E&gt;
+<pre>public class <a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.17">SpatialMap</a>&lt;I,E&gt;
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;E&gt;</pre>
 <div class="block">A data structure that seems to be re-implemented often for games, this associates Coord positions and generic I
@@ -437,19 +437,19 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 </tr>
 <tr id="i31" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/SpatialMap.html#randomElement-squidpony.squidmath.RNG-">randomElement</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/SpatialMap.html#randomElement-squidpony.squidmath.IRNG-">randomElement</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>&nbsp;</td>
 </tr>
 <tr id="i32" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/SpatialMap.html#randomEntry-squidpony.squidmath.RNG-">randomEntry</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/SpatialMap.html#randomEntry-squidpony.squidmath.IRNG-">randomEntry</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>&nbsp;</td>
 </tr>
 <tr id="i33" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/SpatialMap.html#randomIdentity-squidpony.squidmath.RNG-">randomIdentity</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/SpatialMap.html#randomIdentity-squidpony.squidmath.IRNG-">randomIdentity</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>&nbsp;</td>
 </tr>
 <tr id="i34" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/SpatialMap.html#randomPosition-squidpony.squidmath.RNG-">randomPosition</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/SpatialMap.html#randomPosition-squidpony.squidmath.IRNG-">randomPosition</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>&nbsp;</td>
 </tr>
 <tr id="i35" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;</code></td>
@@ -551,7 +551,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>itemMapping</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&gt; <a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.62">itemMapping</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&gt; <a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.59">itemMapping</a></pre>
 </li>
 </ul>
 <a name="positionMapping">
@@ -560,7 +560,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>positionMapping</h4>
-<pre>protected&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&gt; <a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.63">positionMapping</a></pre>
+<pre>protected&nbsp;<a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>,<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&gt; <a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.60">positionMapping</a></pre>
 </li>
 </ul>
 </li>
@@ -577,7 +577,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>SpatialMap</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.68">SpatialMap</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.65">SpatialMap</a>()</pre>
 <div class="block">Constructs a SpatialMap with capacity 32.</div>
 </li>
 </ul>
@@ -587,7 +587,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>SpatialMap</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.78">SpatialMap</a>(int&nbsp;capacity)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.75">SpatialMap</a>(int&nbsp;capacity)</pre>
 <div class="block">Constructs a SpatialMap with the given capacity</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -603,7 +603,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>SpatialMap</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.92">SpatialMap</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;coords,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.89">SpatialMap</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;coords,
                   <a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>[]&nbsp;ids,
                   <a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>[]&nbsp;elements)</pre>
 <div class="block">Constructs a SpatialMap given arrays of Coord, identity, and element; all 3 arrays should have the same length,
@@ -623,7 +623,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SpatialMap</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.113">SpatialMap</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;coords,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.110">SpatialMap</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;coords,
                   <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&gt;&nbsp;ids,
                   <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;elements)</pre>
 <div class="block">Constructs a SpatialMap given collections of Coord, identity, and element; all 3 collections should have the same
@@ -654,7 +654,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>add</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.142">add</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;coord,
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.139">add</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;coord,
                 <a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;id,
                 <a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;element)</pre>
 <div class="block">Adds a new element with the given identity and Coord position. If the position is already occupied by an element
@@ -678,7 +678,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.162">put</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;coord,
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.159">put</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;coord,
                 <a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;id,
                 <a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;element)</pre>
 <div class="block">Inserts a new element with the given identity and Coord position, potentially overwriting an existing element.
@@ -698,7 +698,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.179">put</a>(<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;triple)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.176">put</a>(<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;triple)</pre>
 <div class="block">Inserts a SpatialTriple into this SpatialMap without changing it, potentially overwriting an existing element.
  SpatialTriple objects can be obtained by the triples() or tripleIterator() methods, and can also be constructed
  on their own.
@@ -718,7 +718,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>modify</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.194">modify</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;id,
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.191">modify</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;id,
                 <a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;newValue)</pre>
 <div class="block">Changes the element's value associated with id. The key id should exist before calling this; if there is no
  matching id, this returns null.</div>
@@ -739,7 +739,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>positionalModify</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.211">positionalModify</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pos,
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.208">positionalModify</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pos,
                           <a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;newValue)</pre>
 <div class="block">Changes the element's value associated with pos. The key pos should exist before calling this; if there is no
  matching position, this returns null.</div>
@@ -758,7 +758,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>move</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.230">move</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;previous,
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.227">move</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;previous,
               <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;target)</pre>
 <div class="block">Move an element from one position to another; moves whatever is at the Coord position previous to the new Coord
  position target. The element will not be present at its original position if target is unoccupied, but nothing
@@ -780,7 +780,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>move</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.249">move</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;id,
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.246">move</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;id,
               <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;target)</pre>
 <div class="block">Move an element, picked by its identity, to a new Coord position. Finds the element using only the id, and does
  not need the previous position. The target position must be empty for this to move successfully, and the id must
@@ -800,7 +800,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>remove</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.268">remove</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;coord)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.265">remove</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;coord)</pre>
 <div class="block">Removes the element at the given position from all storage in this data structure.
  <br>
  You should strongly avoid calling remove() and add() to change an element; prefer modify() and move().</div>
@@ -820,7 +820,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>remove</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.284">remove</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;id)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.281">remove</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;id)</pre>
 <div class="block">Removes the element with the given identity from all storage in this data structure.
  <br>
  You should strongly avoid calling remove() and add() to change an element; prefer modify() and move().</div>
@@ -838,7 +838,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>containsValue</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.299">containsValue</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.296">containsValue</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <div class="block">Checks whether this contains the given element. Slower than containsKey and containsPosition (linear time).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -854,7 +854,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>containsKey</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.322">containsKey</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.319">containsKey</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <div class="block">Checks whether this contains the given identity key.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -870,7 +870,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>containsPosition</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.331">containsPosition</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.328">containsPosition</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <div class="block">Checks whether this contains anything at the given position.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -886,7 +886,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>get</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.341">get</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;c)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.338">get</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;c)</pre>
 <div class="block">Gets the element at the given Coord position.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -904,7 +904,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>get</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.354">get</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;i)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.351">get</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;i)</pre>
 <div class="block">Gets the element with the given identity.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -922,7 +922,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getPosition</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.367">getPosition</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;i)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.364">getPosition</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;i)</pre>
 <div class="block">Gets the position of the element with the given identity.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -938,7 +938,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getIdentity</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.380">getIdentity</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;c)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.377">getIdentity</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;c)</pre>
 <div class="block">Gets the identity of the element at the given Coord position.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -954,7 +954,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>positions</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.393">positions</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.390">positions</a>()</pre>
 <div class="block">Get a Set of all positions used for values in this data structure, returning a OrderedSet (defensively copying
  the key set used internally) for its stable iteration order.</div>
 <dl>
@@ -969,7 +969,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>identities</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.402">identities</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.399">identities</a>()</pre>
 <div class="block">Get a Set of all identities used for values in this data structure, returning a OrderedSet (defensively
  copying the key set used internally) for its stable iteration order.</div>
 <dl>
@@ -984,7 +984,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>triples</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.412">triples</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.409">triples</a>()</pre>
 <div class="block">Gets all data stored in this as a collection of values similar to Map.Entry, but containing a Coord, I, and E
  value for each entry, in insertion order. The type is SpatialTriple, defined in a nested class.</div>
 <dl>
@@ -999,7 +999,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getManyPositions</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.423">getManyPositions</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;positions)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.420">getManyPositions</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;positions)</pre>
 <div class="block">Given an Iterable (such as a List, Set, or other Collection) of Coord, gets all elements in this SpatialMap that
  share a position with one of the Coord objects in positions and returns them as an ArrayList of elements.</div>
 <dl>
@@ -1016,7 +1016,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getManyIdentities</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.441">getManyIdentities</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&gt;&nbsp;identities)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.438">getManyIdentities</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&gt;&nbsp;identities)</pre>
 <div class="block">Given an Iterable (such as a List, Set, or other Collection) of I, gets all elements in this SpatialMap that
  share an identity with one of the I objects in identities and returns them as an ArrayList of elements.</div>
 <dl>
@@ -1033,7 +1033,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getManyPositions</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.459">getManyPositions</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;positions)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.456">getManyPositions</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;positions)</pre>
 <div class="block">Given an array of Coord, gets all elements in this SpatialMap that share a position with one of the Coord objects
  in positions and returns them as an ArrayList of elements.</div>
 <dl>
@@ -1052,7 +1052,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getManyIdentities</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.476">getManyIdentities</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>[]&nbsp;identities)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.473">getManyIdentities</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>[]&nbsp;identities)</pre>
 <div class="block">Given an array of I, gets all elements in this SpatialMap that share an identity with one of the I objects in
  identities and returns them as an ArrayList of elements.</div>
 <dl>
@@ -1063,40 +1063,40 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 </dl>
 </li>
 </ul>
-<a name="randomElement-squidpony.squidmath.RNG-">
+<a name="randomElement-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomElement</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.488">randomElement</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.485">randomElement</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 </li>
 </ul>
-<a name="randomPosition-squidpony.squidmath.RNG-">
+<a name="randomPosition-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomPosition</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.495">randomPosition</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.492">randomPosition</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 </li>
 </ul>
-<a name="randomIdentity-squidpony.squidmath.RNG-">
+<a name="randomIdentity-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomIdentity</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.501">randomIdentity</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.498">randomIdentity</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 </li>
 </ul>
-<a name="randomEntry-squidpony.squidmath.RNG-">
+<a name="randomEntry-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomEntry</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.508">randomEntry</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.505">randomEntry</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 </li>
 </ul>
 <a name="rectangleSection-int-int-int-int-">
@@ -1105,7 +1105,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>rectangleSection</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="class in squidpony.squidgrid">SpatialMap</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.526">rectangleSection</a>(int&nbsp;x,
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="class in squidpony.squidgrid">SpatialMap</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.523">rectangleSection</a>(int&nbsp;x,
                                         int&nbsp;y,
                                         int&nbsp;width,
                                         int&nbsp;height)</pre>
@@ -1130,7 +1130,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>radiusSection</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="class in squidpony.squidgrid">SpatialMap</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.550">radiusSection</a>(int&nbsp;x,
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="class in squidpony.squidgrid">SpatialMap</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.547">radiusSection</a>(int&nbsp;x,
                                      int&nbsp;y,
                                      <a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;measurement,
                                      int&nbsp;distance)</pre>
@@ -1155,7 +1155,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>circleSection</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="class in squidpony.squidgrid">SpatialMap</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.573">circleSection</a>(int&nbsp;x,
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="class in squidpony.squidgrid">SpatialMap</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.570">circleSection</a>(int&nbsp;x,
                                      int&nbsp;y,
                                      int&nbsp;radius)</pre>
 <div class="block">Given the center position and maximum distance from the center, creates a new SpatialMap from this one that
@@ -1178,7 +1178,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>clear</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.578">clear</a>()</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.575">clear</a>()</pre>
 </li>
 </ul>
 <a name="isEmpty--">
@@ -1187,7 +1187,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>isEmpty</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.583">isEmpty</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.580">isEmpty</a>()</pre>
 </li>
 </ul>
 <a name="size--">
@@ -1196,7 +1196,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>size</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.587">size</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.584">size</a>()</pre>
 </li>
 </ul>
 <a name="toArray--">
@@ -1205,7 +1205,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>toArray</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[]&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.591">toArray</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[]&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.588">toArray</a>()</pre>
 </li>
 </ul>
 <a name="toArray-java.lang.Object:A-">
@@ -1216,7 +1216,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>toArray</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>[]&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.606">toArray</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>[]&nbsp;a)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>[]&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.603">toArray</a>(<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>[]&nbsp;a)</pre>
 <div class="block">Replaces the contents of the given array with the elements this holds, in insertion order, until either this
  data structure or the array has been exhausted.</div>
 <dl>
@@ -1233,7 +1233,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>iterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.625">iterator</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.622">iterator</a>()</pre>
 <div class="block">Iterates through values in insertion order.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -1249,7 +1249,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>tripleIterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.654">tripleIterator</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.SpatialTriple.html" title="class in squidpony.squidgrid">SpatialMap.SpatialTriple</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>,<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">E</a>&gt;&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.651">tripleIterator</a>()</pre>
 <div class="block">Iterates through values similar to Map.Entry, but containing a Coord, I, and E value for each entry, in insertion
  order. The type is SpatialTriple, defined in a nested class.</div>
 <dl>
@@ -1264,7 +1264,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>positionIterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.662">positionIterator</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.659">positionIterator</a>()</pre>
 <div class="block">Iterates through positions in insertion order; has less predictable iteration order than the other iterators.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1278,7 +1278,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>identityIterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.670">identityIterator</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidgrid/SpatialMap.html" title="type parameter in SpatialMap">I</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.667">identityIterator</a>()</pre>
 <div class="block">Iterates through identity keys in insertion order.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1292,7 +1292,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>rectanglePositionIterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.681">rectanglePositionIterator</a>(int&nbsp;x,
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.678">rectanglePositionIterator</a>(int&nbsp;x,
                                                  int&nbsp;y,
                                                  int&nbsp;width,
                                                  int&nbsp;height)</pre>
@@ -1311,7 +1311,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>radiusPositionIterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.696">radiusPositionIterator</a>(int&nbsp;x,
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.693">radiusPositionIterator</a>(int&nbsp;x,
                                               int&nbsp;y,
                                               <a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;measurement,
                                               int&nbsp;distance)</pre>
@@ -1334,7 +1334,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>circlePositionIterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.707">circlePositionIterator</a>(int&nbsp;x,
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.704">circlePositionIterator</a>(int&nbsp;x,
                                               int&nbsp;y,
                                               int&nbsp;distance)</pre>
 <div class="block">Iterates through positions in a circular region (starting at a minimum of x - distance, y - distance and
@@ -1353,7 +1353,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.868">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.865">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -1366,7 +1366,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockList">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.880">hashCode</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.877">hashCode</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -1379,7 +1379,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.887">toString</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidgrid/SpatialMap.html#line.884">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>

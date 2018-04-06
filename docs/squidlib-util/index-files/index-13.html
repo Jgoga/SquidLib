@@ -123,7 +123,7 @@
 <div class="block">Generate dungeons with between 1 and 3 primary "lanes" going from the upper left "base" to the bottom right "base"
  (and vice versa, since this is symmetrical).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/LanesMapGenerator.html#LanesMapGenerator-int-int-squidpony.squidmath.RNG-int-">LanesMapGenerator(int, int, RNG, int)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/LanesMapGenerator.html" title="class in squidpony.squidgrid.mapping">LanesMapGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/LanesMapGenerator.html#LanesMapGenerator-int-int-squidpony.squidmath.IRNG-int-">LanesMapGenerator(int, int, IRNG, int)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/LanesMapGenerator.html" title="class in squidpony.squidgrid.mapping">LanesMapGenerator</a></dt>
 <dd>
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given RNG.</div>
 </dd>
@@ -304,6 +304,31 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/Thesaurus.html#latestGenerated">latestGenerated</a></span> - Variable in class squidpony.<a href="../squidpony/Thesaurus.html" title="class in squidpony">Thesaurus</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Lathe32RNG</span></a> - Class in <a href="../squidpony/squidmath/package-summary.html">squidpony.squidmath</a></dt>
+<dd>
+<div class="block">A modification of Blackman and Vigna's xoroshiro128+ generator using two 32-bit ints of state instead of two 64-bit
+ longs, as well as modifying the output with two additional operations on the existing state; this is both the fastest
+ generator on GWT I have found without statistical failures, and a StatefulRandomness.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Lathe32RNG.html#Lathe32RNG--">Lathe32RNG()</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath">Lathe32RNG</a></dt>
+<dd>
+<div class="block">Creates a new generator seeded using two calls to Math.random().</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Lathe32RNG.html#Lathe32RNG-int-">Lathe32RNG(int)</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath">Lathe32RNG</a></dt>
+<dd>
+<div class="block">Constructs this Lathe32RNG by dispersing the bits of seed using <a href="../squidpony/squidmath/Lathe32RNG.html#setSeed-int-"><code>Lathe32RNG.setSeed(int)</code></a> across the two parts of state
+ this has.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Lathe32RNG.html#Lathe32RNG-long-">Lathe32RNG(long)</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath">Lathe32RNG</a></dt>
+<dd>
+<div class="block">Constructs this Lathe32RNG by splitting the given seed across the two parts of state this has with
+ <a href="../squidpony/squidmath/Lathe32RNG.html#setState-long-"><code>Lathe32RNG.setState(long)</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Lathe32RNG.html#Lathe32RNG-int-int-">Lathe32RNG(int, int)</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath">Lathe32RNG</a></dt>
+<dd>
+<div class="block">Constructs this Lathe32RNG by calling <a href="../squidpony/squidmath/Lathe32RNG.html#setState-int-int-"><code>Lathe32RNG.setState(int, int)</code></a> on stateA and stateB as given; see that method
+ for the specific details (stateA and stateB are kept as-is unless they are both 0).</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/StringKit.html#LATIN_EXTENDED_LETTERS">LATIN_EXTENDED_LETTERS</a></span> - Static variable in class squidpony.<a href="../squidpony/StringKit.html" title="class in squidpony">StringKit</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/StringKit.html#LATIN_EXTENDED_LETTERS_LOWER">LATIN_EXTENDED_LETTERS_LOWER</a></span> - Static variable in class squidpony.<a href="../squidpony/StringKit.html" title="class in squidpony">StringKit</a></dt>
@@ -416,7 +441,7 @@
 <dd>
 <div class="block">The default and reference implementation of an <a href="../squidpony/squidgrid/mapping/locks/generators/ILayoutGenerator.html" title="interface in squidpony.squidgrid.mapping.locks.generators"><code>ILayoutGenerator</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#LayoutGenerator-squidpony.squidmath.RNG-squidpony.squidgrid.mapping.locks.constraints.ILayoutConstraints-">LayoutGenerator(RNG, ILayoutConstraints)</a></span> - Constructor for class squidpony.squidgrid.mapping.locks.generators.<a href="../squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html" title="class in squidpony.squidgrid.mapping.locks.generators">LayoutGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#LayoutGenerator-squidpony.squidmath.IRNG-squidpony.squidgrid.mapping.locks.constraints.ILayoutConstraints-">LayoutGenerator(IRNG, ILayoutConstraints)</a></span> - Constructor for class squidpony.squidgrid.mapping.locks.generators.<a href="../squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html" title="class in squidpony.squidgrid.mapping.locks.generators">LayoutGenerator</a></dt>
 <dd>
 <div class="block">Creates a LayoutGenerator with a given random seed and places
  specific constraints on <a href="../squidpony/squidgrid/mapping/locks/IRoomLayout.html" title="interface in squidpony.squidgrid.mapping.locks"><code>IRoomLayout</code></a>s it generates.</div>
@@ -658,7 +683,7 @@
 <dd>
 <div class="block">Draws a line from (startX, startY) to (endX, endY) using the Drunkard's Walk algorithm.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/WobblyLine.html#line-int-int-int-int-int-int-double-squidpony.squidmath.RNG-">line(int, int, int, int, int, int, double, RNG)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/WobblyLine.html" title="class in squidpony.squidmath">WobblyLine</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/WobblyLine.html#line-int-int-int-int-int-int-double-squidpony.squidmath.IRNG-">line(int, int, int, int, int, int, double, IRNG)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/WobblyLine.html" title="class in squidpony.squidmath">WobblyLine</a></dt>
 <dd>
 <div class="block">Draws a line from (startX, startY) to (endX, endY) using the Drunkard's Walk algorithm.</div>
 </dd>

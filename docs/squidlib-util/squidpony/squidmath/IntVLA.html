@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidmath/IntDoubleOrderedMap.MapEntrySet.html" title="class in squidpony.squidmath"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidmath/Isaac32RNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidmath/IntVLA.html" target="_top">Frames</a></li>
@@ -288,7 +288,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/IntVLA.html#getRandomElement-squidpony.squidmath.RNG-">getRandomElement</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/IntVLA.html#getRandomElement-squidpony.squidmath.IRNG-">getRandomElement</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</code>&nbsp;</td>
 </tr>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code>long</code></td>
@@ -418,8 +418,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i40" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/IntVLA.html#shuffle-squidpony.squidmath.RNG-">shuffle</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
-<div class="block">Shuffles this IntVLA in place using the given RNG.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/IntVLA.html#shuffle-squidpony.squidmath.IRNG-">shuffle</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</code>
+<div class="block">Shuffles this IntVLA in place using the given IRNG.</div>
 </td>
 </tr>
 <tr id="i41" class="rowColor">
@@ -974,26 +974,26 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  taken.</div>
 </li>
 </ul>
-<a name="getRandomElement-squidpony.squidmath.RNG-">
+<a name="getRandomElement-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomElement</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/IntVLA.html#line.381">getRandomElement</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/IntVLA.html#line.381">getRandomElement</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</pre>
 </li>
 </ul>
-<a name="shuffle-squidpony.squidmath.RNG-">
+<a name="shuffle-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>shuffle</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&nbsp;<a href="../../src-html/squidpony/squidmath/IntVLA.html#line.391">shuffle</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</pre>
-<div class="block">Shuffles this IntVLA in place using the given RNG.</div>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&nbsp;<a href="../../src-html/squidpony/squidmath/IntVLA.html#line.391">shuffle</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</pre>
+<div class="block">Shuffles this IntVLA in place using the given IRNG.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>random</code> - an RNG used to generate the shuffled order</dd>
+<dd><code>random</code> - an IRNG, such as an RNG, used to generate the shuffled order</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>this object, modified, after shuffling</dd>
 </dl>
@@ -1156,7 +1156,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidmath/IntDoubleOrderedMap.MapEntrySet.html" title="class in squidpony.squidmath"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidmath/Isaac32RNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidmath/IntVLA.html" target="_top">Frames</a></li>

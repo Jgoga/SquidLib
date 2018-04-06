@@ -547,16 +547,16 @@
 <div class="block">Initializes the generator to turn out random dungeons within the specific
  parameters.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/ClassicRogueMapGenerator.html#ClassicRogueMapGenerator-int-int-int-int-int-int-int-int-squidpony.squidmath.RNG-">ClassicRogueMapGenerator(int, int, int, int, int, int, int, int, RNG)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/ClassicRogueMapGenerator.html" title="class in squidpony.squidgrid.mapping">ClassicRogueMapGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/ClassicRogueMapGenerator.html#ClassicRogueMapGenerator-int-int-int-int-int-int-int-int-squidpony.squidmath.IRNG-">ClassicRogueMapGenerator(int, int, int, int, int, int, int, int, IRNG)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/ClassicRogueMapGenerator.html" title="class in squidpony.squidgrid.mapping">ClassicRogueMapGenerator</a></dt>
 <dd>
 <div class="block">Initializes the generator to turn out random dungeons within the specific
  parameters.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/FakeLanguageGen.html#clean">clean</a></span> - Variable in class squidpony.<a href="../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/MixedGenerator.html#cleanPoints-int-int-squidpony.squidmath.RNG-">cleanPoints(int, int, RNG)</a></span> - Static method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/MixedGenerator.html" title="class in squidpony.squidgrid.mapping">MixedGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/MixedGenerator.html#cleanPoints-int-int-squidpony.squidmath.IRNG-">cleanPoints(int, int, IRNG)</a></span> - Static method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/MixedGenerator.html" title="class in squidpony.squidgrid.mapping">MixedGenerator</a></dt>
 <dd>
-<div class="block">Mainly for internal use; this was used by <a href="../squidpony/squidgrid/mapping/MixedGenerator.html#MixedGenerator-int-int-squidpony.squidmath.RNG-"><code>MixedGenerator.MixedGenerator(int, int, RNG)</code></a> to get its room positions, and
+<div class="block">Mainly for internal use; this was used by <a href="../squidpony/squidgrid/mapping/MixedGenerator.html#MixedGenerator-int-int-squidpony.squidmath.IRNG-"><code>MixedGenerator.MixedGenerator(int, int, IRNG)</code></a> to get its room positions, and
  you can choose to use it with <code>new MixedGenerator(width, height, rng, cleanPoints(width, height, rng))</code>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/panel/IColoredString.html#clear--">clear()</a></span> - Method in interface squidpony.panel.<a href="../squidpony/panel/IColoredString.html" title="interface in squidpony.panel">IColoredString</a></dt>
@@ -1542,6 +1542,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntVLA.html#copy--">copy()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/IRNG.html#copy--">copy()</a></span> - Method in interface squidpony.squidmath.<a href="../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></dt>
+<dd>
+<div class="block">Creates a copy of this IRNG; it will generate the same random numbers, given the same calls in order, as this
+ IRNG at the point copy() is called.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Isaac32RNG.html#copy--">copy()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Isaac32RNG.html" title="class in squidpony.squidmath">Isaac32RNG</a></dt>
 <dd>
 <div class="block">Produces another RandomnessSource, but the new one will not produce the same data as this one.</div>
@@ -1558,6 +1563,11 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/JavaRNG.html#copy--">copy()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/JavaRNG.html" title="class in squidpony.squidmath">JavaRNG</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/LapRNG.html#copy--">copy()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/LapRNG.html" title="class in squidpony.squidmath">LapRNG</a></dt>
+<dd>
+<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
+ copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Lathe32RNG.html#copy--">copy()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath">Lathe32RNG</a></dt>
 <dd>
 <div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
@@ -1585,6 +1595,11 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/MersenneTwister.html#copy--">copy()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/MersenneTwister.html" title="class in squidpony.squidmath">MersenneTwister</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/NLFSR.html#copy--">copy()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/NLFSR.html" title="class in squidpony.squidmath">NLFSR</a></dt>
+<dd>
+<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
+ copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Oriole32RNG.html#copy--">copy()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Oriole32RNG.html" title="class in squidpony.squidmath">Oriole32RNG</a></dt>
 <dd>
 <div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
@@ -2010,7 +2025,7 @@
 <dd>
 <div class="block">Construct a CustomDijkstraMap without a level to actually scan.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidai/CustomDijkstraMap.html#CustomDijkstraMap-squidpony.squidmath.RNG-">CustomDijkstraMap(RNG)</a></span> - Constructor for class squidpony.squidai.<a href="../squidpony/squidai/CustomDijkstraMap.html" title="class in squidpony.squidai">CustomDijkstraMap</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/CustomDijkstraMap.html#CustomDijkstraMap-squidpony.squidmath.IRNG-">CustomDijkstraMap(IRNG)</a></span> - Constructor for class squidpony.squidai.<a href="../squidpony/squidai/CustomDijkstraMap.html" title="class in squidpony.squidai">CustomDijkstraMap</a></dt>
 <dd>
 <div class="block">Construct a CustomDijkstraMap without a level to actually scan.</div>
 </dd>
@@ -2027,7 +2042,7 @@
 <div class="block">Constructor meant to take a char[][] returned by DungeonBoneGen.generate(), or any other
  char[][] where '#' means a wall and anything else is a walkable tile.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidai/CustomDijkstraMap.html#CustomDijkstraMap-char:A:A-squidpony.squidmath.RNG-">CustomDijkstraMap(char[][], RNG)</a></span> - Constructor for class squidpony.squidai.<a href="../squidpony/squidai/CustomDijkstraMap.html" title="class in squidpony.squidai">CustomDijkstraMap</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/CustomDijkstraMap.html#CustomDijkstraMap-char:A:A-squidpony.squidmath.IRNG-">CustomDijkstraMap(char[][], IRNG)</a></span> - Constructor for class squidpony.squidai.<a href="../squidpony/squidai/CustomDijkstraMap.html" title="class in squidpony.squidai">CustomDijkstraMap</a></dt>
 <dd>
 <div class="block">Constructor meant to take a char[][] returned by DungeonBoneGen.generate(), or any other
  char[][] where '#' means a wall and anything else is a walkable tile.</div>
@@ -2042,7 +2057,7 @@
 <div class="block">Constructor meant to take a char[][] returned by DungeonBoneGen.generate(), or any other
  char[][] where '#' means a wall and anything else is a walkable tile.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidai/CustomDijkstraMap.html#CustomDijkstraMap-char:A:A-squidpony.squidgrid.Adjacency-squidpony.squidmath.RNG-">CustomDijkstraMap(char[][], Adjacency, RNG)</a></span> - Constructor for class squidpony.squidai.<a href="../squidpony/squidai/CustomDijkstraMap.html" title="class in squidpony.squidai">CustomDijkstraMap</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/CustomDijkstraMap.html#CustomDijkstraMap-char:A:A-squidpony.squidgrid.Adjacency-squidpony.squidmath.IRNG-">CustomDijkstraMap(char[][], Adjacency, IRNG)</a></span> - Constructor for class squidpony.squidai.<a href="../squidpony/squidai/CustomDijkstraMap.html" title="class in squidpony.squidai">CustomDijkstraMap</a></dt>
 <dd>
 <div class="block">Constructor meant to take a char[][] returned by DungeonBoneGen.generate(), or any other
  char[][] where '#' means a wall and anything else is a walkable tile.</div>

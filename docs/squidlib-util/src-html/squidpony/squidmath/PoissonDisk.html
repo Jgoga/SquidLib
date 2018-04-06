@@ -67,11 +67,11 @@
 <span class="sourceLineNo">059</span>     * @param maxX one more than the highest x that can be assigned; typically an array length<a name="line.59"></a>
 <span class="sourceLineNo">060</span>     * @param maxY one more than the highest y that can be assigned; typically an array length<a name="line.60"></a>
 <span class="sourceLineNo">061</span>     * @param pointsPerIteration with small radii, this can be around 5; with larger ones, 30 is reasonable<a name="line.61"></a>
-<span class="sourceLineNo">062</span>     * @param rng an RNG to use for all random sampling.<a name="line.62"></a>
+<span class="sourceLineNo">062</span>     * @param rng an IRNG to use for all random sampling.<a name="line.62"></a>
 <span class="sourceLineNo">063</span>     * @return an ArrayList of Coord that satisfy the minimum distance; the length of the array can vary<a name="line.63"></a>
 <span class="sourceLineNo">064</span>     */<a name="line.64"></a>
 <span class="sourceLineNo">065</span>    public static OrderedSet&lt;Coord&gt; sampleCircle(Coord center, float radius, float minimumDistance,<a name="line.65"></a>
-<span class="sourceLineNo">066</span>                                                int maxX, int maxY, int pointsPerIteration, RNG rng)<a name="line.66"></a>
+<span class="sourceLineNo">066</span>                                                int maxX, int maxY, int pointsPerIteration, IRNG rng)<a name="line.66"></a>
 <span class="sourceLineNo">067</span>    {<a name="line.67"></a>
 <span class="sourceLineNo">068</span>        int radius2 = Math.round(radius);<a name="line.68"></a>
 <span class="sourceLineNo">069</span>        return sample(center.translate(-radius2, -radius2), center.translate(radius2, radius2), radius, minimumDistance, maxX, maxY, pointsPerIteration, rng);<a name="line.69"></a>
@@ -108,17 +108,17 @@
 <span class="sourceLineNo">100</span>     * @param maxX one more than the highest x that can be assigned; typically an array length<a name="line.100"></a>
 <span class="sourceLineNo">101</span>     * @param maxY one more than the highest y that can be assigned; typically an array length<a name="line.101"></a>
 <span class="sourceLineNo">102</span>     * @param pointsPerIteration with small areas, this can be around 5; with larger ones, 30 is reasonable<a name="line.102"></a>
-<span class="sourceLineNo">103</span>     * @param rng an RNG to use for all random sampling.<a name="line.103"></a>
+<span class="sourceLineNo">103</span>     * @param rng an IRNG to use for all random sampling.<a name="line.103"></a>
 <span class="sourceLineNo">104</span>     * @return an ArrayList of Coord that satisfy the minimum distance; the length of the array can vary<a name="line.104"></a>
 <span class="sourceLineNo">105</span>     */<a name="line.105"></a>
 <span class="sourceLineNo">106</span>    public static OrderedSet&lt;Coord&gt; sampleRectangle(Coord minPosition, Coord maxPosition, float minimumDistance,<a name="line.106"></a>
-<span class="sourceLineNo">107</span>                                                   int maxX, int maxY, int pointsPerIteration, RNG rng)<a name="line.107"></a>
+<span class="sourceLineNo">107</span>                                                   int maxX, int maxY, int pointsPerIteration, IRNG rng)<a name="line.107"></a>
 <span class="sourceLineNo">108</span>    {<a name="line.108"></a>
 <span class="sourceLineNo">109</span>        return sample(minPosition, maxPosition, 0f, minimumDistance, maxX, maxY, pointsPerIteration, rng);<a name="line.109"></a>
 <span class="sourceLineNo">110</span>    }<a name="line.110"></a>
 <span class="sourceLineNo">111</span><a name="line.111"></a>
 <span class="sourceLineNo">112</span>    private static OrderedSet&lt;Coord&gt; sample(Coord minPosition, Coord maxPosition, float rejectionDistance,<a name="line.112"></a>
-<span class="sourceLineNo">113</span>                                           float minimumDistance, int maxX, int maxY, int pointsPerIteration, RNG rng)<a name="line.113"></a>
+<span class="sourceLineNo">113</span>                                           float minimumDistance, int maxX, int maxY, int pointsPerIteration, IRNG rng)<a name="line.113"></a>
 <span class="sourceLineNo">114</span>    {<a name="line.114"></a>
 <span class="sourceLineNo">115</span><a name="line.115"></a>
 <span class="sourceLineNo">116</span>        Coord center = minPosition.average(maxPosition);<a name="line.116"></a>
@@ -208,14 +208,14 @@
 <span class="sourceLineNo">200</span>    }<a name="line.200"></a>
 <span class="sourceLineNo">201</span><a name="line.201"></a>
 <span class="sourceLineNo">202</span>    public static OrderedSet&lt;Coord&gt; sampleMap(char[][] map,<a name="line.202"></a>
-<span class="sourceLineNo">203</span>                                              float minimumDistance, RNG rng, Character... blocking)<a name="line.203"></a>
+<span class="sourceLineNo">203</span>                                              float minimumDistance, IRNG rng, Character... blocking)<a name="line.203"></a>
 <span class="sourceLineNo">204</span>    {<a name="line.204"></a>
 <span class="sourceLineNo">205</span>        return sampleMap(Coord.get(1, 1), Coord.get(map.length - 2, map[0].length - 2),<a name="line.205"></a>
 <span class="sourceLineNo">206</span>                map, minimumDistance, rng, blocking);<a name="line.206"></a>
 <span class="sourceLineNo">207</span>    }<a name="line.207"></a>
 <span class="sourceLineNo">208</span><a name="line.208"></a>
 <span class="sourceLineNo">209</span>    public static OrderedSet&lt;Coord&gt; sampleMap(Coord minPosition, Coord maxPosition, char[][] map,<a name="line.209"></a>
-<span class="sourceLineNo">210</span>                                             float minimumDistance, RNG rng, Character... blocking) {<a name="line.210"></a>
+<span class="sourceLineNo">210</span>                                             float minimumDistance, IRNG rng, Character... blocking) {<a name="line.210"></a>
 <span class="sourceLineNo">211</span>        int width = map.length;<a name="line.211"></a>
 <span class="sourceLineNo">212</span>        int height = map[0].length;<a name="line.212"></a>
 <span class="sourceLineNo">213</span>        HashSet&lt;Character&gt; blocked = new HashSet&lt;&gt;();<a name="line.213"></a>
@@ -307,15 +307,15 @@
 <span class="sourceLineNo">299</span>    }<a name="line.299"></a>
 <span class="sourceLineNo">300</span>    /**<a name="line.300"></a>
 <span class="sourceLineNo">301</span>     * Finds a random Coord where the x and y match up to a [x][y] location on map that has any value not in blocking.<a name="line.301"></a>
-<span class="sourceLineNo">302</span>     * Uses the given RNG for pseudo-random number generation.<a name="line.302"></a>
+<span class="sourceLineNo">302</span>     * Uses the given IRNG for pseudo-random number generation.<a name="line.302"></a>
 <span class="sourceLineNo">303</span>     * @param minPosition the Coord with the lowest x and lowest y to be used as a corner for the bounding box<a name="line.303"></a>
 <span class="sourceLineNo">304</span>     * @param maxPosition the Coord with the highest x and highest y to be used as a corner for the bounding box<a name="line.304"></a>
 <span class="sourceLineNo">305</span>     * @param map a dungeon map or something, x then y<a name="line.305"></a>
-<span class="sourceLineNo">306</span>     * @param rng a RNG to generate random choices<a name="line.306"></a>
+<span class="sourceLineNo">306</span>     * @param rng a IRNG to generate random choices<a name="line.306"></a>
 <span class="sourceLineNo">307</span>     * @param blocked a Set of Characters that block a tile from being chosen<a name="line.307"></a>
 <span class="sourceLineNo">308</span>     * @return a Coord that corresponds to a map element equal to tile, or null if tile cannot be found or if map is too small.<a name="line.308"></a>
 <span class="sourceLineNo">309</span>     */<a name="line.309"></a>
-<span class="sourceLineNo">310</span>    public static Coord randomUnblockedTile(Coord minPosition, Coord maxPosition, char[][] map, RNG rng, HashSet&lt;Character&gt; blocked)<a name="line.310"></a>
+<span class="sourceLineNo">310</span>    public static Coord randomUnblockedTile(Coord minPosition, Coord maxPosition, char[][] map, IRNG rng, HashSet&lt;Character&gt; blocked)<a name="line.310"></a>
 <span class="sourceLineNo">311</span>    {<a name="line.311"></a>
 <span class="sourceLineNo">312</span>        int width = map.length;<a name="line.312"></a>
 <span class="sourceLineNo">313</span>        int height = map[0].length;<a name="line.313"></a>

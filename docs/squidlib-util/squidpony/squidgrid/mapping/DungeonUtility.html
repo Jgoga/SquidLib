@@ -163,7 +163,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#DungeonUtility--">DungeonUtility</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#DungeonUtility-squidpony.squidmath.RNG-">DungeonUtility</a></span>(<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#DungeonUtility-squidpony.squidmath.IRNG-">DungeonUtility</a></span>(<a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#DungeonUtility-squidpony.squidmath.StatefulRNG-">DungeonUtility</a></span>(<a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a>&nbsp;rng)</code>&nbsp;</td>
@@ -237,12 +237,12 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#ensurePath-char:A:A-squidpony.squidmath.RNG-char-char...-">ensurePath</a></span>(char[][]&nbsp;map,
-          <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#ensurePath-char:A:A-squidpony.squidmath.IRNG-char-char...-">ensurePath</a></span>(char[][]&nbsp;map,
+          <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
           char&nbsp;replacement,
           char...&nbsp;blocking)</code>
 <div class="block">Ensures a path exists in a rough ring around the map by first creating the path (using
- SerpentMapGenerator.pointPath with the given RNG), then finding chars in blocking that are on that path and
+ SerpentMapGenerator.pointPath with the given IRNG), then finding chars in blocking that are on that path and
  replacing them with replacement.</div>
 </td>
 </tr>
@@ -375,7 +375,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i23" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#getRandomCell-squidpony.squidmath.RNG-char:A:A-java.util.Set-int-">getRandomCell</a></span>(<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#getRandomCell-squidpony.squidmath.IRNG-char:A:A-java.util.Set-int-">getRandomCell</a></span>(<a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
              char[][]&nbsp;map,
              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</a>&gt;&nbsp;acceptable,
              int&nbsp;frustration)</code>&nbsp;</td>
@@ -579,13 +579,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonUtility.html#line.25">DungeonUtility</a>(<a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a>&nbsp;rng)</pre>
 </li>
 </ul>
-<a name="DungeonUtility-squidpony.squidmath.RNG-">
+<a name="DungeonUtility-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>DungeonUtility</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonUtility.html#line.29">DungeonUtility</a>(<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonUtility.html#line.29">DungeonUtility</a>(<a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 </li>
 </ul>
 </li>
@@ -1191,13 +1191,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public static&nbsp;double[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonUtility.html#line.1283">translateDijkstraToAStar</a>(double[][]&nbsp;dijkstra)</pre>
 </li>
 </ul>
-<a name="getRandomCell-squidpony.squidmath.RNG-char:A:A-java.util.Set-int-">
+<a name="getRandomCell-squidpony.squidmath.IRNG-char:A:A-java.util.Set-int-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomCell</h4>
-<pre>public static&nbsp;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonUtility.html#line.1308">getRandomCell</a>(<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+<pre>public static&nbsp;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonUtility.html#line.1308">getRandomCell</a>(<a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
                                   char[][]&nbsp;map,
                                   <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html?is-external=true" title="class or interface in java.lang">Character</a>&gt;&nbsp;acceptable,
                                   int&nbsp;frustration)</pre>
@@ -1398,18 +1398,18 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="ensurePath-char:A:A-squidpony.squidmath.RNG-char-char...-">
+<a name="ensurePath-char:A:A-squidpony.squidmath.IRNG-char-char...-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>ensurePath</h4>
 <pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonUtility.html#line.1478">ensurePath</a>(char[][]&nbsp;map,
-                                          <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+                                          <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
                                           char&nbsp;replacement,
                                           char...&nbsp;blocking)</pre>
 <div class="block">Ensures a path exists in a rough ring around the map by first creating the path (using
- SerpentMapGenerator.pointPath with the given RNG), then finding chars in blocking that are on that path and
+ SerpentMapGenerator.pointPath with the given IRNG), then finding chars in blocking that are on that path and
  replacing them with replacement. Modifies map in-place (!) and returns an ArrayList of Coord points that will
  always be on the path.</div>
 <dl>

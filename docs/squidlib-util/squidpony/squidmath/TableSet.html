@@ -139,7 +139,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  in the set does not change the iteration order). Note that this order has
  nothing in common with the natural order of the keys. The order is kept by
  means of an array list, represented <i>via</i> an IntVLA parallel to the
- table that can be modified with methods like <a href="../../squidpony/squidmath/TableSet.html#shuffle-squidpony.squidmath.RNG-"><code>shuffle(RNG)</code></a>.
+ table that can be modified with methods like <code>#shuffle(RNG)</code>.
  </p>
  <p>
  This class implements the interface of a sorted set, so to allow easy access
@@ -160,7 +160,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  can be used like that but with values associated as well (where OrderedSet uses contains(), OrderedMap uses
  containsKey()). You can also set the item at a position with <a href="../../squidpony/squidmath/TableSet.html#addAt-C-R-int-"><code>addAt(Object, Object, int)</code></a>, or alter an item
  while keeping index the same with <a href="../../squidpony/squidmath/TableSet.html#alter-C-R-C-R-"><code>alter(Object, Object, Object, Object)</code></a>. Reordering works here too, both with completely
- random orders from <a href="../../squidpony/squidmath/TableSet.html#shuffle-squidpony.squidmath.RNG-"><code>shuffle(RNG)</code></a> or with a previously-generated ordering from <a href="../../squidpony/squidmath/TableSet.html#reorder-int...-"><code>reorder(int...)</code></a> (you
+ random orders from <code>#shuffle(RNG)</code> or with a previously-generated ordering from <a href="../../squidpony/squidmath/TableSet.html#reorder-int...-"><code>reorder(int...)</code></a> (you
  can produce such an ordering for a given size and reuse it across multiple Ordered data structures with
  <a href="../../squidpony/squidmath/RNG.html#randomOrdering-int-"><code>RNG.randomOrdering(int)</code></a>).
  </p>
@@ -611,13 +611,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/TableSet.html#randomColumn-squidpony.squidmath.RNG-">randomColumn</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/TableSet.html#randomColumn-squidpony.squidmath.IRNG-">randomColumn</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Gets a random value from this OrderedSet in constant time, using the given RNG to generate a random number.</div>
 </td>
 </tr>
 <tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/TableSet.html#randomRow-squidpony.squidmath.RNG-">randomRow</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/TableSet.html#randomRow-squidpony.squidmath.IRNG-">randomRow</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Gets a random value from this OrderedSet in constant time, using the given RNG to generate a random number.</div>
 </td>
 </tr>
@@ -674,7 +674,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i33" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>,<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/TableSet.html#shuffle-squidpony.squidmath.RNG-">shuffle</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/TableSet.html#shuffle-squidpony.squidmath.IRNG-">shuffle</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Randomly alters the iteration order for this OrderedSet using the given RNG to shuffle.</div>
 </td>
 </tr>
@@ -1792,13 +1792,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </dl>
 </li>
 </ul>
-<a name="randomColumn-squidpony.squidmath.RNG-">
+<a name="randomColumn-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomColumn</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1393">randomColumn</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1393">randomColumn</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a random value from this OrderedSet in constant time, using the given RNG to generate a random number.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1808,13 +1808,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </dl>
 </li>
 </ul>
-<a name="randomRow-squidpony.squidmath.RNG-">
+<a name="randomRow-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomRow</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1403">randomRow</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1403">randomRow</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a random value from this OrderedSet in constant time, using the given RNG to generate a random number.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1824,13 +1824,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </dl>
 </li>
 </ul>
-<a name="shuffle-squidpony.squidmath.RNG-">
+<a name="shuffle-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>shuffle</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>,<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1413">shuffle</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a>&lt;<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">C</a>,<a href="../../squidpony/squidmath/TableSet.html" title="type parameter in TableSet">R</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/TableSet.html#line.1413">shuffle</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Randomly alters the iteration order for this OrderedSet using the given RNG to shuffle.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

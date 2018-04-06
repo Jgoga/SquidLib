@@ -173,41 +173,58 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath">Lathe32RNG</a></span></code>
+<div class="block">A modification of Blackman and Vigna's xoroshiro128+ generator using two 32-bit ints of state instead of two 64-bit
+ longs, as well as modifying the output with two additional operations on the existing state; this is both the fastest
+ generator on GWT I have found without statistical failures, and a StatefulRandomness.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LFSR.html" title="class in squidpony.squidmath">LFSR</a></span></code>
 <div class="block">A Linear Feedback Shift Register that may be used like a StatefulRandomness but is not truly random.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Light32RNG.html" title="class in squidpony.squidmath">Light32RNG</a></span></code>
 <div class="block">Based on the same SplitMix algorithm <a href="../../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> uses, but a 32-bit variant, this RandomnessSource has 63 bits
  of state and should have a period of 2 to the 63.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath">LightRNG</a></span></code>
 <div class="block">This is a SplittableRandom-style generator, meant to have a tiny state
  that permits storing many different generators with low overhead.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/LongPeriodRNG.html" title="class in squidpony.squidmath">LongPeriodRNG</a></span></code>
 <div class="block">An RNG that has a drastically longer period than the other generators in SquidLib, other than <a href="../../../squidpony/squidmath/IsaacRNG.html" title="class in squidpony.squidmath"><code>IsaacRNG</code></a>,
  without sacrificing speed or GWT support.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/MersenneTwister.html" title="class in squidpony.squidmath">MersenneTwister</a></span></code>
 <div class="block">Mersenne Twister, 64-bit version as a RandomnessSource.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/NLFSR.html" title="class in squidpony.squidmath">NLFSR</a></span></code>
 <div class="block">A Non-Linear Feedback Shift Register that may be used like a StatefulRandomness but is not truly random.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/Oriole32RNG.html" title="class in squidpony.squidmath">Oriole32RNG</a></span></code>
+<div class="block">A modification of Blackman and Vigna's xoroshiro128+ generator using two 32-bit ints of state instead of two 64-bit
+ longs and also incorporating a large-increment counter (Weyl sequence) that is added to the rotated xoroshiro output;
+ this is tied with <a href="../../../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath"><code>Lathe32RNG</code></a> for the fastest generator on GWT I have found that also passes the full 32TB
+ battery of PractRand's statistical tests.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -219,7 +236,7 @@
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/PintRNG.html" title="class in squidpony.squidmath">PintRNG</a></span></code>
-<div class="block">A different kind of RandomnessSource that operates internally on ints.</div>
+<div class="block">A RandomnessSource based on PCG-Random that has a single int of state.</div>
 </td>
 </tr>
 <tr class="rowColor">

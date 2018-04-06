@@ -1864,591 +1864,840 @@
 <span class="sourceLineNo">1856</span>     * the tint in the next frame. That visually appears as nothing happening other than a delay.<a name="line.1856"></a>
 <span class="sourceLineNo">1857</span>     * @param x the x-coordinate of the cell to tint<a name="line.1857"></a>
 <span class="sourceLineNo">1858</span>     * @param y the y-coordinate of the cell to tint<a name="line.1858"></a>
-<span class="sourceLineNo">1859</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.1859"></a>
+<span class="sourceLineNo">1859</span>     * @param color what to transition the cell's color towards, and then transition back from, as a Color object<a name="line.1859"></a>
 <span class="sourceLineNo">1860</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.1860"></a>
 <span class="sourceLineNo">1861</span>     */<a name="line.1861"></a>
-<span class="sourceLineNo">1862</span>    public void tint(final int x, final int y, final float encodedColor, float duration) {<a name="line.1862"></a>
-<span class="sourceLineNo">1863</span>        tint(0f, x, y, encodedColor, duration, null);<a name="line.1863"></a>
+<span class="sourceLineNo">1862</span>    public void tint(final int x, final int y, final Color color, float duration) {<a name="line.1862"></a>
+<span class="sourceLineNo">1863</span>        tint(0f, x, y, color.toFloatBits(), duration, null);<a name="line.1863"></a>
 <span class="sourceLineNo">1864</span>    }<a name="line.1864"></a>
 <span class="sourceLineNo">1865</span>    /**<a name="line.1865"></a>
-<span class="sourceLineNo">1866</span>     * Tints the background at position x,y so it becomes the given encodedColor, waiting for {@code delay} (in seconds)<a name="line.1866"></a>
-<span class="sourceLineNo">1867</span>     * before performing it, then after the tint is complete it returns the cell to its original color, taking duration<a name="line.1867"></a>
-<span class="sourceLineNo">1868</span>     * seconds. Additionally, enqueue {@code postRunnable} for running after the created action ends.<a name="line.1868"></a>
-<span class="sourceLineNo">1869</span>     * &lt;br&gt;<a name="line.1869"></a>
-<span class="sourceLineNo">1870</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.1870"></a>
-<span class="sourceLineNo">1871</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.1871"></a>
-<span class="sourceLineNo">1872</span>     * draw the contents without the tint this applies, then apply the tint when you call act(), then quickly overwrite<a name="line.1872"></a>
-<span class="sourceLineNo">1873</span>     * the tint in the next frame. That visually appears as nothing happening other than a delay.<a name="line.1873"></a>
-<span class="sourceLineNo">1874</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.1874"></a>
-<span class="sourceLineNo">1875</span>     * @param x the x-coordinate of the cell to tint<a name="line.1875"></a>
-<span class="sourceLineNo">1876</span>     * @param y the y-coordinate of the cell to tint<a name="line.1876"></a>
-<span class="sourceLineNo">1877</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.1877"></a>
-<span class="sourceLineNo">1878</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.1878"></a>
-<span class="sourceLineNo">1879</span>     * @param postRunnable a Runnable to execute after the tint completes; may be null to do nothing.<a name="line.1879"></a>
-<span class="sourceLineNo">1880</span>     */<a name="line.1880"></a>
-<span class="sourceLineNo">1881</span>    public void tint(final float delay, final int x, final int y, final float encodedColor, float duration,<a name="line.1881"></a>
-<span class="sourceLineNo">1882</span>            /* @Nullable */ Runnable postRunnable) {<a name="line.1882"></a>
-<span class="sourceLineNo">1883</span>        if(x &lt; 0 || x &gt;= gridWidth || y &lt; 0 || y &gt;= gridHeight)<a name="line.1883"></a>
-<span class="sourceLineNo">1884</span>            return;<a name="line.1884"></a>
-<span class="sourceLineNo">1885</span>        duration = Math.max(0.015f, duration);<a name="line.1885"></a>
-<span class="sourceLineNo">1886</span>        animationCount++;<a name="line.1886"></a>
-<span class="sourceLineNo">1887</span>        final float ac = backgrounds[x][y];<a name="line.1887"></a>
-<span class="sourceLineNo">1888</span>        final int nbActions = 3 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.1888"></a>
-<span class="sourceLineNo">1889</span>        final Action[] sequence = new Action[nbActions];<a name="line.1889"></a>
-<span class="sourceLineNo">1890</span>        int index = 0;<a name="line.1890"></a>
-<span class="sourceLineNo">1891</span>        if (0 &lt; delay)<a name="line.1891"></a>
-<span class="sourceLineNo">1892</span>            sequence[index++] = Actions.delay(delay);<a name="line.1892"></a>
-<span class="sourceLineNo">1893</span>        sequence[index++] = new TemporalAction(duration * 0.3f) {<a name="line.1893"></a>
-<span class="sourceLineNo">1894</span>            @Override<a name="line.1894"></a>
-<span class="sourceLineNo">1895</span>            protected void update(float percent) {<a name="line.1895"></a>
-<span class="sourceLineNo">1896</span>                backgrounds[x][y] = SColor.lerpFloatColors(ac, encodedColor, percent);<a name="line.1896"></a>
-<span class="sourceLineNo">1897</span>            }<a name="line.1897"></a>
-<span class="sourceLineNo">1898</span>        };<a name="line.1898"></a>
-<span class="sourceLineNo">1899</span>        sequence[index++] = new TemporalAction(duration * 0.7f) {<a name="line.1899"></a>
-<span class="sourceLineNo">1900</span>            @Override<a name="line.1900"></a>
-<span class="sourceLineNo">1901</span>            protected void update(float percent) {<a name="line.1901"></a>
-<span class="sourceLineNo">1902</span>                backgrounds[x][y] = SColor.lerpFloatColors(encodedColor, ac, percent);<a name="line.1902"></a>
-<span class="sourceLineNo">1903</span>            }<a name="line.1903"></a>
-<span class="sourceLineNo">1904</span>        };<a name="line.1904"></a>
-<span class="sourceLineNo">1905</span>        if(postRunnable != null)<a name="line.1905"></a>
-<span class="sourceLineNo">1906</span>        {<a name="line.1906"></a>
-<span class="sourceLineNo">1907</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.1907"></a>
-<span class="sourceLineNo">1908</span>        }<a name="line.1908"></a>
-<span class="sourceLineNo">1909</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.1909"></a>
-<span class="sourceLineNo">1910</span>        sequence[index] = Actions.delay(duration, Actions.run(new Runnable() {<a name="line.1910"></a>
-<span class="sourceLineNo">1911</span>            @Override<a name="line.1911"></a>
-<span class="sourceLineNo">1912</span>            public void run() {<a name="line.1912"></a>
-<span class="sourceLineNo">1913</span>                backgrounds[x][y] = ac;<a name="line.1913"></a>
-<span class="sourceLineNo">1914</span>                --animationCount;<a name="line.1914"></a>
-<span class="sourceLineNo">1915</span>            }<a name="line.1915"></a>
-<span class="sourceLineNo">1916</span>        }));<a name="line.1916"></a>
-<span class="sourceLineNo">1917</span><a name="line.1917"></a>
-<span class="sourceLineNo">1918</span>        addAction(Actions.sequence(sequence));<a name="line.1918"></a>
-<span class="sourceLineNo">1919</span>    }<a name="line.1919"></a>
-<span class="sourceLineNo">1920</span><a name="line.1920"></a>
-<span class="sourceLineNo">1921</span>    /**<a name="line.1921"></a>
-<span class="sourceLineNo">1922</span>     * Tints the foreground in the given layer at position x,y so it becomes the given encodedColor, then after the tint<a name="line.1922"></a>
-<span class="sourceLineNo">1923</span>     * is complete it returns the cell to its original color, taking duration seconds.<a name="line.1923"></a>
-<span class="sourceLineNo">1924</span>     * &lt;br&gt;<a name="line.1924"></a>
-<span class="sourceLineNo">1925</span>     * Unlike the similar {@link SquidPanel#tint(float, int, int, Color, float, Runnable)} method, this should appear<a name="line.1925"></a>
-<span class="sourceLineNo">1926</span>     * correct regardless of the font being used. SquidPanel's version can have issues with some fonts where the Label<a name="line.1926"></a>
-<span class="sourceLineNo">1927</span>     * produced by calling this on text (not on a full block, as SquidPanel uses for backgrounds) can be incorrectly<a name="line.1927"></a>
-<span class="sourceLineNo">1928</span>     * aligned vertically because of different layout between {@link TextCellFactory} and Label. SparseLayers always<a name="line.1928"></a>
-<span class="sourceLineNo">1929</span>     * uses TextCellFactory, so there's no sections of code that can conflict during layout.<a name="line.1929"></a>
-<span class="sourceLineNo">1930</span>     * &lt;br&gt;<a name="line.1930"></a>
-<span class="sourceLineNo">1931</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.1931"></a>
-<span class="sourceLineNo">1932</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.1932"></a>
-<span class="sourceLineNo">1933</span>     * draw the contents without the tint this applies, then apply the tint when you call act(), then quickly overwrite<a name="line.1933"></a>
-<span class="sourceLineNo">1934</span>     * the tint in the next frame. That visually appears as nothing happening other than a delay.<a name="line.1934"></a>
-<span class="sourceLineNo">1935</span>     * @param x the x-coordinate of the cell to tint<a name="line.1935"></a>
-<span class="sourceLineNo">1936</span>     * @param y the y-coordinate of the cell to tint<a name="line.1936"></a>
-<span class="sourceLineNo">1937</span>     * @param layer which layer to affect; if you haven't specified a layer when placing text, then this should be 0<a name="line.1937"></a>
-<span class="sourceLineNo">1938</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.1938"></a>
-<span class="sourceLineNo">1939</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.1939"></a>
-<span class="sourceLineNo">1940</span>     */<a name="line.1940"></a>
-<span class="sourceLineNo">1941</span>    public void tint(final int x, final int y, final int layer, final float encodedColor, float duration) {<a name="line.1941"></a>
-<span class="sourceLineNo">1942</span>        tint(0f, x, y, layer, encodedColor, duration, null);<a name="line.1942"></a>
-<span class="sourceLineNo">1943</span>    }<a name="line.1943"></a>
-<span class="sourceLineNo">1944</span>    /**<a name="line.1944"></a>
-<span class="sourceLineNo">1945</span>     * Tints the foreground in the given layer at position x,y so it becomes the given encodedColor, waiting for<a name="line.1945"></a>
-<span class="sourceLineNo">1946</span>     * {@code delay} (in seconds) before performing it, then after the tint is complete it returns the cell to its<a name="line.1946"></a>
-<span class="sourceLineNo">1947</span>     * original color, taking duration seconds. Additionally, enqueue {@code postRunnable} for running after the created<a name="line.1947"></a>
-<span class="sourceLineNo">1948</span>     * action ends.<a name="line.1948"></a>
-<span class="sourceLineNo">1949</span>     * &lt;br&gt;<a name="line.1949"></a>
-<span class="sourceLineNo">1950</span>     * Unlike the similar {@link SquidPanel#tint(float, int, int, Color, float, Runnable)} method, this should appear<a name="line.1950"></a>
-<span class="sourceLineNo">1951</span>     * correct regardless of the font being used. SquidPanel's version can have issues with some fonts where the Label<a name="line.1951"></a>
-<span class="sourceLineNo">1952</span>     * produced by calling this on text (not on a full block, as SquidPanel uses for backgrounds) can be incorrectly<a name="line.1952"></a>
-<span class="sourceLineNo">1953</span>     * aligned vertically because of different layout between {@link TextCellFactory} and Label. SparseLayers always<a name="line.1953"></a>
-<span class="sourceLineNo">1954</span>     * uses TextCellFactory, so there's no sections of code that can conflict during layout.<a name="line.1954"></a>
-<span class="sourceLineNo">1955</span>     * &lt;br&gt;<a name="line.1955"></a>
-<span class="sourceLineNo">1956</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.1956"></a>
-<span class="sourceLineNo">1957</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.1957"></a>
-<span class="sourceLineNo">1958</span>     * draw the contents without the tint this applies, then apply the tint when you call act(), then quickly overwrite<a name="line.1958"></a>
-<span class="sourceLineNo">1959</span>     * the tint in the next frame. That visually appears as nothing happening other than a delay.<a name="line.1959"></a>
-<span class="sourceLineNo">1960</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.1960"></a>
-<span class="sourceLineNo">1961</span>     * @param x the x-coordinate of the cell to tint<a name="line.1961"></a>
-<span class="sourceLineNo">1962</span>     * @param y the y-coordinate of the cell to tint<a name="line.1962"></a>
-<span class="sourceLineNo">1963</span>     * @param layer which layer to affect; if you haven't specified a layer when placing text, then this should be 0<a name="line.1963"></a>
-<span class="sourceLineNo">1964</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.1964"></a>
-<span class="sourceLineNo">1965</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.1965"></a>
-<span class="sourceLineNo">1966</span>     * @param postRunnable a Runnable to execute after the tint completes; may be null to do nothing.<a name="line.1966"></a>
-<span class="sourceLineNo">1967</span>     */<a name="line.1967"></a>
-<span class="sourceLineNo">1968</span>    public void tint(final float delay, final int x, final int y, final int layer, final float encodedColor, float duration,<a name="line.1968"></a>
-<span class="sourceLineNo">1969</span>            /* @Nullable */ Runnable postRunnable) {<a name="line.1969"></a>
-<span class="sourceLineNo">1970</span>        if(x &lt; 0 || x &gt;= gridWidth || y &lt; 0 || y &gt;= gridHeight || layer &lt; 0 || layer &gt;= layers.size())<a name="line.1970"></a>
-<span class="sourceLineNo">1971</span>            return;<a name="line.1971"></a>
-<span class="sourceLineNo">1972</span>        final SparseTextMap l = layers.get(layer);<a name="line.1972"></a>
-<span class="sourceLineNo">1973</span>        duration = Math.max(0.015f, duration);<a name="line.1973"></a>
-<span class="sourceLineNo">1974</span>        animationCount++;<a name="line.1974"></a>
-<span class="sourceLineNo">1975</span>        final int pos = SparseTextMap.encodePosition(x, y);<a name="line.1975"></a>
-<span class="sourceLineNo">1976</span>        final float ac = l.getFloat(pos,0f);<a name="line.1976"></a>
-<span class="sourceLineNo">1977</span>        final int nbActions = 3 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.1977"></a>
-<span class="sourceLineNo">1978</span>        final Action[] sequence = new Action[nbActions];<a name="line.1978"></a>
-<span class="sourceLineNo">1979</span>        int index = 0;<a name="line.1979"></a>
-<span class="sourceLineNo">1980</span>        if (0 &lt; delay)<a name="line.1980"></a>
-<span class="sourceLineNo">1981</span>            sequence[index++] = Actions.delay(delay);<a name="line.1981"></a>
-<span class="sourceLineNo">1982</span>        sequence[index++] = new TemporalAction(duration * 0.3f) {<a name="line.1982"></a>
-<span class="sourceLineNo">1983</span>            @Override<a name="line.1983"></a>
-<span class="sourceLineNo">1984</span>            protected void update(float percent) {<a name="line.1984"></a>
-<span class="sourceLineNo">1985</span>                l.updateFloat(pos, SColor.lerpFloatColors(ac, encodedColor, percent));<a name="line.1985"></a>
-<span class="sourceLineNo">1986</span>            }<a name="line.1986"></a>
-<span class="sourceLineNo">1987</span>        };<a name="line.1987"></a>
-<span class="sourceLineNo">1988</span>        sequence[index++] = new TemporalAction(duration * 0.7f) {<a name="line.1988"></a>
-<span class="sourceLineNo">1989</span>            @Override<a name="line.1989"></a>
-<span class="sourceLineNo">1990</span>            protected void update(float percent) {<a name="line.1990"></a>
-<span class="sourceLineNo">1991</span>                l.updateFloat(pos, SColor.lerpFloatColors(encodedColor, ac, percent));<a name="line.1991"></a>
-<span class="sourceLineNo">1992</span>            }<a name="line.1992"></a>
-<span class="sourceLineNo">1993</span>        };<a name="line.1993"></a>
-<span class="sourceLineNo">1994</span>        if(postRunnable != null)<a name="line.1994"></a>
-<span class="sourceLineNo">1995</span>        {<a name="line.1995"></a>
-<span class="sourceLineNo">1996</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.1996"></a>
-<span class="sourceLineNo">1997</span>        }<a name="line.1997"></a>
-<span class="sourceLineNo">1998</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.1998"></a>
-<span class="sourceLineNo">1999</span>        sequence[index] = Actions.delay(duration, Actions.run(new Runnable() {<a name="line.1999"></a>
-<span class="sourceLineNo">2000</span>            @Override<a name="line.2000"></a>
-<span class="sourceLineNo">2001</span>            public void run() {<a name="line.2001"></a>
-<span class="sourceLineNo">2002</span>                l.updateFloat(pos, ac);<a name="line.2002"></a>
-<span class="sourceLineNo">2003</span>                --animationCount;<a name="line.2003"></a>
-<span class="sourceLineNo">2004</span>            }<a name="line.2004"></a>
-<span class="sourceLineNo">2005</span>        }));<a name="line.2005"></a>
-<span class="sourceLineNo">2006</span>        addAction(Actions.sequence(sequence));<a name="line.2006"></a>
-<span class="sourceLineNo">2007</span>    }<a name="line.2007"></a>
-<span class="sourceLineNo">2008</span>    /**<a name="line.2008"></a>
-<span class="sourceLineNo">2009</span>     * Tints the given glyph (which may or may not be part of the {@link #glyphs} list this holds) so it becomes the<a name="line.2009"></a>
-<span class="sourceLineNo">2010</span>     * given encodedColor, then after the tint is complete it returns the cell to its original color, taking duration<a name="line.2010"></a>
-<span class="sourceLineNo">2011</span>     * seconds.<a name="line.2011"></a>
-<span class="sourceLineNo">2012</span>     * &lt;br&gt;<a name="line.2012"></a>
-<span class="sourceLineNo">2013</span>     * This is not a method on {@link TextCellFactory.Glyph} because it increments the {@link #animationCount} variable<a name="line.2013"></a>
-<span class="sourceLineNo">2014</span>     * while the tint animation is running, and decrements it when it finishes the animation (it also resets the glyph<a name="line.2014"></a>
-<span class="sourceLineNo">2015</span>     * to its pre-tint color at this time).<a name="line.2015"></a>
-<span class="sourceLineNo">2016</span>     * @param glyph the {@link TextCellFactory.Glyph} to tint<a name="line.2016"></a>
-<span class="sourceLineNo">2017</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.2017"></a>
-<span class="sourceLineNo">2018</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.2018"></a>
-<span class="sourceLineNo">2019</span>     */<a name="line.2019"></a>
-<span class="sourceLineNo">2020</span>    public void tint(final TextCellFactory.Glyph glyph, final float encodedColor, float duration) {<a name="line.2020"></a>
-<span class="sourceLineNo">2021</span>        tint(0f, glyph, encodedColor, duration, null);<a name="line.2021"></a>
-<span class="sourceLineNo">2022</span>    }<a name="line.2022"></a>
-<span class="sourceLineNo">2023</span>    /**<a name="line.2023"></a>
-<span class="sourceLineNo">2024</span>     * Tints the given glyph (which may or may not be part of the {@link #glyphs} list this holds) so it becomes the<a name="line.2024"></a>
-<span class="sourceLineNo">2025</span>     * given encodedColor, waiting for {@code delay} (in seconds) before performing it, then after the tint is complete<a name="line.2025"></a>
-<span class="sourceLineNo">2026</span>     * it returns the cell to its original color, taking duration seconds. Additionally, enqueue {@code postRunnable}<a name="line.2026"></a>
-<span class="sourceLineNo">2027</span>     * for running after the created action ends.<a name="line.2027"></a>
-<span class="sourceLineNo">2028</span>     * &lt;br&gt;<a name="line.2028"></a>
-<span class="sourceLineNo">2029</span>     * This is not a method on {@link TextCellFactory.Glyph} because it increments the {@link #animationCount} variable<a name="line.2029"></a>
-<span class="sourceLineNo">2030</span>     * while the tint animation is running, and decrements it when it finishes the animation (it also resets the glyph<a name="line.2030"></a>
-<span class="sourceLineNo">2031</span>     * to its pre-tint color at this time).<a name="line.2031"></a>
-<span class="sourceLineNo">2032</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2032"></a>
-<span class="sourceLineNo">2033</span>     * @param glyph the {@link TextCellFactory.Glyph} to tint<a name="line.2033"></a>
-<span class="sourceLineNo">2034</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.2034"></a>
-<span class="sourceLineNo">2035</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.2035"></a>
-<span class="sourceLineNo">2036</span>     * @param postRunnable a Runnable to execute after the tint completes; may be null to do nothing.<a name="line.2036"></a>
-<span class="sourceLineNo">2037</span>     */<a name="line.2037"></a>
-<span class="sourceLineNo">2038</span>    public void tint(float delay, final TextCellFactory.Glyph glyph, final float encodedColor, float duration,<a name="line.2038"></a>
-<span class="sourceLineNo">2039</span>            /* @Nullable */ Runnable postRunnable) {<a name="line.2039"></a>
-<span class="sourceLineNo">2040</span>        duration = Math.max(0.015f, duration);<a name="line.2040"></a>
-<span class="sourceLineNo">2041</span>        animationCount++;<a name="line.2041"></a>
-<span class="sourceLineNo">2042</span>        final float ac = glyph.getPackedColor();<a name="line.2042"></a>
-<span class="sourceLineNo">2043</span>        final int nbActions = 3 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.2043"></a>
-<span class="sourceLineNo">2044</span>        final Action[] sequence = new Action[nbActions];<a name="line.2044"></a>
-<span class="sourceLineNo">2045</span>        int index = 0;<a name="line.2045"></a>
-<span class="sourceLineNo">2046</span>        if (0 &lt; delay)<a name="line.2046"></a>
-<span class="sourceLineNo">2047</span>            sequence[index++] = Actions.delay(delay);<a name="line.2047"></a>
-<span class="sourceLineNo">2048</span>        sequence[index++] = new TemporalAction(duration * 0.3f) {<a name="line.2048"></a>
-<span class="sourceLineNo">2049</span>            @Override<a name="line.2049"></a>
-<span class="sourceLineNo">2050</span>            protected void update(float percent) {<a name="line.2050"></a>
-<span class="sourceLineNo">2051</span>                glyph.setPackedColor(SColor.lerpFloatColors(ac, encodedColor, percent));<a name="line.2051"></a>
-<span class="sourceLineNo">2052</span>            }<a name="line.2052"></a>
-<span class="sourceLineNo">2053</span>        };<a name="line.2053"></a>
-<span class="sourceLineNo">2054</span>        sequence[index++] = new TemporalAction(duration * 0.7f) {<a name="line.2054"></a>
-<span class="sourceLineNo">2055</span>            @Override<a name="line.2055"></a>
-<span class="sourceLineNo">2056</span>            protected void update(float percent) {<a name="line.2056"></a>
-<span class="sourceLineNo">2057</span>                glyph.setPackedColor(SColor.lerpFloatColors(encodedColor, ac, percent));<a name="line.2057"></a>
-<span class="sourceLineNo">2058</span>            }<a name="line.2058"></a>
-<span class="sourceLineNo">2059</span>        };<a name="line.2059"></a>
-<span class="sourceLineNo">2060</span>        if(postRunnable != null)<a name="line.2060"></a>
-<span class="sourceLineNo">2061</span>        {<a name="line.2061"></a>
-<span class="sourceLineNo">2062</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.2062"></a>
-<span class="sourceLineNo">2063</span>        }<a name="line.2063"></a>
-<span class="sourceLineNo">2064</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.2064"></a>
-<span class="sourceLineNo">2065</span>        sequence[index] = Actions.delay(duration, Actions.run(new Runnable() {<a name="line.2065"></a>
-<span class="sourceLineNo">2066</span>            @Override<a name="line.2066"></a>
-<span class="sourceLineNo">2067</span>            public void run() {<a name="line.2067"></a>
-<span class="sourceLineNo">2068</span>                glyph.setPackedColor(ac);<a name="line.2068"></a>
-<span class="sourceLineNo">2069</span>                --animationCount;<a name="line.2069"></a>
-<span class="sourceLineNo">2070</span>            }<a name="line.2070"></a>
-<span class="sourceLineNo">2071</span>        }));<a name="line.2071"></a>
-<span class="sourceLineNo">2072</span>        addAction(Actions.sequence(sequence));<a name="line.2072"></a>
-<span class="sourceLineNo">2073</span>    }<a name="line.2073"></a>
-<span class="sourceLineNo">2074</span>    /**<a name="line.2074"></a>
-<span class="sourceLineNo">2075</span>     * Create a new Glyph at (startX, startY) using the char shown with the given startColor, and immediately starts<a name="line.2075"></a>
-<span class="sourceLineNo">2076</span>     * changing color to endColor, changing position so it ends on the cell (endX, endY), taking duration seconds to<a name="line.2076"></a>
-<span class="sourceLineNo">2077</span>     * complete before removing the Glyph.<a name="line.2077"></a>
-<span class="sourceLineNo">2078</span>     * &lt;br&gt;<a name="line.2078"></a>
-<span class="sourceLineNo">2079</span>     * Unlike {@link SquidPanel#summon(float, int, int, int, int, char, Color, Color, boolean, float, float, float)},<a name="line.2079"></a>
-<span class="sourceLineNo">2080</span>     * this does not rotate the Glyph it produces.<a name="line.2080"></a>
-<span class="sourceLineNo">2081</span>     * @param startX the starting x position in cells<a name="line.2081"></a>
-<span class="sourceLineNo">2082</span>     * @param startY the starting y position in cells<a name="line.2082"></a>
-<span class="sourceLineNo">2083</span>     * @param endX the ending x position in cells<a name="line.2083"></a>
-<span class="sourceLineNo">2084</span>     * @param endY the ending y position in cells<a name="line.2084"></a>
-<span class="sourceLineNo">2085</span>     * @param shown the char to show (the same char throughout the effect)<a name="line.2085"></a>
-<span class="sourceLineNo">2086</span>     * @param startColor the starting Color<a name="line.2086"></a>
-<span class="sourceLineNo">2087</span>     * @param endColor the Color to transition to<a name="line.2087"></a>
-<span class="sourceLineNo">2088</span>     * @param duration the duration in seconds for the effect<a name="line.2088"></a>
-<span class="sourceLineNo">2089</span>     */<a name="line.2089"></a>
-<span class="sourceLineNo">2090</span>    public void summon(int startX, int startY, int endX, int endY, char shown,<a name="line.2090"></a>
-<span class="sourceLineNo">2091</span>                       final float startColor, final float endColor, float duration)<a name="line.2091"></a>
-<span class="sourceLineNo">2092</span>    {<a name="line.2092"></a>
-<span class="sourceLineNo">2093</span>        summon(0f, startX, startY, endX, endY, shown, startColor, endColor, duration, null);<a name="line.2093"></a>
-<span class="sourceLineNo">2094</span>    }<a name="line.2094"></a>
-<span class="sourceLineNo">2095</span>    /**<a name="line.2095"></a>
-<span class="sourceLineNo">2096</span>     * Create a new Glyph at (startX, startY) using the char shown with the given startColor, and after delay seconds,<a name="line.2096"></a>
-<span class="sourceLineNo">2097</span>     * starts changing color to endColor, changing position so it ends on the cell (endX, endY), taking duration seconds<a name="line.2097"></a>
-<span class="sourceLineNo">2098</span>     * to complete before running postRunnable (if it is non-null) and finally removing the Glyph.<a name="line.2098"></a>
-<span class="sourceLineNo">2099</span>     * &lt;br&gt;<a name="line.2099"></a>
-<span class="sourceLineNo">2100</span>     * Unlike {@link SquidPanel#summon(float, int, int, int, int, char, Color, Color, boolean, float, float, float)},<a name="line.2100"></a>
-<span class="sourceLineNo">2101</span>     * this does not rotate the Glyph it produces.<a name="line.2101"></a>
-<span class="sourceLineNo">2102</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2102"></a>
-<span class="sourceLineNo">2103</span>     * @param startX the starting x position in cells<a name="line.2103"></a>
-<span class="sourceLineNo">2104</span>     * @param startY the starting y position in cells<a name="line.2104"></a>
-<span class="sourceLineNo">2105</span>     * @param endX the ending x position in cells<a name="line.2105"></a>
-<span class="sourceLineNo">2106</span>     * @param endY the ending y position in cells<a name="line.2106"></a>
-<span class="sourceLineNo">2107</span>     * @param shown the char to show (the same char throughout the effect)<a name="line.2107"></a>
-<span class="sourceLineNo">2108</span>     * @param startColor the starting Color<a name="line.2108"></a>
-<span class="sourceLineNo">2109</span>     * @param endColor the Color to transition to<a name="line.2109"></a>
-<span class="sourceLineNo">2110</span>     * @param duration the duration in seconds for the effect<a name="line.2110"></a>
-<span class="sourceLineNo">2111</span>     * @param postRunnable a Runnable to execute after the summon completes; may be null to do nothing.<a name="line.2111"></a>
-<span class="sourceLineNo">2112</span>     */<a name="line.2112"></a>
-<span class="sourceLineNo">2113</span>    public void summon(float delay, int startX, int startY, int endX, int endY, char shown,<a name="line.2113"></a>
-<span class="sourceLineNo">2114</span>                       final float startColor, final float endColor, float duration,<a name="line.2114"></a>
-<span class="sourceLineNo">2115</span>            /* @Nullable */ Runnable postRunnable)<a name="line.2115"></a>
-<span class="sourceLineNo">2116</span>    {<a name="line.2116"></a>
-<span class="sourceLineNo">2117</span>        duration = Math.max(0.015f, duration);<a name="line.2117"></a>
-<span class="sourceLineNo">2118</span>        animationCount++;<a name="line.2118"></a>
-<span class="sourceLineNo">2119</span>        final int nbActions = 2 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.2119"></a>
-<span class="sourceLineNo">2120</span>        int index = 0;<a name="line.2120"></a>
-<span class="sourceLineNo">2121</span>        final Action[] sequence = new Action[nbActions];<a name="line.2121"></a>
-<span class="sourceLineNo">2122</span>        if (0 &lt; delay)<a name="line.2122"></a>
-<span class="sourceLineNo">2123</span>            sequence[index++] = Actions.delay(delay);<a name="line.2123"></a>
-<span class="sourceLineNo">2124</span>        final TextCellFactory.Glyph glyph = glyph(shown, startColor, startX, startY);<a name="line.2124"></a>
-<span class="sourceLineNo">2125</span>        sequence[index++] = Actions.parallel(<a name="line.2125"></a>
-<span class="sourceLineNo">2126</span>                new TemporalAction(duration) {<a name="line.2126"></a>
-<span class="sourceLineNo">2127</span>                    @Override<a name="line.2127"></a>
-<span class="sourceLineNo">2128</span>                    protected void update(float percent) {<a name="line.2128"></a>
-<span class="sourceLineNo">2129</span>                        glyph.setPackedColor(SColor.lerpFloatColors(startColor, endColor, percent * 0.95f));<a name="line.2129"></a>
-<span class="sourceLineNo">2130</span>                    }<a name="line.2130"></a>
-<span class="sourceLineNo">2131</span>                },<a name="line.2131"></a>
-<span class="sourceLineNo">2132</span>                Actions.moveTo(worldX(endX), worldY(endY), duration));<a name="line.2132"></a>
-<span class="sourceLineNo">2133</span>        if(postRunnable != null)<a name="line.2133"></a>
-<span class="sourceLineNo">2134</span>        {<a name="line.2134"></a>
-<span class="sourceLineNo">2135</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.2135"></a>
-<span class="sourceLineNo">2136</span>        }<a name="line.2136"></a>
-<span class="sourceLineNo">2137</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.2137"></a>
-<span class="sourceLineNo">2138</span>        sequence[index] = Actions.run(new Runnable() {<a name="line.2138"></a>
-<span class="sourceLineNo">2139</span>            @Override<a name="line.2139"></a>
-<span class="sourceLineNo">2140</span>            public void run() {<a name="line.2140"></a>
-<span class="sourceLineNo">2141</span>                --animationCount;<a name="line.2141"></a>
-<span class="sourceLineNo">2142</span>                glyphs.remove(glyph);<a name="line.2142"></a>
-<span class="sourceLineNo">2143</span>            }<a name="line.2143"></a>
-<span class="sourceLineNo">2144</span>        });<a name="line.2144"></a>
-<span class="sourceLineNo">2145</span>        glyph.addAction(Actions.sequence(sequence));<a name="line.2145"></a>
-<span class="sourceLineNo">2146</span>    }<a name="line.2146"></a>
-<span class="sourceLineNo">2147</span><a name="line.2147"></a>
-<span class="sourceLineNo">2148</span>    /**<a name="line.2148"></a>
-<span class="sourceLineNo">2149</span>     * Create a new Glyph at (startX, startY) in world coordinates (often pixels on the screen) using the char shown<a name="line.2149"></a>
-<span class="sourceLineNo">2150</span>     * with the given startColor, and immediately starts changing color to endColor, changing position so it ends at the<a name="line.2150"></a>
-<span class="sourceLineNo">2151</span>     * world coordinates (endX, endY), taking duration seconds to complete before removing the Glyph.<a name="line.2151"></a>
-<span class="sourceLineNo">2152</span>     * &lt;br&gt;<a name="line.2152"></a>
-<span class="sourceLineNo">2153</span>     * Unlike {@link SquidPanel#summon(float, int, int, int, int, char, Color, Color, boolean, float, float, float)},<a name="line.2153"></a>
-<span class="sourceLineNo">2154</span>     * this does not rotate the Glyph it produces.<a name="line.2154"></a>
-<span class="sourceLineNo">2155</span>     * @param startX the starting x position in world coordinates<a name="line.2155"></a>
-<span class="sourceLineNo">2156</span>     * @param startY the starting y position in world coordinates<a name="line.2156"></a>
-<span class="sourceLineNo">2157</span>     * @param endX the ending x position in world coordinates<a name="line.2157"></a>
-<span class="sourceLineNo">2158</span>     * @param endY the ending y position in world coordinates<a name="line.2158"></a>
-<span class="sourceLineNo">2159</span>     * @param shown the char to show (the same char throughout the effect)<a name="line.2159"></a>
-<span class="sourceLineNo">2160</span>     * @param startColor the starting Color<a name="line.2160"></a>
-<span class="sourceLineNo">2161</span>     * @param endColor the Color to transition to<a name="line.2161"></a>
-<span class="sourceLineNo">2162</span>     * @param duration the duration in seconds for the effect<a name="line.2162"></a>
-<span class="sourceLineNo">2163</span>     */<a name="line.2163"></a>
-<span class="sourceLineNo">2164</span>    public void summon(float startX, float startY, float endX, float endY, char shown,<a name="line.2164"></a>
-<span class="sourceLineNo">2165</span>                       final float startColor, final float endColor, float duration)<a name="line.2165"></a>
-<span class="sourceLineNo">2166</span>    {<a name="line.2166"></a>
-<span class="sourceLineNo">2167</span>        summon(0f, startX, startY, endX, endY, shown, startColor, endColor, duration, null);<a name="line.2167"></a>
-<span class="sourceLineNo">2168</span>    }<a name="line.2168"></a>
-<span class="sourceLineNo">2169</span>    /**<a name="line.2169"></a>
-<span class="sourceLineNo">2170</span>     * Create a new Glyph at (startX, startY) in world coordinates (often pixels on the screen) using the char shown<a name="line.2170"></a>
-<span class="sourceLineNo">2171</span>     * with the given startColor, and after delay seconds, starts changing color to endColor, changing position so it<a name="line.2171"></a>
-<span class="sourceLineNo">2172</span>     * ends at the world coordinates (endX, endY), taking duration seconds to complete before running postRunnable (if<a name="line.2172"></a>
-<span class="sourceLineNo">2173</span>     * it is non-null) and finally removing the Glyph.<a name="line.2173"></a>
-<span class="sourceLineNo">2174</span>     * &lt;br&gt;<a name="line.2174"></a>
-<span class="sourceLineNo">2175</span>     * Unlike {@link SquidPanel#summon(float, int, int, int, int, char, Color, Color, boolean, float, float, float)},<a name="line.2175"></a>
-<span class="sourceLineNo">2176</span>     * this does not rotate the Glyph it produces.<a name="line.2176"></a>
-<span class="sourceLineNo">2177</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2177"></a>
-<span class="sourceLineNo">2178</span>     * @param startX the starting x position in world coordinates<a name="line.2178"></a>
-<span class="sourceLineNo">2179</span>     * @param startY the starting y position in world coordinates<a name="line.2179"></a>
-<span class="sourceLineNo">2180</span>     * @param endX the ending x position in world coordinates<a name="line.2180"></a>
-<span class="sourceLineNo">2181</span>     * @param endY the ending y position in world coordinates<a name="line.2181"></a>
-<span class="sourceLineNo">2182</span>     * @param shown the char to show (the same char throughout the effect)<a name="line.2182"></a>
-<span class="sourceLineNo">2183</span>     * @param startColor the starting Color<a name="line.2183"></a>
-<span class="sourceLineNo">2184</span>     * @param endColor the Color to transition to<a name="line.2184"></a>
-<span class="sourceLineNo">2185</span>     * @param duration the duration in seconds for the effect<a name="line.2185"></a>
-<span class="sourceLineNo">2186</span>     * @param postRunnable a Runnable to execute after the summon completes; may be null to do nothing.<a name="line.2186"></a>
-<span class="sourceLineNo">2187</span>     */<a name="line.2187"></a>
-<span class="sourceLineNo">2188</span>    public void summon(float delay, float startX, float startY, float endX, float endY, char shown,<a name="line.2188"></a>
-<span class="sourceLineNo">2189</span>                       final float startColor, final float endColor, float duration,<a name="line.2189"></a>
-<span class="sourceLineNo">2190</span>            /* @Nullable */ Runnable postRunnable)<a name="line.2190"></a>
-<span class="sourceLineNo">2191</span>    {<a name="line.2191"></a>
-<span class="sourceLineNo">2192</span>        duration = Math.max(0.015f, duration);<a name="line.2192"></a>
-<span class="sourceLineNo">2193</span>        animationCount++;<a name="line.2193"></a>
-<span class="sourceLineNo">2194</span>        final int nbActions = 2 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.2194"></a>
-<span class="sourceLineNo">2195</span>        int index = 0;<a name="line.2195"></a>
-<span class="sourceLineNo">2196</span>        final Action[] sequence = new Action[nbActions];<a name="line.2196"></a>
-<span class="sourceLineNo">2197</span>        if (0 &lt; delay)<a name="line.2197"></a>
-<span class="sourceLineNo">2198</span>            sequence[index++] = Actions.delay(delay);<a name="line.2198"></a>
-<span class="sourceLineNo">2199</span>        final TextCellFactory.Glyph glyph = glyph(shown, startColor, gridX(startX), gridY(startY));<a name="line.2199"></a>
-<span class="sourceLineNo">2200</span>        sequence[index++] = Actions.parallel(<a name="line.2200"></a>
-<span class="sourceLineNo">2201</span>                new TemporalAction(duration) {<a name="line.2201"></a>
-<span class="sourceLineNo">2202</span>                    @Override<a name="line.2202"></a>
-<span class="sourceLineNo">2203</span>                    protected void update(float percent) {<a name="line.2203"></a>
-<span class="sourceLineNo">2204</span>                        glyph.setPackedColor(SColor.lerpFloatColors(startColor, endColor, percent * 0.95f));<a name="line.2204"></a>
-<span class="sourceLineNo">2205</span>                    }<a name="line.2205"></a>
-<span class="sourceLineNo">2206</span>                },<a name="line.2206"></a>
-<span class="sourceLineNo">2207</span>                Actions.moveTo(endX, endY, duration));<a name="line.2207"></a>
-<span class="sourceLineNo">2208</span>        if(postRunnable != null)<a name="line.2208"></a>
-<span class="sourceLineNo">2209</span>        {<a name="line.2209"></a>
-<span class="sourceLineNo">2210</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.2210"></a>
-<span class="sourceLineNo">2211</span>        }<a name="line.2211"></a>
-<span class="sourceLineNo">2212</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.2212"></a>
-<span class="sourceLineNo">2213</span>        sequence[index] = Actions.run(new Runnable() {<a name="line.2213"></a>
-<span class="sourceLineNo">2214</span>            @Override<a name="line.2214"></a>
-<span class="sourceLineNo">2215</span>            public void run() {<a name="line.2215"></a>
-<span class="sourceLineNo">2216</span>                --animationCount;<a name="line.2216"></a>
-<span class="sourceLineNo">2217</span>                glyphs.remove(glyph);<a name="line.2217"></a>
-<span class="sourceLineNo">2218</span>            }<a name="line.2218"></a>
-<span class="sourceLineNo">2219</span>        });<a name="line.2219"></a>
-<span class="sourceLineNo">2220</span>        glyph.addAction(Actions.sequence(sequence));<a name="line.2220"></a>
-<span class="sourceLineNo">2221</span>    }<a name="line.2221"></a>
-<span class="sourceLineNo">2222</span><a name="line.2222"></a>
-<span class="sourceLineNo">2223</span><a name="line.2223"></a>
-<span class="sourceLineNo">2224</span>    /**<a name="line.2224"></a>
-<span class="sourceLineNo">2225</span>     * Convenience method to produce an explosion, splash, or burst effect. Calls<a name="line.2225"></a>
-<span class="sourceLineNo">2226</span>     * {@link #summon(int, int, int, int, char, float, float, float)} repeatedly with<a name="line.2226"></a>
-<span class="sourceLineNo">2227</span>     * different parameters. As with summon(), this creates temporary Glyphs that change color and position.<a name="line.2227"></a>
-<span class="sourceLineNo">2228</span>     * The distance is how many cells away to move the created Actors away from (x,y). The measurement determines<a name="line.2228"></a>
-<span class="sourceLineNo">2229</span>     * whether this produces Glyphs in 4 (cardinal) directions for DIAMOND or OCTAHEDRON, or 8 (cardinal and diagonal)<a name="line.2229"></a>
-<span class="sourceLineNo">2230</span>     * directions for any other enum value for Radius; CIRCLE and SPHERE will position the 8 glyphs in a circle, while<a name="line.2230"></a>
-<span class="sourceLineNo">2231</span>     * SQUARE and CUBE will position their 8 glyphs in a square.<a name="line.2231"></a>
-<span class="sourceLineNo">2232</span>     * &lt;br&gt;<a name="line.2232"></a>
-<span class="sourceLineNo">2233</span>     * Unlike {@link SquidPanel#burst(float, int, int, int, boolean, char, Color, Color, boolean, float, float)}, this<a name="line.2233"></a>
-<span class="sourceLineNo">2234</span>     * does not rotate the individual Glyphs it produces.<a name="line.2234"></a>
-<span class="sourceLineNo">2235</span>     * @param x the starting, center, x-position in cells to create all Actors at<a name="line.2235"></a>
-<span class="sourceLineNo">2236</span>     * @param y the starting, center, y-position in cells to create all Actors at<a name="line.2236"></a>
-<span class="sourceLineNo">2237</span>     * @param distance how far away, in cells, to move each actor from the center (Chebyshev distance, forming a square)<a name="line.2237"></a>
-<span class="sourceLineNo">2238</span>     * @param measurement a Radius enum that determines if 4 (DIAMOND, OCTAHEDRON) or 8 (anything else) Glyphs are<a name="line.2238"></a>
-<span class="sourceLineNo">2239</span>     *                    created, and the shape they will take<a name="line.2239"></a>
-<span class="sourceLineNo">2240</span>     * @param shown the char to use for Glyphs; should definitely be visible<a name="line.2240"></a>
-<span class="sourceLineNo">2241</span>     * @param startColor the encoded color to start the effect with<a name="line.2241"></a>
-<span class="sourceLineNo">2242</span>     * @param endColor the encoded color to end the effect on<a name="line.2242"></a>
-<span class="sourceLineNo">2243</span>     * @param duration how long, in seconds, the effect should last<a name="line.2243"></a>
-<span class="sourceLineNo">2244</span>     */<a name="line.2244"></a>
-<span class="sourceLineNo">2245</span>    public void burst(int x, int y, int distance, Radius measurement, char shown,<a name="line.2245"></a>
-<span class="sourceLineNo">2246</span>                      float startColor, float endColor, float duration) {<a name="line.2246"></a>
-<span class="sourceLineNo">2247</span>        burst(0f, x, y, distance, measurement, shown, startColor, endColor, duration, null);<a name="line.2247"></a>
-<span class="sourceLineNo">2248</span>    }<a name="line.2248"></a>
-<span class="sourceLineNo">2249</span>    /**<a name="line.2249"></a>
-<span class="sourceLineNo">2250</span>     * Convenience method to produce an explosion, splash, or burst effect. Calls<a name="line.2250"></a>
-<span class="sourceLineNo">2251</span>     * {@link #summon(float, int, int, int, int, char, float, float, float, Runnable)} repeatedly with<a name="line.2251"></a>
-<span class="sourceLineNo">2252</span>     * different parameters. As with summon(), this creates temporary Glyphs that change color and position.<a name="line.2252"></a>
-<span class="sourceLineNo">2253</span>     * The distance is how many cells away to move the created Actors away from (x,y). The measurement determines<a name="line.2253"></a>
-<span class="sourceLineNo">2254</span>     * whether this produces Glyphs in 4 (cardinal) directions for DIAMOND or OCTAHEDRON, or 8 (cardinal and diagonal)<a name="line.2254"></a>
-<span class="sourceLineNo">2255</span>     * directions for any other enum value for Radius; CIRCLE and SPHERE will position the 8 glyphs in a circle, while<a name="line.2255"></a>
-<span class="sourceLineNo">2256</span>     * SQUARE and CUBE will position their 8 glyphs in a square. This takes a delay in seconds that can be used to make<a name="line.2256"></a>
-<span class="sourceLineNo">2257</span>     * the effect wait to start for some amount of time, and a Runnable that will be run once after the burst's full<a name="line.2257"></a>
-<span class="sourceLineNo">2258</span>     * duration completes (not once per summoned Glyph).<a name="line.2258"></a>
-<span class="sourceLineNo">2259</span>     * &lt;br&gt;<a name="line.2259"></a>
-<span class="sourceLineNo">2260</span>     * Unlike {@link SquidPanel#burst(float, int, int, int, boolean, char, Color, Color, boolean, float, float)}, this<a name="line.2260"></a>
-<span class="sourceLineNo">2261</span>     * does not rotate the individual Glyphs it produces.<a name="line.2261"></a>
-<span class="sourceLineNo">2262</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2262"></a>
-<span class="sourceLineNo">2263</span>     * @param x the starting, center, x-position in cells to create all Actors at<a name="line.2263"></a>
-<span class="sourceLineNo">2264</span>     * @param y the starting, center, y-position in cells to create all Actors at<a name="line.2264"></a>
-<span class="sourceLineNo">2265</span>     * @param distance how far away, in cells, to move each actor from the center (Chebyshev distance, forming a square)<a name="line.2265"></a>
-<span class="sourceLineNo">2266</span>     * @param measurement a Radius enum that determines if 4 (DIAMOND, OCTAHEDRON) or 8 (anything else) Glyphs are<a name="line.2266"></a>
-<span class="sourceLineNo">2267</span>     *                    created, and the shape they will take<a name="line.2267"></a>
-<span class="sourceLineNo">2268</span>     * @param shown the char to use for Glyphs; should definitely be visible<a name="line.2268"></a>
-<span class="sourceLineNo">2269</span>     * @param startColor the encoded color to start the effect with<a name="line.2269"></a>
-<span class="sourceLineNo">2270</span>     * @param endColor the encoded color to end the effect on<a name="line.2270"></a>
-<span class="sourceLineNo">2271</span>     * @param duration how long, in seconds, the effect should last<a name="line.2271"></a>
-<span class="sourceLineNo">2272</span>     * @param postRunnable a Runnable to execute after the burst completes; may be null to do nothing,<a name="line.2272"></a>
-<span class="sourceLineNo">2273</span>     *                     and will only be run once for the whole burst effect.<a name="line.2273"></a>
-<span class="sourceLineNo">2274</span>     */<a name="line.2274"></a>
-<span class="sourceLineNo">2275</span>    public void burst(float delay, int x, int y, int distance, Radius measurement, char shown,<a name="line.2275"></a>
-<span class="sourceLineNo">2276</span>                      float startColor, float endColor, float duration, /* @Nullable */ Runnable postRunnable)<a name="line.2276"></a>
-<span class="sourceLineNo">2277</span>    {<a name="line.2277"></a>
-<span class="sourceLineNo">2278</span>        Direction d;<a name="line.2278"></a>
-<span class="sourceLineNo">2279</span>        switch (measurement)<a name="line.2279"></a>
-<span class="sourceLineNo">2280</span>        {<a name="line.2280"></a>
-<span class="sourceLineNo">2281</span>            case SQUARE:<a name="line.2281"></a>
-<span class="sourceLineNo">2282</span>            case CUBE:<a name="line.2282"></a>
-<span class="sourceLineNo">2283</span>                for (int i = 0; i &lt; 7; i++) {<a name="line.2283"></a>
-<span class="sourceLineNo">2284</span>                    d = Direction.CLOCKWISE[i];<a name="line.2284"></a>
-<span class="sourceLineNo">2285</span>                    summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2285"></a>
-<span class="sourceLineNo">2286</span>                            shown, startColor, endColor, duration, null);<a name="line.2286"></a>
-<span class="sourceLineNo">2287</span>                }<a name="line.2287"></a>
-<span class="sourceLineNo">2288</span>                d = Direction.CLOCKWISE[7];<a name="line.2288"></a>
-<span class="sourceLineNo">2289</span>                summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2289"></a>
-<span class="sourceLineNo">2290</span>                        shown, startColor, endColor, duration, postRunnable);<a name="line.2290"></a>
-<span class="sourceLineNo">2291</span>                break;<a name="line.2291"></a>
-<span class="sourceLineNo">2292</span>            case CIRCLE:<a name="line.2292"></a>
-<span class="sourceLineNo">2293</span>            case SPHERE:<a name="line.2293"></a>
-<span class="sourceLineNo">2294</span>                float xf = worldX(x), yf = worldY(y);<a name="line.2294"></a>
-<span class="sourceLineNo">2295</span>                for (int i = 0; i &lt; 4; i++) {<a name="line.2295"></a>
-<span class="sourceLineNo">2296</span>                    d = Direction.DIAGONALS[i];<a name="line.2296"></a>
-<span class="sourceLineNo">2297</span>                    summon(delay, xf, yf, xf - d.deltaX * font.actualCellWidth * distance * 0.7071067811865475f, // the constant is 1.0 / Math.sqrt(2.0)<a name="line.2297"></a>
-<span class="sourceLineNo">2298</span>                            yf + d.deltaY * font.actualCellHeight * distance * 0.7071067811865475f,<a name="line.2298"></a>
-<span class="sourceLineNo">2299</span>                            shown, startColor, endColor, duration, null);<a name="line.2299"></a>
-<span class="sourceLineNo">2300</span>                }<a name="line.2300"></a>
-<span class="sourceLineNo">2301</span>                // break intentionally absent<a name="line.2301"></a>
-<span class="sourceLineNo">2302</span>            default:<a name="line.2302"></a>
-<span class="sourceLineNo">2303</span>                for (int i = 0; i &lt; 3; i++) {<a name="line.2303"></a>
-<span class="sourceLineNo">2304</span>                    d = Direction.CARDINALS_CLOCKWISE[i];<a name="line.2304"></a>
-<span class="sourceLineNo">2305</span>                    summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2305"></a>
-<span class="sourceLineNo">2306</span>                            shown, startColor, endColor, duration, null);<a name="line.2306"></a>
-<span class="sourceLineNo">2307</span>                }<a name="line.2307"></a>
-<span class="sourceLineNo">2308</span>                d = Direction.CARDINALS_CLOCKWISE[3];<a name="line.2308"></a>
-<span class="sourceLineNo">2309</span>                summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2309"></a>
-<span class="sourceLineNo">2310</span>                        shown, startColor, endColor, duration, postRunnable);<a name="line.2310"></a>
-<span class="sourceLineNo">2311</span>                break;<a name="line.2311"></a>
-<span class="sourceLineNo">2312</span>        }<a name="line.2312"></a>
-<span class="sourceLineNo">2313</span>    }<a name="line.2313"></a>
-<span class="sourceLineNo">2314</span>    /**<a name="line.2314"></a>
-<span class="sourceLineNo">2315</span>     * Convenience method to produce an explosion, splash, or burst effect. Calls<a name="line.2315"></a>
-<span class="sourceLineNo">2316</span>     * {@link #summon(int, int, int, int, char, float, float, float)} repeatedly with<a name="line.2316"></a>
-<span class="sourceLineNo">2317</span>     * different parameters. As with summon(), this creates temporary Glyphs that change color and position.<a name="line.2317"></a>
-<span class="sourceLineNo">2318</span>     * The distance is how many cells away to move the created Actors away from (x,y). The measurement determines<a name="line.2318"></a>
-<span class="sourceLineNo">2319</span>     * whether this produces Glyphs in 4 (cardinal) directions for DIAMOND or OCTAHEDRON, or 8 (cardinal and diagonal)<a name="line.2319"></a>
-<span class="sourceLineNo">2320</span>     * directions for any other enum value for Radius; CIRCLE and SPHERE will position the 8 glyphs in a circle, while<a name="line.2320"></a>
-<span class="sourceLineNo">2321</span>     * SQUARE and CUBE will position their 8 glyphs in a square.<a name="line.2321"></a>
-<span class="sourceLineNo">2322</span>     * &lt;br&gt;<a name="line.2322"></a>
-<span class="sourceLineNo">2323</span>     * Unlike {@link SquidPanel#burst(float, int, int, int, boolean, char, Color, Color, boolean, float, float)}, this<a name="line.2323"></a>
-<span class="sourceLineNo">2324</span>     * does not rotate the individual Glyphs it produces.<a name="line.2324"></a>
-<span class="sourceLineNo">2325</span>     * @param x the starting, center, x-position in cells to create all Actors at<a name="line.2325"></a>
-<span class="sourceLineNo">2326</span>     * @param y the starting, center, y-position in cells to create all Actors at<a name="line.2326"></a>
-<span class="sourceLineNo">2327</span>     * @param distance how far away, in cells, to move each actor from the center (Chebyshev distance, forming a square)<a name="line.2327"></a>
-<span class="sourceLineNo">2328</span>     * @param measurement a Radius enum that determines if 4 (DIAMOND, OCTAHEDRON) or 8 (anything else) Glyphs are<a name="line.2328"></a>
-<span class="sourceLineNo">2329</span>     *                    created, and the shape they will take<a name="line.2329"></a>
-<span class="sourceLineNo">2330</span>     * @param choices a String or other CharSequence containing the chars this can randomly choose<a name="line.2330"></a>
-<span class="sourceLineNo">2331</span>     * @param startColor the encoded color to start the effect with<a name="line.2331"></a>
-<span class="sourceLineNo">2332</span>     * @param endColor the encoded color to end the effect on<a name="line.2332"></a>
-<span class="sourceLineNo">2333</span>     * @param duration how long, in seconds, the effect should last<a name="line.2333"></a>
-<span class="sourceLineNo">2334</span>     */<a name="line.2334"></a>
-<span class="sourceLineNo">2335</span>    public void burst(int x, int y, int distance, Radius measurement, CharSequence choices,<a name="line.2335"></a>
-<span class="sourceLineNo">2336</span>                      float startColor, float endColor, float duration) {<a name="line.2336"></a>
-<span class="sourceLineNo">2337</span>        burst(0f, x, y, distance, measurement, choices, startColor, endColor, duration, null);<a name="line.2337"></a>
-<span class="sourceLineNo">2338</span>    }<a name="line.2338"></a>
-<span class="sourceLineNo">2339</span>    /**<a name="line.2339"></a>
-<span class="sourceLineNo">2340</span>     * Convenience method to produce an explosion, splash, or burst effect. Calls<a name="line.2340"></a>
-<span class="sourceLineNo">2341</span>     * {@link #summon(int, int, int, int, char, float, float, float)} repeatedly with<a name="line.2341"></a>
-<span class="sourceLineNo">2342</span>     * different parameters. As with summon(), this creates temporary Glyphs that change color and position.<a name="line.2342"></a>
-<span class="sourceLineNo">2343</span>     * The distance is how many cells away to move the created Actors away from (x,y). The measurement determines<a name="line.2343"></a>
-<span class="sourceLineNo">2344</span>     * whether this produces Glyphs in 4 (cardinal) directions for DIAMOND or OCTAHEDRON, or 8 (cardinal and diagonal)<a name="line.2344"></a>
-<span class="sourceLineNo">2345</span>     * directions for any other enum value for Radius; CIRCLE and SPHERE will position the 8 glyphs in a circle, while<a name="line.2345"></a>
-<span class="sourceLineNo">2346</span>     * SQUARE and CUBE will position their 8 glyphs in a square. This takes a delay in seconds that can be used to make<a name="line.2346"></a>
-<span class="sourceLineNo">2347</span>     * the effect wait to start for some amount of time, and a Runnable that will be run once after the burst's full<a name="line.2347"></a>
-<span class="sourceLineNo">2348</span>     * duration completes (not once per summoned Glyph).<a name="line.2348"></a>
-<span class="sourceLineNo">2349</span>     * &lt;br&gt;<a name="line.2349"></a>
-<span class="sourceLineNo">2350</span>     * Unlike {@link SquidPanel#burst(float, int, int, int, boolean, char, Color, Color, boolean, float, float)}, this<a name="line.2350"></a>
-<span class="sourceLineNo">2351</span>     * does not rotate the individual Glyphs it produces.<a name="line.2351"></a>
-<span class="sourceLineNo">2352</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2352"></a>
-<span class="sourceLineNo">2353</span>     * @param x the starting, center, x-position in cells to create all Actors at<a name="line.2353"></a>
-<span class="sourceLineNo">2354</span>     * @param y the starting, center, y-position in cells to create all Actors at<a name="line.2354"></a>
-<span class="sourceLineNo">2355</span>     * @param distance how far away, in cells, to move each actor from the center (Chebyshev distance, forming a square)<a name="line.2355"></a>
-<span class="sourceLineNo">2356</span>     * @param measurement a Radius enum that determines if 4 (DIAMOND, OCTAHEDRON) or 8 (anything else) Glyphs are<a name="line.2356"></a>
-<span class="sourceLineNo">2357</span>     *                    created, and the shape they will take<a name="line.2357"></a>
-<span class="sourceLineNo">2358</span>     * @param choices a String or other CharSequence containing the chars this can randomly choose<a name="line.2358"></a>
-<span class="sourceLineNo">2359</span>     * @param startColor the encoded color to start the effect with<a name="line.2359"></a>
-<span class="sourceLineNo">2360</span>     * @param endColor the encoded color to end the effect on<a name="line.2360"></a>
-<span class="sourceLineNo">2361</span>     * @param duration how long, in seconds, the effect should last<a name="line.2361"></a>
-<span class="sourceLineNo">2362</span>     * @param postRunnable a Runnable to execute after the burst completes; may be null to do nothing,<a name="line.2362"></a>
-<span class="sourceLineNo">2363</span>     *                     and will only be run once for the whole burst effect.<a name="line.2363"></a>
-<span class="sourceLineNo">2364</span>     */<a name="line.2364"></a>
-<span class="sourceLineNo">2365</span>    public void burst(float delay, int x, int y, int distance, Radius measurement, CharSequence choices,<a name="line.2365"></a>
-<span class="sourceLineNo">2366</span>                      float startColor, float endColor, float duration, /* @Nullable */ Runnable postRunnable)<a name="line.2366"></a>
-<span class="sourceLineNo">2367</span>    {<a name="line.2367"></a>
-<span class="sourceLineNo">2368</span>        Direction d;<a name="line.2368"></a>
-<span class="sourceLineNo">2369</span>        final int len = choices.length();<a name="line.2369"></a>
-<span class="sourceLineNo">2370</span>        final StatefulRNG rng = DefaultResources.getGuiRandom();<a name="line.2370"></a>
-<span class="sourceLineNo">2371</span>        switch (measurement)<a name="line.2371"></a>
-<span class="sourceLineNo">2372</span>        {<a name="line.2372"></a>
-<span class="sourceLineNo">2373</span>            case SQUARE:<a name="line.2373"></a>
-<span class="sourceLineNo">2374</span>            case CUBE:<a name="line.2374"></a>
-<span class="sourceLineNo">2375</span>                for (int i = 0; i &lt; 7; i++) {<a name="line.2375"></a>
-<span class="sourceLineNo">2376</span>                    d = Direction.CLOCKWISE[i];<a name="line.2376"></a>
-<span class="sourceLineNo">2377</span>                    summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2377"></a>
-<span class="sourceLineNo">2378</span>                            choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, null);<a name="line.2378"></a>
-<span class="sourceLineNo">2379</span>                }<a name="line.2379"></a>
-<span class="sourceLineNo">2380</span>                d = Direction.CLOCKWISE[7];<a name="line.2380"></a>
-<span class="sourceLineNo">2381</span>                summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2381"></a>
-<span class="sourceLineNo">2382</span>                        choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, postRunnable);<a name="line.2382"></a>
-<span class="sourceLineNo">2383</span><a name="line.2383"></a>
-<span class="sourceLineNo">2384</span>                break;<a name="line.2384"></a>
-<span class="sourceLineNo">2385</span>            case CIRCLE:<a name="line.2385"></a>
-<span class="sourceLineNo">2386</span>            case SPHERE:<a name="line.2386"></a>
-<span class="sourceLineNo">2387</span>                float xf = worldX(x), yf = worldY(y);<a name="line.2387"></a>
-<span class="sourceLineNo">2388</span>                for (int i = 0; i &lt; 4; i++) {<a name="line.2388"></a>
-<span class="sourceLineNo">2389</span>                    d = Direction.DIAGONALS[i];<a name="line.2389"></a>
-<span class="sourceLineNo">2390</span>                    summon(delay, xf, yf, xf - d.deltaX * font.actualCellWidth * distance * 0.7071067811865475f,<a name="line.2390"></a>
-<span class="sourceLineNo">2391</span>                            yf + d.deltaY * font.actualCellHeight * distance * 0.7071067811865475f,<a name="line.2391"></a>
-<span class="sourceLineNo">2392</span>                            choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, null);<a name="line.2392"></a>
-<span class="sourceLineNo">2393</span>                }<a name="line.2393"></a>
-<span class="sourceLineNo">2394</span>                // break intentionally absent<a name="line.2394"></a>
-<span class="sourceLineNo">2395</span>            default:<a name="line.2395"></a>
-<span class="sourceLineNo">2396</span>                for (int i = 0; i &lt; 3; i++) {<a name="line.2396"></a>
-<span class="sourceLineNo">2397</span>                    d = Direction.CARDINALS_CLOCKWISE[i];<a name="line.2397"></a>
-<span class="sourceLineNo">2398</span>                    summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2398"></a>
-<span class="sourceLineNo">2399</span>                            choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, null);<a name="line.2399"></a>
-<span class="sourceLineNo">2400</span>                }<a name="line.2400"></a>
-<span class="sourceLineNo">2401</span>                d = Direction.CARDINALS_CLOCKWISE[3];<a name="line.2401"></a>
-<span class="sourceLineNo">2402</span>                summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2402"></a>
-<span class="sourceLineNo">2403</span>                        choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, postRunnable);<a name="line.2403"></a>
-<span class="sourceLineNo">2404</span><a name="line.2404"></a>
-<span class="sourceLineNo">2405</span>                break;<a name="line.2405"></a>
-<span class="sourceLineNo">2406</span>        }<a name="line.2406"></a>
-<span class="sourceLineNo">2407</span>    }<a name="line.2407"></a>
-<span class="sourceLineNo">2408</span><a name="line.2408"></a>
-<span class="sourceLineNo">2409</span>    /**<a name="line.2409"></a>
-<span class="sourceLineNo">2410</span>     * Draws the actor. The batch is configured to draw in the parent's coordinate system.<a name="line.2410"></a>
-<span class="sourceLineNo">2411</span>     * {@link Batch#draw(TextureRegion, float, float, float, float, float, float, float, float, float)<a name="line.2411"></a>
-<span class="sourceLineNo">2412</span>     * This draw method} is convenient to draw a rotated and scaled TextureRegion. {@link Batch#begin()} has already been called on<a name="line.2412"></a>
-<span class="sourceLineNo">2413</span>     * the batch. If {@link Batch#end()} is called to draw without the batch then {@link Batch#begin()} must be called before the<a name="line.2413"></a>
-<span class="sourceLineNo">2414</span>     * method returns.<a name="line.2414"></a>
-<span class="sourceLineNo">2415</span>     *<a name="line.2415"></a>
-<span class="sourceLineNo">2416</span>     * @param batch a Batch such as a SpriteBatch that must be between a begin() and end() call; usually done by Stage<a name="line.2416"></a>
-<span class="sourceLineNo">2417</span>     * @param parentAlpha currently ignored<a name="line.2417"></a>
-<span class="sourceLineNo">2418</span>     */<a name="line.2418"></a>
-<span class="sourceLineNo">2419</span>    @Override<a name="line.2419"></a>
-<span class="sourceLineNo">2420</span>    public void draw(Batch batch, float parentAlpha) {<a name="line.2420"></a>
-<span class="sourceLineNo">2421</span>        super.draw(batch, parentAlpha);<a name="line.2421"></a>
-<span class="sourceLineNo">2422</span>        float xo = getX(), yo = getY(), yOff = yo + 1f + gridHeight * font.actualCellHeight;<a name="line.2422"></a>
-<span class="sourceLineNo">2423</span>        font.draw(batch, backgrounds, xo, yo);<a name="line.2423"></a>
-<span class="sourceLineNo">2424</span>        int len = layers.size();<a name="line.2424"></a>
-<span class="sourceLineNo">2425</span>        for (int i = 0; i &lt; len; i++) {<a name="line.2425"></a>
-<span class="sourceLineNo">2426</span>            layers.get(i).draw(batch, font, xo, yOff);<a name="line.2426"></a>
-<span class="sourceLineNo">2427</span>        }<a name="line.2427"></a>
-<span class="sourceLineNo">2428</span>        int x, y;<a name="line.2428"></a>
-<span class="sourceLineNo">2429</span>        for (int i = 0; i &lt; glyphs.size(); i++) {<a name="line.2429"></a>
-<span class="sourceLineNo">2430</span>            TextCellFactory.Glyph glyph = glyphs.get(i);<a name="line.2430"></a>
-<span class="sourceLineNo">2431</span>            if(glyph == null)<a name="line.2431"></a>
-<span class="sourceLineNo">2432</span>                continue;<a name="line.2432"></a>
-<span class="sourceLineNo">2433</span>            glyph.act(Gdx.graphics.getDeltaTime());<a name="line.2433"></a>
-<span class="sourceLineNo">2434</span>            if(<a name="line.2434"></a>
-<span class="sourceLineNo">2435</span>                    !glyph.isVisible() ||<a name="line.2435"></a>
-<span class="sourceLineNo">2436</span>                    (x = Math.round((glyph.getX() - xo) / font.actualCellWidth)) &lt; 0 || x &gt;= gridWidth ||<a name="line.2436"></a>
-<span class="sourceLineNo">2437</span>                    (y = Math.round((glyph.getY() - yo)  / -font.actualCellHeight + gridHeight)) &lt; 0 || y &gt;= gridHeight ||<a name="line.2437"></a>
-<span class="sourceLineNo">2438</span>                    backgrounds[x][y] == 0f)<a name="line.2438"></a>
-<span class="sourceLineNo">2439</span>                continue;<a name="line.2439"></a>
-<span class="sourceLineNo">2440</span>            glyph.draw(batch, 1f);<a name="line.2440"></a>
-<span class="sourceLineNo">2441</span>        }<a name="line.2441"></a>
-<span class="sourceLineNo">2442</span>    }<a name="line.2442"></a>
-<span class="sourceLineNo">2443</span>}<a name="line.2443"></a>
+<span class="sourceLineNo">1866</span>     * Tints the background at position x,y so it becomes the given encodedColor, then after the tint is complete it <a name="line.1866"></a>
+<span class="sourceLineNo">1867</span>     * returns the cell to its original color, taking duration seconds.<a name="line.1867"></a>
+<span class="sourceLineNo">1868</span>     * &lt;br&gt;<a name="line.1868"></a>
+<span class="sourceLineNo">1869</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.1869"></a>
+<span class="sourceLineNo">1870</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.1870"></a>
+<span class="sourceLineNo">1871</span>     * draw the contents without the tint this applies, then apply the tint when you call act(), then quickly overwrite<a name="line.1871"></a>
+<span class="sourceLineNo">1872</span>     * the tint in the next frame. That visually appears as nothing happening other than a delay.<a name="line.1872"></a>
+<span class="sourceLineNo">1873</span>     * @param x the x-coordinate of the cell to tint<a name="line.1873"></a>
+<span class="sourceLineNo">1874</span>     * @param y the y-coordinate of the cell to tint<a name="line.1874"></a>
+<span class="sourceLineNo">1875</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.1875"></a>
+<span class="sourceLineNo">1876</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.1876"></a>
+<span class="sourceLineNo">1877</span>     */<a name="line.1877"></a>
+<span class="sourceLineNo">1878</span>    public void tint(final int x, final int y, final float encodedColor, float duration) {<a name="line.1878"></a>
+<span class="sourceLineNo">1879</span>        tint(0f, x, y, encodedColor, duration, null);<a name="line.1879"></a>
+<span class="sourceLineNo">1880</span>    }<a name="line.1880"></a>
+<span class="sourceLineNo">1881</span>    /**<a name="line.1881"></a>
+<span class="sourceLineNo">1882</span>     * Tints the background at position x,y so it becomes the given encodedColor, waiting for {@code delay} (in seconds)<a name="line.1882"></a>
+<span class="sourceLineNo">1883</span>     * before performing it, then after the tint is complete it returns the cell to its original color, taking duration<a name="line.1883"></a>
+<span class="sourceLineNo">1884</span>     * seconds. Additionally, enqueue {@code postRunnable} for running after the created action ends.<a name="line.1884"></a>
+<span class="sourceLineNo">1885</span>     * &lt;br&gt;<a name="line.1885"></a>
+<span class="sourceLineNo">1886</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.1886"></a>
+<span class="sourceLineNo">1887</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.1887"></a>
+<span class="sourceLineNo">1888</span>     * draw the contents without the tint this applies, then apply the tint when you call act(), then quickly overwrite<a name="line.1888"></a>
+<span class="sourceLineNo">1889</span>     * the tint in the next frame. That visually appears as nothing happening other than a delay.<a name="line.1889"></a>
+<span class="sourceLineNo">1890</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.1890"></a>
+<span class="sourceLineNo">1891</span>     * @param x the x-coordinate of the cell to tint<a name="line.1891"></a>
+<span class="sourceLineNo">1892</span>     * @param y the y-coordinate of the cell to tint<a name="line.1892"></a>
+<span class="sourceLineNo">1893</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.1893"></a>
+<span class="sourceLineNo">1894</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.1894"></a>
+<span class="sourceLineNo">1895</span>     * @param postRunnable a Runnable to execute after the tint completes; may be null to do nothing.<a name="line.1895"></a>
+<span class="sourceLineNo">1896</span>     */<a name="line.1896"></a>
+<span class="sourceLineNo">1897</span>    public void tint(final float delay, final int x, final int y, final float encodedColor, float duration,<a name="line.1897"></a>
+<span class="sourceLineNo">1898</span>            /* @Nullable */ Runnable postRunnable) {<a name="line.1898"></a>
+<span class="sourceLineNo">1899</span>        if(x &lt; 0 || x &gt;= gridWidth || y &lt; 0 || y &gt;= gridHeight)<a name="line.1899"></a>
+<span class="sourceLineNo">1900</span>            return;<a name="line.1900"></a>
+<span class="sourceLineNo">1901</span>        duration = Math.max(0.015f, duration);<a name="line.1901"></a>
+<span class="sourceLineNo">1902</span>        animationCount++;<a name="line.1902"></a>
+<span class="sourceLineNo">1903</span>        final float ac = backgrounds[x][y];<a name="line.1903"></a>
+<span class="sourceLineNo">1904</span>        final int nbActions = 3 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.1904"></a>
+<span class="sourceLineNo">1905</span>        final Action[] sequence = new Action[nbActions];<a name="line.1905"></a>
+<span class="sourceLineNo">1906</span>        int index = 0;<a name="line.1906"></a>
+<span class="sourceLineNo">1907</span>        if (0 &lt; delay)<a name="line.1907"></a>
+<span class="sourceLineNo">1908</span>            sequence[index++] = Actions.delay(delay);<a name="line.1908"></a>
+<span class="sourceLineNo">1909</span>        sequence[index++] = new TemporalAction(duration * 0.3f) {<a name="line.1909"></a>
+<span class="sourceLineNo">1910</span>            @Override<a name="line.1910"></a>
+<span class="sourceLineNo">1911</span>            protected void update(float percent) {<a name="line.1911"></a>
+<span class="sourceLineNo">1912</span>                backgrounds[x][y] = SColor.lerpFloatColors(ac, encodedColor, percent);<a name="line.1912"></a>
+<span class="sourceLineNo">1913</span>            }<a name="line.1913"></a>
+<span class="sourceLineNo">1914</span>        };<a name="line.1914"></a>
+<span class="sourceLineNo">1915</span>        sequence[index++] = new TemporalAction(duration * 0.7f) {<a name="line.1915"></a>
+<span class="sourceLineNo">1916</span>            @Override<a name="line.1916"></a>
+<span class="sourceLineNo">1917</span>            protected void update(float percent) {<a name="line.1917"></a>
+<span class="sourceLineNo">1918</span>                backgrounds[x][y] = SColor.lerpFloatColors(encodedColor, ac, percent);<a name="line.1918"></a>
+<span class="sourceLineNo">1919</span>            }<a name="line.1919"></a>
+<span class="sourceLineNo">1920</span>        };<a name="line.1920"></a>
+<span class="sourceLineNo">1921</span>        if(postRunnable != null)<a name="line.1921"></a>
+<span class="sourceLineNo">1922</span>        {<a name="line.1922"></a>
+<span class="sourceLineNo">1923</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.1923"></a>
+<span class="sourceLineNo">1924</span>        }<a name="line.1924"></a>
+<span class="sourceLineNo">1925</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.1925"></a>
+<span class="sourceLineNo">1926</span>        sequence[index] = Actions.delay(duration, Actions.run(new Runnable() {<a name="line.1926"></a>
+<span class="sourceLineNo">1927</span>            @Override<a name="line.1927"></a>
+<span class="sourceLineNo">1928</span>            public void run() {<a name="line.1928"></a>
+<span class="sourceLineNo">1929</span>                backgrounds[x][y] = ac;<a name="line.1929"></a>
+<span class="sourceLineNo">1930</span>                --animationCount;<a name="line.1930"></a>
+<span class="sourceLineNo">1931</span>            }<a name="line.1931"></a>
+<span class="sourceLineNo">1932</span>        }));<a name="line.1932"></a>
+<span class="sourceLineNo">1933</span><a name="line.1933"></a>
+<span class="sourceLineNo">1934</span>        addAction(Actions.sequence(sequence));<a name="line.1934"></a>
+<span class="sourceLineNo">1935</span>    }<a name="line.1935"></a>
+<span class="sourceLineNo">1936</span><a name="line.1936"></a>
+<span class="sourceLineNo">1937</span>    /**<a name="line.1937"></a>
+<span class="sourceLineNo">1938</span>     * Tints the foreground in the given layer at position x,y so it becomes the given encodedColor, then after the tint<a name="line.1938"></a>
+<span class="sourceLineNo">1939</span>     * is complete it returns the cell to its original color, taking duration seconds.<a name="line.1939"></a>
+<span class="sourceLineNo">1940</span>     * &lt;br&gt;<a name="line.1940"></a>
+<span class="sourceLineNo">1941</span>     * The {@link SquidPanel#tint(float, int, int, Color, float, Runnable)} method has been reworked to use the same<a name="line.1941"></a>
+<span class="sourceLineNo">1942</span>     * technique this class uses for rendering text, and the two classes should have similar appearance (if not the<a name="line.1942"></a>
+<span class="sourceLineNo">1943</span>     * same) when rendering the same text. SparseLayers tends to be faster, especially when not all of the map is shown.<a name="line.1943"></a>
+<span class="sourceLineNo">1944</span>     * &lt;br&gt;<a name="line.1944"></a>
+<span class="sourceLineNo">1945</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.1945"></a>
+<span class="sourceLineNo">1946</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.1946"></a>
+<span class="sourceLineNo">1947</span>     * draw the contents without the tint this applies, then apply the tint when you call act(), then quickly overwrite<a name="line.1947"></a>
+<span class="sourceLineNo">1948</span>     * the tint in the next frame. That visually appears as nothing happening other than a delay.<a name="line.1948"></a>
+<span class="sourceLineNo">1949</span>     * @param x the x-coordinate of the cell to tint<a name="line.1949"></a>
+<span class="sourceLineNo">1950</span>     * @param y the y-coordinate of the cell to tint<a name="line.1950"></a>
+<span class="sourceLineNo">1951</span>     * @param layer which layer to affect; if you haven't specified a layer when placing text, then this should be 0<a name="line.1951"></a>
+<span class="sourceLineNo">1952</span>     * @param color what to transition the cell's color towards, and then transition back from, as a Color object<a name="line.1952"></a>
+<span class="sourceLineNo">1953</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.1953"></a>
+<span class="sourceLineNo">1954</span>     */<a name="line.1954"></a>
+<span class="sourceLineNo">1955</span>    public void tint(final int x, final int y, final int layer, final Color color, float duration) {<a name="line.1955"></a>
+<span class="sourceLineNo">1956</span>        tint(0f, x, y, layer, color.toFloatBits(), duration, null);<a name="line.1956"></a>
+<span class="sourceLineNo">1957</span>    }<a name="line.1957"></a>
+<span class="sourceLineNo">1958</span><a name="line.1958"></a>
+<span class="sourceLineNo">1959</span>    /**<a name="line.1959"></a>
+<span class="sourceLineNo">1960</span>     * Tints the foreground in the given layer at position x,y so it becomes the given encodedColor, then after the tint<a name="line.1960"></a>
+<span class="sourceLineNo">1961</span>     * is complete it returns the cell to its original color, taking duration seconds.<a name="line.1961"></a>
+<span class="sourceLineNo">1962</span>     * &lt;br&gt;<a name="line.1962"></a>
+<span class="sourceLineNo">1963</span>     * The {@link SquidPanel#tint(float, int, int, Color, float, Runnable)} method has been reworked to use the same<a name="line.1963"></a>
+<span class="sourceLineNo">1964</span>     * technique this class uses for rendering text, and the two classes should have similar appearance (if not the<a name="line.1964"></a>
+<span class="sourceLineNo">1965</span>     * same) when rendering the same text. SparseLayers tends to be faster, especially when not all of the map is shown.<a name="line.1965"></a>
+<span class="sourceLineNo">1966</span>     * &lt;br&gt;<a name="line.1966"></a>
+<span class="sourceLineNo">1967</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.1967"></a>
+<span class="sourceLineNo">1968</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.1968"></a>
+<span class="sourceLineNo">1969</span>     * draw the contents without the tint this applies, then apply the tint when you call act(), then quickly overwrite<a name="line.1969"></a>
+<span class="sourceLineNo">1970</span>     * the tint in the next frame. That visually appears as nothing happening other than a delay.<a name="line.1970"></a>
+<span class="sourceLineNo">1971</span>     * @param x the x-coordinate of the cell to tint<a name="line.1971"></a>
+<span class="sourceLineNo">1972</span>     * @param y the y-coordinate of the cell to tint<a name="line.1972"></a>
+<span class="sourceLineNo">1973</span>     * @param layer which layer to affect; if you haven't specified a layer when placing text, then this should be 0<a name="line.1973"></a>
+<span class="sourceLineNo">1974</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.1974"></a>
+<span class="sourceLineNo">1975</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.1975"></a>
+<span class="sourceLineNo">1976</span>     */<a name="line.1976"></a>
+<span class="sourceLineNo">1977</span>    public void tint(final int x, final int y, final int layer, final float encodedColor, float duration) {<a name="line.1977"></a>
+<span class="sourceLineNo">1978</span>        tint(0f, x, y, layer, encodedColor, duration, null);<a name="line.1978"></a>
+<span class="sourceLineNo">1979</span>    }<a name="line.1979"></a>
+<span class="sourceLineNo">1980</span>    /**<a name="line.1980"></a>
+<span class="sourceLineNo">1981</span>     * Tints the foreground in the given layer at position x,y so it becomes the given encodedColor, waiting for<a name="line.1981"></a>
+<span class="sourceLineNo">1982</span>     * {@code delay} (in seconds) before performing it, then after the tint is complete it returns the cell to its<a name="line.1982"></a>
+<span class="sourceLineNo">1983</span>     * original color, taking duration seconds. Additionally, enqueue {@code postRunnable} for running after the created<a name="line.1983"></a>
+<span class="sourceLineNo">1984</span>     * action ends.<a name="line.1984"></a>
+<span class="sourceLineNo">1985</span>     * &lt;br&gt;<a name="line.1985"></a>
+<span class="sourceLineNo">1986</span>     * The {@link SquidPanel#tint(float, int, int, Color, float, Runnable)} method has been reworked to use the same<a name="line.1986"></a>
+<span class="sourceLineNo">1987</span>     * technique this class uses for rendering text, and the two classes should have similar appearance (if not the<a name="line.1987"></a>
+<span class="sourceLineNo">1988</span>     * same) when rendering the same text. SparseLayers tends to be faster, especially when not all of the map is shown.<a name="line.1988"></a>
+<span class="sourceLineNo">1989</span>     * &lt;br&gt;<a name="line.1989"></a>
+<span class="sourceLineNo">1990</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.1990"></a>
+<span class="sourceLineNo">1991</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.1991"></a>
+<span class="sourceLineNo">1992</span>     * draw the contents without the tint this applies, then apply the tint when you call act(), then quickly overwrite<a name="line.1992"></a>
+<span class="sourceLineNo">1993</span>     * the tint in the next frame. That visually appears as nothing happening other than a delay.<a name="line.1993"></a>
+<span class="sourceLineNo">1994</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.1994"></a>
+<span class="sourceLineNo">1995</span>     * @param x the x-coordinate of the cell to tint<a name="line.1995"></a>
+<span class="sourceLineNo">1996</span>     * @param y the y-coordinate of the cell to tint<a name="line.1996"></a>
+<span class="sourceLineNo">1997</span>     * @param layer which layer to affect; if you haven't specified a layer when placing text, then this should be 0<a name="line.1997"></a>
+<span class="sourceLineNo">1998</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.1998"></a>
+<span class="sourceLineNo">1999</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.1999"></a>
+<span class="sourceLineNo">2000</span>     * @param postRunnable a Runnable to execute after the tint completes; may be null to do nothing.<a name="line.2000"></a>
+<span class="sourceLineNo">2001</span>     */<a name="line.2001"></a>
+<span class="sourceLineNo">2002</span>    public void tint(final float delay, final int x, final int y, final int layer, final float encodedColor, float duration,<a name="line.2002"></a>
+<span class="sourceLineNo">2003</span>            /* @Nullable */ Runnable postRunnable) {<a name="line.2003"></a>
+<span class="sourceLineNo">2004</span>        if(x &lt; 0 || x &gt;= gridWidth || y &lt; 0 || y &gt;= gridHeight || layer &lt; 0 || layer &gt;= layers.size())<a name="line.2004"></a>
+<span class="sourceLineNo">2005</span>            return;<a name="line.2005"></a>
+<span class="sourceLineNo">2006</span>        final SparseTextMap l = layers.get(layer);<a name="line.2006"></a>
+<span class="sourceLineNo">2007</span>        duration = Math.max(0.015f, duration);<a name="line.2007"></a>
+<span class="sourceLineNo">2008</span>        animationCount++;<a name="line.2008"></a>
+<span class="sourceLineNo">2009</span>        final int pos = SparseTextMap.encodePosition(x, y);<a name="line.2009"></a>
+<span class="sourceLineNo">2010</span>        final float ac = l.getFloat(pos,0f);<a name="line.2010"></a>
+<span class="sourceLineNo">2011</span>        final int nbActions = 3 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.2011"></a>
+<span class="sourceLineNo">2012</span>        final Action[] sequence = new Action[nbActions];<a name="line.2012"></a>
+<span class="sourceLineNo">2013</span>        int index = 0;<a name="line.2013"></a>
+<span class="sourceLineNo">2014</span>        if (0 &lt; delay)<a name="line.2014"></a>
+<span class="sourceLineNo">2015</span>            sequence[index++] = Actions.delay(delay);<a name="line.2015"></a>
+<span class="sourceLineNo">2016</span>        sequence[index++] = new TemporalAction(duration * 0.3f) {<a name="line.2016"></a>
+<span class="sourceLineNo">2017</span>            @Override<a name="line.2017"></a>
+<span class="sourceLineNo">2018</span>            protected void update(float percent) {<a name="line.2018"></a>
+<span class="sourceLineNo">2019</span>                l.updateFloat(pos, SColor.lerpFloatColors(ac, encodedColor, percent));<a name="line.2019"></a>
+<span class="sourceLineNo">2020</span>            }<a name="line.2020"></a>
+<span class="sourceLineNo">2021</span>        };<a name="line.2021"></a>
+<span class="sourceLineNo">2022</span>        sequence[index++] = new TemporalAction(duration * 0.7f) {<a name="line.2022"></a>
+<span class="sourceLineNo">2023</span>            @Override<a name="line.2023"></a>
+<span class="sourceLineNo">2024</span>            protected void update(float percent) {<a name="line.2024"></a>
+<span class="sourceLineNo">2025</span>                l.updateFloat(pos, SColor.lerpFloatColors(encodedColor, ac, percent));<a name="line.2025"></a>
+<span class="sourceLineNo">2026</span>            }<a name="line.2026"></a>
+<span class="sourceLineNo">2027</span>        };<a name="line.2027"></a>
+<span class="sourceLineNo">2028</span>        if(postRunnable != null)<a name="line.2028"></a>
+<span class="sourceLineNo">2029</span>        {<a name="line.2029"></a>
+<span class="sourceLineNo">2030</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.2030"></a>
+<span class="sourceLineNo">2031</span>        }<a name="line.2031"></a>
+<span class="sourceLineNo">2032</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.2032"></a>
+<span class="sourceLineNo">2033</span>        sequence[index] = Actions.delay(duration, Actions.run(new Runnable() {<a name="line.2033"></a>
+<span class="sourceLineNo">2034</span>            @Override<a name="line.2034"></a>
+<span class="sourceLineNo">2035</span>            public void run() {<a name="line.2035"></a>
+<span class="sourceLineNo">2036</span>                l.updateFloat(pos, ac);<a name="line.2036"></a>
+<span class="sourceLineNo">2037</span>                --animationCount;<a name="line.2037"></a>
+<span class="sourceLineNo">2038</span>            }<a name="line.2038"></a>
+<span class="sourceLineNo">2039</span>        }));<a name="line.2039"></a>
+<span class="sourceLineNo">2040</span>        addAction(Actions.sequence(sequence));<a name="line.2040"></a>
+<span class="sourceLineNo">2041</span>    }<a name="line.2041"></a>
+<span class="sourceLineNo">2042</span>    /**<a name="line.2042"></a>
+<span class="sourceLineNo">2043</span>     * Tints the given glyph (which may or may not be part of the {@link #glyphs} list this holds) so it becomes the<a name="line.2043"></a>
+<span class="sourceLineNo">2044</span>     * given encodedColor, then after the tint is complete it returns the cell to its original color, taking duration<a name="line.2044"></a>
+<span class="sourceLineNo">2045</span>     * seconds.<a name="line.2045"></a>
+<span class="sourceLineNo">2046</span>     * &lt;br&gt;<a name="line.2046"></a>
+<span class="sourceLineNo">2047</span>     * This is not a method on {@link TextCellFactory.Glyph} because it increments the {@link #animationCount} variable<a name="line.2047"></a>
+<span class="sourceLineNo">2048</span>     * while the tint animation is running, and decrements it when it finishes the animation (it also resets the glyph<a name="line.2048"></a>
+<span class="sourceLineNo">2049</span>     * to its pre-tint color at this time).<a name="line.2049"></a>
+<span class="sourceLineNo">2050</span>     * @param glyph the {@link TextCellFactory.Glyph} to tint<a name="line.2050"></a>
+<span class="sourceLineNo">2051</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.2051"></a>
+<span class="sourceLineNo">2052</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.2052"></a>
+<span class="sourceLineNo">2053</span>     */<a name="line.2053"></a>
+<span class="sourceLineNo">2054</span>    public void tint(final TextCellFactory.Glyph glyph, final float encodedColor, float duration) {<a name="line.2054"></a>
+<span class="sourceLineNo">2055</span>        tint(0f, glyph, encodedColor, duration, null);<a name="line.2055"></a>
+<span class="sourceLineNo">2056</span>    }<a name="line.2056"></a>
+<span class="sourceLineNo">2057</span>    /**<a name="line.2057"></a>
+<span class="sourceLineNo">2058</span>     * Tints the given glyph (which may or may not be part of the {@link #glyphs} list this holds) so it becomes the<a name="line.2058"></a>
+<span class="sourceLineNo">2059</span>     * given encodedColor, waiting for {@code delay} (in seconds) before performing it, then after the tint is complete<a name="line.2059"></a>
+<span class="sourceLineNo">2060</span>     * it returns the cell to its original color, taking duration seconds. Additionally, enqueue {@code postRunnable}<a name="line.2060"></a>
+<span class="sourceLineNo">2061</span>     * for running after the created action ends.<a name="line.2061"></a>
+<span class="sourceLineNo">2062</span>     * &lt;br&gt;<a name="line.2062"></a>
+<span class="sourceLineNo">2063</span>     * This is not a method on {@link TextCellFactory.Glyph} because it increments the {@link #animationCount} variable<a name="line.2063"></a>
+<span class="sourceLineNo">2064</span>     * while the tint animation is running, and decrements it when it finishes the animation (it also resets the glyph<a name="line.2064"></a>
+<span class="sourceLineNo">2065</span>     * to its pre-tint color at this time).<a name="line.2065"></a>
+<span class="sourceLineNo">2066</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2066"></a>
+<span class="sourceLineNo">2067</span>     * @param glyph the {@link TextCellFactory.Glyph} to tint<a name="line.2067"></a>
+<span class="sourceLineNo">2068</span>     * @param encodedColor what to transition the cell's color towards, and then transition back from, as a packed float<a name="line.2068"></a>
+<span class="sourceLineNo">2069</span>     * @param duration how long the total "round-trip" transition should take in seconds<a name="line.2069"></a>
+<span class="sourceLineNo">2070</span>     * @param postRunnable a Runnable to execute after the tint completes; may be null to do nothing.<a name="line.2070"></a>
+<span class="sourceLineNo">2071</span>     */<a name="line.2071"></a>
+<span class="sourceLineNo">2072</span>    public void tint(float delay, final TextCellFactory.Glyph glyph, final float encodedColor, float duration,<a name="line.2072"></a>
+<span class="sourceLineNo">2073</span>            /* @Nullable */ Runnable postRunnable) {<a name="line.2073"></a>
+<span class="sourceLineNo">2074</span>        duration = Math.max(0.015f, duration);<a name="line.2074"></a>
+<span class="sourceLineNo">2075</span>        animationCount++;<a name="line.2075"></a>
+<span class="sourceLineNo">2076</span>        final float ac = glyph.getPackedColor();<a name="line.2076"></a>
+<span class="sourceLineNo">2077</span>        final int nbActions = 3 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.2077"></a>
+<span class="sourceLineNo">2078</span>        final Action[] sequence = new Action[nbActions];<a name="line.2078"></a>
+<span class="sourceLineNo">2079</span>        int index = 0;<a name="line.2079"></a>
+<span class="sourceLineNo">2080</span>        if (0 &lt; delay)<a name="line.2080"></a>
+<span class="sourceLineNo">2081</span>            sequence[index++] = Actions.delay(delay);<a name="line.2081"></a>
+<span class="sourceLineNo">2082</span>        sequence[index++] = new TemporalAction(duration * 0.3f) {<a name="line.2082"></a>
+<span class="sourceLineNo">2083</span>            @Override<a name="line.2083"></a>
+<span class="sourceLineNo">2084</span>            protected void update(float percent) {<a name="line.2084"></a>
+<span class="sourceLineNo">2085</span>                glyph.setPackedColor(SColor.lerpFloatColors(ac, encodedColor, percent));<a name="line.2085"></a>
+<span class="sourceLineNo">2086</span>            }<a name="line.2086"></a>
+<span class="sourceLineNo">2087</span>        };<a name="line.2087"></a>
+<span class="sourceLineNo">2088</span>        sequence[index++] = new TemporalAction(duration * 0.7f) {<a name="line.2088"></a>
+<span class="sourceLineNo">2089</span>            @Override<a name="line.2089"></a>
+<span class="sourceLineNo">2090</span>            protected void update(float percent) {<a name="line.2090"></a>
+<span class="sourceLineNo">2091</span>                glyph.setPackedColor(SColor.lerpFloatColors(encodedColor, ac, percent));<a name="line.2091"></a>
+<span class="sourceLineNo">2092</span>            }<a name="line.2092"></a>
+<span class="sourceLineNo">2093</span>        };<a name="line.2093"></a>
+<span class="sourceLineNo">2094</span>        if(postRunnable != null)<a name="line.2094"></a>
+<span class="sourceLineNo">2095</span>        {<a name="line.2095"></a>
+<span class="sourceLineNo">2096</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.2096"></a>
+<span class="sourceLineNo">2097</span>        }<a name="line.2097"></a>
+<span class="sourceLineNo">2098</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.2098"></a>
+<span class="sourceLineNo">2099</span>        sequence[index] = Actions.delay(duration, Actions.run(new Runnable() {<a name="line.2099"></a>
+<span class="sourceLineNo">2100</span>            @Override<a name="line.2100"></a>
+<span class="sourceLineNo">2101</span>            public void run() {<a name="line.2101"></a>
+<span class="sourceLineNo">2102</span>                glyph.setPackedColor(ac);<a name="line.2102"></a>
+<span class="sourceLineNo">2103</span>                --animationCount;<a name="line.2103"></a>
+<span class="sourceLineNo">2104</span>            }<a name="line.2104"></a>
+<span class="sourceLineNo">2105</span>        }));<a name="line.2105"></a>
+<span class="sourceLineNo">2106</span>        addAction(Actions.sequence(sequence));<a name="line.2106"></a>
+<span class="sourceLineNo">2107</span>    }<a name="line.2107"></a>
+<span class="sourceLineNo">2108</span>    /**<a name="line.2108"></a>
+<span class="sourceLineNo">2109</span>     * Create a new Glyph at (startX, startY) using the char shown with the given startColor, and immediately starts<a name="line.2109"></a>
+<span class="sourceLineNo">2110</span>     * changing color to endColor, changing position so it ends on the cell (endX, endY), taking duration seconds to<a name="line.2110"></a>
+<span class="sourceLineNo">2111</span>     * complete before removing the Glyph.<a name="line.2111"></a>
+<span class="sourceLineNo">2112</span>     * &lt;br&gt;<a name="line.2112"></a>
+<span class="sourceLineNo">2113</span>     * Unlike {@link SquidPanel#summon(float, int, int, int, int, char, Color, Color, boolean, float, float, float)},<a name="line.2113"></a>
+<span class="sourceLineNo">2114</span>     * this does not rotate the Glyph it produces.<a name="line.2114"></a>
+<span class="sourceLineNo">2115</span>     * @param startX the starting x position in cells<a name="line.2115"></a>
+<span class="sourceLineNo">2116</span>     * @param startY the starting y position in cells<a name="line.2116"></a>
+<span class="sourceLineNo">2117</span>     * @param endX the ending x position in cells<a name="line.2117"></a>
+<span class="sourceLineNo">2118</span>     * @param endY the ending y position in cells<a name="line.2118"></a>
+<span class="sourceLineNo">2119</span>     * @param shown the char to show (the same char throughout the effect)<a name="line.2119"></a>
+<span class="sourceLineNo">2120</span>     * @param startColor the starting Color<a name="line.2120"></a>
+<span class="sourceLineNo">2121</span>     * @param endColor the Color to transition to<a name="line.2121"></a>
+<span class="sourceLineNo">2122</span>     * @param duration the duration in seconds for the effect<a name="line.2122"></a>
+<span class="sourceLineNo">2123</span>     */<a name="line.2123"></a>
+<span class="sourceLineNo">2124</span>    public void summon(int startX, int startY, int endX, int endY, char shown,<a name="line.2124"></a>
+<span class="sourceLineNo">2125</span>                       final float startColor, final float endColor, float duration)<a name="line.2125"></a>
+<span class="sourceLineNo">2126</span>    {<a name="line.2126"></a>
+<span class="sourceLineNo">2127</span>        summon(0f, startX, startY, endX, endY, shown, startColor, endColor, duration, null);<a name="line.2127"></a>
+<span class="sourceLineNo">2128</span>    }<a name="line.2128"></a>
+<span class="sourceLineNo">2129</span>    /**<a name="line.2129"></a>
+<span class="sourceLineNo">2130</span>     * Create a new Glyph at (startX, startY) using the char shown with the given startColor, and after delay seconds,<a name="line.2130"></a>
+<span class="sourceLineNo">2131</span>     * starts changing color to endColor, changing position so it ends on the cell (endX, endY), taking duration seconds<a name="line.2131"></a>
+<span class="sourceLineNo">2132</span>     * to complete before running postRunnable (if it is non-null) and finally removing the Glyph.<a name="line.2132"></a>
+<span class="sourceLineNo">2133</span>     * &lt;br&gt;<a name="line.2133"></a>
+<span class="sourceLineNo">2134</span>     * Unlike {@link SquidPanel#summon(float, int, int, int, int, char, Color, Color, boolean, float, float, float)},<a name="line.2134"></a>
+<span class="sourceLineNo">2135</span>     * this does not rotate the Glyph it produces.<a name="line.2135"></a>
+<span class="sourceLineNo">2136</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2136"></a>
+<span class="sourceLineNo">2137</span>     * @param startX the starting x position in cells<a name="line.2137"></a>
+<span class="sourceLineNo">2138</span>     * @param startY the starting y position in cells<a name="line.2138"></a>
+<span class="sourceLineNo">2139</span>     * @param endX the ending x position in cells<a name="line.2139"></a>
+<span class="sourceLineNo">2140</span>     * @param endY the ending y position in cells<a name="line.2140"></a>
+<span class="sourceLineNo">2141</span>     * @param shown the char to show (the same char throughout the effect)<a name="line.2141"></a>
+<span class="sourceLineNo">2142</span>     * @param startColor the starting Color<a name="line.2142"></a>
+<span class="sourceLineNo">2143</span>     * @param endColor the Color to transition to<a name="line.2143"></a>
+<span class="sourceLineNo">2144</span>     * @param duration the duration in seconds for the effect<a name="line.2144"></a>
+<span class="sourceLineNo">2145</span>     * @param postRunnable a Runnable to execute after the summon completes; may be null to do nothing.<a name="line.2145"></a>
+<span class="sourceLineNo">2146</span>     */<a name="line.2146"></a>
+<span class="sourceLineNo">2147</span>    public void summon(float delay, int startX, int startY, int endX, int endY, char shown,<a name="line.2147"></a>
+<span class="sourceLineNo">2148</span>                       final float startColor, final float endColor, float duration,<a name="line.2148"></a>
+<span class="sourceLineNo">2149</span>            /* @Nullable */ Runnable postRunnable)<a name="line.2149"></a>
+<span class="sourceLineNo">2150</span>    {<a name="line.2150"></a>
+<span class="sourceLineNo">2151</span>        duration = Math.max(0.015f, duration);<a name="line.2151"></a>
+<span class="sourceLineNo">2152</span>        animationCount++;<a name="line.2152"></a>
+<span class="sourceLineNo">2153</span>        final int nbActions = 2 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.2153"></a>
+<span class="sourceLineNo">2154</span>        int index = 0;<a name="line.2154"></a>
+<span class="sourceLineNo">2155</span>        final Action[] sequence = new Action[nbActions];<a name="line.2155"></a>
+<span class="sourceLineNo">2156</span>        if (0 &lt; delay)<a name="line.2156"></a>
+<span class="sourceLineNo">2157</span>            sequence[index++] = Actions.delay(delay);<a name="line.2157"></a>
+<span class="sourceLineNo">2158</span>        final TextCellFactory.Glyph glyph = glyph(shown, startColor, startX, startY);<a name="line.2158"></a>
+<span class="sourceLineNo">2159</span>        sequence[index++] = Actions.parallel(<a name="line.2159"></a>
+<span class="sourceLineNo">2160</span>                new TemporalAction(duration) {<a name="line.2160"></a>
+<span class="sourceLineNo">2161</span>                    @Override<a name="line.2161"></a>
+<span class="sourceLineNo">2162</span>                    protected void update(float percent) {<a name="line.2162"></a>
+<span class="sourceLineNo">2163</span>                        glyph.setPackedColor(SColor.lerpFloatColors(startColor, endColor, percent * 0.95f));<a name="line.2163"></a>
+<span class="sourceLineNo">2164</span>                    }<a name="line.2164"></a>
+<span class="sourceLineNo">2165</span>                },<a name="line.2165"></a>
+<span class="sourceLineNo">2166</span>                Actions.moveTo(worldX(endX), worldY(endY), duration));<a name="line.2166"></a>
+<span class="sourceLineNo">2167</span>        if(postRunnable != null)<a name="line.2167"></a>
+<span class="sourceLineNo">2168</span>        {<a name="line.2168"></a>
+<span class="sourceLineNo">2169</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.2169"></a>
+<span class="sourceLineNo">2170</span>        }<a name="line.2170"></a>
+<span class="sourceLineNo">2171</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.2171"></a>
+<span class="sourceLineNo">2172</span>        sequence[index] = Actions.run(new Runnable() {<a name="line.2172"></a>
+<span class="sourceLineNo">2173</span>            @Override<a name="line.2173"></a>
+<span class="sourceLineNo">2174</span>            public void run() {<a name="line.2174"></a>
+<span class="sourceLineNo">2175</span>                --animationCount;<a name="line.2175"></a>
+<span class="sourceLineNo">2176</span>                glyphs.remove(glyph);<a name="line.2176"></a>
+<span class="sourceLineNo">2177</span>            }<a name="line.2177"></a>
+<span class="sourceLineNo">2178</span>        });<a name="line.2178"></a>
+<span class="sourceLineNo">2179</span>        glyph.addAction(Actions.sequence(sequence));<a name="line.2179"></a>
+<span class="sourceLineNo">2180</span>    }<a name="line.2180"></a>
+<span class="sourceLineNo">2181</span><a name="line.2181"></a>
+<span class="sourceLineNo">2182</span>    /**<a name="line.2182"></a>
+<span class="sourceLineNo">2183</span>     * Create a new Glyph at (startX, startY) in world coordinates (often pixels on the screen) using the char shown<a name="line.2183"></a>
+<span class="sourceLineNo">2184</span>     * with the given startColor, and immediately starts changing color to endColor, changing position so it ends at the<a name="line.2184"></a>
+<span class="sourceLineNo">2185</span>     * world coordinates (endX, endY), taking duration seconds to complete before removing the Glyph.<a name="line.2185"></a>
+<span class="sourceLineNo">2186</span>     * &lt;br&gt;<a name="line.2186"></a>
+<span class="sourceLineNo">2187</span>     * Unlike {@link SquidPanel#summon(float, int, int, int, int, char, Color, Color, boolean, float, float, float)},<a name="line.2187"></a>
+<span class="sourceLineNo">2188</span>     * this does not rotate the Glyph it produces.<a name="line.2188"></a>
+<span class="sourceLineNo">2189</span>     * @param startX the starting x position in world coordinates<a name="line.2189"></a>
+<span class="sourceLineNo">2190</span>     * @param startY the starting y position in world coordinates<a name="line.2190"></a>
+<span class="sourceLineNo">2191</span>     * @param endX the ending x position in world coordinates<a name="line.2191"></a>
+<span class="sourceLineNo">2192</span>     * @param endY the ending y position in world coordinates<a name="line.2192"></a>
+<span class="sourceLineNo">2193</span>     * @param shown the char to show (the same char throughout the effect)<a name="line.2193"></a>
+<span class="sourceLineNo">2194</span>     * @param startColor the starting Color<a name="line.2194"></a>
+<span class="sourceLineNo">2195</span>     * @param endColor the Color to transition to<a name="line.2195"></a>
+<span class="sourceLineNo">2196</span>     * @param duration the duration in seconds for the effect<a name="line.2196"></a>
+<span class="sourceLineNo">2197</span>     */<a name="line.2197"></a>
+<span class="sourceLineNo">2198</span>    public void summon(float startX, float startY, float endX, float endY, char shown,<a name="line.2198"></a>
+<span class="sourceLineNo">2199</span>                       final float startColor, final float endColor, float duration)<a name="line.2199"></a>
+<span class="sourceLineNo">2200</span>    {<a name="line.2200"></a>
+<span class="sourceLineNo">2201</span>        summon(0f, startX, startY, endX, endY, shown, startColor, endColor, duration, null);<a name="line.2201"></a>
+<span class="sourceLineNo">2202</span>    }<a name="line.2202"></a>
+<span class="sourceLineNo">2203</span>    /**<a name="line.2203"></a>
+<span class="sourceLineNo">2204</span>     * Create a new Glyph at (startX, startY) in world coordinates (often pixels on the screen) using the char shown<a name="line.2204"></a>
+<span class="sourceLineNo">2205</span>     * with the given startColor, and after delay seconds, starts changing color to endColor, changing position so it<a name="line.2205"></a>
+<span class="sourceLineNo">2206</span>     * ends at the world coordinates (endX, endY), taking duration seconds to complete before running postRunnable (if<a name="line.2206"></a>
+<span class="sourceLineNo">2207</span>     * it is non-null) and finally removing the Glyph.<a name="line.2207"></a>
+<span class="sourceLineNo">2208</span>     * &lt;br&gt;<a name="line.2208"></a>
+<span class="sourceLineNo">2209</span>     * Unlike {@link SquidPanel#summon(float, int, int, int, int, char, Color, Color, boolean, float, float, float)},<a name="line.2209"></a>
+<span class="sourceLineNo">2210</span>     * this does not rotate the Glyph it produces.<a name="line.2210"></a>
+<span class="sourceLineNo">2211</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2211"></a>
+<span class="sourceLineNo">2212</span>     * @param startX the starting x position in world coordinates<a name="line.2212"></a>
+<span class="sourceLineNo">2213</span>     * @param startY the starting y position in world coordinates<a name="line.2213"></a>
+<span class="sourceLineNo">2214</span>     * @param endX the ending x position in world coordinates<a name="line.2214"></a>
+<span class="sourceLineNo">2215</span>     * @param endY the ending y position in world coordinates<a name="line.2215"></a>
+<span class="sourceLineNo">2216</span>     * @param shown the char to show (the same char throughout the effect)<a name="line.2216"></a>
+<span class="sourceLineNo">2217</span>     * @param startColor the starting Color<a name="line.2217"></a>
+<span class="sourceLineNo">2218</span>     * @param endColor the Color to transition to<a name="line.2218"></a>
+<span class="sourceLineNo">2219</span>     * @param duration the duration in seconds for the effect<a name="line.2219"></a>
+<span class="sourceLineNo">2220</span>     * @param postRunnable a Runnable to execute after the summon completes; may be null to do nothing.<a name="line.2220"></a>
+<span class="sourceLineNo">2221</span>     */<a name="line.2221"></a>
+<span class="sourceLineNo">2222</span>    public void summon(float delay, float startX, float startY, float endX, float endY, char shown,<a name="line.2222"></a>
+<span class="sourceLineNo">2223</span>                       final float startColor, final float endColor, float duration,<a name="line.2223"></a>
+<span class="sourceLineNo">2224</span>            /* @Nullable */ Runnable postRunnable)<a name="line.2224"></a>
+<span class="sourceLineNo">2225</span>    {<a name="line.2225"></a>
+<span class="sourceLineNo">2226</span>        duration = Math.max(0.015f, duration);<a name="line.2226"></a>
+<span class="sourceLineNo">2227</span>        animationCount++;<a name="line.2227"></a>
+<span class="sourceLineNo">2228</span>        final int nbActions = 2 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.2228"></a>
+<span class="sourceLineNo">2229</span>        int index = 0;<a name="line.2229"></a>
+<span class="sourceLineNo">2230</span>        final Action[] sequence = new Action[nbActions];<a name="line.2230"></a>
+<span class="sourceLineNo">2231</span>        if (0 &lt; delay)<a name="line.2231"></a>
+<span class="sourceLineNo">2232</span>            sequence[index++] = Actions.delay(delay);<a name="line.2232"></a>
+<span class="sourceLineNo">2233</span>        final TextCellFactory.Glyph glyph = glyph(shown, startColor, gridX(startX), gridY(startY));<a name="line.2233"></a>
+<span class="sourceLineNo">2234</span>        sequence[index++] = Actions.parallel(<a name="line.2234"></a>
+<span class="sourceLineNo">2235</span>                new TemporalAction(duration) {<a name="line.2235"></a>
+<span class="sourceLineNo">2236</span>                    @Override<a name="line.2236"></a>
+<span class="sourceLineNo">2237</span>                    protected void update(float percent) {<a name="line.2237"></a>
+<span class="sourceLineNo">2238</span>                        glyph.setPackedColor(SColor.lerpFloatColors(startColor, endColor, percent * 0.95f));<a name="line.2238"></a>
+<span class="sourceLineNo">2239</span>                    }<a name="line.2239"></a>
+<span class="sourceLineNo">2240</span>                },<a name="line.2240"></a>
+<span class="sourceLineNo">2241</span>                Actions.moveTo(endX, endY, duration));<a name="line.2241"></a>
+<span class="sourceLineNo">2242</span>        if(postRunnable != null)<a name="line.2242"></a>
+<span class="sourceLineNo">2243</span>        {<a name="line.2243"></a>
+<span class="sourceLineNo">2244</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.2244"></a>
+<span class="sourceLineNo">2245</span>        }<a name="line.2245"></a>
+<span class="sourceLineNo">2246</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.2246"></a>
+<span class="sourceLineNo">2247</span>        sequence[index] = Actions.run(new Runnable() {<a name="line.2247"></a>
+<span class="sourceLineNo">2248</span>            @Override<a name="line.2248"></a>
+<span class="sourceLineNo">2249</span>            public void run() {<a name="line.2249"></a>
+<span class="sourceLineNo">2250</span>                --animationCount;<a name="line.2250"></a>
+<span class="sourceLineNo">2251</span>                glyphs.remove(glyph);<a name="line.2251"></a>
+<span class="sourceLineNo">2252</span>            }<a name="line.2252"></a>
+<span class="sourceLineNo">2253</span>        });<a name="line.2253"></a>
+<span class="sourceLineNo">2254</span>        glyph.addAction(Actions.sequence(sequence));<a name="line.2254"></a>
+<span class="sourceLineNo">2255</span>    }<a name="line.2255"></a>
+<span class="sourceLineNo">2256</span><a name="line.2256"></a>
+<span class="sourceLineNo">2257</span><a name="line.2257"></a>
+<span class="sourceLineNo">2258</span>    /**<a name="line.2258"></a>
+<span class="sourceLineNo">2259</span>     * Convenience method to produce an explosion, splash, or burst effect. Calls<a name="line.2259"></a>
+<span class="sourceLineNo">2260</span>     * {@link #summon(int, int, int, int, char, float, float, float)} repeatedly with<a name="line.2260"></a>
+<span class="sourceLineNo">2261</span>     * different parameters. As with summon(), this creates temporary Glyphs that change color and position.<a name="line.2261"></a>
+<span class="sourceLineNo">2262</span>     * The distance is how many cells away to move the created Actors away from (x,y). The measurement determines<a name="line.2262"></a>
+<span class="sourceLineNo">2263</span>     * whether this produces Glyphs in 4 (cardinal) directions for DIAMOND or OCTAHEDRON, or 8 (cardinal and diagonal)<a name="line.2263"></a>
+<span class="sourceLineNo">2264</span>     * directions for any other enum value for Radius; CIRCLE and SPHERE will position the 8 glyphs in a circle, while<a name="line.2264"></a>
+<span class="sourceLineNo">2265</span>     * SQUARE and CUBE will position their 8 glyphs in a square.<a name="line.2265"></a>
+<span class="sourceLineNo">2266</span>     * &lt;br&gt;<a name="line.2266"></a>
+<span class="sourceLineNo">2267</span>     * Unlike {@link SquidPanel#burst(float, int, int, int, boolean, char, Color, Color, boolean, float, float)}, this<a name="line.2267"></a>
+<span class="sourceLineNo">2268</span>     * does not rotate the individual Glyphs it produces.<a name="line.2268"></a>
+<span class="sourceLineNo">2269</span>     * @param x the starting, center, x-position in cells to create all Actors at<a name="line.2269"></a>
+<span class="sourceLineNo">2270</span>     * @param y the starting, center, y-position in cells to create all Actors at<a name="line.2270"></a>
+<span class="sourceLineNo">2271</span>     * @param distance how far away, in cells, to move each actor from the center (Chebyshev distance, forming a square)<a name="line.2271"></a>
+<span class="sourceLineNo">2272</span>     * @param measurement a Radius enum that determines if 4 (DIAMOND, OCTAHEDRON) or 8 (anything else) Glyphs are<a name="line.2272"></a>
+<span class="sourceLineNo">2273</span>     *                    created, and the shape they will take<a name="line.2273"></a>
+<span class="sourceLineNo">2274</span>     * @param shown the char to use for Glyphs; should definitely be visible<a name="line.2274"></a>
+<span class="sourceLineNo">2275</span>     * @param startColor the encoded color to start the effect with<a name="line.2275"></a>
+<span class="sourceLineNo">2276</span>     * @param endColor the encoded color to end the effect on<a name="line.2276"></a>
+<span class="sourceLineNo">2277</span>     * @param duration how long, in seconds, the effect should last<a name="line.2277"></a>
+<span class="sourceLineNo">2278</span>     */<a name="line.2278"></a>
+<span class="sourceLineNo">2279</span>    public void burst(int x, int y, int distance, Radius measurement, char shown,<a name="line.2279"></a>
+<span class="sourceLineNo">2280</span>                      float startColor, float endColor, float duration) {<a name="line.2280"></a>
+<span class="sourceLineNo">2281</span>        burst(0f, x, y, distance, measurement, shown, startColor, endColor, duration, null);<a name="line.2281"></a>
+<span class="sourceLineNo">2282</span>    }<a name="line.2282"></a>
+<span class="sourceLineNo">2283</span>    /**<a name="line.2283"></a>
+<span class="sourceLineNo">2284</span>     * Convenience method to produce an explosion, splash, or burst effect. Calls<a name="line.2284"></a>
+<span class="sourceLineNo">2285</span>     * {@link #summon(float, int, int, int, int, char, float, float, float, Runnable)} repeatedly with<a name="line.2285"></a>
+<span class="sourceLineNo">2286</span>     * different parameters. As with summon(), this creates temporary Glyphs that change color and position.<a name="line.2286"></a>
+<span class="sourceLineNo">2287</span>     * The distance is how many cells away to move the created Actors away from (x,y). The measurement determines<a name="line.2287"></a>
+<span class="sourceLineNo">2288</span>     * whether this produces Glyphs in 4 (cardinal) directions for DIAMOND or OCTAHEDRON, or 8 (cardinal and diagonal)<a name="line.2288"></a>
+<span class="sourceLineNo">2289</span>     * directions for any other enum value for Radius; CIRCLE and SPHERE will position the 8 glyphs in a circle, while<a name="line.2289"></a>
+<span class="sourceLineNo">2290</span>     * SQUARE and CUBE will position their 8 glyphs in a square. This takes a delay in seconds that can be used to make<a name="line.2290"></a>
+<span class="sourceLineNo">2291</span>     * the effect wait to start for some amount of time, and a Runnable that will be run once after the burst's full<a name="line.2291"></a>
+<span class="sourceLineNo">2292</span>     * duration completes (not once per summoned Glyph).<a name="line.2292"></a>
+<span class="sourceLineNo">2293</span>     * &lt;br&gt;<a name="line.2293"></a>
+<span class="sourceLineNo">2294</span>     * Unlike {@link SquidPanel#burst(float, int, int, int, boolean, char, Color, Color, boolean, float, float)}, this<a name="line.2294"></a>
+<span class="sourceLineNo">2295</span>     * does not rotate the individual Glyphs it produces.<a name="line.2295"></a>
+<span class="sourceLineNo">2296</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2296"></a>
+<span class="sourceLineNo">2297</span>     * @param x the starting, center, x-position in cells to create all Actors at<a name="line.2297"></a>
+<span class="sourceLineNo">2298</span>     * @param y the starting, center, y-position in cells to create all Actors at<a name="line.2298"></a>
+<span class="sourceLineNo">2299</span>     * @param distance how far away, in cells, to move each actor from the center (Chebyshev distance, forming a square)<a name="line.2299"></a>
+<span class="sourceLineNo">2300</span>     * @param measurement a Radius enum that determines if 4 (DIAMOND, OCTAHEDRON) or 8 (anything else) Glyphs are<a name="line.2300"></a>
+<span class="sourceLineNo">2301</span>     *                    created, and the shape they will take<a name="line.2301"></a>
+<span class="sourceLineNo">2302</span>     * @param shown the char to use for Glyphs; should definitely be visible<a name="line.2302"></a>
+<span class="sourceLineNo">2303</span>     * @param startColor the encoded color to start the effect with<a name="line.2303"></a>
+<span class="sourceLineNo">2304</span>     * @param endColor the encoded color to end the effect on<a name="line.2304"></a>
+<span class="sourceLineNo">2305</span>     * @param duration how long, in seconds, the effect should last<a name="line.2305"></a>
+<span class="sourceLineNo">2306</span>     * @param postRunnable a Runnable to execute after the burst completes; may be null to do nothing,<a name="line.2306"></a>
+<span class="sourceLineNo">2307</span>     *                     and will only be run once for the whole burst effect.<a name="line.2307"></a>
+<span class="sourceLineNo">2308</span>     */<a name="line.2308"></a>
+<span class="sourceLineNo">2309</span>    public void burst(float delay, int x, int y, int distance, Radius measurement, char shown,<a name="line.2309"></a>
+<span class="sourceLineNo">2310</span>                      float startColor, float endColor, float duration, /* @Nullable */ Runnable postRunnable)<a name="line.2310"></a>
+<span class="sourceLineNo">2311</span>    {<a name="line.2311"></a>
+<span class="sourceLineNo">2312</span>        Direction d;<a name="line.2312"></a>
+<span class="sourceLineNo">2313</span>        switch (measurement)<a name="line.2313"></a>
+<span class="sourceLineNo">2314</span>        {<a name="line.2314"></a>
+<span class="sourceLineNo">2315</span>            case SQUARE:<a name="line.2315"></a>
+<span class="sourceLineNo">2316</span>            case CUBE:<a name="line.2316"></a>
+<span class="sourceLineNo">2317</span>                for (int i = 0; i &lt; 7; i++) {<a name="line.2317"></a>
+<span class="sourceLineNo">2318</span>                    d = Direction.CLOCKWISE[i];<a name="line.2318"></a>
+<span class="sourceLineNo">2319</span>                    summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2319"></a>
+<span class="sourceLineNo">2320</span>                            shown, startColor, endColor, duration, null);<a name="line.2320"></a>
+<span class="sourceLineNo">2321</span>                }<a name="line.2321"></a>
+<span class="sourceLineNo">2322</span>                d = Direction.CLOCKWISE[7];<a name="line.2322"></a>
+<span class="sourceLineNo">2323</span>                summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2323"></a>
+<span class="sourceLineNo">2324</span>                        shown, startColor, endColor, duration, postRunnable);<a name="line.2324"></a>
+<span class="sourceLineNo">2325</span>                break;<a name="line.2325"></a>
+<span class="sourceLineNo">2326</span>            case CIRCLE:<a name="line.2326"></a>
+<span class="sourceLineNo">2327</span>            case SPHERE:<a name="line.2327"></a>
+<span class="sourceLineNo">2328</span>                float xf = worldX(x), yf = worldY(y);<a name="line.2328"></a>
+<span class="sourceLineNo">2329</span>                for (int i = 0; i &lt; 4; i++) {<a name="line.2329"></a>
+<span class="sourceLineNo">2330</span>                    d = Direction.DIAGONALS[i];<a name="line.2330"></a>
+<span class="sourceLineNo">2331</span>                    summon(delay, xf, yf, xf - d.deltaX * font.actualCellWidth * distance * 0.7071067811865475f, // the constant is 1.0 / Math.sqrt(2.0)<a name="line.2331"></a>
+<span class="sourceLineNo">2332</span>                            yf + d.deltaY * font.actualCellHeight * distance * 0.7071067811865475f,<a name="line.2332"></a>
+<span class="sourceLineNo">2333</span>                            shown, startColor, endColor, duration, null);<a name="line.2333"></a>
+<span class="sourceLineNo">2334</span>                }<a name="line.2334"></a>
+<span class="sourceLineNo">2335</span>                // break intentionally absent<a name="line.2335"></a>
+<span class="sourceLineNo">2336</span>            default:<a name="line.2336"></a>
+<span class="sourceLineNo">2337</span>                for (int i = 0; i &lt; 3; i++) {<a name="line.2337"></a>
+<span class="sourceLineNo">2338</span>                    d = Direction.CARDINALS_CLOCKWISE[i];<a name="line.2338"></a>
+<span class="sourceLineNo">2339</span>                    summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2339"></a>
+<span class="sourceLineNo">2340</span>                            shown, startColor, endColor, duration, null);<a name="line.2340"></a>
+<span class="sourceLineNo">2341</span>                }<a name="line.2341"></a>
+<span class="sourceLineNo">2342</span>                d = Direction.CARDINALS_CLOCKWISE[3];<a name="line.2342"></a>
+<span class="sourceLineNo">2343</span>                summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2343"></a>
+<span class="sourceLineNo">2344</span>                        shown, startColor, endColor, duration, postRunnable);<a name="line.2344"></a>
+<span class="sourceLineNo">2345</span>                break;<a name="line.2345"></a>
+<span class="sourceLineNo">2346</span>        }<a name="line.2346"></a>
+<span class="sourceLineNo">2347</span>    }<a name="line.2347"></a>
+<span class="sourceLineNo">2348</span>    /**<a name="line.2348"></a>
+<span class="sourceLineNo">2349</span>     * Convenience method to produce an explosion, splash, or burst effect. Calls<a name="line.2349"></a>
+<span class="sourceLineNo">2350</span>     * {@link #summon(int, int, int, int, char, float, float, float)} repeatedly with<a name="line.2350"></a>
+<span class="sourceLineNo">2351</span>     * different parameters. As with summon(), this creates temporary Glyphs that change color and position.<a name="line.2351"></a>
+<span class="sourceLineNo">2352</span>     * The distance is how many cells away to move the created Actors away from (x,y). The measurement determines<a name="line.2352"></a>
+<span class="sourceLineNo">2353</span>     * whether this produces Glyphs in 4 (cardinal) directions for DIAMOND or OCTAHEDRON, or 8 (cardinal and diagonal)<a name="line.2353"></a>
+<span class="sourceLineNo">2354</span>     * directions for any other enum value for Radius; CIRCLE and SPHERE will position the 8 glyphs in a circle, while<a name="line.2354"></a>
+<span class="sourceLineNo">2355</span>     * SQUARE and CUBE will position their 8 glyphs in a square.<a name="line.2355"></a>
+<span class="sourceLineNo">2356</span>     * &lt;br&gt;<a name="line.2356"></a>
+<span class="sourceLineNo">2357</span>     * Unlike {@link SquidPanel#burst(float, int, int, int, boolean, char, Color, Color, boolean, float, float)}, this<a name="line.2357"></a>
+<span class="sourceLineNo">2358</span>     * does not rotate the individual Glyphs it produces.<a name="line.2358"></a>
+<span class="sourceLineNo">2359</span>     * @param x the starting, center, x-position in cells to create all Actors at<a name="line.2359"></a>
+<span class="sourceLineNo">2360</span>     * @param y the starting, center, y-position in cells to create all Actors at<a name="line.2360"></a>
+<span class="sourceLineNo">2361</span>     * @param distance how far away, in cells, to move each actor from the center (Chebyshev distance, forming a square)<a name="line.2361"></a>
+<span class="sourceLineNo">2362</span>     * @param measurement a Radius enum that determines if 4 (DIAMOND, OCTAHEDRON) or 8 (anything else) Glyphs are<a name="line.2362"></a>
+<span class="sourceLineNo">2363</span>     *                    created, and the shape they will take<a name="line.2363"></a>
+<span class="sourceLineNo">2364</span>     * @param choices a String or other CharSequence containing the chars this can randomly choose<a name="line.2364"></a>
+<span class="sourceLineNo">2365</span>     * @param startColor the encoded color to start the effect with<a name="line.2365"></a>
+<span class="sourceLineNo">2366</span>     * @param endColor the encoded color to end the effect on<a name="line.2366"></a>
+<span class="sourceLineNo">2367</span>     * @param duration how long, in seconds, the effect should last<a name="line.2367"></a>
+<span class="sourceLineNo">2368</span>     */<a name="line.2368"></a>
+<span class="sourceLineNo">2369</span>    public void burst(int x, int y, int distance, Radius measurement, CharSequence choices,<a name="line.2369"></a>
+<span class="sourceLineNo">2370</span>                      float startColor, float endColor, float duration) {<a name="line.2370"></a>
+<span class="sourceLineNo">2371</span>        burst(0f, x, y, distance, measurement, choices, startColor, endColor, duration, null);<a name="line.2371"></a>
+<span class="sourceLineNo">2372</span>    }<a name="line.2372"></a>
+<span class="sourceLineNo">2373</span>    /**<a name="line.2373"></a>
+<span class="sourceLineNo">2374</span>     * Convenience method to produce an explosion, splash, or burst effect. Calls<a name="line.2374"></a>
+<span class="sourceLineNo">2375</span>     * {@link #summon(int, int, int, int, char, float, float, float)} repeatedly with<a name="line.2375"></a>
+<span class="sourceLineNo">2376</span>     * different parameters. As with summon(), this creates temporary Glyphs that change color and position.<a name="line.2376"></a>
+<span class="sourceLineNo">2377</span>     * The distance is how many cells away to move the created Actors away from (x,y). The measurement determines<a name="line.2377"></a>
+<span class="sourceLineNo">2378</span>     * whether this produces Glyphs in 4 (cardinal) directions for DIAMOND or OCTAHEDRON, or 8 (cardinal and diagonal)<a name="line.2378"></a>
+<span class="sourceLineNo">2379</span>     * directions for any other enum value for Radius; CIRCLE and SPHERE will position the 8 glyphs in a circle, while<a name="line.2379"></a>
+<span class="sourceLineNo">2380</span>     * SQUARE and CUBE will position their 8 glyphs in a square. This takes a delay in seconds that can be used to make<a name="line.2380"></a>
+<span class="sourceLineNo">2381</span>     * the effect wait to start for some amount of time, and a Runnable that will be run once after the burst's full<a name="line.2381"></a>
+<span class="sourceLineNo">2382</span>     * duration completes (not once per summoned Glyph).<a name="line.2382"></a>
+<span class="sourceLineNo">2383</span>     * &lt;br&gt;<a name="line.2383"></a>
+<span class="sourceLineNo">2384</span>     * Unlike {@link SquidPanel#burst(float, int, int, int, boolean, char, Color, Color, boolean, float, float)}, this<a name="line.2384"></a>
+<span class="sourceLineNo">2385</span>     * does not rotate the individual Glyphs it produces.<a name="line.2385"></a>
+<span class="sourceLineNo">2386</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2386"></a>
+<span class="sourceLineNo">2387</span>     * @param x the starting, center, x-position in cells to create all Actors at<a name="line.2387"></a>
+<span class="sourceLineNo">2388</span>     * @param y the starting, center, y-position in cells to create all Actors at<a name="line.2388"></a>
+<span class="sourceLineNo">2389</span>     * @param distance how far away, in cells, to move each actor from the center (Chebyshev distance, forming a square)<a name="line.2389"></a>
+<span class="sourceLineNo">2390</span>     * @param measurement a Radius enum that determines if 4 (DIAMOND, OCTAHEDRON) or 8 (anything else) Glyphs are<a name="line.2390"></a>
+<span class="sourceLineNo">2391</span>     *                    created, and the shape they will take<a name="line.2391"></a>
+<span class="sourceLineNo">2392</span>     * @param choices a String or other CharSequence containing the chars this can randomly choose<a name="line.2392"></a>
+<span class="sourceLineNo">2393</span>     * @param startColor the encoded color to start the effect with<a name="line.2393"></a>
+<span class="sourceLineNo">2394</span>     * @param endColor the encoded color to end the effect on<a name="line.2394"></a>
+<span class="sourceLineNo">2395</span>     * @param duration how long, in seconds, the effect should last<a name="line.2395"></a>
+<span class="sourceLineNo">2396</span>     * @param postRunnable a Runnable to execute after the burst completes; may be null to do nothing,<a name="line.2396"></a>
+<span class="sourceLineNo">2397</span>     *                     and will only be run once for the whole burst effect.<a name="line.2397"></a>
+<span class="sourceLineNo">2398</span>     */<a name="line.2398"></a>
+<span class="sourceLineNo">2399</span>    public void burst(float delay, int x, int y, int distance, Radius measurement, CharSequence choices,<a name="line.2399"></a>
+<span class="sourceLineNo">2400</span>                      float startColor, float endColor, float duration, /* @Nullable */ Runnable postRunnable)<a name="line.2400"></a>
+<span class="sourceLineNo">2401</span>    {<a name="line.2401"></a>
+<span class="sourceLineNo">2402</span>        Direction d;<a name="line.2402"></a>
+<span class="sourceLineNo">2403</span>        final int len = choices.length();<a name="line.2403"></a>
+<span class="sourceLineNo">2404</span>        final StatefulRNG rng = DefaultResources.getGuiRandom();<a name="line.2404"></a>
+<span class="sourceLineNo">2405</span>        switch (measurement)<a name="line.2405"></a>
+<span class="sourceLineNo">2406</span>        {<a name="line.2406"></a>
+<span class="sourceLineNo">2407</span>            case SQUARE:<a name="line.2407"></a>
+<span class="sourceLineNo">2408</span>            case CUBE:<a name="line.2408"></a>
+<span class="sourceLineNo">2409</span>                for (int i = 0; i &lt; 7; i++) {<a name="line.2409"></a>
+<span class="sourceLineNo">2410</span>                    d = Direction.CLOCKWISE[i];<a name="line.2410"></a>
+<span class="sourceLineNo">2411</span>                    summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2411"></a>
+<span class="sourceLineNo">2412</span>                            choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, null);<a name="line.2412"></a>
+<span class="sourceLineNo">2413</span>                }<a name="line.2413"></a>
+<span class="sourceLineNo">2414</span>                d = Direction.CLOCKWISE[7];<a name="line.2414"></a>
+<span class="sourceLineNo">2415</span>                summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2415"></a>
+<span class="sourceLineNo">2416</span>                        choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, postRunnable);<a name="line.2416"></a>
+<span class="sourceLineNo">2417</span><a name="line.2417"></a>
+<span class="sourceLineNo">2418</span>                break;<a name="line.2418"></a>
+<span class="sourceLineNo">2419</span>            case CIRCLE:<a name="line.2419"></a>
+<span class="sourceLineNo">2420</span>            case SPHERE:<a name="line.2420"></a>
+<span class="sourceLineNo">2421</span>                float xf = worldX(x), yf = worldY(y);<a name="line.2421"></a>
+<span class="sourceLineNo">2422</span>                for (int i = 0; i &lt; 4; i++) {<a name="line.2422"></a>
+<span class="sourceLineNo">2423</span>                    d = Direction.DIAGONALS[i];<a name="line.2423"></a>
+<span class="sourceLineNo">2424</span>                    summon(delay, xf, yf, xf - d.deltaX * font.actualCellWidth * distance * 0.7071067811865475f,<a name="line.2424"></a>
+<span class="sourceLineNo">2425</span>                            yf + d.deltaY * font.actualCellHeight * distance * 0.7071067811865475f,<a name="line.2425"></a>
+<span class="sourceLineNo">2426</span>                            choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, null);<a name="line.2426"></a>
+<span class="sourceLineNo">2427</span>                }<a name="line.2427"></a>
+<span class="sourceLineNo">2428</span>                // break intentionally absent<a name="line.2428"></a>
+<span class="sourceLineNo">2429</span>            default:<a name="line.2429"></a>
+<span class="sourceLineNo">2430</span>                for (int i = 0; i &lt; 3; i++) {<a name="line.2430"></a>
+<span class="sourceLineNo">2431</span>                    d = Direction.CARDINALS_CLOCKWISE[i];<a name="line.2431"></a>
+<span class="sourceLineNo">2432</span>                    summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2432"></a>
+<span class="sourceLineNo">2433</span>                            choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, null);<a name="line.2433"></a>
+<span class="sourceLineNo">2434</span>                }<a name="line.2434"></a>
+<span class="sourceLineNo">2435</span>                d = Direction.CARDINALS_CLOCKWISE[3];<a name="line.2435"></a>
+<span class="sourceLineNo">2436</span>                summon(delay, x, y, x - d.deltaX * distance, y + d.deltaY * distance,<a name="line.2436"></a>
+<span class="sourceLineNo">2437</span>                        choices.charAt(rng.nextIntHasty(len)), startColor, endColor, duration, postRunnable);<a name="line.2437"></a>
+<span class="sourceLineNo">2438</span><a name="line.2438"></a>
+<span class="sourceLineNo">2439</span>                break;<a name="line.2439"></a>
+<span class="sourceLineNo">2440</span>        }<a name="line.2440"></a>
+<span class="sourceLineNo">2441</span>    }<a name="line.2441"></a>
+<span class="sourceLineNo">2442</span><a name="line.2442"></a>
+<span class="sourceLineNo">2443</span>    /**<a name="line.2443"></a>
+<span class="sourceLineNo">2444</span>     * Changes the background at position x,y so it becomes the given color, taking duration seconds. The<a name="line.2444"></a>
+<span class="sourceLineNo">2445</span>     * background will keep the changed color after the effect, unless drawn over.<a name="line.2445"></a>
+<span class="sourceLineNo">2446</span>     * &lt;br&gt;<a name="line.2446"></a>
+<span class="sourceLineNo">2447</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.2447"></a>
+<span class="sourceLineNo">2448</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.2448"></a>
+<span class="sourceLineNo">2449</span>     * draw the contents without the recolor this applies, then apply the recolor when you call act(), then quickly<a name="line.2449"></a>
+<span class="sourceLineNo">2450</span>     * overwrite the recolor in the next frame. That visually appears as nothing happening other than a delay.<a name="line.2450"></a>
+<span class="sourceLineNo">2451</span>     * @param x the x-coordinate of the cell to recolor<a name="line.2451"></a>
+<span class="sourceLineNo">2452</span>     * @param y the y-coordinate of the cell to recolor<a name="line.2452"></a>
+<span class="sourceLineNo">2453</span>     * @param color what to gradually change the cell's color to, as a Color object<a name="line.2453"></a>
+<span class="sourceLineNo">2454</span>     * @param duration how long the total transition should take in seconds<a name="line.2454"></a>
+<span class="sourceLineNo">2455</span>     */<a name="line.2455"></a>
+<span class="sourceLineNo">2456</span>    public void recolor(final int x, final int y, final Color color, float duration) {<a name="line.2456"></a>
+<span class="sourceLineNo">2457</span>        recolor(0f, x, y, color.toFloatBits(), duration, null);<a name="line.2457"></a>
+<span class="sourceLineNo">2458</span>    }<a name="line.2458"></a>
+<span class="sourceLineNo">2459</span><a name="line.2459"></a>
+<span class="sourceLineNo">2460</span>    /**<a name="line.2460"></a>
+<span class="sourceLineNo">2461</span>     * Changes the background at position x,y so it becomes the given encodedColor, taking duration seconds. The<a name="line.2461"></a>
+<span class="sourceLineNo">2462</span>     * background will keep the changed color after the effect, unless drawn over.<a name="line.2462"></a>
+<span class="sourceLineNo">2463</span>     * &lt;br&gt;<a name="line.2463"></a>
+<span class="sourceLineNo">2464</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.2464"></a>
+<span class="sourceLineNo">2465</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.2465"></a>
+<span class="sourceLineNo">2466</span>     * draw the contents without the recolor this applies, then apply the recolor when you call act(), then quickly<a name="line.2466"></a>
+<span class="sourceLineNo">2467</span>     * overwrite the recolor in the next frame. That visually appears as nothing happening other than a delay.<a name="line.2467"></a>
+<span class="sourceLineNo">2468</span>     * @param x the x-coordinate of the cell to recolor<a name="line.2468"></a>
+<span class="sourceLineNo">2469</span>     * @param y the y-coordinate of the cell to recolor<a name="line.2469"></a>
+<span class="sourceLineNo">2470</span>     * @param encodedColor what to gradually change the cell's color to, as a packed float<a name="line.2470"></a>
+<span class="sourceLineNo">2471</span>     * @param duration how long the total transition should take in seconds<a name="line.2471"></a>
+<span class="sourceLineNo">2472</span>     */<a name="line.2472"></a>
+<span class="sourceLineNo">2473</span>    public void recolor(final int x, final int y, final float encodedColor, float duration) {<a name="line.2473"></a>
+<span class="sourceLineNo">2474</span>        recolor(0f, x, y, encodedColor, duration, null);<a name="line.2474"></a>
+<span class="sourceLineNo">2475</span>    }<a name="line.2475"></a>
+<span class="sourceLineNo">2476</span><a name="line.2476"></a>
+<span class="sourceLineNo">2477</span>    /**<a name="line.2477"></a>
+<span class="sourceLineNo">2478</span>     * Changes the background at position x,y so it becomes the given encodedColor, waiting for {@code delay} (in<a name="line.2478"></a>
+<span class="sourceLineNo">2479</span>     * seconds) before performing it, taking duration seconds. The background will keep the changed color after<a name="line.2479"></a>
+<span class="sourceLineNo">2480</span>     * the effect, unless drawn over.<a name="line.2480"></a>
+<span class="sourceLineNo">2481</span>     * &lt;br&gt;<a name="line.2481"></a>
+<span class="sourceLineNo">2482</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.2482"></a>
+<span class="sourceLineNo">2483</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.2483"></a>
+<span class="sourceLineNo">2484</span>     * draw the contents without the recolor this applies, then apply the recolor when you call act(), then quickly<a name="line.2484"></a>
+<span class="sourceLineNo">2485</span>     * overwrite the recolor in the next frame. That visually appears as nothing happening other than a delay.<a name="line.2485"></a>
+<span class="sourceLineNo">2486</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2486"></a>
+<span class="sourceLineNo">2487</span>     * @param x the x-coordinate of the cell to recolor<a name="line.2487"></a>
+<span class="sourceLineNo">2488</span>     * @param y the y-coordinate of the cell to recolor<a name="line.2488"></a>
+<span class="sourceLineNo">2489</span>     * @param encodedColor what to gradually change the cell's color to, as a packed float<a name="line.2489"></a>
+<span class="sourceLineNo">2490</span>     * @param duration how long the total transition should take in seconds<a name="line.2490"></a>
+<span class="sourceLineNo">2491</span>     */<a name="line.2491"></a>
+<span class="sourceLineNo">2492</span>    public void recolor(final float delay, final int x, final int y, final float encodedColor, float duration) {<a name="line.2492"></a>
+<span class="sourceLineNo">2493</span>        recolor(delay, x, y, encodedColor, duration, null);<a name="line.2493"></a>
+<span class="sourceLineNo">2494</span>    }<a name="line.2494"></a>
+<span class="sourceLineNo">2495</span>    /**<a name="line.2495"></a>
+<span class="sourceLineNo">2496</span>     * Changes the background at position x,y so it becomes the given encodedColor, waiting for {@code delay} (in<a name="line.2496"></a>
+<span class="sourceLineNo">2497</span>     * seconds) before performing it, taking duration seconds. The background will keep the changed color after the<a name="line.2497"></a>
+<span class="sourceLineNo">2498</span>     * effect, unless drawn over. Additionally, enqueue {@code postRunnable} for running after the created action ends.<a name="line.2498"></a>
+<span class="sourceLineNo">2499</span>     * &lt;br&gt;<a name="line.2499"></a>
+<span class="sourceLineNo">2500</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.2500"></a>
+<span class="sourceLineNo">2501</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.2501"></a>
+<span class="sourceLineNo">2502</span>     * draw the contents without the recolor this applies, then apply the recolor when you call act(), then quickly<a name="line.2502"></a>
+<span class="sourceLineNo">2503</span>     * overwrite the recolor in the next frame. That visually appears as nothing happening other than a delay.<a name="line.2503"></a>
+<span class="sourceLineNo">2504</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2504"></a>
+<span class="sourceLineNo">2505</span>     * @param x the x-coordinate of the cell to recolor<a name="line.2505"></a>
+<span class="sourceLineNo">2506</span>     * @param y the y-coordinate of the cell to recolor<a name="line.2506"></a>
+<span class="sourceLineNo">2507</span>     * @param encodedColor what to gradually change the cell's color to, as a packed float<a name="line.2507"></a>
+<span class="sourceLineNo">2508</span>     * @param duration how long the total transition should take in seconds<a name="line.2508"></a>
+<span class="sourceLineNo">2509</span>     * @param postRunnable a Runnable to execute after the recolor completes; may be null to do nothing.<a name="line.2509"></a>
+<span class="sourceLineNo">2510</span>     */<a name="line.2510"></a>
+<span class="sourceLineNo">2511</span>    public void recolor(final float delay, final int x, final int y, final float encodedColor, float duration,<a name="line.2511"></a>
+<span class="sourceLineNo">2512</span>            /* @Nullable */ Runnable postRunnable) {<a name="line.2512"></a>
+<span class="sourceLineNo">2513</span>        if(x &lt; 0 || x &gt;= gridWidth || y &lt; 0 || y &gt;= gridHeight)<a name="line.2513"></a>
+<span class="sourceLineNo">2514</span>            return;<a name="line.2514"></a>
+<span class="sourceLineNo">2515</span>        duration = Math.max(0.015f, duration);<a name="line.2515"></a>
+<span class="sourceLineNo">2516</span>        animationCount++;<a name="line.2516"></a>
+<span class="sourceLineNo">2517</span>        final float ac = backgrounds[x][y];<a name="line.2517"></a>
+<span class="sourceLineNo">2518</span>        final int nbActions = 2 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.2518"></a>
+<span class="sourceLineNo">2519</span>        final Action[] sequence = new Action[nbActions];<a name="line.2519"></a>
+<span class="sourceLineNo">2520</span>        int index = 0;<a name="line.2520"></a>
+<span class="sourceLineNo">2521</span>        if (0 &lt; delay)<a name="line.2521"></a>
+<span class="sourceLineNo">2522</span>            sequence[index++] = Actions.delay(delay);<a name="line.2522"></a>
+<span class="sourceLineNo">2523</span>        sequence[index++] = new TemporalAction(duration) {<a name="line.2523"></a>
+<span class="sourceLineNo">2524</span>            @Override<a name="line.2524"></a>
+<span class="sourceLineNo">2525</span>            protected void update(float percent) {<a name="line.2525"></a>
+<span class="sourceLineNo">2526</span>                backgrounds[x][y] = SColor.lerpFloatColors(ac, encodedColor, percent);<a name="line.2526"></a>
+<span class="sourceLineNo">2527</span>            }<a name="line.2527"></a>
+<span class="sourceLineNo">2528</span>        };<a name="line.2528"></a>
+<span class="sourceLineNo">2529</span>        if(postRunnable != null)<a name="line.2529"></a>
+<span class="sourceLineNo">2530</span>        {<a name="line.2530"></a>
+<span class="sourceLineNo">2531</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.2531"></a>
+<span class="sourceLineNo">2532</span>        }<a name="line.2532"></a>
+<span class="sourceLineNo">2533</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.2533"></a>
+<span class="sourceLineNo">2534</span>        sequence[index] = Actions.delay(duration, Actions.run(new Runnable() {<a name="line.2534"></a>
+<span class="sourceLineNo">2535</span>            @Override<a name="line.2535"></a>
+<span class="sourceLineNo">2536</span>            public void run() {<a name="line.2536"></a>
+<span class="sourceLineNo">2537</span>                backgrounds[x][y] = encodedColor;<a name="line.2537"></a>
+<span class="sourceLineNo">2538</span>                --animationCount;<a name="line.2538"></a>
+<span class="sourceLineNo">2539</span>            }<a name="line.2539"></a>
+<span class="sourceLineNo">2540</span>        }));<a name="line.2540"></a>
+<span class="sourceLineNo">2541</span><a name="line.2541"></a>
+<span class="sourceLineNo">2542</span>        addAction(Actions.sequence(sequence));<a name="line.2542"></a>
+<span class="sourceLineNo">2543</span>    }<a name="line.2543"></a>
+<span class="sourceLineNo">2544</span><a name="line.2544"></a>
+<span class="sourceLineNo">2545</span><a name="line.2545"></a>
+<span class="sourceLineNo">2546</span><a name="line.2546"></a>
+<span class="sourceLineNo">2547</span><a name="line.2547"></a>
+<span class="sourceLineNo">2548</span>    /**<a name="line.2548"></a>
+<span class="sourceLineNo">2549</span>     * Changes the foreground in the given layer at position x,y so it becomes the given color, taking duration<a name="line.2549"></a>
+<span class="sourceLineNo">2550</span>     * seconds. The foreground color will keep the changed color after the effect, unless drawn over.<a name="line.2550"></a>
+<span class="sourceLineNo">2551</span>     * &lt;br&gt;<a name="line.2551"></a>
+<span class="sourceLineNo">2552</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.2552"></a>
+<span class="sourceLineNo">2553</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.2553"></a>
+<span class="sourceLineNo">2554</span>     * draw the contents without the recolor this applies, then apply the recolor when you call act(), then quickly<a name="line.2554"></a>
+<span class="sourceLineNo">2555</span>     * overwrite the recolor in the next frame. That visually appears as nothing happening other than a delay.<a name="line.2555"></a>
+<span class="sourceLineNo">2556</span>     * @param x the x-coordinate of the cell to recolor<a name="line.2556"></a>
+<span class="sourceLineNo">2557</span>     * @param y the y-coordinate of the cell to recolor<a name="line.2557"></a>
+<span class="sourceLineNo">2558</span>     * @param layer which layer to affect; if you haven't specified a layer when placing text, then this should be 0<a name="line.2558"></a>
+<span class="sourceLineNo">2559</span>     * @param color what to gradually change the cell's color to, as a Color object<a name="line.2559"></a>
+<span class="sourceLineNo">2560</span>     * @param duration how long the total transition should take in seconds<a name="line.2560"></a>
+<span class="sourceLineNo">2561</span>     */<a name="line.2561"></a>
+<span class="sourceLineNo">2562</span>    public void recolor(final int x, final int y, final int layer, final Color color, float duration) {<a name="line.2562"></a>
+<span class="sourceLineNo">2563</span>        recolor(0f, x, y, layer, color.toFloatBits(), duration, null);<a name="line.2563"></a>
+<span class="sourceLineNo">2564</span>    }<a name="line.2564"></a>
+<span class="sourceLineNo">2565</span>    /**<a name="line.2565"></a>
+<span class="sourceLineNo">2566</span>     * Changes the foreground in the given layer at position x,y so it becomes the given encodedColor, taking duration<a name="line.2566"></a>
+<span class="sourceLineNo">2567</span>     * seconds. The foreground color will keep the changed color after the effect, unless drawn over.<a name="line.2567"></a>
+<span class="sourceLineNo">2568</span>     * &lt;br&gt;<a name="line.2568"></a>
+<span class="sourceLineNo">2569</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.2569"></a>
+<span class="sourceLineNo">2570</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.2570"></a>
+<span class="sourceLineNo">2571</span>     * draw the contents without the recolor this applies, then apply the recolor when you call act(), then quickly<a name="line.2571"></a>
+<span class="sourceLineNo">2572</span>     * overwrite the recolor in the next frame. That visually appears as nothing happening other than a delay.<a name="line.2572"></a>
+<span class="sourceLineNo">2573</span>     * @param x the x-coordinate of the cell to recolor<a name="line.2573"></a>
+<span class="sourceLineNo">2574</span>     * @param y the y-coordinate of the cell to recolor<a name="line.2574"></a>
+<span class="sourceLineNo">2575</span>     * @param layer which layer to affect; if you haven't specified a layer when placing text, then this should be 0<a name="line.2575"></a>
+<span class="sourceLineNo">2576</span>     * @param encodedColor what to gradually change the cell's color to, as a packed float<a name="line.2576"></a>
+<span class="sourceLineNo">2577</span>     * @param duration how long the total transition should take in seconds<a name="line.2577"></a>
+<span class="sourceLineNo">2578</span>     */<a name="line.2578"></a>
+<span class="sourceLineNo">2579</span>    public void recolor(final int x, final int y, final int layer, final float encodedColor, float duration) {<a name="line.2579"></a>
+<span class="sourceLineNo">2580</span>        recolor(0f, x, y, layer, encodedColor, duration, null);<a name="line.2580"></a>
+<span class="sourceLineNo">2581</span>    }<a name="line.2581"></a>
+<span class="sourceLineNo">2582</span><a name="line.2582"></a>
+<span class="sourceLineNo">2583</span><a name="line.2583"></a>
+<span class="sourceLineNo">2584</span>    /**<a name="line.2584"></a>
+<span class="sourceLineNo">2585</span>     * Changes the foreground in the given layer at position x,y so it becomes the given encodedColor, waiting for<a name="line.2585"></a>
+<span class="sourceLineNo">2586</span>     * {@code delay} (in seconds) before performing it, taking duration seconds. The foreground color will keep the <a name="line.2586"></a>
+<span class="sourceLineNo">2587</span>     * changed color after the effect, unless drawn over.<a name="line.2587"></a>
+<span class="sourceLineNo">2588</span>     * &lt;br&gt;<a name="line.2588"></a>
+<span class="sourceLineNo">2589</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.2589"></a>
+<span class="sourceLineNo">2590</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.2590"></a>
+<span class="sourceLineNo">2591</span>     * draw the contents without the recolor this applies, then apply the recolor when you call act(), then quickly<a name="line.2591"></a>
+<span class="sourceLineNo">2592</span>     * overwrite the recolor in the next frame. That visually appears as nothing happening other than a delay.<a name="line.2592"></a>
+<span class="sourceLineNo">2593</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2593"></a>
+<span class="sourceLineNo">2594</span>     * @param x the x-coordinate of the cell to recolor<a name="line.2594"></a>
+<span class="sourceLineNo">2595</span>     * @param y the y-coordinate of the cell to recolor<a name="line.2595"></a>
+<span class="sourceLineNo">2596</span>     * @param layer which layer to affect; if you haven't specified a layer when placing text, then this should be 0<a name="line.2596"></a>
+<span class="sourceLineNo">2597</span>     * @param encodedColor what to gradually change the cell's color to, as a packed float<a name="line.2597"></a>
+<span class="sourceLineNo">2598</span>     * @param duration how long the total transition should take in seconds<a name="line.2598"></a>
+<span class="sourceLineNo">2599</span>     */<a name="line.2599"></a>
+<span class="sourceLineNo">2600</span>    public void recolor(final float delay, final int x, final int y, final int layer, final float encodedColor, float duration) {<a name="line.2600"></a>
+<span class="sourceLineNo">2601</span>        recolor(delay, x, y, layer, encodedColor, duration, null);<a name="line.2601"></a>
+<span class="sourceLineNo">2602</span>    }<a name="line.2602"></a>
+<span class="sourceLineNo">2603</span><a name="line.2603"></a>
+<span class="sourceLineNo">2604</span><a name="line.2604"></a>
+<span class="sourceLineNo">2605</span>    /**<a name="line.2605"></a>
+<span class="sourceLineNo">2606</span>     * Changes the foreground in the given layer at position x,y so it becomes the given encodedColor, waiting for<a name="line.2606"></a>
+<span class="sourceLineNo">2607</span>     * {@code delay} (in seconds) before performing it, taking duration seconds. The foreground color will keep the <a name="line.2607"></a>
+<span class="sourceLineNo">2608</span>     * changed color after the effect, unless drawn over. Additionally, enqueue {@code postRunnable} for running after<a name="line.2608"></a>
+<span class="sourceLineNo">2609</span>     * the created action ends.<a name="line.2609"></a>
+<span class="sourceLineNo">2610</span>     * &lt;br&gt;<a name="line.2610"></a>
+<span class="sourceLineNo">2611</span>     * This will only behave correctly if you call {@link Stage#act()} before you call {@link Stage#draw()}, but after<a name="line.2611"></a>
+<span class="sourceLineNo">2612</span>     * any changes to the contents of this SparseLayers. If you change the contents, then draw, and then act, that will<a name="line.2612"></a>
+<span class="sourceLineNo">2613</span>     * draw the contents without the recolor this applies, then apply the recolor when you call act(), then quickly<a name="line.2613"></a>
+<span class="sourceLineNo">2614</span>     * overwrite the recolor in the next frame. That visually appears as nothing happening other than a delay.<a name="line.2614"></a>
+<span class="sourceLineNo">2615</span>     * @param delay how long to wait in seconds before starting the effect<a name="line.2615"></a>
+<span class="sourceLineNo">2616</span>     * @param x the x-coordinate of the cell to recolor<a name="line.2616"></a>
+<span class="sourceLineNo">2617</span>     * @param y the y-coordinate of the cell to recolor<a name="line.2617"></a>
+<span class="sourceLineNo">2618</span>     * @param layer which layer to affect; if you haven't specified a layer when placing text, then this should be 0<a name="line.2618"></a>
+<span class="sourceLineNo">2619</span>     * @param encodedColor what to gradually change the cell's color to, as a packed float<a name="line.2619"></a>
+<span class="sourceLineNo">2620</span>     * @param duration how long the total transition should take in seconds<a name="line.2620"></a>
+<span class="sourceLineNo">2621</span>     * @param postRunnable a Runnable to execute after the recolor completes; may be null to do nothing.<a name="line.2621"></a>
+<span class="sourceLineNo">2622</span>     */<a name="line.2622"></a>
+<span class="sourceLineNo">2623</span>    public void recolor(final float delay, final int x, final int y, final int layer, final float encodedColor, float duration,<a name="line.2623"></a>
+<span class="sourceLineNo">2624</span>            /* @Nullable */ Runnable postRunnable) {<a name="line.2624"></a>
+<span class="sourceLineNo">2625</span>        if(x &lt; 0 || x &gt;= gridWidth || y &lt; 0 || y &gt;= gridHeight || layer &lt; 0 || layer &gt;= layers.size())<a name="line.2625"></a>
+<span class="sourceLineNo">2626</span>            return;<a name="line.2626"></a>
+<span class="sourceLineNo">2627</span>        final SparseTextMap l = layers.get(layer);<a name="line.2627"></a>
+<span class="sourceLineNo">2628</span>        duration = Math.max(0.015f, duration);<a name="line.2628"></a>
+<span class="sourceLineNo">2629</span>        animationCount++;<a name="line.2629"></a>
+<span class="sourceLineNo">2630</span>        final int pos = SparseTextMap.encodePosition(x, y);<a name="line.2630"></a>
+<span class="sourceLineNo">2631</span>        final float ac = l.getFloat(pos, 0f);<a name="line.2631"></a>
+<span class="sourceLineNo">2632</span>        final int nbActions = 2 + (0 &lt; delay ? 1 : 0) + (postRunnable == null ? 0 : 1);<a name="line.2632"></a>
+<span class="sourceLineNo">2633</span>        final Action[] sequence = new Action[nbActions];<a name="line.2633"></a>
+<span class="sourceLineNo">2634</span>        int index = 0;<a name="line.2634"></a>
+<span class="sourceLineNo">2635</span>        if (0 &lt; delay)<a name="line.2635"></a>
+<span class="sourceLineNo">2636</span>            sequence[index++] = Actions.delay(delay);<a name="line.2636"></a>
+<span class="sourceLineNo">2637</span>        sequence[index++] = new TemporalAction(duration) {<a name="line.2637"></a>
+<span class="sourceLineNo">2638</span>            @Override<a name="line.2638"></a>
+<span class="sourceLineNo">2639</span>            protected void update(float percent) {<a name="line.2639"></a>
+<span class="sourceLineNo">2640</span>                l.updateFloat(pos, SColor.lerpFloatColors(ac, encodedColor, percent));<a name="line.2640"></a>
+<span class="sourceLineNo">2641</span>            }<a name="line.2641"></a>
+<span class="sourceLineNo">2642</span>        };<a name="line.2642"></a>
+<span class="sourceLineNo">2643</span>        if(postRunnable != null)<a name="line.2643"></a>
+<span class="sourceLineNo">2644</span>        {<a name="line.2644"></a>
+<span class="sourceLineNo">2645</span>            sequence[index++] = Actions.run(postRunnable);<a name="line.2645"></a>
+<span class="sourceLineNo">2646</span>        }<a name="line.2646"></a>
+<span class="sourceLineNo">2647</span>        /* Do this one last, so that hasActiveAnimations() returns true during 'postRunnables' */<a name="line.2647"></a>
+<span class="sourceLineNo">2648</span>        sequence[index] = Actions.delay(duration, Actions.run(new Runnable() {<a name="line.2648"></a>
+<span class="sourceLineNo">2649</span>            @Override<a name="line.2649"></a>
+<span class="sourceLineNo">2650</span>            public void run() {<a name="line.2650"></a>
+<span class="sourceLineNo">2651</span>                l.updateFloat(pos, encodedColor);<a name="line.2651"></a>
+<span class="sourceLineNo">2652</span>                --animationCount;<a name="line.2652"></a>
+<span class="sourceLineNo">2653</span>            }<a name="line.2653"></a>
+<span class="sourceLineNo">2654</span>        }));<a name="line.2654"></a>
+<span class="sourceLineNo">2655</span>        addAction(Actions.sequence(sequence));<a name="line.2655"></a>
+<span class="sourceLineNo">2656</span>    }<a name="line.2656"></a>
+<span class="sourceLineNo">2657</span><a name="line.2657"></a>
+<span class="sourceLineNo">2658</span>    /**<a name="line.2658"></a>
+<span class="sourceLineNo">2659</span>     * Draws the actor. The batch is configured to draw in the parent's coordinate system.<a name="line.2659"></a>
+<span class="sourceLineNo">2660</span>     * {@link Batch#draw(TextureRegion, float, float, float, float, float, float, float, float, float)<a name="line.2660"></a>
+<span class="sourceLineNo">2661</span>     * This draw method} is convenient to draw a rotated and scaled TextureRegion. {@link Batch#begin()} has already been called on<a name="line.2661"></a>
+<span class="sourceLineNo">2662</span>     * the batch. If {@link Batch#end()} is called to draw without the batch then {@link Batch#begin()} must be called before the<a name="line.2662"></a>
+<span class="sourceLineNo">2663</span>     * method returns.<a name="line.2663"></a>
+<span class="sourceLineNo">2664</span>     *<a name="line.2664"></a>
+<span class="sourceLineNo">2665</span>     * @param batch a Batch such as a SpriteBatch that must be between a begin() and end() call; usually done by Stage<a name="line.2665"></a>
+<span class="sourceLineNo">2666</span>     * @param parentAlpha currently ignored<a name="line.2666"></a>
+<span class="sourceLineNo">2667</span>     */<a name="line.2667"></a>
+<span class="sourceLineNo">2668</span>    @Override<a name="line.2668"></a>
+<span class="sourceLineNo">2669</span>    public void draw(Batch batch, float parentAlpha) {<a name="line.2669"></a>
+<span class="sourceLineNo">2670</span>        super.draw(batch, parentAlpha);<a name="line.2670"></a>
+<span class="sourceLineNo">2671</span>        float xo = getX(), yo = getY(), yOff = yo + 1f + gridHeight * font.actualCellHeight;<a name="line.2671"></a>
+<span class="sourceLineNo">2672</span>        font.draw(batch, backgrounds, xo, yo);<a name="line.2672"></a>
+<span class="sourceLineNo">2673</span>        int len = layers.size();<a name="line.2673"></a>
+<span class="sourceLineNo">2674</span>        for (int i = 0; i &lt; len; i++) {<a name="line.2674"></a>
+<span class="sourceLineNo">2675</span>            layers.get(i).draw(batch, font, xo, yOff);<a name="line.2675"></a>
+<span class="sourceLineNo">2676</span>        }<a name="line.2676"></a>
+<span class="sourceLineNo">2677</span>        int x, y;<a name="line.2677"></a>
+<span class="sourceLineNo">2678</span>        for (int i = 0; i &lt; glyphs.size(); i++) {<a name="line.2678"></a>
+<span class="sourceLineNo">2679</span>            TextCellFactory.Glyph glyph = glyphs.get(i);<a name="line.2679"></a>
+<span class="sourceLineNo">2680</span>            if(glyph == null)<a name="line.2680"></a>
+<span class="sourceLineNo">2681</span>                continue;<a name="line.2681"></a>
+<span class="sourceLineNo">2682</span>            glyph.act(Gdx.graphics.getDeltaTime());<a name="line.2682"></a>
+<span class="sourceLineNo">2683</span>            if(<a name="line.2683"></a>
+<span class="sourceLineNo">2684</span>                    !glyph.isVisible() ||<a name="line.2684"></a>
+<span class="sourceLineNo">2685</span>                    (x = Math.round((glyph.getX() - xo) / font.actualCellWidth)) &lt; 0 || x &gt;= gridWidth ||<a name="line.2685"></a>
+<span class="sourceLineNo">2686</span>                    (y = Math.round((glyph.getY() - yo)  / -font.actualCellHeight + gridHeight)) &lt; 0 || y &gt;= gridHeight ||<a name="line.2686"></a>
+<span class="sourceLineNo">2687</span>                    backgrounds[x][y] == 0f)<a name="line.2687"></a>
+<span class="sourceLineNo">2688</span>                continue;<a name="line.2688"></a>
+<span class="sourceLineNo">2689</span>            glyph.draw(batch, 1f);<a name="line.2689"></a>
+<span class="sourceLineNo">2690</span>        }<a name="line.2690"></a>
+<span class="sourceLineNo">2691</span>    }<a name="line.2691"></a>
+<span class="sourceLineNo">2692</span>}<a name="line.2692"></a>
 
 
 

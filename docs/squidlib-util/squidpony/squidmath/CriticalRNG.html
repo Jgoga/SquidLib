@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></dd>
+<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></dd>
 </dl>
 <hr>
 <br>
@@ -529,6 +529,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <div class="block">Gets a random double between 0.0 inclusive and 1.0 exclusive.
  This returns a maximum of 0.9999999999999999 because that is the largest double value that is less than 1.0 .</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextDouble--">nextDouble</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextDouble--">nextDouble</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -548,6 +550,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
  or negative. Because of how math on doubles works, there are at most 2 to the 53 values this can return for any
  given outer bound, and very large values for outer will not necessarily produce all numbers you might expect.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextDouble-double-">nextDouble</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextDouble-double-">nextDouble</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -568,6 +572,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <div class="block">Gets a random float between 0.0f inclusive and 1.0f exclusive.
  This returns a maximum of 0.99999994 because that is the largest float value that is less than 1.0f .</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextFloat--">nextFloat</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextFloat--">nextFloat</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -591,6 +597,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
  XoRoRNG, and a large number of generators have lower quality on the least-significant bit than the most-
  significant bit, where this method only checks the most-significant bit.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextBoolean--">nextBoolean</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextBoolean--">nextBoolean</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -608,6 +616,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../squidpony/squidmath/RNG.html#nextLong--">RNG</a></code></span></div>
 <div class="block">Get a random long between Long.MIN_VALUE to Long.MAX_VALUE (both inclusive).</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextLong--">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextLong--">nextLong</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -626,6 +636,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <div class="block">Returns a random long below the given bound, or 0 if the bound is 0 or
  negative.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextLong-long-">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextLong-long-">nextLong</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -644,8 +656,21 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CriticalRNG.html#line.134">nextInt</a>(int&nbsp;bound)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../squidpony/squidmath/RNG.html#nextInt-int-">RNG</a></code></span></div>
 <div class="block">Returns a random non-negative integer below the given bound, or 0 if the bound is 0 or
- negative.</div>
+ negative. Always makes one call to the <a href="../../squidpony/squidmath/RandomnessSource.html#next-int-"><code>RandomnessSource.next(int)</code></a> method of the RandomnessSource that
+ would be returned by <a href="../../squidpony/squidmath/RNG.html#getRandomness--"><code>RNG.getRandomness()</code></a>, even if bound is 0 or negative, to avoid branching and also to
+ ensure consistent advancement rates for the RandomnessSource (this can be important if you use a
+ <a href="../../squidpony/squidmath/SkippingRandomness.html" title="interface in squidpony.squidmath"><code>SkippingRandomness</code></a> and want to go back before a result was produced).
+ <br>
+ This method changed a fair amount on April 5, 2018 to better support RandomnessSource implementations with a
+ slower nextLong() method, such as <a href="../../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath"><code>Lathe32RNG</code></a>, and to avoid branching/irregular state advancement/modulus
+ operations. It is now almost identical to <a href="../../squidpony/squidmath/RNG.html#nextIntHasty-int-"><code>RNG.nextIntHasty(int)</code></a>, but won't return negative results if bound
+ is negative (matching its previous behavior). This may have statistical issues (small ones) if bound is very
+ large (the estimate is still at least a bound of a billion or more before issues are observable).
+ <br>
+ Credit goes to Daniel Lemire, http://lemire.me/blog/2016/06/27/a-fast-alternative-to-the-modulo-reduction/</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextInt-int-">nextInt</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextInt-int-">nextInt</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -690,6 +715,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../squidpony/squidmath/RNG.html#nextInt--">RNG</a></code></span></div>
 <div class="block">Get a random integer between Integer.MIN_VALUE to Integer.MAX_VALUE (both inclusive).</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextInt--">nextInt</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextInt--">nextInt</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -710,6 +737,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <div class="block">Returns a random element from the provided array and maintains object
  type.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#getRandomElement-T:A-">getRandomElement</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#getRandomElement-T:A-">getRandomElement</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -732,6 +761,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
 <div class="block">Returns a random element from the provided list. If the list is empty
  then null is returned.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#getRandomElement-java.util.List-">getRandomElement</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#getRandomElement-java.util.List-">getRandomElement</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -789,6 +820,8 @@ extends <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.s
  since Queue implements Collection and the older Queue-using implementation was probably less efficient.
  </p></div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#getRandomElement-java.util.Collection-">getRandomElement</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#getRandomElement-java.util.Collection-">getRandomElement</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>

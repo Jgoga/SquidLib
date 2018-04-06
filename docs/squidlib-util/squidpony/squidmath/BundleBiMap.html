@@ -431,14 +431,14 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i36" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">E</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/BundleBiMap.html#randomElement-squidpony.squidmath.RNG-">randomElement</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
-<div class="block">Gets a random E from this BundleBiMap's individual elements using the given RNG.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/BundleBiMap.html#randomElement-squidpony.squidmath.IRNG-">randomElement</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</code>
+<div class="block">Gets a random E from this BundleBiMap's individual elements using the given IRNG.</div>
 </td>
 </tr>
 <tr id="i37" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">S</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/BundleBiMap.html#randomSingle-squidpony.squidmath.RNG-">randomSingle</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
-<div class="block">Gets a random S from this BundleBiMap using the given RNG.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/BundleBiMap.html#randomSingle-squidpony.squidmath.IRNG-">randomSingle</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</code>
+<div class="block">Gets a random S from this BundleBiMap using the given IRNG.</div>
 </td>
 </tr>
 <tr id="i38" class="altColor">
@@ -446,13 +446,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/BundleBiMap.html#reorder-int...-">reorder</a></span>(int...&nbsp;ordering)</code>
 <div class="block">Reorders this BundleBiMap using <code>ordering</code>, which has the same length as this object's <a href="../../squidpony/squidmath/BundleBiMap.html#size--"><code>size()</code></a>
  and can be generated with <a href="../../squidpony/ArrayTools.html#range-int-"><code>ArrayTools.range(int)</code></a> (which, if applied, would produce no
- change to the current ordering), <a href="../../squidpony/squidmath/RNG.html#randomOrdering-int-"><code>RNG.randomOrdering(int)</code></a> (which gives a random ordering, and if
- applied immediately would be the same as calling <a href="../../squidpony/squidmath/BundleBiMap.html#shuffle-squidpony.squidmath.RNG-"><code>shuffle(RNG)</code></a>), or made in some other way.</div>
+ change to the current ordering), <a href="../../squidpony/squidmath/IRNG.html#randomOrdering-int-"><code>IRNG.randomOrdering(int)</code></a> (which gives a random ordering, and if
+ applied immediately would be the same as calling <a href="../../squidpony/squidmath/BundleBiMap.html#shuffle-squidpony.squidmath.IRNG-"><code>shuffle(IRNG)</code></a>), or made in some other way.</div>
 </td>
 </tr>
 <tr id="i39" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/BundleBiMap.html" title="class in squidpony.squidmath">BundleBiMap</a>&lt;<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">E</a>,<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">S</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/BundleBiMap.html#shuffle-squidpony.squidmath.RNG-">shuffle</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/BundleBiMap.html#shuffle-squidpony.squidmath.IRNG-">shuffle</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Generates a random ordering with rng and applies the same ordering to all kinds of keys this has; they will
  maintain their current association to other keys but their ordering/indices will change.</div>
 </td>
@@ -631,14 +631,14 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="randomElement-squidpony.squidmath.RNG-">
+<a name="randomElement-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomElement</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidmath/BundleBiMap.html#line.127">randomElement</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</pre>
-<div class="block">Gets a random E from this BundleBiMap's individual elements using the given RNG.</div>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">E</a>&nbsp;<a href="../../src-html/squidpony/squidmath/BundleBiMap.html#line.127">randomElement</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</pre>
+<div class="block">Gets a random E from this BundleBiMap's individual elements using the given IRNG.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>random</code> - generates a random index to get an E with</dd>
@@ -647,14 +647,14 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="randomSingle-squidpony.squidmath.RNG-">
+<a name="randomSingle-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomSingle</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">S</a>&nbsp;<a href="../../src-html/squidpony/squidmath/BundleBiMap.html#line.137">randomSingle</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</pre>
-<div class="block">Gets a random S from this BundleBiMap using the given RNG.</div>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">S</a>&nbsp;<a href="../../src-html/squidpony/squidmath/BundleBiMap.html#line.137">randomSingle</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</pre>
+<div class="block">Gets a random S from this BundleBiMap using the given IRNG.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>random</code> - generates a random index to get a S with</dd>
@@ -1189,8 +1189,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public&nbsp;<a href="../../squidpony/squidmath/BundleBiMap.html" title="class in squidpony.squidmath">BundleBiMap</a>&lt;<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">E</a>,<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">S</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/BundleBiMap.html#line.572">reorder</a>(int...&nbsp;ordering)</pre>
 <div class="block">Reorders this BundleBiMap using <code>ordering</code>, which has the same length as this object's <a href="../../squidpony/squidmath/BundleBiMap.html#size--"><code>size()</code></a>
  and can be generated with <a href="../../squidpony/ArrayTools.html#range-int-"><code>ArrayTools.range(int)</code></a> (which, if applied, would produce no
- change to the current ordering), <a href="../../squidpony/squidmath/RNG.html#randomOrdering-int-"><code>RNG.randomOrdering(int)</code></a> (which gives a random ordering, and if
- applied immediately would be the same as calling <a href="../../squidpony/squidmath/BundleBiMap.html#shuffle-squidpony.squidmath.RNG-"><code>shuffle(RNG)</code></a>), or made in some other way. If you
+ change to the current ordering), <a href="../../squidpony/squidmath/IRNG.html#randomOrdering-int-"><code>IRNG.randomOrdering(int)</code></a> (which gives a random ordering, and if
+ applied immediately would be the same as calling <a href="../../squidpony/squidmath/BundleBiMap.html#shuffle-squidpony.squidmath.IRNG-"><code>shuffle(IRNG)</code></a>), or made in some other way. If you
  already have an ordering and want to make a different ordering that can undo the change, you can use
  <a href="../../squidpony/ArrayTools.html#invertOrdering-int:A-"><code>ArrayTools.invertOrdering(int[])</code></a> called on the original ordering. The effects of this method, if called
  with an ordering that has repeat occurrences of an int or contains ints that are larger than its size should
@@ -1203,18 +1203,18 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="shuffle-squidpony.squidmath.RNG-">
+<a name="shuffle-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>shuffle</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/BundleBiMap.html" title="class in squidpony.squidmath">BundleBiMap</a>&lt;<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">E</a>,<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">S</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/BundleBiMap.html#line.592">shuffle</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/BundleBiMap.html" title="class in squidpony.squidmath">BundleBiMap</a>&lt;<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">E</a>,<a href="../../squidpony/squidmath/BundleBiMap.html" title="type parameter in BundleBiMap">S</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/BundleBiMap.html#line.592">shuffle</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Generates a random ordering with rng and applies the same ordering to all kinds of keys this has; they will
  maintain their current association to other keys but their ordering/indices will change.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>rng</code> - an RNG to produce the random ordering this will use</dd>
+<dd><code>rng</code> - an IRNG to produce the random ordering this will use</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>this for chaining</dd>
 </dl>

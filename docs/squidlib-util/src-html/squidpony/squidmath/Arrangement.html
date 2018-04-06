@@ -2494,11 +2494,11 @@
 <span class="sourceLineNo">2486</span>        return oldValue;<a name="line.2486"></a>
 <span class="sourceLineNo">2487</span>    }<a name="line.2487"></a>
 <span class="sourceLineNo">2488</span>    /**<a name="line.2488"></a>
-<span class="sourceLineNo">2489</span>     * Gets a random value from this Arrangement in constant time, using the given RNG to generate a random number.<a name="line.2489"></a>
+<span class="sourceLineNo">2489</span>     * Gets a random value from this Arrangement in constant time, using the given IRNG to generate a random number.<a name="line.2489"></a>
 <span class="sourceLineNo">2490</span>     * @param rng used to generate a random index for a value<a name="line.2490"></a>
 <span class="sourceLineNo">2491</span>     * @return a random value from this Arrangement, or -1 if this is empty<a name="line.2491"></a>
 <span class="sourceLineNo">2492</span>     */<a name="line.2492"></a>
-<span class="sourceLineNo">2493</span>    public int randomValue(RNG rng)<a name="line.2493"></a>
+<span class="sourceLineNo">2493</span>    public int randomValue(IRNG rng)<a name="line.2493"></a>
 <span class="sourceLineNo">2494</span>    {<a name="line.2494"></a>
 <span class="sourceLineNo">2495</span>        if(rng == null)<a name="line.2495"></a>
 <span class="sourceLineNo">2496</span>            return defRetValue;<a name="line.2496"></a>
@@ -2506,11 +2506,11 @@
 <span class="sourceLineNo">2498</span>    }<a name="line.2498"></a>
 <span class="sourceLineNo">2499</span><a name="line.2499"></a>
 <span class="sourceLineNo">2500</span>    /**<a name="line.2500"></a>
-<span class="sourceLineNo">2501</span>     * Gets a random key from this Arrangement in constant time, using the given RNG to generate a random number.<a name="line.2501"></a>
+<span class="sourceLineNo">2501</span>     * Gets a random key from this Arrangement in constant time, using the given IRNG to generate a random number.<a name="line.2501"></a>
 <span class="sourceLineNo">2502</span>     * @param rng used to generate a random index for a key<a name="line.2502"></a>
 <span class="sourceLineNo">2503</span>     * @return a random key from this Arrangement, or null if this is empty<a name="line.2503"></a>
 <span class="sourceLineNo">2504</span>     */<a name="line.2504"></a>
-<span class="sourceLineNo">2505</span>    public K randomKey(RNG rng)<a name="line.2505"></a>
+<span class="sourceLineNo">2505</span>    public K randomKey(IRNG rng)<a name="line.2505"></a>
 <span class="sourceLineNo">2506</span>    {<a name="line.2506"></a>
 <span class="sourceLineNo">2507</span>        if(rng == null)<a name="line.2507"></a>
 <span class="sourceLineNo">2508</span>            return null;<a name="line.2508"></a>
@@ -2518,21 +2518,21 @@
 <span class="sourceLineNo">2510</span>    }<a name="line.2510"></a>
 <span class="sourceLineNo">2511</span><a name="line.2511"></a>
 <span class="sourceLineNo">2512</span>    /**<a name="line.2512"></a>
-<span class="sourceLineNo">2513</span>     * Gets a random entry from this Arrangement in constant time, using the given RNG to generate a random number.<a name="line.2513"></a>
+<span class="sourceLineNo">2513</span>     * Gets a random entry from this Arrangement in constant time, using the given IRNG to generate a random number.<a name="line.2513"></a>
 <span class="sourceLineNo">2514</span>     * @param rng used to generate a random index for a entry<a name="line.2514"></a>
 <span class="sourceLineNo">2515</span>     * @return a random key-value entry from this Arrangement<a name="line.2515"></a>
 <span class="sourceLineNo">2516</span>     */<a name="line.2516"></a>
-<span class="sourceLineNo">2517</span>    public Entry&lt;K, Integer&gt; randomEntry(RNG rng)<a name="line.2517"></a>
+<span class="sourceLineNo">2517</span>    public Entry&lt;K, Integer&gt; randomEntry(IRNG rng)<a name="line.2517"></a>
 <span class="sourceLineNo">2518</span>    {<a name="line.2518"></a>
 <span class="sourceLineNo">2519</span>        return new MapEntry(order.getRandomElement(rng));<a name="line.2519"></a>
 <span class="sourceLineNo">2520</span>    }<a name="line.2520"></a>
 <span class="sourceLineNo">2521</span><a name="line.2521"></a>
 <span class="sourceLineNo">2522</span>    /**<a name="line.2522"></a>
-<span class="sourceLineNo">2523</span>     * Randomly alters the iteration order for this Arrangement using the given RNG to shuffle.<a name="line.2523"></a>
+<span class="sourceLineNo">2523</span>     * Randomly alters the iteration order for this Arrangement using the given IRNG to shuffle.<a name="line.2523"></a>
 <span class="sourceLineNo">2524</span>     * @param rng used to generate a random ordering<a name="line.2524"></a>
 <span class="sourceLineNo">2525</span>     * @return this for chaining<a name="line.2525"></a>
 <span class="sourceLineNo">2526</span>     */<a name="line.2526"></a>
-<span class="sourceLineNo">2527</span>    public Arrangement&lt;K&gt; shuffle(RNG rng)<a name="line.2527"></a>
+<span class="sourceLineNo">2527</span>    public Arrangement&lt;K&gt; shuffle(IRNG rng)<a name="line.2527"></a>
 <span class="sourceLineNo">2528</span>    {<a name="line.2528"></a>
 <span class="sourceLineNo">2529</span>        if(size &lt; 2)<a name="line.2529"></a>
 <span class="sourceLineNo">2530</span>            return this;<a name="line.2530"></a>

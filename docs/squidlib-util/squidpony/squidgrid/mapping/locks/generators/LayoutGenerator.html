@@ -209,7 +209,7 @@ implements <a href="../../../../../squidpony/squidgrid/mapping/locks/generators/
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#MAX_RETRIES">MAX_RETRIES</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#random">random</a></span></code>&nbsp;</td>
 </tr>
 </table>
@@ -227,7 +227,7 @@ implements <a href="../../../../../squidpony/squidgrid/mapping/locks/generators/
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#LayoutGenerator-squidpony.squidmath.RNG-squidpony.squidgrid.mapping.locks.constraints.ILayoutConstraints-">LayoutGenerator</a></span>(<a href="../../../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#LayoutGenerator-squidpony.squidmath.IRNG-squidpony.squidgrid.mapping.locks.constraints.ILayoutConstraints-">LayoutGenerator</a></span>(<a href="../../../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
                <a href="../../../../../squidpony/squidgrid/mapping/locks/constraints/ILayoutConstraints.html" title="interface in squidpony.squidgrid.mapping.locks.constraints">ILayoutConstraints</a>&nbsp;constraints)</code>
 <div class="block">Creates a LayoutGenerator with a given random seed and places
  specific constraints on <a href="../../../../../squidpony/squidgrid/mapping/locks/IRoomLayout.html" title="interface in squidpony.squidgrid.mapping.locks"><code>IRoomLayout</code></a>s it generates.</div>
@@ -443,7 +443,7 @@ implements <a href="../../../../../squidpony/squidgrid/mapping/locks/generators/
 <ul class="blockList">
 <li class="blockList">
 <h4>random</h4>
-<pre>protected&nbsp;<a href="../../../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a> <a href="../../../../../src-html/squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#line.21">random</a></pre>
+<pre>protected&nbsp;<a href="../../../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a> <a href="../../../../../src-html/squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#line.21">random</a></pre>
 </li>
 </ul>
 <a name="dungeon">
@@ -548,13 +548,13 @@ implements <a href="../../../../../squidpony/squidgrid/mapping/locks/generators/
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="LayoutGenerator-squidpony.squidmath.RNG-squidpony.squidgrid.mapping.locks.constraints.ILayoutConstraints-">
+<a name="LayoutGenerator-squidpony.squidmath.IRNG-squidpony.squidgrid.mapping.locks.constraints.ILayoutConstraints-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>LayoutGenerator</h4>
-<pre>public&nbsp;<a href="../../../../../src-html/squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#line.35">LayoutGenerator</a>(<a href="../../../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+<pre>public&nbsp;<a href="../../../../../src-html/squidpony/squidgrid/mapping/locks/generators/LayoutGenerator.html#line.35">LayoutGenerator</a>(<a href="../../../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
                        <a href="../../../../../squidpony/squidgrid/mapping/locks/constraints/ILayoutConstraints.html" title="interface in squidpony.squidgrid.mapping.locks.constraints">ILayoutConstraints</a>&nbsp;constraints)</pre>
 <div class="block">Creates a LayoutGenerator with a given random seed and places
  specific constraints on <a href="../../../../../squidpony/squidgrid/mapping/locks/IRoomLayout.html" title="interface in squidpony.squidgrid.mapping.locks"><code>IRoomLayout</code></a>s it generates.</div>

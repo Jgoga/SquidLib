@@ -5062,19 +5062,19 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html" title="class in squidpony.squidgrid.gui.gdx">SColor</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SColor.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#randomColorWheel-squidpony.squidmath.RNG-">randomColorWheel</a></span>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/RNG.html?is-external=true" title="class or interface in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
-<div class="block">Gets a random color from the palette <a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#COLOR_WHEEL_PALETTE_REDUCED"><code>COLOR_WHEEL_PALETTE_REDUCED</code></a>, using the specified RNG to determine
+<td class="colLast"><span class="typeNameLabel">SColor.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#randomColorWheel-squidpony.squidmath.IRNG-">randomColorWheel</a></span>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/IRNG.html?is-external=true" title="class or interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
+<div class="block">Gets a random color from the palette <a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#COLOR_WHEEL_PALETTE_REDUCED"><code>COLOR_WHEEL_PALETTE_REDUCED</code></a>, using the specified IRNG to determine
  saturation, brightness, and hue.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html" title="class in squidpony.squidgrid.gui.gdx">SColor</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SColor.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#randomColorWheel-squidpony.squidmath.RNG-int-int-">randomColorWheel</a></span>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/RNG.html?is-external=true" title="class or interface in squidpony.squidmath">RNG</a>&nbsp;rng,
+<td class="colLast"><span class="typeNameLabel">SColor.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#randomColorWheel-squidpony.squidmath.IRNG-int-int-">randomColorWheel</a></span>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/IRNG.html?is-external=true" title="class or interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
                 int&nbsp;bright,
                 int&nbsp;sat)</code>
 <div class="block">Gets a random color from the palette <a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#COLOR_WHEEL_PALETTE_REDUCED"><code>COLOR_WHEEL_PALETTE_REDUCED</code></a>, with the specified brightness (0 is
  darkest, 1 is middle-bright, 2 is brightest) and saturation (0 is grayest, 1 is mid-saturation, 2 is fully
- saturated), using the specified RNG.</div>
+ saturated), using the specified IRNG.</div>
 </td>
 </tr>
 </tbody>
@@ -5146,7 +5146,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/GapShuffler.html?is-external=true" title="class or interface in squidpony.squidmath">GapShuffler</a>&lt;<a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html" title="class in squidpony.squidgrid.gui.gdx">SColor</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SColor.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#randomColorSequence-squidpony.squidmath.RNG-">randomColorSequence</a></span>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/RNG.html?is-external=true" title="class or interface in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colLast"><span class="typeNameLabel">SColor.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#randomColorSequence-squidpony.squidmath.IRNG-">randomColorSequence</a></span>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/IRNG.html?is-external=true" title="class or interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Returns an infinite Iterator (also an Iterable) over different colors from <a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#COLOR_WHEEL_PALETTE"><code>COLOR_WHEEL_PALETTE</code></a>, with
  measures taken to avoid returning the same exact SColor twice in a row (but two similar colors could be returned
  in quick succession).</div>
@@ -5154,7 +5154,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/GapShuffler.html?is-external=true" title="class or interface in squidpony.squidmath">GapShuffler</a>&lt;<a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html" title="class in squidpony.squidgrid.gui.gdx">SColor</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SColor.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#randomColorSequence-squidpony.squidmath.RNG-int-int-">randomColorSequence</a></span>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/RNG.html?is-external=true" title="class or interface in squidpony.squidmath">RNG</a>&nbsp;rng,
+<td class="colLast"><span class="typeNameLabel">SColor.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#randomColorSequence-squidpony.squidmath.IRNG-int-int-">randomColorSequence</a></span>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/IRNG.html?is-external=true" title="class or interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
                    int&nbsp;bright,
                    int&nbsp;sat)</code>
 <div class="block">Returns an infinite Iterator (also an Iterable) over different colors from <a href="../../../../../squidpony/squidgrid/gui/gdx/SColor.html#COLOR_WHEEL_PALETTE"><code>COLOR_WHEEL_PALETTE</code></a>, with

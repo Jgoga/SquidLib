@@ -297,7 +297,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Region.html#getRandomCoord-squidpony.squidmath.RNG-">getRandomCoord</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Region.html#getRandomCoord-squidpony.squidmath.IRNG-">getRandomCoord</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Gets a single random Coord from this using the given RNG (which can be seeded); returns null if this is empty.</div>
 </td>
 </tr>
@@ -317,8 +317,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/Region.html" title="class in squidpony.squidmath">Region</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Region.html#randomSeparated-int-squidpony.squidmath.RNG-">randomSeparated</a></span>(int&nbsp;separation,
-               <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Region.html#randomSeparated-int-squidpony.squidmath.IRNG-">randomSeparated</a></span>(int&nbsp;separation,
+               <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Takes this region and walks through its Coords in chunks with length equal to separation, creating a new Region
  where one randomly-chosen Coord in each chunk is kept and the others are discarded.</div>
 </td>
@@ -624,13 +624,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getRandomCoord-squidpony.squidmath.RNG-">
+<a name="getRandomCoord-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomCoord</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/Region.html#line.192">getRandomCoord</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/Region.html#line.192">getRandomCoord</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a single random Coord from this using the given RNG (which can be seeded); returns null if this is empty.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -657,14 +657,14 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </dl>
 </li>
 </ul>
-<a name="randomSeparated-int-squidpony.squidmath.RNG-">
+<a name="randomSeparated-int-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomSeparated</h4>
 <pre>public&nbsp;<a href="../../squidpony/squidmath/Region.html" title="class in squidpony.squidmath">Region</a>&nbsp;<a href="../../src-html/squidpony/squidmath/Region.html#line.217">randomSeparated</a>(int&nbsp;separation,
-                              <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+                              <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Takes this region and walks through its Coords in chunks with length equal to separation, creating a new Region
  where one randomly-chosen Coord in each chunk is kept and the others are discarded.</div>
 <dl>

@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidgrid/LOS.html" title="class in squidpony.squidgrid"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidgrid/MultiSpill.html" title="class in squidpony.squidgrid"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidgrid/MimicWFC.html" title="class in squidpony.squidgrid"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidgrid/MimicFill.html" target="_top">Frames</a></li>
@@ -109,7 +109,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <hr>
 <br>
-<pre>public class <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.13">MimicFill</a>
+<pre>public class <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.14">MimicFill</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">A class that imitates patterns in an existing 2D boolean array and uses it to generate a new boolean array with a
  similar visual style. Useful for creating procedural filler around a desired path or series of known rooms. Can also
@@ -242,22 +242,22 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static boolean[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/MimicFill.html#fill-boolean:A:A-int-double-int-squidpony.squidmath.RNG-">fill</a></span>(boolean[][]&nbsp;sample,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/MimicFill.html#fill-boolean:A:A-int-double-int-squidpony.squidmath.IRNG-">fill</a></span>(boolean[][]&nbsp;sample,
     int&nbsp;size,
     double&nbsp;temperature,
     int&nbsp;iterations,
-    <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
+    <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</code>
 <div class="block">The main part of MimicFill; generates a 2D boolean array that mimics the patterns present in the 2D boolean array
  sample, but can produce a larger or smaller output 2D array than the sample.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static boolean[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/MimicFill.html#fillSolo-boolean:A:A-int-double-int-squidpony.squidmath.RNG-">fillSolo</a></span>(boolean[][]&nbsp;sample,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/MimicFill.html#fillSolo-boolean:A:A-int-double-int-squidpony.squidmath.IRNG-">fillSolo</a></span>(boolean[][]&nbsp;sample,
         int&nbsp;size,
         double&nbsp;temperature,
         int&nbsp;iterations,
-        <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
+        <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</code>
 <div class="block">The main part of MimicFill; generates a 1D boolean array that, when used correctly, mimics the patterns present
  in the 2D boolean array sample, but can produce a larger or smaller output 1D array than the sample.</div>
 </td>
@@ -333,7 +333,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>boulders</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.527">boulders</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.518">boulders</a></pre>
 <div class="block">Predefined sample; many small separate squares.</div>
 </li>
 </ul>
@@ -343,7 +343,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>cave</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.549">cave</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.540">cave</a></pre>
 <div class="block">Predefined sample; a large, enclosed, organic space that usually makes large cave-like rooms,</div>
 </li>
 </ul>
@@ -353,7 +353,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>caves</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.571">caves</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.562">caves</a></pre>
 <div class="block">Predefined sample; several medium-sized organic spaces that usually make tight, chaotic tunnels.</div>
 </li>
 </ul>
@@ -363,7 +363,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>chess</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.593">chess</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.584">chess</a></pre>
 <div class="block">Predefined sample; a checkerboard pattern that typically loses recognition as such after generation.</div>
 </li>
 </ul>
@@ -373,7 +373,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>lessRooms</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.615">lessRooms</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.606">lessRooms</a></pre>
 <div class="block">Predefined sample; produces rectangular rooms with small corridors between them.</div>
 </li>
 </ul>
@@ -383,7 +383,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>maze</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.637">maze</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.628">maze</a></pre>
 <div class="block">Predefined sample; produces a suitable filler for a maze (but it is unlikely to connect both ends like a maze).</div>
 </li>
 </ul>
@@ -393,7 +393,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>quarterBlack</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.659">quarterBlack</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.650">quarterBlack</a></pre>
 <div class="block">Predefined sample; produces weird, large areas of "true" and "false" that suddenly change to the other.</div>
 </li>
 </ul>
@@ -403,7 +403,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>river</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.681">river</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.672">river</a></pre>
 <div class="block">Predefined sample; produces multiple directions of flowing, river-like shapes made of "false".</div>
 </li>
 </ul>
@@ -413,7 +413,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>rooms</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.703">rooms</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.694">rooms</a></pre>
 <div class="block">Predefined sample; produces rectangular rooms with a dense packing.</div>
 </li>
 </ul>
@@ -423,7 +423,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>simpleMaze</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.725">simpleMaze</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.716">simpleMaze</a></pre>
 <div class="block">Predefined sample; produces an uncanny imitation of a maze with a tiny sample size.</div>
 </li>
 </ul>
@@ -433,7 +433,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>simpleRooms</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.735">simpleRooms</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.726">simpleRooms</a></pre>
 <div class="block">Predefined sample; produces mostly rectangular rooms with very few corridor-like areas.</div>
 </li>
 </ul>
@@ -443,7 +443,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>thickWalls</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.752">thickWalls</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.743">thickWalls</a></pre>
 <div class="block">Predefined sample; produces largely rectangular rooms with a good amount of thin corridors.</div>
 </li>
 </ul>
@@ -453,7 +453,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>ruins</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.770">ruins</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.761">ruins</a></pre>
 </li>
 </ul>
 <a name="openRooms">
@@ -462,7 +462,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>openRooms</h4>
-<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.805">openRooms</a></pre>
+<pre>public static final&nbsp;boolean[][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.796">openRooms</a></pre>
 </li>
 </ul>
 <a name="samples">
@@ -471,7 +471,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>samples</h4>
-<pre>public static final&nbsp;boolean[][][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.840">samples</a></pre>
+<pre>public static final&nbsp;boolean[][][] <a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.831">samples</a></pre>
 </li>
 </ul>
 </li>
@@ -488,7 +488,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mapToSample</h4>
-<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.29">mapToSample</a>(char[][]&nbsp;map,
+<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.30">mapToSample</a>(char[][]&nbsp;map,
                                       char...&nbsp;yes)</pre>
 <div class="block">Converts a 2D char array map to a 2D boolean array, where any chars in the array or vararg yes will result in
  true in the returned array at that position and any other chars will result in false. The result can be given to
@@ -508,7 +508,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>sampleToMap</h4>
-<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.54">sampleToMap</a>(boolean[][]&nbsp;sample,
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.55">sampleToMap</a>(boolean[][]&nbsp;sample,
                                    char&nbsp;yes,
                                    char&nbsp;no)</pre>
 <div class="block">Comverts a 2D boolean array to a 2D char array, where false means the parameter no and true the parameter yes.</div>
@@ -528,7 +528,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>sampleToMap</h4>
-<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.77">sampleToMap</a>(boolean[]&nbsp;sample,
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.78">sampleToMap</a>(boolean[]&nbsp;sample,
                                    int&nbsp;width,
                                    int&nbsp;height,
                                    char&nbsp;yes,
@@ -552,7 +552,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>orSamples</h4>
-<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.100">orSamples</a>(boolean[][]&nbsp;left,
+<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.101">orSamples</a>(boolean[][]&nbsp;left,
                                     boolean[][]&nbsp;right)</pre>
 <div class="block">Runs a logical OR on each pair of booleans at the same position in left and right, and returns the result of all
  the OR operations as a 2D boolean array (using the minimum dimensions shared between left and right).</div>
@@ -571,7 +571,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>andSamples</h4>
-<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.125">andSamples</a>(boolean[][]&nbsp;left,
+<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.126">andSamples</a>(boolean[][]&nbsp;left,
                                      boolean[][]&nbsp;right)</pre>
 <div class="block">Runs a logical AND on each pair of booleans at the same position in left and right, and returns the result of all
  the AND operations as a 2D boolean array (using the minimum dimensions shared between left and right).</div>
@@ -590,7 +590,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>markSample</h4>
-<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.152">markSample</a>(boolean[][]&nbsp;sample,
+<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.153">markSample</a>(boolean[][]&nbsp;sample,
                                      <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;points)</pre>
 <div class="block">Given a 2D boolean array sample (usually a final product of this class' fill() method) and an Iterable of Coord
  (such as a List or Set of Coord, but a Region can also work), copies sample, then marks every Coord in points as
@@ -608,17 +608,17 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="fill-boolean:A:A-int-double-int-squidpony.squidmath.RNG-">
+<a name="fill-boolean:A:A-int-double-int-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>fill</h4>
-<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.251">fill</a>(boolean[][]&nbsp;sample,
+<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.247">fill</a>(boolean[][]&nbsp;sample,
                                int&nbsp;size,
                                double&nbsp;temperature,
                                int&nbsp;iterations,
-                               <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</pre>
+                               <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</pre>
 <div class="block">The main part of MimicFill; generates a 2D boolean array that mimics the patterns present in the 2D boolean array
  sample, but can produce a larger or smaller output 2D array than the sample.
  Takes a 2D boolean array as a "sample" (often one of the constants in this class), a size parameter for the
@@ -628,14 +628,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  for certain kinds of output. The iterations parameter should usually be between 3 and 5, with higher values
  taking longer but fitting more closely; values over 5 are barely different from 5 here. This also takes an RNG,
  and because it queries it very frequently, a fast RNG is ideal; the default RandomnessSource used by RNG
- (LightRNG) is fine if you aren't generating many very-large results, but if you are, then passing a
- <a href="../../squidpony/squidmath/XoRoRNG.html" title="class in squidpony.squidmath"><code>XoRoRNG</code></a> as the RandomnessSource parameter to RNG may give better results regarding
- quality since its period (how many random numbers it can generate before repeating a cycle) is much larger, and
- its speed is essentially a tie with LightRNG. For some reason, <a href="../../squidpony/squidmath/ThunderRNG.html" title="class in squidpony.squidmath"><code>ThunderRNG</code></a> doesn't
- perform as well here as it sometimes does, and because the period of its less-significant bits is lower than its
- full period, it may show patterns sooner than XoRoRNG. While <a href="../../squidpony/squidmath/LongPeriodRNG.html" title="class in squidpony.squidmath"><code>LongPeriodRNG</code></a> is
- probably fast enough to not have problems (and its period is massive), slower, more "secure" generators like
- <a href="../../squidpony/squidmath/IsaacRNG.html" title="class in squidpony.squidmath"><code>IsaacRNG</code></a> are probably not a good choice here.</div>
+ (<a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a>) is fine, and in most cases <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> will be reasonably good
+ for quality while probably being slightly faster. On GWT, <a href="../../squidpony/squidmath/Zag32RNG.html" title="class in squidpony.squidmath"><code>Zag32RNG</code></a> is a good choice
+ due to how few operations on <code>long</code> values it needs to do, and GWT has a hard time with longs.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sample</code> - a 2D boolean array to mimic visually; you can use mapToSample() if you have a 2D char array</dd>
@@ -649,24 +644,24 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="fillSolo-boolean:A:A-int-double-int-squidpony.squidmath.RNG-">
+<a name="fillSolo-boolean:A:A-int-double-int-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>fillSolo</h4>
-<pre>public static&nbsp;boolean[]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.365">fillSolo</a>(boolean[][]&nbsp;sample,
+<pre>public static&nbsp;boolean[]&nbsp;<a href="../../src-html/squidpony/squidgrid/MimicFill.html#line.356">fillSolo</a>(boolean[][]&nbsp;sample,
                                  int&nbsp;size,
                                  double&nbsp;temperature,
                                  int&nbsp;iterations,
-                                 <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</pre>
+                                 <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</pre>
 <div class="block">The main part of MimicFill; generates a 1D boolean array that, when used correctly, mimics the patterns present
  in the 2D boolean array sample, but can produce a larger or smaller output 1D array than the sample. Using the
  output correctly mostly involves passing the 1D boolean array with the correct width and height settings to
  <a href="../../squidpony/squidgrid/MimicFill.html#sampleToMap-boolean:A-int-int-char-char-"><code>sampleToMap(boolean[], int, int, char, char)</code></a> to get a 2D char array or producing a GreasedRegion with it
  using <a href="../../squidpony/squidmath/GreasedRegion.html#GreasedRegion-boolean:A-int-int-"><code>GreasedRegion.GreasedRegion(boolean[], int, int)</code></a>. Both the width and height
  used to interpret the 1D array as a 2D array should be equal to the size parameter passed here. The main reason
- you would prefer this method over <a href="../../squidpony/squidgrid/MimicFill.html#fill-boolean:A:A-int-double-int-squidpony.squidmath.RNG-"><code>fill(boolean[][], int, double, int, RNG)</code></a> is that this overload is
+ you would prefer this method over <a href="../../squidpony/squidgrid/MimicFill.html#fill-boolean:A:A-int-double-int-squidpony.squidmath.IRNG-"><code>fill(boolean[][], int, double, int, IRNG)</code></a> is that this overload is
  somewhat faster due to slightly less-frequent RNG calls and a lot less nested array reading and writing.
  <br>
  Takes a 2D boolean array as a "sample" (often one of the constants in this class), a size parameter for the
@@ -676,14 +671,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  for certain kinds of output. The iterations parameter should usually be between 3 and 5, with higher values
  taking longer but fitting more closely; values over 5 are barely different from 5 here. This also takes an RNG,
  and because it queries it very frequently, a fast RNG is ideal; the default RandomnessSource used by RNG
- (LightRNG) is fine if you aren't generating many very-large results, but if you are, then passing a
- <a href="../../squidpony/squidmath/XoRoRNG.html" title="class in squidpony.squidmath"><code>XoRoRNG</code></a> as the RandomnessSource parameter to RNG may give better results regarding
- quality since its period (how many random numbers it can generate before repeating a cycle) is much larger, and
- its speed is essentially a tie with LightRNG. For some reason, <a href="../../squidpony/squidmath/ThunderRNG.html" title="class in squidpony.squidmath"><code>ThunderRNG</code></a> doesn't
- perform as well here as it sometimes does, and because the period of its less-significant bits is lower than its
- full period, it may show patterns sooner than XoRoRNG. While <a href="../../squidpony/squidmath/LongPeriodRNG.html" title="class in squidpony.squidmath"><code>LongPeriodRNG</code></a> is
- probably fast enough to not have problems (and its period is massive), slower, more "secure" generators like
- <a href="../../squidpony/squidmath/IsaacRNG.html" title="class in squidpony.squidmath"><code>IsaacRNG</code></a> are probably not a good choice here.</div>
+ (<a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a>) is fine, and in most cases <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a> will be reasonably good
+ for quality while probably being slightly faster. On GWT, <a href="../../squidpony/squidmath/Zag32RNG.html" title="class in squidpony.squidmath"><code>Zag32RNG</code></a> is a good choice
+ due to how few operations on <code>long</code> values it needs to do, and GWT has a hard time with longs.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sample</code> - a 2D boolean array to mimic visually; you can use mapToSample() if you have a 2D char array</dd>
@@ -726,7 +716,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidgrid/LOS.html" title="class in squidpony.squidgrid"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidgrid/MultiSpill.html" title="class in squidpony.squidgrid"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidgrid/MimicWFC.html" title="class in squidpony.squidgrid"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidgrid/MimicFill.html" target="_top">Frames</a></li>

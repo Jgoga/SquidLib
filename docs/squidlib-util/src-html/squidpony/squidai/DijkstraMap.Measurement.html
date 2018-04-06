@@ -216,7 +216,7 @@
 <span class="sourceLineNo">208</span>    /**<a name="line.208"></a>
 <span class="sourceLineNo">209</span>     * The RNG used to decide which one of multiple equally-short paths to take.<a name="line.209"></a>
 <span class="sourceLineNo">210</span>     */<a name="line.210"></a>
-<span class="sourceLineNo">211</span>    public RNG rng;<a name="line.211"></a>
+<span class="sourceLineNo">211</span>    public IRNG rng;<a name="line.211"></a>
 <span class="sourceLineNo">212</span>    private int frustration = 0;<a name="line.212"></a>
 <span class="sourceLineNo">213</span>    public Coord[][] targetMap;<a name="line.213"></a>
 <span class="sourceLineNo">214</span><a name="line.214"></a>
@@ -1141,8 +1141,8 @@
 <span class="sourceLineNo">1133</span>        Coord start2 = start;<a name="line.1133"></a>
 <span class="sourceLineNo">1134</span>        int xShift = width / 6, yShift = height / 6;<a name="line.1134"></a>
 <span class="sourceLineNo">1135</span>        while (physicalMap[start.x][start.y] &gt;= WALL &amp;&amp; frustration &lt; 50) {<a name="line.1135"></a>
-<span class="sourceLineNo">1136</span>            start2 = Coord.get(Math.min(Math.max(1, start.x + rng.nextIntHasty(1 + xShift * 2) - xShift), width - 2),<a name="line.1136"></a>
-<span class="sourceLineNo">1137</span>                    Math.min(Math.max(1, start.y + rng.nextIntHasty(1 + yShift * 2) - yShift), height - 2));<a name="line.1137"></a>
+<span class="sourceLineNo">1136</span>            start2 = Coord.get(Math.min(Math.max(1, start.x + rng.nextInt(1 + xShift * 2) - xShift), width - 2),<a name="line.1136"></a>
+<span class="sourceLineNo">1137</span>                    Math.min(Math.max(1, start.y + rng.nextInt(1 + yShift * 2) - yShift), height - 2));<a name="line.1137"></a>
 <span class="sourceLineNo">1138</span>        }<a name="line.1138"></a>
 <span class="sourceLineNo">1139</span>        gradientMap[start2.x][start2.y] = 0.0;<a name="line.1139"></a>
 <span class="sourceLineNo">1140</span>        int adjX, adjY, cen, cenX, cenY;<a name="line.1140"></a>
@@ -1231,7 +1231,7 @@
 <span class="sourceLineNo">1223</span>            }<a name="line.1223"></a>
 <span class="sourceLineNo">1224</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.1224"></a>
 <span class="sourceLineNo">1225</span>            appendDirToShuffle(rng);<a name="line.1225"></a>
-<span class="sourceLineNo">1226</span>            int choice = 0;//rng.nextIntHasty(measurement.directionCount() + 1);<a name="line.1226"></a>
+<span class="sourceLineNo">1226</span>            int choice = 0;<a name="line.1226"></a>
 <span class="sourceLineNo">1227</span><a name="line.1227"></a>
 <span class="sourceLineNo">1228</span>            for (int d = 0; d &lt; measurement.directionCount() + 1; d++) {<a name="line.1228"></a>
 <span class="sourceLineNo">1229</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.1229"></a>
@@ -1284,8 +1284,8 @@
 <span class="sourceLineNo">1276</span>        Coord start2 = start;<a name="line.1276"></a>
 <span class="sourceLineNo">1277</span>        int xShift = width / 6, yShift = height / 6;<a name="line.1277"></a>
 <span class="sourceLineNo">1278</span>        while (physicalMap[start.x][start.y] &gt;= WALL &amp;&amp; frustration &lt; 50) {<a name="line.1278"></a>
-<span class="sourceLineNo">1279</span>            start2 = Coord.get(Math.min(Math.max(1, start.x + rng.nextIntHasty(1 + xShift * 2) - xShift), width - 2),<a name="line.1279"></a>
-<span class="sourceLineNo">1280</span>                    Math.min(Math.max(1, start.y + rng.nextIntHasty(1 + yShift * 2) - yShift), height - 2));<a name="line.1280"></a>
+<span class="sourceLineNo">1279</span>            start2 = Coord.get(Math.min(Math.max(1, start.x + rng.nextInt(1 + xShift * 2) - xShift), width - 2),<a name="line.1279"></a>
+<span class="sourceLineNo">1280</span>                    Math.min(Math.max(1, start.y + rng.nextInt(1 + yShift * 2) - yShift), height - 2));<a name="line.1280"></a>
 <span class="sourceLineNo">1281</span>        }<a name="line.1281"></a>
 <span class="sourceLineNo">1282</span>        gradientMap[start2.x][start2.y] = 0.0;<a name="line.1282"></a>
 <span class="sourceLineNo">1283</span>        int adjX, adjY, cen, cenX, cenY;<a name="line.1283"></a>
@@ -1790,7 +1790,7 @@
 <span class="sourceLineNo">1782</span>            }<a name="line.1782"></a>
 <span class="sourceLineNo">1783</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.1783"></a>
 <span class="sourceLineNo">1784</span>            appendDirToShuffle(rng);<a name="line.1784"></a>
-<span class="sourceLineNo">1785</span>            int choice = 0;//rng.nextIntHasty(measurement.directionCount() + 1);<a name="line.1785"></a>
+<span class="sourceLineNo">1785</span>            int choice = 0;<a name="line.1785"></a>
 <span class="sourceLineNo">1786</span><a name="line.1786"></a>
 <span class="sourceLineNo">1787</span>            for (int d = 0; d &lt;= measurement.directionCount(); d++) {<a name="line.1787"></a>
 <span class="sourceLineNo">1788</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.1788"></a>
@@ -1954,7 +1954,7 @@
 <span class="sourceLineNo">1946</span>            }<a name="line.1946"></a>
 <span class="sourceLineNo">1947</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.1947"></a>
 <span class="sourceLineNo">1948</span>            appendDirToShuffle(rng);<a name="line.1948"></a>
-<span class="sourceLineNo">1949</span>            int choice = 0;//rng.nextIntHasty(measurement.directionCount() + 1);<a name="line.1949"></a>
+<span class="sourceLineNo">1949</span>            int choice = 0;<a name="line.1949"></a>
 <span class="sourceLineNo">1950</span><a name="line.1950"></a>
 <span class="sourceLineNo">1951</span>            for (int d = 0; d &lt;= measurement.directionCount(); d++) {<a name="line.1951"></a>
 <span class="sourceLineNo">1952</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.1952"></a>
@@ -2172,7 +2172,7 @@
 <span class="sourceLineNo">2164</span>            }<a name="line.2164"></a>
 <span class="sourceLineNo">2165</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.2165"></a>
 <span class="sourceLineNo">2166</span>            appendDirToShuffle(rng);<a name="line.2166"></a>
-<span class="sourceLineNo">2167</span>            int choice = 0;//rng.nextIntHasty(measurement.directionCount() + 1);<a name="line.2167"></a>
+<span class="sourceLineNo">2167</span>            int choice = 0;<a name="line.2167"></a>
 <span class="sourceLineNo">2168</span><a name="line.2168"></a>
 <span class="sourceLineNo">2169</span>            for (int d = 0; d &lt;= measurement.directionCount(); d++) {<a name="line.2169"></a>
 <span class="sourceLineNo">2170</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.2170"></a>
@@ -2350,7 +2350,7 @@
 <span class="sourceLineNo">2342</span>            }<a name="line.2342"></a>
 <span class="sourceLineNo">2343</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.2343"></a>
 <span class="sourceLineNo">2344</span>            appendDirToShuffle(rng);<a name="line.2344"></a>
-<span class="sourceLineNo">2345</span>            int choice = 0;//rng.nextIntHasty(measurement.directionCount() + 1);<a name="line.2345"></a>
+<span class="sourceLineNo">2345</span>            int choice = 0;<a name="line.2345"></a>
 <span class="sourceLineNo">2346</span><a name="line.2346"></a>
 <span class="sourceLineNo">2347</span>            for (int d = 0; d &lt;= measurement.directionCount(); d++) {<a name="line.2347"></a>
 <span class="sourceLineNo">2348</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.2348"></a>
@@ -2460,7 +2460,7 @@
 <span class="sourceLineNo">2452</span>            }<a name="line.2452"></a>
 <span class="sourceLineNo">2453</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.2453"></a>
 <span class="sourceLineNo">2454</span>            appendDirToShuffle(rng);<a name="line.2454"></a>
-<span class="sourceLineNo">2455</span>            int choice = 0;//rng.nextIntHasty(measurement.directionCount() + 1);<a name="line.2455"></a>
+<span class="sourceLineNo">2455</span>            int choice = 0;<a name="line.2455"></a>
 <span class="sourceLineNo">2456</span><a name="line.2456"></a>
 <span class="sourceLineNo">2457</span>            for (int d = 0; d &lt;= measurement.directionCount(); d++) {<a name="line.2457"></a>
 <span class="sourceLineNo">2458</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.2458"></a>
@@ -2601,7 +2601,7 @@
 <span class="sourceLineNo">2593</span>            }<a name="line.2593"></a>
 <span class="sourceLineNo">2594</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.2594"></a>
 <span class="sourceLineNo">2595</span>            appendDirToShuffle(rng);<a name="line.2595"></a>
-<span class="sourceLineNo">2596</span>            int choice = 0;//rng.nextIntHasty(measurement.directionCount() + 1);<a name="line.2596"></a>
+<span class="sourceLineNo">2596</span>            int choice = 0;<a name="line.2596"></a>
 <span class="sourceLineNo">2597</span><a name="line.2597"></a>
 <span class="sourceLineNo">2598</span>            for (int d = 0; d &lt;= measurement.directionCount(); d++) {<a name="line.2598"></a>
 <span class="sourceLineNo">2599</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.2599"></a>
@@ -2745,7 +2745,7 @@
 <span class="sourceLineNo">2737</span><a name="line.2737"></a>
 <span class="sourceLineNo">2738</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.2738"></a>
 <span class="sourceLineNo">2739</span>            appendDirToShuffle(rng);<a name="line.2739"></a>
-<span class="sourceLineNo">2740</span>            int choice = 0;//rng.nextIntHasty(measurement.directionCount() + 1);<a name="line.2740"></a>
+<span class="sourceLineNo">2740</span>            int choice = 0;<a name="line.2740"></a>
 <span class="sourceLineNo">2741</span><a name="line.2741"></a>
 <span class="sourceLineNo">2742</span>            for (int d = 0; d &lt;= measurement.directionCount(); d++) {<a name="line.2742"></a>
 <span class="sourceLineNo">2743</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.2743"></a>
@@ -2868,7 +2868,7 @@
 <span class="sourceLineNo">2860</span><a name="line.2860"></a>
 <span class="sourceLineNo">2861</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.2861"></a>
 <span class="sourceLineNo">2862</span>            appendDirToShuffle(rng);<a name="line.2862"></a>
-<span class="sourceLineNo">2863</span>            int choice = 0;//rng.nextIntHasty(measurement.directionCount() + 1);<a name="line.2863"></a>
+<span class="sourceLineNo">2863</span>            int choice = 0;<a name="line.2863"></a>
 <span class="sourceLineNo">2864</span><a name="line.2864"></a>
 <span class="sourceLineNo">2865</span>            for (int d = 0; d &lt;= measurement.directionCount(); d++) {<a name="line.2865"></a>
 <span class="sourceLineNo">2866</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.2866"></a>
@@ -2936,7 +2936,7 @@
 <span class="sourceLineNo">2928</span>            }<a name="line.2928"></a>
 <span class="sourceLineNo">2929</span>            double best = gradientMap[currentPos.x][currentPos.y];<a name="line.2929"></a>
 <span class="sourceLineNo">2930</span>            appendDirToShuffle(rng);<a name="line.2930"></a>
-<span class="sourceLineNo">2931</span>            int choice = 0;//rng2.nextIntHasty(measurement.directionCount() + 1);<a name="line.2931"></a>
+<span class="sourceLineNo">2931</span>            int choice = 0;<a name="line.2931"></a>
 <span class="sourceLineNo">2932</span><a name="line.2932"></a>
 <span class="sourceLineNo">2933</span>            for (int d = 0; d &lt;= measurement.directionCount(); d++) {<a name="line.2933"></a>
 <span class="sourceLineNo">2934</span>                Coord pt = Coord.get(currentPos.x + dirs[d].deltaX, currentPos.y + dirs[d].deltaY);<a name="line.2934"></a>
@@ -3046,13 +3046,13 @@
 <span class="sourceLineNo">3038</span>        this.blockingRequirement = blockingRequirement &gt; 2 ? 2 : blockingRequirement &lt; 0 ? 0 : blockingRequirement;<a name="line.3038"></a>
 <span class="sourceLineNo">3039</span>    }<a name="line.3039"></a>
 <span class="sourceLineNo">3040</span><a name="line.3040"></a>
-<span class="sourceLineNo">3041</span>    private void appendDirToShuffle(RNG rng) {<a name="line.3041"></a>
+<span class="sourceLineNo">3041</span>    private void appendDirToShuffle(IRNG rng) {<a name="line.3041"></a>
 <span class="sourceLineNo">3042</span>        final Direction[] src = measurement == Measurement.MANHATTAN<a name="line.3042"></a>
 <span class="sourceLineNo">3043</span>                ? Direction.CARDINALS : Direction.OUTWARDS;<a name="line.3043"></a>
 <span class="sourceLineNo">3044</span>        final int n = measurement.directionCount();<a name="line.3044"></a>
 <span class="sourceLineNo">3045</span>        System.arraycopy(src, 0, dirs, 0, n);<a name="line.3045"></a>
 <span class="sourceLineNo">3046</span>        for (int i = n - 1; i &gt; 0; i--) {<a name="line.3046"></a>
-<span class="sourceLineNo">3047</span>            final int r = rng.nextIntHasty(i+1);<a name="line.3047"></a>
+<span class="sourceLineNo">3047</span>            final int r = rng.nextInt(i+1);<a name="line.3047"></a>
 <span class="sourceLineNo">3048</span>            Direction t = dirs[r];<a name="line.3048"></a>
 <span class="sourceLineNo">3049</span>            dirs[r] = dirs[i];<a name="line.3049"></a>
 <span class="sourceLineNo">3050</span>            dirs[i] = t;<a name="line.3050"></a>

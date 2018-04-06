@@ -10,7 +10,7 @@
 <span class="sourceLineNo">002</span><a name="line.2"></a>
 <span class="sourceLineNo">003</span>import squidpony.squidgrid.mapping.DungeonUtility;<a name="line.3"></a>
 <span class="sourceLineNo">004</span>import squidpony.squidmath.Coord;<a name="line.4"></a>
-<span class="sourceLineNo">005</span>import squidpony.squidmath.RNG;<a name="line.5"></a>
+<span class="sourceLineNo">005</span>import squidpony.squidmath.IRNG;<a name="line.5"></a>
 <span class="sourceLineNo">006</span><a name="line.6"></a>
 <span class="sourceLineNo">007</span>import java.util.*;<a name="line.7"></a>
 <span class="sourceLineNo">008</span><a name="line.8"></a>
@@ -77,7 +77,7 @@
 <span class="sourceLineNo">069</span>         * @param start<a name="line.69"></a>
 <span class="sourceLineNo">070</span>         *            Where the spill should start. It should be passable, otherwise<a name="line.70"></a>
 <span class="sourceLineNo">071</span>         *            an empty list gets returned. Consider using<a name="line.71"></a>
-<span class="sourceLineNo">072</span>         *            {@link DungeonUtility#getRandomCell(RNG, char[][], Set, int)}<a name="line.72"></a>
+<span class="sourceLineNo">072</span>         *            {@link DungeonUtility#getRandomCell(IRNG, char[][], Set, int)}<a name="line.72"></a>
 <span class="sourceLineNo">073</span>         *            to find it.<a name="line.73"></a>
 <span class="sourceLineNo">074</span>         * @param volume<a name="line.74"></a>
 <span class="sourceLineNo">075</span>         *            The number of cells to spill on.<a name="line.75"></a>
@@ -99,7 +99,7 @@
 <span class="sourceLineNo">091</span>         *         passable. If non-empty, this is guaranteed to be an<a name="line.91"></a>
 <span class="sourceLineNo">092</span>         *         {@link ArrayList}.<a name="line.92"></a>
 <span class="sourceLineNo">093</span>         */<a name="line.93"></a>
-<span class="sourceLineNo">094</span>        public List&lt;Coord&gt; spill(RNG rng, char[][] level, Coord start, int volume, int drunks) {<a name="line.94"></a>
+<span class="sourceLineNo">094</span>        public List&lt;Coord&gt; spill(IRNG rng, char[][] level, Coord start, int volume, int drunks) {<a name="line.94"></a>
 <span class="sourceLineNo">095</span>                if (!DungeonUtility.inLevel(level, start) || !passable(level[start.x][start.y]))<a name="line.95"></a>
 <span class="sourceLineNo">096</span>                        return Collections.emptyList();<a name="line.96"></a>
 <span class="sourceLineNo">097</span><a name="line.97"></a>
@@ -156,7 +156,7 @@
 <span class="sourceLineNo">148</span>         * @param drunks<a name="line.148"></a>
 <span class="sourceLineNo">149</span>         *            The number of drunken walkers to consider<a name="line.149"></a>
 <span class="sourceLineNo">150</span>         */<a name="line.150"></a>
-<span class="sourceLineNo">151</span>        protected void inebriate(RNG rng, List&lt;Coord&gt; zone, List&lt;Coord&gt; border, int drunks) {<a name="line.151"></a>
+<span class="sourceLineNo">151</span>        protected void inebriate(IRNG rng, List&lt;Coord&gt; zone, List&lt;Coord&gt; border, int drunks) {<a name="line.151"></a>
 <span class="sourceLineNo">152</span>                if (drunks == 0)<a name="line.152"></a>
 <span class="sourceLineNo">153</span>                        return;<a name="line.153"></a>
 <span class="sourceLineNo">154</span><a name="line.154"></a>
@@ -184,7 +184,7 @@
 <span class="sourceLineNo">176</span>         * @param border<a name="line.176"></a>
 <span class="sourceLineNo">177</span>         *            {@code result}'s border.<a name="line.177"></a>
 <span class="sourceLineNo">178</span>         */<a name="line.178"></a>
-<span class="sourceLineNo">179</span>        private void inebriate0(RNG rng, List&lt;Coord&gt; zone, List&lt;Coord&gt; border, int nb) {<a name="line.179"></a>
+<span class="sourceLineNo">179</span>        private void inebriate0(IRNG rng, List&lt;Coord&gt; zone, List&lt;Coord&gt; border, int nb) {<a name="line.179"></a>
 <span class="sourceLineNo">180</span>                assert !border.isEmpty();<a name="line.180"></a>
 <span class="sourceLineNo">181</span>                assert !zone.isEmpty();<a name="line.181"></a>
 <span class="sourceLineNo">182</span><a name="line.182"></a>
@@ -212,7 +212,7 @@
 <span class="sourceLineNo">204</span>         * @param start<a name="line.204"></a>
 <span class="sourceLineNo">205</span>         *            Where the spill should start. It should be passable, otherwise<a name="line.205"></a>
 <span class="sourceLineNo">206</span>         *            an empty list gets returned. Consider using<a name="line.206"></a>
-<span class="sourceLineNo">207</span>         *            {@link DungeonUtility#getRandomCell(RNG, char[][], Set, int)}<a name="line.207"></a>
+<span class="sourceLineNo">207</span>         *            {@link DungeonUtility#getRandomCell(IRNG, char[][], Set, int)}<a name="line.207"></a>
 <span class="sourceLineNo">208</span>         *            to find it.<a name="line.208"></a>
 <span class="sourceLineNo">209</span>         * @param volume<a name="line.209"></a>
 <span class="sourceLineNo">210</span>         *            The number of cells to spill on.<a name="line.210"></a>
@@ -237,7 +237,7 @@
 <span class="sourceLineNo">229</span>         *         passable. If non-empty, this is guaranteed to be an<a name="line.229"></a>
 <span class="sourceLineNo">230</span>         *         {@link ArrayList}.<a name="line.230"></a>
 <span class="sourceLineNo">231</span>         */<a name="line.231"></a>
-<span class="sourceLineNo">232</span>        public static List&lt;Coord&gt; spill(RNG rng, char[][] level, Coord start, int volume, Set&lt;Character&gt; impassable, int drunks)<a name="line.232"></a>
+<span class="sourceLineNo">232</span>        public static List&lt;Coord&gt; spill(IRNG rng, char[][] level, Coord start, int volume, Set&lt;Character&gt; impassable, int drunks)<a name="line.232"></a>
 <span class="sourceLineNo">233</span>        {<a name="line.233"></a>
 <span class="sourceLineNo">234</span>                Set&lt;Character&gt; blocked;<a name="line.234"></a>
 <span class="sourceLineNo">235</span>                if(impassable == null)<a name="line.235"></a>

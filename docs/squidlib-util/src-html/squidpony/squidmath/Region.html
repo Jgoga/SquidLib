@@ -197,7 +197,7 @@
 <span class="sourceLineNo">189</span>     * @param rng the source of random numbers used to get a random Coord from this Region<a name="line.189"></a>
 <span class="sourceLineNo">190</span>     * @return a random Coord in this Region, or null if this is empty<a name="line.190"></a>
 <span class="sourceLineNo">191</span>     */<a name="line.191"></a>
-<span class="sourceLineNo">192</span>    public Coord getRandomCoord(RNG rng)<a name="line.192"></a>
+<span class="sourceLineNo">192</span>    public Coord getRandomCoord(IRNG rng)<a name="line.192"></a>
 <span class="sourceLineNo">193</span>    {<a name="line.193"></a>
 <span class="sourceLineNo">194</span>        if(CoordPacker.isEmpty(raw))<a name="line.194"></a>
 <span class="sourceLineNo">195</span>            return null;<a name="line.195"></a>
@@ -222,7 +222,7 @@
 <span class="sourceLineNo">214</span>     * @param rng the source of random numbers used to randomize Coords used, removing any noticeable pattern<a name="line.214"></a>
 <span class="sourceLineNo">215</span>     * @return a new Region made of the separated Coords<a name="line.215"></a>
 <span class="sourceLineNo">216</span>     */<a name="line.216"></a>
-<span class="sourceLineNo">217</span>    public Region randomSeparated(int separation, RNG rng)<a name="line.217"></a>
+<span class="sourceLineNo">217</span>    public Region randomSeparated(int separation, IRNG rng)<a name="line.217"></a>
 <span class="sourceLineNo">218</span>    {<a name="line.218"></a>
 <span class="sourceLineNo">219</span>        return new Region(CoordPacker.randomSeparated(raw, separation, rng));<a name="line.219"></a>
 <span class="sourceLineNo">220</span>    }<a name="line.220"></a>

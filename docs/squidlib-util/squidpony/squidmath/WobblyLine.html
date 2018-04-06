@@ -112,7 +112,7 @@ var activeTableTab = "activeTableTab";
 <pre>public class <a href="../../src-html/squidpony/squidmath/WobblyLine.html#line.19">WobblyLine</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">A drunkard's-walk-like algorithm for line drawing "wobbly" paths.
- The line() methods here use an RNG (and will make their own if they don't take one as a parameter) to make a choice
+ The line() methods here use an IRNG (and will make their own if they don't take one as a parameter) to make a choice
  between orthogonal directions to travel in. Because they can go around the target instead of straight to it, they
  also need a width and height for the map so they don't wander over the edge. You can also pass a weight to one of the
  line() methods, which affects how straight the wobbly path will be (1.0 being just about perfectly straight, 0.5
@@ -160,14 +160,14 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WobblyLine.html#line-int-int-int-int-int-int-double-squidpony.squidmath.RNG-">line</a></span>(int&nbsp;startX,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/WobblyLine.html#line-int-int-int-int-int-int-double-squidpony.squidmath.IRNG-">line</a></span>(int&nbsp;startX,
     int&nbsp;startY,
     int&nbsp;endX,
     int&nbsp;endY,
     int&nbsp;width,
     int&nbsp;height,
     double&nbsp;weight,
-    <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+    <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Draws a line from (startX, startY) to (endX, endY) using the Drunkard's Walk algorithm.</div>
 </td>
 </tr>
@@ -222,7 +222,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="line-int-int-int-int-int-int-double-squidpony.squidmath.RNG-">
+<a name="line-int-int-int-int-int-int-double-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -235,7 +235,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
                                int&nbsp;width,
                                int&nbsp;height,
                                double&nbsp;weight,
-                               <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+                               <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Draws a line from (startX, startY) to (endX, endY) using the Drunkard's Walk algorithm. Returns a List of Coord
  in order.</div>
 <dl>

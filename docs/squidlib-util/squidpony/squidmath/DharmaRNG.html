@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></dd>
+<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></dd>
 </dl>
 <hr>
 <br>
@@ -295,7 +295,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/DharmaRNG.html#next-int-">next</a></span>(int&nbsp;bits)</code>
-<div class="block">Get up to 32 bits (inclusive) of random state from the RandomnessSource.</div>
+<div class="block">Get up to 32 bits (inclusive) of random output; the int this produces
+ will not require more than <code>bits</code> bits to represent.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
@@ -543,6 +544,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <div class="block">Generate a random double, altering the result if recently generated results have been leaning
  away from this class' fairness value.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextDouble--">nextDouble</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextDouble--">nextDouble</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -560,6 +563,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <div class="block">Returns a random integer below the given bound, or 0 if the bound is 0 or
  negative. Affects the current fortune.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextInt-int-">nextInt</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextInt-int-">nextInt</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -578,6 +583,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/DharmaRNG.html#line.176">nextInt</a>()</pre>
 <div class="block">Returns a random integer, which may be any positive or negative value. Affects the current fortune.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextInt--">nextInt</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextInt--">nextInt</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -594,6 +601,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/DharmaRNG.html#line.185">nextLong</a>()</pre>
 <div class="block">Returns a random long, which may be any positive or negative value. Affects the current fortune.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextLong--">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextLong--">nextLong</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -611,6 +620,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <div class="block">Returns a random long below the given bound, or 0 if the bound is 0 or
  negative.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextLong-long-">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextLong-long-">nextLong</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -681,8 +692,11 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <h4>next</h4>
 <pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/DharmaRNG.html#line.246">next</a>(int&nbsp;bits)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../squidpony/squidmath/RNG.html#next-int-">RNG</a></code></span></div>
-<div class="block">Get up to 32 bits (inclusive) of random state from the RandomnessSource.</div>
+<div class="block">Get up to 32 bits (inclusive) of random output; the int this produces
+ will not require more than <code>bits</code> bits to represent.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#next-int-">next</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#next-int-">next</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -705,6 +719,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  The inclusive and exclusive behavior is to match the behavior of the
  similar method that deals with floating point values.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#between-long-long-">between</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#between-long-long-">between</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -748,6 +764,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <div class="block">Gets a random float between 0.0f inclusive and 1.0f exclusive.
  This returns a maximum of 0.99999994 because that is the largest float value that is less than 1.0f .</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextFloat--">nextFloat</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextFloat--">nextFloat</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -771,6 +789,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  XoRoRNG, and a large number of generators have lower quality on the least-significant bit than the most-
  significant bit, where this method only checks the most-significant bit.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#nextBoolean--">nextBoolean</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#nextBoolean--">nextBoolean</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -814,6 +834,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <div class="block">Creates a copy of this DharmaRNG; it will generate the same random numbers, given the same calls in order, as
  this DharmaRNG at the point copy() is called. The copy will not share references with this DharmaRNG.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/IRNG.html#copy--">copy</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#copy--">copy</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>

@@ -185,9 +185,9 @@
 <dd>
 <div class="block"><code>true</code> to restrict <code>this</code> to find square rooms</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/Radius.html#onUnitShape-double-squidpony.squidmath.RNG-">onUnitShape(double, RNG)</a></span> - Method in enum squidpony.squidgrid.<a href="../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/Radius.html#onUnitShape-double-squidpony.squidmath.IRNG-">onUnitShape(double, IRNG)</a></span> - Method in enum squidpony.squidgrid.<a href="../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/Radius.html#onUnitShape3D-double-squidpony.squidmath.RNG-">onUnitShape3D(double, RNG)</a></span> - Method in enum squidpony.squidgrid.<a href="../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/Radius.html#onUnitShape3D-double-squidpony.squidmath.IRNG-">onUnitShape3D(double, IRNG)</a></span> - Method in enum squidpony.squidgrid.<a href="../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/AStarSearch.html#open">open</a></span> - Variable in class squidpony.squidmath.<a href="../squidpony/squidmath/AStarSearch.html" title="class in squidpony.squidmath">AStarSearch</a></dt>
 <dd>&nbsp;</dd>
@@ -431,10 +431,37 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html#OrganicMapGenerator-int-int-">OrganicMapGenerator(int, int)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html" title="class in squidpony.squidgrid.mapping">OrganicMapGenerator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html#OrganicMapGenerator-int-int-squidpony.squidmath.RNG-">OrganicMapGenerator(int, int, RNG)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html" title="class in squidpony.squidgrid.mapping">OrganicMapGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html#OrganicMapGenerator-int-int-squidpony.squidmath.IRNG-">OrganicMapGenerator(int, int, IRNG)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html" title="class in squidpony.squidgrid.mapping">OrganicMapGenerator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html#OrganicMapGenerator-double-double-int-int-squidpony.squidmath.RNG-">OrganicMapGenerator(double, double, int, int, RNG)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html" title="class in squidpony.squidgrid.mapping">OrganicMapGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html#OrganicMapGenerator-double-double-int-int-squidpony.squidmath.IRNG-">OrganicMapGenerator(double, double, int, int, IRNG)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/OrganicMapGenerator.html" title="class in squidpony.squidgrid.mapping">OrganicMapGenerator</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="../squidpony/squidmath/Oriole32RNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Oriole32RNG</span></a> - Class in <a href="../squidpony/squidmath/package-summary.html">squidpony.squidmath</a></dt>
+<dd>
+<div class="block">A modification of Blackman and Vigna's xoroshiro128+ generator using two 32-bit ints of state instead of two 64-bit
+ longs and also incorporating a large-increment counter (Weyl sequence) that is added to the rotated xoroshiro output;
+ this is tied with <a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath"><code>Lathe32RNG</code></a> for the fastest generator on GWT I have found that also passes the full 32TB
+ battery of PractRand's statistical tests.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Oriole32RNG.html#Oriole32RNG--">Oriole32RNG()</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Oriole32RNG.html" title="class in squidpony.squidmath">Oriole32RNG</a></dt>
+<dd>
+<div class="block">Creates a new generator seeded using three calls to Math.random().</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Oriole32RNG.html#Oriole32RNG-int-">Oriole32RNG(int)</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Oriole32RNG.html" title="class in squidpony.squidmath">Oriole32RNG</a></dt>
+<dd>
+<div class="block">Constructs this Oriole32RNG by dispersing the bits of seed using <a href="../squidpony/squidmath/Oriole32RNG.html#setSeed-int-"><code>Oriole32RNG.setSeed(int)</code></a> across the two parts of state
+ this has.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Oriole32RNG.html#Oriole32RNG-int-int-">Oriole32RNG(int, int)</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Oriole32RNG.html" title="class in squidpony.squidmath">Oriole32RNG</a></dt>
+<dd>
+<div class="block">Constructs this Oriole32RNG by calling <a href="../squidpony/squidmath/Oriole32RNG.html#setState-int-int-int-"><code>Oriole32RNG.setState(int, int, int)</code></a> on stateA and stateB as given but
+ producing stateC via <code>stateA ^ stateB</code>; see that method for the specific details (stateA and stateB are
+ kept as-is unless they are both 0).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Oriole32RNG.html#Oriole32RNG-int-int-int-">Oriole32RNG(int, int, int)</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Oriole32RNG.html" title="class in squidpony.squidmath">Oriole32RNG</a></dt>
+<dd>
+<div class="block">Constructs this Oriole32RNG by calling <a href="../squidpony/squidmath/Oriole32RNG.html#setState-int-int-int-"><code>Oriole32RNG.setState(int, int, int)</code></a> on the arguments as given; see that
+ method for the specific details (stateA and stateB are kept as-is unless they are both 0).</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/Thesaurus.html#ORK">ORK</a></span> - Static variable in class squidpony.<a href="../squidpony/Thesaurus.html" title="class in squidpony">Thesaurus</a></dt>
 <dd>
 <div class="block">Thesaurus preset that changes all text to sound like this speaker: "Desaurus preset dat changez all text to sound

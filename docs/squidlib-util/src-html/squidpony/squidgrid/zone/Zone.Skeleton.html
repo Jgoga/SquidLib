@@ -326,7 +326,7 @@
 <span class="sourceLineNo">318</span>                        assert shifted.size() == sz;<a name="line.318"></a>
 <span class="sourceLineNo">319</span>                        return new ListZone(shifted);<a name="line.319"></a>
 <span class="sourceLineNo">320</span>                }<a name="line.320"></a>
-<span class="sourceLineNo">321</span><a name="line.321"></a>
+<span class="sourceLineNo">321</span>                <a name="line.321"></a>
 <span class="sourceLineNo">322</span>                @Override<a name="line.322"></a>
 <span class="sourceLineNo">323</span>                /* Convenience implementation, feel free to override. */<a name="line.323"></a>
 <span class="sourceLineNo">324</span>                public Collection&lt;Coord&gt; getInternalBorder() {<a name="line.324"></a>
@@ -337,7 +337,7 @@
 <span class="sourceLineNo">329</span>                /* Convenience implementation, feel free to override. */<a name="line.329"></a>
 <span class="sourceLineNo">330</span>                public Collection&lt;Coord&gt; getExternalBorder() {<a name="line.330"></a>
 <span class="sourceLineNo">331</span>                        final int sz = size();<a name="line.331"></a>
-<span class="sourceLineNo">332</span>                        final List&lt;Coord&gt; result = new ArrayList&lt;Coord&gt;();<a name="line.332"></a>
+<span class="sourceLineNo">332</span>                        final List&lt;Coord&gt; result = new ArrayList&lt;Coord&gt;(sz);<a name="line.332"></a>
 <span class="sourceLineNo">333</span>                        final List&lt;Coord&gt; internalBorder = sz &lt;= 1 ? getAll() : DungeonUtility.border(getAll(), null);<a name="line.333"></a>
 <span class="sourceLineNo">334</span>                        final int ibsz = internalBorder.size();<a name="line.334"></a>
 <span class="sourceLineNo">335</span>                        for (int i = 0; i &lt; ibsz; i++) {<a name="line.335"></a>

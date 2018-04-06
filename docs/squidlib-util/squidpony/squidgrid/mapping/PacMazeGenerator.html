@@ -109,7 +109,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <hr>
 <br>
-<pre>public class <a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.10">PacMazeGenerator</a>
+<pre>public class <a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.11">PacMazeGenerator</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Meant to produce the sort of narrow, looping, not-quite-maze-like passages found in a certain famous early arcade game.
  Created by Tommy Ettinger on 3/30/2016.</div>
@@ -136,7 +136,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/PacMazeGenerator.html#height">height</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></td>
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/PacMazeGenerator.html#rng">rng</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -165,9 +165,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
                 int&nbsp;height)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/PacMazeGenerator.html#PacMazeGenerator-int-int-squidpony.squidmath.RNG-">PacMazeGenerator</a></span>(int&nbsp;width,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/PacMazeGenerator.html#PacMazeGenerator-int-int-squidpony.squidmath.IRNG-">PacMazeGenerator</a></span>(int&nbsp;width,
                 int&nbsp;height,
-                <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>&nbsp;</td>
+                <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -242,7 +242,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>rng</h4>
-<pre>public&nbsp;<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a> <a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.11">rng</a></pre>
+<pre>public&nbsp;<a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a> <a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.12">rng</a></pre>
 </li>
 </ul>
 <a name="width">
@@ -251,7 +251,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>width</h4>
-<pre>public&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.12">width</a></pre>
+<pre>public&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.13">width</a></pre>
 </li>
 </ul>
 <a name="height">
@@ -260,7 +260,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>height</h4>
-<pre>public&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.12">height</a></pre>
+<pre>public&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.13">height</a></pre>
 </li>
 </ul>
 </li>
@@ -277,7 +277,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>PacMazeGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.17">PacMazeGenerator</a>()</pre>
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.18">PacMazeGenerator</a>()</pre>
 </li>
 </ul>
 <a name="PacMazeGenerator-int-int-">
@@ -286,19 +286,19 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>PacMazeGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.21">PacMazeGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.22">PacMazeGenerator</a>(int&nbsp;width,
                         int&nbsp;height)</pre>
 </li>
 </ul>
-<a name="PacMazeGenerator-int-int-squidpony.squidmath.RNG-">
+<a name="PacMazeGenerator-int-int-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>PacMazeGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.27">PacMazeGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.28">PacMazeGenerator</a>(int&nbsp;width,
                         int&nbsp;height,
-                        <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+                        <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 </li>
 </ul>
 </li>
@@ -315,7 +315,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>create</h4>
-<pre>public&nbsp;boolean[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.54">create</a>()</pre>
+<pre>public&nbsp;boolean[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.55">create</a>()</pre>
 </li>
 </ul>
 <a name="generate--">
@@ -324,7 +324,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>generate</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.124">generate</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.125">generate</a>()</pre>
 </li>
 </ul>
 <a name="getEnvironment--">
@@ -333,7 +333,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getEnvironment</h4>
-<pre>public&nbsp;int[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.138">getEnvironment</a>()</pre>
+<pre>public&nbsp;int[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.139">getEnvironment</a>()</pre>
 </li>
 </ul>
 <a name="getMap--">
@@ -342,7 +342,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getMap</h4>
-<pre>public&nbsp;boolean[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.149">getMap</a>()</pre>
+<pre>public&nbsp;boolean[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.150">getMap</a>()</pre>
 <div class="block">Gets the maze as a 2D array of true for passable or false for blocked.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -356,7 +356,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getMaze</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.160">getMaze</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.161">getMaze</a>()</pre>
 <div class="block">Gets the maze as a 2D array of ',' for passable or '#' for blocked.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -370,7 +370,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getDungeon</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.171">getDungeon</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/PacMazeGenerator.html#line.172">getDungeon</a>()</pre>
 <div class="block">Gets the maze as a 2D array of ',' for passable or '#' for blocked.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>

@@ -228,14 +228,13 @@ extends <a href="../../../squidpony/squidgrid/zone/Zone.html" title="interface i
 <ul class="blockList">
 <li class="blockList">
 <h4>getWidth</h4>
-<pre>int&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/Rectangle.html#line.28">getWidth</a>()</pre>
+<pre>int&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/Rectangle.html#line.27">getWidth</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../squidpony/squidgrid/zone/Zone.html#getWidth--">getWidth</a></code>&nbsp;in interface&nbsp;<code><a href="../../../squidpony/squidgrid/zone/Zone.html" title="interface in squidpony.squidgrid.zone">Zone</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The distance between the leftmost cell and the rightmost cell, or
-         anything negative if <code>this</code> zone is empty; may be 0 if all cells
-         are in one vertical line.</dd>
+<dd>The room's width (from {@link #getBottomLeft()). It is greater or
+         equal than 0.</dd>
 </dl>
 </li>
 </ul>
@@ -245,14 +244,13 @@ extends <a href="../../../squidpony/squidgrid/zone/Zone.html" title="interface i
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getHeight</h4>
-<pre>int&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/Rectangle.html#line.35">getHeight</a>()</pre>
+<pre>int&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/Rectangle.html#line.34">getHeight</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../squidpony/squidgrid/zone/Zone.html#getHeight--">getHeight</a></code>&nbsp;in interface&nbsp;<code><a href="../../../squidpony/squidgrid/zone/Zone.html" title="interface in squidpony.squidgrid.zone">Zone</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The distance between the topmost cell and the lowest cell, or
-         anything negative if <code>this</code> zone is empty; may be 0 if all cells
-         are in one horizontal line.</dd>
+<dd>The room's height (from {@link #getBottomLeft()). It is greater
+         or equal than 0.</dd>
 </dl>
 </li>
 </ul>

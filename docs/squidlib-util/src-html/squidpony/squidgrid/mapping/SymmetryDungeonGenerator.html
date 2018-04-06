@@ -71,7 +71,7 @@
 <span class="sourceLineNo">063</span>     * @param rng    an RNG object to use for random choices; this make a lot of random choices.<a name="line.63"></a>
 <span class="sourceLineNo">064</span>     * @see PoissonDisk used to ensure spacing for the points.<a name="line.64"></a>
 <span class="sourceLineNo">065</span>     */<a name="line.65"></a>
-<span class="sourceLineNo">066</span>    public SymmetryDungeonGenerator(int width, int height, RNG rng) {<a name="line.66"></a>
+<span class="sourceLineNo">066</span>    public SymmetryDungeonGenerator(int width, int height, IRNG rng) {<a name="line.66"></a>
 <span class="sourceLineNo">067</span>        this(width, height, rng, basicPoints(width, height, rng));<a name="line.67"></a>
 <span class="sourceLineNo">068</span>    }<a name="line.68"></a>
 <span class="sourceLineNo">069</span><a name="line.69"></a>
@@ -84,11 +84,11 @@
 <span class="sourceLineNo">076</span>     *<a name="line.76"></a>
 <span class="sourceLineNo">077</span>     * @param width    the width of the final map in cells<a name="line.77"></a>
 <span class="sourceLineNo">078</span>     * @param height   the height of the final map in cells<a name="line.78"></a>
-<span class="sourceLineNo">079</span>     * @param rng      an RNG object to use for random choices; this make a lot of random choices.<a name="line.79"></a>
+<span class="sourceLineNo">079</span>     * @param rng      an IRNG, such as an RNG, to use for random choices; this make a lot of random choices.<a name="line.79"></a>
 <span class="sourceLineNo">080</span>     * @param sequence a List of Coord to connect in order; index 0 is the start, index size() - 1 is the end.<a name="line.80"></a>
 <span class="sourceLineNo">081</span>     * @see SerpentMapGenerator a class that uses this technique<a name="line.81"></a>
 <span class="sourceLineNo">082</span>     */<a name="line.82"></a>
-<span class="sourceLineNo">083</span>    public SymmetryDungeonGenerator(int width, int height, RNG rng, List&lt;Coord&gt; sequence) {<a name="line.83"></a>
+<span class="sourceLineNo">083</span>    public SymmetryDungeonGenerator(int width, int height, IRNG rng, List&lt;Coord&gt; sequence) {<a name="line.83"></a>
 <span class="sourceLineNo">084</span>        this(width, height, rng, listToMap(sequence), 1f);<a name="line.84"></a>
 <span class="sourceLineNo">085</span>    }<a name="line.85"></a>
 <span class="sourceLineNo">086</span><a name="line.86"></a>
@@ -101,11 +101,11 @@
 <span class="sourceLineNo">093</span>     *<a name="line.93"></a>
 <span class="sourceLineNo">094</span>     * @param width    the width of the final map in cells<a name="line.94"></a>
 <span class="sourceLineNo">095</span>     * @param height   the height of the final map in cells<a name="line.95"></a>
-<span class="sourceLineNo">096</span>     * @param rng      an RNG object to use for random choices; this make a lot of random choices.<a name="line.96"></a>
+<span class="sourceLineNo">096</span>     * @param rng      an IRNG, such as an RNG, to use for random choices; this make a lot of random choices.<a name="line.96"></a>
 <span class="sourceLineNo">097</span>     * @param sequence a List of Coord to connect in order; index 0 is the start, index size() - 1 is the end.<a name="line.97"></a>
 <span class="sourceLineNo">098</span>     * @see SerpentMapGenerator a class that uses this technique<a name="line.98"></a>
 <span class="sourceLineNo">099</span>     */<a name="line.99"></a>
-<span class="sourceLineNo">100</span>    public SymmetryDungeonGenerator(int width, int height, RNG rng, OrderedSet&lt;Coord&gt; sequence) {<a name="line.100"></a>
+<span class="sourceLineNo">100</span>    public SymmetryDungeonGenerator(int width, int height, IRNG rng, OrderedSet&lt;Coord&gt; sequence) {<a name="line.100"></a>
 <span class="sourceLineNo">101</span>        this(width, height, rng, setToMap(sequence), 1f);<a name="line.101"></a>
 <span class="sourceLineNo">102</span>    }<a name="line.102"></a>
 <span class="sourceLineNo">103</span><a name="line.103"></a>
@@ -123,7 +123,7 @@
 <span class="sourceLineNo">115</span>     * @param connections a Map of Coord keys to arrays of Coord to connect to next; shouldn't connect both ways<a name="line.115"></a>
 <span class="sourceLineNo">116</span>     * @see SerpentMapGenerator a class that uses this technique<a name="line.116"></a>
 <span class="sourceLineNo">117</span>     */<a name="line.117"></a>
-<span class="sourceLineNo">118</span>    public SymmetryDungeonGenerator(int width, int height, RNG rng, OrderedMap&lt;Coord, List&lt;Coord&gt;&gt; connections) {<a name="line.118"></a>
+<span class="sourceLineNo">118</span>    public SymmetryDungeonGenerator(int width, int height, IRNG rng, OrderedMap&lt;Coord, List&lt;Coord&gt;&gt; connections) {<a name="line.118"></a>
 <span class="sourceLineNo">119</span>        this(width, height, rng, connections, 0.8f);<a name="line.119"></a>
 <span class="sourceLineNo">120</span>    }<a name="line.120"></a>
 <span class="sourceLineNo">121</span><a name="line.121"></a>
@@ -142,7 +142,7 @@
 <span class="sourceLineNo">134</span>     * @param roomSizeMultiplier a float multiplier that will be applied to each room's width and height<a name="line.134"></a>
 <span class="sourceLineNo">135</span>     * @see SerpentMapGenerator a class that uses this technique<a name="line.135"></a>
 <span class="sourceLineNo">136</span>     */<a name="line.136"></a>
-<span class="sourceLineNo">137</span>    public SymmetryDungeonGenerator(int width, int height, RNG rng, OrderedMap&lt;Coord, List&lt;Coord&gt;&gt; connections, float roomSizeMultiplier) {<a name="line.137"></a>
+<span class="sourceLineNo">137</span>    public SymmetryDungeonGenerator(int width, int height, IRNG rng, OrderedMap&lt;Coord, List&lt;Coord&gt;&gt; connections, float roomSizeMultiplier) {<a name="line.137"></a>
 <span class="sourceLineNo">138</span>        super(width, height, rng, crossConnect(width, height, connections), roomSizeMultiplier);<a name="line.138"></a>
 <span class="sourceLineNo">139</span>    }<a name="line.139"></a>
 <span class="sourceLineNo">140</span><a name="line.140"></a>

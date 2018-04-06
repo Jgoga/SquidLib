@@ -26,7 +26,7 @@
 <span class="sourceLineNo">018</span> */<a name="line.18"></a>
 <span class="sourceLineNo">019</span>public class GapShuffler&lt;T&gt; implements Iterator&lt;T&gt;, Iterable&lt;T&gt;, Serializable {<a name="line.19"></a>
 <span class="sourceLineNo">020</span>    private static final long serialVersionUID = 1277543974688106290L;<a name="line.20"></a>
-<span class="sourceLineNo">021</span>    public RNG rng;<a name="line.21"></a>
+<span class="sourceLineNo">021</span>    public IRNG rng;<a name="line.21"></a>
 <span class="sourceLineNo">022</span>    private ArrayList&lt;T&gt; elements;<a name="line.22"></a>
 <span class="sourceLineNo">023</span>    private int size, index;<a name="line.23"></a>
 <span class="sourceLineNo">024</span>    private int[][] indexSections;<a name="line.24"></a>
@@ -105,15 +105,15 @@
 <span class="sourceLineNo">097</span>     * always have a large amount of "gap" in order between one appearance and the next. It helps to keep the appearance<a name="line.97"></a>
 <span class="sourceLineNo">098</span>     * of a gap if every item in elements is unique, but that is not necessary and does not affect how this works. The<a name="line.98"></a>
 <span class="sourceLineNo">099</span>     * rng parameter is copied so externally using it won't change the order this produces its values; the rng field is<a name="line.99"></a>
-<span class="sourceLineNo">100</span>     * used whenever the iterator needs to re-shuffle the internal ordering of elements. I suggest that the RNG should<a name="line.100"></a>
+<span class="sourceLineNo">100</span>     * used whenever the iterator needs to re-shuffle the internal ordering of elements. I suggest that the IRNG should<a name="line.100"></a>
 <span class="sourceLineNo">101</span>     * use LongPeriodRNG as its RandomnessSource, since it is in general a good choice for shuffling, but since this<a name="line.101"></a>
 <span class="sourceLineNo">102</span>     * class mostly delegates its unique-shuffling code to PermutationGenerator and looks up at most 20 elements'<a name="line.102"></a>
 <span class="sourceLineNo">103</span>     * permutation at once (allowing it to use a single random long to generate the permutation), there probably won't<a name="line.103"></a>
 <span class="sourceLineNo">104</span>     * be problems if you use any other RandomnessSource.<a name="line.104"></a>
 <span class="sourceLineNo">105</span>     * @param elements a Collection of T that will not be modified<a name="line.105"></a>
-<span class="sourceLineNo">106</span>     * @param rng an RNG that can be pre-seeded; will be copied and not used directly<a name="line.106"></a>
+<span class="sourceLineNo">106</span>     * @param rng an IRNG that can be pre-seeded; will be copied and not used directly<a name="line.106"></a>
 <span class="sourceLineNo">107</span>     */<a name="line.107"></a>
-<span class="sourceLineNo">108</span>    public GapShuffler(Collection&lt;T&gt; elements, RNG rng)<a name="line.108"></a>
+<span class="sourceLineNo">108</span>    public GapShuffler(Collection&lt;T&gt; elements, IRNG rng)<a name="line.108"></a>
 <span class="sourceLineNo">109</span>    {<a name="line.109"></a>
 <span class="sourceLineNo">110</span>        this.rng = rng.copy();<a name="line.110"></a>
 <span class="sourceLineNo">111</span>        this.elements = rng.shuffle(elements);<a name="line.111"></a>
@@ -199,15 +199,15 @@
 <span class="sourceLineNo">191</span>     * always have a large amount of "gap" in order between one appearance and the next. It helps to keep the appearance<a name="line.191"></a>
 <span class="sourceLineNo">192</span>     * of a gap if every item in elements is unique, but that is not necessary and does not affect how this works. The<a name="line.192"></a>
 <span class="sourceLineNo">193</span>     * rng parameter is copied so externally using it won't change the order this produces its values; the rng field is<a name="line.193"></a>
-<span class="sourceLineNo">194</span>     * used whenever the iterator needs to re-shuffle the internal ordering of elements. I suggest that the RNG should<a name="line.194"></a>
+<span class="sourceLineNo">194</span>     * used whenever the iterator needs to re-shuffle the internal ordering of elements. I suggest that the IRNG should<a name="line.194"></a>
 <span class="sourceLineNo">195</span>     * use LongPeriodRNG as its RandomnessSource, since it is in general a good choice for shuffling, but since this<a name="line.195"></a>
 <span class="sourceLineNo">196</span>     * class mostly delegates its unique-shuffling code to PermutationGenerator and looks up at most 20 elements'<a name="line.196"></a>
 <span class="sourceLineNo">197</span>     * permutation at once (allowing it to use a single random long to generate the permutation), there probably won't<a name="line.197"></a>
 <span class="sourceLineNo">198</span>     * be problems if you use any other RandomnessSource.<a name="line.198"></a>
 <span class="sourceLineNo">199</span>     * @param elements a Collection of T that will not be modified<a name="line.199"></a>
-<span class="sourceLineNo">200</span>     * @param rng an RNG that can be pre-seeded; will be copied and not used directly<a name="line.200"></a>
+<span class="sourceLineNo">200</span>     * @param rng an IRNG that can be pre-seeded; will be copied and not used directly<a name="line.200"></a>
 <span class="sourceLineNo">201</span>     */<a name="line.201"></a>
-<span class="sourceLineNo">202</span>    public GapShuffler(T[] elements, RNG rng)<a name="line.202"></a>
+<span class="sourceLineNo">202</span>    public GapShuffler(T[] elements, IRNG rng)<a name="line.202"></a>
 <span class="sourceLineNo">203</span>    {<a name="line.203"></a>
 <span class="sourceLineNo">204</span>        this.rng = rng.copy();<a name="line.204"></a>
 <span class="sourceLineNo">205</span>        this.elements = Maker.makeList(rng.shuffle(elements));<a name="line.205"></a>

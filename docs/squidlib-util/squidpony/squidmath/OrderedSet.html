@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidmath/OrderedMap.ValueIterator.html" title="class in squidpony.squidmath"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidmath/OrthoLine.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidmath/Oriole32RNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidmath/OrderedSet.html" target="_top">Frames</a></li>
@@ -142,7 +142,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet
  in the set does not change the iteration order). Note that this order has
  nothing in common with the natural order of the keys. The order is kept by
  means of an array list, represented <i>via</i> an IntVLA parallel to the
- table that can be modified with methods like <a href="../../squidpony/squidmath/OrderedSet.html#shuffle-squidpony.squidmath.RNG-"><code>shuffle(RNG)</code></a>.
+ table that can be modified with methods like <a href="../../squidpony/squidmath/OrderedSet.html#shuffle-squidpony.squidmath.IRNG-"><code>shuffle(IRNG)</code></a>.
  </p>
  <p>
  This class implements the interface of a sorted set, so to allow easy access
@@ -163,9 +163,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet
  can be used like that but with values associated as well (where OrderedSet uses contains(), OrderedMap uses
  containsKey()). You can also set the item at a position with <a href="../../squidpony/squidmath/OrderedSet.html#addAt-K-int-"><code>addAt(Object, int)</code></a>, or alter an item while
  keeping index the same with <a href="../../squidpony/squidmath/OrderedSet.html#alter-K-K-"><code>alter(Object, Object)</code></a>. Reordering works here too, both with completely random
- orders from <a href="../../squidpony/squidmath/OrderedSet.html#shuffle-squidpony.squidmath.RNG-"><code>shuffle(RNG)</code></a> or with a previously-generated ordering from <a href="../../squidpony/squidmath/OrderedSet.html#reorder-int...-"><code>reorder(int...)</code></a> (you can
+ orders from <a href="../../squidpony/squidmath/OrderedSet.html#shuffle-squidpony.squidmath.IRNG-"><code>shuffle(IRNG)</code></a> or with a previously-generated ordering from <a href="../../squidpony/squidmath/OrderedSet.html#reorder-int...-"><code>reorder(int...)</code></a> (you can
  produce such an ordering for a given size and reuse it across multiple Ordered data structures with
- <a href="../../squidpony/squidmath/RNG.html#randomOrdering-int-"><code>RNG.randomOrdering(int)</code></a>).
+ <a href="../../squidpony/squidmath/IRNG.html#randomOrdering-int-"><code>IRNG.randomOrdering(int)</code></a>).
  </p>
  <p>
  You can pass an <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath"><code>CrossHash.IHasher</code></a> instance such as <a href="../../squidpony/squidmath/CrossHash.html#generalHasher"><code>CrossHash.generalHasher</code></a> as an extra parameter to
@@ -633,8 +633,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet
 </tr>
 <tr id="i31" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/OrderedSet.html" title="type parameter in OrderedSet">K</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/OrderedSet.html#randomItem-squidpony.squidmath.RNG-">randomItem</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
-<div class="block">Gets a random value from this OrderedSet in constant time, using the given RNG to generate a random number.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/OrderedSet.html#randomItem-squidpony.squidmath.IRNG-">randomItem</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
+<div class="block">Gets a random value from this OrderedSet in constant time, using the given IRNG to generate a random number.</div>
 </td>
 </tr>
 <tr id="i32" class="altColor">
@@ -699,8 +699,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet
 </tr>
 <tr id="i42" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/OrderedSet.html" title="type parameter in OrderedSet">K</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/OrderedSet.html#shuffle-squidpony.squidmath.RNG-">shuffle</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
-<div class="block">Randomly alters the iteration order for this OrderedSet using the given RNG to shuffle.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/OrderedSet.html#shuffle-squidpony.squidmath.IRNG-">shuffle</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
+<div class="block">Randomly alters the iteration order for this OrderedSet using the given IRNG to shuffle.</div>
 </td>
 </tr>
 <tr id="i43" class="rowColor">
@@ -2140,14 +2140,14 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet
 </dl>
 </li>
 </ul>
-<a name="randomItem-squidpony.squidmath.RNG-">
+<a name="randomItem-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomItem</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="type parameter in OrderedSet">K</a>&nbsp;<a href="../../src-html/squidpony/squidmath/OrderedSet.html#line.1750">randomItem</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
-<div class="block">Gets a random value from this OrderedSet in constant time, using the given RNG to generate a random number.</div>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="type parameter in OrderedSet">K</a>&nbsp;<a href="../../src-html/squidpony/squidmath/OrderedSet.html#line.1750">randomItem</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
+<div class="block">Gets a random value from this OrderedSet in constant time, using the given IRNG to generate a random number.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>rng</code> - used to generate a random index for a value</dd>
@@ -2156,14 +2156,14 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet
 </dl>
 </li>
 </ul>
-<a name="shuffle-squidpony.squidmath.RNG-">
+<a name="shuffle-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>shuffle</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/OrderedSet.html" title="type parameter in OrderedSet">K</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/OrderedSet.html#line.1760">shuffle</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
-<div class="block">Randomly alters the iteration order for this OrderedSet using the given RNG to shuffle.</div>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../squidpony/squidmath/OrderedSet.html" title="type parameter in OrderedSet">K</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/OrderedSet.html#line.1760">shuffle</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
+<div class="block">Randomly alters the iteration order for this OrderedSet using the given IRNG to shuffle.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>rng</code> - used to generate a random ordering</dd>
@@ -2268,7 +2268,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/SortedSet
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../squidpony/squidmath/OrderedMap.ValueIterator.html" title="class in squidpony.squidmath"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../squidpony/squidmath/OrthoLine.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../squidpony/squidmath/Oriole32RNG.html" title="class in squidpony.squidmath"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?squidpony/squidmath/OrderedSet.html" target="_top">Frames</a></li>

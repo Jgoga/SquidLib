@@ -287,7 +287,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/Spill.html#Spill-squidpony.squidmath.RNG-">Spill</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidgrid/Spill.html#Spill-squidpony.squidmath.IRNG-">Spill</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</code>
 <div class="block">Construct a Spill without a level to actually scan.</div>
 </td>
 </tr>
@@ -521,13 +521,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  initialize() method before using this class.</div>
 </li>
 </ul>
-<a name="Spill-squidpony.squidmath.RNG-">
+<a name="Spill-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>Spill</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/Spill.html#line.109">Spill</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/Spill.html#line.109">Spill</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random)</pre>
 <div class="block">Construct a Spill without a level to actually scan. This constructor allows you to specify an RNG, but the actual
  RandomnessSource the RNG that this object uses will not be identical to the one passed as random (64 bits will
  be requested from the passed RNG, and that will be used to seed this class' RNG).
@@ -543,7 +543,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <h4>Spill</h4>
 <pre>public&nbsp;<a href="../../src-html/squidpony/squidgrid/Spill.html#line.123">Spill</a>(<a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a>&nbsp;random)</pre>
 <div class="block">Construct a Spill without a level to actually scan. This constructor allows you to specify a StatefulRandomness
- such as ThrustAltRNG, which will be referenced in this class (if the state of random changes because this
+ such as Lathe32RNG, which will be referenced in this class (if the state of random changes because this
  object needed a random number, the state change will be reflected in the code that passed random to here).
 
  If you use this constructor, you must call an  initialize() method before using this class.</div>

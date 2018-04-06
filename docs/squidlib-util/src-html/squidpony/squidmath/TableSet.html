@@ -1398,8 +1398,8 @@
 <span class="sourceLineNo">1390</span>     * @param rng used to generate a random index for a value<a name="line.1390"></a>
 <span class="sourceLineNo">1391</span>     * @return a random value from this OrderedSet<a name="line.1391"></a>
 <span class="sourceLineNo">1392</span>     */<a name="line.1392"></a>
-<span class="sourceLineNo">1393</span>    public C randomColumn(RNG rng) {<a name="line.1393"></a>
-<span class="sourceLineNo">1394</span>        return columnAt(rng.nextIntHasty(order.size));<a name="line.1394"></a>
+<span class="sourceLineNo">1393</span>    public C randomColumn(IRNG rng) {<a name="line.1393"></a>
+<span class="sourceLineNo">1394</span>        return columnAt(rng.nextInt(order.size));<a name="line.1394"></a>
 <span class="sourceLineNo">1395</span>    }<a name="line.1395"></a>
 <span class="sourceLineNo">1396</span><a name="line.1396"></a>
 <span class="sourceLineNo">1397</span>    /**<a name="line.1397"></a>
@@ -1408,8 +1408,8 @@
 <span class="sourceLineNo">1400</span>     * @param rng used to generate a random index for a value<a name="line.1400"></a>
 <span class="sourceLineNo">1401</span>     * @return a random value from this OrderedSet<a name="line.1401"></a>
 <span class="sourceLineNo">1402</span>     */<a name="line.1402"></a>
-<span class="sourceLineNo">1403</span>    public R randomRow(RNG rng) {<a name="line.1403"></a>
-<span class="sourceLineNo">1404</span>        return rowAt(rng.nextIntHasty(order.size));<a name="line.1404"></a>
+<span class="sourceLineNo">1403</span>    public R randomRow(IRNG rng) {<a name="line.1403"></a>
+<span class="sourceLineNo">1404</span>        return rowAt(rng.nextInt(order.size));<a name="line.1404"></a>
 <span class="sourceLineNo">1405</span>    }<a name="line.1405"></a>
 <span class="sourceLineNo">1406</span><a name="line.1406"></a>
 <span class="sourceLineNo">1407</span>    /**<a name="line.1407"></a>
@@ -1418,7 +1418,7 @@
 <span class="sourceLineNo">1410</span>     * @param rng used to generate a random ordering<a name="line.1410"></a>
 <span class="sourceLineNo">1411</span>     * @return this for chaining<a name="line.1411"></a>
 <span class="sourceLineNo">1412</span>     */<a name="line.1412"></a>
-<span class="sourceLineNo">1413</span>    public TableSet&lt;C, R&gt; shuffle(RNG rng) {<a name="line.1413"></a>
+<span class="sourceLineNo">1413</span>    public TableSet&lt;C, R&gt; shuffle(IRNG rng) {<a name="line.1413"></a>
 <span class="sourceLineNo">1414</span>        if (size &lt; 2 || rng == null)<a name="line.1414"></a>
 <span class="sourceLineNo">1415</span>            return this;<a name="line.1415"></a>
 <span class="sourceLineNo">1416</span>        order.shuffle(rng);<a name="line.1416"></a>

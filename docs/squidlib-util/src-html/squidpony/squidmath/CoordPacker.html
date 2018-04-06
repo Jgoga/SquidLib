@@ -1944,7 +1944,7 @@
 <span class="sourceLineNo">1936</span>     * @param rng the RNG to use to incorporate a random factor to the generation<a name="line.1936"></a>
 <span class="sourceLineNo">1937</span>     * @return a Coord[] corresponding to a fraction of the "on" cells in packed.<a name="line.1937"></a>
 <span class="sourceLineNo">1938</span>     */<a name="line.1938"></a>
-<span class="sourceLineNo">1939</span>    public static Coord[] randomSeparated(short[] packed, int separation, RNG rng)<a name="line.1939"></a>
+<span class="sourceLineNo">1939</span>    public static Coord[] randomSeparated(short[] packed, int separation, IRNG rng)<a name="line.1939"></a>
 <span class="sourceLineNo">1940</span>    {<a name="line.1940"></a>
 <span class="sourceLineNo">1941</span>        if(separation &lt;= 1)<a name="line.1941"></a>
 <span class="sourceLineNo">1942</span>            return allPacked(packed);<a name="line.1942"></a>
@@ -3384,7 +3384,7 @@
 <span class="sourceLineNo">3376</span>        int boundSize = count(bounds);<a name="line.3376"></a>
 <span class="sourceLineNo">3377</span>        ShortVLA vla = new ShortVLA(256);<a name="line.3377"></a>
 <span class="sourceLineNo">3378</span>        ShortSet ss = new ShortSet(boundSize), edge = new ShortSet(boundSize), quickBounds = new ShortSet(boundSize);<a name="line.3378"></a>
-<span class="sourceLineNo">3379</span>        boolean on = false, justAdded;<a name="line.3379"></a>
+<span class="sourceLineNo">3379</span>        boolean on = false;<a name="line.3379"></a>
 <span class="sourceLineNo">3380</span>        int idx = 0;<a name="line.3380"></a>
 <span class="sourceLineNo">3381</span>        short x, y, dist;<a name="line.3381"></a>
 <span class="sourceLineNo">3382</span>        for(int p = 0; p &lt; bounds.length; p++, on = !on) {<a name="line.3382"></a>
@@ -4758,7 +4758,7 @@
 <span class="sourceLineNo">4750</span>     * @return a Coord[], ordered by distance along the Hilbert Curve, corresponding to a random section of "on" cells<a name="line.4750"></a>
 <span class="sourceLineNo">4751</span>     * in packed that has a random length approximately equal to the count of all "on" cells in packed times fraction.<a name="line.4751"></a>
 <span class="sourceLineNo">4752</span>     */<a name="line.4752"></a>
-<span class="sourceLineNo">4753</span>    public static Coord[] randomSample(short[] packed, double fraction, RNG rng)<a name="line.4753"></a>
+<span class="sourceLineNo">4753</span>    public static Coord[] randomSample(short[] packed, double fraction, IRNG rng)<a name="line.4753"></a>
 <span class="sourceLineNo">4754</span>    {<a name="line.4754"></a>
 <span class="sourceLineNo">4755</span>        int counted = count(packed);<a name="line.4755"></a>
 <span class="sourceLineNo">4756</span>        ShortVLA vla = new ShortVLA((int)(counted * fraction) + 1);<a name="line.4756"></a>
@@ -4789,7 +4789,7 @@
 <span class="sourceLineNo">4781</span>     * @param rng the random number generator used to decide random factors<a name="line.4781"></a>
 <span class="sourceLineNo">4782</span>     * @return a Coord corresponding to a random "on" cell in packed, or the Coord (-1, -1) if packed is empty<a name="line.4782"></a>
 <span class="sourceLineNo">4783</span>     */<a name="line.4783"></a>
-<span class="sourceLineNo">4784</span>    public static Coord singleRandom(short[] packed, RNG rng)<a name="line.4784"></a>
+<span class="sourceLineNo">4784</span>    public static Coord singleRandom(short[] packed, IRNG rng)<a name="line.4784"></a>
 <span class="sourceLineNo">4785</span>    {<a name="line.4785"></a>
 <span class="sourceLineNo">4786</span>        int counted = count(packed);<a name="line.4786"></a>
 <span class="sourceLineNo">4787</span>        if(counted == 0)<a name="line.4787"></a>

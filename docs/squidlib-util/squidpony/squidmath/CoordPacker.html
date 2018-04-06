@@ -1084,18 +1084,18 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i88" class="altColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#randomSample-short:A-double-squidpony.squidmath.RNG-">randomSample</a></span>(short[]&nbsp;packed,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#randomSample-short:A-double-squidpony.squidmath.IRNG-">randomSample</a></span>(short[]&nbsp;packed,
             double&nbsp;fraction,
-            <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+            <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Gets a random subset of positions that are "on" in the given packed array, without unpacking it, and returns
  them as a Coord[].</div>
 </td>
 </tr>
 <tr id="i89" class="rowColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#randomSeparated-short:A-int-squidpony.squidmath.RNG-">randomSeparated</a></span>(short[]&nbsp;packed,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#randomSeparated-short:A-int-squidpony.squidmath.IRNG-">randomSeparated</a></span>(short[]&nbsp;packed,
                int&nbsp;separation,
-               <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+               <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Gets the positions that are "on" in the given packed array, without unpacking it, repeatedly goes through a
  number of "on" cells equal to fraction and stores a random one of those cells as a Coord, and returns the
  accumulated random portion of positions as a Coord[].</div>
@@ -1228,8 +1228,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i104" class="altColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#singleRandom-short:A-squidpony.squidmath.RNG-">singleRandom</a></span>(short[]&nbsp;packed,
-            <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#singleRandom-short:A-squidpony.squidmath.IRNG-">singleRandom</a></span>(short[]&nbsp;packed,
+            <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Gets a single randomly chosen position that is "on" in the given packed array, without unpacking it, and returns
  it as a Coord or returns null of the array is empty.</div>
 </td>
@@ -2517,7 +2517,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="randomSeparated-short:A-int-squidpony.squidmath.RNG-">
+<a name="randomSeparated-short:A-int-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2525,7 +2525,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>randomSeparated</h4>
 <pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1939">randomSeparated</a>(short[]&nbsp;packed,
                                       int&nbsp;separation,
-                                      <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+                                      <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets the positions that are "on" in the given packed array, without unpacking it, repeatedly goes through a
  number of "on" cells equal to fraction and stores a random one of those cells as a Coord, and returns the
  accumulated random portion of positions as a Coord[]. Because of how this works, it is much more likely that the
@@ -3960,7 +3960,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4722">removeIsolated</a>(short[]&nbsp;packed)</pre>
 </li>
 </ul>
-<a name="randomSample-short:A-double-squidpony.squidmath.RNG-">
+<a name="randomSample-short:A-double-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -3968,7 +3968,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>randomSample</h4>
 <pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4753">randomSample</a>(short[]&nbsp;packed,
                                    double&nbsp;fraction,
-                                   <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+                                   <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a random subset of positions that are "on" in the given packed array, without unpacking it, and returns
  them as a Coord[]. Random numbers are generated by the rng parameter.</div>
 <dl>
@@ -3983,14 +3983,14 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="singleRandom-short:A-squidpony.squidmath.RNG-">
+<a name="singleRandom-short:A-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>singleRandom</h4>
 <pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4784">singleRandom</a>(short[]&nbsp;packed,
-                                 <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+                                 <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a single randomly chosen position that is "on" in the given packed array, without unpacking it, and returns
  it as a Coord or returns null of the array is empty. Random numbers are generated by the rng parameter.
  More efficient in most cases than randomSample(), and will always return at least one Coord for non-empty arrays.</div>

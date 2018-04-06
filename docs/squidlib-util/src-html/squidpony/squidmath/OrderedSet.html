@@ -50,7 +50,7 @@
 <span class="sourceLineNo">042</span> * in the set does not change the iteration order). Note that this order has<a name="line.42"></a>
 <span class="sourceLineNo">043</span> * nothing in common with the natural order of the keys. The order is kept by<a name="line.43"></a>
 <span class="sourceLineNo">044</span> * means of an array list, represented &lt;i&gt;via&lt;/i&gt; an IntVLA parallel to the<a name="line.44"></a>
-<span class="sourceLineNo">045</span> * table that can be modified with methods like {@link #shuffle(RNG)}.<a name="line.45"></a>
+<span class="sourceLineNo">045</span> * table that can be modified with methods like {@link #shuffle(IRNG)}.<a name="line.45"></a>
 <span class="sourceLineNo">046</span> * &lt;/p&gt;<a name="line.46"></a>
 <span class="sourceLineNo">047</span> * &lt;p&gt;<a name="line.47"></a>
 <span class="sourceLineNo">048</span> * This class implements the interface of a sorted set, so to allow easy access<a name="line.48"></a>
@@ -71,9 +71,9 @@
 <span class="sourceLineNo">063</span> * can be used like that but with values associated as well (where OrderedSet uses contains(), OrderedMap uses<a name="line.63"></a>
 <span class="sourceLineNo">064</span> * containsKey()). You can also set the item at a position with {@link #addAt(Object, int)}, or alter an item while<a name="line.64"></a>
 <span class="sourceLineNo">065</span> * keeping index the same with {@link #alter(Object, Object)}. Reordering works here too, both with completely random<a name="line.65"></a>
-<span class="sourceLineNo">066</span> * orders from {@link #shuffle(RNG)} or with a previously-generated ordering from {@link #reorder(int...)} (you can<a name="line.66"></a>
+<span class="sourceLineNo">066</span> * orders from {@link #shuffle(IRNG)} or with a previously-generated ordering from {@link #reorder(int...)} (you can<a name="line.66"></a>
 <span class="sourceLineNo">067</span> * produce such an ordering for a given size and reuse it across multiple Ordered data structures with<a name="line.67"></a>
-<span class="sourceLineNo">068</span> * {@link RNG#randomOrdering(int)}).<a name="line.68"></a>
+<span class="sourceLineNo">068</span> * {@link IRNG#randomOrdering(int)}).<a name="line.68"></a>
 <span class="sourceLineNo">069</span> * &lt;/p&gt;<a name="line.69"></a>
 <span class="sourceLineNo">070</span> * &lt;p&gt;<a name="line.70"></a>
 <span class="sourceLineNo">071</span> * You can pass an {@link CrossHash.IHasher} instance such as {@link CrossHash#generalHasher} as an extra parameter to<a name="line.71"></a>
@@ -1750,22 +1750,22 @@
 <span class="sourceLineNo">1742</span>    }<a name="line.1742"></a>
 <span class="sourceLineNo">1743</span><a name="line.1743"></a>
 <span class="sourceLineNo">1744</span>    /**<a name="line.1744"></a>
-<span class="sourceLineNo">1745</span>     * Gets a random value from this OrderedSet in constant time, using the given RNG to generate a random number.<a name="line.1745"></a>
+<span class="sourceLineNo">1745</span>     * Gets a random value from this OrderedSet in constant time, using the given IRNG to generate a random number.<a name="line.1745"></a>
 <span class="sourceLineNo">1746</span>     *<a name="line.1746"></a>
 <span class="sourceLineNo">1747</span>     * @param rng used to generate a random index for a value<a name="line.1747"></a>
 <span class="sourceLineNo">1748</span>     * @return a random value from this OrderedSet<a name="line.1748"></a>
 <span class="sourceLineNo">1749</span>     */<a name="line.1749"></a>
-<span class="sourceLineNo">1750</span>    public K randomItem(RNG rng) {<a name="line.1750"></a>
+<span class="sourceLineNo">1750</span>    public K randomItem(IRNG rng) {<a name="line.1750"></a>
 <span class="sourceLineNo">1751</span>        return getAt(rng.nextInt(order.size));<a name="line.1751"></a>
 <span class="sourceLineNo">1752</span>    }<a name="line.1752"></a>
 <span class="sourceLineNo">1753</span><a name="line.1753"></a>
 <span class="sourceLineNo">1754</span>    /**<a name="line.1754"></a>
-<span class="sourceLineNo">1755</span>     * Randomly alters the iteration order for this OrderedSet using the given RNG to shuffle.<a name="line.1755"></a>
+<span class="sourceLineNo">1755</span>     * Randomly alters the iteration order for this OrderedSet using the given IRNG to shuffle.<a name="line.1755"></a>
 <span class="sourceLineNo">1756</span>     *<a name="line.1756"></a>
 <span class="sourceLineNo">1757</span>     * @param rng used to generate a random ordering<a name="line.1757"></a>
 <span class="sourceLineNo">1758</span>     * @return this for chaining<a name="line.1758"></a>
 <span class="sourceLineNo">1759</span>     */<a name="line.1759"></a>
-<span class="sourceLineNo">1760</span>    public OrderedSet&lt;K&gt; shuffle(RNG rng) {<a name="line.1760"></a>
+<span class="sourceLineNo">1760</span>    public OrderedSet&lt;K&gt; shuffle(IRNG rng) {<a name="line.1760"></a>
 <span class="sourceLineNo">1761</span>        if (size &lt; 2 || rng == null)<a name="line.1761"></a>
 <span class="sourceLineNo">1762</span>            return this;<a name="line.1762"></a>
 <span class="sourceLineNo">1763</span>        order.shuffle(rng);<a name="line.1763"></a>

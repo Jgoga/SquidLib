@@ -153,7 +153,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
                        <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
                        double&nbsp;branchingChance)</code>
 <div class="block">This prepares a map generator that will generate a map with the given width, height and depth, using the given
- RNG, and will branch out to other nearby rooms that (probably) do not have staircases between layers.</div>
+ IRNG, and will branch out to other nearby rooms that (probably) do not have staircases between layers.</div>
 </td>
 </tr>
 </table>
@@ -270,7 +270,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>width</code> - the width of the final map in cells</dd>
 <dd><code>height</code> - the height of the final map in cells</dd>
 <dd><code>depth</code> - the number of levels deep to create</dd>
-<dd><code>rng</code> - an RNG object to use for random choices; this make a lot of random choices.</dd>
+<dd><code>rng</code> - an IRNG object to use for random choices; this make a lot of random choices.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title="class in squidpony.squidgrid.mapping"><code>MixedGenerator</code></a></dd>
 </dl>
@@ -288,7 +288,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
                                <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
                                double&nbsp;branchingChance)</pre>
 <div class="block">This prepares a map generator that will generate a map with the given width, height and depth, using the given
- RNG, and will branch out to other nearby rooms that (probably) do not have staircases between layers.
+ IRNG, and will branch out to other nearby rooms that (probably) do not have staircases between layers.
  The intended purpose is to carve a long path that loops through the whole dungeon's 3D space, while
  hopefully maximizing the amount of rooms the player encounters. You call the different carver-adding methods to
  affect what the dungeon will look like, putCaveCarvers(), putBoxRoomCarvers(), and putRoundRoomCarvers(),
@@ -299,7 +299,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>width</code> - the width of the final map in cells</dd>
 <dd><code>height</code> - the height of the final map in cells</dd>
 <dd><code>depth</code> - the number of levels deep to create</dd>
-<dd><code>rng</code> - an RNG object to use for random choices; this make a lot of random choices.</dd>
+<dd><code>rng</code> - an IRNG object to use for random choices; this make a lot of random choices.</dd>
 <dd><code>branchingChance</code> - the odds from 0.0 to 1.0 that a branch will be created near each necessary room.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title="class in squidpony.squidgrid.mapping"><code>MixedGenerator</code></a></dd>

@@ -81,7 +81,7 @@
 <span class="sourceLineNo">073</span>     * @param rng the random number generator responsible for producing random double values<a name="line.73"></a>
 <span class="sourceLineNo">074</span>     * @return a 1D double array that represents a 2D array with random contents; should be given to other methods<a name="line.74"></a>
 <span class="sourceLineNo">075</span>     */<a name="line.75"></a>
-<span class="sourceLineNo">076</span>    public static double[] initialize(int width, int height, RNG rng) {<a name="line.76"></a>
+<span class="sourceLineNo">076</span>    public static double[] initialize(int width, int height, IRNG rng) {<a name="line.76"></a>
 <span class="sourceLineNo">077</span>        return initializeInto(new double[width * height], rng);<a name="line.77"></a>
 <span class="sourceLineNo">078</span>    }<a name="line.78"></a>
 <span class="sourceLineNo">079</span>    /**<a name="line.79"></a>
@@ -91,7 +91,7 @@
 <span class="sourceLineNo">083</span>     * @param rng the random number generator responsible for producing random double values<a name="line.83"></a>
 <span class="sourceLineNo">084</span>     * @return a 1D double array that represents a 2D array with random contents; should be given to other methods<a name="line.84"></a>
 <span class="sourceLineNo">085</span>     */<a name="line.85"></a>
-<span class="sourceLineNo">086</span>    public static double[] initializeInto(double[] substance, RNG rng){<a name="line.86"></a>
+<span class="sourceLineNo">086</span>    public static double[] initializeInto(double[] substance, IRNG rng){<a name="line.86"></a>
 <span class="sourceLineNo">087</span>        if(substance == null || rng == null) return null;<a name="line.87"></a>
 <span class="sourceLineNo">088</span>        for (int i = 0; i &lt; substance.length; i++) {<a name="line.88"></a>
 <span class="sourceLineNo">089</span>            substance[i] = rng.nextDouble(2.0) - 1.0;<a name="line.89"></a>
