@@ -435,9 +435,17 @@
 <span class="sourceLineNo">427</span>    public int nextIntHasty(int bound) {<a name="line.427"></a>
 <span class="sourceLineNo">428</span>        return (int)(nextDouble() * bound);<a name="line.428"></a>
 <span class="sourceLineNo">429</span>    }<a name="line.429"></a>
-<span class="sourceLineNo">430</span><a name="line.430"></a>
-<span class="sourceLineNo">431</span><a name="line.431"></a>
-<span class="sourceLineNo">432</span>}<a name="line.432"></a>
+<span class="sourceLineNo">430</span>    /**<a name="line.430"></a>
+<span class="sourceLineNo">431</span>     * Returns this EditRNG in a way that can be deserialized even if only {@link IRNG}'s methods can be called.<a name="line.431"></a>
+<span class="sourceLineNo">432</span>     * @return a {@link Serializable} view of this EditRNG; always {@code this}<a name="line.432"></a>
+<span class="sourceLineNo">433</span>     */<a name="line.433"></a>
+<span class="sourceLineNo">434</span>    @Override<a name="line.434"></a>
+<span class="sourceLineNo">435</span>    public Serializable toSerializable() {<a name="line.435"></a>
+<span class="sourceLineNo">436</span>        return this;<a name="line.436"></a>
+<span class="sourceLineNo">437</span>    }<a name="line.437"></a>
+<span class="sourceLineNo">438</span><a name="line.438"></a>
+<span class="sourceLineNo">439</span><a name="line.439"></a>
+<span class="sourceLineNo">440</span>}<a name="line.440"></a>
 
 
 

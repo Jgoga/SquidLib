@@ -1172,6 +1172,11 @@
 <dd>
 <div class="block">Sets the seed used for all noise types, as a long.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GWTRNG.html#setSeed-int-">setSeed(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GWTRNG.html" title="class in squidpony.squidmath">GWTRNG</a></dt>
+<dd>
+<div class="block">Sets the state of this generator using one int, running it through Zog32RNG's algorithm two times to get 
+ two ints.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Lathe32RNG.html#setSeed-int-">setSeed(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath">Lathe32RNG</a></dt>
 <dd>
 <div class="block">Sets the state of this generator using one int, running it through Zog32RNG's algorithm two times to get 
@@ -1255,6 +1260,15 @@
  produces based on the state.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/FlapRNG.html#setState-long-">setState(long)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/FlapRNG.html" title="class in squidpony.squidmath">FlapRNG</a></dt>
+<dd>
+<div class="block">Set the current internal state of this StatefulRandomness with a long.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GWTRNG.html#setState-int-int-">setState(int, int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GWTRNG.html" title="class in squidpony.squidmath">GWTRNG</a></dt>
+<dd>
+<div class="block">Sets the current internal state of this GWTRNG with three ints, where stateA and stateB can each be any int
+ unless they are both 0 (which will be treated as if stateA is 1 and stateB is 0).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GWTRNG.html#setState-long-">setState(long)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GWTRNG.html" title="class in squidpony.squidmath">GWTRNG</a></dt>
 <dd>
 <div class="block">Set the current internal state of this StatefulRandomness with a long.</div>
 </dd>
@@ -1360,6 +1374,10 @@
 <dd>
 <div class="block">Sets the irregularly-changing part of the state; just about any long can be passed as a reasonable value here.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GWTRNG.html#setStateA-int-">setStateA(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GWTRNG.html" title="class in squidpony.squidmath">GWTRNG</a></dt>
+<dd>
+<div class="block">Sets the first part of the state to the given int.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Lathe32RNG.html#setStateA-int-">setStateA(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath">Lathe32RNG</a></dt>
 <dd>
 <div class="block">Sets the first part of the state to the given int.</div>
@@ -1370,6 +1388,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Zag32RNG.html#setStateA-int-">setStateA(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Zag32RNG.html" title="class in squidpony.squidmath">Zag32RNG</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GWTRNG.html#setStateB-int-">setStateB(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GWTRNG.html" title="class in squidpony.squidmath">GWTRNG</a></dt>
+<dd>
+<div class="block">Sets the second part of the state to the given int.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Lathe32RNG.html#setStateB-int-">setStateB(int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath">Lathe32RNG</a></dt>
 <dd>
 <div class="block">Sets the second part of the state to the given int.</div>
@@ -1627,6 +1649,23 @@
 <dd>
 <div class="block">Reduces the size of the backing array to the size of the actual items.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/AbstractRNG.html#shuffle-T:A-">shuffle(T[])</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/AbstractRNG.html" title="class in squidpony.squidmath">AbstractRNG</a></dt>
+<dd>
+<div class="block">Shuffle an array using the Fisher-Yates algorithm and returns a shuffled copy, freshly-allocated, without
+ modifying elements.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/AbstractRNG.html#shuffle-T:A-T:A-">shuffle(T[], T[])</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/AbstractRNG.html" title="class in squidpony.squidmath">AbstractRNG</a></dt>
+<dd>
+<div class="block">Shuffle an array using the Fisher-Yates algorithm.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/AbstractRNG.html#shuffle-java.util.Collection-">shuffle(Collection&lt;T&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/AbstractRNG.html" title="class in squidpony.squidmath">AbstractRNG</a></dt>
+<dd>
+<div class="block">Shuffles a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util"><code>Collection</code></a> of T using the Fisher-Yates algorithm and returns an ArrayList of T.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/AbstractRNG.html#shuffle-java.util.Collection-java.util.ArrayList-">shuffle(Collection&lt;T&gt;, ArrayList&lt;T&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/AbstractRNG.html" title="class in squidpony.squidmath">AbstractRNG</a></dt>
+<dd>
+<div class="block">Shuffles a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util"><code>Collection</code></a> of T using the Fisher-Yates algorithm and puts it in a buffer.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Arrangement.html#shuffle-squidpony.squidmath.IRNG-">shuffle(IRNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a></dt>
 <dd>
 <div class="block">Randomly alters the iteration order for this Arrangement using the given IRNG to shuffle.</div>
@@ -1718,6 +1757,14 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/TableSet.html#shuffle-squidpony.squidmath.IRNG-">shuffle(IRNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/TableSet.html" title="class in squidpony.squidmath">TableSet</a></dt>
 <dd>
 <div class="block">Randomly alters the iteration order for this OrderedSet using the given RNG to shuffle.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/AbstractRNG.html#shuffleInPlace-T:A-">shuffleInPlace(T[])</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/AbstractRNG.html" title="class in squidpony.squidmath">AbstractRNG</a></dt>
+<dd>
+<div class="block">Shuffles an array in-place using the Fisher-Yates algorithm.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/AbstractRNG.html#shuffleInPlace-java.util.List-">shuffleInPlace(List&lt;T&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/AbstractRNG.html" title="class in squidpony.squidmath">AbstractRNG</a></dt>
+<dd>
+<div class="block">Shuffles a Collection of T items in-place using the Fisher-Yates algorithm.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/IRNG.html#shuffleInPlace-T:A-">shuffleInPlace(T[])</a></span> - Method in interface squidpony.squidmath.<a href="../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></dt>
 <dd>
@@ -2882,6 +2929,10 @@
 <dd>
 <div class="block">Swahili is one of the more commonly-spoken languages in sub-Saharan Africa, and serves mainly as a shared language
  that is often learned after becoming fluent in one of many other (vaguely-similar) languages of the area.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/AbstractRNG.html#swap-T:A-int-int-">swap(T[], int, int)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/AbstractRNG.html" title="class in squidpony.squidmath">AbstractRNG</a></dt>
+<dd>
+<div class="block">Mutates the array arr by switching the contents at pos1 and pos2.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Arrangement.html#swap-K-K-">swap(K, K)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath">Arrangement</a></dt>
 <dd>
