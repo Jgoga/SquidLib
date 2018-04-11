@@ -153,6 +153,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#random">random</a></span> - Variable in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/ShortSet.html#random-squidpony.squidmath.IRNG-">random(IRNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ShortSet.html" title="class in squidpony.squidmath">ShortSet</a></dt>
+<dd>
+<div class="block">Gets a random short from this ShortSet, using the given <a href="../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath"><code>IRNG</code></a> to generate random values.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/WeightedTable.html#random-long-">random(long)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/WeightedTable.html" title="class in squidpony.squidmath">WeightedTable</a></dt>
 <dd>
 <div class="block">Gets an index of one of the weights in this WeightedTable, with the choice determined deterministically by the
@@ -442,7 +446,7 @@
 <div class="block">Generates a random permutation of the range from 0 (inclusive) to length (exclusive) and stores it in
  the dest parameter, avoiding allocations.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/CoordPacker.html#randomPortion-short:A-int-squidpony.squidmath.RNG-">randomPortion(short[], int, RNG)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath">CoordPacker</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/CoordPacker.html#randomPortion-short:A-int-squidpony.squidmath.IRNG-">randomPortion(short[], int, IRNG)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath">CoordPacker</a></dt>
 <dd>
 <div class="block">Gets a fixed number of randomly chosen positions that are "on" in the given packed array, without unpacking it,
  and returns a List of Coord with a count equal to size (or less if there aren't enough "on" cells).</div>
@@ -831,6 +835,8 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.MimicMap.html#regenerate-int-int-int-int-double-double-long-">regenerate(int, int, int, int, double, double, long)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.MimicMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.MimicMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html#regenerate-int-int-int-int-double-double-long-">regenerate(int, int, int, int, double, double, long)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#regenerate-int-int-int-int-double-double-long-">regenerate(int, int, int, int, double, double, long)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#regenerate-int-int-int-int-double-double-long-">regenerate(int, int, int, int, double, double, long)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMap</a></dt>
 <dd>&nbsp;</dd>
@@ -1990,6 +1996,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#riverRidged">riverRidged</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.EllipticalMap</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#riverRidged">riverRidged</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#riverRidged">riverRidged</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html#riverRidged">riverRidged</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMapAlt.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMapAlt</a></dt>
@@ -1997,6 +2005,8 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.TilingMap.html#riverRidged">riverRidged</a></span> - Variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.TilingMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.TilingMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#riverRidgedFreq">riverRidgedFreq</a></span> - Static variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.EllipticalMap</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#riverRidgedFreq">riverRidgedFreq</a></span> - Static variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html#riverRidgedFreq">riverRidgedFreq</a></span> - Static variable in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SphereMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SphereMap</a></dt>
 <dd>&nbsp;</dd>

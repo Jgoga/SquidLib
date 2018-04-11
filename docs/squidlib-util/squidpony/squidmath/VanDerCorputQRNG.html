@@ -276,7 +276,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/VanDerCorputQRNG.html" title="class in squidpony.squidmath">VanDerCorputQRNG</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#copy--">copy</a></span>()</code>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
+<div class="block">Produces a copy of this StatefulRandomness that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
 </td>
 </tr>
@@ -561,15 +561,17 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <li class="blockList">
 <h4>copy</h4>
 <pre>public&nbsp;<a href="../../squidpony/squidmath/VanDerCorputQRNG.html" title="class in squidpony.squidmath">VanDerCorputQRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.176">copy</a>()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html#copy--">RandomnessSource</a></code></span></div>
-<div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidmath/StatefulRandomness.html#copy--">StatefulRandomness</a></code></span></div>
+<div class="block">Produces a copy of this StatefulRandomness that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called. This just needs to
  copy the state so it isn't shared, usually, and produce a new value with the same exact state.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RandomnessSource.html#copy--">copy</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/StatefulRandomness.html#copy--">copy</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a copy of this RandomnessSource</dd>
+<dd>a copy of this StatefulRandomness</dd>
 </dl>
 </li>
 </ul>

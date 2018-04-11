@@ -109,7 +109,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <hr>
 <br>
-<pre>public class <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.196">CoordPacker</a>
+<pre>public class <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.197">CoordPacker</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Provides static methods to encode Coords as single primitive ints in various ways, hence the namesake, but also
  provides advanced methods to encode 2D arrays of various sorts produced by SquidLib in extremely memory-efficient
@@ -1075,9 +1075,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i87" class="rowColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#randomPortion-short:A-int-squidpony.squidmath.RNG-">randomPortion</a></span>(short[]&nbsp;packed,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#randomPortion-short:A-int-squidpony.squidmath.IRNG-">randomPortion</a></span>(short[]&nbsp;packed,
              int&nbsp;size,
-             <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+             <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Gets a fixed number of randomly chosen positions that are "on" in the given packed array, without unpacking it,
  and returns a List of Coord with a count equal to size (or less if there aren't enough "on" cells).</div>
 </td>
@@ -1236,11 +1236,11 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i105" class="rowColor">
 <td class="colFirst"><code>static short[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#spill-short:A-short:A-int-squidpony.squidmath.RNG-">spill</a></span>(short[]&nbsp;bounds,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CoordPacker.html#spill-short:A-short:A-int-squidpony.squidmath.IRNG-">spill</a></span>(short[]&nbsp;bounds,
      short[]&nbsp;start,
      int&nbsp;volume,
-     <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
-<div class="block">Given a packed array encoding a larger area, a packed array encoding one or more points inside bounds, an RNG,
+     <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
+<div class="block">Given a packed array encoding a larger area, a packed array encoding one or more points inside bounds, an IRNG,
  and a volume in cells, expands a random cell in start in a random Manhattan (diamond) direction equal, then
  continues to expand from random cells in start or the expanded area until it has filled volume cells, limiting
  any expansion to within bounds and returning the final expanded (limited) packed data.</div>
@@ -1489,7 +1489,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>DEPTH</h4>
-<pre>public static final&nbsp;int <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.197">DEPTH</a></pre>
+<pre>public static final&nbsp;int <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.198">DEPTH</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../constant-values.html#squidpony.squidmath.CoordPacker.DEPTH">Constant Field Values</a></dd>
@@ -1502,7 +1502,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>hilbertX</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.200">hilbertX</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.201">hilbertX</a></pre>
 </li>
 </ul>
 <a name="hilbertY">
@@ -1511,7 +1511,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>hilbertY</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.200">hilbertY</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.201">hilbertY</a></pre>
 </li>
 </ul>
 <a name="hilbertDistances">
@@ -1520,7 +1520,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>hilbertDistances</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.201">hilbertDistances</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.202">hilbertDistances</a></pre>
 </li>
 </ul>
 <a name="mooreX">
@@ -1529,7 +1529,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mooreX</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.201">mooreX</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.202">mooreX</a></pre>
 </li>
 </ul>
 <a name="mooreY">
@@ -1538,7 +1538,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mooreY</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.201">mooreY</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.202">mooreY</a></pre>
 </li>
 </ul>
 <a name="mooreDistances">
@@ -1547,7 +1547,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mooreDistances</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.202">mooreDistances</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.203">mooreDistances</a></pre>
 </li>
 </ul>
 <a name="hilbert3X">
@@ -1556,7 +1556,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>hilbert3X</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.202">hilbert3X</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.203">hilbert3X</a></pre>
 </li>
 </ul>
 <a name="hilbert3Y">
@@ -1565,7 +1565,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>hilbert3Y</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.202">hilbert3Y</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.203">hilbert3Y</a></pre>
 </li>
 </ul>
 <a name="hilbert3Z">
@@ -1574,7 +1574,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>hilbert3Z</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.203">hilbert3Z</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.204">hilbert3Z</a></pre>
 </li>
 </ul>
 <a name="hilbert3Distances">
@@ -1583,7 +1583,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>hilbert3Distances</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.203">hilbert3Distances</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.204">hilbert3Distances</a></pre>
 </li>
 </ul>
 <a name="ALL_WALL">
@@ -1592,7 +1592,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>ALL_WALL</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.204">ALL_WALL</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.205">ALL_WALL</a></pre>
 </li>
 </ul>
 <a name="ALL_ON">
@@ -1601,7 +1601,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ALL_ON</h4>
-<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.204">ALL_ON</a></pre>
+<pre>public static&nbsp;short[] <a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.205">ALL_ON</a></pre>
 </li>
 </ul>
 </li>
@@ -1618,7 +1618,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>init</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.206">init</a>()</pre>
+<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.207">init</a>()</pre>
 </li>
 </ul>
 <a name="pack-double:A:A-">
@@ -1627,7 +1627,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>pack</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.268">pack</a>(double[][]&nbsp;map)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.269">pack</a>(double[][]&nbsp;map)</pre>
 <div class="block">Compresses a double[][] (typically one generated by <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid"><code>FOV</code></a>) that only stores two
  relevant states (one of which should be 0 or less, the other greater than 0), returning a short[] as described in
  the <a href="../../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath"><code>CoordPacker</code></a> class documentation. This short[] can be passed to CoordPacker.unpack() to restore the
@@ -1652,7 +1652,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>pack</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.340">pack</a>(double[][]&nbsp;map,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.341">pack</a>(double[][]&nbsp;map,
                            double&nbsp;threshold)</pre>
 <div class="block">Compresses a double[][] (typically one generated by <a href="../../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai"><code>DijkstraMap</code></a>) that only stores two
  relevant states (one of which should be equal to or less than threshold, the other greater than threshold),
@@ -1678,7 +1678,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>pack</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.416">pack</a>(double[][]&nbsp;map,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.417">pack</a>(double[][]&nbsp;map,
                            double&nbsp;lowerBound,
                            double&nbsp;upperBound)</pre>
 <div class="block">Compresses a double[][] (typically one generated by <a href="../../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai"><code>DijkstraMap</code></a>) that only stores two
@@ -1708,7 +1708,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>pack</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.486">pack</a>(byte[][]&nbsp;map)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.487">pack</a>(byte[][]&nbsp;map)</pre>
 <div class="block">Compresses a byte[][] (typically one generated by an FOV-like method) that only stores two
  relevant states (one of which should be 0 or less, the other greater than 0), returning a short[] as described in
  the <a href="../../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath"><code>CoordPacker</code></a> class documentation. This short[] can be passed to CoordPacker.unpack() to restore the
@@ -1731,7 +1731,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>pack</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.552">pack</a>(boolean[][]&nbsp;map)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.553">pack</a>(boolean[][]&nbsp;map)</pre>
 <div class="block">Compresses a boolean[][], returning a short[] as described in the <a href="../../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath"><code>CoordPacker</code></a> class documentation. This
  short[] can be passed to CoordPacker.unpack() to restore the relevant states and their positions as a boolean[][]
  As stated in the class documentation, the compressed result is intended to use as little memory as possible for
@@ -1750,7 +1750,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>pack</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.622">pack</a>(char[][]&nbsp;map,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.623">pack</a>(char[][]&nbsp;map,
                            char&nbsp;yes)</pre>
 <div class="block">Compresses a char[][] (typically one generated by a map generating method) so only the cells that equal the yes
  parameter will be encoded as "on", returning a short[] as described in
@@ -1775,7 +1775,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>pack</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.693">pack</a>(char[][]&nbsp;map,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.694">pack</a>(char[][]&nbsp;map,
                            char...&nbsp;yes)</pre>
 <div class="block">Compresses a char[][] (typically one generated by a map generating method) so only the cells that are contained
  in the yes parameter will be encoded as "on", returning a short[] as described in
@@ -1800,7 +1800,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>pack</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.775">pack</a>(int[][]&nbsp;map,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.776">pack</a>(int[][]&nbsp;map,
                            int&nbsp;yes)</pre>
 <div class="block">Compresses a int[][] (typically one generated by MixedGenerator.getEnvironment()) so only the cells that equal
  the yes parameter will be encoded as "on", returning a short[] as described in
@@ -1825,7 +1825,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>pack</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.846">pack</a>(int[][]&nbsp;map,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.847">pack</a>(int[][]&nbsp;map,
                            int...&nbsp;yes)</pre>
 <div class="block">Compresses a int[][] (typically one generated by MixedGenerator.getEnvironment()) so only the cells that are
  contained in the yes parameter will be encoded as "on", returning a short[] as described in
@@ -1850,7 +1850,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>generatePackingLevels</h4>
-<pre>public static&nbsp;double[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.927">generatePackingLevels</a>(int&nbsp;totalLevels)</pre>
+<pre>public static&nbsp;double[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.928">generatePackingLevels</a>(int&nbsp;totalLevels)</pre>
 <div class="block">Given a number of total levels to consider separate in a double[][] such as an FOV result, this produces a levels
  array that can be passed to packMulti() to ensure that you have the requested number of separate levels in the
  multi-packed result. For example, if you pass 6 to this method, it will return a length-6 double array, and if
@@ -1877,7 +1877,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>generateLightLevels</h4>
-<pre>public static&nbsp;double[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.957">generateLightLevels</a>(int&nbsp;totalLevels)</pre>
+<pre>public static&nbsp;double[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.958">generateLightLevels</a>(int&nbsp;totalLevels)</pre>
 <div class="block">Given a number of total levels to consider separate in a double[][] such as an FOV result, this produces a levels
  array that can be passed to unpackMultiDouble() to ensure that the minimum double returned for an "on" cell is
  1.0 / totalLevels, and every progressively tighter level in the short[][] being unpacked will be close to a
@@ -1904,7 +1904,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>packMulti</h4>
-<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1003">packMulti</a>(double[][]&nbsp;map,
+<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1004">packMulti</a>(double[][]&nbsp;map,
                                   double[]&nbsp;levels)</pre>
 <div class="block">Compresses a double[][] (typically one generated by <a href="../../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid"><code>FOV</code></a>) that stores any number of
  states and a double[] storing up to 63 states, ordered from lowest to highest, returning a short[][] as described
@@ -1947,7 +1947,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>packMulti</h4>
-<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1101">packMulti</a>(byte[][]&nbsp;map,
+<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1102">packMulti</a>(byte[][]&nbsp;map,
                                   int&nbsp;levelCount)</pre>
 <div class="block">Compresses a byte[][] (typically one generated by <a href="../../squidpony/squidgrid/FOVCache.html" title="class in squidpony.squidgrid"><code>FOVCache</code></a>) that stores any number
  of states and an int no more than 63, returning a short[][] as described in the <a href="../../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath"><code>CoordPacker</code></a> class
@@ -1978,7 +1978,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpack</h4>
-<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1194">unpack</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;boolean[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1195">unpack</a>(short[]&nbsp;packed,
                                  int&nbsp;width,
                                  int&nbsp;height)</pre>
 <div class="block">Decompresses a short[] returned by pack() or a sub-array of a short[][] returned by packMulti(), as described in
@@ -2005,7 +2005,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpackDouble</h4>
-<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1234">unpackDouble</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1235">unpackDouble</a>(short[]&nbsp;packed,
                                       int&nbsp;width,
                                       int&nbsp;height)</pre>
 <div class="block">Decompresses a short[] returned by pack() or a sub-array of a short[][] returned by packMulti(), as described in
@@ -2032,7 +2032,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpackDoubleConical</h4>
-<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1274">unpackDoubleConical</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1275">unpackDoubleConical</a>(short[]&nbsp;packed,
                                              int&nbsp;width,
                                              int&nbsp;height,
                                              int&nbsp;centerX,
@@ -2063,7 +2063,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpackMultiDouble</h4>
-<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1328">unpackMultiDouble</a>(short[][]&nbsp;packed,
+<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1329">unpackMultiDouble</a>(short[][]&nbsp;packed,
                                            int&nbsp;width,
                                            int&nbsp;height,
                                            double[]&nbsp;levels)</pre>
@@ -2097,7 +2097,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpackMultiDoublePartial</h4>
-<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1383">unpackMultiDoublePartial</a>(short[][]&nbsp;packed,
+<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1384">unpackMultiDoublePartial</a>(short[][]&nbsp;packed,
                                                   int&nbsp;width,
                                                   int&nbsp;height,
                                                   double[]&nbsp;levels,
@@ -2134,7 +2134,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpackMultiDoublePartialConical</h4>
-<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1448">unpackMultiDoublePartialConical</a>(short[][]&nbsp;packed,
+<pre>public static&nbsp;double[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1449">unpackMultiDoublePartialConical</a>(short[][]&nbsp;packed,
                                                          int&nbsp;width,
                                                          int&nbsp;height,
                                                          double[]&nbsp;levels,
@@ -2182,7 +2182,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpackMultiByte</h4>
-<pre>public static&nbsp;byte[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1503">unpackMultiByte</a>(short[][]&nbsp;packed,
+<pre>public static&nbsp;byte[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1504">unpackMultiByte</a>(short[][]&nbsp;packed,
                                        int&nbsp;width,
                                        int&nbsp;height)</pre>
 <div class="block">Decompresses a short[][] returned by packMulti() and produces a simple 2D array where the values are bytes
@@ -2207,7 +2207,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpackChar</h4>
-<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1542">unpackChar</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1543">unpackChar</a>(short[]&nbsp;packed,
                                   char&nbsp;t,
                                   char&nbsp;f)</pre>
 <div class="block">Given a piece of packed data defining a region to use from that map, a char to use for "on" cells and a char to use
@@ -2231,7 +2231,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpackChar</h4>
-<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1584">unpackChar</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1585">unpackChar</a>(short[]&nbsp;packed,
                                   int&nbsp;width,
                                   int&nbsp;height,
                                   char&nbsp;t,
@@ -2257,7 +2257,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unpackGreasedRegion</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1621">unpackGreasedRegion</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1622">unpackGreasedRegion</a>(short[]&nbsp;packed,
                                                 int&nbsp;width,
                                                 int&nbsp;height)</pre>
 <div class="block">Simple utility method that constructs a GreasedRegion (a faster but more-memory-hungry way to encode regions)
@@ -2278,7 +2278,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>queryPacked</h4>
-<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1634">queryPacked</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1635">queryPacked</a>(short[]&nbsp;packed,
                                   int&nbsp;x,
                                   int&nbsp;y)</pre>
 <div class="block">Quickly determines if an x,y position is true or false in the given packed array, without unpacking it.</div>
@@ -2299,7 +2299,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>queryPackedHilbert</h4>
-<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1658">queryPackedHilbert</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1659">queryPackedHilbert</a>(short[]&nbsp;packed,
                                          short&nbsp;hilbert)</pre>
 <div class="block">Quickly determines if a Hilbert Curve index corresponds to true or false in the given packed array, without
  unpacking it.
@@ -2323,7 +2323,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>findManyPacked</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;short[]&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1680">findManyPacked</a>(int&nbsp;x,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;short[]&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1681">findManyPacked</a>(int&nbsp;x,
                                                  int&nbsp;y,
                                                  short[]...&nbsp;packed)</pre>
 <div class="block">Quickly determines if an x,y position is true or false in one of the given packed arrays, without unpacking them,
@@ -2345,7 +2345,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>findManyPacked</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;short[]&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1708">findManyPacked</a>(int&nbsp;x,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;short[]&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1709">findManyPacked</a>(int&nbsp;x,
                                                  int&nbsp;y,
                                                  <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;short[]&gt;&nbsp;packed)</pre>
 <div class="block">Quickly determines if an x,y position is true or false in one of the given packed arrays, without unpacking them,
@@ -2366,7 +2366,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>regionsContain</h4>
-<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1737">regionsContain</a>(short[]&nbsp;checking,
+<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1738">regionsContain</a>(short[]&nbsp;checking,
                                      short[]...&nbsp;packed)</pre>
 <div class="block">Quickly determines if a region is contained in one of the given packed arrays, without unpacking them, and
  returns true if the region checking has some overlap with any of the packed arrays, or false otherwise.</div>
@@ -2386,7 +2386,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>regionsContain</h4>
-<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1754">regionsContain</a>(short[]&nbsp;checking,
+<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1755">regionsContain</a>(short[]&nbsp;checking,
                                      <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;short[]&gt;&nbsp;packed)</pre>
 <div class="block">Quickly determines if a region is contained in one of the given packed arrays, without unpacking them, and
  returns true if the region checking has some overlap with any of the packed arrays, or false otherwise.</div>
@@ -2405,7 +2405,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>findManyPackedHilbert</h4>
-<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;short[]&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1776">findManyPackedHilbert</a>(short&nbsp;hilbert,
+<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;short[]&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1777">findManyPackedHilbert</a>(short&nbsp;hilbert,
                                                        short[]...&nbsp;packed)</pre>
 <div class="block">Quickly determines if a Hilbert Curve index corresponds to true or false in one of the given packed arrays,
  without unpacking them, and returns a List of all packed arrays that contain the position.
@@ -2429,7 +2429,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>allPacked</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1802">allPacked</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1803">allPacked</a>(short[]&nbsp;packed)</pre>
 <div class="block">Gets all positions that are "on" in the given packed array, without unpacking it, and returns them as a Coord[].</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -2446,7 +2446,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>allPackedHilbert</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1832">allPackedHilbert</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1833">allPackedHilbert</a>(short[]&nbsp;packed)</pre>
 <div class="block">Gets all positions that are "on" in the given packed array, without unpacking it, and returns them as an array of
  Hilbert Curve indices.
  <br>
@@ -2468,7 +2468,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>nth</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1862">nth</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1863">nth</a>(short[]&nbsp;packed,
                         int&nbsp;n)</pre>
 <div class="block">Gets the nth position that is "on" in the given packed array, without unpacking it, and returns it as a Coord.
  Uses Hilbert Curve ordering for the exact Hilbert Curve CoordPacker uses, so any two given Coords will always
@@ -2496,7 +2496,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>fractionPacked</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1900">fractionPacked</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1901">fractionPacked</a>(short[]&nbsp;packed,
                                      int&nbsp;fraction)</pre>
 <div class="block">Gets the positions that are "on" in the given packed array, without unpacking it, repeatedly goes through a
  number of "on" cells equal to fraction and stores one of those cells as a Coord, and returns the accumulated
@@ -2523,7 +2523,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>randomSeparated</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1939">randomSeparated</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1940">randomSeparated</a>(short[]&nbsp;packed,
                                       int&nbsp;separation,
                                       <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets the positions that are "on" in the given packed array, without unpacking it, repeatedly goes through a
@@ -2539,7 +2539,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>packed</code> - a short[] returned by pack() or one of the sub-arrays in what is returned by packMulti(); must
                not be null (this method does not check due to very tight performance constraints).</dd>
 <dd><code>separation</code> - the denominator of the approximate fraction of "on" cells to use</dd>
-<dd><code>rng</code> - the RNG to use to incorporate a random factor to the generation</dd>
+<dd><code>rng</code> - the <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath"><code>IRNG</code></a>, such as an <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath"><code>RNG</code></a> or <a href="../../squidpony/squidmath/GWTRNG.html" title="class in squidpony.squidmath"><code>GWTRNG</code></a>, to use to randomize retrieval</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a Coord[] corresponding to a fraction of the "on" cells in packed.</dd>
 </dl>
@@ -2551,7 +2551,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>fractionPackedHilbert</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1980">fractionPackedHilbert</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.1981">fractionPackedHilbert</a>(short[]&nbsp;packed,
                                             int&nbsp;fraction)</pre>
 <div class="block">Gets the positions that are "on" in the given packed array, without unpacking it, repeatedly goes through a
  number of "on" cells equal to fraction and stores one of those cells as a Coord, and returns the accumulated
@@ -2575,7 +2575,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>apartPacked</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2007">apartPacked</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2008">apartPacked</a>(short[]&nbsp;packed,
                                   int&nbsp;minDistance)</pre>
 <div class="block">Gets the positions that are "on" in the given packed array, without unpacking it, keeps only positions that are
  at least minDistance apart from other positions this will return, and returns the positions as a Coord[].</div>
@@ -2595,7 +2595,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>apartPacked</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2049">apartPacked</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2050">apartPacked</a>(short[]&nbsp;packed,
                                   int&nbsp;minDistance,
                                   boolean&nbsp;eightWay)</pre>
 <div class="block">Gets the positions that are "on" in the given packed array, without unpacking it, keeps only positions that are
@@ -2617,7 +2617,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>apartPackedHilbert</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2101">apartPackedHilbert</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2102">apartPackedHilbert</a>(short[]&nbsp;packed,
                                          int&nbsp;minDistance)</pre>
 <div class="block">Gets the positions that are "on" in the given packed array, without unpacking it, keeps only positions that are
  at least minDistance apart from other positions this will return, and returns the positions as an array of
@@ -2638,7 +2638,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>apartPackedHilbert</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2140">apartPackedHilbert</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2141">apartPackedHilbert</a>(short[]&nbsp;packed,
                                          int&nbsp;minDistance,
                                          boolean&nbsp;eightWay)</pre>
 <div class="block">Gets the positions that are "on" in the given packed array, without unpacking it, keeps only positions that are
@@ -2661,7 +2661,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>translate</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2195">translate</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2196">translate</a>(short[]&nbsp;packed,
                                 int&nbsp;xMove,
                                 int&nbsp;yMove,
                                 int&nbsp;width,
@@ -2689,7 +2689,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>expand</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2252">expand</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2253">expand</a>(short[]&nbsp;packed,
                              int&nbsp;expansion,
                              int&nbsp;width,
                              int&nbsp;height)</pre>
@@ -2716,7 +2716,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>expand</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2318">expand</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2319">expand</a>(short[]&nbsp;packed,
                              int&nbsp;expansion,
                              int&nbsp;width,
                              int&nbsp;height,
@@ -2743,7 +2743,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>retract</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2394">retract</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2395">retract</a>(short[]&nbsp;packed,
                               int&nbsp;retraction,
                               int&nbsp;width,
                               int&nbsp;height)</pre>
@@ -2769,7 +2769,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>retract</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2464">retract</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2465">retract</a>(short[]&nbsp;packed,
                               int&nbsp;retraction,
                               int&nbsp;width,
                               int&nbsp;height,
@@ -2795,7 +2795,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>fringe</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2547">fringe</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2548">fringe</a>(short[]&nbsp;packed,
                              int&nbsp;expansion,
                              int&nbsp;width,
                              int&nbsp;height)</pre>
@@ -2824,7 +2824,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>fringe</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2624">fringe</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2625">fringe</a>(short[]&nbsp;packed,
                              int&nbsp;expansion,
                              int&nbsp;width,
                              int&nbsp;height,
@@ -2853,7 +2853,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>fringe</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2711">fringe</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2712">fringe</a>(short[]&nbsp;packed,
                              int&nbsp;expansion,
                              int&nbsp;width,
                              int&nbsp;height,
@@ -2886,7 +2886,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>fringes</h4>
-<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2813">fringes</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2814">fringes</a>(short[]&nbsp;packed,
                                 int&nbsp;expansions,
                                 int&nbsp;width,
                                 int&nbsp;height)</pre>
@@ -2916,7 +2916,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>fringes</h4>
-<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2900">fringes</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2901">fringes</a>(short[]&nbsp;packed,
                                 int&nbsp;expansions,
                                 int&nbsp;width,
                                 int&nbsp;height,
@@ -2948,7 +2948,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>surface</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2988">surface</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.2989">surface</a>(short[]&nbsp;packed,
                               int&nbsp;depth,
                               int&nbsp;width,
                               int&nbsp;height)</pre>
@@ -2974,7 +2974,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>surface</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3057">surface</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3058">surface</a>(short[]&nbsp;packed,
                               int&nbsp;depth,
                               int&nbsp;width,
                               int&nbsp;height,
@@ -3000,7 +3000,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>surfaces</h4>
-<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3074">surfaces</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3075">surfaces</a>(short[]&nbsp;packed,
                                  int&nbsp;depth,
                                  int&nbsp;width,
                                  int&nbsp;height)</pre>
@@ -3027,7 +3027,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>surfaces</h4>
-<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3096">surfaces</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;short[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3097">surfaces</a>(short[]&nbsp;packed,
                                  int&nbsp;depth,
                                  int&nbsp;width,
                                  int&nbsp;height,
@@ -3056,7 +3056,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>flood</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3181">flood</a>(short[]&nbsp;bounds,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3182">flood</a>(short[]&nbsp;bounds,
                             short[]&nbsp;start,
                             int&nbsp;expansion)</pre>
 <div class="block">Given a packed array encoding a larger area, a packed array encoding one or more points inside bounds, and an
@@ -3083,7 +3083,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>flood</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3273">flood</a>(short[]&nbsp;bounds,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3274">flood</a>(short[]&nbsp;bounds,
                             short[]&nbsp;start,
                             int&nbsp;expansion,
                             boolean&nbsp;eightWay)</pre>
@@ -3106,17 +3106,17 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="spill-short:A-short:A-int-squidpony.squidmath.RNG-">
+<a name="spill-short:A-short:A-int-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>spill</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3370">spill</a>(short[]&nbsp;bounds,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3371">spill</a>(short[]&nbsp;bounds,
                             short[]&nbsp;start,
                             int&nbsp;volume,
-                            <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
-<div class="block">Given a packed array encoding a larger area, a packed array encoding one or more points inside bounds, an RNG,
+                            <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
+<div class="block">Given a packed array encoding a larger area, a packed array encoding one or more points inside bounds, an IRNG,
  and a volume in cells, expands a random cell in start in a random Manhattan (diamond) direction equal, then
  continues to expand from random cells in start or the expanded area until it has filled volume cells, limiting
  any expansion to within bounds and returning the final expanded (limited) packed data.  Notably, if a small area
@@ -3132,7 +3132,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>bounds</code> - packed data representing the maximum extent of the region to random-flood-fill; often floors</dd>
 <dd><code>start</code> - a packed array that encodes position(s) that the random-flood will spread outward from</dd>
 <dd><code>volume</code> - the total number of cells to try to fill</dd>
-<dd><code>rng</code> - used to generate random numbers for the flooding</dd>
+<dd><code>rng</code> - the <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath"><code>IRNG</code></a>, such as an <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath"><code>RNG</code></a> or <a href="../../squidpony/squidmath/GWTRNG.html" title="class in squidpony.squidmath"><code>GWTRNG</code></a>, used to generate random numbers for the flooding</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a packed array that encodes "on" for cells that are "on" in bounds and are within expansion Manhattan
  distance from a Coord in start</dd>
@@ -3145,7 +3145,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>radiate</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3553">radiate</a>(short[]&nbsp;bounds,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3554">radiate</a>(short[]&nbsp;bounds,
                               short[]&nbsp;start,
                               int&nbsp;expansion)</pre>
 <div class="block">Given a packed array encoding a larger area, a packed array encoding one or more points inside bounds, and an
@@ -3172,7 +3172,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>radiate</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3573">radiate</a>(short[]&nbsp;bounds,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3574">radiate</a>(short[]&nbsp;bounds,
                               short[]&nbsp;start,
                               int&nbsp;expansion,
                               <a href="../../squidpony/squidgrid/Radius.html" title="enum in squidpony.squidgrid">Radius</a>&nbsp;metric)</pre>
@@ -3202,7 +3202,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>radiate</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3644">radiate</a>(short[]&nbsp;bounds,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3645">radiate</a>(short[]&nbsp;bounds,
                               short[]&nbsp;start,
                               int&nbsp;expansion,
                               boolean&nbsp;eightWay)</pre>
@@ -3231,7 +3231,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>reachable</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3671">reachable</a>(short[]&nbsp;bounds,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3672">reachable</a>(short[]&nbsp;bounds,
                                 short[]&nbsp;start,
                                 <a href="../../squidpony/squidai/Reach.html" title="class in squidpony.squidai">Reach</a>&nbsp;reach)</pre>
 <div class="block">Given a packed array encoding a larger area, a packed array encoding one or more points inside bounds, and a
@@ -3264,7 +3264,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>rectangle</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3782">rectangle</a>(int&nbsp;width,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3783">rectangle</a>(int&nbsp;width,
                                 int&nbsp;height)</pre>
 <div class="block">Given a width and height, returns a packed array that encodes "on" for the rectangle from (0,0) to
  (width - 1, height - 1). Primarily useful with intersectPacked() to ensure things like negatePacked() that can
@@ -3284,7 +3284,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>rectangle</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3803">rectangle</a>(int&nbsp;x,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3804">rectangle</a>(int&nbsp;x,
                                 int&nbsp;y,
                                 int&nbsp;width,
                                 int&nbsp;height)</pre>
@@ -3309,7 +3309,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>rectangleHilbert</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3827">rectangleHilbert</a>(int&nbsp;x,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3828">rectangleHilbert</a>(int&nbsp;x,
                                        int&nbsp;y,
                                        int&nbsp;width,
                                        int&nbsp;height)</pre>
@@ -3332,7 +3332,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>circle</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3855">circle</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;center,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3856">circle</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;center,
                              int&nbsp;radius,
                              int&nbsp;width,
                              int&nbsp;height)</pre>
@@ -3355,7 +3355,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>count</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3864">count</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3865">count</a>(short[]&nbsp;packed)</pre>
 <div class="block">Counts the number of "on" cells encoded in a packed array without unpacking it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3371,7 +3371,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>count</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3875">count</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3876">count</a>(short[]&nbsp;packed,
                         boolean&nbsp;wanted)</pre>
 <div class="block">Counts the number of cells encoding a boolean equal to wanted in a packed array without unpacking it.</div>
 <dl>
@@ -3389,7 +3389,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>covered</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3890">covered</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3891">covered</a>(short[]&nbsp;packed)</pre>
 <div class="block">Finds how many cells are encoded in a packed array (both on and off) without unpacking it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3405,7 +3405,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>bounds</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3906">bounds</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3907">bounds</a>(short[]&nbsp;packed)</pre>
 <div class="block">Finds the minimum bounding rectangle for a packed array without unpacking it. Returns a Coord array with 2
  elements: the minimum-x/minimum-y Coord corner of the bounds, then the maximum-x/maximum-y Coord corner. Both
  array elements will be the Coord (-1,-1) if the packed array does not encode any "on" values (all empty).</div>
@@ -3423,7 +3423,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mask</h4>
-<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3944">mask</a>(char[][]&nbsp;map,
+<pre>public static&nbsp;char[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3945">mask</a>(char[][]&nbsp;map,
                             short[]&nbsp;packed,
                             char&nbsp;filler)</pre>
 <div class="block">Given a 2D char array for a map, a piece of packed data defining a region to use from that map, and a filler
@@ -3445,7 +3445,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>unionPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3978">unionPacked</a>(short[]&nbsp;left,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.3979">unionPacked</a>(short[]&nbsp;left,
                                   short[]&nbsp;right)</pre>
 <div class="block">Given two packed short arrays, left and right, this produces a packed short array that encodes "on" for any cell
  that was "on" in either left or in right, and only encodes "off" for cells that were off in both. This method
@@ -3466,7 +3466,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>intersectPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4060">intersectPacked</a>(short[]&nbsp;left,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4061">intersectPacked</a>(short[]&nbsp;left,
                                       short[]&nbsp;right)</pre>
 <div class="block">Given two packed short arrays, left and right, this produces a packed short array that encodes "on" for any cell
  that was "on" in both left and in right, and encodes "off" for cells that were off in either array. This method
@@ -3487,7 +3487,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>isEmpty</h4>
-<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4135">isEmpty</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4136">isEmpty</a>(short[]&nbsp;packed)</pre>
 <div class="block">Checks if no cells are encoded as "on" in packed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3503,7 +3503,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>intersects</h4>
-<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4148">intersects</a>(short[]&nbsp;left,
+<pre>public static&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4149">intersects</a>(short[]&nbsp;left,
                                  short[]&nbsp;right)</pre>
 <div class="block">Given two packed short arrays, left and right, this returns true if they encode any overlapping area (their areas
  intersect), or false if they do not overlap at all (they don't intersect). This is more efficient than calculating
@@ -3524,7 +3524,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>negatePacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4214">negatePacked</a>(short[]&nbsp;original)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4215">negatePacked</a>(short[]&nbsp;original)</pre>
 <div class="block">Given one packed short array, this produces a packed short array that is the exact opposite of the one passed in,
  that is, every "on" cell becomes "off" and every "off" cell becomes "on", including cells that were "off" because
  they were beyond the boundaries of the original 2D array passed to pack() or a similar method. This method does
@@ -3547,7 +3547,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>differencePacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4240">differencePacked</a>(short[]&nbsp;left,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4241">differencePacked</a>(short[]&nbsp;left,
                                        short[]&nbsp;right)</pre>
 <div class="block">Given two packed short arrays, left and right, this produces a packed short array that encodes "on" for any cell
  that was "on" in left but "off" in right, and encodes "off" for cells that were "on" in right or "off" in left.
@@ -3568,7 +3568,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>xorPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4318">xorPacked</a>(short[]&nbsp;left,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4319">xorPacked</a>(short[]&nbsp;left,
                                 short[]&nbsp;right)</pre>
 <div class="block">Given two packed short arrays, left and right, this produces a packed short array that encodes "on" for any cell
  that was "on" only in left or only in right, but not a cell that was "off" in both or "on" in both. This method
@@ -3591,7 +3591,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>packOne</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4397">packOne</a>(int&nbsp;hilbert)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4398">packOne</a>(int&nbsp;hilbert)</pre>
 <div class="block">Returns a new packed short[] containing the Hilbert distance hilbert as "on", and all other cells "off".
  Much more efficient than packSeveral called with only one argument.</div>
 <dl>
@@ -3608,7 +3608,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>packOne</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4407">packOne</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;point)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4408">packOne</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;point)</pre>
 <div class="block">Returns a new packed short[] containing the Coord point as "on", and all other cells "off".
  Much more efficient than packSeveral called with only one argument.</div>
 <dl>
@@ -3625,7 +3625,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>packOne</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4418">packOne</a>(int&nbsp;x,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4419">packOne</a>(int&nbsp;x,
                               int&nbsp;y)</pre>
 <div class="block">Returns a new packed short[] containing the given x,y cell as "on", and all other cells "off".
  Much more efficient than packSeveral called with only one argument.</div>
@@ -3644,7 +3644,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>packSeveral</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4427">packSeveral</a>(int...&nbsp;hilbert)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4428">packSeveral</a>(int...&nbsp;hilbert)</pre>
 <div class="block">Returns a new packed short[] containing the Hilbert distances in hilbert as "on" cells, and all other cells "off"</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3660,7 +3660,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>packSeveral</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4457">packSeveral</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>...&nbsp;points)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4458">packSeveral</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>...&nbsp;points)</pre>
 <div class="block">Returns a new packed short[] containing the Coords in points as "on" cells, and all other cells "off"</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3676,7 +3676,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>packSeveral</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4492">packSeveral</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;points)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4493">packSeveral</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;points)</pre>
 <div class="block">Returns a new packed short[] containing the Coords in points as "on" cells, and all other cells "off"</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3692,7 +3692,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>insertPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4534">insertPacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4535">insertPacked</a>(short[]&nbsp;original,
                                    short&nbsp;hilbert)</pre>
 <div class="block">Given one packed short array, original, and a Hilbert Curve index, hilbert, this produces a packed short array
  that encodes "on" for any cell that was "on" in original, always encodes "on" for the position referred
@@ -3714,7 +3714,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>insertPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4549">insertPacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4550">insertPacked</a>(short[]&nbsp;original,
                                    int&nbsp;x,
                                    int&nbsp;y)</pre>
 <div class="block">Given one packed short array, original, and a position as x,y numbers, this produces a packed short array
@@ -3738,7 +3738,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>insertSeveralPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4565">insertSeveralPacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4566">insertSeveralPacked</a>(short[]&nbsp;original,
                                           int...&nbsp;hilbert)</pre>
 <div class="block">Given one packed short array, original, and a number of Hilbert Curve indices, hilbert, this produces a packed
  short array that encodes "on" for any cell that was "on" in original, always encodes "on" for the position
@@ -3761,7 +3761,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>insertSeveralPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4580">insertSeveralPacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4581">insertSeveralPacked</a>(short[]&nbsp;original,
                                           <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>...&nbsp;points)</pre>
 <div class="block">Given one packed short array, original, and a number of Coords, points, this produces a packed
  short array that encodes "on" for any cell that was "on" in original, always encodes "on" for the position
@@ -3784,7 +3784,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>insertSeveralPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4595">insertSeveralPacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4596">insertSeveralPacked</a>(short[]&nbsp;original,
                                           <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;points)</pre>
 <div class="block">Given one packed short array, original, and a Collection of Coords, points, this produces a packed
  short array that encodes "on" for any cell that was "on" in original, always encodes "on" for the position
@@ -3807,7 +3807,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>removePacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4609">removePacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4610">removePacked</a>(short[]&nbsp;original,
                                    short&nbsp;hilbert)</pre>
 <div class="block">Given one packed short array, original, and a Hilbert Curve index, hilbert, this produces a packed short array
  that encodes "on" for any cell that was "on" in original, unless it was the position referred to by hilbert, and
@@ -3829,7 +3829,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>removePacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4624">removePacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4625">removePacked</a>(short[]&nbsp;original,
                                    int&nbsp;x,
                                    int&nbsp;y)</pre>
 <div class="block">Given one packed short array, original, and a position as x,y numbers, this produces a packed short array that
@@ -3853,7 +3853,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>removeSeveralPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4641">removeSeveralPacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4642">removeSeveralPacked</a>(short[]&nbsp;original,
                                           int...&nbsp;hilbert)</pre>
 <div class="block">Given one packed short array, original, and a number of Hilbert Curve indices, hilbert, this produces a packed
  short array that encodes "on" for any cell that was "on" in original, unless it was a position referred to by
@@ -3876,7 +3876,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>removeSeveralPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4657">removeSeveralPacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4658">removeSeveralPacked</a>(short[]&nbsp;original,
                                           <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>...&nbsp;points)</pre>
 <div class="block">Given one packed short array, original, and a number of Coords, points, this produces a packed short
  array that encodes "on" for any cell that was "on" in original, unless it was a position referred to by an element
@@ -3899,7 +3899,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>removeSeveralPacked</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4673">removeSeveralPacked</a>(short[]&nbsp;original,
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4674">removeSeveralPacked</a>(short[]&nbsp;original,
                                           <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;points)</pre>
 <div class="block">Given one packed short array, original, and a number of Coords, points, this produces a packed short
  array that encodes "on" for any cell that was "on" in original, unless it was a position referred to by an element
@@ -3922,7 +3922,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>split</h4>
-<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;short[]&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4701">split</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;short[]&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4702">split</a>(short[]&nbsp;packed)</pre>
 <div class="block">Given a packed data array that encodes multiple unconnected "on" areas, this finds each isolated area (areas that
  are only adjacent diagonally are considered separate from each other) and returns it as an element in an
  ArrayList of short[], with one short[] array per isolated area. Useful when you have, for example, all the rooms
@@ -3957,7 +3957,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>removeIsolated</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4722">removeIsolated</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4723">removeIsolated</a>(short[]&nbsp;packed)</pre>
 </li>
 </ul>
 <a name="randomSample-short:A-double-squidpony.squidmath.IRNG-">
@@ -3966,7 +3966,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>randomSample</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4753">randomSample</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4754">randomSample</a>(short[]&nbsp;packed,
                                    double&nbsp;fraction,
                                    <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a random subset of positions that are "on" in the given packed array, without unpacking it, and returns
@@ -3989,7 +3989,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>singleRandom</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4784">singleRandom</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4785">singleRandom</a>(short[]&nbsp;packed,
                                  <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a single randomly chosen position that is "on" in the given packed array, without unpacking it, and returns
  it as a Coord or returns null of the array is empty. Random numbers are generated by the rng parameter.
@@ -4004,19 +4004,19 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="randomPortion-short:A-int-squidpony.squidmath.RNG-">
+<a name="randomPortion-short:A-int-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>randomPortion</h4>
-<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4819">randomPortion</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4849">randomPortion</a>(short[]&nbsp;packed,
                                              int&nbsp;size,
-                                             <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+                                             <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Gets a fixed number of randomly chosen positions that are "on" in the given packed array, without unpacking it,
  and returns a List of Coord with a count equal to size (or less if there aren't enough "on" cells). Random
  numbers are generated by the rng parameter. This orders the returned array in the order the Hilbert Curve takes,
- and you may want to call RNG.shuffle() with it as a parameter to randomize the order.</div>
+ and you may want to call <a href="../../squidpony/squidmath/IRNG.html#shuffleInPlace-java.util.List-"><code>IRNG.shuffleInPlace(List)</code></a> with it as a parameter to randomize the order.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>packed</code> - a short[] returned by pack() or one of the sub-arrays in what is returned by packMulti(); must
@@ -4035,7 +4035,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>sumMany</h4>
-<pre>public static&nbsp;int[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4859">sumMany</a>(int&nbsp;width,
+<pre>public static&nbsp;int[][]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4889">sumMany</a>(int&nbsp;width,
                               int&nbsp;height,
                               short[]...&nbsp;many)</pre>
 <div class="block">Takes multiple pieces of packed data as short[], encoded by pack() or another similar method of this class, and
@@ -4059,7 +4059,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>printPacked</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4891">printPacked</a>(short[]&nbsp;packed,
+<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4921">printPacked</a>(short[]&nbsp;packed,
                                int&nbsp;width,
                                int&nbsp;height)</pre>
 <div class="block">Quick utility method for printing packed data as a grid of 1 (on) and/or 0 (off). Useful primarily for debugging.</div>
@@ -4077,7 +4077,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>printCompressedData</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4902">printCompressedData</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4932">printCompressedData</a>(short[]&nbsp;packed)</pre>
 </li>
 </ul>
 <a name="encodeASCII-short:A-">
@@ -4086,7 +4086,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>encodeASCII</h4>
-<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4922">encodeASCII</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4952">encodeASCII</a>(short[]&nbsp;packed)</pre>
 <div class="block">Encodes a short array of packed data as a (larger, more memory-hungry) ASCII string, which can be decoded using
  CoordPacker.decodeASCII() . Uses 64 printable chars, from '?' (ASCII 63) to '~' (ASCII 126).</div>
 <dl>
@@ -4103,7 +4103,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>decodeASCII</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4938">decodeASCII</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4968">decodeASCII</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</pre>
 <div class="block">Given a String specifically produced by CoordPacker.encodeASCII(), this will produce a packed data array.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -4119,7 +4119,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>encodeBraille</h4>
-<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4962">encodeBraille</a>(short[]&nbsp;packed)</pre>
+<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4992">encodeBraille</a>(short[]&nbsp;packed)</pre>
 <div class="block">Encodes a short array of packed data as a (larger, slightly more memory-hungry) Unicode string using only Braille
  characters, which can be decoded using CoordPacker.decodeBraille(). Uses 256 semi-printable chars, from 0x2800
  to 0x28FF, which allows UTF-8 encoding (and some other encodings) to more efficiently store the data. These are
@@ -4141,7 +4141,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>decodeBraille</h4>
-<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.4982">decodeBraille</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</pre>
+<pre>public static&nbsp;short[]&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5012">decodeBraille</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</pre>
 <div class="block">Given a String specifically produced by CoordPacker.encodeBraille(), this will produce a packed data array.
  Uses 256 semi-printable chars, from 0x2800 to 0x28FF, which allows UTF-8 encoding (and some other encodings) to
  more efficiently store the data. These are only semi-printable because many fonts do not support Braille, and
@@ -4162,7 +4162,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>grayEncode</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5003">grayEncode</a>(int&nbsp;n)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5033">grayEncode</a>(int&nbsp;n)</pre>
 <div class="block">Encode a number n as a Gray code; Gray codes have a relation to the Hilbert curve and may be useful.
  Source: http://xn--2-umb.com/15/hilbert , http://aggregate.org/MAGIC/#Gray%20Code%20Conversion</div>
 <dl>
@@ -4179,7 +4179,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>grayDecode</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5013">grayDecode</a>(int&nbsp;n)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5043">grayDecode</a>(int&nbsp;n)</pre>
 <div class="block">Decode a number from a Gray code n; Gray codes have a relation to the Hilbert curve and may be useful.
  Source: http://xn--2-umb.com/15/hilbert , http://aggregate.org/MAGIC/#Gray%20Code%20Conversion</div>
 <dl>
@@ -4196,7 +4196,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>posToHilbert</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5030">posToHilbert</a>(int&nbsp;x,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5060">posToHilbert</a>(int&nbsp;x,
                                int&nbsp;y)</pre>
 <div class="block">Takes an x, y position and returns the length to travel along the 256x256 Hilbert curve to reach that position.
  This assumes x and y are between 0 and 255, inclusive.
@@ -4218,7 +4218,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>posToHilbert3D</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5046">posToHilbert3D</a>(int&nbsp;x,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5076">posToHilbert3D</a>(int&nbsp;x,
                                  int&nbsp;y,
                                  int&nbsp;z)</pre>
 <div class="block">Takes an x, y, z position and returns the length to travel along the 32x32x32 Hilbert curve to reach that
@@ -4242,7 +4242,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>posToMoore</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5058">posToMoore</a>(int&nbsp;x,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5088">posToMoore</a>(int&nbsp;x,
                              int&nbsp;y)</pre>
 <div class="block">Takes an x, y position and returns the length to travel along the 16x16 Moore curve to reach that position.
  This assumes x and y are between 0 and 15, inclusive.
@@ -4263,7 +4263,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mortonToHilbert</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5135">mortonToHilbert</a>(int&nbsp;morton)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5165">mortonToHilbert</a>(int&nbsp;morton)</pre>
 <div class="block">Takes a position as a Morton code, with interleaved x and y bits and x in the least significant bit, and returns
  the length to travel along the 256x256 Hilbert Curve to reach that position.
  This uses 16 bits of the Morton code and requires that the code is non-negative.
@@ -4282,7 +4282,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>hilbertToMorton</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5161">hilbertToMorton</a>(int&nbsp;hilbert)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5191">hilbertToMorton</a>(int&nbsp;hilbert)</pre>
 <div class="block">Takes a distance to travel along the 256x256 Hilbert curve and returns a Morton code representing the position
  in 2D space that corresponds to that point on the Hilbert Curve; the Morton code will have interleaved x and y
  bits and x in the least significant bit. This uses a lookup table for the 256x256 Hilbert curve, which should
@@ -4302,7 +4302,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>hilbertToCoord</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5174">hilbertToCoord</a>(int&nbsp;hilbert)</pre>
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5204">hilbertToCoord</a>(int&nbsp;hilbert)</pre>
 <div class="block">Takes a distance to travel along the 256x256 Hilbert curve and returns a Coord representing the position
  in 2D space that corresponds to that point on the Hilbert curve. This uses a lookup table for the
  256x256 Hilbert curve, which should make it faster than calculating the position repeatedly.
@@ -4321,7 +4321,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mooreToCoord</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5188">mooreToCoord</a>(int&nbsp;moore)</pre>
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5218">mooreToCoord</a>(int&nbsp;moore)</pre>
 <div class="block">Takes a distance to travel along the 16x16 Hilbert curve and returns a Coord representing the position
  in 2D space that corresponds to that point on the Hilbert curve. This uses a lookup table for the
  16x16 Hilbert curve, which should make it faster than calculating the position repeatedly.
@@ -4341,7 +4341,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>coordToHilbert</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5253">coordToHilbert</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pt)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5283">coordToHilbert</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pt)</pre>
 <div class="block">Takes a position as a Coord called pt and returns the length to travel along the 256x256 Hilbert curve to reach
  that position.
  This assumes pt.x and pt.y are between 0 and 255, inclusive.
@@ -4360,7 +4360,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>coordToMoore</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5265">coordToMoore</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pt)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5295">coordToMoore</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pt)</pre>
 <div class="block">Takes a position as a Coord called pt and returns the length to travel along the 16x16 Moore curve to reach
  that position.
  This assumes pt.x and pt.y are between 0 and 15, inclusive.</div>
@@ -4378,7 +4378,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mortonEncode3D</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5270">mortonEncode3D</a>(int&nbsp;index1,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5300">mortonEncode3D</a>(int&nbsp;index1,
                                  int&nbsp;index2,
                                  int&nbsp;index3)</pre>
 </li>
@@ -4389,7 +4389,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mortonDecode3D</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord3D.html" title="class in squidpony.squidmath">Coord3D</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5289">mortonDecode3D</a>(int&nbsp;morton)</pre>
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord3D.html" title="class in squidpony.squidmath">Coord3D</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5319">mortonDecode3D</a>(int&nbsp;morton)</pre>
 </li>
 </ul>
 <a name="mortonBitDecode3D-int-">
@@ -4398,7 +4398,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mortonBitDecode3D</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5317">mortonBitDecode3D</a>(int&nbsp;morton)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5347">mortonBitDecode3D</a>(int&nbsp;morton)</pre>
 </li>
 </ul>
 <a name="getXMoore3D-int-int-">
@@ -4407,7 +4407,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getXMoore3D</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5432">getXMoore3D</a>(int&nbsp;index,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5462">getXMoore3D</a>(int&nbsp;index,
                               int&nbsp;n)</pre>
 <div class="block">Gets the x coordinate for a given index into the 16x16x(8*n) Moore curve. Expects indices to touch the following
  corners of the 16x16x(8*n) cube in this order, using x,y,z syntax:
@@ -4427,7 +4427,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getYMoore3D</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5449">getYMoore3D</a>(int&nbsp;index,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5479">getYMoore3D</a>(int&nbsp;index,
                               int&nbsp;n)</pre>
 <div class="block">Gets the y coordinate for a given index into the 16x16x(8*n) Moore curve. Expects indices to touch the following
  corners of the 16x16x(8*n) cube in this order, using x,y,z syntax:
@@ -4447,7 +4447,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getZMoore3D</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5467">getZMoore3D</a>(int&nbsp;index,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5497">getZMoore3D</a>(int&nbsp;index,
                               int&nbsp;n)</pre>
 <div class="block">Gets the z coordinate for a given index into the 16x16x(8*n) Moore curve. Expects indices to touch the following
  corners of the 16x16x(8*n) cube in this order, using x,y,z syntax:
@@ -4467,7 +4467,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>zEncode</h4>
-<pre>public static&nbsp;short&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5487">zEncode</a>(short&nbsp;index1,
+<pre>public static&nbsp;short&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5517">zEncode</a>(short&nbsp;index1,
                             short&nbsp;index2)</pre>
 <div class="block">Takes two 8-bit unsigned integers index1 and index2, and returns a Morton code, with interleaved index1 and
  index2 bits and index1 in the least significant bit. With this method, index1 and index2 can have up to 8 bits.
@@ -4488,7 +4488,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mortonEncode</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5514">mortonEncode</a>(int&nbsp;index1,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5544">mortonEncode</a>(int&nbsp;index1,
                                int&nbsp;index2)</pre>
 <div class="block">Takes two 8-bit unsigned integers index1 and index2, and returns a Morton code, with interleaved index1 and
  index2 bits and index1 in the least significant bit. With this method, index1 and index2 can have up to 8 bits.
@@ -4509,7 +4509,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>mortonDecode</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5541">mortonDecode</a>(int&nbsp;morton)</pre>
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5571">mortonDecode</a>(int&nbsp;morton)</pre>
 <div class="block">Takes a Morton code, with interleaved x and y bits and x in the least significant bit, and returns the Coord
  representing the same x, y position.
  This uses 16 bits of the Morton code and requires that the code is non-negative.
@@ -4528,7 +4528,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>zDecode</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5570">zDecode</a>(short&nbsp;morton)</pre>
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/CoordPacker.html#line.5600">zDecode</a>(short&nbsp;morton)</pre>
 <div class="block">Takes a Morton code, with interleaved x and y bits and x in the least significant bit, and returns the Coord
  representing the same x, y position.
  This takes a a 16-bit Z-Code with data in the sign bit, as returned by zEncode().

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6};
+var methods = {"i0":6,"i1":6,"i2":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -132,12 +132,19 @@ extends <a href="../../squidpony/squidmath/RandomnessSource.html" title="interfa
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/StatefulRandomness.html#copy--">copy</a></span>()</code>
+<div class="block">Produces a copy of this StatefulRandomness that, if next() and/or nextLong() are called on this object and the
+ copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/StatefulRandomness.html#getState--">getState</a></span>()</code>
 <div class="block">Get the current internal state of the StatefulRandomness as a long.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/StatefulRandomness.html#setState-long-">setState</a></span>(long&nbsp;state)</code>
 <div class="block">Set the current internal state of this StatefulRandomness with a long.</div>
@@ -149,7 +156,7 @@ extends <a href="../../squidpony/squidmath/RandomnessSource.html" title="interfa
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;squidpony.squidmath.<a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></h3>
-<code><a href="../../squidpony/squidmath/RandomnessSource.html#copy--">copy</a>, <a href="../../squidpony/squidmath/RandomnessSource.html#next-int-">next</a>, <a href="../../squidpony/squidmath/RandomnessSource.html#nextLong--">nextLong</a></code></li>
+<code><a href="../../squidpony/squidmath/RandomnessSource.html#next-int-">next</a>, <a href="../../squidpony/squidmath/RandomnessSource.html#nextLong--">nextLong</a></code></li>
 </ul>
 </li>
 </ul>
@@ -182,7 +189,7 @@ extends <a href="../../squidpony/squidmath/RandomnessSource.html" title="interfa
 <a name="setState-long-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setState</h4>
 <pre>void&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRandomness.html#line.19">setState</a>(long&nbsp;state)</pre>
@@ -190,6 +197,24 @@ extends <a href="../../squidpony/squidmath/RandomnessSource.html" title="interfa
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>state</code> - a 64-bit long. You should avoid passing 0, even though some implementations can handle that.</dd>
+</dl>
+</li>
+</ul>
+<a name="copy--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>copy</h4>
+<pre><a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a>&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRandomness.html#line.29">copy</a>()</pre>
+<div class="block">Produces a copy of this StatefulRandomness that, if next() and/or nextLong() are called on this object and the
+ copy, both will generate the same sequence of random numbers from the point copy() was called. This just needs to
+ copy the state so it isn't shared, usually, and produce a new value with the same exact state.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/RandomnessSource.html#copy--">copy</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a copy of this StatefulRandomness</dd>
 </dl>
 </li>
 </ul>

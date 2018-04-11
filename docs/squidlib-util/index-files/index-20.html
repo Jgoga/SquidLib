@@ -544,12 +544,12 @@
 <div class="block">Generate dungeons based on a random, winding, looping path through 3D space, requiring a character to move up and
  down as well as north/south/east/west to get through the dungeon.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.RNG-">SerpentDeepMapGenerator(int, int, int, RNG)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html" title="class in squidpony.squidgrid.mapping">SerpentDeepMapGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.IRNG-">SerpentDeepMapGenerator(int, int, int, IRNG)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html" title="class in squidpony.squidgrid.mapping">SerpentDeepMapGenerator</a></dt>
 <dd>
 <div class="block">This prepares a map generator that will generate a map with the given width, height and depth, using the given
- RNG.</div>
+ IRNG.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.RNG-double-">SerpentDeepMapGenerator(int, int, int, RNG, double)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html" title="class in squidpony.squidgrid.mapping">SerpentDeepMapGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.IRNG-double-">SerpentDeepMapGenerator(int, int, int, IRNG, double)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html" title="class in squidpony.squidgrid.mapping">SerpentDeepMapGenerator</a></dt>
 <dd>
 <div class="block">This prepares a map generator that will generate a map with the given width, height and depth, using the given
  IRNG, and will branch out to other nearby rooms that (probably) do not have staircases between layers.</div>
@@ -707,6 +707,8 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/PointAOE.html#setCenter-squidpony.squidmath.Coord-">setCenter(Coord)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/PointAOE.html" title="class in squidpony.squidai">PointAOE</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/locks/Room.html#setCenter-squidpony.squidmath.Coord-">setCenter(Coord)</a></span> - Method in class squidpony.squidgrid.mapping.locks.<a href="../squidpony/squidgrid/mapping/locks/Room.html" title="class in squidpony.squidgrid.mapping.locks">Room</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#setCenterLongitude-double-">setCenterLongitude(double)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/EditRNG.html#setCentrality-double-">setCentrality(double)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/EditRNG.html" title="class in squidpony.squidmath">EditRNG</a></dt>
 <dd>
@@ -1096,11 +1098,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/LineAOE.html#setRadiusType-squidpony.squidgrid.Radius-">setRadiusType(Radius)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/LineAOE.html" title="class in squidpony.squidai">LineAOE</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Dice.html#setRandom-squidpony.squidmath.RNG-">setRandom(RNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Dice.html" title="class in squidpony.squidmath">Dice</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/Dice.html#setRandom-squidpony.squidmath.IRNG-">setRandom(IRNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Dice.html" title="class in squidpony.squidmath">Dice</a></dt>
 <dd>
 <div class="block">Sets the random number generator to be used.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/ProbabilityTable.html#setRandom-squidpony.squidmath.RNG-">setRandom(RNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ProbabilityTable.html" title="class in squidpony.squidmath">ProbabilityTable</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/ProbabilityTable.html#setRandom-squidpony.squidmath.StatefulRNG-">setRandom(StatefulRNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/ProbabilityTable.html" title="class in squidpony.squidmath">ProbabilityTable</a></dt>
 <dd>
 <div class="block">Sets the current RNG to the given RNG.</div>
 </dd>
@@ -2202,6 +2204,36 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/MaskedShapeGenerator.html#spaceship">spaceship</a></span> - Static variable in class squidpony.squidmath.<a href="../squidpony/squidmath/MaskedShapeGenerator.html" title="class in squidpony.squidmath">MaskedShapeGenerator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#SpaceViewMap--">SpaceViewMap()</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to view a spherical world from space,
+ showing only one hemisphere at a time.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#SpaceViewMap-int-int-">SpaceViewMap(int, int)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to view a spherical world from space,
+ showing only one hemisphere at a time.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#SpaceViewMap-long-int-int-">SpaceViewMap(long, int, int)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to view a spherical world from space,
+ showing only one hemisphere at a time.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#SpaceViewMap-long-int-int-double-">SpaceViewMap(long, int, int, double)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to view a spherical world from space,
+ showing only one hemisphere at a time.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#SpaceViewMap-long-int-int-squidpony.squidmath.Noise.Noise3D-">SpaceViewMap(long, int, int, Noise.Noise3D)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to view a spherical world from space,
+ showing only one hemisphere at a time.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html#SpaceViewMap-long-int-int-squidpony.squidmath.Noise.Noise3D-double-">SpaceViewMap(long, int, int, Noise.Noise3D, double)</a></span> - Constructor for class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/WorldMapGenerator.SpaceViewMap.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator.SpaceViewMap</a></dt>
+<dd>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to view a spherical world from space,
+ showing only one hemisphere at a time.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/StringKit.html#SPACING">SPACING</a></span> - Static variable in class squidpony.<a href="../squidpony/StringKit.html" title="class in squidpony">StringKit</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/FakeLanguageGen.html#SPANISH">SPANISH</a></span> - Static variable in class squidpony.<a href="../squidpony/FakeLanguageGen.html" title="class in squidpony">FakeLanguageGen</a></dt>
@@ -2359,9 +2391,9 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/Splash.html#spill-squidpony.squidmath.IRNG-char:A:A-squidpony.squidmath.Coord-int-java.util.Set-int-">spill(IRNG, char[][], Coord, int, Set&lt;Character&gt;, int)</a></span> - Static method in class squidpony.squidgrid.<a href="../squidpony/squidgrid/Splash.html" title="class in squidpony.squidgrid">Splash</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/CoordPacker.html#spill-short:A-short:A-int-squidpony.squidmath.RNG-">spill(short[], short[], int, RNG)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath">CoordPacker</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/CoordPacker.html#spill-short:A-short:A-int-squidpony.squidmath.IRNG-">spill(short[], short[], int, IRNG)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath">CoordPacker</a></dt>
 <dd>
-<div class="block">Given a packed array encoding a larger area, a packed array encoding one or more points inside bounds, an RNG,
+<div class="block">Given a packed array encoding a larger area, a packed array encoding one or more points inside bounds, an IRNG,
  and a volume in cells, expands a random cell in start in a random Manhattan (diamond) direction equal, then
  continues to expand from random cells in start or the expanded area until it has filled volume cells, limiting
  any expansion to within bounds and returning the final expanded (limited) packed data.</div>

@@ -488,106 +488,128 @@
 <span class="sourceLineNo">480</span>        return buffer.toString();<a name="line.480"></a>
 <span class="sourceLineNo">481</span>    }<a name="line.481"></a>
 <span class="sourceLineNo">482</span><a name="line.482"></a>
-<span class="sourceLineNo">483</span>    private static int nextPowerOfTwo(int n)<a name="line.483"></a>
-<span class="sourceLineNo">484</span>    {<a name="line.484"></a>
-<span class="sourceLineNo">485</span>        int highest = Integer.highestOneBit(n);<a name="line.485"></a>
-<span class="sourceLineNo">486</span>        return  (highest == NumberTools.lowestOneBit(n)) ? highest : highest &lt;&lt; 1;<a name="line.486"></a>
-<span class="sourceLineNo">487</span>    }<a name="line.487"></a>
-<span class="sourceLineNo">488</span><a name="line.488"></a>
-<span class="sourceLineNo">489</span>    /** Returns an iterator for the keys in the set. Remove is supported. Note that the same iterator instance is returned each time<a name="line.489"></a>
-<span class="sourceLineNo">490</span>     * this method is called. Use the {@link ShortSetIterator} constructor for nested or multithreaded iteration. */<a name="line.490"></a>
-<span class="sourceLineNo">491</span>    public ShortSetIterator iterator () {<a name="line.491"></a>
-<span class="sourceLineNo">492</span>        if (iterator1 == null) {<a name="line.492"></a>
-<span class="sourceLineNo">493</span>            iterator1 = new ShortSetIterator(this);<a name="line.493"></a>
-<span class="sourceLineNo">494</span>            iterator2 = new ShortSetIterator(this);<a name="line.494"></a>
-<span class="sourceLineNo">495</span>        }<a name="line.495"></a>
-<span class="sourceLineNo">496</span>        if (!iterator1.valid) {<a name="line.496"></a>
-<span class="sourceLineNo">497</span>            iterator1.reset();<a name="line.497"></a>
-<span class="sourceLineNo">498</span>            iterator1.valid = true;<a name="line.498"></a>
-<span class="sourceLineNo">499</span>            iterator2.valid = false;<a name="line.499"></a>
-<span class="sourceLineNo">500</span>            return iterator1;<a name="line.500"></a>
-<span class="sourceLineNo">501</span>        }<a name="line.501"></a>
-<span class="sourceLineNo">502</span>        iterator2.reset();<a name="line.502"></a>
-<span class="sourceLineNo">503</span>        iterator2.valid = true;<a name="line.503"></a>
-<span class="sourceLineNo">504</span>        iterator1.valid = false;<a name="line.504"></a>
-<span class="sourceLineNo">505</span>        return iterator2;<a name="line.505"></a>
-<span class="sourceLineNo">506</span>    }<a name="line.506"></a>
-<span class="sourceLineNo">507</span><a name="line.507"></a>
-<span class="sourceLineNo">508</span>    public static ShortSet with (short... array) {<a name="line.508"></a>
-<span class="sourceLineNo">509</span>        ShortSet set = new ShortSet();<a name="line.509"></a>
-<span class="sourceLineNo">510</span>        set.addAll(array);<a name="line.510"></a>
-<span class="sourceLineNo">511</span>        return set;<a name="line.511"></a>
-<span class="sourceLineNo">512</span>    }<a name="line.512"></a>
-<span class="sourceLineNo">513</span><a name="line.513"></a>
-<span class="sourceLineNo">514</span>    public static class ShortSetIterator {<a name="line.514"></a>
-<span class="sourceLineNo">515</span>        static final int INDEX_ILLEGAL = -2;<a name="line.515"></a>
-<span class="sourceLineNo">516</span>        static final int INDEX_ZERO = -1;<a name="line.516"></a>
-<span class="sourceLineNo">517</span><a name="line.517"></a>
-<span class="sourceLineNo">518</span>        public boolean hasNext;<a name="line.518"></a>
-<span class="sourceLineNo">519</span><a name="line.519"></a>
-<span class="sourceLineNo">520</span>        final ShortSet set;<a name="line.520"></a>
-<span class="sourceLineNo">521</span>        int nextIndex, currentIndex;<a name="line.521"></a>
-<span class="sourceLineNo">522</span>        boolean valid = true;<a name="line.522"></a>
-<span class="sourceLineNo">523</span><a name="line.523"></a>
-<span class="sourceLineNo">524</span>        public ShortSetIterator(ShortSet set) {<a name="line.524"></a>
-<span class="sourceLineNo">525</span>            this.set = set;<a name="line.525"></a>
-<span class="sourceLineNo">526</span>            reset();<a name="line.526"></a>
-<span class="sourceLineNo">527</span>        }<a name="line.527"></a>
-<span class="sourceLineNo">528</span><a name="line.528"></a>
-<span class="sourceLineNo">529</span>        public void reset () {<a name="line.529"></a>
-<span class="sourceLineNo">530</span>            currentIndex = INDEX_ILLEGAL;<a name="line.530"></a>
-<span class="sourceLineNo">531</span>            nextIndex = INDEX_ZERO;<a name="line.531"></a>
-<span class="sourceLineNo">532</span>            if (set.hasZeroValue)<a name="line.532"></a>
-<span class="sourceLineNo">533</span>                hasNext = true;<a name="line.533"></a>
-<span class="sourceLineNo">534</span>            else<a name="line.534"></a>
-<span class="sourceLineNo">535</span>                findNextIndex();<a name="line.535"></a>
-<span class="sourceLineNo">536</span>        }<a name="line.536"></a>
-<span class="sourceLineNo">537</span><a name="line.537"></a>
-<span class="sourceLineNo">538</span>        void findNextIndex () {<a name="line.538"></a>
-<span class="sourceLineNo">539</span>            hasNext = false;<a name="line.539"></a>
-<span class="sourceLineNo">540</span>            short[] keyTable = set.keyTable;<a name="line.540"></a>
-<span class="sourceLineNo">541</span>            for (int n = set.capacity + set.stashSize; ++nextIndex &lt; n;) {<a name="line.541"></a>
-<span class="sourceLineNo">542</span>                if (keyTable[nextIndex] != EMPTY) {<a name="line.542"></a>
-<span class="sourceLineNo">543</span>                    hasNext = true;<a name="line.543"></a>
-<span class="sourceLineNo">544</span>                    break;<a name="line.544"></a>
-<span class="sourceLineNo">545</span>                }<a name="line.545"></a>
-<span class="sourceLineNo">546</span>            }<a name="line.546"></a>
-<span class="sourceLineNo">547</span>        }<a name="line.547"></a>
-<span class="sourceLineNo">548</span><a name="line.548"></a>
-<span class="sourceLineNo">549</span>        public void remove () {<a name="line.549"></a>
-<span class="sourceLineNo">550</span>            if (currentIndex == INDEX_ZERO &amp;&amp; set.hasZeroValue) {<a name="line.550"></a>
-<span class="sourceLineNo">551</span>                set.hasZeroValue = false;<a name="line.551"></a>
-<span class="sourceLineNo">552</span>            } else if (currentIndex &lt; 0) {<a name="line.552"></a>
-<span class="sourceLineNo">553</span>                throw new IllegalStateException("next must be called before remove.");<a name="line.553"></a>
-<span class="sourceLineNo">554</span>            } else if (currentIndex &gt;= set.capacity) {<a name="line.554"></a>
-<span class="sourceLineNo">555</span>                set.removeStashIndex(currentIndex);<a name="line.555"></a>
-<span class="sourceLineNo">556</span>                nextIndex = currentIndex - 1;<a name="line.556"></a>
+<span class="sourceLineNo">483</span>    /**<a name="line.483"></a>
+<span class="sourceLineNo">484</span>     * Gets a random short from this ShortSet, using the given {@link IRNG} to generate random values.<a name="line.484"></a>
+<span class="sourceLineNo">485</span>     * If this ShortSet is empty, throws an UnsupportedOperationException. This method operates in linear time, unlike<a name="line.485"></a>
+<span class="sourceLineNo">486</span>     * the random item retrieval methods in {@link OrderedSet} and {@link OrderedMap}, which take constant time.<a name="line.486"></a>
+<span class="sourceLineNo">487</span>     * @param rng an {@link IRNG}, such as {@link RNG} or {@link GWTRNG}<a name="line.487"></a>
+<span class="sourceLineNo">488</span>     * @return a random short from this ShortSet<a name="line.488"></a>
+<span class="sourceLineNo">489</span>     */<a name="line.489"></a>
+<span class="sourceLineNo">490</span>    public short random(IRNG rng)<a name="line.490"></a>
+<span class="sourceLineNo">491</span>    {<a name="line.491"></a>
+<span class="sourceLineNo">492</span>        if (size &lt;= 0) {<a name="line.492"></a>
+<span class="sourceLineNo">493</span>            throw new UnsupportedOperationException("ShortSet cannot be empty when getting a random element");<a name="line.493"></a>
+<span class="sourceLineNo">494</span>        }<a name="line.494"></a>
+<span class="sourceLineNo">495</span>        int n = rng.nextInt(size);<a name="line.495"></a>
+<span class="sourceLineNo">496</span>        short s = 0;<a name="line.496"></a>
+<span class="sourceLineNo">497</span>        ShortSet.ShortSetIterator ssi = iterator();<a name="line.497"></a>
+<span class="sourceLineNo">498</span>        while (n-- &gt;= 0 &amp;&amp; ssi.hasNext)<a name="line.498"></a>
+<span class="sourceLineNo">499</span>            s = ssi.next();<a name="line.499"></a>
+<span class="sourceLineNo">500</span>        ssi.reset();<a name="line.500"></a>
+<span class="sourceLineNo">501</span>        return s;<a name="line.501"></a>
+<span class="sourceLineNo">502</span><a name="line.502"></a>
+<span class="sourceLineNo">503</span>    }<a name="line.503"></a>
+<span class="sourceLineNo">504</span><a name="line.504"></a>
+<span class="sourceLineNo">505</span>    private static int nextPowerOfTwo(int n)<a name="line.505"></a>
+<span class="sourceLineNo">506</span>    {<a name="line.506"></a>
+<span class="sourceLineNo">507</span>        int highest = Integer.highestOneBit(n);<a name="line.507"></a>
+<span class="sourceLineNo">508</span>        return  (highest == NumberTools.lowestOneBit(n)) ? highest : highest &lt;&lt; 1;<a name="line.508"></a>
+<span class="sourceLineNo">509</span>    }<a name="line.509"></a>
+<span class="sourceLineNo">510</span><a name="line.510"></a>
+<span class="sourceLineNo">511</span>    /** Returns an iterator for the keys in the set. Remove is supported. Note that the same iterator instance is returned each time<a name="line.511"></a>
+<span class="sourceLineNo">512</span>     * this method is called. Use the {@link ShortSetIterator} constructor for nested or multithreaded iteration. */<a name="line.512"></a>
+<span class="sourceLineNo">513</span>    public ShortSetIterator iterator () {<a name="line.513"></a>
+<span class="sourceLineNo">514</span>        if (iterator1 == null) {<a name="line.514"></a>
+<span class="sourceLineNo">515</span>            iterator1 = new ShortSetIterator(this);<a name="line.515"></a>
+<span class="sourceLineNo">516</span>            iterator2 = new ShortSetIterator(this);<a name="line.516"></a>
+<span class="sourceLineNo">517</span>        }<a name="line.517"></a>
+<span class="sourceLineNo">518</span>        if (!iterator1.valid) {<a name="line.518"></a>
+<span class="sourceLineNo">519</span>            iterator1.reset();<a name="line.519"></a>
+<span class="sourceLineNo">520</span>            iterator1.valid = true;<a name="line.520"></a>
+<span class="sourceLineNo">521</span>            iterator2.valid = false;<a name="line.521"></a>
+<span class="sourceLineNo">522</span>            return iterator1;<a name="line.522"></a>
+<span class="sourceLineNo">523</span>        }<a name="line.523"></a>
+<span class="sourceLineNo">524</span>        iterator2.reset();<a name="line.524"></a>
+<span class="sourceLineNo">525</span>        iterator2.valid = true;<a name="line.525"></a>
+<span class="sourceLineNo">526</span>        iterator1.valid = false;<a name="line.526"></a>
+<span class="sourceLineNo">527</span>        return iterator2;<a name="line.527"></a>
+<span class="sourceLineNo">528</span>    }<a name="line.528"></a>
+<span class="sourceLineNo">529</span><a name="line.529"></a>
+<span class="sourceLineNo">530</span>    public static ShortSet with (short... array) {<a name="line.530"></a>
+<span class="sourceLineNo">531</span>        ShortSet set = new ShortSet();<a name="line.531"></a>
+<span class="sourceLineNo">532</span>        set.addAll(array);<a name="line.532"></a>
+<span class="sourceLineNo">533</span>        return set;<a name="line.533"></a>
+<span class="sourceLineNo">534</span>    }<a name="line.534"></a>
+<span class="sourceLineNo">535</span><a name="line.535"></a>
+<span class="sourceLineNo">536</span>    public static class ShortSetIterator {<a name="line.536"></a>
+<span class="sourceLineNo">537</span>        static final int INDEX_ILLEGAL = -2;<a name="line.537"></a>
+<span class="sourceLineNo">538</span>        static final int INDEX_ZERO = -1;<a name="line.538"></a>
+<span class="sourceLineNo">539</span><a name="line.539"></a>
+<span class="sourceLineNo">540</span>        public boolean hasNext;<a name="line.540"></a>
+<span class="sourceLineNo">541</span><a name="line.541"></a>
+<span class="sourceLineNo">542</span>        final ShortSet set;<a name="line.542"></a>
+<span class="sourceLineNo">543</span>        int nextIndex, currentIndex;<a name="line.543"></a>
+<span class="sourceLineNo">544</span>        boolean valid = true;<a name="line.544"></a>
+<span class="sourceLineNo">545</span><a name="line.545"></a>
+<span class="sourceLineNo">546</span>        public ShortSetIterator(ShortSet set) {<a name="line.546"></a>
+<span class="sourceLineNo">547</span>            this.set = set;<a name="line.547"></a>
+<span class="sourceLineNo">548</span>            reset();<a name="line.548"></a>
+<span class="sourceLineNo">549</span>        }<a name="line.549"></a>
+<span class="sourceLineNo">550</span><a name="line.550"></a>
+<span class="sourceLineNo">551</span>        public void reset () {<a name="line.551"></a>
+<span class="sourceLineNo">552</span>            currentIndex = INDEX_ILLEGAL;<a name="line.552"></a>
+<span class="sourceLineNo">553</span>            nextIndex = INDEX_ZERO;<a name="line.553"></a>
+<span class="sourceLineNo">554</span>            if (set.hasZeroValue)<a name="line.554"></a>
+<span class="sourceLineNo">555</span>                hasNext = true;<a name="line.555"></a>
+<span class="sourceLineNo">556</span>            else<a name="line.556"></a>
 <span class="sourceLineNo">557</span>                findNextIndex();<a name="line.557"></a>
-<span class="sourceLineNo">558</span>            } else {<a name="line.558"></a>
-<span class="sourceLineNo">559</span>                set.keyTable[currentIndex] = EMPTY;<a name="line.559"></a>
-<span class="sourceLineNo">560</span>            }<a name="line.560"></a>
-<span class="sourceLineNo">561</span>            currentIndex = INDEX_ILLEGAL;<a name="line.561"></a>
-<span class="sourceLineNo">562</span>            set.size--;<a name="line.562"></a>
-<span class="sourceLineNo">563</span>        }<a name="line.563"></a>
-<span class="sourceLineNo">564</span><a name="line.564"></a>
-<span class="sourceLineNo">565</span>        public short next () {<a name="line.565"></a>
-<span class="sourceLineNo">566</span>            if (!hasNext) throw new NoSuchElementException();<a name="line.566"></a>
-<span class="sourceLineNo">567</span>            if (!valid) throw new RuntimeException("ShortSetIterator cannot be used nested.");<a name="line.567"></a>
-<span class="sourceLineNo">568</span>            short key = nextIndex == INDEX_ZERO ? 0 : set.keyTable[nextIndex];<a name="line.568"></a>
-<span class="sourceLineNo">569</span>            currentIndex = nextIndex;<a name="line.569"></a>
-<span class="sourceLineNo">570</span>            findNextIndex();<a name="line.570"></a>
-<span class="sourceLineNo">571</span>            return key;<a name="line.571"></a>
-<span class="sourceLineNo">572</span>        }<a name="line.572"></a>
-<span class="sourceLineNo">573</span><a name="line.573"></a>
-<span class="sourceLineNo">574</span>        /** Returns a new array containing the remaining keys. */<a name="line.574"></a>
-<span class="sourceLineNo">575</span>        public ShortVLA toArray () {<a name="line.575"></a>
-<span class="sourceLineNo">576</span>            ShortVLA array = new ShortVLA(true, set.size);<a name="line.576"></a>
-<span class="sourceLineNo">577</span>            while (hasNext)<a name="line.577"></a>
-<span class="sourceLineNo">578</span>                array.add(next());<a name="line.578"></a>
-<span class="sourceLineNo">579</span>            return array;<a name="line.579"></a>
-<span class="sourceLineNo">580</span>        }<a name="line.580"></a>
-<span class="sourceLineNo">581</span>    }<a name="line.581"></a>
-<span class="sourceLineNo">582</span>}<a name="line.582"></a>
+<span class="sourceLineNo">558</span>        }<a name="line.558"></a>
+<span class="sourceLineNo">559</span><a name="line.559"></a>
+<span class="sourceLineNo">560</span>        void findNextIndex () {<a name="line.560"></a>
+<span class="sourceLineNo">561</span>            hasNext = false;<a name="line.561"></a>
+<span class="sourceLineNo">562</span>            short[] keyTable = set.keyTable;<a name="line.562"></a>
+<span class="sourceLineNo">563</span>            for (int n = set.capacity + set.stashSize; ++nextIndex &lt; n;) {<a name="line.563"></a>
+<span class="sourceLineNo">564</span>                if (keyTable[nextIndex] != EMPTY) {<a name="line.564"></a>
+<span class="sourceLineNo">565</span>                    hasNext = true;<a name="line.565"></a>
+<span class="sourceLineNo">566</span>                    break;<a name="line.566"></a>
+<span class="sourceLineNo">567</span>                }<a name="line.567"></a>
+<span class="sourceLineNo">568</span>            }<a name="line.568"></a>
+<span class="sourceLineNo">569</span>        }<a name="line.569"></a>
+<span class="sourceLineNo">570</span><a name="line.570"></a>
+<span class="sourceLineNo">571</span>        public void remove () {<a name="line.571"></a>
+<span class="sourceLineNo">572</span>            if (currentIndex == INDEX_ZERO &amp;&amp; set.hasZeroValue) {<a name="line.572"></a>
+<span class="sourceLineNo">573</span>                set.hasZeroValue = false;<a name="line.573"></a>
+<span class="sourceLineNo">574</span>            } else if (currentIndex &lt; 0) {<a name="line.574"></a>
+<span class="sourceLineNo">575</span>                throw new IllegalStateException("next must be called before remove.");<a name="line.575"></a>
+<span class="sourceLineNo">576</span>            } else if (currentIndex &gt;= set.capacity) {<a name="line.576"></a>
+<span class="sourceLineNo">577</span>                set.removeStashIndex(currentIndex);<a name="line.577"></a>
+<span class="sourceLineNo">578</span>                nextIndex = currentIndex - 1;<a name="line.578"></a>
+<span class="sourceLineNo">579</span>                findNextIndex();<a name="line.579"></a>
+<span class="sourceLineNo">580</span>            } else {<a name="line.580"></a>
+<span class="sourceLineNo">581</span>                set.keyTable[currentIndex] = EMPTY;<a name="line.581"></a>
+<span class="sourceLineNo">582</span>            }<a name="line.582"></a>
+<span class="sourceLineNo">583</span>            currentIndex = INDEX_ILLEGAL;<a name="line.583"></a>
+<span class="sourceLineNo">584</span>            set.size--;<a name="line.584"></a>
+<span class="sourceLineNo">585</span>        }<a name="line.585"></a>
+<span class="sourceLineNo">586</span><a name="line.586"></a>
+<span class="sourceLineNo">587</span>        public short next () {<a name="line.587"></a>
+<span class="sourceLineNo">588</span>            if (!hasNext) throw new NoSuchElementException();<a name="line.588"></a>
+<span class="sourceLineNo">589</span>            if (!valid) throw new RuntimeException("ShortSetIterator cannot be used nested.");<a name="line.589"></a>
+<span class="sourceLineNo">590</span>            short key = nextIndex == INDEX_ZERO ? 0 : set.keyTable[nextIndex];<a name="line.590"></a>
+<span class="sourceLineNo">591</span>            currentIndex = nextIndex;<a name="line.591"></a>
+<span class="sourceLineNo">592</span>            findNextIndex();<a name="line.592"></a>
+<span class="sourceLineNo">593</span>            return key;<a name="line.593"></a>
+<span class="sourceLineNo">594</span>        }<a name="line.594"></a>
+<span class="sourceLineNo">595</span><a name="line.595"></a>
+<span class="sourceLineNo">596</span>        /** Returns a new array containing the remaining keys. */<a name="line.596"></a>
+<span class="sourceLineNo">597</span>        public ShortVLA toArray () {<a name="line.597"></a>
+<span class="sourceLineNo">598</span>            ShortVLA array = new ShortVLA(true, set.size);<a name="line.598"></a>
+<span class="sourceLineNo">599</span>            while (hasNext)<a name="line.599"></a>
+<span class="sourceLineNo">600</span>                array.add(next());<a name="line.600"></a>
+<span class="sourceLineNo">601</span>            return array;<a name="line.601"></a>
+<span class="sourceLineNo">602</span>        }<a name="line.602"></a>
+<span class="sourceLineNo">603</span>    }<a name="line.603"></a>
+<span class="sourceLineNo">604</span>}<a name="line.604"></a>
 
 
 

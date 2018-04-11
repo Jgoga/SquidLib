@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -152,13 +152,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#Dice-long-">Dice</a></span>(long&nbsp;seed)</code>
-<div class="block">Creates a new dice roller that will use its own RNG, seeded with the given seed.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#Dice-squidpony.squidmath.IRNG-">Dice</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
+<div class="block">Creates a new dice roller that uses the given IRNG, which can be seeded before it's given here.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#Dice-squidpony.squidmath.RNG-">Dice</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
-<div class="block">Creates a new dice roller that uses the given RNG, which can be seeded before it's given here.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#Dice-long-">Dice</a></span>(long&nbsp;seed)</code>
+<div class="block">Creates a new dice roller that will use its own RNG, seeded with the given seed.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -199,32 +199,40 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>protected int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#nextIntHasty-int-">nextIntHasty</a></span>(int&nbsp;bound)</code>
+<div class="block">Replicate the behavior of <a href="../../squidpony/squidmath/RNG.html#nextIntHasty-int-"><code>RNG.nextIntHasty(int)</code></a> using the more broadly-implemented <a href="../../squidpony/squidmath/IRNG.html#next-int-"><code>IRNG.next(int)</code></a>
+ method, that is, this produces a pseudo-random int between 0 (inclusive) and bound (exclusive), where bound may
+ be positive or negative.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#roll-java.lang.String-">roll</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;rollCode)</code>
 <div class="block">Evaluate the String <code>rollCode</code> as dice roll notation and roll to get a random result of that dice roll.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#rollDice-int-int-">rollDice</a></span>(int&nbsp;n,
         int&nbsp;sides)</code>
 <div class="block">Emulate a dice roll and return the sum.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#rollExplodingDice-int-int-">rollExplodingDice</a></span>(int&nbsp;n,
                  int&nbsp;sides)</code>
 <div class="block">Emulate an exploding dice roll and return the sum.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#setRandom-squidpony.squidmath.RNG-">setRandom</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#setRandom-squidpony.squidmath.IRNG-">setRandom</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Sets the random number generator to be used.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#worstOf-int-int-java.lang.String-">worstOf</a></span>(int&nbsp;n,
        int&nbsp;dice,
@@ -265,19 +273,19 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <div class="block">Creates a new dice roller that uses a random RNG seed for an RNG that it owns.</div>
 </li>
 </ul>
-<a name="Dice-squidpony.squidmath.RNG-">
+<a name="Dice-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>Dice</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.43">Dice</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
-<div class="block">Creates a new dice roller that uses the given RNG, which can be seeded before it's given here. The RNG will be
- shared, not copied, so requesting a random number from the same RNG in another place may change the value of the
- next die roll this makes, and dice rolls this makes will change the state of the shared RNG.</div>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.43">Dice</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
+<div class="block">Creates a new dice roller that uses the given IRNG, which can be seeded before it's given here. The IRNG will be
+ shared, not copied, so requesting a random number from the same IRNG in another place may change the value of the
+ next die roll this makes, and dice rolls this makes will change the state of the shared IRNG.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>rng</code> - an RNG that can be seeded; will be shared (dice rolls will change the RNG state outside here)</dd>
+<dd><code>rng</code> - an IRNG, such as <a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath"><code>RNG</code></a> or <a href="../../squidpony/squidmath/GWTRNG.html" title="class in squidpony.squidmath"><code>GWTRNG</code></a>; will be shared (dice rolls will change the IRNG state outside here)</dd>
 </dl>
 </li>
 </ul>
@@ -317,13 +325,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="setRandom-squidpony.squidmath.RNG-">
+<a name="setRandom-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandom</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.72">setRandom</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.72">setRandom</a>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Sets the random number generator to be used.
 
  This method does not need to be called before using the methods of this
@@ -388,9 +396,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>n</code> - number of dice to sum</dd>
-<dd><code>sides</code> - number of sides on the rollDice</dd>
+<dd><code>sides</code> - positive integer; number of sides on the rolled dice</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>sum of rollDice</dd>
+<dd>sum of rolled dice</dd>
 </dl>
 </li>
 </ul>
@@ -425,9 +433,27 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>n</code> - number of dice used</dd>
-<dd><code>sides</code> - number of sides on each die</dd>
+<dd><code>sides</code> - positive integer; number of sides on each die</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>list of results</dd>
+</dl>
+</li>
+</ul>
+<a name="nextIntHasty-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>nextIntHasty</h4>
+<pre>protected&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.281">nextIntHasty</a>(int&nbsp;bound)</pre>
+<div class="block">Replicate the behavior of <a href="../../squidpony/squidmath/RNG.html#nextIntHasty-int-"><code>RNG.nextIntHasty(int)</code></a> using the more broadly-implemented <a href="../../squidpony/squidmath/IRNG.html#next-int-"><code>IRNG.next(int)</code></a>
+ method, that is, this produces a pseudo-random int between 0 (inclusive) and bound (exclusive), where bound may
+ be positive or negative.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>bound</code> - an outer exclusive bound, positive or negative; should be under a billion or so</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>an int between 0 (inclusive) and bound (exclusive)</dd>
 </dl>
 </li>
 </ul>
@@ -437,7 +463,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>roll</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.325">roll</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;rollCode)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.337">roll</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;rollCode)</pre>
 <div class="block">Evaluate the String <code>rollCode</code> as dice roll notation and roll to get a random result of that dice roll.
  This is the main way of using the Dice class. This effectively allows rolling one or more dice and performing
  certain operations on the dice and their result. One of the more frequent uses is rolling some amount of dice and

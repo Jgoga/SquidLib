@@ -138,19 +138,19 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.RNG-">SerpentDeepMapGenerator</a></span>(int&nbsp;width,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.IRNG-">SerpentDeepMapGenerator</a></span>(int&nbsp;width,
                        int&nbsp;height,
                        int&nbsp;depth,
-                       <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+                       <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">This prepares a map generator that will generate a map with the given width, height and depth, using the given
- RNG.</div>
+ IRNG.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.RNG-double-">SerpentDeepMapGenerator</a></span>(int&nbsp;width,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.IRNG-double-">SerpentDeepMapGenerator</a></span>(int&nbsp;width,
                        int&nbsp;height,
                        int&nbsp;depth,
-                       <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+                       <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
                        double&nbsp;branchingChance)</code>
 <div class="block">This prepares a map generator that will generate a map with the given width, height and depth, using the given
  IRNG, and will branch out to other nearby rooms that (probably) do not have staircases between layers.</div>
@@ -249,7 +249,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.RNG-">
+<a name="SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.IRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -258,9 +258,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#line.39">SerpentDeepMapGenerator</a>(int&nbsp;width,
                                int&nbsp;height,
                                int&nbsp;depth,
-                               <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+                               <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">This prepares a map generator that will generate a map with the given width, height and depth, using the given
- RNG. The intended purpose is to carve a long path that loops through the whole dungeon's 3D space, while
+ IRNG. The intended purpose is to carve a long path that loops through the whole dungeon's 3D space, while
  hopefully maximizing the amount of rooms the player encounters. You call the different carver-adding methods to
  affect what the dungeon will look like, putCaveCarvers(), putBoxRoomCarvers(), and putRoundRoomCarvers(),
  defaulting to only caves if none are called. You call generate() after adding carvers, which returns a char[][][]
@@ -276,7 +276,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.RNG-double-">
+<a name="SerpentDeepMapGenerator-int-int-int-squidpony.squidmath.IRNG-double-">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -285,7 +285,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentDeepMapGenerator.html#line.57">SerpentDeepMapGenerator</a>(int&nbsp;width,
                                int&nbsp;height,
                                int&nbsp;depth,
-                               <a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+                               <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
                                double&nbsp;branchingChance)</pre>
 <div class="block">This prepares a map generator that will generate a map with the given width, height and depth, using the given
  IRNG, and will branch out to other nearby rooms that (probably) do not have staircases between layers.

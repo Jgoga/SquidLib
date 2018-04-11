@@ -162,7 +162,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/ProbabilityTable.html#normalTotal">normalTotal</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></td>
+<td class="colFirst"><code><a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/ProbabilityTable.html#rng">rng</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -204,7 +204,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/ProbabilityTable.html#ProbabilityTable-squidpony.squidmath.RNG-">ProbabilityTable</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/ProbabilityTable.html#ProbabilityTable-squidpony.squidmath.StatefulRandomness-">ProbabilityTable</a></span>(<a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a>&nbsp;rng)</code>
 <div class="block">Creates a new probability table with the provided source of randomness
  used.</div>
 </td>
@@ -273,9 +273,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/ProbabilityTable.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</code>&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></td>
+<td class="colFirst"><code><a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/ProbabilityTable.html#getRandom--">getRandom</a></span>()</code>
-<div class="block">Gets the RNG this uses.</div>
+<div class="block">Gets the random number generator (a StatefulRandomness) this uses.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
@@ -325,7 +325,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/ProbabilityTable.html#setRandom-squidpony.squidmath.RNG-">setRandom</a></span>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/ProbabilityTable.html#setRandom-squidpony.squidmath.StatefulRNG-">setRandom</a></span>(<a href="../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a>&nbsp;random)</code>
 <div class="block">Sets the current RNG to the given RNG.</div>
 </td>
 </tr>
@@ -413,7 +413,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>rng</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a> <a href="../../src-html/squidpony/squidmath/ProbabilityTable.html#line.33">rng</a></pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a> <a href="../../src-html/squidpony/squidmath/ProbabilityTable.html#line.33">rng</a></pre>
 </li>
 </ul>
 <a name="total">
@@ -452,13 +452,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <div class="block">Creates a new probability table with a random seed.</div>
 </li>
 </ul>
-<a name="ProbabilityTable-squidpony.squidmath.RNG-">
+<a name="ProbabilityTable-squidpony.squidmath.StatefulRandomness-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>ProbabilityTable</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/ProbabilityTable.html#line.49">ProbabilityTable</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/ProbabilityTable.html#line.49">ProbabilityTable</a>(<a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a>&nbsp;rng)</pre>
 <div class="block">Creates a new probability table with the provided source of randomness
  used. Gets one random long from rng to use as an internal identifier.</div>
 <dl>
@@ -777,13 +777,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </dl>
 </li>
 </ul>
-<a name="setRandom-squidpony.squidmath.RNG-">
+<a name="setRandom-squidpony.squidmath.StatefulRNG-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandom</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/ProbabilityTable.html#line.349">setRandom</a>(<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/ProbabilityTable.html#line.349">setRandom</a>(<a href="../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a>&nbsp;random)</pre>
 <div class="block">Sets the current RNG to the given RNG. You may prefer using a StatefulRNG (typically passing one in the
  constructor, but you can pass one here too) and setting its state in other code, which does not require calling
  this method again when the StatefulRNG has its state set.</div>
@@ -799,11 +799,11 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandom</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/ProbabilityTable.html#line.359">getRandom</a>()</pre>
-<div class="block">Gets the RNG this uses.</div>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a>&nbsp;<a href="../../src-html/squidpony/squidmath/ProbabilityTable.html#line.359">getRandom</a>()</pre>
+<div class="block">Gets the random number generator (a StatefulRandomness) this uses.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the RNG used by this class, which is often (but not always) a StatefulRNG</dd>
+<dd>the StatefulRandomness used by this class, which is often (but not always) a LightRNG</dd>
 </dl>
 </li>
 </ul>

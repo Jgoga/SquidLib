@@ -89,18 +89,24 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#squidpony.squidai">squidpony.squidai</a></td>
+<td class="colLast">
+<div class="block">Tools for finding paths, optimizing targets for area-of-effect (AOE) abilities, and evaluating influence on a grid.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#squidpony.squidgrid">squidpony.squidgrid</a></td>
 <td class="colLast">
 <div class="block">Tools for working with data on a grid, including LOS and FOV; overlaps with geometry code in squidpony.squidmath .</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#squidpony.squidgrid.mapping">squidpony.squidgrid.mapping</a></td>
 <td class="colLast">
 <div class="block">Tools specifically for generating maps and placing content in them, usually working with 2D char arrays.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#squidpony.squidmath">squidpony.squidmath</a></td>
 <td class="colLast">
 <div class="block">A very broad package containing random number generators, geometry tools, and some classes for combinatorics.</div>
@@ -182,6 +188,31 @@
 <div class="block">Builds a SentenceForm with all fields specified; each value is referenced directly except for <code>rng</code>,
  which will not change or be directly referenced (a new StatefulRNG will be used with the same state value).</div>
 </td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/WeightedLetterNamegen.html#WeightedLetterNamegen-java.lang.String:A-int-squidpony.squidmath.StatefulRNG-">WeightedLetterNamegen</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;names,
+                     int&nbsp;consonantLimit,
+                     <a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a>&nbsp;rng)</code>
+<div class="block">Creates the generator by seeding the provided list of names.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="squidpony.squidai">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a> in <a href="../../../squidpony/squidai/package-summary.html">squidpony.squidai</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
+<caption><span>Fields in <a href="../../../squidpony/squidai/package-summary.html">squidpony.squidai</a> declared as <a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WaypointPathfinder.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/WaypointPathfinder.html#rng">rng</a></span></code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -313,6 +344,21 @@
 <td class="colLast"><span class="typeNameLabel">StatefulRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/StatefulRNG.html#copy--">copy</a></span>()</code>
 <div class="block">Creates a copy of this StatefulRNG; it will generate the same random numbers, given the same calls in order, as
  this StatefulRNG at the point copy() is called.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../squidpony/squidmath/package-summary.html">squidpony.squidmath</a> with parameters of type <a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">ProbabilityTable.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/ProbabilityTable.html#setRandom-squidpony.squidmath.StatefulRNG-">setRandom</a></span>(<a href="../../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a>&nbsp;random)</code>
+<div class="block">Sets the current RNG to the given RNG.</div>
 </td>
 </tr>
 </tbody>
