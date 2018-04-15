@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10,"i57":10,"i58":10,"i59":10,"i60":10,"i61":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":42,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":42,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10,"i57":10,"i58":10,"i59":10,"i60":10,"i61":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -109,7 +109,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></dd>
+<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>, <a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></dd>
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
@@ -308,7 +308,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">Deprecated Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -316,7 +316,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/RNG.html#approximateBits-int-">approximateBits</a></span>(int&nbsp;bitCount)</code>
-<div class="block">Generates a random 64-bit long with a number of '1' bits (Hamming weight) approximately equal to bitCount.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">see the version in GreasedRegion, <a href="../../squidpony/squidmath/GreasedRegion.html#approximateBits-squidpony.squidmath.RandomnessSource-int-"><code>GreasedRegion.approximateBits(RandomnessSource, int)</code></a></span></div>
+</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -628,8 +630,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <tr id="i46" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/RNG.html#randomInterleave--">randomInterleave</a></span>()</code>
-<div class="block">Gets a somewhat-random long with exactly 32 bits set; in each pair of bits starting at bit 0 and bit 1, then bit
- 2 and bit 3, up to bit 62 and bit 3, one bit will be 1 and one bit will be 0 in each pair.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">See <a href="../../squidpony/squidmath/GreasedRegion.html#randomInterleave-squidpony.squidmath.RandomnessSource-"><code>GreasedRegion.randomInterleave(RandomnessSource)</code></a> for where this will be moved</span></div>
+</div>
 </td>
 </tr>
 <tr id="i47" class="rowColor">
@@ -1532,6 +1535,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/IRNG.html#nextLong--">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/RandomnessSource.html#nextLong--">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a 64-bit random long.</dd>
 </dl>
@@ -1658,6 +1663,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/IRNG.html#next-int-">next</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/RandomnessSource.html#next-int-">next</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>bits</code> - an int between 1 and 32, both inclusive</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1695,6 +1702,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/IRNG.html#copy--">copy</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a></code></dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../squidpony/squidmath/RandomnessSource.html#copy--">copy</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a copy of this RNG</dd>
 </dl>
@@ -1706,21 +1715,18 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>approximateBits</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.976">approximateBits</a>(int&nbsp;bitCount)</pre>
-<div class="block">Generates a random 64-bit long with a number of '1' bits (Hamming weight) approximately equal to bitCount.
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.973">approximateBits</a>(int&nbsp;bitCount)</pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">see the version in GreasedRegion, <a href="../../squidpony/squidmath/GreasedRegion.html#approximateBits-squidpony.squidmath.RandomnessSource-int-"><code>GreasedRegion.approximateBits(RandomnessSource, int)</code></a></span></div>
+<div class="block">Generates a random 64-bit long with a number of '1' bits (Hamming weight) equal on average to bitCount.
  For example, calling this with a parameter of 32 will be equivalent to calling nextLong() on this object's
  RandomnessSource (it doesn't consider overridden nextLong() methods, where present, on subclasses of RNG).
  Calling this with a parameter of 16 will have on average 16 of the 64 bits in the returned long set to '1',
  distributed pseudo-randomly, while a parameter of 47 will have on average 47 bits set. This can be useful for
  certain code that uses bits to represent data but needs a different ratio of set bits to unset bits than 1:1.
  <br>
- Implementors should limit any overriding method to calling and returning super(), potentially storing any extra
- information they need to internally, but should not change the result. This works based on a delicate balance of
- the RandomnessSource producing bits with an even 50% chance of being set, regardless of position, and RNG
- subclasses that alter the odds won't work as expected here, particularly if those subclasses use doubles
- internally (which almost always produce less than 64 random bits). You should definitely avoid using certain
- RandomnessSources that aren't properly pseudo-random, such as any QRNG class (SobolQRNG and VanDerCorputQRNG,
- pretty much), since these won't fill all 64 bits with equal likelihood.</div>
+ This method is deprecated because it really only finds usage in GreasedRegion, so it has been moved there and
+ made so it can take any RandomnessSource as a parameter, including any IRNG or RNG.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>bitCount</code> - an int, only considered if between 0 and 64, that is the average number of bits to set</dd>
@@ -1735,11 +1741,14 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>randomInterleave</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1002">randomInterleave</a>()</pre>
+<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1002">randomInterleave</a>()</pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">See <a href="../../squidpony/squidmath/GreasedRegion.html#randomInterleave-squidpony.squidmath.RandomnessSource-"><code>GreasedRegion.randomInterleave(RandomnessSource)</code></a> for where this will be moved</span></div>
 <div class="block">Gets a somewhat-random long with exactly 32 bits set; in each pair of bits starting at bit 0 and bit 1, then bit
  2 and bit 3, up to bit 62 and bit 3, one bit will be 1 and one bit will be 0 in each pair.
  <br>
- Not exactly general-use; meant for generating data for GreasedRegion.</div>
+ Not exactly general-use; meant for generating data for GreasedRegion. This is deprecated in favor of the version
+ in GreasedRegion.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random long with 32 "1" bits, distributed so exactly one bit is "1" for each pair of bits</dd>

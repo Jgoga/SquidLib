@@ -309,10 +309,16 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/MasonNoise.html#randomInt-long-">randomInt(long)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/MasonNoise.html" title="class in squidpony.squidmath">MasonNoise</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#randomInterleave--">randomInterleave()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#randomInterleave-squidpony.squidmath.RandomnessSource-">randomInterleave(RandomnessSource)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
 <dd>
 <div class="block">Gets a somewhat-random long with exactly 32 bits set; in each pair of bits starting at bit 0 and bit 1, then bit
  2 and bit 3, up to bit 62 and bit 3, one bit will be 1 and one bit will be 0 in each pair.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#randomInterleave--">randomInterleave()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
+<dd>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>
+<div class="block"><span class="deprecationComment">See <a href="../squidpony/squidmath/GreasedRegion.html#randomInterleave-squidpony.squidmath.RandomnessSource-"><code>GreasedRegion.randomInterleave(RandomnessSource)</code></a> for where this will be moved</span></div>
+</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedSet.html#randomItem-squidpony.squidmath.IRNG-">randomItem(IRNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a></dt>
 <dd>
@@ -797,7 +803,7 @@
  (without extra allocations) if this.width == width and this.height == height, and typically assigning
  approximately half of the cells in this to "on" and the rest to off.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#refill-squidpony.squidmath.RNG-double-int-int-">refill(RNG, double, int, int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#refill-squidpony.squidmath.RandomnessSource-double-int-int-">refill(RandomnessSource, double, int, int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
 <dd>
 <div class="block">Reassigns this GreasedRegion randomly, reusing the current data storage (without extra allocations) if this.width
  == width and this.height == height, while trying to set the given fraction of cells to on.</div>

@@ -12551,165 +12551,243 @@
 <span class="sourceLineNo">12543</span>            }<a name="line.12543"></a>
 <span class="sourceLineNo">12544</span>        }<a name="line.12544"></a>
 <span class="sourceLineNo">12545</span>    }<a name="line.12545"></a>
-<span class="sourceLineNo">12546</span><a name="line.12546"></a>
-<span class="sourceLineNo">12547</span>    /**<a name="line.12547"></a>
-<span class="sourceLineNo">12548</span>     * Interpolates from the packed float color start towards end by change. Both start and end should be packed colors,<a name="line.12548"></a>
-<span class="sourceLineNo">12549</span>     * as from {@link #toFloatBits()} or {@link #floatGet(float, float, float, float)}, and change can be between 0f<a name="line.12549"></a>
-<span class="sourceLineNo">12550</span>     * (keep start) and 1f (only use end). This is a good way to reduce allocations of temporary Colors.<a name="line.12550"></a>
-<span class="sourceLineNo">12551</span>     * @param start the starting color as a packed float<a name="line.12551"></a>
-<span class="sourceLineNo">12552</span>     * @param end the target color as a packed float<a name="line.12552"></a>
-<span class="sourceLineNo">12553</span>     * @param change how much to go from start toward end, as a float between 0 and 1; higher means closer to end<a name="line.12553"></a>
-<span class="sourceLineNo">12554</span>     * @return a packed float that represents a color between start and end<a name="line.12554"></a>
-<span class="sourceLineNo">12555</span>     */<a name="line.12555"></a>
-<span class="sourceLineNo">12556</span>    public static float lerpFloatColors(final float start, final float end, final float change) {<a name="line.12556"></a>
-<span class="sourceLineNo">12557</span>        final int s = NumberTools.floatToIntBits(start), e = NumberTools.floatToIntBits(end),<a name="line.12557"></a>
-<span class="sourceLineNo">12558</span>                rs = (s &amp; 0xFF), gs = (s &gt;&gt;&gt; 8) &amp; 0xFF, bs = (s &gt;&gt;&gt; 16) &amp; 0xFF, as = (s &gt;&gt;&gt; 24) &amp; 254,<a name="line.12558"></a>
-<span class="sourceLineNo">12559</span>                re = (e &amp; 0xFF), ge = (e &gt;&gt;&gt; 8) &amp; 0xFF, be = (e &gt;&gt;&gt; 16) &amp; 0xFF, ae = (e &gt;&gt;&gt; 24) &amp; 254;<a name="line.12559"></a>
-<span class="sourceLineNo">12560</span>        return NumberTools.intBitsToFloat(((int) (rs + change * (re - rs)) &amp; 0xFF)<a name="line.12560"></a>
-<span class="sourceLineNo">12561</span>                | ((int) (gs + change * (ge - gs)) &amp; 0xFF) &lt;&lt; 8<a name="line.12561"></a>
-<span class="sourceLineNo">12562</span>                | (((int) (bs + change * (be - bs)) &amp; 0xFF) &lt;&lt; 16)<a name="line.12562"></a>
-<span class="sourceLineNo">12563</span>                | (((int) (as + change * (ae - as)) &amp; 0xFE) &lt;&lt; 24));<a name="line.12563"></a>
-<span class="sourceLineNo">12564</span>    }<a name="line.12564"></a>
-<span class="sourceLineNo">12565</span><a name="line.12565"></a>
-<span class="sourceLineNo">12566</span>    /**<a name="line.12566"></a>
-<span class="sourceLineNo">12567</span>     * Interpolates from the packed float color start towards end by change, but keeps the alpha of start and uses the<a name="line.12567"></a>
-<span class="sourceLineNo">12568</span>     * alpha of end as an extra factor that can affect how much to change. Both start and end should be packed colors,<a name="line.12568"></a>
-<span class="sourceLineNo">12569</span>     * as from {@link #toFloatBits()} or {@link #floatGet(float, float, float, float)}, and change can be between 0f<a name="line.12569"></a>
-<span class="sourceLineNo">12570</span>     * (keep start) and 1f (only use end). This is a good way to reduce allocations of temporary Colors.<a name="line.12570"></a>
-<span class="sourceLineNo">12571</span>     * @param start the starting color as a packed float; alpha will be preserved<a name="line.12571"></a>
-<span class="sourceLineNo">12572</span>     * @param end the target color as a packed float; alpha will not be used directly, and will instead be multiplied with change<a name="line.12572"></a>
-<span class="sourceLineNo">12573</span>     * @param change how much to go from start toward end, as a float between 0 and 1; higher means closer to end<a name="line.12573"></a>
-<span class="sourceLineNo">12574</span>     * @return a packed float that represents a color between start and end<a name="line.12574"></a>
-<span class="sourceLineNo">12575</span>     */<a name="line.12575"></a>
-<span class="sourceLineNo">12576</span>    public static float lerpFloatColorsBlended(final float start, final float end, float change) {<a name="line.12576"></a>
-<span class="sourceLineNo">12577</span>        final int s = NumberTools.floatToIntBits(start), e = NumberTools.floatToIntBits(end),<a name="line.12577"></a>
-<span class="sourceLineNo">12578</span>                rs = (s &amp; 0xFF), gs = (s &gt;&gt;&gt; 8) &amp; 0xFF, bs = (s &gt;&gt;&gt; 16) &amp; 0xFF, as = s &amp; 0xFE000000,<a name="line.12578"></a>
-<span class="sourceLineNo">12579</span>                re = (e &amp; 0xFF), ge = (e &gt;&gt;&gt; 8) &amp; 0xFF, be = (e &gt;&gt;&gt; 16) &amp; 0xFF, ae = (e &gt;&gt;&gt; 25);<a name="line.12579"></a>
-<span class="sourceLineNo">12580</span>        change *= ae * 0.007874016f;<a name="line.12580"></a>
-<span class="sourceLineNo">12581</span>        return NumberTools.intBitsToFloat(((int) (rs + change * (re - rs)) &amp; 0xFF)<a name="line.12581"></a>
-<span class="sourceLineNo">12582</span>                | ((int) (gs + change * (ge - gs)) &amp; 0xFF) &lt;&lt; 8<a name="line.12582"></a>
-<span class="sourceLineNo">12583</span>                | (((int) (bs + change * (be - bs)) &amp; 0xFF) &lt;&lt; 16)<a name="line.12583"></a>
-<span class="sourceLineNo">12584</span>                | as);<a name="line.12584"></a>
-<span class="sourceLineNo">12585</span>    }<a name="line.12585"></a>
-<span class="sourceLineNo">12586</span><a name="line.12586"></a>
-<span class="sourceLineNo">12587</span>    /**<a name="line.12587"></a>
-<span class="sourceLineNo">12588</span>     * Similar to {@link #colorLighting(double[][], float)}, but meant for an initial state before you have FOV or color<a name="line.12588"></a>
-<span class="sourceLineNo">12589</span>     * data to fill the lighting with, and you just need a map of a specific size that starts with no lighting. This<a name="line.12589"></a>
-<span class="sourceLineNo">12590</span>     * will produce a map that has white as the lighting color for all cells, but no cells will be lit. It is likely you<a name="line.12590"></a>
-<span class="sourceLineNo">12591</span>     * will want to pass this as basis to {@link #mixColoredLighting(float[][][], float[][][])}.<a name="line.12591"></a>
-<span class="sourceLineNo">12592</span>     *<a name="line.12592"></a>
-<span class="sourceLineNo">12593</span>     * @param width  the width of the colored lighting area to generate<a name="line.12593"></a>
-<span class="sourceLineNo">12594</span>     * @param height the height of the colored lighting area to generate<a name="line.12594"></a>
-<span class="sourceLineNo">12595</span>     * @return the colored lighting 3D float array, with no cells lit and all colors set to white<a name="line.12595"></a>
-<span class="sourceLineNo">12596</span>     */<a name="line.12596"></a>
-<span class="sourceLineNo">12597</span>    public static float[][][] blankColoredLighting(int width, int height) {<a name="line.12597"></a>
-<span class="sourceLineNo">12598</span>        return new float[][][]<a name="line.12598"></a>
-<span class="sourceLineNo">12599</span>                {<a name="line.12599"></a>
-<span class="sourceLineNo">12600</span>                        new float[width][height],<a name="line.12600"></a>
-<span class="sourceLineNo">12601</span>                        ArrayTools.fill(FLOAT_WHITE, width, height)<a name="line.12601"></a>
-<span class="sourceLineNo">12602</span>                };<a name="line.12602"></a>
-<span class="sourceLineNo">12603</span>    }<a name="line.12603"></a>
-<span class="sourceLineNo">12604</span><a name="line.12604"></a>
-<span class="sourceLineNo">12605</span>    /**<a name="line.12605"></a>
-<span class="sourceLineNo">12606</span>     * Removes any information from the given 3D float array for colored lighting, making it as if it had just been<a name="line.12606"></a>
-<span class="sourceLineNo">12607</span>     * built by {@link #blankColoredLighting(int, int)}, but without any allocations. This blank state is different from<a name="line.12607"></a>
-<span class="sourceLineNo">12608</span>     * being simply filled with all 0 or all default values; the two sub-arrays receive different contents (the one that<a name="line.12608"></a>
-<span class="sourceLineNo">12609</span>     * stores brightness is all 0, the one that stores colors will be filled with the float that encodes white).<a name="line.12609"></a>
-<span class="sourceLineNo">12610</span>     *<a name="line.12610"></a>
-<span class="sourceLineNo">12611</span>     * @param original a 3d float array used for colored lighting; will be modified to be completely blank<a name="line.12611"></a>
-<span class="sourceLineNo">12612</span>     * @return original, after modification<a name="line.12612"></a>
-<span class="sourceLineNo">12613</span>     */<a name="line.12613"></a>
-<span class="sourceLineNo">12614</span>    public static float[][][] eraseColoredLighting(float[][][] original) {<a name="line.12614"></a>
-<span class="sourceLineNo">12615</span>        ArrayTools.fill(original[0], 0f);<a name="line.12615"></a>
-<span class="sourceLineNo">12616</span>        ArrayTools.fill(original[1], FLOAT_WHITE);<a name="line.12616"></a>
-<span class="sourceLineNo">12617</span>        return original;<a name="line.12617"></a>
-<span class="sourceLineNo">12618</span>    }<a name="line.12618"></a>
-<span class="sourceLineNo">12619</span><a name="line.12619"></a>
-<span class="sourceLineNo">12620</span>    /**<a name="line.12620"></a>
-<span class="sourceLineNo">12621</span>     * Given a 2D double array that was probably produced by FOV and a packed color as a float, this gets a 3D float<a name="line.12621"></a>
-<span class="sourceLineNo">12622</span>     * array (really just two same-size 2D float arrays in one parent array) that stores the brightnesses in the first<a name="line.12622"></a>
-<span class="sourceLineNo">12623</span>     * 2D array element and the colors in the second 2D array element (using the given color if a cell has a value in<a name="line.12623"></a>
-<span class="sourceLineNo">12624</span>     * lights that is greater than 0, or defaulting to white if the cell is unlit). This has little use on its own, and<a name="line.12624"></a>
-<span class="sourceLineNo">12625</span>     * is meant to be given to {@link #mixColoredLighting(float[][][], float[][][])} so that multiple colors of lights<a name="line.12625"></a>
-<span class="sourceLineNo">12626</span>     * can be mixed.<a name="line.12626"></a>
-<span class="sourceLineNo">12627</span>     *<a name="line.12627"></a>
-<span class="sourceLineNo">12628</span>     * @param lights a 2D double array that should probably come from FOV<a name="line.12628"></a>
-<span class="sourceLineNo">12629</span>     * @param color  a packed float as produced by {@link #floatGet(float, float, float, float)}<a name="line.12629"></a>
-<span class="sourceLineNo">12630</span>     * @return a 3D float array containing two 2D sub-arrays, the first holding brightness and the second holding color<a name="line.12630"></a>
-<span class="sourceLineNo">12631</span>     */<a name="line.12631"></a>
-<span class="sourceLineNo">12632</span>    public static float[][][] colorLighting(double[][] lights, float color) {<a name="line.12632"></a>
-<span class="sourceLineNo">12633</span>        return colorLightingInto(new float[2][lights.length][lights[0].length], lights, color);<a name="line.12633"></a>
-<span class="sourceLineNo">12634</span>    }<a name="line.12634"></a>
-<span class="sourceLineNo">12635</span><a name="line.12635"></a>
-<span class="sourceLineNo">12636</span>    /**<a name="line.12636"></a>
-<span class="sourceLineNo">12637</span>     * Given a 2D double array that was probably produced by FOV and a packed color as a float, this assigns into reuse<a name="line.12637"></a>
-<span class="sourceLineNo">12638</span>     * a 3D float array (really just two same-size 2D float arrays in one parent array) that stores the brightnesses in<a name="line.12638"></a>
-<span class="sourceLineNo">12639</span>     * the first 2D array element and the colors in the second 2D array element (using the given color if a cell has a<a name="line.12639"></a>
-<span class="sourceLineNo">12640</span>     * value in lights that is greater than 0, or defaulting to white if the cell is unlit). This method requires that<a name="line.12640"></a>
-<span class="sourceLineNo">12641</span>     * reuse has length of at least 2, where elements 0 and 1 must be 2D arrays of identical dimensions; this is the<a name="line.12641"></a>
-<span class="sourceLineNo">12642</span>     * format that {@link #colorLighting(double[][], float)} produces. This has little use on its own, and  is meant to<a name="line.12642"></a>
-<span class="sourceLineNo">12643</span>     * be given to {@link #mixColoredLighting(float[][][], float[][][])} so that multiple colors of lights can be mixed.<a name="line.12643"></a>
-<span class="sourceLineNo">12644</span>     *<a name="line.12644"></a>
-<span class="sourceLineNo">12645</span>     * @param reuse  a 3D float array of the exact format produced by {@link #colorLighting(double[][], float)} or<a name="line.12645"></a>
-<span class="sourceLineNo">12646</span>     *               {@link #mixColoredLighting(float[][][], float[][][])}, and must have length 2; will be modified!<a name="line.12646"></a>
-<span class="sourceLineNo">12647</span>     * @param lights a 2D double array that should probably come from FOV<a name="line.12647"></a>
-<span class="sourceLineNo">12648</span>     * @param color  a packed float as produced by {@link #floatGet(float, float, float, float)}<a name="line.12648"></a>
-<span class="sourceLineNo">12649</span>     * @return reuse after modification<a name="line.12649"></a>
-<span class="sourceLineNo">12650</span>     */<a name="line.12650"></a>
-<span class="sourceLineNo">12651</span>    public static float[][][] colorLightingInto(float[][][] reuse, double[][] lights, float color) {<a name="line.12651"></a>
-<span class="sourceLineNo">12652</span>        for (int x = 0; x &lt; lights.length; x++) {<a name="line.12652"></a>
-<span class="sourceLineNo">12653</span>            for (int y = 0; y &lt; lights[0].length; y++) {<a name="line.12653"></a>
-<span class="sourceLineNo">12654</span>                reuse[1][x][y] = ((reuse[0][x][y] = (float) lights[x][y]) &gt; 0f)<a name="line.12654"></a>
-<span class="sourceLineNo">12655</span>                        ? color<a name="line.12655"></a>
-<span class="sourceLineNo">12656</span>                        : FLOAT_WHITE; // the color white as a float<a name="line.12656"></a>
-<span class="sourceLineNo">12657</span>            }<a name="line.12657"></a>
-<span class="sourceLineNo">12658</span>        }<a name="line.12658"></a>
-<span class="sourceLineNo">12659</span>        return reuse;<a name="line.12659"></a>
-<span class="sourceLineNo">12660</span>    }<a name="line.12660"></a>
-<span class="sourceLineNo">12661</span><a name="line.12661"></a>
-<span class="sourceLineNo">12662</span>    /**<a name="line.12662"></a>
-<span class="sourceLineNo">12663</span>     * Adds two 3D arrays produced by {@link #colorLighting(double[][], float)} or this method and modifies the basis<a name="line.12663"></a>
-<span class="sourceLineNo">12664</span>     * parameter so it contains the combined brightnesses and colors of basis and other, in a pair of 2D arrays.<a name="line.12664"></a>
-<span class="sourceLineNo">12665</span>     *<a name="line.12665"></a>
-<span class="sourceLineNo">12666</span>     * @param basis a 3D float array holding two 2D sub-arrays, as produced by {@link #colorLighting(double[][], float)}; will be modified!<a name="line.12666"></a>
-<span class="sourceLineNo">12667</span>     * @param other a 3D float array holding two 2D sub-arrays, as produced by {@link #colorLighting(double[][], float)}; will not be modified<a name="line.12667"></a>
-<span class="sourceLineNo">12668</span>     * @return basis, after modification; it can be passed to this method as basis again<a name="line.12668"></a>
-<span class="sourceLineNo">12669</span>     */<a name="line.12669"></a>
-<span class="sourceLineNo">12670</span>    public static float[][][] mixColoredLighting(float[][][] basis, float[][][] other) {<a name="line.12670"></a>
-<span class="sourceLineNo">12671</span>        int w = basis[0].length, h = basis[0][0].length;<a name="line.12671"></a>
-<span class="sourceLineNo">12672</span>        for (int x = 0; x &lt; w &amp;&amp; x &lt; w; x++) {<a name="line.12672"></a>
-<span class="sourceLineNo">12673</span>            for (int y = 0; y &lt; h &amp;&amp; y &lt; h; y++) {<a name="line.12673"></a>
-<span class="sourceLineNo">12674</span>                basis[1][x][y] = (basis[1][x][y] == FLOAT_WHITE)<a name="line.12674"></a>
-<span class="sourceLineNo">12675</span>                        ? other[1][x][y]<a name="line.12675"></a>
-<span class="sourceLineNo">12676</span>                        : (other[1][x][y] == FLOAT_WHITE)<a name="line.12676"></a>
-<span class="sourceLineNo">12677</span>                        ? basis[1][x][y]<a name="line.12677"></a>
-<span class="sourceLineNo">12678</span>                        : lerpFloatColors(basis[1][x][y], other[1][x][y], (other[0][x][y] - basis[0][x][y]) * 0.5f + 0.5f);<a name="line.12678"></a>
-<span class="sourceLineNo">12679</span>                basis[0][x][y] = Math.min(1.0f, basis[0][x][y] + other[0][x][y]);<a name="line.12679"></a>
-<span class="sourceLineNo">12680</span>            }<a name="line.12680"></a>
-<span class="sourceLineNo">12681</span>        }<a name="line.12681"></a>
-<span class="sourceLineNo">12682</span>        return basis;<a name="line.12682"></a>
-<span class="sourceLineNo">12683</span>    }<a name="line.12683"></a>
-<span class="sourceLineNo">12684</span><a name="line.12684"></a>
-<span class="sourceLineNo">12685</span><a name="line.12685"></a>
-<span class="sourceLineNo">12686</span>    @Override<a name="line.12686"></a>
-<span class="sourceLineNo">12687</span>    public String toString() {<a name="line.12687"></a>
-<span class="sourceLineNo">12688</span>        return name + " " + super.toString();<a name="line.12688"></a>
-<span class="sourceLineNo">12689</span>    }<a name="line.12689"></a>
-<span class="sourceLineNo">12690</span><a name="line.12690"></a>
-<span class="sourceLineNo">12691</span>    public String getName() {<a name="line.12691"></a>
-<span class="sourceLineNo">12692</span>        return name;<a name="line.12692"></a>
-<span class="sourceLineNo">12693</span>    }<a name="line.12693"></a>
-<span class="sourceLineNo">12694</span><a name="line.12694"></a>
-<span class="sourceLineNo">12695</span>    @Override<a name="line.12695"></a>
-<span class="sourceLineNo">12696</span>    public boolean equals(Object other) {<a name="line.12696"></a>
-<span class="sourceLineNo">12697</span>        return (other instanceof SColor || other instanceof Color) &amp;&amp; toIntBits() == ((Color) other).toIntBits();<a name="line.12697"></a>
-<span class="sourceLineNo">12698</span>    }<a name="line.12698"></a>
-<span class="sourceLineNo">12699</span><a name="line.12699"></a>
-<span class="sourceLineNo">12700</span>    @Override<a name="line.12700"></a>
-<span class="sourceLineNo">12701</span>    public int hashCode() {<a name="line.12701"></a>
-<span class="sourceLineNo">12702</span>        return (155 + CrossHash.Wisp.hash(name)) * 31 + toIntBits();<a name="line.12702"></a>
-<span class="sourceLineNo">12703</span>    }<a name="line.12703"></a>
-<span class="sourceLineNo">12704</span>}<a name="line.12704"></a>
+<span class="sourceLineNo">12546</span>    /**<a name="line.12546"></a>
+<span class="sourceLineNo">12547</span>     * Gets a variation on the packed float color basis as another packed float that has its hue, saturation, value, and<a name="line.12547"></a>
+<span class="sourceLineNo">12548</span>     * opacity adjusted by the specified amounts. Takes floats representing the amounts of change to apply to hue,<a name="line.12548"></a>
+<span class="sourceLineNo">12549</span>     * saturation, value, and opacity; these can be between -1f and 1f. Returns a float that can be used as a packed or<a name="line.12549"></a>
+<span class="sourceLineNo">12550</span>     * encoded color with methods like {@link com.badlogic.gdx.graphics.g2d.Batch#setColor(float)}, or in various<a name="line.12550"></a>
+<span class="sourceLineNo">12551</span>     * SquidLib classes like SparseLayers or SquidLayers. The float is likely to be different than the result of<a name="line.12551"></a>
+<span class="sourceLineNo">12552</span>     * {@link #toFloatBits()} unless hue saturation, value, and opacity are all 0. This won't allocate any objects.<a name="line.12552"></a>
+<span class="sourceLineNo">12553</span>     * &lt;br&gt;<a name="line.12553"></a>
+<span class="sourceLineNo">12554</span>     * The parameters this takes all specify additive changes for a color component, clamping the final values so they<a name="line.12554"></a>
+<span class="sourceLineNo">12555</span>     * can't go above 1 or below 0, with an exception for hue, which can rotate around if lower or higher hues would be<a name="line.12555"></a>
+<span class="sourceLineNo">12556</span>     * used. As an example, if you give this 0.4f for saturation, and the current color has saturation 0.7f, then the<a name="line.12556"></a>
+<span class="sourceLineNo">12557</span>     * resulting color will have 1f for saturation. If you gave this -0.1f for saturation and the current color again<a name="line.12557"></a>
+<span class="sourceLineNo">12558</span>     * has saturation 0.7f, then resulting color will have 0.6f for saturation.<a name="line.12558"></a>
+<span class="sourceLineNo">12559</span>     *<a name="line.12559"></a>
+<span class="sourceLineNo">12560</span>     * @param basis      a packed float color that will be used as the starting point to make the next color<a name="line.12560"></a>
+<span class="sourceLineNo">12561</span>     * @param hue        -1f to 1f, the hue change that can be applied to the new float color (not clamped, wraps)<a name="line.12561"></a>
+<span class="sourceLineNo">12562</span>     * @param saturation -1f to 1f, the saturation change that can be applied to the new float color<a name="line.12562"></a>
+<span class="sourceLineNo">12563</span>     * @param value      -1f to 1f, the value/brightness change that can be applied to the new float color<a name="line.12563"></a>
+<span class="sourceLineNo">12564</span>     * @param opacity    -1f to 1f, the opacity/alpha change that can be applied to the new float color<a name="line.12564"></a>
+<span class="sourceLineNo">12565</span>     * @return a float encoding a variation of basis with the given changes<a name="line.12565"></a>
+<span class="sourceLineNo">12566</span>     */<a name="line.12566"></a>
+<span class="sourceLineNo">12567</span>    public static float toEditedFloat(float basis, float hue, float saturation, float value, float opacity) {<a name="line.12567"></a>
+<span class="sourceLineNo">12568</span>        final int bits = NumberTools.floatToIntBits(basis);<a name="line.12568"></a>
+<span class="sourceLineNo">12569</span>        final float h, s,<a name="line.12569"></a>
+<span class="sourceLineNo">12570</span>                r = (bits &amp; 0x000000ff) * 0x1.010102p-8f,<a name="line.12570"></a>
+<span class="sourceLineNo">12571</span>                g = (bits &amp; 0x0000ff00) * 0x1.010102p-16f,<a name="line.12571"></a>
+<span class="sourceLineNo">12572</span>                b = (bits &amp; 0x00ff0000) * 0x1.010102p-24f;<a name="line.12572"></a>
+<span class="sourceLineNo">12573</span>        final float min = Math.min(Math.min(r, g), b);   //Min. value of RGB<a name="line.12573"></a>
+<span class="sourceLineNo">12574</span>        final float max = Math.max(Math.max(r, g), b);   //Max value of RGB, equivalent to value<a name="line.12574"></a>
+<span class="sourceLineNo">12575</span>        final float delta = max - min;                   //Delta RGB value<a name="line.12575"></a>
+<span class="sourceLineNo">12576</span>        if ( delta &lt; 0.0039f )                           //This is a gray, no chroma...<a name="line.12576"></a>
+<span class="sourceLineNo">12577</span>        {<a name="line.12577"></a>
+<span class="sourceLineNo">12578</span>            s = 0f;<a name="line.12578"></a>
+<span class="sourceLineNo">12579</span>            h = 0f;<a name="line.12579"></a>
+<span class="sourceLineNo">12580</span>            hue = 1f;<a name="line.12580"></a>
+<span class="sourceLineNo">12581</span>        }<a name="line.12581"></a>
+<span class="sourceLineNo">12582</span>        else                                             //Chromatic data...<a name="line.12582"></a>
+<span class="sourceLineNo">12583</span>        {<a name="line.12583"></a>
+<span class="sourceLineNo">12584</span>            s = delta / max;<a name="line.12584"></a>
+<span class="sourceLineNo">12585</span>            final float rDelta = (((max - r) / 6f) + (delta / 2f)) / delta;<a name="line.12585"></a>
+<span class="sourceLineNo">12586</span>            final float gDelta = (((max - g) / 6f) + (delta / 2f)) / delta;<a name="line.12586"></a>
+<span class="sourceLineNo">12587</span>            final float bDelta = (((max - b) / 6f) + (delta / 2f)) / delta;<a name="line.12587"></a>
+<span class="sourceLineNo">12588</span><a name="line.12588"></a>
+<span class="sourceLineNo">12589</span>            if      (r == max) h = (bDelta - gDelta + 1f) % 1f;<a name="line.12589"></a>
+<span class="sourceLineNo">12590</span>            else if (g == max) h = ((1f / 3f) + rDelta - bDelta + 1f) % 1f;<a name="line.12590"></a>
+<span class="sourceLineNo">12591</span>            else               h = ((2f / 3f) + gDelta - rDelta + 1f) % 1f;<a name="line.12591"></a>
+<span class="sourceLineNo">12592</span>        }<a name="line.12592"></a>
+<span class="sourceLineNo">12593</span>        saturation = MathUtils.clamp(s + saturation, 0f, 1f);<a name="line.12593"></a>
+<span class="sourceLineNo">12594</span>        value = MathUtils.clamp(max + value, 0f, 1f);<a name="line.12594"></a>
+<span class="sourceLineNo">12595</span>        opacity = MathUtils.clamp(((bits &amp; 0xfe000000) &gt;&gt;&gt; 24) * 0x1.020408p-8f + opacity, 0f, 1f);<a name="line.12595"></a>
+<span class="sourceLineNo">12596</span><a name="line.12596"></a>
+<span class="sourceLineNo">12597</span>        if (saturation &lt;= 0.0039f) {<a name="line.12597"></a>
+<span class="sourceLineNo">12598</span>            return floatGet(value, value, value, opacity);<a name="line.12598"></a>
+<span class="sourceLineNo">12599</span>        } else if (value &lt;= 0.0039f) {<a name="line.12599"></a>
+<span class="sourceLineNo">12600</span>            return NumberTools.intBitsToFloat((int) (opacity * 254f) &lt;&lt; 24 &amp; 0xFE000000);<a name="line.12600"></a>
+<span class="sourceLineNo">12601</span>        } else {<a name="line.12601"></a>
+<span class="sourceLineNo">12602</span>            final float hu = ((h + hue + 6f) % 1f) * 6f;<a name="line.12602"></a>
+<span class="sourceLineNo">12603</span>            final int i = (int) hu;<a name="line.12603"></a>
+<span class="sourceLineNo">12604</span>            final float x = value * (1 - saturation);<a name="line.12604"></a>
+<span class="sourceLineNo">12605</span>            final float y = value * (1 - saturation * (hu - i));<a name="line.12605"></a>
+<span class="sourceLineNo">12606</span>            final float z = value * (1 - saturation * (1 - (hu - i)));<a name="line.12606"></a>
+<span class="sourceLineNo">12607</span><a name="line.12607"></a>
+<span class="sourceLineNo">12608</span>            switch (i) {<a name="line.12608"></a>
+<span class="sourceLineNo">12609</span>                case 0:<a name="line.12609"></a>
+<span class="sourceLineNo">12610</span>                    return floatGet(value, z, x, opacity);<a name="line.12610"></a>
+<span class="sourceLineNo">12611</span>                case 1:<a name="line.12611"></a>
+<span class="sourceLineNo">12612</span>                    return floatGet(y, value, x, opacity);<a name="line.12612"></a>
+<span class="sourceLineNo">12613</span>                case 2:<a name="line.12613"></a>
+<span class="sourceLineNo">12614</span>                    return floatGet(x, value, z, opacity);<a name="line.12614"></a>
+<span class="sourceLineNo">12615</span>                case 3:<a name="line.12615"></a>
+<span class="sourceLineNo">12616</span>                    return floatGet(x, y, value, opacity);<a name="line.12616"></a>
+<span class="sourceLineNo">12617</span>                case 4:<a name="line.12617"></a>
+<span class="sourceLineNo">12618</span>                    return floatGet(z, x, value, opacity);<a name="line.12618"></a>
+<span class="sourceLineNo">12619</span>                default:<a name="line.12619"></a>
+<span class="sourceLineNo">12620</span>                    return floatGet(value, x, y, opacity);<a name="line.12620"></a>
+<span class="sourceLineNo">12621</span>            }<a name="line.12621"></a>
+<span class="sourceLineNo">12622</span>        }<a name="line.12622"></a>
+<span class="sourceLineNo">12623</span>    }<a name="line.12623"></a>
+<span class="sourceLineNo">12624</span><a name="line.12624"></a>
+<span class="sourceLineNo">12625</span>    /**<a name="line.12625"></a>
+<span class="sourceLineNo">12626</span>     * Interpolates from the packed float color start towards end by change. Both start and end should be packed colors,<a name="line.12626"></a>
+<span class="sourceLineNo">12627</span>     * as from {@link #toFloatBits()} or {@link #floatGet(float, float, float, float)}, and change can be between 0f<a name="line.12627"></a>
+<span class="sourceLineNo">12628</span>     * (keep start) and 1f (only use end). This is a good way to reduce allocations of temporary Colors.<a name="line.12628"></a>
+<span class="sourceLineNo">12629</span>     * @param start the starting color as a packed float<a name="line.12629"></a>
+<span class="sourceLineNo">12630</span>     * @param end the target color as a packed float<a name="line.12630"></a>
+<span class="sourceLineNo">12631</span>     * @param change how much to go from start toward end, as a float between 0 and 1; higher means closer to end<a name="line.12631"></a>
+<span class="sourceLineNo">12632</span>     * @return a packed float that represents a color between start and end<a name="line.12632"></a>
+<span class="sourceLineNo">12633</span>     */<a name="line.12633"></a>
+<span class="sourceLineNo">12634</span>    public static float lerpFloatColors(final float start, final float end, final float change) {<a name="line.12634"></a>
+<span class="sourceLineNo">12635</span>        final int s = NumberTools.floatToIntBits(start), e = NumberTools.floatToIntBits(end),<a name="line.12635"></a>
+<span class="sourceLineNo">12636</span>                rs = (s &amp; 0xFF), gs = (s &gt;&gt;&gt; 8) &amp; 0xFF, bs = (s &gt;&gt;&gt; 16) &amp; 0xFF, as = (s &gt;&gt;&gt; 24) &amp; 254,<a name="line.12636"></a>
+<span class="sourceLineNo">12637</span>                re = (e &amp; 0xFF), ge = (e &gt;&gt;&gt; 8) &amp; 0xFF, be = (e &gt;&gt;&gt; 16) &amp; 0xFF, ae = (e &gt;&gt;&gt; 24) &amp; 254;<a name="line.12637"></a>
+<span class="sourceLineNo">12638</span>        return NumberTools.intBitsToFloat(((int) (rs + change * (re - rs)) &amp; 0xFF)<a name="line.12638"></a>
+<span class="sourceLineNo">12639</span>                | ((int) (gs + change * (ge - gs)) &amp; 0xFF) &lt;&lt; 8<a name="line.12639"></a>
+<span class="sourceLineNo">12640</span>                | (((int) (bs + change * (be - bs)) &amp; 0xFF) &lt;&lt; 16)<a name="line.12640"></a>
+<span class="sourceLineNo">12641</span>                | (((int) (as + change * (ae - as)) &amp; 0xFE) &lt;&lt; 24));<a name="line.12641"></a>
+<span class="sourceLineNo">12642</span>    }<a name="line.12642"></a>
+<span class="sourceLineNo">12643</span><a name="line.12643"></a>
+<span class="sourceLineNo">12644</span>    /**<a name="line.12644"></a>
+<span class="sourceLineNo">12645</span>     * Interpolates from the packed float color start towards end by change, but keeps the alpha of start and uses the<a name="line.12645"></a>
+<span class="sourceLineNo">12646</span>     * alpha of end as an extra factor that can affect how much to change. Both start and end should be packed colors,<a name="line.12646"></a>
+<span class="sourceLineNo">12647</span>     * as from {@link #toFloatBits()} or {@link #floatGet(float, float, float, float)}, and change can be between 0f<a name="line.12647"></a>
+<span class="sourceLineNo">12648</span>     * (keep start) and 1f (only use end). This is a good way to reduce allocations of temporary Colors.<a name="line.12648"></a>
+<span class="sourceLineNo">12649</span>     * @param start the starting color as a packed float; alpha will be preserved<a name="line.12649"></a>
+<span class="sourceLineNo">12650</span>     * @param end the target color as a packed float; alpha will not be used directly, and will instead be multiplied with change<a name="line.12650"></a>
+<span class="sourceLineNo">12651</span>     * @param change how much to go from start toward end, as a float between 0 and 1; higher means closer to end<a name="line.12651"></a>
+<span class="sourceLineNo">12652</span>     * @return a packed float that represents a color between start and end<a name="line.12652"></a>
+<span class="sourceLineNo">12653</span>     */<a name="line.12653"></a>
+<span class="sourceLineNo">12654</span>    public static float lerpFloatColorsBlended(final float start, final float end, float change) {<a name="line.12654"></a>
+<span class="sourceLineNo">12655</span>        final int s = NumberTools.floatToIntBits(start), e = NumberTools.floatToIntBits(end),<a name="line.12655"></a>
+<span class="sourceLineNo">12656</span>                rs = (s &amp; 0xFF), gs = (s &gt;&gt;&gt; 8) &amp; 0xFF, bs = (s &gt;&gt;&gt; 16) &amp; 0xFF, as = s &amp; 0xFE000000,<a name="line.12656"></a>
+<span class="sourceLineNo">12657</span>                re = (e &amp; 0xFF), ge = (e &gt;&gt;&gt; 8) &amp; 0xFF, be = (e &gt;&gt;&gt; 16) &amp; 0xFF, ae = (e &gt;&gt;&gt; 25);<a name="line.12657"></a>
+<span class="sourceLineNo">12658</span>        change *= ae * 0.007874016f;<a name="line.12658"></a>
+<span class="sourceLineNo">12659</span>        return NumberTools.intBitsToFloat(((int) (rs + change * (re - rs)) &amp; 0xFF)<a name="line.12659"></a>
+<span class="sourceLineNo">12660</span>                | ((int) (gs + change * (ge - gs)) &amp; 0xFF) &lt;&lt; 8<a name="line.12660"></a>
+<span class="sourceLineNo">12661</span>                | (((int) (bs + change * (be - bs)) &amp; 0xFF) &lt;&lt; 16)<a name="line.12661"></a>
+<span class="sourceLineNo">12662</span>                | as);<a name="line.12662"></a>
+<span class="sourceLineNo">12663</span>    }<a name="line.12663"></a>
+<span class="sourceLineNo">12664</span><a name="line.12664"></a>
+<span class="sourceLineNo">12665</span>    /**<a name="line.12665"></a>
+<span class="sourceLineNo">12666</span>     * Similar to {@link #colorLighting(double[][], float)}, but meant for an initial state before you have FOV or color<a name="line.12666"></a>
+<span class="sourceLineNo">12667</span>     * data to fill the lighting with, and you just need a map of a specific size that starts with no lighting. This<a name="line.12667"></a>
+<span class="sourceLineNo">12668</span>     * will produce a map that has white as the lighting color for all cells, but no cells will be lit. It is likely you<a name="line.12668"></a>
+<span class="sourceLineNo">12669</span>     * will want to pass this as basis to {@link #mixColoredLighting(float[][][], float[][][])}.<a name="line.12669"></a>
+<span class="sourceLineNo">12670</span>     *<a name="line.12670"></a>
+<span class="sourceLineNo">12671</span>     * @param width  the width of the colored lighting area to generate<a name="line.12671"></a>
+<span class="sourceLineNo">12672</span>     * @param height the height of the colored lighting area to generate<a name="line.12672"></a>
+<span class="sourceLineNo">12673</span>     * @return the colored lighting 3D float array, with no cells lit and all colors set to white<a name="line.12673"></a>
+<span class="sourceLineNo">12674</span>     */<a name="line.12674"></a>
+<span class="sourceLineNo">12675</span>    public static float[][][] blankColoredLighting(int width, int height) {<a name="line.12675"></a>
+<span class="sourceLineNo">12676</span>        return new float[][][]<a name="line.12676"></a>
+<span class="sourceLineNo">12677</span>                {<a name="line.12677"></a>
+<span class="sourceLineNo">12678</span>                        new float[width][height],<a name="line.12678"></a>
+<span class="sourceLineNo">12679</span>                        ArrayTools.fill(FLOAT_WHITE, width, height)<a name="line.12679"></a>
+<span class="sourceLineNo">12680</span>                };<a name="line.12680"></a>
+<span class="sourceLineNo">12681</span>    }<a name="line.12681"></a>
+<span class="sourceLineNo">12682</span><a name="line.12682"></a>
+<span class="sourceLineNo">12683</span>    /**<a name="line.12683"></a>
+<span class="sourceLineNo">12684</span>     * Removes any information from the given 3D float array for colored lighting, making it as if it had just been<a name="line.12684"></a>
+<span class="sourceLineNo">12685</span>     * built by {@link #blankColoredLighting(int, int)}, but without any allocations. This blank state is different from<a name="line.12685"></a>
+<span class="sourceLineNo">12686</span>     * being simply filled with all 0 or all default values; the two sub-arrays receive different contents (the one that<a name="line.12686"></a>
+<span class="sourceLineNo">12687</span>     * stores brightness is all 0, the one that stores colors will be filled with the float that encodes white).<a name="line.12687"></a>
+<span class="sourceLineNo">12688</span>     *<a name="line.12688"></a>
+<span class="sourceLineNo">12689</span>     * @param original a 3d float array used for colored lighting; will be modified to be completely blank<a name="line.12689"></a>
+<span class="sourceLineNo">12690</span>     * @return original, after modification<a name="line.12690"></a>
+<span class="sourceLineNo">12691</span>     */<a name="line.12691"></a>
+<span class="sourceLineNo">12692</span>    public static float[][][] eraseColoredLighting(float[][][] original) {<a name="line.12692"></a>
+<span class="sourceLineNo">12693</span>        ArrayTools.fill(original[0], 0f);<a name="line.12693"></a>
+<span class="sourceLineNo">12694</span>        ArrayTools.fill(original[1], FLOAT_WHITE);<a name="line.12694"></a>
+<span class="sourceLineNo">12695</span>        return original;<a name="line.12695"></a>
+<span class="sourceLineNo">12696</span>    }<a name="line.12696"></a>
+<span class="sourceLineNo">12697</span><a name="line.12697"></a>
+<span class="sourceLineNo">12698</span>    /**<a name="line.12698"></a>
+<span class="sourceLineNo">12699</span>     * Given a 2D double array that was probably produced by FOV and a packed color as a float, this gets a 3D float<a name="line.12699"></a>
+<span class="sourceLineNo">12700</span>     * array (really just two same-size 2D float arrays in one parent array) that stores the brightnesses in the first<a name="line.12700"></a>
+<span class="sourceLineNo">12701</span>     * 2D array element and the colors in the second 2D array element (using the given color if a cell has a value in<a name="line.12701"></a>
+<span class="sourceLineNo">12702</span>     * lights that is greater than 0, or defaulting to white if the cell is unlit). This has little use on its own, and<a name="line.12702"></a>
+<span class="sourceLineNo">12703</span>     * is meant to be given to {@link #mixColoredLighting(float[][][], float[][][])} so that multiple colors of lights<a name="line.12703"></a>
+<span class="sourceLineNo">12704</span>     * can be mixed.<a name="line.12704"></a>
+<span class="sourceLineNo">12705</span>     *<a name="line.12705"></a>
+<span class="sourceLineNo">12706</span>     * @param lights a 2D double array that should probably come from FOV<a name="line.12706"></a>
+<span class="sourceLineNo">12707</span>     * @param color  a packed float as produced by {@link #floatGet(float, float, float, float)}<a name="line.12707"></a>
+<span class="sourceLineNo">12708</span>     * @return a 3D float array containing two 2D sub-arrays, the first holding brightness and the second holding color<a name="line.12708"></a>
+<span class="sourceLineNo">12709</span>     */<a name="line.12709"></a>
+<span class="sourceLineNo">12710</span>    public static float[][][] colorLighting(double[][] lights, float color) {<a name="line.12710"></a>
+<span class="sourceLineNo">12711</span>        return colorLightingInto(new float[2][lights.length][lights[0].length], lights, color);<a name="line.12711"></a>
+<span class="sourceLineNo">12712</span>    }<a name="line.12712"></a>
+<span class="sourceLineNo">12713</span><a name="line.12713"></a>
+<span class="sourceLineNo">12714</span>    /**<a name="line.12714"></a>
+<span class="sourceLineNo">12715</span>     * Given a 2D double array that was probably produced by FOV and a packed color as a float, this assigns into reuse<a name="line.12715"></a>
+<span class="sourceLineNo">12716</span>     * a 3D float array (really just two same-size 2D float arrays in one parent array) that stores the brightnesses in<a name="line.12716"></a>
+<span class="sourceLineNo">12717</span>     * the first 2D array element and the colors in the second 2D array element (using the given color if a cell has a<a name="line.12717"></a>
+<span class="sourceLineNo">12718</span>     * value in lights that is greater than 0, or defaulting to white if the cell is unlit). This method requires that<a name="line.12718"></a>
+<span class="sourceLineNo">12719</span>     * reuse has length of at least 2, where elements 0 and 1 must be 2D arrays of identical dimensions; this is the<a name="line.12719"></a>
+<span class="sourceLineNo">12720</span>     * format that {@link #colorLighting(double[][], float)} produces. This has little use on its own, and  is meant to<a name="line.12720"></a>
+<span class="sourceLineNo">12721</span>     * be given to {@link #mixColoredLighting(float[][][], float[][][])} so that multiple colors of lights can be mixed.<a name="line.12721"></a>
+<span class="sourceLineNo">12722</span>     *<a name="line.12722"></a>
+<span class="sourceLineNo">12723</span>     * @param reuse  a 3D float array of the exact format produced by {@link #colorLighting(double[][], float)} or<a name="line.12723"></a>
+<span class="sourceLineNo">12724</span>     *               {@link #mixColoredLighting(float[][][], float[][][])}, and must have length 2; will be modified!<a name="line.12724"></a>
+<span class="sourceLineNo">12725</span>     * @param lights a 2D double array that should probably come from FOV<a name="line.12725"></a>
+<span class="sourceLineNo">12726</span>     * @param color  a packed float as produced by {@link #floatGet(float, float, float, float)}<a name="line.12726"></a>
+<span class="sourceLineNo">12727</span>     * @return reuse after modification<a name="line.12727"></a>
+<span class="sourceLineNo">12728</span>     */<a name="line.12728"></a>
+<span class="sourceLineNo">12729</span>    public static float[][][] colorLightingInto(float[][][] reuse, double[][] lights, float color) {<a name="line.12729"></a>
+<span class="sourceLineNo">12730</span>        for (int x = 0; x &lt; lights.length; x++) {<a name="line.12730"></a>
+<span class="sourceLineNo">12731</span>            for (int y = 0; y &lt; lights[0].length; y++) {<a name="line.12731"></a>
+<span class="sourceLineNo">12732</span>                reuse[1][x][y] = ((reuse[0][x][y] = (float) lights[x][y]) &gt; 0f)<a name="line.12732"></a>
+<span class="sourceLineNo">12733</span>                        ? color<a name="line.12733"></a>
+<span class="sourceLineNo">12734</span>                        : FLOAT_WHITE; // the color white as a float<a name="line.12734"></a>
+<span class="sourceLineNo">12735</span>            }<a name="line.12735"></a>
+<span class="sourceLineNo">12736</span>        }<a name="line.12736"></a>
+<span class="sourceLineNo">12737</span>        return reuse;<a name="line.12737"></a>
+<span class="sourceLineNo">12738</span>    }<a name="line.12738"></a>
+<span class="sourceLineNo">12739</span><a name="line.12739"></a>
+<span class="sourceLineNo">12740</span>    /**<a name="line.12740"></a>
+<span class="sourceLineNo">12741</span>     * Adds two 3D arrays produced by {@link #colorLighting(double[][], float)} or this method and modifies the basis<a name="line.12741"></a>
+<span class="sourceLineNo">12742</span>     * parameter so it contains the combined brightnesses and colors of basis and other, in a pair of 2D arrays.<a name="line.12742"></a>
+<span class="sourceLineNo">12743</span>     *<a name="line.12743"></a>
+<span class="sourceLineNo">12744</span>     * @param basis a 3D float array holding two 2D sub-arrays, as produced by {@link #colorLighting(double[][], float)}; will be modified!<a name="line.12744"></a>
+<span class="sourceLineNo">12745</span>     * @param other a 3D float array holding two 2D sub-arrays, as produced by {@link #colorLighting(double[][], float)}; will not be modified<a name="line.12745"></a>
+<span class="sourceLineNo">12746</span>     * @return basis, after modification; it can be passed to this method as basis again<a name="line.12746"></a>
+<span class="sourceLineNo">12747</span>     */<a name="line.12747"></a>
+<span class="sourceLineNo">12748</span>    public static float[][][] mixColoredLighting(float[][][] basis, float[][][] other) {<a name="line.12748"></a>
+<span class="sourceLineNo">12749</span>        int w = basis[0].length, h = basis[0][0].length;<a name="line.12749"></a>
+<span class="sourceLineNo">12750</span>        for (int x = 0; x &lt; w &amp;&amp; x &lt; w; x++) {<a name="line.12750"></a>
+<span class="sourceLineNo">12751</span>            for (int y = 0; y &lt; h &amp;&amp; y &lt; h; y++) {<a name="line.12751"></a>
+<span class="sourceLineNo">12752</span>                basis[1][x][y] = (basis[1][x][y] == FLOAT_WHITE)<a name="line.12752"></a>
+<span class="sourceLineNo">12753</span>                        ? other[1][x][y]<a name="line.12753"></a>
+<span class="sourceLineNo">12754</span>                        : (other[1][x][y] == FLOAT_WHITE)<a name="line.12754"></a>
+<span class="sourceLineNo">12755</span>                        ? basis[1][x][y]<a name="line.12755"></a>
+<span class="sourceLineNo">12756</span>                        : lerpFloatColors(basis[1][x][y], other[1][x][y], (other[0][x][y] - basis[0][x][y]) * 0.5f + 0.5f);<a name="line.12756"></a>
+<span class="sourceLineNo">12757</span>                basis[0][x][y] = Math.min(1.0f, basis[0][x][y] + other[0][x][y]);<a name="line.12757"></a>
+<span class="sourceLineNo">12758</span>            }<a name="line.12758"></a>
+<span class="sourceLineNo">12759</span>        }<a name="line.12759"></a>
+<span class="sourceLineNo">12760</span>        return basis;<a name="line.12760"></a>
+<span class="sourceLineNo">12761</span>    }<a name="line.12761"></a>
+<span class="sourceLineNo">12762</span><a name="line.12762"></a>
+<span class="sourceLineNo">12763</span><a name="line.12763"></a>
+<span class="sourceLineNo">12764</span>    @Override<a name="line.12764"></a>
+<span class="sourceLineNo">12765</span>    public String toString() {<a name="line.12765"></a>
+<span class="sourceLineNo">12766</span>        return name + " " + super.toString();<a name="line.12766"></a>
+<span class="sourceLineNo">12767</span>    }<a name="line.12767"></a>
+<span class="sourceLineNo">12768</span><a name="line.12768"></a>
+<span class="sourceLineNo">12769</span>    public String getName() {<a name="line.12769"></a>
+<span class="sourceLineNo">12770</span>        return name;<a name="line.12770"></a>
+<span class="sourceLineNo">12771</span>    }<a name="line.12771"></a>
+<span class="sourceLineNo">12772</span><a name="line.12772"></a>
+<span class="sourceLineNo">12773</span>    @Override<a name="line.12773"></a>
+<span class="sourceLineNo">12774</span>    public boolean equals(Object other) {<a name="line.12774"></a>
+<span class="sourceLineNo">12775</span>        return (other instanceof SColor || other instanceof Color) &amp;&amp; toIntBits() == ((Color) other).toIntBits();<a name="line.12775"></a>
+<span class="sourceLineNo">12776</span>    }<a name="line.12776"></a>
+<span class="sourceLineNo">12777</span><a name="line.12777"></a>
+<span class="sourceLineNo">12778</span>    @Override<a name="line.12778"></a>
+<span class="sourceLineNo">12779</span>    public int hashCode() {<a name="line.12779"></a>
+<span class="sourceLineNo">12780</span>        return (155 + CrossHash.Wisp.hash(name)) * 31 + toIntBits();<a name="line.12780"></a>
+<span class="sourceLineNo">12781</span>    }<a name="line.12781"></a>
+<span class="sourceLineNo">12782</span>}<a name="line.12782"></a>
 
 
 

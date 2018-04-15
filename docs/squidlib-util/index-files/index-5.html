@@ -512,12 +512,12 @@
 <dd>
 <div class="block">Constructor that uses the given RNG and the given AestheticDifference.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#deteriorate-squidpony.squidmath.RNG-int-">deteriorate(RNG, int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#deteriorate-squidpony.squidmath.RandomnessSource-int-">deteriorate(RandomnessSource, int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
 <dd>
 <div class="block">Randomly removes points from a GreasedRegion, with larger values for preservation keeping more of the existing
  shape intact.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#deteriorate-squidpony.squidmath.RNG-double-">deteriorate(RNG, double)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#deteriorate-squidpony.squidmath.RandomnessSource-double-">deteriorate(RandomnessSource, double)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
 <dd>
 <div class="block">Randomly removes points from a GreasedRegion, with preservation as a fraction between 1.0 (keep all) and 0.0
  (remove all).</div>
@@ -924,7 +924,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/PintRNG.html#disperseBounded-int-int-">disperseBounded(int, int)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/PintRNG.html" title="class in squidpony.squidmath">PintRNG</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#disperseRandom-squidpony.squidmath.RNG-">disperseRandom(RNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#disperseRandom-squidpony.squidmath.RandomnessSource-">disperseRandom(RandomnessSource)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
 <dd>
 <div class="block">Removes "on" cells that are nearby other "on" cells, with a random factor to which bits are actually turned off
  that still ensures exactly half of the bits are kept as-is (the one exception is when height is an odd number,
@@ -947,6 +947,12 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/FastNoise.html#DISTANCE">DISTANCE</a></span> - Static variable in class squidpony.squidmath.<a href="../squidpony/squidmath/FastNoise.html" title="class in squidpony.squidmath">FastNoise</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/MoonwalkRNG.html#distance-long-long-">distance(long, long)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/MoonwalkRNG.html" title="class in squidpony.squidmath">MoonwalkRNG</a></dt>
+<dd>
+<div class="block">Returns the number of steps (where a step is equal to one call to most random number methods in this class)
+ needed to go from receiving out1 from a MoonwalkRNG's <a href="../squidpony/squidmath/MoonwalkRNG.html#nextLong--"><code>MoonwalkRNG.nextLong()</code></a> method to receiving out2 from another
+ call.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/FastNoise.html#DISTANCE_2">DISTANCE_2</a></span> - Static variable in class squidpony.squidmath.<a href="../squidpony/squidmath/FastNoise.html" title="class in squidpony.squidmath">FastNoise</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/FastNoise.html#DISTANCE_2_ADD">DISTANCE_2_ADD</a></span> - Static variable in class squidpony.squidmath.<a href="../squidpony/squidmath/FastNoise.html" title="class in squidpony.squidmath">FastNoise</a></dt>

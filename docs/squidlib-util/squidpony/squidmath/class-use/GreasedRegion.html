@@ -606,7 +606,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></code></td>
-<td class="colLast"><span class="typeNameLabel">GreasedRegion.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/GreasedRegion.html#deteriorate-squidpony.squidmath.RNG-double-">deteriorate</a></span>(<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+<td class="colLast"><span class="typeNameLabel">GreasedRegion.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/GreasedRegion.html#deteriorate-squidpony.squidmath.RandomnessSource-double-">deteriorate</a></span>(<a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;random,
            double&nbsp;preservation)</code>
 <div class="block">Randomly removes points from a GreasedRegion, with preservation as a fraction between 1.0 (keep all) and 0.0
  (remove all).</div>
@@ -614,7 +614,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></code></td>
-<td class="colLast"><span class="typeNameLabel">GreasedRegion.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/GreasedRegion.html#deteriorate-squidpony.squidmath.RNG-int-">deteriorate</a></span>(<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;rng,
+<td class="colLast"><span class="typeNameLabel">GreasedRegion.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/GreasedRegion.html#deteriorate-squidpony.squidmath.RandomnessSource-int-">deteriorate</a></span>(<a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;rng,
            int&nbsp;preservation)</code>
 <div class="block">Randomly removes points from a GreasedRegion, with larger values for preservation keeping more of the existing
  shape intact.</div>
@@ -638,7 +638,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></code></td>
-<td class="colLast"><span class="typeNameLabel">GreasedRegion.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/GreasedRegion.html#disperseRandom-squidpony.squidmath.RNG-">disperseRandom</a></span>(<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random)</code>
+<td class="colLast"><span class="typeNameLabel">GreasedRegion.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/GreasedRegion.html#disperseRandom-squidpony.squidmath.RandomnessSource-">disperseRandom</a></span>(<a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;random)</code>
 <div class="block">Removes "on" cells that are nearby other "on" cells, with a random factor to which bits are actually turned off
  that still ensures exactly half of the bits are kept as-is (the one exception is when height is an odd number,
  which makes the bottom row slightly random).</div>
@@ -1098,22 +1098,22 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></code></td>
+<td class="colLast"><span class="typeNameLabel">GreasedRegion.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/GreasedRegion.html#refill-squidpony.squidmath.RandomnessSource-double-int-int-">refill</a></span>(<a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;random,
+      double&nbsp;fraction,
+      int&nbsp;width,
+      int&nbsp;height)</code>
+<div class="block">Reassigns this GreasedRegion randomly, reusing the current data storage (without extra allocations) if this.width
+ == width and this.height == height, while trying to set the given fraction of cells to on.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></code></td>
 <td class="colLast"><span class="typeNameLabel">GreasedRegion.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/GreasedRegion.html#refill-squidpony.squidmath.RandomnessSource-int-int-">refill</a></span>(<a href="../../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;random,
       int&nbsp;width,
       int&nbsp;height)</code>
 <div class="block">Reassigns this GreasedRegion by filling it with random values from random, reusing the current data storage
  (without extra allocations) if this.width == width and this.height == height, and typically assigning
  approximately half of the cells in this to "on" and the rest to off.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></code></td>
-<td class="colLast"><span class="typeNameLabel">GreasedRegion.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/GreasedRegion.html#refill-squidpony.squidmath.RNG-double-int-int-">refill</a></span>(<a href="../../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;random,
-      double&nbsp;fraction,
-      int&nbsp;width,
-      int&nbsp;height)</code>
-<div class="block">Reassigns this GreasedRegion randomly, reusing the current data storage (without extra allocations) if this.width
- == width and this.height == height, while trying to set the given fraction of cells to on.</div>
 </td>
 </tr>
 <tr class="rowColor">

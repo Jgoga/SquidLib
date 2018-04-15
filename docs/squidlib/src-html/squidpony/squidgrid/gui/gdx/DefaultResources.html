@@ -75,7 +75,7 @@
 <span class="sourceLineNo">067</span>            distanceSlab = null, distanceSlabLight = null, distanceWideSlab = null,  distanceWideSlabLight = null,<a name="line.67"></a>
 <span class="sourceLineNo">068</span>            distanceLean = null, distanceLeanLight = null, distanceWide = null,  distanceWideLight = null,<a name="line.68"></a>
 <span class="sourceLineNo">069</span>            msdfSlab = null, msdfSlabItalic = null, msdfLean = null, msdfLeanItalic = null,<a name="line.69"></a>
-<span class="sourceLineNo">070</span>            msdfDejaVu = null, msdfDejaVuItalic = null;<a name="line.70"></a>
+<span class="sourceLineNo">070</span>            msdfDejaVu = null;<a name="line.70"></a>
 <span class="sourceLineNo">071</span>    private TextFamily familyLean = null, familySlab = null, familyGo = null,<a name="line.71"></a>
 <span class="sourceLineNo">072</span>            familyLeanMSDF = null, familySlabMSDF = null;<a name="line.72"></a>
 <span class="sourceLineNo">073</span>    private TextureAtlas iconAtlas = null;<a name="line.73"></a>
@@ -1412,576 +1412,611 @@
 <span class="sourceLineNo">1404</span>        return null;<a name="line.1404"></a>
 <span class="sourceLineNo">1405</span>    }<a name="line.1405"></a>
 <span class="sourceLineNo">1406</span>    /**<a name="line.1406"></a>
-<span class="sourceLineNo">1407</span>     * DO NOT USE YET; this will not be laid-out correctly by TextCellFactory without future changes.<a name="line.1407"></a>
-<span class="sourceLineNo">1408</span>     * &lt;br&gt;<a name="line.1408"></a>
-<span class="sourceLineNo">1409</span>     * Returns a TextCellFactory already configured to use a fixed-width sans-serif font with good Unicode support,<a name="line.1409"></a>
-<span class="sourceLineNo">1410</span>     * that should scale cleanly to even very large sizes. Caches the result for later calls. The font used is DejaVu<a name="line.1410"></a>
-<span class="sourceLineNo">1411</span>     * Sans Mono, an open-source (SIL Open Font License) typeface that is widely used by Linux distros and other groups.<a name="line.1411"></a>
-<span class="sourceLineNo">1412</span>     * It supports a lot of glyphs, including quite a bit of extended Latin, Greek, and Cyrillic, but also the<a name="line.1412"></a>
-<span class="sourceLineNo">1413</span>     * necessary box drawing characters. This uses the Multi-channel Signed Distance Field technique as opposed to the<a name="line.1413"></a>
-<span class="sourceLineNo">1414</span>     * normal Signed Distance Field technique, which should allow sharper edges.<a name="line.1414"></a>
-<span class="sourceLineNo">1415</span>     * &lt;br&gt;<a name="line.1415"></a>
-<span class="sourceLineNo">1416</span>     * Preview: none yet<a name="line.1416"></a>
-<span class="sourceLineNo">1417</span>     * &lt;br&gt;<a name="line.1417"></a>
-<span class="sourceLineNo">1418</span>     * This creates a TextCellFactory instead of a BitmapFont because it needs to set some extra information so the<a name="line.1418"></a>
-<span class="sourceLineNo">1419</span>     * multi-channel distance field font technique this uses can work.<a name="line.1419"></a>
+<span class="sourceLineNo">1407</span>     * Returns a TextCellFactory already configured to use a fixed-width sans-serif font with excellent Unicode support,<a name="line.1407"></a>
+<span class="sourceLineNo">1408</span>     * that should scale cleanly to even very large sizes. Caches the result for later calls. The font used is DejaVu<a name="line.1408"></a>
+<span class="sourceLineNo">1409</span>     * Sans Mono, an open-source (SIL Open Font License) typeface that is widely used by Linux distros and other groups.<a name="line.1409"></a>
+<span class="sourceLineNo">1410</span>     * It supports a lot of glyphs, including quite a bit of extended Latin, Greek, and Cyrillic, but also the<a name="line.1410"></a>
+<span class="sourceLineNo">1411</span>     * necessary box drawing characters. This uses the Multi-channel Signed Distance Field technique as opposed to the<a name="line.1411"></a>
+<span class="sourceLineNo">1412</span>     * normal Signed Distance Field technique, which should allow sharper edges. It has been updated so it is laid out<a name="line.1412"></a>
+<span class="sourceLineNo">1413</span>     * mostly-correctly now; some glyphs may be a little wide, such as {@code @}, but the line height, baseline, and the<a name="line.1413"></a>
+<span class="sourceLineNo">1414</span>     * width for most glyphs seem correct. You may need to tweak the size more for width than for height (recommended to<a name="line.1414"></a>
+<span class="sourceLineNo">1415</span>     * have box drawing characters line up is, after giving an initially-sized TextCellFactory to a class like<a name="line.1415"></a>
+<span class="sourceLineNo">1416</span>     * SquidLayers, SparseLayers, or SquidPanel, to call {@link TextCellFactory#tweakWidth(float)} with 1.125f times the<a name="line.1416"></a>
+<span class="sourceLineNo">1417</span>     * original width and {@link TextCellFactory#tweakHeight(float)} with 1.075f times the original height).<a name="line.1417"></a>
+<span class="sourceLineNo">1418</span>     * &lt;br&gt;<a name="line.1418"></a>
+<span class="sourceLineNo">1419</span>     * Preview: &lt;a href="https://i.imgur.com/SCwhduv.png"&gt;Image link&lt;/a&gt;<a name="line.1419"></a>
 <span class="sourceLineNo">1420</span>     * &lt;br&gt;<a name="line.1420"></a>
-<span class="sourceLineNo">1421</span>     * Needs files (THESE ARE NOT YET AVAILABLE AT THESE LINKS BECAUSE THEY ARE NOT READY):<a name="line.1421"></a>
-<span class="sourceLineNo">1422</span>     * &lt;ul&gt;<a name="line.1422"></a>
-<span class="sourceLineNo">1423</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/DejaVuSansMono-msdf.fnt&lt;/li&gt;<a name="line.1423"></a>
-<span class="sourceLineNo">1424</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/DejaVuSansMono-msdf.png&lt;/li&gt;<a name="line.1424"></a>
-<span class="sourceLineNo">1425</span>     * &lt;/ul&gt;<a name="line.1425"></a>
-<span class="sourceLineNo">1426</span>     * @return the TextCellFactory object that can represent many sizes of the font DejaVuSansMono.ttf<a name="line.1426"></a>
-<span class="sourceLineNo">1427</span>     */<a name="line.1427"></a>
-<span class="sourceLineNo">1428</span>    public static TextCellFactory getCrispDejaVuFont()<a name="line.1428"></a>
-<span class="sourceLineNo">1429</span>    {<a name="line.1429"></a>
-<span class="sourceLineNo">1430</span>        initialize();<a name="line.1430"></a>
-<span class="sourceLineNo">1431</span>        if(instance.msdfDejaVu == null)<a name="line.1431"></a>
-<span class="sourceLineNo">1432</span>        {<a name="line.1432"></a>
-<span class="sourceLineNo">1433</span>            try {<a name="line.1433"></a>
-<span class="sourceLineNo">1434</span>                instance.msdfDejaVu = new TextCellFactory()<a name="line.1434"></a>
-<span class="sourceLineNo">1435</span>                        .fontMultiDistanceField(crispDejaVu, crispDejaVuTexture);<a name="line.1435"></a>
-<span class="sourceLineNo">1436</span>            } catch (Exception e) {<a name="line.1436"></a>
-<span class="sourceLineNo">1437</span>                e.printStackTrace();<a name="line.1437"></a>
-<span class="sourceLineNo">1438</span>            }<a name="line.1438"></a>
-<span class="sourceLineNo">1439</span>        }<a name="line.1439"></a>
-<span class="sourceLineNo">1440</span>        if(instance.msdfDejaVu != null)<a name="line.1440"></a>
-<span class="sourceLineNo">1441</span>            return instance.msdfDejaVu.copy();<a name="line.1441"></a>
-<span class="sourceLineNo">1442</span>        return null;<a name="line.1442"></a>
-<span class="sourceLineNo">1443</span>    }<a name="line.1443"></a>
-<span class="sourceLineNo">1444</span>    /**<a name="line.1444"></a>
-<span class="sourceLineNo">1445</span>     * DO NOT USE YET; this will not be laid-out correctly by TextCellFactory without future changes.<a name="line.1445"></a>
-<span class="sourceLineNo">1446</span>     * &lt;br&gt;<a name="line.1446"></a>
-<span class="sourceLineNo">1447</span>     * Returns a TextCellFactory already configured to use a fixed-width sans-serif oblique (similar to italic) font<a name="line.1447"></a>
-<span class="sourceLineNo">1448</span>     * with good Unicode support, that should scale cleanly to even very large sizes. Caches the result for later calls.<a name="line.1448"></a>
-<span class="sourceLineNo">1449</span>     * The font used is DejaVu Sans Mono, an open-source (SIL Open Font License) typeface that is widely used by Linux<a name="line.1449"></a>
-<span class="sourceLineNo">1450</span>     * distros and other groups. It supports a lot of glyphs, including quite a bit of extended Latin, Greek, and Cyrillic,<a name="line.1450"></a>
-<span class="sourceLineNo">1451</span>     * but also the necessary box drawing characters. This uses the Multi-channel Signed Distance Field technique as<a name="line.1451"></a>
-<span class="sourceLineNo">1452</span>     * opposed to the normal Signed Distance Field technique, which should allow sharper edges.<a name="line.1452"></a>
-<span class="sourceLineNo">1453</span>     * &lt;br&gt;<a name="line.1453"></a>
-<span class="sourceLineNo">1454</span>     * NOTE: This currently has some errors on a few Greek lower-case letters with accents, where a large blob appears<a name="line.1454"></a>
-<span class="sourceLineNo">1455</span>     * above and overlapping with the accents. Un-accented Greek letters should be fine.<a name="line.1455"></a>
-<span class="sourceLineNo">1456</span>     * &lt;br&gt;<a name="line.1456"></a>
-<span class="sourceLineNo">1457</span>     * Preview: none yet<a name="line.1457"></a>
-<span class="sourceLineNo">1458</span>     * &lt;br&gt;<a name="line.1458"></a>
-<span class="sourceLineNo">1459</span>     * This creates a TextCellFactory instead of a BitmapFont because it needs to set some extra information so the<a name="line.1459"></a>
-<span class="sourceLineNo">1460</span>     * multi-channel distance field font technique this uses can work.<a name="line.1460"></a>
-<span class="sourceLineNo">1461</span>     * &lt;br&gt;<a name="line.1461"></a>
-<span class="sourceLineNo">1462</span>     * Needs files (THESE ARE NOT YET AVAILABLE AT THESE LINKS BECAUSE THEY ARE NOT READY):<a name="line.1462"></a>
-<span class="sourceLineNo">1463</span>     * &lt;ul&gt;<a name="line.1463"></a>
-<span class="sourceLineNo">1464</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/DejaVuSansMono-Oblique-msdf.fnt&lt;/li&gt;<a name="line.1464"></a>
-<span class="sourceLineNo">1465</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/DejaVuSansMono-Oblique-msdf.png&lt;/li&gt;<a name="line.1465"></a>
-<span class="sourceLineNo">1466</span>     * &lt;/ul&gt;<a name="line.1466"></a>
-<span class="sourceLineNo">1467</span>     * @return the TextCellFactory object that can represent many sizes of the font DejaVuSansMono-Oblique.ttf<a name="line.1467"></a>
-<span class="sourceLineNo">1468</span>     */<a name="line.1468"></a>
-<span class="sourceLineNo">1469</span><a name="line.1469"></a>
-<span class="sourceLineNo">1470</span>    public static TextCellFactory getCrispDejaVuItalicFont()<a name="line.1470"></a>
-<span class="sourceLineNo">1471</span>    {<a name="line.1471"></a>
-<span class="sourceLineNo">1472</span>        initialize();<a name="line.1472"></a>
-<span class="sourceLineNo">1473</span>        if(instance.msdfDejaVuItalic == null)<a name="line.1473"></a>
-<span class="sourceLineNo">1474</span>        {<a name="line.1474"></a>
-<span class="sourceLineNo">1475</span>            try {<a name="line.1475"></a>
-<span class="sourceLineNo">1476</span>                instance.msdfDejaVuItalic = new TextCellFactory()<a name="line.1476"></a>
-<span class="sourceLineNo">1477</span>                        .fontMultiDistanceField(crispDejaVuItalic, crispDejaVuItalicTexture);<a name="line.1477"></a>
-<span class="sourceLineNo">1478</span>            } catch (Exception e) {<a name="line.1478"></a>
-<span class="sourceLineNo">1479</span>                e.printStackTrace();<a name="line.1479"></a>
-<span class="sourceLineNo">1480</span>            }<a name="line.1480"></a>
-<span class="sourceLineNo">1481</span>        }<a name="line.1481"></a>
-<span class="sourceLineNo">1482</span>        if(instance.msdfDejaVuItalic != null)<a name="line.1482"></a>
-<span class="sourceLineNo">1483</span>            return instance.msdfDejaVuItalic.copy();<a name="line.1483"></a>
-<span class="sourceLineNo">1484</span>        return null;<a name="line.1484"></a>
-<span class="sourceLineNo">1485</span>    }<a name="line.1485"></a>
-<span class="sourceLineNo">1486</span>    /**<a name="line.1486"></a>
-<span class="sourceLineNo">1487</span>     * Returns a TextFamily already configured to use a highly-legible fixed-width font with good Unicode support and a<a name="line.1487"></a>
-<span class="sourceLineNo">1488</span>     * slab-serif geometric style, that should scale cleanly to many sizes and supports 4 styles (regular, bold, italic,<a name="line.1488"></a>
-<span class="sourceLineNo">1489</span>     * and bold italic). Caches the result for later calls. The font used is Iosevka with Slab style, an open-source<a name="line.1489"></a>
-<span class="sourceLineNo">1490</span>     * (SIL Open Font License) typeface by Belleve Invis (see https://be5invis.github.io/Iosevka/ ), and it uses several<a name="line.1490"></a>
-<span class="sourceLineNo">1491</span>     * customizations thanks to Iosevka's special build process, applied to the 4 styles. It supports a lot of glyphs,<a name="line.1491"></a>
-<span class="sourceLineNo">1492</span>     * including quite a bit of extended Latin, Greek, and Cyrillic, but also circled letters and digits and the<a name="line.1492"></a>
-<span class="sourceLineNo">1493</span>     * necessary box drawing characters (which line up even for italic text). The high glyph count means the part of the<a name="line.1493"></a>
-<span class="sourceLineNo">1494</span>     * image for each glyph is smaller, though, so this may look slightly pixelated if it starts small and is resized to<a name="line.1494"></a>
-<span class="sourceLineNo">1495</span>     * much larger. A cell width of 11 and cell height of 20 is ideal (or some approximate multiple of that aspect<a name="line.1495"></a>
-<span class="sourceLineNo">1496</span>     * ratio); this allows the font to resize fairly well to larger sizes using Viewports. As an aside, Luc Devroye (a<a name="line.1496"></a>
-<span class="sourceLineNo">1497</span>     * true typography expert) called Iosevka &lt;a href="http://luc.devroye.org/fonts-82704.html"&gt;"A tour de force that<a name="line.1497"></a>
-<span class="sourceLineNo">1498</span>     * deserves an award."&lt;/a&gt; You may want to try using both this version of Iosevka with slab serifs and the other<a name="line.1498"></a>
-<span class="sourceLineNo">1499</span>     * version SquidLib has, {@link #getLeanFamily()}.<a name="line.1499"></a>
-<span class="sourceLineNo">1500</span>     * &lt;br&gt;<a name="line.1500"></a>
-<span class="sourceLineNo">1501</span>     * &lt;br&gt;<a name="line.1501"></a>
-<span class="sourceLineNo">1502</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1502"></a>
-<span class="sourceLineNo">1503</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1503"></a>
+<span class="sourceLineNo">1421</span>     * This creates a TextCellFactory instead of a BitmapFont because it needs to set some extra information so the<a name="line.1421"></a>
+<span class="sourceLineNo">1422</span>     * multi-channel distance field font technique this uses can work.<a name="line.1422"></a>
+<span class="sourceLineNo">1423</span>     * &lt;br&gt;<a name="line.1423"></a>
+<span class="sourceLineNo">1424</span>     * Needs files:<a name="line.1424"></a>
+<span class="sourceLineNo">1425</span>     * &lt;ul&gt;<a name="line.1425"></a>
+<span class="sourceLineNo">1426</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/DejaVuSansMono-msdf.fnt&lt;/li&gt;<a name="line.1426"></a>
+<span class="sourceLineNo">1427</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/DejaVuSansMono-msdf.png&lt;/li&gt;<a name="line.1427"></a>
+<span class="sourceLineNo">1428</span>     * &lt;/ul&gt;<a name="line.1428"></a>
+<span class="sourceLineNo">1429</span>     * @return the TextCellFactory object that can represent many sizes of the font DejaVuSansMono.ttf with an MSDF effect<a name="line.1429"></a>
+<span class="sourceLineNo">1430</span>     */<a name="line.1430"></a>
+<span class="sourceLineNo">1431</span>    public static TextCellFactory getCrispDejaVuFont()<a name="line.1431"></a>
+<span class="sourceLineNo">1432</span>    {<a name="line.1432"></a>
+<span class="sourceLineNo">1433</span>        initialize();<a name="line.1433"></a>
+<span class="sourceLineNo">1434</span>        if(instance.msdfDejaVu == null)<a name="line.1434"></a>
+<span class="sourceLineNo">1435</span>        {<a name="line.1435"></a>
+<span class="sourceLineNo">1436</span>            try {<a name="line.1436"></a>
+<span class="sourceLineNo">1437</span>                instance.msdfDejaVu = new TextCellFactory()<a name="line.1437"></a>
+<span class="sourceLineNo">1438</span>                        .fontMultiDistanceField(crispDejaVu, crispDejaVuTexture).setSmoothingMultiplier(1f);<a name="line.1438"></a>
+<span class="sourceLineNo">1439</span>            } catch (Exception e) {<a name="line.1439"></a>
+<span class="sourceLineNo">1440</span>                e.printStackTrace();<a name="line.1440"></a>
+<span class="sourceLineNo">1441</span>            }<a name="line.1441"></a>
+<span class="sourceLineNo">1442</span>        }<a name="line.1442"></a>
+<span class="sourceLineNo">1443</span>        if(instance.msdfDejaVu != null)<a name="line.1443"></a>
+<span class="sourceLineNo">1444</span>            return instance.msdfDejaVu.copy();<a name="line.1444"></a>
+<span class="sourceLineNo">1445</span>        return null;<a name="line.1445"></a>
+<span class="sourceLineNo">1446</span>    }<a name="line.1446"></a>
+<span class="sourceLineNo">1447</span>//    /**<a name="line.1447"></a>
+<span class="sourceLineNo">1448</span>//     * DO NOT USE YET; this will not be laid-out correctly by TextCellFactory without future changes.<a name="line.1448"></a>
+<span class="sourceLineNo">1449</span>//     * &lt;br&gt;<a name="line.1449"></a>
+<span class="sourceLineNo">1450</span>//     * Returns a TextCellFactory already configured to use a fixed-width sans-serif oblique (similar to italic) font<a name="line.1450"></a>
+<span class="sourceLineNo">1451</span>//     * with good Unicode support, that should scale cleanly to even very large sizes. Caches the result for later calls.<a name="line.1451"></a>
+<span class="sourceLineNo">1452</span>//     * The font used is DejaVu Sans Mono, an open-source (SIL Open Font License) typeface that is widely used by Linux<a name="line.1452"></a>
+<span class="sourceLineNo">1453</span>//     * distros and other groups. It supports a lot of glyphs, including quite a bit of extended Latin, Greek, and Cyrillic,<a name="line.1453"></a>
+<span class="sourceLineNo">1454</span>//     * but also the necessary box drawing characters. This uses the Multi-channel Signed Distance Field technique as<a name="line.1454"></a>
+<span class="sourceLineNo">1455</span>//     * opposed to the normal Signed Distance Field technique, which should allow sharper edges.<a name="line.1455"></a>
+<span class="sourceLineNo">1456</span>//     * &lt;br&gt;<a name="line.1456"></a>
+<span class="sourceLineNo">1457</span>//     * NOTE: This currently has some errors on a few Greek lower-case letters with accents, where a large blob appears<a name="line.1457"></a>
+<span class="sourceLineNo">1458</span>//     * above and overlapping with the accents. Un-accented Greek letters should be fine.<a name="line.1458"></a>
+<span class="sourceLineNo">1459</span>//     * &lt;br&gt;<a name="line.1459"></a>
+<span class="sourceLineNo">1460</span>//     * Preview: none yet<a name="line.1460"></a>
+<span class="sourceLineNo">1461</span>//     * &lt;br&gt;<a name="line.1461"></a>
+<span class="sourceLineNo">1462</span>//     * This creates a TextCellFactory instead of a BitmapFont because it needs to set some extra information so the<a name="line.1462"></a>
+<span class="sourceLineNo">1463</span>//     * multi-channel distance field font technique this uses can work.<a name="line.1463"></a>
+<span class="sourceLineNo">1464</span>//     * &lt;br&gt;<a name="line.1464"></a>
+<span class="sourceLineNo">1465</span>//     * Needs files (THESE ARE NOT YET AVAILABLE AT THESE LINKS BECAUSE THEY ARE NOT READY):<a name="line.1465"></a>
+<span class="sourceLineNo">1466</span>//     * &lt;ul&gt;<a name="line.1466"></a>
+<span class="sourceLineNo">1467</span>//     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/DejaVuSansMono-Oblique-msdf.fnt&lt;/li&gt;<a name="line.1467"></a>
+<span class="sourceLineNo">1468</span>//     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/DejaVuSansMono-Oblique-msdf.png&lt;/li&gt;<a name="line.1468"></a>
+<span class="sourceLineNo">1469</span>//     * &lt;/ul&gt;<a name="line.1469"></a>
+<span class="sourceLineNo">1470</span>//     * @return the TextCellFactory object that can represent many sizes of the font DejaVuSansMono-Oblique.ttf<a name="line.1470"></a>
+<span class="sourceLineNo">1471</span>//     */<a name="line.1471"></a>
+<span class="sourceLineNo">1472</span>//<a name="line.1472"></a>
+<span class="sourceLineNo">1473</span>//    public static TextCellFactory getCrispDejaVuItalicFont()<a name="line.1473"></a>
+<span class="sourceLineNo">1474</span>//    {<a name="line.1474"></a>
+<span class="sourceLineNo">1475</span>//        initialize();<a name="line.1475"></a>
+<span class="sourceLineNo">1476</span>//        if(instance.msdfDejaVuItalic == null)<a name="line.1476"></a>
+<span class="sourceLineNo">1477</span>//        {<a name="line.1477"></a>
+<span class="sourceLineNo">1478</span>//            try {<a name="line.1478"></a>
+<span class="sourceLineNo">1479</span>//                instance.msdfDejaVuItalic = new TextCellFactory()<a name="line.1479"></a>
+<span class="sourceLineNo">1480</span>//                        .fontMultiDistanceField(crispDejaVuItalic, crispDejaVuItalicTexture);<a name="line.1480"></a>
+<span class="sourceLineNo">1481</span>//            } catch (Exception e) {<a name="line.1481"></a>
+<span class="sourceLineNo">1482</span>//                e.printStackTrace();<a name="line.1482"></a>
+<span class="sourceLineNo">1483</span>//            }<a name="line.1483"></a>
+<span class="sourceLineNo">1484</span>//        }<a name="line.1484"></a>
+<span class="sourceLineNo">1485</span>//        if(instance.msdfDejaVuItalic != null)<a name="line.1485"></a>
+<span class="sourceLineNo">1486</span>//            return instance.msdfDejaVuItalic.copy();<a name="line.1486"></a>
+<span class="sourceLineNo">1487</span>//        return null;<a name="line.1487"></a>
+<span class="sourceLineNo">1488</span>//    }<a name="line.1488"></a>
+<span class="sourceLineNo">1489</span>    /**<a name="line.1489"></a>
+<span class="sourceLineNo">1490</span>     * Returns a TextFamily already configured to use a highly-legible fixed-width font with good Unicode support and a<a name="line.1490"></a>
+<span class="sourceLineNo">1491</span>     * slab-serif geometric style, that should scale cleanly to many sizes and supports 4 styles (regular, bold, italic,<a name="line.1491"></a>
+<span class="sourceLineNo">1492</span>     * and bold italic). Caches the result for later calls. The font used is Iosevka with Slab style, an open-source<a name="line.1492"></a>
+<span class="sourceLineNo">1493</span>     * (SIL Open Font License) typeface by Belleve Invis (see https://be5invis.github.io/Iosevka/ ), and it uses several<a name="line.1493"></a>
+<span class="sourceLineNo">1494</span>     * customizations thanks to Iosevka's special build process, applied to the 4 styles. It supports a lot of glyphs,<a name="line.1494"></a>
+<span class="sourceLineNo">1495</span>     * including quite a bit of extended Latin, Greek, and Cyrillic, but also circled letters and digits and the<a name="line.1495"></a>
+<span class="sourceLineNo">1496</span>     * necessary box drawing characters (which line up even for italic text). The high glyph count means the part of the<a name="line.1496"></a>
+<span class="sourceLineNo">1497</span>     * image for each glyph is smaller, though, so this may look slightly pixelated if it starts small and is resized to<a name="line.1497"></a>
+<span class="sourceLineNo">1498</span>     * much larger. A cell width of 11 and cell height of 20 is ideal (or some approximate multiple of that aspect<a name="line.1498"></a>
+<span class="sourceLineNo">1499</span>     * ratio); this allows the font to resize fairly well to larger sizes using Viewports. As an aside, Luc Devroye (a<a name="line.1499"></a>
+<span class="sourceLineNo">1500</span>     * true typography expert) called Iosevka &lt;a href="http://luc.devroye.org/fonts-82704.html"&gt;"A tour de force that<a name="line.1500"></a>
+<span class="sourceLineNo">1501</span>     * deserves an award."&lt;/a&gt; You may want to try using both this version of Iosevka with slab serifs and the other<a name="line.1501"></a>
+<span class="sourceLineNo">1502</span>     * version SquidLib has, {@link #getLeanFamily()}.<a name="line.1502"></a>
+<span class="sourceLineNo">1503</span>     * &lt;br&gt;<a name="line.1503"></a>
 <span class="sourceLineNo">1504</span>     * &lt;br&gt;<a name="line.1504"></a>
-<span class="sourceLineNo">1505</span>     * Needs files:<a name="line.1505"></a>
-<span class="sourceLineNo">1506</span>     * &lt;ul&gt;<a name="line.1506"></a>
-<span class="sourceLineNo">1507</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Slab-Family-distance.fnt&lt;/li&gt;<a name="line.1507"></a>
-<span class="sourceLineNo">1508</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Slab-Family-distance.png&lt;/li&gt;<a name="line.1508"></a>
-<span class="sourceLineNo">1509</span>     * &lt;/ul&gt;<a name="line.1509"></a>
-<span class="sourceLineNo">1510</span>     * @return the TextFamily object that can represent many sizes of the font Iosevka-Slab.ttf with 4 styles<a name="line.1510"></a>
-<span class="sourceLineNo">1511</span>     */<a name="line.1511"></a>
-<span class="sourceLineNo">1512</span>    public static TextFamily getSlabFamily()<a name="line.1512"></a>
-<span class="sourceLineNo">1513</span>    {<a name="line.1513"></a>
-<span class="sourceLineNo">1514</span>        initialize();<a name="line.1514"></a>
-<span class="sourceLineNo">1515</span>        if(instance.familySlab == null)<a name="line.1515"></a>
-<span class="sourceLineNo">1516</span>        {<a name="line.1516"></a>
-<span class="sourceLineNo">1517</span>            try {<a name="line.1517"></a>
-<span class="sourceLineNo">1518</span>                instance.familySlab = new TextFamily().defaultFamilySlabDistance();<a name="line.1518"></a>
-<span class="sourceLineNo">1519</span>            } catch (Exception e) {<a name="line.1519"></a>
-<span class="sourceLineNo">1520</span>                e.printStackTrace();<a name="line.1520"></a>
-<span class="sourceLineNo">1521</span>            }<a name="line.1521"></a>
-<span class="sourceLineNo">1522</span>        }<a name="line.1522"></a>
-<span class="sourceLineNo">1523</span>        if(instance.familySlab != null)<a name="line.1523"></a>
-<span class="sourceLineNo">1524</span>            return instance.familySlab.copy();<a name="line.1524"></a>
-<span class="sourceLineNo">1525</span>        return null;<a name="line.1525"></a>
-<span class="sourceLineNo">1526</span>    }<a name="line.1526"></a>
-<span class="sourceLineNo">1527</span>    /**<a name="line.1527"></a>
-<span class="sourceLineNo">1528</span>     * Returns a TextFamily already configured to use a highly-legible fixed-width font with good Unicode support and a<a name="line.1528"></a>
-<span class="sourceLineNo">1529</span>     * sans-serif geometric style, that should scale cleanly to many sizes and supports 4 styles (regular, bold, italic,<a name="line.1529"></a>
-<span class="sourceLineNo">1530</span>     * and bold italic). Caches the result for later calls. The font used is Iosevka, an open-source (SIL Open Font<a name="line.1530"></a>
-<span class="sourceLineNo">1531</span>     * License) typeface by Belleve Invis (see https://be5invis.github.io/Iosevka/ ), and it uses several customizations<a name="line.1531"></a>
-<span class="sourceLineNo">1532</span>     * thanks to Iosevka's special build process, applied to the 4 styles. It supports a lot of glyphs, including quite<a name="line.1532"></a>
-<span class="sourceLineNo">1533</span>     * a bit of extended Latin, Greek, and Cyrillic, but also circled letters and digits and the necessary box drawing<a name="line.1533"></a>
-<span class="sourceLineNo">1534</span>     * characters (which line up even for italic text). The high glyph count means the part of the image for each glyph<a name="line.1534"></a>
-<span class="sourceLineNo">1535</span>     * is smaller, though, so this may look slightly pixelated if it starts small and is resized to much larger. A cell<a name="line.1535"></a>
-<span class="sourceLineNo">1536</span>     * width of 11 and cell height of 20 is ideal (or some approximate multiple of that aspect ratio); this allows the<a name="line.1536"></a>
-<span class="sourceLineNo">1537</span>     * font to resize fairly well to larger sizes using Viewports. As an aside, Luc Devroye (a true typography expert)<a name="line.1537"></a>
-<span class="sourceLineNo">1538</span>     * called Iosevka &lt;a href="http://luc.devroye.org/fonts-82704.html"&gt;"A tour de force that deserves an award."&lt;/a&gt;<a name="line.1538"></a>
-<span class="sourceLineNo">1539</span>     * You may want to try using both this version of Iosevka without serifs and the other version SquidLib has,<a name="line.1539"></a>
-<span class="sourceLineNo">1540</span>     * {@link #getSlabFamily()}.<a name="line.1540"></a>
-<span class="sourceLineNo">1541</span>     * &lt;br&gt;<a name="line.1541"></a>
-<span class="sourceLineNo">1542</span>     * &lt;br&gt;<a name="line.1542"></a>
-<span class="sourceLineNo">1543</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1543"></a>
-<span class="sourceLineNo">1544</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1544"></a>
+<span class="sourceLineNo">1505</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1505"></a>
+<span class="sourceLineNo">1506</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1506"></a>
+<span class="sourceLineNo">1507</span>     * &lt;br&gt;<a name="line.1507"></a>
+<span class="sourceLineNo">1508</span>     * Needs files:<a name="line.1508"></a>
+<span class="sourceLineNo">1509</span>     * &lt;ul&gt;<a name="line.1509"></a>
+<span class="sourceLineNo">1510</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Slab-Family-distance.fnt&lt;/li&gt;<a name="line.1510"></a>
+<span class="sourceLineNo">1511</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Slab-Family-distance.png&lt;/li&gt;<a name="line.1511"></a>
+<span class="sourceLineNo">1512</span>     * &lt;/ul&gt;<a name="line.1512"></a>
+<span class="sourceLineNo">1513</span>     * @return the TextFamily object that can represent many sizes of the font Iosevka-Slab.ttf with 4 styles<a name="line.1513"></a>
+<span class="sourceLineNo">1514</span>     */<a name="line.1514"></a>
+<span class="sourceLineNo">1515</span>    public static TextFamily getSlabFamily()<a name="line.1515"></a>
+<span class="sourceLineNo">1516</span>    {<a name="line.1516"></a>
+<span class="sourceLineNo">1517</span>        initialize();<a name="line.1517"></a>
+<span class="sourceLineNo">1518</span>        if(instance.familySlab == null)<a name="line.1518"></a>
+<span class="sourceLineNo">1519</span>        {<a name="line.1519"></a>
+<span class="sourceLineNo">1520</span>            try {<a name="line.1520"></a>
+<span class="sourceLineNo">1521</span>                instance.familySlab = new TextFamily().defaultFamilySlabDistance();<a name="line.1521"></a>
+<span class="sourceLineNo">1522</span>            } catch (Exception e) {<a name="line.1522"></a>
+<span class="sourceLineNo">1523</span>                e.printStackTrace();<a name="line.1523"></a>
+<span class="sourceLineNo">1524</span>            }<a name="line.1524"></a>
+<span class="sourceLineNo">1525</span>        }<a name="line.1525"></a>
+<span class="sourceLineNo">1526</span>        if(instance.familySlab != null)<a name="line.1526"></a>
+<span class="sourceLineNo">1527</span>            return instance.familySlab.copy();<a name="line.1527"></a>
+<span class="sourceLineNo">1528</span>        return null;<a name="line.1528"></a>
+<span class="sourceLineNo">1529</span>    }<a name="line.1529"></a>
+<span class="sourceLineNo">1530</span>    /**<a name="line.1530"></a>
+<span class="sourceLineNo">1531</span>     * Returns a TextFamily already configured to use a highly-legible fixed-width font with good Unicode support and a<a name="line.1531"></a>
+<span class="sourceLineNo">1532</span>     * sans-serif geometric style, that should scale cleanly to many sizes and supports 4 styles (regular, bold, italic,<a name="line.1532"></a>
+<span class="sourceLineNo">1533</span>     * and bold italic). Caches the result for later calls. The font used is Iosevka, an open-source (SIL Open Font<a name="line.1533"></a>
+<span class="sourceLineNo">1534</span>     * License) typeface by Belleve Invis (see https://be5invis.github.io/Iosevka/ ), and it uses several customizations<a name="line.1534"></a>
+<span class="sourceLineNo">1535</span>     * thanks to Iosevka's special build process, applied to the 4 styles. It supports a lot of glyphs, including quite<a name="line.1535"></a>
+<span class="sourceLineNo">1536</span>     * a bit of extended Latin, Greek, and Cyrillic, but also circled letters and digits and the necessary box drawing<a name="line.1536"></a>
+<span class="sourceLineNo">1537</span>     * characters (which line up even for italic text). The high glyph count means the part of the image for each glyph<a name="line.1537"></a>
+<span class="sourceLineNo">1538</span>     * is smaller, though, so this may look slightly pixelated if it starts small and is resized to much larger. A cell<a name="line.1538"></a>
+<span class="sourceLineNo">1539</span>     * width of 11 and cell height of 20 is ideal (or some approximate multiple of that aspect ratio); this allows the<a name="line.1539"></a>
+<span class="sourceLineNo">1540</span>     * font to resize fairly well to larger sizes using Viewports. As an aside, Luc Devroye (a true typography expert)<a name="line.1540"></a>
+<span class="sourceLineNo">1541</span>     * called Iosevka &lt;a href="http://luc.devroye.org/fonts-82704.html"&gt;"A tour de force that deserves an award."&lt;/a&gt;<a name="line.1541"></a>
+<span class="sourceLineNo">1542</span>     * You may want to try using both this version of Iosevka without serifs and the other version SquidLib has,<a name="line.1542"></a>
+<span class="sourceLineNo">1543</span>     * {@link #getSlabFamily()}.<a name="line.1543"></a>
+<span class="sourceLineNo">1544</span>     * &lt;br&gt;<a name="line.1544"></a>
 <span class="sourceLineNo">1545</span>     * &lt;br&gt;<a name="line.1545"></a>
-<span class="sourceLineNo">1546</span>     * Needs files:<a name="line.1546"></a>
-<span class="sourceLineNo">1547</span>     * &lt;ul&gt;<a name="line.1547"></a>
-<span class="sourceLineNo">1548</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Family-distance.fnt&lt;/li&gt;<a name="line.1548"></a>
-<span class="sourceLineNo">1549</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Family-distance.png&lt;/li&gt;<a name="line.1549"></a>
-<span class="sourceLineNo">1550</span>     * &lt;/ul&gt;<a name="line.1550"></a>
-<span class="sourceLineNo">1551</span>     * @return the TextFamily object that can represent many sizes of the font Iosevka.ttf with 4 styles<a name="line.1551"></a>
-<span class="sourceLineNo">1552</span>     */<a name="line.1552"></a>
-<span class="sourceLineNo">1553</span>    public static TextFamily getLeanFamily()<a name="line.1553"></a>
-<span class="sourceLineNo">1554</span>    {<a name="line.1554"></a>
-<span class="sourceLineNo">1555</span>        initialize();<a name="line.1555"></a>
-<span class="sourceLineNo">1556</span>        if(instance.familyLean == null)<a name="line.1556"></a>
-<span class="sourceLineNo">1557</span>        {<a name="line.1557"></a>
-<span class="sourceLineNo">1558</span>            try {<a name="line.1558"></a>
-<span class="sourceLineNo">1559</span>                instance.familyLean = new TextFamily().defaultFamilyLeanDistance();<a name="line.1559"></a>
-<span class="sourceLineNo">1560</span>            } catch (Exception e) {<a name="line.1560"></a>
-<span class="sourceLineNo">1561</span>                e.printStackTrace();<a name="line.1561"></a>
-<span class="sourceLineNo">1562</span>            }<a name="line.1562"></a>
-<span class="sourceLineNo">1563</span>        }<a name="line.1563"></a>
-<span class="sourceLineNo">1564</span>        if(instance.familyLean != null)<a name="line.1564"></a>
-<span class="sourceLineNo">1565</span>            return instance.familyLean.copy();<a name="line.1565"></a>
-<span class="sourceLineNo">1566</span>        return null;<a name="line.1566"></a>
-<span class="sourceLineNo">1567</span>    }<a name="line.1567"></a>
-<span class="sourceLineNo">1568</span>    /**<a name="line.1568"></a>
-<span class="sourceLineNo">1569</span>     * Returns a TextFamily already configured to use a fixed-width font with good Unicode support and a traditional<a name="line.1569"></a>
-<span class="sourceLineNo">1570</span>     * serif style, that should scale cleanly to many sizes and supports 4 styles (regular, bold, italic,<a name="line.1570"></a>
-<span class="sourceLineNo">1571</span>     * and bold italic). Caches the result for later calls. The font used is Go Mono, a typeface released by the team<a name="line.1571"></a>
-<span class="sourceLineNo">1572</span>     * behind the Go programming language as open-source (3-clause BSD, the same license as the Go language; the license<a name="line.1572"></a>
-<span class="sourceLineNo">1573</span>     * is included with the assets). It supports a lot of glyphs, including quite a bit of extended Latin, Greek, and<a name="line.1573"></a>
-<span class="sourceLineNo">1574</span>     * Cyrillic, bu also the necessary box drawing characters (which line up even for italic text). There's more<a name="line.1574"></a>
-<span class="sourceLineNo">1575</span>     * information about this font available where it was introduced,<a name="line.1575"></a>
-<span class="sourceLineNo">1576</span>     * &lt;a href="https://blog.golang.org/go-fonts"&gt;on the Go blog&lt;/a&gt;.<a name="line.1576"></a>
-<span class="sourceLineNo">1577</span>     * You may want to try using this Go font family and contrasting it with Iosevka with and without slab serifs, which<a name="line.1577"></a>
-<span class="sourceLineNo">1578</span>     * are {@link #getSlabFamily()} and {@link #getLeanFamily()} respectively.<a name="line.1578"></a>
-<span class="sourceLineNo">1579</span>     * &lt;br&gt;<a name="line.1579"></a>
-<span class="sourceLineNo">1580</span>     * &lt;br&gt;<a name="line.1580"></a>
-<span class="sourceLineNo">1581</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1581"></a>
-<span class="sourceLineNo">1582</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1582"></a>
+<span class="sourceLineNo">1546</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1546"></a>
+<span class="sourceLineNo">1547</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1547"></a>
+<span class="sourceLineNo">1548</span>     * &lt;br&gt;<a name="line.1548"></a>
+<span class="sourceLineNo">1549</span>     * Needs files:<a name="line.1549"></a>
+<span class="sourceLineNo">1550</span>     * &lt;ul&gt;<a name="line.1550"></a>
+<span class="sourceLineNo">1551</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Family-distance.fnt&lt;/li&gt;<a name="line.1551"></a>
+<span class="sourceLineNo">1552</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Family-distance.png&lt;/li&gt;<a name="line.1552"></a>
+<span class="sourceLineNo">1553</span>     * &lt;/ul&gt;<a name="line.1553"></a>
+<span class="sourceLineNo">1554</span>     * @return the TextFamily object that can represent many sizes of the font Iosevka.ttf with 4 styles<a name="line.1554"></a>
+<span class="sourceLineNo">1555</span>     */<a name="line.1555"></a>
+<span class="sourceLineNo">1556</span>    public static TextFamily getLeanFamily()<a name="line.1556"></a>
+<span class="sourceLineNo">1557</span>    {<a name="line.1557"></a>
+<span class="sourceLineNo">1558</span>        initialize();<a name="line.1558"></a>
+<span class="sourceLineNo">1559</span>        if(instance.familyLean == null)<a name="line.1559"></a>
+<span class="sourceLineNo">1560</span>        {<a name="line.1560"></a>
+<span class="sourceLineNo">1561</span>            try {<a name="line.1561"></a>
+<span class="sourceLineNo">1562</span>                instance.familyLean = new TextFamily().defaultFamilyLeanDistance();<a name="line.1562"></a>
+<span class="sourceLineNo">1563</span>            } catch (Exception e) {<a name="line.1563"></a>
+<span class="sourceLineNo">1564</span>                e.printStackTrace();<a name="line.1564"></a>
+<span class="sourceLineNo">1565</span>            }<a name="line.1565"></a>
+<span class="sourceLineNo">1566</span>        }<a name="line.1566"></a>
+<span class="sourceLineNo">1567</span>        if(instance.familyLean != null)<a name="line.1567"></a>
+<span class="sourceLineNo">1568</span>            return instance.familyLean.copy();<a name="line.1568"></a>
+<span class="sourceLineNo">1569</span>        return null;<a name="line.1569"></a>
+<span class="sourceLineNo">1570</span>    }<a name="line.1570"></a>
+<span class="sourceLineNo">1571</span>    /**<a name="line.1571"></a>
+<span class="sourceLineNo">1572</span>     * Returns a TextFamily already configured to use a fixed-width font with good Unicode support and a traditional<a name="line.1572"></a>
+<span class="sourceLineNo">1573</span>     * serif style, that should scale cleanly to many sizes and supports 4 styles (regular, bold, italic,<a name="line.1573"></a>
+<span class="sourceLineNo">1574</span>     * and bold italic). Caches the result for later calls. The font used is Go Mono, a typeface released by the team<a name="line.1574"></a>
+<span class="sourceLineNo">1575</span>     * behind the Go programming language as open-source (3-clause BSD, the same license as the Go language; the license<a name="line.1575"></a>
+<span class="sourceLineNo">1576</span>     * is included with the assets). It supports a lot of glyphs, including quite a bit of extended Latin, Greek, and<a name="line.1576"></a>
+<span class="sourceLineNo">1577</span>     * Cyrillic, bu also the necessary box drawing characters (which line up even for italic text). There's more<a name="line.1577"></a>
+<span class="sourceLineNo">1578</span>     * information about this font available where it was introduced,<a name="line.1578"></a>
+<span class="sourceLineNo">1579</span>     * &lt;a href="https://blog.golang.org/go-fonts"&gt;on the Go blog&lt;/a&gt;.<a name="line.1579"></a>
+<span class="sourceLineNo">1580</span>     * You may want to try using this Go font family and contrasting it with Iosevka with and without slab serifs, which<a name="line.1580"></a>
+<span class="sourceLineNo">1581</span>     * are {@link #getSlabFamily()} and {@link #getLeanFamily()} respectively.<a name="line.1581"></a>
+<span class="sourceLineNo">1582</span>     * &lt;br&gt;<a name="line.1582"></a>
 <span class="sourceLineNo">1583</span>     * &lt;br&gt;<a name="line.1583"></a>
-<span class="sourceLineNo">1584</span>     * Needs files:<a name="line.1584"></a>
-<span class="sourceLineNo">1585</span>     * &lt;ul&gt;<a name="line.1585"></a>
-<span class="sourceLineNo">1586</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/GoMono-Family-distance.fnt&lt;/li&gt;<a name="line.1586"></a>
-<span class="sourceLineNo">1587</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/GoMono-Family-distance.png&lt;/li&gt;<a name="line.1587"></a>
-<span class="sourceLineNo">1588</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/GoMono-License.txt&lt;/li&gt;<a name="line.1588"></a>
-<span class="sourceLineNo">1589</span>     * &lt;/ul&gt;<a name="line.1589"></a>
-<span class="sourceLineNo">1590</span>     * @return the TextFamily object that can represent many sizes of the font GoMono.ttf with 4 styles<a name="line.1590"></a>
-<span class="sourceLineNo">1591</span>     */<a name="line.1591"></a>
-<span class="sourceLineNo">1592</span>    public static TextFamily getGoFamily()<a name="line.1592"></a>
-<span class="sourceLineNo">1593</span>    {<a name="line.1593"></a>
-<span class="sourceLineNo">1594</span>        initialize();<a name="line.1594"></a>
-<span class="sourceLineNo">1595</span>        if(instance.familyGo == null)<a name="line.1595"></a>
-<span class="sourceLineNo">1596</span>        {<a name="line.1596"></a>
-<span class="sourceLineNo">1597</span>            try {<a name="line.1597"></a>
-<span class="sourceLineNo">1598</span>                instance.familyGo = new TextFamily();<a name="line.1598"></a>
-<span class="sourceLineNo">1599</span>                instance.familyGo.fontDistanceField("GoMono-Family-distance.fnt", "GoMono-Family-distance.png");<a name="line.1599"></a>
-<span class="sourceLineNo">1600</span>            } catch (Exception e) {<a name="line.1600"></a>
-<span class="sourceLineNo">1601</span>                e.printStackTrace();<a name="line.1601"></a>
-<span class="sourceLineNo">1602</span>            }<a name="line.1602"></a>
-<span class="sourceLineNo">1603</span>        }<a name="line.1603"></a>
-<span class="sourceLineNo">1604</span>        if(instance.familyGo != null)<a name="line.1604"></a>
-<span class="sourceLineNo">1605</span>            return instance.familyGo.copy();<a name="line.1605"></a>
-<span class="sourceLineNo">1606</span>        return null;<a name="line.1606"></a>
-<span class="sourceLineNo">1607</span>    }<a name="line.1607"></a>
-<span class="sourceLineNo">1608</span>    /**<a name="line.1608"></a>
-<span class="sourceLineNo">1609</span>     * Returns a TextFamily already configured to use a highly-legible fixed-width font with good Unicode support and a<a name="line.1609"></a>
-<span class="sourceLineNo">1610</span>     * sans-serif geometric style, that should scale cleanly to many sizes (using an MSDF technique) and supports 4<a name="line.1610"></a>
-<span class="sourceLineNo">1611</span>     * styles (regular, bold, italic, and bold italic). Caches the result for later calls. The font used is Iosevka, an<a name="line.1611"></a>
-<span class="sourceLineNo">1612</span>     * open-source (SIL Open Font License) typeface by Belleve Invis (see https://be5invis.github.io/Iosevka/ ), and it <a name="line.1612"></a>
-<span class="sourceLineNo">1613</span>     * uses several customizations thanks to Iosevka's special build process, applied to the 4 styles. It supports a lot<a name="line.1613"></a>
-<span class="sourceLineNo">1614</span>     * of glyphs, including quite a bit of extended Latin, Greek, and Cyrillic, but also circled letters and digits and<a name="line.1614"></a>
-<span class="sourceLineNo">1615</span>     * the necessary box drawing characters (which line up even for italic text). The high glyph count means the texture<a name="line.1615"></a>
-<span class="sourceLineNo">1616</span>     * that holds all four faces of the font is larger than normal, at 4096x4096; this may be too large for some devices<a name="line.1616"></a>
-<span class="sourceLineNo">1617</span>     * to load correctly (mostly older phones or tablets). A cell width of 11 and cell height of 20 is ideal (or some<a name="line.1617"></a>
-<span class="sourceLineNo">1618</span>     * approximate multiple of that aspect ratio); this allows the font to resize fairly well to larger sizes using<a name="line.1618"></a>
-<span class="sourceLineNo">1619</span>     * Viewports.  This uses the Multi-channel Signed Distance Field (MSDF) technique as opposed to the normal Signed<a name="line.1619"></a>
-<span class="sourceLineNo">1620</span>     * Distance Field technique, which gives the rendered font sharper edges and precise corners instead of rounded tips<a name="line.1620"></a>
-<span class="sourceLineNo">1621</span>     * on strokes. As an aside, Luc Devroye (a true typography expert) called Iosevka<a name="line.1621"></a>
-<span class="sourceLineNo">1622</span>     * &lt;a href="http://luc.devroye.org/fonts-82704.html"&gt;"A tour de force that deserves an award."&lt;/a&gt; You may want to<a name="line.1622"></a>
-<span class="sourceLineNo">1623</span>     * try using both this version of Iosevka without serifs and the other version SquidLib has with an MSDF effect, <a name="line.1623"></a>
-<span class="sourceLineNo">1624</span>     * {@link #getCrispSlabFamily()}.<a name="line.1624"></a>
-<span class="sourceLineNo">1625</span>     * &lt;br&gt;<a name="line.1625"></a>
-<span class="sourceLineNo">1626</span>     * Preview: &lt;a href="https://i.imgur.com/dMVzpEi.png"&gt;image link&lt;/a&gt;, with bold at the bottom.<a name="line.1626"></a>
-<span class="sourceLineNo">1627</span>     * &lt;br&gt;<a name="line.1627"></a>
-<span class="sourceLineNo">1628</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1628"></a>
-<span class="sourceLineNo">1629</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1629"></a>
+<span class="sourceLineNo">1584</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1584"></a>
+<span class="sourceLineNo">1585</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1585"></a>
+<span class="sourceLineNo">1586</span>     * &lt;br&gt;<a name="line.1586"></a>
+<span class="sourceLineNo">1587</span>     * Needs files:<a name="line.1587"></a>
+<span class="sourceLineNo">1588</span>     * &lt;ul&gt;<a name="line.1588"></a>
+<span class="sourceLineNo">1589</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/GoMono-Family-distance.fnt&lt;/li&gt;<a name="line.1589"></a>
+<span class="sourceLineNo">1590</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/GoMono-Family-distance.png&lt;/li&gt;<a name="line.1590"></a>
+<span class="sourceLineNo">1591</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/GoMono-License.txt&lt;/li&gt;<a name="line.1591"></a>
+<span class="sourceLineNo">1592</span>     * &lt;/ul&gt;<a name="line.1592"></a>
+<span class="sourceLineNo">1593</span>     * @return the TextFamily object that can represent many sizes of the font GoMono.ttf with 4 styles<a name="line.1593"></a>
+<span class="sourceLineNo">1594</span>     */<a name="line.1594"></a>
+<span class="sourceLineNo">1595</span>    public static TextFamily getGoFamily()<a name="line.1595"></a>
+<span class="sourceLineNo">1596</span>    {<a name="line.1596"></a>
+<span class="sourceLineNo">1597</span>        initialize();<a name="line.1597"></a>
+<span class="sourceLineNo">1598</span>        if(instance.familyGo == null)<a name="line.1598"></a>
+<span class="sourceLineNo">1599</span>        {<a name="line.1599"></a>
+<span class="sourceLineNo">1600</span>            try {<a name="line.1600"></a>
+<span class="sourceLineNo">1601</span>                instance.familyGo = new TextFamily();<a name="line.1601"></a>
+<span class="sourceLineNo">1602</span>                instance.familyGo.fontDistanceField("GoMono-Family-distance.fnt", "GoMono-Family-distance.png");<a name="line.1602"></a>
+<span class="sourceLineNo">1603</span>            } catch (Exception e) {<a name="line.1603"></a>
+<span class="sourceLineNo">1604</span>                e.printStackTrace();<a name="line.1604"></a>
+<span class="sourceLineNo">1605</span>            }<a name="line.1605"></a>
+<span class="sourceLineNo">1606</span>        }<a name="line.1606"></a>
+<span class="sourceLineNo">1607</span>        if(instance.familyGo != null)<a name="line.1607"></a>
+<span class="sourceLineNo">1608</span>            return instance.familyGo.copy();<a name="line.1608"></a>
+<span class="sourceLineNo">1609</span>        return null;<a name="line.1609"></a>
+<span class="sourceLineNo">1610</span>    }<a name="line.1610"></a>
+<span class="sourceLineNo">1611</span>    /**<a name="line.1611"></a>
+<span class="sourceLineNo">1612</span>     * Returns a TextFamily already configured to use a highly-legible fixed-width font with good Unicode support and a<a name="line.1612"></a>
+<span class="sourceLineNo">1613</span>     * sans-serif geometric style, that should scale cleanly to many sizes (using an MSDF technique) and supports 4<a name="line.1613"></a>
+<span class="sourceLineNo">1614</span>     * styles (regular, bold, italic, and bold italic). Caches the result for later calls. The font used is Iosevka, an<a name="line.1614"></a>
+<span class="sourceLineNo">1615</span>     * open-source (SIL Open Font License) typeface by Belleve Invis (see https://be5invis.github.io/Iosevka/ ), and it <a name="line.1615"></a>
+<span class="sourceLineNo">1616</span>     * uses several customizations thanks to Iosevka's special build process, applied to the 4 styles. It supports a lot<a name="line.1616"></a>
+<span class="sourceLineNo">1617</span>     * of glyphs, including quite a bit of extended Latin, Greek, and Cyrillic, but also circled letters and digits and<a name="line.1617"></a>
+<span class="sourceLineNo">1618</span>     * the necessary box drawing characters (which line up even for italic text). The high glyph count means the texture<a name="line.1618"></a>
+<span class="sourceLineNo">1619</span>     * that holds all four faces of the font is larger than normal, at 4096x4096; this may be too large for some devices<a name="line.1619"></a>
+<span class="sourceLineNo">1620</span>     * to load correctly (mostly older phones or tablets). A cell width of 11 and cell height of 20 is ideal (or some<a name="line.1620"></a>
+<span class="sourceLineNo">1621</span>     * approximate multiple of that aspect ratio); this allows the font to resize fairly well to larger sizes using<a name="line.1621"></a>
+<span class="sourceLineNo">1622</span>     * Viewports.  This uses the Multi-channel Signed Distance Field (MSDF) technique as opposed to the normal Signed<a name="line.1622"></a>
+<span class="sourceLineNo">1623</span>     * Distance Field technique, which gives the rendered font sharper edges and precise corners instead of rounded tips<a name="line.1623"></a>
+<span class="sourceLineNo">1624</span>     * on strokes. As an aside, Luc Devroye (a true typography expert) called Iosevka<a name="line.1624"></a>
+<span class="sourceLineNo">1625</span>     * &lt;a href="http://luc.devroye.org/fonts-82704.html"&gt;"A tour de force that deserves an award."&lt;/a&gt; You may want to<a name="line.1625"></a>
+<span class="sourceLineNo">1626</span>     * try using both this version of Iosevka without serifs and the other version SquidLib has with an MSDF effect, <a name="line.1626"></a>
+<span class="sourceLineNo">1627</span>     * {@link #getCrispSlabFamily()}.<a name="line.1627"></a>
+<span class="sourceLineNo">1628</span>     * &lt;br&gt;<a name="line.1628"></a>
+<span class="sourceLineNo">1629</span>     * Preview: &lt;a href="https://i.imgur.com/dMVzpEi.png"&gt;image link&lt;/a&gt;, with bold at the bottom.<a name="line.1629"></a>
 <span class="sourceLineNo">1630</span>     * &lt;br&gt;<a name="line.1630"></a>
-<span class="sourceLineNo">1631</span>     * Needs files:<a name="line.1631"></a>
-<span class="sourceLineNo">1632</span>     * &lt;ul&gt;<a name="line.1632"></a>
-<span class="sourceLineNo">1633</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Family-msdf.fnt&lt;/li&gt;<a name="line.1633"></a>
-<span class="sourceLineNo">1634</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Family-msdf.png&lt;/li&gt;<a name="line.1634"></a>
-<span class="sourceLineNo">1635</span>     * &lt;/ul&gt;<a name="line.1635"></a>
-<span class="sourceLineNo">1636</span>     * @return the TextFamily object that can represent many sizes of the font Iosevka.ttf with 4 styles and an MSDF effect<a name="line.1636"></a>
-<span class="sourceLineNo">1637</span>     */<a name="line.1637"></a>
-<span class="sourceLineNo">1638</span>    public static TextFamily getCrispLeanFamily()<a name="line.1638"></a>
-<span class="sourceLineNo">1639</span>    {<a name="line.1639"></a>
-<span class="sourceLineNo">1640</span>        initialize();<a name="line.1640"></a>
-<span class="sourceLineNo">1641</span>        if(instance.familyLeanMSDF == null)<a name="line.1641"></a>
-<span class="sourceLineNo">1642</span>        {<a name="line.1642"></a>
-<span class="sourceLineNo">1643</span>            try {<a name="line.1643"></a>
-<span class="sourceLineNo">1644</span>                instance.familyLeanMSDF = new TextFamily();<a name="line.1644"></a>
-<span class="sourceLineNo">1645</span>                instance.familyLeanMSDF.fontMultiDistanceField("Iosevka-Family-msdf.fnt", "Iosevka-Family-msdf.png");<a name="line.1645"></a>
-<span class="sourceLineNo">1646</span>            } catch (Exception e) {<a name="line.1646"></a>
-<span class="sourceLineNo">1647</span>                e.printStackTrace();<a name="line.1647"></a>
-<span class="sourceLineNo">1648</span>            }<a name="line.1648"></a>
-<span class="sourceLineNo">1649</span>        }<a name="line.1649"></a>
-<span class="sourceLineNo">1650</span>        if(instance.familyLeanMSDF != null)<a name="line.1650"></a>
-<span class="sourceLineNo">1651</span>            return instance.familyLeanMSDF.copy();<a name="line.1651"></a>
-<span class="sourceLineNo">1652</span>        return null;<a name="line.1652"></a>
-<span class="sourceLineNo">1653</span><a name="line.1653"></a>
-<span class="sourceLineNo">1654</span>    }<a name="line.1654"></a>
-<span class="sourceLineNo">1655</span><a name="line.1655"></a>
-<span class="sourceLineNo">1656</span>    /**<a name="line.1656"></a>
-<span class="sourceLineNo">1657</span>     * Returns a TextFamily already configured to use a highly-legible fixed-width font with good Unicode support and a<a name="line.1657"></a>
-<span class="sourceLineNo">1658</span>     * slab-serif geometric style, that should scale cleanly to many sizes (using an MSDF technique) and supports 4<a name="line.1658"></a>
-<span class="sourceLineNo">1659</span>     * styles (regular, bold, italic, and bold italic). Caches the result for later calls. The font used is Iosevka with<a name="line.1659"></a>
-<span class="sourceLineNo">1660</span>     * slab style, an open-source (SIL Open Font License) typeface by Belleve Invis (see<a name="line.1660"></a>
-<span class="sourceLineNo">1661</span>     * https://be5invis.github.io/Iosevka/ ), and it uses several customizations thanks to Iosevka's special build<a name="line.1661"></a>
-<span class="sourceLineNo">1662</span>     * process, applied to the 4 styles. It supports a lot of glyphs, including quite a bit of extended Latin, Greek,<a name="line.1662"></a>
-<span class="sourceLineNo">1663</span>     * and Cyrillic, but also circled letters and digits and the necessary box drawing characters (which line up even <a name="line.1663"></a>
-<span class="sourceLineNo">1664</span>     * for italic text). The high glyph count means the texture that holds all four faces of the font is larger than<a name="line.1664"></a>
-<span class="sourceLineNo">1665</span>     * normal, at 4096x4096; this may be too large for some devices to load correctly (mostly older phones or tablets).<a name="line.1665"></a>
-<span class="sourceLineNo">1666</span>     * A cell width of 11 and cell height of 20 is ideal (or some approximate multiple of that aspect ratio); this<a name="line.1666"></a>
-<span class="sourceLineNo">1667</span>     * allows the font to resize fairly well to larger sizes using Viewports.  This uses the Multi-channel Signed<a name="line.1667"></a>
-<span class="sourceLineNo">1668</span>     * Distance Field (MSDF) technique as opposed to the normal Signed  Distance Field technique, which gives the<a name="line.1668"></a>
-<span class="sourceLineNo">1669</span>     * rendered font sharper edges and precise corners instead of rounded tips on strokes. As an aside, Luc Devroye (a<a name="line.1669"></a>
-<span class="sourceLineNo">1670</span>     * true typography expert) called Iosevka &lt;a href="http://luc.devroye.org/fonts-82704.html"&gt;"A tour de force that<a name="line.1670"></a>
-<span class="sourceLineNo">1671</span>     * deserves an award."&lt;/a&gt; You may want to try using both this version of Iosevka with slab serifs and the other<a name="line.1671"></a>
-<span class="sourceLineNo">1672</span>     * version SquidLib has with an MSDF effect, {@link #getCrispLeanFamily()}.<a name="line.1672"></a>
-<span class="sourceLineNo">1673</span>     * &lt;br&gt;<a name="line.1673"></a>
-<span class="sourceLineNo">1674</span>     * Preview: &lt;a href="https://i.imgur.com/wRNlpL5.png"&gt;image link&lt;/a&gt;, with bold at the bottom.<a name="line.1674"></a>
-<span class="sourceLineNo">1675</span>     * &lt;br&gt;<a name="line.1675"></a>
-<span class="sourceLineNo">1676</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1676"></a>
-<span class="sourceLineNo">1677</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1677"></a>
+<span class="sourceLineNo">1631</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1631"></a>
+<span class="sourceLineNo">1632</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1632"></a>
+<span class="sourceLineNo">1633</span>     * &lt;br&gt;<a name="line.1633"></a>
+<span class="sourceLineNo">1634</span>     * Needs files:<a name="line.1634"></a>
+<span class="sourceLineNo">1635</span>     * &lt;ul&gt;<a name="line.1635"></a>
+<span class="sourceLineNo">1636</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Family-msdf.fnt&lt;/li&gt;<a name="line.1636"></a>
+<span class="sourceLineNo">1637</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Family-msdf.png&lt;/li&gt;<a name="line.1637"></a>
+<span class="sourceLineNo">1638</span>     * &lt;/ul&gt;<a name="line.1638"></a>
+<span class="sourceLineNo">1639</span>     * @return the TextFamily object that can represent many sizes of the font Iosevka.ttf with 4 styles and an MSDF effect<a name="line.1639"></a>
+<span class="sourceLineNo">1640</span>     */<a name="line.1640"></a>
+<span class="sourceLineNo">1641</span>    public static TextFamily getCrispLeanFamily()<a name="line.1641"></a>
+<span class="sourceLineNo">1642</span>    {<a name="line.1642"></a>
+<span class="sourceLineNo">1643</span>        initialize();<a name="line.1643"></a>
+<span class="sourceLineNo">1644</span>        if(instance.familyLeanMSDF == null)<a name="line.1644"></a>
+<span class="sourceLineNo">1645</span>        {<a name="line.1645"></a>
+<span class="sourceLineNo">1646</span>            try {<a name="line.1646"></a>
+<span class="sourceLineNo">1647</span>                instance.familyLeanMSDF = new TextFamily();<a name="line.1647"></a>
+<span class="sourceLineNo">1648</span>                instance.familyLeanMSDF.fontMultiDistanceField("Iosevka-Family-msdf.fnt", "Iosevka-Family-msdf.png");<a name="line.1648"></a>
+<span class="sourceLineNo">1649</span>            } catch (Exception e) {<a name="line.1649"></a>
+<span class="sourceLineNo">1650</span>                e.printStackTrace();<a name="line.1650"></a>
+<span class="sourceLineNo">1651</span>            }<a name="line.1651"></a>
+<span class="sourceLineNo">1652</span>        }<a name="line.1652"></a>
+<span class="sourceLineNo">1653</span>        if(instance.familyLeanMSDF != null)<a name="line.1653"></a>
+<span class="sourceLineNo">1654</span>            return instance.familyLeanMSDF.copy();<a name="line.1654"></a>
+<span class="sourceLineNo">1655</span>        return null;<a name="line.1655"></a>
+<span class="sourceLineNo">1656</span><a name="line.1656"></a>
+<span class="sourceLineNo">1657</span>    }<a name="line.1657"></a>
+<span class="sourceLineNo">1658</span><a name="line.1658"></a>
+<span class="sourceLineNo">1659</span>    /**<a name="line.1659"></a>
+<span class="sourceLineNo">1660</span>     * Returns a TextFamily already configured to use a highly-legible fixed-width font with good Unicode support and a<a name="line.1660"></a>
+<span class="sourceLineNo">1661</span>     * slab-serif geometric style, that should scale cleanly to many sizes (using an MSDF technique) and supports 4<a name="line.1661"></a>
+<span class="sourceLineNo">1662</span>     * styles (regular, bold, italic, and bold italic). Caches the result for later calls. The font used is Iosevka with<a name="line.1662"></a>
+<span class="sourceLineNo">1663</span>     * slab style, an open-source (SIL Open Font License) typeface by Belleve Invis (see<a name="line.1663"></a>
+<span class="sourceLineNo">1664</span>     * https://be5invis.github.io/Iosevka/ ), and it uses several customizations thanks to Iosevka's special build<a name="line.1664"></a>
+<span class="sourceLineNo">1665</span>     * process, applied to the 4 styles. It supports a lot of glyphs, including quite a bit of extended Latin, Greek,<a name="line.1665"></a>
+<span class="sourceLineNo">1666</span>     * and Cyrillic, but also circled letters and digits and the necessary box drawing characters (which line up even <a name="line.1666"></a>
+<span class="sourceLineNo">1667</span>     * for italic text). The high glyph count means the texture that holds all four faces of the font is larger than<a name="line.1667"></a>
+<span class="sourceLineNo">1668</span>     * normal, at 4096x4096; this may be too large for some devices to load correctly (mostly older phones or tablets).<a name="line.1668"></a>
+<span class="sourceLineNo">1669</span>     * A cell width of 11 and cell height of 20 is ideal (or some approximate multiple of that aspect ratio); this<a name="line.1669"></a>
+<span class="sourceLineNo">1670</span>     * allows the font to resize fairly well to larger sizes using Viewports.  This uses the Multi-channel Signed<a name="line.1670"></a>
+<span class="sourceLineNo">1671</span>     * Distance Field (MSDF) technique as opposed to the normal Signed  Distance Field technique, which gives the<a name="line.1671"></a>
+<span class="sourceLineNo">1672</span>     * rendered font sharper edges and precise corners instead of rounded tips on strokes. As an aside, Luc Devroye (a<a name="line.1672"></a>
+<span class="sourceLineNo">1673</span>     * true typography expert) called Iosevka &lt;a href="http://luc.devroye.org/fonts-82704.html"&gt;"A tour de force that<a name="line.1673"></a>
+<span class="sourceLineNo">1674</span>     * deserves an award."&lt;/a&gt; You may want to try using both this version of Iosevka with slab serifs and the other<a name="line.1674"></a>
+<span class="sourceLineNo">1675</span>     * version SquidLib has with an MSDF effect, {@link #getCrispLeanFamily()}.<a name="line.1675"></a>
+<span class="sourceLineNo">1676</span>     * &lt;br&gt;<a name="line.1676"></a>
+<span class="sourceLineNo">1677</span>     * Preview: &lt;a href="https://i.imgur.com/wRNlpL5.png"&gt;image link&lt;/a&gt;, with bold at the bottom.<a name="line.1677"></a>
 <span class="sourceLineNo">1678</span>     * &lt;br&gt;<a name="line.1678"></a>
-<span class="sourceLineNo">1679</span>     * Needs files:<a name="line.1679"></a>
-<span class="sourceLineNo">1680</span>     * &lt;ul&gt;<a name="line.1680"></a>
-<span class="sourceLineNo">1681</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Slab-Family-msdf.fnt&lt;/li&gt;<a name="line.1681"></a>
-<span class="sourceLineNo">1682</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Slab-Family-msdf.png&lt;/li&gt;<a name="line.1682"></a>
-<span class="sourceLineNo">1683</span>     * &lt;/ul&gt;<a name="line.1683"></a>
-<span class="sourceLineNo">1684</span>     * @return the TextFamily object that can represent many sizes of the font Iosevka-Slab.ttf with 4 styles and an MSDF effect<a name="line.1684"></a>
-<span class="sourceLineNo">1685</span>     */<a name="line.1685"></a>
-<span class="sourceLineNo">1686</span>    public static TextFamily getCrispSlabFamily()<a name="line.1686"></a>
-<span class="sourceLineNo">1687</span>    {<a name="line.1687"></a>
-<span class="sourceLineNo">1688</span>        initialize();<a name="line.1688"></a>
-<span class="sourceLineNo">1689</span>        if(instance.familySlabMSDF == null)<a name="line.1689"></a>
-<span class="sourceLineNo">1690</span>        {<a name="line.1690"></a>
-<span class="sourceLineNo">1691</span>            try {<a name="line.1691"></a>
-<span class="sourceLineNo">1692</span>                instance.familySlabMSDF = new TextFamily();<a name="line.1692"></a>
-<span class="sourceLineNo">1693</span>                instance.familySlabMSDF.fontMultiDistanceField("Iosevka-Slab-Family-msdf.fnt", "Iosevka-Slab-Family-msdf.png");<a name="line.1693"></a>
-<span class="sourceLineNo">1694</span>            } catch (Exception e) {<a name="line.1694"></a>
-<span class="sourceLineNo">1695</span>                e.printStackTrace();<a name="line.1695"></a>
-<span class="sourceLineNo">1696</span>            }<a name="line.1696"></a>
-<span class="sourceLineNo">1697</span>        }<a name="line.1697"></a>
-<span class="sourceLineNo">1698</span>        if(instance.familySlabMSDF != null)<a name="line.1698"></a>
-<span class="sourceLineNo">1699</span>            return instance.familySlabMSDF.copy();<a name="line.1699"></a>
-<span class="sourceLineNo">1700</span>        return null;<a name="line.1700"></a>
-<span class="sourceLineNo">1701</span><a name="line.1701"></a>
-<span class="sourceLineNo">1702</span>    }<a name="line.1702"></a>
-<span class="sourceLineNo">1703</span><a name="line.1703"></a>
-<span class="sourceLineNo">1704</span>    /**<a name="line.1704"></a>
-<span class="sourceLineNo">1705</span>     * Gets an image of a (squid-like, for SquidLib) tentacle, 32x32px.<a name="line.1705"></a>
-<span class="sourceLineNo">1706</span>     * Source is public domain: http://opengameart.org/content/496-pixel-art-icons-for-medievalfantasy-rpg<a name="line.1706"></a>
-<span class="sourceLineNo">1707</span>     * Created by Henrique Lazarini (7Soul1, http://7soul1.deviantart.com/ )<a name="line.1707"></a>
-<span class="sourceLineNo">1708</span>     * &lt;br&gt;<a name="line.1708"></a>
-<span class="sourceLineNo">1709</span>     * Needs file:<a name="line.1709"></a>
-<span class="sourceLineNo">1710</span>     * &lt;ul&gt;<a name="line.1710"></a>
-<span class="sourceLineNo">1711</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Tentacle.png&lt;/li&gt;<a name="line.1711"></a>
-<span class="sourceLineNo">1712</span>     * &lt;/ul&gt;<a name="line.1712"></a>
-<span class="sourceLineNo">1713</span>     * @return a TextureRegion containing an image of a tentacle.<a name="line.1713"></a>
-<span class="sourceLineNo">1714</span>     */<a name="line.1714"></a>
-<span class="sourceLineNo">1715</span>    public static TextureRegion getTentacle()<a name="line.1715"></a>
-<span class="sourceLineNo">1716</span>    {<a name="line.1716"></a>
-<span class="sourceLineNo">1717</span>        initialize();<a name="line.1717"></a>
-<span class="sourceLineNo">1718</span>        if(instance.tentacle == null || instance.tentacleRegion == null)<a name="line.1718"></a>
-<span class="sourceLineNo">1719</span>        {<a name="line.1719"></a>
-<span class="sourceLineNo">1720</span>            try {<a name="line.1720"></a>
-<span class="sourceLineNo">1721</span>                instance.tentacle = new Texture(Gdx.files.internal("Tentacle.png"));<a name="line.1721"></a>
-<span class="sourceLineNo">1722</span>                instance.tentacleRegion = new TextureRegion(instance.tentacle);<a name="line.1722"></a>
-<span class="sourceLineNo">1723</span>            } catch (Exception ignored) {<a name="line.1723"></a>
-<span class="sourceLineNo">1724</span>            }<a name="line.1724"></a>
-<span class="sourceLineNo">1725</span>        }<a name="line.1725"></a>
-<span class="sourceLineNo">1726</span>        return instance.tentacleRegion;<a name="line.1726"></a>
-<span class="sourceLineNo">1727</span>    }<a name="line.1727"></a>
-<span class="sourceLineNo">1728</span><a name="line.1728"></a>
-<span class="sourceLineNo">1729</span><a name="line.1729"></a>
-<span class="sourceLineNo">1730</span>    /**<a name="line.1730"></a>
-<span class="sourceLineNo">1731</span>     * Gets a TextureAtlas containing many icons with a distance field effect applied, allowing them to be used with<a name="line.1731"></a>
-<span class="sourceLineNo">1732</span>     * "stretchable" fonts and be resized in the same way. These will not look as-expected if stretchable fonts are not<a name="line.1732"></a>
-<span class="sourceLineNo">1733</span>     * in use, and will seem hazy and indistinct if the shader hasn't been set up for a distance field effect by<a name="line.1733"></a>
-<span class="sourceLineNo">1734</span>     * TextCellFactory (which stretchable fonts will do automatically). The one page of the TextureAtlas is 2048x2048,<a name="line.1734"></a>
-<span class="sourceLineNo">1735</span>     * which may be too large for some old, low-end Android phones, and possibly integrated graphics with fairly old<a name="line.1735"></a>
-<span class="sourceLineNo">1736</span>     * processors on desktop. It has over 2000 icons.<a name="line.1736"></a>
-<span class="sourceLineNo">1737</span>     * &lt;br&gt;<a name="line.1737"></a>
-<span class="sourceLineNo">1738</span>     * The icons are CC-BY and the license is distributed with them, though the icons are not necessarily included with<a name="line.1738"></a>
-<span class="sourceLineNo">1739</span>     * SquidLib. If you use the icon atlas, be sure to include icons-license.txt with it and reference it with your<a name="line.1739"></a>
-<span class="sourceLineNo">1740</span>     * game's license and/or credits information.<a name="line.1740"></a>
-<span class="sourceLineNo">1741</span>     * &lt;br&gt;<a name="line.1741"></a>
-<span class="sourceLineNo">1742</span>     * Needs files:<a name="line.1742"></a>
-<span class="sourceLineNo">1743</span>     * &lt;ul&gt;<a name="line.1743"></a>
-<span class="sourceLineNo">1744</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/icons.atlas&lt;/li&gt;<a name="line.1744"></a>
-<span class="sourceLineNo">1745</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/icons.png&lt;/li&gt;<a name="line.1745"></a>
-<span class="sourceLineNo">1746</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/icons-license.txt Needed to credit artists&lt;/li&gt;<a name="line.1746"></a>
-<span class="sourceLineNo">1747</span>     * &lt;/ul&gt;<a name="line.1747"></a>
-<span class="sourceLineNo">1748</span>     * @return a TextureAtlas containing over 2000 icons with a distance field effect<a name="line.1748"></a>
-<span class="sourceLineNo">1749</span>     */<a name="line.1749"></a>
-<span class="sourceLineNo">1750</span>    public static TextureAtlas getIconAtlas()<a name="line.1750"></a>
-<span class="sourceLineNo">1751</span>    {<a name="line.1751"></a>
-<span class="sourceLineNo">1752</span>        initialize();<a name="line.1752"></a>
-<span class="sourceLineNo">1753</span>        if(instance.iconAtlas == null)<a name="line.1753"></a>
-<span class="sourceLineNo">1754</span>        {<a name="line.1754"></a>
-<span class="sourceLineNo">1755</span>            try {<a name="line.1755"></a>
-<span class="sourceLineNo">1756</span>                instance.iconAtlas = new TextureAtlas(Gdx.files.internal("icons.atlas"));<a name="line.1756"></a>
-<span class="sourceLineNo">1757</span>            } catch (Exception ignored) {<a name="line.1757"></a>
-<span class="sourceLineNo">1758</span>            }<a name="line.1758"></a>
-<span class="sourceLineNo">1759</span>        }<a name="line.1759"></a>
-<span class="sourceLineNo">1760</span>        return instance.iconAtlas;<a name="line.1760"></a>
-<span class="sourceLineNo">1761</span>    }<a name="line.1761"></a>
-<span class="sourceLineNo">1762</span><a name="line.1762"></a>
-<span class="sourceLineNo">1763</span>    /**<a name="line.1763"></a>
-<span class="sourceLineNo">1764</span>     * This is a static global StatefulRNG that's meant for usage in cases where the seed does not matter and any<a name="line.1764"></a>
-<span class="sourceLineNo">1765</span>     * changes to this RNG's state will not change behavior elsewhere in the program; this means the GUI mainly.<a name="line.1765"></a>
-<span class="sourceLineNo">1766</span>     */<a name="line.1766"></a>
-<span class="sourceLineNo">1767</span>    public static StatefulRNG getGuiRandom()<a name="line.1767"></a>
-<span class="sourceLineNo">1768</span>    {<a name="line.1768"></a>
-<span class="sourceLineNo">1769</span>        initialize();<a name="line.1769"></a>
-<span class="sourceLineNo">1770</span>        if(instance.guiRandom == null)<a name="line.1770"></a>
-<span class="sourceLineNo">1771</span>        {<a name="line.1771"></a>
-<span class="sourceLineNo">1772</span>            instance.guiRandom =  new StatefulRNG();<a name="line.1772"></a>
-<span class="sourceLineNo">1773</span>        }<a name="line.1773"></a>
-<span class="sourceLineNo">1774</span>        return instance.guiRandom;<a name="line.1774"></a>
-<span class="sourceLineNo">1775</span>    }<a name="line.1775"></a>
-<span class="sourceLineNo">1776</span>    /**<a name="line.1776"></a>
-<span class="sourceLineNo">1777</span>     * This is a static global SquidColorCenter that can be used in places that just need an existing object that can do<a name="line.1777"></a>
-<span class="sourceLineNo">1778</span>     * things like analyze hue or saturation of a color.<a name="line.1778"></a>
-<span class="sourceLineNo">1779</span>     */<a name="line.1779"></a>
-<span class="sourceLineNo">1780</span>    public static SquidColorCenter getSCC()<a name="line.1780"></a>
-<span class="sourceLineNo">1781</span>    {<a name="line.1781"></a>
-<span class="sourceLineNo">1782</span>        initialize();<a name="line.1782"></a>
-<span class="sourceLineNo">1783</span>        if(instance.scc == null)<a name="line.1783"></a>
-<span class="sourceLineNo">1784</span>        {<a name="line.1784"></a>
-<span class="sourceLineNo">1785</span>            instance.scc =  new SquidColorCenter();<a name="line.1785"></a>
-<span class="sourceLineNo">1786</span>        }<a name="line.1786"></a>
-<span class="sourceLineNo">1787</span>        return instance.scc;<a name="line.1787"></a>
-<span class="sourceLineNo">1788</span>    }<a name="line.1788"></a>
-<span class="sourceLineNo">1789</span><a name="line.1789"></a>
-<span class="sourceLineNo">1790</span>    /**<a name="line.1790"></a>
-<span class="sourceLineNo">1791</span>     * Special symbols that can be used as icons if you use the narrow default font.<a name="line.1791"></a>
-<span class="sourceLineNo">1792</span>     */<a name="line.1792"></a>
-<span class="sourceLineNo">1793</span>    public static final String narrowFontSymbols = "ሀሁሂሃሄህሆሇለሉሊላሌልሎሏሐሑሒሓሔሕሖሗመሙሚማሜ",<a name="line.1793"></a>
-<span class="sourceLineNo">1794</span>                                  narrowFontAll = " !\"#$%&amp;'()*+,-./0123\n" +<a name="line.1794"></a>
-<span class="sourceLineNo">1795</span>                                          "456789:;&lt;=&gt;?@ABCDEFG\n" +<a name="line.1795"></a>
-<span class="sourceLineNo">1796</span>                                          "HIJKLMNOPQRSTUVWXYZ[\n" +<a name="line.1796"></a>
-<span class="sourceLineNo">1797</span>                                          "\\]^_`abcdefghijklmno\n" +<a name="line.1797"></a>
-<span class="sourceLineNo">1798</span>                                          "pqrstuvwxyz{|}~¡¢£¤¥\n" +<a name="line.1798"></a>
-<span class="sourceLineNo">1799</span>                                          "¦§¨©ª«¬\u00AD®¯°±²³´µ¶·¸¹\n" +<a name="line.1799"></a>
-<span class="sourceLineNo">1800</span>                                          "º»¼½¾¿×ß÷øɍɎሀሁሂሃሄህሆሇ\n" +<a name="line.1800"></a>
-<span class="sourceLineNo">1801</span>                                          "ለሉሊላሌልሎሏሐሑሒሓሔሕሖሗመሙሚማ\n" +<a name="line.1801"></a>
-<span class="sourceLineNo">1802</span>                                          "ሜẞ‐‒–—―‖‗‘’‚‛“”„‟†‡•\n" +<a name="line.1802"></a>
-<span class="sourceLineNo">1803</span>                                          "…‧‹›€™"+<a name="line.1803"></a>
-<span class="sourceLineNo">1804</span>                                          "←↑→↓↷↺↻"+ // left, up, right, down, "tap", "counterclockwise", "clockwise"<a name="line.1804"></a>
-<span class="sourceLineNo">1805</span>                                          "∀∁∂∃∄∅∆\n" +<a name="line.1805"></a>
-<span class="sourceLineNo">1806</span>                                          "∇∈∉∋∌∎∏∐∑−∓∔∕∖∘∙√∛∜∝\n" +<a name="line.1806"></a>
-<span class="sourceLineNo">1807</span>                                          "∞∟∠∡∢∣∤∥∦∧∨∩∪∫∬∮∯∱∲∳\n" +<a name="line.1807"></a>
-<span class="sourceLineNo">1808</span>                                          "∴∵∶∷≈≋≠≡≢≣≤≥≦≧≨≩≪≫─━\n" +<a name="line.1808"></a>
-<span class="sourceLineNo">1809</span>                                          "│┃┄┅┆┇┈┉┊┋┌┍┎┏┐┑┒┓└┕\n" +<a name="line.1809"></a>
-<span class="sourceLineNo">1810</span>                                          "┖┗┘┙┚┛├┝┞┟┠┡┢┣┤┥┦┧┨┩\n" +<a name="line.1810"></a>
-<span class="sourceLineNo">1811</span>                                          "┪┫┬┭┮┯┰┱┲┳┴┵┶┷┸┹┺┻┼┽\n" +<a name="line.1811"></a>
-<span class="sourceLineNo">1812</span>                                          "┾┿╀╁╂╃╄╅╆╇╈╉╊╋╌╍╎╏═║\n" +<a name="line.1812"></a>
-<span class="sourceLineNo">1813</span>                                          "╒╓╔╕╖╗╘╙╚╛╜╝╞╟╠╡╢╣╤╥\n" +<a name="line.1813"></a>
-<span class="sourceLineNo">1814</span>                                          "╦╧╨╩╪╫╬╭╮╯╰╱╲╳╴╵╶╷╸╹\n" +<a name="line.1814"></a>
-<span class="sourceLineNo">1815</span>                                          "╺╻╼╽╾╿▁▄▅▆▇█▌▐░▒▓▔▖▗\n" +<a name="line.1815"></a>
-<span class="sourceLineNo">1816</span>                                          "▘▙▚▛▜▝▞▟";<a name="line.1816"></a>
-<span class="sourceLineNo">1817</span><a name="line.1817"></a>
-<span class="sourceLineNo">1818</span>    /**<a name="line.1818"></a>
-<span class="sourceLineNo">1819</span>     * Called when the {@link Application} is about to pause<a name="line.1819"></a>
-<span class="sourceLineNo">1820</span>     */<a name="line.1820"></a>
-<span class="sourceLineNo">1821</span>    @Override<a name="line.1821"></a>
-<span class="sourceLineNo">1822</span>    public void pause() {<a name="line.1822"></a>
-<span class="sourceLineNo">1823</span>    }<a name="line.1823"></a>
-<span class="sourceLineNo">1824</span><a name="line.1824"></a>
-<span class="sourceLineNo">1825</span>    /**<a name="line.1825"></a>
-<span class="sourceLineNo">1826</span>     * Called when the Application is about to be resumed<a name="line.1826"></a>
-<span class="sourceLineNo">1827</span>     */<a name="line.1827"></a>
-<span class="sourceLineNo">1828</span>    @Override<a name="line.1828"></a>
-<span class="sourceLineNo">1829</span>    public void resume() {<a name="line.1829"></a>
-<span class="sourceLineNo">1830</span>    }<a name="line.1830"></a>
-<span class="sourceLineNo">1831</span><a name="line.1831"></a>
-<span class="sourceLineNo">1832</span>    /**<a name="line.1832"></a>
-<span class="sourceLineNo">1833</span>     * Called when the {@link Application} is about to be disposed<a name="line.1833"></a>
-<span class="sourceLineNo">1834</span>     */<a name="line.1834"></a>
-<span class="sourceLineNo">1835</span>    @Override<a name="line.1835"></a>
-<span class="sourceLineNo">1836</span>    public void dispose() {<a name="line.1836"></a>
-<span class="sourceLineNo">1837</span>        if(arial15 != null) {<a name="line.1837"></a>
-<span class="sourceLineNo">1838</span>            arial15.dispose();<a name="line.1838"></a>
-<span class="sourceLineNo">1839</span>            arial15 = null;<a name="line.1839"></a>
-<span class="sourceLineNo">1840</span>        }<a name="line.1840"></a>
-<span class="sourceLineNo">1841</span>        if(narrow1 != null) {<a name="line.1841"></a>
-<span class="sourceLineNo">1842</span>            narrow1.dispose();<a name="line.1842"></a>
-<span class="sourceLineNo">1843</span>            narrow1 = null;<a name="line.1843"></a>
-<span class="sourceLineNo">1844</span>        }<a name="line.1844"></a>
-<span class="sourceLineNo">1845</span>        if(narrow2 != null) {<a name="line.1845"></a>
-<span class="sourceLineNo">1846</span>            narrow2.dispose();<a name="line.1846"></a>
-<span class="sourceLineNo">1847</span>            narrow2 = null;<a name="line.1847"></a>
-<span class="sourceLineNo">1848</span>        }<a name="line.1848"></a>
-<span class="sourceLineNo">1849</span>        if(narrow3 != null) {<a name="line.1849"></a>
-<span class="sourceLineNo">1850</span>            narrow3.dispose();<a name="line.1850"></a>
-<span class="sourceLineNo">1851</span>            narrow3 = null;<a name="line.1851"></a>
-<span class="sourceLineNo">1852</span>        }<a name="line.1852"></a>
-<span class="sourceLineNo">1853</span>        if(smooth1 != null) {<a name="line.1853"></a>
-<span class="sourceLineNo">1854</span>            smooth1.dispose();<a name="line.1854"></a>
-<span class="sourceLineNo">1855</span>            smooth1 = null;<a name="line.1855"></a>
-<span class="sourceLineNo">1856</span>        }<a name="line.1856"></a>
-<span class="sourceLineNo">1857</span>        if(smooth2 != null) {<a name="line.1857"></a>
-<span class="sourceLineNo">1858</span>            smooth2.dispose();<a name="line.1858"></a>
-<span class="sourceLineNo">1859</span>            smooth2 = null;<a name="line.1859"></a>
-<span class="sourceLineNo">1860</span>        }<a name="line.1860"></a>
-<span class="sourceLineNo">1861</span>        if(square1 != null) {<a name="line.1861"></a>
-<span class="sourceLineNo">1862</span>            square1.dispose();<a name="line.1862"></a>
-<span class="sourceLineNo">1863</span>            square1 = null;<a name="line.1863"></a>
-<span class="sourceLineNo">1864</span>        }<a name="line.1864"></a>
-<span class="sourceLineNo">1865</span>        if(square2 != null) {<a name="line.1865"></a>
-<span class="sourceLineNo">1866</span>            square2.dispose();<a name="line.1866"></a>
-<span class="sourceLineNo">1867</span>            square2 = null;<a name="line.1867"></a>
-<span class="sourceLineNo">1868</span>        }<a name="line.1868"></a>
-<span class="sourceLineNo">1869</span>        if(smoothSquare != null) {<a name="line.1869"></a>
-<span class="sourceLineNo">1870</span>            smoothSquare.dispose();<a name="line.1870"></a>
-<span class="sourceLineNo">1871</span>            smoothSquare = null;<a name="line.1871"></a>
-<span class="sourceLineNo">1872</span>        }<a name="line.1872"></a>
-<span class="sourceLineNo">1873</span>        if(smoothSquareOld != null) {<a name="line.1873"></a>
-<span class="sourceLineNo">1874</span>            smoothSquareOld.dispose();<a name="line.1874"></a>
-<span class="sourceLineNo">1875</span>            smoothSquareOld = null;<a name="line.1875"></a>
-<span class="sourceLineNo">1876</span>        }<a name="line.1876"></a>
-<span class="sourceLineNo">1877</span>        if(distanceSquare != null) {<a name="line.1877"></a>
-<span class="sourceLineNo">1878</span>            distanceSquare.dispose();<a name="line.1878"></a>
-<span class="sourceLineNo">1879</span>            distanceSquare = null;<a name="line.1879"></a>
-<span class="sourceLineNo">1880</span>        }<a name="line.1880"></a>
-<span class="sourceLineNo">1881</span>        if(distanceNarrow != null) {<a name="line.1881"></a>
-<span class="sourceLineNo">1882</span>            distanceNarrow.dispose();<a name="line.1882"></a>
-<span class="sourceLineNo">1883</span>            distanceNarrow = null;<a name="line.1883"></a>
-<span class="sourceLineNo">1884</span>        }<a name="line.1884"></a>
-<span class="sourceLineNo">1885</span>        if(typewriterDistanceNarrow != null) {<a name="line.1885"></a>
-<span class="sourceLineNo">1886</span>            typewriterDistanceNarrow.dispose();<a name="line.1886"></a>
-<span class="sourceLineNo">1887</span>            typewriterDistanceNarrow = null;<a name="line.1887"></a>
-<span class="sourceLineNo">1888</span>        }<a name="line.1888"></a>
-<span class="sourceLineNo">1889</span>        if(distanceCode != null) {<a name="line.1889"></a>
-<span class="sourceLineNo">1890</span>            distanceCode.dispose();<a name="line.1890"></a>
-<span class="sourceLineNo">1891</span>            distanceCode = null;<a name="line.1891"></a>
-<span class="sourceLineNo">1892</span>        }<a name="line.1892"></a>
-<span class="sourceLineNo">1893</span>        if(distanceDejaVu != null) {<a name="line.1893"></a>
-<span class="sourceLineNo">1894</span>            distanceDejaVu.dispose();<a name="line.1894"></a>
-<span class="sourceLineNo">1895</span>            distanceDejaVu = null;<a name="line.1895"></a>
-<span class="sourceLineNo">1896</span>        }<a name="line.1896"></a>
-<span class="sourceLineNo">1897</span>        if(distanceLean != null) {<a name="line.1897"></a>
-<span class="sourceLineNo">1898</span>            distanceLean.dispose();<a name="line.1898"></a>
-<span class="sourceLineNo">1899</span>            distanceLean = null;<a name="line.1899"></a>
-<span class="sourceLineNo">1900</span>        }<a name="line.1900"></a>
-<span class="sourceLineNo">1901</span>        if(distanceSlab != null) {<a name="line.1901"></a>
-<span class="sourceLineNo">1902</span>            distanceSlab.dispose();<a name="line.1902"></a>
-<span class="sourceLineNo">1903</span>            distanceSlab = null;<a name="line.1903"></a>
-<span class="sourceLineNo">1904</span>        }<a name="line.1904"></a>
-<span class="sourceLineNo">1905</span>        if(distanceLeanLight != null) {<a name="line.1905"></a>
-<span class="sourceLineNo">1906</span>            distanceLeanLight.dispose();<a name="line.1906"></a>
-<span class="sourceLineNo">1907</span>            distanceLeanLight = null;<a name="line.1907"></a>
-<span class="sourceLineNo">1908</span>        }<a name="line.1908"></a>
-<span class="sourceLineNo">1909</span>        if(distanceSlabLight != null) {<a name="line.1909"></a>
-<span class="sourceLineNo">1910</span>            distanceSlabLight.dispose();<a name="line.1910"></a>
-<span class="sourceLineNo">1911</span>            distanceSlabLight = null;<a name="line.1911"></a>
-<span class="sourceLineNo">1912</span>        }<a name="line.1912"></a>
-<span class="sourceLineNo">1913</span>        if(distanceClean != null) {<a name="line.1913"></a>
-<span class="sourceLineNo">1914</span>            distanceClean.dispose();<a name="line.1914"></a>
-<span class="sourceLineNo">1915</span>            distanceClean = null;<a name="line.1915"></a>
-<span class="sourceLineNo">1916</span>        }<a name="line.1916"></a>
-<span class="sourceLineNo">1917</span>        if(distancePrint != null) {<a name="line.1917"></a>
-<span class="sourceLineNo">1918</span>            distancePrint.dispose();<a name="line.1918"></a>
-<span class="sourceLineNo">1919</span>            distancePrint = null;<a name="line.1919"></a>
-<span class="sourceLineNo">1920</span>        }<a name="line.1920"></a>
-<span class="sourceLineNo">1921</span>        if(distanceOrbit != null) {<a name="line.1921"></a>
-<span class="sourceLineNo">1922</span>            distanceOrbit.dispose();<a name="line.1922"></a>
-<span class="sourceLineNo">1923</span>            distanceOrbit = null;<a name="line.1923"></a>
-<span class="sourceLineNo">1924</span>        }<a name="line.1924"></a>
-<span class="sourceLineNo">1925</span>        if(msdfSlab != null) {<a name="line.1925"></a>
-<span class="sourceLineNo">1926</span>            msdfSlab.dispose();<a name="line.1926"></a>
-<span class="sourceLineNo">1927</span>            msdfSlab = null;<a name="line.1927"></a>
-<span class="sourceLineNo">1928</span>        }<a name="line.1928"></a>
-<span class="sourceLineNo">1929</span>        if(msdfSlabItalic != null) {<a name="line.1929"></a>
-<span class="sourceLineNo">1930</span>            msdfSlabItalic.dispose();<a name="line.1930"></a>
-<span class="sourceLineNo">1931</span>            msdfSlabItalic = null;<a name="line.1931"></a>
-<span class="sourceLineNo">1932</span>        }<a name="line.1932"></a>
-<span class="sourceLineNo">1933</span>        if(msdfLean != null) {<a name="line.1933"></a>
-<span class="sourceLineNo">1934</span>            msdfLean.dispose();<a name="line.1934"></a>
-<span class="sourceLineNo">1935</span>            msdfLean = null;<a name="line.1935"></a>
-<span class="sourceLineNo">1936</span>        }<a name="line.1936"></a>
-<span class="sourceLineNo">1937</span>        if(msdfLeanItalic != null) {<a name="line.1937"></a>
-<span class="sourceLineNo">1938</span>            msdfLeanItalic.dispose();<a name="line.1938"></a>
-<span class="sourceLineNo">1939</span>            msdfLeanItalic = null;<a name="line.1939"></a>
-<span class="sourceLineNo">1940</span>        }<a name="line.1940"></a>
-<span class="sourceLineNo">1941</span>        if(msdfDejaVu != null) {<a name="line.1941"></a>
-<span class="sourceLineNo">1942</span>            msdfDejaVu.dispose();<a name="line.1942"></a>
-<span class="sourceLineNo">1943</span>            msdfDejaVu = null;<a name="line.1943"></a>
-<span class="sourceLineNo">1944</span>        }<a name="line.1944"></a>
-<span class="sourceLineNo">1945</span>        if(msdfDejaVuItalic != null) {<a name="line.1945"></a>
-<span class="sourceLineNo">1946</span>            msdfDejaVuItalic.dispose();<a name="line.1946"></a>
-<span class="sourceLineNo">1947</span>            msdfDejaVuItalic = null;<a name="line.1947"></a>
-<span class="sourceLineNo">1948</span>        }<a name="line.1948"></a>
-<span class="sourceLineNo">1949</span>        if (unicode1 != null) {<a name="line.1949"></a>
-<span class="sourceLineNo">1950</span>            unicode1.dispose();<a name="line.1950"></a>
-<span class="sourceLineNo">1951</span>            unicode1 = null;<a name="line.1951"></a>
-<span class="sourceLineNo">1952</span>        }<a name="line.1952"></a>
-<span class="sourceLineNo">1953</span>        if (unicode2 != null) {<a name="line.1953"></a>
-<span class="sourceLineNo">1954</span>            unicode2.dispose();<a name="line.1954"></a>
-<span class="sourceLineNo">1955</span>            unicode2 = null;<a name="line.1955"></a>
-<span class="sourceLineNo">1956</span>        }<a name="line.1956"></a>
-<span class="sourceLineNo">1957</span>        if(familyLean != null) {<a name="line.1957"></a>
-<span class="sourceLineNo">1958</span>            familyLean.dispose();<a name="line.1958"></a>
-<span class="sourceLineNo">1959</span>            familyLean = null;<a name="line.1959"></a>
-<span class="sourceLineNo">1960</span>        }<a name="line.1960"></a>
-<span class="sourceLineNo">1961</span>        if(familySlab != null) {<a name="line.1961"></a>
-<span class="sourceLineNo">1962</span>            familySlab.dispose();<a name="line.1962"></a>
-<span class="sourceLineNo">1963</span>            familySlab = null;<a name="line.1963"></a>
-<span class="sourceLineNo">1964</span>        }<a name="line.1964"></a>
-<span class="sourceLineNo">1965</span>        if(tentacle != null) {<a name="line.1965"></a>
-<span class="sourceLineNo">1966</span>            tentacle.dispose();<a name="line.1966"></a>
-<span class="sourceLineNo">1967</span>            tentacle = null;<a name="line.1967"></a>
-<span class="sourceLineNo">1968</span>        }<a name="line.1968"></a>
-<span class="sourceLineNo">1969</span>        if(iconAtlas != null) {<a name="line.1969"></a>
-<span class="sourceLineNo">1970</span>            iconAtlas.dispose();<a name="line.1970"></a>
-<span class="sourceLineNo">1971</span>            iconAtlas = null;<a name="line.1971"></a>
-<span class="sourceLineNo">1972</span>        }<a name="line.1972"></a>
-<span class="sourceLineNo">1973</span>        Gdx.app.removeLifecycleListener(this);<a name="line.1973"></a>
-<span class="sourceLineNo">1974</span>        instance = null;<a name="line.1974"></a>
-<span class="sourceLineNo">1975</span>    }<a name="line.1975"></a>
-<span class="sourceLineNo">1976</span>}<a name="line.1976"></a>
+<span class="sourceLineNo">1679</span>     * This creates a TextFamily instead of a BitmapFont because it needs to set some extra information so the<a name="line.1679"></a>
+<span class="sourceLineNo">1680</span>     * distance field font technique this uses can work, but it can also be used as a TextCellFactory.<a name="line.1680"></a>
+<span class="sourceLineNo">1681</span>     * &lt;br&gt;<a name="line.1681"></a>
+<span class="sourceLineNo">1682</span>     * Needs files:<a name="line.1682"></a>
+<span class="sourceLineNo">1683</span>     * &lt;ul&gt;<a name="line.1683"></a>
+<span class="sourceLineNo">1684</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Slab-Family-msdf.fnt&lt;/li&gt;<a name="line.1684"></a>
+<span class="sourceLineNo">1685</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Iosevka-Slab-Family-msdf.png&lt;/li&gt;<a name="line.1685"></a>
+<span class="sourceLineNo">1686</span>     * &lt;/ul&gt;<a name="line.1686"></a>
+<span class="sourceLineNo">1687</span>     * @return the TextFamily object that can represent many sizes of the font Iosevka-Slab.ttf with 4 styles and an MSDF effect<a name="line.1687"></a>
+<span class="sourceLineNo">1688</span>     */<a name="line.1688"></a>
+<span class="sourceLineNo">1689</span>    public static TextFamily getCrispSlabFamily()<a name="line.1689"></a>
+<span class="sourceLineNo">1690</span>    {<a name="line.1690"></a>
+<span class="sourceLineNo">1691</span>        initialize();<a name="line.1691"></a>
+<span class="sourceLineNo">1692</span>        if(instance.familySlabMSDF == null)<a name="line.1692"></a>
+<span class="sourceLineNo">1693</span>        {<a name="line.1693"></a>
+<span class="sourceLineNo">1694</span>            try {<a name="line.1694"></a>
+<span class="sourceLineNo">1695</span>                instance.familySlabMSDF = new TextFamily();<a name="line.1695"></a>
+<span class="sourceLineNo">1696</span>                instance.familySlabMSDF.fontMultiDistanceField("Iosevka-Slab-Family-msdf.fnt", "Iosevka-Slab-Family-msdf.png");<a name="line.1696"></a>
+<span class="sourceLineNo">1697</span>            } catch (Exception e) {<a name="line.1697"></a>
+<span class="sourceLineNo">1698</span>                e.printStackTrace();<a name="line.1698"></a>
+<span class="sourceLineNo">1699</span>            }<a name="line.1699"></a>
+<span class="sourceLineNo">1700</span>        }<a name="line.1700"></a>
+<span class="sourceLineNo">1701</span>        if(instance.familySlabMSDF != null)<a name="line.1701"></a>
+<span class="sourceLineNo">1702</span>            return instance.familySlabMSDF.copy();<a name="line.1702"></a>
+<span class="sourceLineNo">1703</span>        return null;<a name="line.1703"></a>
+<span class="sourceLineNo">1704</span><a name="line.1704"></a>
+<span class="sourceLineNo">1705</span>    }<a name="line.1705"></a>
+<span class="sourceLineNo">1706</span><a name="line.1706"></a>
+<span class="sourceLineNo">1707</span>    /**<a name="line.1707"></a>
+<span class="sourceLineNo">1708</span>     * Gets an image of a (squid-like, for SquidLib) tentacle, 32x32px.<a name="line.1708"></a>
+<span class="sourceLineNo">1709</span>     * Source is public domain: http://opengameart.org/content/496-pixel-art-icons-for-medievalfantasy-rpg<a name="line.1709"></a>
+<span class="sourceLineNo">1710</span>     * Created by Henrique Lazarini (7Soul1, http://7soul1.deviantart.com/ )<a name="line.1710"></a>
+<span class="sourceLineNo">1711</span>     * &lt;br&gt;<a name="line.1711"></a>
+<span class="sourceLineNo">1712</span>     * Needs file:<a name="line.1712"></a>
+<span class="sourceLineNo">1713</span>     * &lt;ul&gt;<a name="line.1713"></a>
+<span class="sourceLineNo">1714</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/Tentacle.png&lt;/li&gt;<a name="line.1714"></a>
+<span class="sourceLineNo">1715</span>     * &lt;/ul&gt;<a name="line.1715"></a>
+<span class="sourceLineNo">1716</span>     * @return a TextureRegion containing an image of a tentacle.<a name="line.1716"></a>
+<span class="sourceLineNo">1717</span>     */<a name="line.1717"></a>
+<span class="sourceLineNo">1718</span>    public static TextureRegion getTentacle()<a name="line.1718"></a>
+<span class="sourceLineNo">1719</span>    {<a name="line.1719"></a>
+<span class="sourceLineNo">1720</span>        initialize();<a name="line.1720"></a>
+<span class="sourceLineNo">1721</span>        if(instance.tentacle == null || instance.tentacleRegion == null)<a name="line.1721"></a>
+<span class="sourceLineNo">1722</span>        {<a name="line.1722"></a>
+<span class="sourceLineNo">1723</span>            try {<a name="line.1723"></a>
+<span class="sourceLineNo">1724</span>                instance.tentacle = new Texture(Gdx.files.internal("Tentacle.png"));<a name="line.1724"></a>
+<span class="sourceLineNo">1725</span>                instance.tentacleRegion = new TextureRegion(instance.tentacle);<a name="line.1725"></a>
+<span class="sourceLineNo">1726</span>            } catch (Exception ignored) {<a name="line.1726"></a>
+<span class="sourceLineNo">1727</span>            }<a name="line.1727"></a>
+<span class="sourceLineNo">1728</span>        }<a name="line.1728"></a>
+<span class="sourceLineNo">1729</span>        return instance.tentacleRegion;<a name="line.1729"></a>
+<span class="sourceLineNo">1730</span>    }<a name="line.1730"></a>
+<span class="sourceLineNo">1731</span><a name="line.1731"></a>
+<span class="sourceLineNo">1732</span><a name="line.1732"></a>
+<span class="sourceLineNo">1733</span>    /**<a name="line.1733"></a>
+<span class="sourceLineNo">1734</span>     * Gets a TextureAtlas containing many icons with a distance field effect applied, allowing them to be used with<a name="line.1734"></a>
+<span class="sourceLineNo">1735</span>     * "stretchable" fonts and be resized in the same way. These will not look as-expected if stretchable fonts are not<a name="line.1735"></a>
+<span class="sourceLineNo">1736</span>     * in use, and will seem hazy and indistinct if the shader hasn't been set up for a distance field effect by<a name="line.1736"></a>
+<span class="sourceLineNo">1737</span>     * TextCellFactory (which stretchable fonts will do automatically). The one page of the TextureAtlas is 2048x2048,<a name="line.1737"></a>
+<span class="sourceLineNo">1738</span>     * which may be too large for some old, low-end Android phones, and possibly integrated graphics with fairly old<a name="line.1738"></a>
+<span class="sourceLineNo">1739</span>     * processors on desktop. It has over 2000 icons.<a name="line.1739"></a>
+<span class="sourceLineNo">1740</span>     * &lt;br&gt;<a name="line.1740"></a>
+<span class="sourceLineNo">1741</span>     * The icons are CC-BY and the license is distributed with them, though the icons are not necessarily included with<a name="line.1741"></a>
+<span class="sourceLineNo">1742</span>     * SquidLib. If you use the icon atlas, be sure to include icons-license.txt with it and reference it with your<a name="line.1742"></a>
+<span class="sourceLineNo">1743</span>     * game's license and/or credits information.<a name="line.1743"></a>
+<span class="sourceLineNo">1744</span>     * &lt;br&gt;<a name="line.1744"></a>
+<span class="sourceLineNo">1745</span>     * Needs files:<a name="line.1745"></a>
+<span class="sourceLineNo">1746</span>     * &lt;ul&gt;<a name="line.1746"></a>
+<span class="sourceLineNo">1747</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/icons.atlas&lt;/li&gt;<a name="line.1747"></a>
+<span class="sourceLineNo">1748</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/icons.png&lt;/li&gt;<a name="line.1748"></a>
+<span class="sourceLineNo">1749</span>     *     &lt;li&gt;https://github.com/SquidPony/SquidLib/blob/master/assets/icons-license.txt Needed to credit artists&lt;/li&gt;<a name="line.1749"></a>
+<span class="sourceLineNo">1750</span>     * &lt;/ul&gt;<a name="line.1750"></a>
+<span class="sourceLineNo">1751</span>     * @return a TextureAtlas containing over 2000 icons with a distance field effect<a name="line.1751"></a>
+<span class="sourceLineNo">1752</span>     */<a name="line.1752"></a>
+<span class="sourceLineNo">1753</span>    public static TextureAtlas getIconAtlas()<a name="line.1753"></a>
+<span class="sourceLineNo">1754</span>    {<a name="line.1754"></a>
+<span class="sourceLineNo">1755</span>        initialize();<a name="line.1755"></a>
+<span class="sourceLineNo">1756</span>        if(instance.iconAtlas == null)<a name="line.1756"></a>
+<span class="sourceLineNo">1757</span>        {<a name="line.1757"></a>
+<span class="sourceLineNo">1758</span>            try {<a name="line.1758"></a>
+<span class="sourceLineNo">1759</span>                instance.iconAtlas = new TextureAtlas(Gdx.files.internal("icons.atlas"));<a name="line.1759"></a>
+<span class="sourceLineNo">1760</span>            } catch (Exception ignored) {<a name="line.1760"></a>
+<span class="sourceLineNo">1761</span>            }<a name="line.1761"></a>
+<span class="sourceLineNo">1762</span>        }<a name="line.1762"></a>
+<span class="sourceLineNo">1763</span>        return instance.iconAtlas;<a name="line.1763"></a>
+<span class="sourceLineNo">1764</span>    }<a name="line.1764"></a>
+<span class="sourceLineNo">1765</span><a name="line.1765"></a>
+<span class="sourceLineNo">1766</span>    /**<a name="line.1766"></a>
+<span class="sourceLineNo">1767</span>     * This is a static global StatefulRNG that's meant for usage in cases where the seed does not matter and any<a name="line.1767"></a>
+<span class="sourceLineNo">1768</span>     * changes to this RNG's state will not change behavior elsewhere in the program; this means the GUI mainly.<a name="line.1768"></a>
+<span class="sourceLineNo">1769</span>     */<a name="line.1769"></a>
+<span class="sourceLineNo">1770</span>    public static StatefulRNG getGuiRandom()<a name="line.1770"></a>
+<span class="sourceLineNo">1771</span>    {<a name="line.1771"></a>
+<span class="sourceLineNo">1772</span>        initialize();<a name="line.1772"></a>
+<span class="sourceLineNo">1773</span>        if(instance.guiRandom == null)<a name="line.1773"></a>
+<span class="sourceLineNo">1774</span>        {<a name="line.1774"></a>
+<span class="sourceLineNo">1775</span>            instance.guiRandom =  new StatefulRNG();<a name="line.1775"></a>
+<span class="sourceLineNo">1776</span>        }<a name="line.1776"></a>
+<span class="sourceLineNo">1777</span>        return instance.guiRandom;<a name="line.1777"></a>
+<span class="sourceLineNo">1778</span>    }<a name="line.1778"></a>
+<span class="sourceLineNo">1779</span>    /**<a name="line.1779"></a>
+<span class="sourceLineNo">1780</span>     * This is a static global SquidColorCenter that can be used in places that just need an existing object that can do<a name="line.1780"></a>
+<span class="sourceLineNo">1781</span>     * things like analyze hue or saturation of a color.<a name="line.1781"></a>
+<span class="sourceLineNo">1782</span>     */<a name="line.1782"></a>
+<span class="sourceLineNo">1783</span>    public static SquidColorCenter getSCC()<a name="line.1783"></a>
+<span class="sourceLineNo">1784</span>    {<a name="line.1784"></a>
+<span class="sourceLineNo">1785</span>        initialize();<a name="line.1785"></a>
+<span class="sourceLineNo">1786</span>        if(instance.scc == null)<a name="line.1786"></a>
+<span class="sourceLineNo">1787</span>        {<a name="line.1787"></a>
+<span class="sourceLineNo">1788</span>            instance.scc =  new SquidColorCenter();<a name="line.1788"></a>
+<span class="sourceLineNo">1789</span>        }<a name="line.1789"></a>
+<span class="sourceLineNo">1790</span>        return instance.scc;<a name="line.1790"></a>
+<span class="sourceLineNo">1791</span>    }<a name="line.1791"></a>
+<span class="sourceLineNo">1792</span><a name="line.1792"></a>
+<span class="sourceLineNo">1793</span>    /**<a name="line.1793"></a>
+<span class="sourceLineNo">1794</span>     * Special symbols that can be used as icons if you use the narrow default font.<a name="line.1794"></a>
+<span class="sourceLineNo">1795</span>     */<a name="line.1795"></a>
+<span class="sourceLineNo">1796</span>    public static final String narrowFontSymbols = "ሀሁሂሃሄህሆሇለሉሊላሌልሎሏሐሑሒሓሔሕሖሗመሙሚማሜ",<a name="line.1796"></a>
+<span class="sourceLineNo">1797</span>                                  narrowFontAll = " !\"#$%&amp;'()*+,-./0123\n" +<a name="line.1797"></a>
+<span class="sourceLineNo">1798</span>                                          "456789:;&lt;=&gt;?@ABCDEFG\n" +<a name="line.1798"></a>
+<span class="sourceLineNo">1799</span>                                          "HIJKLMNOPQRSTUVWXYZ[\n" +<a name="line.1799"></a>
+<span class="sourceLineNo">1800</span>                                          "\\]^_`abcdefghijklmno\n" +<a name="line.1800"></a>
+<span class="sourceLineNo">1801</span>                                          "pqrstuvwxyz{|}~¡¢£¤¥\n" +<a name="line.1801"></a>
+<span class="sourceLineNo">1802</span>                                          "¦§¨©ª«¬\u00AD®¯°±²³´µ¶·¸¹\n" +<a name="line.1802"></a>
+<span class="sourceLineNo">1803</span>                                          "º»¼½¾¿×ß÷øɍɎሀሁሂሃሄህሆሇ\n" +<a name="line.1803"></a>
+<span class="sourceLineNo">1804</span>                                          "ለሉሊላሌልሎሏሐሑሒሓሔሕሖሗመሙሚማ\n" +<a name="line.1804"></a>
+<span class="sourceLineNo">1805</span>                                          "ሜẞ‐‒–—―‖‗‘’‚‛“”„‟†‡•\n" +<a name="line.1805"></a>
+<span class="sourceLineNo">1806</span>                                          "…‧‹›€™"+<a name="line.1806"></a>
+<span class="sourceLineNo">1807</span>                                          "←↑→↓↷↺↻"+ // left, up, right, down, "tap", "counterclockwise", "clockwise"<a name="line.1807"></a>
+<span class="sourceLineNo">1808</span>                                          "∀∁∂∃∄∅∆\n" +<a name="line.1808"></a>
+<span class="sourceLineNo">1809</span>                                          "∇∈∉∋∌∎∏∐∑−∓∔∕∖∘∙√∛∜∝\n" +<a name="line.1809"></a>
+<span class="sourceLineNo">1810</span>                                          "∞∟∠∡∢∣∤∥∦∧∨∩∪∫∬∮∯∱∲∳\n" +<a name="line.1810"></a>
+<span class="sourceLineNo">1811</span>                                          "∴∵∶∷≈≋≠≡≢≣≤≥≦≧≨≩≪≫─━\n" +<a name="line.1811"></a>
+<span class="sourceLineNo">1812</span>                                          "│┃┄┅┆┇┈┉┊┋┌┍┎┏┐┑┒┓└┕\n" +<a name="line.1812"></a>
+<span class="sourceLineNo">1813</span>                                          "┖┗┘┙┚┛├┝┞┟┠┡┢┣┤┥┦┧┨┩\n" +<a name="line.1813"></a>
+<span class="sourceLineNo">1814</span>                                          "┪┫┬┭┮┯┰┱┲┳┴┵┶┷┸┹┺┻┼┽\n" +<a name="line.1814"></a>
+<span class="sourceLineNo">1815</span>                                          "┾┿╀╁╂╃╄╅╆╇╈╉╊╋╌╍╎╏═║\n" +<a name="line.1815"></a>
+<span class="sourceLineNo">1816</span>                                          "╒╓╔╕╖╗╘╙╚╛╜╝╞╟╠╡╢╣╤╥\n" +<a name="line.1816"></a>
+<span class="sourceLineNo">1817</span>                                          "╦╧╨╩╪╫╬╭╮╯╰╱╲╳╴╵╶╷╸╹\n" +<a name="line.1817"></a>
+<span class="sourceLineNo">1818</span>                                          "╺╻╼╽╾╿▁▄▅▆▇█▌▐░▒▓▔▖▗\n" +<a name="line.1818"></a>
+<span class="sourceLineNo">1819</span>                                          "▘▙▚▛▜▝▞▟";<a name="line.1819"></a>
+<span class="sourceLineNo">1820</span><a name="line.1820"></a>
+<span class="sourceLineNo">1821</span>    /**<a name="line.1821"></a>
+<span class="sourceLineNo">1822</span>     * Called when the {@link Application} is about to pause<a name="line.1822"></a>
+<span class="sourceLineNo">1823</span>     */<a name="line.1823"></a>
+<span class="sourceLineNo">1824</span>    @Override<a name="line.1824"></a>
+<span class="sourceLineNo">1825</span>    public void pause() {<a name="line.1825"></a>
+<span class="sourceLineNo">1826</span>    }<a name="line.1826"></a>
+<span class="sourceLineNo">1827</span><a name="line.1827"></a>
+<span class="sourceLineNo">1828</span>    /**<a name="line.1828"></a>
+<span class="sourceLineNo">1829</span>     * Called when the Application is about to be resumed<a name="line.1829"></a>
+<span class="sourceLineNo">1830</span>     */<a name="line.1830"></a>
+<span class="sourceLineNo">1831</span>    @Override<a name="line.1831"></a>
+<span class="sourceLineNo">1832</span>    public void resume() {<a name="line.1832"></a>
+<span class="sourceLineNo">1833</span>    }<a name="line.1833"></a>
+<span class="sourceLineNo">1834</span><a name="line.1834"></a>
+<span class="sourceLineNo">1835</span>    /**<a name="line.1835"></a>
+<span class="sourceLineNo">1836</span>     * Called when the {@link Application} is about to be disposed<a name="line.1836"></a>
+<span class="sourceLineNo">1837</span>     */<a name="line.1837"></a>
+<span class="sourceLineNo">1838</span>    @Override<a name="line.1838"></a>
+<span class="sourceLineNo">1839</span>    public void dispose() {<a name="line.1839"></a>
+<span class="sourceLineNo">1840</span>        if(arial15 != null) {<a name="line.1840"></a>
+<span class="sourceLineNo">1841</span>            arial15.dispose();<a name="line.1841"></a>
+<span class="sourceLineNo">1842</span>            arial15 = null;<a name="line.1842"></a>
+<span class="sourceLineNo">1843</span>        }<a name="line.1843"></a>
+<span class="sourceLineNo">1844</span>        if(narrow1 != null) {<a name="line.1844"></a>
+<span class="sourceLineNo">1845</span>            narrow1.dispose();<a name="line.1845"></a>
+<span class="sourceLineNo">1846</span>            narrow1 = null;<a name="line.1846"></a>
+<span class="sourceLineNo">1847</span>        }<a name="line.1847"></a>
+<span class="sourceLineNo">1848</span>        if(narrow2 != null) {<a name="line.1848"></a>
+<span class="sourceLineNo">1849</span>            narrow2.dispose();<a name="line.1849"></a>
+<span class="sourceLineNo">1850</span>            narrow2 = null;<a name="line.1850"></a>
+<span class="sourceLineNo">1851</span>        }<a name="line.1851"></a>
+<span class="sourceLineNo">1852</span>        if(narrow3 != null) {<a name="line.1852"></a>
+<span class="sourceLineNo">1853</span>            narrow3.dispose();<a name="line.1853"></a>
+<span class="sourceLineNo">1854</span>            narrow3 = null;<a name="line.1854"></a>
+<span class="sourceLineNo">1855</span>        }<a name="line.1855"></a>
+<span class="sourceLineNo">1856</span>        if(smooth1 != null) {<a name="line.1856"></a>
+<span class="sourceLineNo">1857</span>            smooth1.dispose();<a name="line.1857"></a>
+<span class="sourceLineNo">1858</span>            smooth1 = null;<a name="line.1858"></a>
+<span class="sourceLineNo">1859</span>        }<a name="line.1859"></a>
+<span class="sourceLineNo">1860</span>        if(smooth2 != null) {<a name="line.1860"></a>
+<span class="sourceLineNo">1861</span>            smooth2.dispose();<a name="line.1861"></a>
+<span class="sourceLineNo">1862</span>            smooth2 = null;<a name="line.1862"></a>
+<span class="sourceLineNo">1863</span>        }<a name="line.1863"></a>
+<span class="sourceLineNo">1864</span>        if(square1 != null) {<a name="line.1864"></a>
+<span class="sourceLineNo">1865</span>            square1.dispose();<a name="line.1865"></a>
+<span class="sourceLineNo">1866</span>            square1 = null;<a name="line.1866"></a>
+<span class="sourceLineNo">1867</span>        }<a name="line.1867"></a>
+<span class="sourceLineNo">1868</span>        if(square2 != null) {<a name="line.1868"></a>
+<span class="sourceLineNo">1869</span>            square2.dispose();<a name="line.1869"></a>
+<span class="sourceLineNo">1870</span>            square2 = null;<a name="line.1870"></a>
+<span class="sourceLineNo">1871</span>        }<a name="line.1871"></a>
+<span class="sourceLineNo">1872</span>        if(smoothSquare != null) {<a name="line.1872"></a>
+<span class="sourceLineNo">1873</span>            smoothSquare.dispose();<a name="line.1873"></a>
+<span class="sourceLineNo">1874</span>            smoothSquare = null;<a name="line.1874"></a>
+<span class="sourceLineNo">1875</span>        }<a name="line.1875"></a>
+<span class="sourceLineNo">1876</span>        if(smoothSquareOld != null) {<a name="line.1876"></a>
+<span class="sourceLineNo">1877</span>            smoothSquareOld.dispose();<a name="line.1877"></a>
+<span class="sourceLineNo">1878</span>            smoothSquareOld = null;<a name="line.1878"></a>
+<span class="sourceLineNo">1879</span>        }<a name="line.1879"></a>
+<span class="sourceLineNo">1880</span>        if(distanceSquare != null) {<a name="line.1880"></a>
+<span class="sourceLineNo">1881</span>            distanceSquare.dispose();<a name="line.1881"></a>
+<span class="sourceLineNo">1882</span>            distanceSquare = null;<a name="line.1882"></a>
+<span class="sourceLineNo">1883</span>        }<a name="line.1883"></a>
+<span class="sourceLineNo">1884</span>        if(distanceNarrow != null) {<a name="line.1884"></a>
+<span class="sourceLineNo">1885</span>            distanceNarrow.dispose();<a name="line.1885"></a>
+<span class="sourceLineNo">1886</span>            distanceNarrow = null;<a name="line.1886"></a>
+<span class="sourceLineNo">1887</span>        }<a name="line.1887"></a>
+<span class="sourceLineNo">1888</span>        if(typewriterDistanceNarrow != null) {<a name="line.1888"></a>
+<span class="sourceLineNo">1889</span>            typewriterDistanceNarrow.dispose();<a name="line.1889"></a>
+<span class="sourceLineNo">1890</span>            typewriterDistanceNarrow = null;<a name="line.1890"></a>
+<span class="sourceLineNo">1891</span>        }<a name="line.1891"></a>
+<span class="sourceLineNo">1892</span>        if(distanceCode != null) {<a name="line.1892"></a>
+<span class="sourceLineNo">1893</span>            distanceCode.dispose();<a name="line.1893"></a>
+<span class="sourceLineNo">1894</span>            distanceCode = null;<a name="line.1894"></a>
+<span class="sourceLineNo">1895</span>        }<a name="line.1895"></a>
+<span class="sourceLineNo">1896</span>        if(distanceCodeJP != null) {<a name="line.1896"></a>
+<span class="sourceLineNo">1897</span>            distanceCodeJP.dispose();<a name="line.1897"></a>
+<span class="sourceLineNo">1898</span>            distanceCodeJP = null;<a name="line.1898"></a>
+<span class="sourceLineNo">1899</span>        }<a name="line.1899"></a>
+<span class="sourceLineNo">1900</span>        if(distanceDejaVu != null) {<a name="line.1900"></a>
+<span class="sourceLineNo">1901</span>            distanceDejaVu.dispose();<a name="line.1901"></a>
+<span class="sourceLineNo">1902</span>            distanceDejaVu = null;<a name="line.1902"></a>
+<span class="sourceLineNo">1903</span>        }<a name="line.1903"></a>
+<span class="sourceLineNo">1904</span>        if(distanceLean != null) {<a name="line.1904"></a>
+<span class="sourceLineNo">1905</span>            distanceLean.dispose();<a name="line.1905"></a>
+<span class="sourceLineNo">1906</span>            distanceLean = null;<a name="line.1906"></a>
+<span class="sourceLineNo">1907</span>        }<a name="line.1907"></a>
+<span class="sourceLineNo">1908</span>        if(distanceSlab != null) {<a name="line.1908"></a>
+<span class="sourceLineNo">1909</span>            distanceSlab.dispose();<a name="line.1909"></a>
+<span class="sourceLineNo">1910</span>            distanceSlab = null;<a name="line.1910"></a>
+<span class="sourceLineNo">1911</span>        }<a name="line.1911"></a>
+<span class="sourceLineNo">1912</span>        if(distanceLeanLight != null) {<a name="line.1912"></a>
+<span class="sourceLineNo">1913</span>            distanceLeanLight.dispose();<a name="line.1913"></a>
+<span class="sourceLineNo">1914</span>            distanceLeanLight = null;<a name="line.1914"></a>
+<span class="sourceLineNo">1915</span>        }<a name="line.1915"></a>
+<span class="sourceLineNo">1916</span>        if(distanceSlabLight != null) {<a name="line.1916"></a>
+<span class="sourceLineNo">1917</span>            distanceSlabLight.dispose();<a name="line.1917"></a>
+<span class="sourceLineNo">1918</span>            distanceSlabLight = null;<a name="line.1918"></a>
+<span class="sourceLineNo">1919</span>        }<a name="line.1919"></a>
+<span class="sourceLineNo">1920</span>        if(distanceWide != null) {<a name="line.1920"></a>
+<span class="sourceLineNo">1921</span>            distanceWide.dispose();<a name="line.1921"></a>
+<span class="sourceLineNo">1922</span>            distanceWide = null;<a name="line.1922"></a>
+<span class="sourceLineNo">1923</span>        }<a name="line.1923"></a>
+<span class="sourceLineNo">1924</span>        if(distanceWideSlab != null) {<a name="line.1924"></a>
+<span class="sourceLineNo">1925</span>            distanceWideSlab.dispose();<a name="line.1925"></a>
+<span class="sourceLineNo">1926</span>            distanceWideSlab = null;<a name="line.1926"></a>
+<span class="sourceLineNo">1927</span>        }<a name="line.1927"></a>
+<span class="sourceLineNo">1928</span>        if(distanceWideLight != null) {<a name="line.1928"></a>
+<span class="sourceLineNo">1929</span>            distanceWideLight.dispose();<a name="line.1929"></a>
+<span class="sourceLineNo">1930</span>            distanceWideLight = null;<a name="line.1930"></a>
+<span class="sourceLineNo">1931</span>        }<a name="line.1931"></a>
+<span class="sourceLineNo">1932</span>        if(distanceWideSlabLight != null) {<a name="line.1932"></a>
+<span class="sourceLineNo">1933</span>            distanceWideSlabLight.dispose();<a name="line.1933"></a>
+<span class="sourceLineNo">1934</span>            distanceWideSlabLight = null;<a name="line.1934"></a>
+<span class="sourceLineNo">1935</span>        }<a name="line.1935"></a>
+<span class="sourceLineNo">1936</span>        if(distanceClean != null) {<a name="line.1936"></a>
+<span class="sourceLineNo">1937</span>            distanceClean.dispose();<a name="line.1937"></a>
+<span class="sourceLineNo">1938</span>            distanceClean = null;<a name="line.1938"></a>
+<span class="sourceLineNo">1939</span>        }<a name="line.1939"></a>
+<span class="sourceLineNo">1940</span>        if(distancePrint != null) {<a name="line.1940"></a>
+<span class="sourceLineNo">1941</span>            distancePrint.dispose();<a name="line.1941"></a>
+<span class="sourceLineNo">1942</span>            distancePrint = null;<a name="line.1942"></a>
+<span class="sourceLineNo">1943</span>        }<a name="line.1943"></a>
+<span class="sourceLineNo">1944</span>        if(distanceOrbit != null) {<a name="line.1944"></a>
+<span class="sourceLineNo">1945</span>            distanceOrbit.dispose();<a name="line.1945"></a>
+<span class="sourceLineNo">1946</span>            distanceOrbit = null;<a name="line.1946"></a>
+<span class="sourceLineNo">1947</span>        }<a name="line.1947"></a>
+<span class="sourceLineNo">1948</span>        if(distanceHeavySquare != null) {<a name="line.1948"></a>
+<span class="sourceLineNo">1949</span>            distanceHeavySquare.dispose();<a name="line.1949"></a>
+<span class="sourceLineNo">1950</span>            distanceHeavySquare = null;<a name="line.1950"></a>
+<span class="sourceLineNo">1951</span>        }<a name="line.1951"></a>
+<span class="sourceLineNo">1952</span>        if(msdfSlab != null) {<a name="line.1952"></a>
+<span class="sourceLineNo">1953</span>            msdfSlab.dispose();<a name="line.1953"></a>
+<span class="sourceLineNo">1954</span>            msdfSlab = null;<a name="line.1954"></a>
+<span class="sourceLineNo">1955</span>        }<a name="line.1955"></a>
+<span class="sourceLineNo">1956</span>        if(msdfSlabItalic != null) {<a name="line.1956"></a>
+<span class="sourceLineNo">1957</span>            msdfSlabItalic.dispose();<a name="line.1957"></a>
+<span class="sourceLineNo">1958</span>            msdfSlabItalic = null;<a name="line.1958"></a>
+<span class="sourceLineNo">1959</span>        }<a name="line.1959"></a>
+<span class="sourceLineNo">1960</span>        if(msdfLean != null) {<a name="line.1960"></a>
+<span class="sourceLineNo">1961</span>            msdfLean.dispose();<a name="line.1961"></a>
+<span class="sourceLineNo">1962</span>            msdfLean = null;<a name="line.1962"></a>
+<span class="sourceLineNo">1963</span>        }<a name="line.1963"></a>
+<span class="sourceLineNo">1964</span>        if(msdfLeanItalic != null) {<a name="line.1964"></a>
+<span class="sourceLineNo">1965</span>            msdfLeanItalic.dispose();<a name="line.1965"></a>
+<span class="sourceLineNo">1966</span>            msdfLeanItalic = null;<a name="line.1966"></a>
+<span class="sourceLineNo">1967</span>        }<a name="line.1967"></a>
+<span class="sourceLineNo">1968</span>        if(msdfDejaVu != null) {<a name="line.1968"></a>
+<span class="sourceLineNo">1969</span>            msdfDejaVu.dispose();<a name="line.1969"></a>
+<span class="sourceLineNo">1970</span>            msdfDejaVu = null;<a name="line.1970"></a>
+<span class="sourceLineNo">1971</span>        }<a name="line.1971"></a>
+<span class="sourceLineNo">1972</span>        if (unicode1 != null) {<a name="line.1972"></a>
+<span class="sourceLineNo">1973</span>            unicode1.dispose();<a name="line.1973"></a>
+<span class="sourceLineNo">1974</span>            unicode1 = null;<a name="line.1974"></a>
+<span class="sourceLineNo">1975</span>        }<a name="line.1975"></a>
+<span class="sourceLineNo">1976</span>        if (unicode2 != null) {<a name="line.1976"></a>
+<span class="sourceLineNo">1977</span>            unicode2.dispose();<a name="line.1977"></a>
+<span class="sourceLineNo">1978</span>            unicode2 = null;<a name="line.1978"></a>
+<span class="sourceLineNo">1979</span>        }<a name="line.1979"></a>
+<span class="sourceLineNo">1980</span>        if(familyLean != null) {<a name="line.1980"></a>
+<span class="sourceLineNo">1981</span>            familyLean.dispose();<a name="line.1981"></a>
+<span class="sourceLineNo">1982</span>            familyLean = null;<a name="line.1982"></a>
+<span class="sourceLineNo">1983</span>        }<a name="line.1983"></a>
+<span class="sourceLineNo">1984</span>        if(familySlab != null) {<a name="line.1984"></a>
+<span class="sourceLineNo">1985</span>            familySlab.dispose();<a name="line.1985"></a>
+<span class="sourceLineNo">1986</span>            familySlab = null;<a name="line.1986"></a>
+<span class="sourceLineNo">1987</span>        }<a name="line.1987"></a>
+<span class="sourceLineNo">1988</span>        if(familyGo != null) {<a name="line.1988"></a>
+<span class="sourceLineNo">1989</span>            familyGo.dispose();<a name="line.1989"></a>
+<span class="sourceLineNo">1990</span>            familyGo = null;<a name="line.1990"></a>
+<span class="sourceLineNo">1991</span>        }<a name="line.1991"></a>
+<span class="sourceLineNo">1992</span>        if(familyLeanMSDF != null) {<a name="line.1992"></a>
+<span class="sourceLineNo">1993</span>            familyLeanMSDF.dispose();<a name="line.1993"></a>
+<span class="sourceLineNo">1994</span>            familyLeanMSDF = null;<a name="line.1994"></a>
+<span class="sourceLineNo">1995</span>        }<a name="line.1995"></a>
+<span class="sourceLineNo">1996</span>        if(familySlabMSDF != null) {<a name="line.1996"></a>
+<span class="sourceLineNo">1997</span>            familySlabMSDF.dispose();<a name="line.1997"></a>
+<span class="sourceLineNo">1998</span>            familySlabMSDF = null;<a name="line.1998"></a>
+<span class="sourceLineNo">1999</span>        }<a name="line.1999"></a>
+<span class="sourceLineNo">2000</span>        if(tentacle != null) {<a name="line.2000"></a>
+<span class="sourceLineNo">2001</span>            tentacle.dispose();<a name="line.2001"></a>
+<span class="sourceLineNo">2002</span>            tentacle = null;<a name="line.2002"></a>
+<span class="sourceLineNo">2003</span>        }<a name="line.2003"></a>
+<span class="sourceLineNo">2004</span>        if(iconAtlas != null) {<a name="line.2004"></a>
+<span class="sourceLineNo">2005</span>            iconAtlas.dispose();<a name="line.2005"></a>
+<span class="sourceLineNo">2006</span>            iconAtlas = null;<a name="line.2006"></a>
+<span class="sourceLineNo">2007</span>        }<a name="line.2007"></a>
+<span class="sourceLineNo">2008</span>        Gdx.app.removeLifecycleListener(this);<a name="line.2008"></a>
+<span class="sourceLineNo">2009</span>        instance = null;<a name="line.2009"></a>
+<span class="sourceLineNo">2010</span>    }<a name="line.2010"></a>
+<span class="sourceLineNo">2011</span>}<a name="line.2011"></a>
 
 
 
