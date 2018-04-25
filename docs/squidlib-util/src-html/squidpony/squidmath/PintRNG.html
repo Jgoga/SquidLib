@@ -231,7 +231,7 @@
 <span class="sourceLineNo">223</span>     * American Nuclear Society (Nov. 1994). The code is mostly the same as in PCG-Random's C port by M.E. O'Neill,<a name="line.223"></a>
 <span class="sourceLineNo">224</span>     * specifically &lt;a href="https://github.com/imneme/pcg-c/blob/master/src/pcg-advance-32.c"&gt;this file&lt;/a&gt;. Skipping<a name="line.224"></a>
 <span class="sourceLineNo">225</span>     * ahead or behind takes more than constant time, unlike with {@link LightRNG}, but less time than calling nextInt()<a name="line.225"></a>
-<span class="sourceLineNo">226</span>     * {@code advance} times.<a name="line.226"></a>
+<span class="sourceLineNo">226</span>     * {@code advance} times. Skipping backwards by one step is the worst case for this.<a name="line.226"></a>
 <span class="sourceLineNo">227</span>     * @param advance Number of future generations to skip past. Can be negative to backtrack.<a name="line.227"></a>
 <span class="sourceLineNo">228</span>     * @return the int that would be generated after generating advance random numbers.<a name="line.228"></a>
 <span class="sourceLineNo">229</span>     */<a name="line.229"></a>
@@ -246,7 +246,7 @@
 <span class="sourceLineNo">238</span>                acc_mult *= cur_mult;<a name="line.238"></a>
 <span class="sourceLineNo">239</span>                acc_plus = acc_plus * cur_mult + cur_plus;<a name="line.239"></a>
 <span class="sourceLineNo">240</span>            }<a name="line.240"></a>
-<span class="sourceLineNo">241</span>            cur_plus = (cur_mult + 1) * cur_plus;<a name="line.241"></a>
+<span class="sourceLineNo">241</span>            cur_plus *= (cur_mult + 1);<a name="line.241"></a>
 <span class="sourceLineNo">242</span>            cur_mult *= cur_mult;<a name="line.242"></a>
 <span class="sourceLineNo">243</span>            advance &gt;&gt;&gt;= 1;<a name="line.243"></a>
 <span class="sourceLineNo">244</span>        }<a name="line.244"></a>

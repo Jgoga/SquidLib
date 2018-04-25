@@ -231,29 +231,38 @@
 <span class="sourceLineNo">223</span>        return Math.min(Math.max(value, min), max);<a name="line.223"></a>
 <span class="sourceLineNo">224</span>    }<a name="line.224"></a>
 <span class="sourceLineNo">225</span><a name="line.225"></a>
-<span class="sourceLineNo">226</span><a name="line.226"></a>
-<span class="sourceLineNo">227</span>    /**<a name="line.227"></a>
-<span class="sourceLineNo">228</span>     * Determines the greatest common divisor of a pair of natural numbers<a name="line.228"></a>
-<span class="sourceLineNo">229</span>     * using the Euclidean algorithm.  This method only works with natural<a name="line.229"></a>
-<span class="sourceLineNo">230</span>     * numbers.  If negative integers are passed in, the absolute values will<a name="line.230"></a>
-<span class="sourceLineNo">231</span>     * be used.  The return value is always positive.<a name="line.231"></a>
-<span class="sourceLineNo">232</span>     * @param a The first value.<a name="line.232"></a>
-<span class="sourceLineNo">233</span>     * @param b The second value.<a name="line.233"></a>
-<span class="sourceLineNo">234</span>     * @return The greatest common divisor.<a name="line.234"></a>
-<span class="sourceLineNo">235</span>     */<a name="line.235"></a>
-<span class="sourceLineNo">236</span>    public static long greatestCommonDivisor(long a, long b)<a name="line.236"></a>
-<span class="sourceLineNo">237</span>    {<a name="line.237"></a>
-<span class="sourceLineNo">238</span>        a = Math.abs(a);<a name="line.238"></a>
-<span class="sourceLineNo">239</span>        b = Math.abs(b);<a name="line.239"></a>
-<span class="sourceLineNo">240</span>        while (b != 0)<a name="line.240"></a>
-<span class="sourceLineNo">241</span>        {<a name="line.241"></a>
-<span class="sourceLineNo">242</span>            long temp = b;<a name="line.242"></a>
-<span class="sourceLineNo">243</span>            b = a % b;<a name="line.243"></a>
-<span class="sourceLineNo">244</span>            a = temp;<a name="line.244"></a>
-<span class="sourceLineNo">245</span>        }<a name="line.245"></a>
-<span class="sourceLineNo">246</span>        return a;<a name="line.246"></a>
-<span class="sourceLineNo">247</span>    }<a name="line.247"></a>
-<span class="sourceLineNo">248</span>}<a name="line.248"></a>
+<span class="sourceLineNo">226</span>    /**<a name="line.226"></a>
+<span class="sourceLineNo">227</span>     * Like the modulo operator {@code %}, but the result will always match the sign of {@code d} instead of {@code op}.<a name="line.227"></a>
+<span class="sourceLineNo">228</span>     * @param op the dividend; negative values are permitted and wrap instead of producing negative results<a name="line.228"></a>
+<span class="sourceLineNo">229</span>     * @param d the divisor; if this is negative then the result will be negative, otherwise it will be positive<a name="line.229"></a>
+<span class="sourceLineNo">230</span>     * @return the remainder of the division of op by d, with a sign matching d<a name="line.230"></a>
+<span class="sourceLineNo">231</span>     */<a name="line.231"></a>
+<span class="sourceLineNo">232</span>    public static double remainder(final double op, final double d) {<a name="line.232"></a>
+<span class="sourceLineNo">233</span>        return (op % d + d) % d;<a name="line.233"></a>
+<span class="sourceLineNo">234</span>    }<a name="line.234"></a>
+<span class="sourceLineNo">235</span><a name="line.235"></a>
+<span class="sourceLineNo">236</span>    /**<a name="line.236"></a>
+<span class="sourceLineNo">237</span>     * Determines the greatest common divisor of a pair of natural numbers<a name="line.237"></a>
+<span class="sourceLineNo">238</span>     * using the Euclidean algorithm.  This method only works with natural<a name="line.238"></a>
+<span class="sourceLineNo">239</span>     * numbers.  If negative integers are passed in, the absolute values will<a name="line.239"></a>
+<span class="sourceLineNo">240</span>     * be used.  The return value is always positive.<a name="line.240"></a>
+<span class="sourceLineNo">241</span>     * @param a The first value.<a name="line.241"></a>
+<span class="sourceLineNo">242</span>     * @param b The second value.<a name="line.242"></a>
+<span class="sourceLineNo">243</span>     * @return The greatest common divisor.<a name="line.243"></a>
+<span class="sourceLineNo">244</span>     */<a name="line.244"></a>
+<span class="sourceLineNo">245</span>    public static long greatestCommonDivisor(long a, long b)<a name="line.245"></a>
+<span class="sourceLineNo">246</span>    {<a name="line.246"></a>
+<span class="sourceLineNo">247</span>        a = Math.abs(a);<a name="line.247"></a>
+<span class="sourceLineNo">248</span>        b = Math.abs(b);<a name="line.248"></a>
+<span class="sourceLineNo">249</span>        while (b != 0)<a name="line.249"></a>
+<span class="sourceLineNo">250</span>        {<a name="line.250"></a>
+<span class="sourceLineNo">251</span>            long temp = b;<a name="line.251"></a>
+<span class="sourceLineNo">252</span>            b = a % b;<a name="line.252"></a>
+<span class="sourceLineNo">253</span>            a = temp;<a name="line.253"></a>
+<span class="sourceLineNo">254</span>        }<a name="line.254"></a>
+<span class="sourceLineNo">255</span>        return a;<a name="line.255"></a>
+<span class="sourceLineNo">256</span>    }<a name="line.256"></a>
+<span class="sourceLineNo">257</span>}<a name="line.257"></a>
 
 
 

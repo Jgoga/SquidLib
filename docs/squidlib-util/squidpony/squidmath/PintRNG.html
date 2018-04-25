@@ -674,7 +674,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
  American Nuclear Society (Nov. 1994). The code is mostly the same as in PCG-Random's C port by M.E. O'Neill,
  specifically <a href="https://github.com/imneme/pcg-c/blob/master/src/pcg-advance-32.c">this file</a>. Skipping
  ahead or behind takes more than constant time, unlike with <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a>, but less time than calling nextInt()
- <code>advance</code> times.</div>
+ <code>advance</code> times. Skipping backwards by one step is the worst case for this.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>advance</code> - Number of future generations to skip past. Can be negative to backtrack.</dd>

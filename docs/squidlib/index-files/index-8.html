@@ -128,7 +128,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/gui/gdx/SquidInput.html#hasNext--">hasNext()</a></span> - Method in class squidpony.squidgrid.gui.gdx.<a href="../squidpony/squidgrid/gui/gdx/SquidInput.html" title="class in squidpony.squidgrid.gui.gdx">SquidInput</a></dt>
 <dd>
-<div class="block">Returns true if at least one event is queued.</div>
+<div class="block">Returns true if at least one event is queued, but also will call <a href="../squidpony/squidgrid/gui/gdx/SquidInput.html#keyDown-int-"><code>SquidInput.keyDown(int)</code></a> if a key is being held but
+ there is a failure to process the repeated event.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/gui/gdx/SquidKey.html#hasNext--">hasNext()</a></span> - Method in class squidpony.squidgrid.gui.gdx.<a href="../squidpony/squidgrid/gui/gdx/SquidKey.html" title="class in squidpony.squidgrid.gui.gdx">SquidKey</a></dt>
 <dd>
@@ -190,6 +191,16 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/gui/gdx/SColor.html#HOT_PINK">HOT_PINK</a></span> - Static variable in class squidpony.squidgrid.gui.gdx.<a href="../squidpony/squidgrid/gui/gdx/SColor.html" title="class in squidpony.squidgrid.gui.gdx">SColor</a></dt>
 <dd>
 <div class="block">This color constant "Hot Pink" has RGB code <code>0xFF69B4</code>, hue 0.9166666, saturation 0.58823526, and value 1.0.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/gui/gdx/SColor.html#hue--">hue()</a></span> - Method in class squidpony.squidgrid.gui.gdx.<a href="../squidpony/squidgrid/gui/gdx/SColor.html" title="class in squidpony.squidgrid.gui.gdx">SColor</a></dt>
+<dd>
+<div class="block">Gets the hue of this color, as a float from 0f (inclusive, red and approaching orange if increased)
+ to 1f (exclusive, red and approaching purple if decreased).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/gui/gdx/SColor.html#hue-com.badlogic.gdx.graphics.Color-">hue(Color)</a></span> - Static method in class squidpony.squidgrid.gui.gdx.<a href="../squidpony/squidgrid/gui/gdx/SColor.html" title="class in squidpony.squidgrid.gui.gdx">SColor</a></dt>
+<dd>
+<div class="block">Gets the hue of the given Color, as a float from 0f (inclusive, red and approaching orange if increased)
+ to 1f (exclusive, red and approaching purple if decreased).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/gui/gdx/SColor.html#hueOfFloat-float-">hueOfFloat(float)</a></span> - Static method in class squidpony.squidgrid.gui.gdx.<a href="../squidpony/squidgrid/gui/gdx/SColor.html" title="class in squidpony.squidgrid.gui.gdx">SColor</a></dt>
 <dd>
