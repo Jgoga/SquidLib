@@ -20,7 +20,7 @@
 <span class="sourceLineNo">012</span> * often coupled with another kind of noise but with the result of the ValueNoise made less significant to add a "fuzzy"<a name="line.12"></a>
 <span class="sourceLineNo">013</span> * effect to the appearance.<a name="line.13"></a>
 <span class="sourceLineNo">014</span> * &lt;br&gt;<a name="line.14"></a>
-<span class="sourceLineNo">015</span> * Implementation is based on {@link CrossHash.Wisp#hash64(int[])}, treating doubles as ints<a name="line.15"></a>
+<span class="sourceLineNo">015</span> * Implementation is based on {@link CrossHash#hash64(int[])}, treating doubles as ints<a name="line.15"></a>
 <span class="sourceLineNo">016</span> * by using {@link NumberTools#doubleToMixedIntBits(double)}, which XORs the bottom and top halves of the long bits of<a name="line.16"></a>
 <span class="sourceLineNo">017</span> * each double. Finishes by passing the top 52 bits as a significand to {@link NumberTools#longBitsToDouble(long)},<a name="line.17"></a>
 <span class="sourceLineNo">018</span> * using an exponent that allows this to produce numbers between -1.0 and 1.0. Has special treatment for the seed when<a name="line.18"></a>

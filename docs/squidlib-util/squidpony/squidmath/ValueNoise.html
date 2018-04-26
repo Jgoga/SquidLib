@@ -127,7 +127,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise1D.html" title="interfa
  often coupled with another kind of noise but with the result of the ValueNoise made less significant to add a "fuzzy"
  effect to the appearance.
  <br>
- Implementation is based on <a href="../../squidpony/squidmath/CrossHash.Wisp.html#hash64-int:A-"><code>CrossHash.Wisp.hash64(int[])</code></a>, treating doubles as ints
+ Implementation is based on <a href="../../squidpony/squidmath/CrossHash.html#hash64-int:A-"><code>CrossHash.hash64(int[])</code></a>, treating doubles as ints
  by using <a href="../../squidpony/squidmath/NumberTools.html#doubleToMixedIntBits-double-"><code>NumberTools.doubleToMixedIntBits(double)</code></a>, which XORs the bottom and top halves of the long bits of
  each double. Finishes by passing the top 52 bits as a significand to <a href="../../squidpony/squidmath/NumberTools.html#longBitsToDouble-long-"><code>NumberTools.longBitsToDouble(long)</code></a>,
  using an exponent that allows this to produce numbers between -1.0 and 1.0. Has special treatment for the seed when
