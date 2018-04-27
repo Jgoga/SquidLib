@@ -359,39 +359,37 @@
 <span class="sourceLineNo">351</span><a name="line.351"></a>
 <span class="sourceLineNo">352</span>    public static int determineBounded(long state, final int bound)<a name="line.352"></a>
 <span class="sourceLineNo">353</span>    {<a name="line.353"></a>
-<span class="sourceLineNo">354</span>        state = (((state *= 0x9E3779B97F4A7C15L) &gt;&gt;&gt; 30) ^ state) * 0xBF58476D1CE4E5B9L;<a name="line.354"></a>
-<span class="sourceLineNo">355</span>        state = (state ^ (state &gt;&gt;&gt; 27)) * 0x94D049BB133111EBL;<a name="line.355"></a>
-<span class="sourceLineNo">356</span>        return (int)((bound * ((state ^ (state &gt;&gt;&gt; 31)) &amp; 0x7FFFFFFFL)) &gt;&gt; 31);<a name="line.356"></a>
-<span class="sourceLineNo">357</span>    }<a name="line.357"></a>
-<span class="sourceLineNo">358</span><a name="line.358"></a>
-<span class="sourceLineNo">359</span>    /**<a name="line.359"></a>
-<span class="sourceLineNo">360</span>     * Returns a random float that is deterministic based on state; if state is the same on two calls to this, this will<a name="line.360"></a>
-<span class="sourceLineNo">361</span>     * return the same float. This is expected to be called with a changing variable, e.g. {@code determine(++state)},<a name="line.361"></a>
-<span class="sourceLineNo">362</span>     * where the increment for state should be odd but otherwise doesn't really matter. This multiplies state by<a name="line.362"></a>
-<span class="sourceLineNo">363</span>     * {@code 0x9E3779B97F4A7C15L} within this method, so using a small increment won't be much different from using a<a name="line.363"></a>
-<span class="sourceLineNo">364</span>     * very large one, as long as it is odd. The period is 2 to the 64 if you increment or decrement by 1, but there are<a name="line.364"></a>
-<span class="sourceLineNo">365</span>     * only 2 to the 30 possible floats between 0 and 1.<a name="line.365"></a>
-<span class="sourceLineNo">366</span>     * @param state a variable that should be different every time you want a different random result;<a name="line.366"></a>
-<span class="sourceLineNo">367</span>     *              using {@code determine(++state)} is recommended to go forwards or {@code determine(--state)} to<a name="line.367"></a>
-<span class="sourceLineNo">368</span>     *              generate numbers in reverse order<a name="line.368"></a>
-<span class="sourceLineNo">369</span>     * @return a pseudo-random float between 0f (inclusive) and 1f (exclusive), determined by {@code state}<a name="line.369"></a>
-<span class="sourceLineNo">370</span>     */<a name="line.370"></a>
-<span class="sourceLineNo">371</span>    public static float determineFloat(long state) { return (((state = ((state = ((state *= 0x9E3779B97F4A7C15L) ^ state &gt;&gt;&gt; 30) * 0xBF58476D1CE4E5B9L) ^ state &gt;&gt;&gt; 27) * 0x94D049BB133111EBL) ^ state &gt;&gt;&gt; 31) &amp; 0xFFFFFF) * 0x1p-24f; }<a name="line.371"></a>
-<span class="sourceLineNo">372</span><a name="line.372"></a>
-<span class="sourceLineNo">373</span>    /**<a name="line.373"></a>
-<span class="sourceLineNo">374</span>     * Returns a random double that is deterministic based on state; if state is the same on two calls to this, this<a name="line.374"></a>
-<span class="sourceLineNo">375</span>     * will return the same float. This is expected to be called with a changing variable, e.g.<a name="line.375"></a>
-<span class="sourceLineNo">376</span>     * {@code determine(++state)}, where the increment for state should be odd but otherwise doesn't really matter. This<a name="line.376"></a>
-<span class="sourceLineNo">377</span>     * multiplies state by {@code 0x9E3779B97F4A7C15L} within this method, so using a small increment won't be much<a name="line.377"></a>
-<span class="sourceLineNo">378</span>     * different from using a very large one, as long as it is odd. The period is 2 to the 64 if you increment or<a name="line.378"></a>
-<span class="sourceLineNo">379</span>     * decrement by 1, but there are only 2 to the 62 possible doubles between 0 and 1.<a name="line.379"></a>
-<span class="sourceLineNo">380</span>     * @param state a variable that should be different every time you want a different random result;<a name="line.380"></a>
-<span class="sourceLineNo">381</span>     *              using {@code determine(++state)} is recommended to go forwards or {@code determine(--state)} to<a name="line.381"></a>
-<span class="sourceLineNo">382</span>     *              generate numbers in reverse order<a name="line.382"></a>
-<span class="sourceLineNo">383</span>     * @return a pseudo-random double between 0.0 (inclusive) and 1.0 (exclusive), determined by {@code state}<a name="line.383"></a>
-<span class="sourceLineNo">384</span>     */<a name="line.384"></a>
-<span class="sourceLineNo">385</span>    public static double determineDouble(long state) { return (((state = ((state = ((state *= 0x9E3779B97F4A7C15L) ^ state &gt;&gt;&gt; 30) * 0xBF58476D1CE4E5B9L) ^ state &gt;&gt;&gt; 27) * 0x94D049BB133111EBL) ^ state &gt;&gt;&gt; 31) &amp; 0x1FFFFFFFFFFFFFL) * 0x1p-53; }<a name="line.385"></a>
-<span class="sourceLineNo">386</span>}<a name="line.386"></a>
+<span class="sourceLineNo">354</span>        return (int)((bound * (((state = ((state = ((state *= 0x9E3779B97F4A7C15L) ^ state &gt;&gt;&gt; 30) * 0xBF58476D1CE4E5B9L) ^ state &gt;&gt;&gt; 27) * 0x94D049BB133111EBL) ^ state &gt;&gt;&gt; 31) &amp; 0x7FFFFFFFL)) &gt;&gt; 31);<a name="line.354"></a>
+<span class="sourceLineNo">355</span>    }<a name="line.355"></a>
+<span class="sourceLineNo">356</span><a name="line.356"></a>
+<span class="sourceLineNo">357</span>    /**<a name="line.357"></a>
+<span class="sourceLineNo">358</span>     * Returns a random float that is deterministic based on state; if state is the same on two calls to this, this will<a name="line.358"></a>
+<span class="sourceLineNo">359</span>     * return the same float. This is expected to be called with a changing variable, e.g. {@code determine(++state)},<a name="line.359"></a>
+<span class="sourceLineNo">360</span>     * where the increment for state should be odd but otherwise doesn't really matter. This multiplies state by<a name="line.360"></a>
+<span class="sourceLineNo">361</span>     * {@code 0x9E3779B97F4A7C15L} within this method, so using a small increment won't be much different from using a<a name="line.361"></a>
+<span class="sourceLineNo">362</span>     * very large one, as long as it is odd. The period is 2 to the 64 if you increment or decrement by 1, but there are<a name="line.362"></a>
+<span class="sourceLineNo">363</span>     * only 2 to the 30 possible floats between 0 and 1.<a name="line.363"></a>
+<span class="sourceLineNo">364</span>     * @param state a variable that should be different every time you want a different random result;<a name="line.364"></a>
+<span class="sourceLineNo">365</span>     *              using {@code determine(++state)} is recommended to go forwards or {@code determine(--state)} to<a name="line.365"></a>
+<span class="sourceLineNo">366</span>     *              generate numbers in reverse order<a name="line.366"></a>
+<span class="sourceLineNo">367</span>     * @return a pseudo-random float between 0f (inclusive) and 1f (exclusive), determined by {@code state}<a name="line.367"></a>
+<span class="sourceLineNo">368</span>     */<a name="line.368"></a>
+<span class="sourceLineNo">369</span>    public static float determineFloat(long state) { return (((state = ((state = ((state *= 0x9E3779B97F4A7C15L) ^ state &gt;&gt;&gt; 30) * 0xBF58476D1CE4E5B9L) ^ state &gt;&gt;&gt; 27) * 0x94D049BB133111EBL) ^ state &gt;&gt;&gt; 31) &amp; 0xFFFFFF) * 0x1p-24f; }<a name="line.369"></a>
+<span class="sourceLineNo">370</span><a name="line.370"></a>
+<span class="sourceLineNo">371</span>    /**<a name="line.371"></a>
+<span class="sourceLineNo">372</span>     * Returns a random double that is deterministic based on state; if state is the same on two calls to this, this<a name="line.372"></a>
+<span class="sourceLineNo">373</span>     * will return the same float. This is expected to be called with a changing variable, e.g.<a name="line.373"></a>
+<span class="sourceLineNo">374</span>     * {@code determine(++state)}, where the increment for state should be odd but otherwise doesn't really matter. This<a name="line.374"></a>
+<span class="sourceLineNo">375</span>     * multiplies state by {@code 0x9E3779B97F4A7C15L} within this method, so using a small increment won't be much<a name="line.375"></a>
+<span class="sourceLineNo">376</span>     * different from using a very large one, as long as it is odd. The period is 2 to the 64 if you increment or<a name="line.376"></a>
+<span class="sourceLineNo">377</span>     * decrement by 1, but there are only 2 to the 62 possible doubles between 0 and 1.<a name="line.377"></a>
+<span class="sourceLineNo">378</span>     * @param state a variable that should be different every time you want a different random result;<a name="line.378"></a>
+<span class="sourceLineNo">379</span>     *              using {@code determine(++state)} is recommended to go forwards or {@code determine(--state)} to<a name="line.379"></a>
+<span class="sourceLineNo">380</span>     *              generate numbers in reverse order<a name="line.380"></a>
+<span class="sourceLineNo">381</span>     * @return a pseudo-random double between 0.0 (inclusive) and 1.0 (exclusive), determined by {@code state}<a name="line.381"></a>
+<span class="sourceLineNo">382</span>     */<a name="line.382"></a>
+<span class="sourceLineNo">383</span>    public static double determineDouble(long state) { return (((state = ((state = ((state *= 0x9E3779B97F4A7C15L) ^ state &gt;&gt;&gt; 30) * 0xBF58476D1CE4E5B9L) ^ state &gt;&gt;&gt; 27) * 0x94D049BB133111EBL) ^ state &gt;&gt;&gt; 31) &amp; 0x1FFFFFFFFFFFFFL) * 0x1p-53; }<a name="line.383"></a>
+<span class="sourceLineNo">384</span>}<a name="line.384"></a>
 
 
 
