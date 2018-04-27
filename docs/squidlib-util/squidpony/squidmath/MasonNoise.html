@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9,"i26":9};
+var methods = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -113,20 +113,17 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.66">MasonNoise</a>
+<pre>public class <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.62">MasonNoise</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interface in squidpony.squidmath">Noise.Noise2D</a>, <a href="../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>, <a href="../../squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a>, <a href="../../squidpony/squidmath/Noise.Noise6D.html" title="interface in squidpony.squidmath">Noise.Noise6D</a></pre>
-<div class="block">Noise functions that try to conceal undesirable patterns, in 2D, 3D, 4D, and 6D, using 32-bit int math wherever
- possible and only yielding floats or doubles if requested. All functions can take an long seed that should
- significantly change the pattern of noise produced. Incorporates code from Joise; the full library is available at
- https://github.com/SudoPlayGames/Joise , and this class adds rather significant optimization in a few methods,
- especially 6D noise. Joise is derived from the Accidental Noise Library, available in C++ at
- http://accidentalnoise.sourceforge.net/index.html . Both Joise and ANL have many features that SquidLib has not (yet)
- incorporated, but now that SquidLib has seamless noise, that's a nice feature that would have needed Joise before.
+<div class="block">Noise functions that delegate work to the best-suited noise type for the requested dimensionality, plus some extra
+ functions that affect a large multi-dimensional area at once. This will use <a href="../../squidpony/squidmath/FastNoise.html" title="class in squidpony.squidmath"><code>FastNoise</code></a> for 2D and 3D noise,
+ <a href="../../squidpony/squidmath/WhirlingNoise.html" title="class in squidpony.squidmath"><code>WhirlingNoise</code></a> for 4D noise, and <a href="../../squidpony/squidmath/SeededNoise.html" title="class in squidpony.squidmath"><code>SeededNoise</code></a> for 6D noise. It uses its own, possibly sub-par
+ implementation for <a href="../../squidpony/squidmath/MasonNoise.html#addNoiseField-float:A:A-float-float-float-float-long-float-float-"><code>addNoiseField(float[][], float, float, float, float, long, float, float)</code></a> and
+ <a href="../../squidpony/squidmath/MasonNoise.html#addNoiseField-float:A:A:A-float-float-float-float-float-float-long-float-float-"><code>addNoiseField(float[][][], float, float, float, float, float, float, long, float, float)</code></a>.
  <br>
- The name comes from the Freemasons, who as a secret society, are very good at concealing things. MasonNoise also
- sounds a lot like MerlinNoise, which sounds a lot like PerlinNoise and WhirlingNoise. This class is very close in
- implementation to WhirlingNoise.</div>
+ The name comes from the Freemasons, who as a secret society, are very good at behind-the-scenes work. MasonNoise also
+ sounds a lot like MerlinNoise, which sounds a lot like PerlinNoise and WhirlingNoise.</div>
 </li>
 </ul>
 </div>
@@ -146,68 +143,12 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#BOUND">BOUND</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>protected long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#defaultSeed">defaultSeed</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#F2">F2</a></span></code>&nbsp;</td>
-</tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#F3">F3</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#F4">F4</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#F6">F6</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#G2">G2</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#G3">G3</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#G4">G4</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#G6">G6</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected static float[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#gradient4DLUT">gradient4DLUT</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected static float[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#gradient6DLUT">gradient6DLUT</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/MasonNoise.html" title="class in squidpony.squidmath">MasonNoise</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#instance">instance</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#LIMIT4">LIMIT4</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#LIMIT6">LIMIT6</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected static int[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#SIMPLEX">SIMPLEX</a></span></code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -327,45 +268,6 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
                 long&nbsp;seed)</code>&nbsp;</td>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code>static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#hash-int-int-int-int-int-int-long-">hash</a></span>(int&nbsp;x,
-    int&nbsp;y,
-    int&nbsp;z,
-    int&nbsp;w,
-    int&nbsp;u,
-    int&nbsp;v,
-    long&nbsp;seed)</code>
-<div class="block">Possibly useful outside SeededNoise.</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code>static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#hash-int-int-int-int-long-">hash</a></span>(int&nbsp;x,
-    int&nbsp;y,
-    int&nbsp;z,
-    int&nbsp;w,
-    long&nbsp;seed)</code>
-<div class="block">Possibly useful outside SeededNoise.</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code>static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#hash-int-int-int-long-">hash</a></span>(int&nbsp;x,
-    int&nbsp;y,
-    int&nbsp;z,
-    long&nbsp;seed)</code>
-<div class="block">Possibly useful outside SeededNoise.</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code>static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#hash-int-int-long-">hash</a></span>(int&nbsp;x,
-    int&nbsp;y,
-    long&nbsp;seed)</code>
-<div class="block">Possibly useful outside SeededNoise.</div>
-</td>
-</tr>
-<tr id="i14" class="altColor">
 <td class="colFirst"><code>static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noise-double-double-double-double-double-double-long-">noise</a></span>(double&nbsp;x,
      double&nbsp;y,
@@ -373,82 +275,47 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
      double&nbsp;w,
      double&nbsp;u,
      double&nbsp;v,
-     long&nbsp;seed)</code>&nbsp;</td>
+     long&nbsp;seed)</code>
+<div class="block">Delegates to <a href="../../squidpony/squidmath/SeededNoise.html#noise-double-double-double-double-double-double-long-"><code>SeededNoise.noise(double, double, double, double, double, double, long)</code></a>.</div>
+</td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noise-double-double-double-double-long-">noise</a></span>(double&nbsp;x,
      double&nbsp;y,
      double&nbsp;z,
      double&nbsp;w,
-     long&nbsp;seed)</code>&nbsp;</td>
+     long&nbsp;seed)</code>
+<div class="block">Delegates to <a href="../../squidpony/squidmath/WhirlingNoise.html#noise-double-double-double-double-long-"><code>WhirlingNoise.noise(double, double, double, double, long)</code></a>.</div>
+</td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noise-double-double-double-long-">noise</a></span>(double&nbsp;x,
      double&nbsp;y,
      double&nbsp;z,
-     long&nbsp;seed)</code>&nbsp;</td>
+     long&nbsp;seed)</code>
+<div class="block">Delegates to <a href="../../squidpony/squidmath/FastNoise.html#getNoiseWithSeed-double-double-double-long-"><code>FastNoise.getNoiseWithSeed(double, double, double, long)</code></a>.</div>
+</td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noise-double-double-long-">noise</a></span>(double&nbsp;x,
      double&nbsp;y,
-     long&nbsp;seed)</code>&nbsp;</td>
+     long&nbsp;seed)</code>
+<div class="block">Delegates to <a href="../../squidpony/squidmath/FastNoise.html#getNoiseWithSeed-double-double-long-"><code>FastNoise.getNoiseWithSeed(double, double, long)</code></a>.</div>
+</td>
 </tr>
-<tr id="i18" class="altColor">
-<td class="colFirst"><code>static double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noise-float-float-float-float-float-float-long-">noise</a></span>(float&nbsp;x,
-     float&nbsp;y,
-     float&nbsp;z,
-     float&nbsp;w,
-     float&nbsp;u,
-     float&nbsp;v,
-     long&nbsp;seed)</code>&nbsp;</td>
-</tr>
-<tr id="i19" class="rowColor">
-<td class="colFirst"><code>static double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noise-float-float-float-float-long-">noise</a></span>(float&nbsp;x,
-     float&nbsp;y,
-     float&nbsp;z,
-     float&nbsp;w,
-     long&nbsp;seed)</code>&nbsp;</td>
-</tr>
-<tr id="i20" class="altColor">
-<td class="colFirst"><code>static double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noise-float-float-float-long-">noise</a></span>(float&nbsp;x,
-     float&nbsp;y,
-     float&nbsp;z,
-     long&nbsp;seed)</code>&nbsp;</td>
-</tr>
-<tr id="i21" class="rowColor">
-<td class="colFirst"><code>static float</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noise-float-float-long-">noise</a></span>(float&nbsp;xPos,
-     float&nbsp;yPos,
-     long&nbsp;seed)</code>&nbsp;</td>
-</tr>
-<tr id="i22" class="altColor">
-<td class="colFirst"><code>static double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noiseAlt-double-double-long-">noiseAlt</a></span>(double&nbsp;x,
-        double&nbsp;y,
-        long&nbsp;seed)</code>&nbsp;</td>
-</tr>
-<tr id="i23" class="rowColor">
-<td class="colFirst"><code>static float</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#noiseAlt-float-float-long-">noiseAlt</a></span>(float&nbsp;x,
-        float&nbsp;y,
-        long&nbsp;seed)</code>&nbsp;</td>
-</tr>
-<tr id="i24" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>static int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#randomInt-long-">randomInt</a></span>(long&nbsp;state)</code>&nbsp;</td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>static int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#randomInt-long-long-">randomInt</a></span>(long&nbsp;state,
          long&nbsp;jump)</code>&nbsp;</td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>static float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/MasonNoise.html#randomize-long-long-">randomize</a></span>(long&nbsp;state,
          long&nbsp;jump)</code>&nbsp;</td>
@@ -481,186 +348,16 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>defaultSeed</h4>
-<pre>protected final&nbsp;long <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.68">defaultSeed</a></pre>
+<pre>protected final&nbsp;long <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.64">defaultSeed</a></pre>
 </li>
 </ul>
 <a name="instance">
 <!--   -->
 </a>
-<ul class="blockList">
-<li class="blockList">
-<h4>instance</h4>
-<pre>public static final&nbsp;<a href="../../squidpony/squidmath/MasonNoise.html" title="class in squidpony.squidmath">MasonNoise</a> <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.69">instance</a></pre>
-</li>
-</ul>
-<a name="gradient4DLUT">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>gradient4DLUT</h4>
-<pre>protected static final&nbsp;float[] <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.105">gradient4DLUT</a></pre>
-</li>
-</ul>
-<a name="gradient6DLUT">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>gradient6DLUT</h4>
-<pre>protected static final&nbsp;float[] <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.364">gradient6DLUT</a></pre>
-</li>
-</ul>
-<a name="SIMPLEX">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>SIMPLEX</h4>
-<pre>protected static final&nbsp;int[] <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.880">SIMPLEX</a></pre>
-</li>
-</ul>
-<a name="BOUND">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>BOUND</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.989">BOUND</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.BOUND">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="F2">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>F2</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.990">F2</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.F2">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="G2">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>G2</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.990">G2</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.G2">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="F3">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>F3</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.991">F3</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.F3">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="G3">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>G3</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.991">G3</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.G3">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="F4">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>F4</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.992">F4</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.F4">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="G4">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>G4</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.992">G4</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.G4">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="LIMIT4">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>LIMIT4</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.992">LIMIT4</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.LIMIT4">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="F6">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>F6</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.993">F6</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.F6">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="G6">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>G6</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.993">G6</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.G6">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a name="LIMIT6">
-<!--   -->
-</a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>LIMIT6</h4>
-<pre>protected static final&nbsp;int <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.993">LIMIT6</a></pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../constant-values.html#squidpony.squidmath.MasonNoise.LIMIT6">Constant Field Values</a></dd>
-</dl>
+<h4>instance</h4>
+<pre>public static final&nbsp;<a href="../../squidpony/squidmath/MasonNoise.html" title="class in squidpony.squidmath">MasonNoise</a> <a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.65">instance</a></pre>
 </li>
 </ul>
 </li>
@@ -677,7 +374,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>MasonNoise</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.71">MasonNoise</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.67">MasonNoise</a>()</pre>
 </li>
 </ul>
 <a name="MasonNoise-long-">
@@ -686,7 +383,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MasonNoise</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.74">MasonNoise</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.70">MasonNoise</a>(long&nbsp;seed)</pre>
 </li>
 </ul>
 </li>
@@ -703,7 +400,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.79">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.75">getNoise</a>(double&nbsp;x,
                        double&nbsp;y)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -717,7 +414,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.82">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.78">getNoise</a>(double&nbsp;x,
                        double&nbsp;y,
                        double&nbsp;z)</pre>
 <dl>
@@ -732,7 +429,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.85">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.81">getNoise</a>(double&nbsp;x,
                        double&nbsp;y,
                        double&nbsp;z,
                        double&nbsp;w)</pre>
@@ -748,7 +445,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoise</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.88">getNoise</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.84">getNoise</a>(double&nbsp;x,
                        double&nbsp;y,
                        double&nbsp;z,
                        double&nbsp;w,
@@ -766,7 +463,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.92">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.88">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                long&nbsp;seed)</pre>
 <dl>
@@ -781,7 +478,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.95">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.91">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                double&nbsp;z,
                                long&nbsp;seed)</pre>
@@ -797,7 +494,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.98">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.94">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                double&nbsp;z,
                                double&nbsp;w,
@@ -814,7 +511,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>getNoiseWithSeed</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.101">getNoiseWithSeed</a>(double&nbsp;x,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.97">getNoiseWithSeed</a>(double&nbsp;x,
                                double&nbsp;y,
                                double&nbsp;z,
                                double&nbsp;w,
@@ -827,120 +524,25 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 </dl>
 </li>
 </ul>
-<a name="hash-int-int-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.913">hash</a>(int&nbsp;x,
-                       int&nbsp;y,
-                       long&nbsp;seed)</pre>
-<div class="block">Possibly useful outside SeededNoise. An unrolled version of CrossHash.Wisp that only generates 24 bits.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>x</code> - an int to incorporate into the hash</dd>
-<dd><code>y</code> - an int to incorporate into the hash</dd>
-<dd><code>seed</code> - an int to incorporate into the hash</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a pseudo-random-like int with 24 bits used</dd>
-</dl>
-</li>
-</ul>
-<a name="hash-int-int-int-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.938">hash</a>(int&nbsp;x,
-                       int&nbsp;y,
-                       int&nbsp;z,
-                       long&nbsp;seed)</pre>
-<div class="block">Possibly useful outside SeededNoise. An unrolled version of CrossHash.Wisp that only generates 8 bits.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>x</code> - an int to incorporate into the hash</dd>
-<dd><code>y</code> - an int to incorporate into the hash</dd>
-<dd><code>z</code> - an int to incorporate into the hash</dd>
-<dd><code>seed</code> - an int to incorporate into the hash</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a pseudo-random-like int between 0 and 255, inclusive on both</dd>
-</dl>
-</li>
-</ul>
-<a name="hash-int-int-int-int-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.956">hash</a>(int&nbsp;x,
-                       int&nbsp;y,
-                       int&nbsp;z,
-                       int&nbsp;w,
-                       long&nbsp;seed)</pre>
-<div class="block">Possibly useful outside SeededNoise. An unrolled version of CrossHash.Wisp that only generates 8 bits.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>x</code> - an int to incorporate into the hash</dd>
-<dd><code>y</code> - an int to incorporate into the hash</dd>
-<dd><code>z</code> - an int to incorporate into the hash</dd>
-<dd><code>w</code> - an int to incorporate into the hash</dd>
-<dd><code>seed</code> - an int to incorporate into the hash</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a pseudo-random-like int between 0 and 255, inclusive on both</dd>
-</dl>
-</li>
-</ul>
-<a name="hash-int-int-int-int-int-int-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.977">hash</a>(int&nbsp;x,
-                       int&nbsp;y,
-                       int&nbsp;z,
-                       int&nbsp;w,
-                       int&nbsp;u,
-                       int&nbsp;v,
-                       long&nbsp;seed)</pre>
-<div class="block">Possibly useful outside SeededNoise. An unrolled version of CrossHash.Wisp that only generates 8 bits.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>x</code> - an int to incorporate into the hash</dd>
-<dd><code>y</code> - an int to incorporate into the hash</dd>
-<dd><code>z</code> - an int to incorporate into the hash</dd>
-<dd><code>w</code> - an int to incorporate into the hash</dd>
-<dd><code>u</code> - an int to incorporate into the hash</dd>
-<dd><code>v</code> - an int to incorporate into the hash</dd>
-<dd><code>seed</code> - an int to incorporate into the hash</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a pseudo-random-like int between 0 and 255, inclusive on both</dd>
-</dl>
-</li>
-</ul>
 <a name="noise-double-double-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1023">noise</a>(double&nbsp;x,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.131">noise</a>(double&nbsp;x,
                            double&nbsp;y,
                            long&nbsp;seed)</pre>
-</li>
-</ul>
-<a name="noiseAlt-double-double-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>noiseAlt</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1027">noiseAlt</a>(double&nbsp;x,
-                              double&nbsp;y,
-                              long&nbsp;seed)</pre>
+<div class="block">Delegates to <a href="../../squidpony/squidmath/FastNoise.html#getNoiseWithSeed-double-double-long-"><code>FastNoise.getNoiseWithSeed(double, double, long)</code></a>.
+ <br></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - X input</dd>
+<dd><code>y</code> - Y input</dd>
+<dd><code>seed</code> - any long; will be used to completely alter the noise</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>noise from -1.0 to 1.0, inclusive</dd>
+</dl>
 </li>
 </ul>
 <a name="randomize-long-long-">
@@ -949,7 +551,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>randomize</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1031">randomize</a>(long&nbsp;state,
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.139">randomize</a>(long&nbsp;state,
                               long&nbsp;jump)</pre>
 </li>
 </ul>
@@ -959,7 +561,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>randomInt</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1044">randomInt</a>(long&nbsp;state,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.152">randomInt</a>(long&nbsp;state,
                             long&nbsp;jump)</pre>
 </li>
 </ul>
@@ -969,29 +571,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>randomInt</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1055">randomInt</a>(long&nbsp;state)</pre>
-</li>
-</ul>
-<a name="noise-float-float-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>noise</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1101">noise</a>(float&nbsp;xPos,
-                          float&nbsp;yPos,
-                          long&nbsp;seed)</pre>
-</li>
-</ul>
-<a name="noiseAlt-float-float-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>noiseAlt</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1116">noiseAlt</a>(float&nbsp;x,
-                             float&nbsp;y,
-                             long&nbsp;seed)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.163">randomInt</a>(long&nbsp;state)</pre>
 </li>
 </ul>
 <a name="addNoiseField-float:A:A-float-float-float-float-long-float-float-">
@@ -1000,7 +580,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>addNoiseField</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1135">addNoiseField</a>(float[][]&nbsp;target,
+<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.243">addNoiseField</a>(float[][]&nbsp;target,
                                  float&nbsp;startX,
                                  float&nbsp;startY,
                                  float&nbsp;endX,
@@ -1016,7 +596,7 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>addNoiseField</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1196">addNoiseField</a>(float[][][]&nbsp;target,
+<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.304">addNoiseField</a>(float[][][]&nbsp;target,
                                  float&nbsp;startX,
                                  float&nbsp;startY,
                                  float&nbsp;startZ,
@@ -1034,22 +614,21 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1331">noise</a>(double&nbsp;x,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.448">noise</a>(double&nbsp;x,
                            double&nbsp;y,
                            double&nbsp;z,
                            long&nbsp;seed)</pre>
-</li>
-</ul>
-<a name="noise-float-float-float-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1334">noise</a>(float&nbsp;x,
-                           float&nbsp;y,
-                           float&nbsp;z,
-                           long&nbsp;seed)</pre>
+<div class="block">Delegates to <a href="../../squidpony/squidmath/FastNoise.html#getNoiseWithSeed-double-double-double-long-"><code>FastNoise.getNoiseWithSeed(double, double, double, long)</code></a>.
+ <br></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - X input</dd>
+<dd><code>y</code> - Y input</dd>
+<dd><code>z</code> - Z input</dd>
+<dd><code>seed</code> - any long; will be used to completely alter the noise</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>noise from -1.0 to 1.0, inclusive</dd>
+</dl>
 </li>
 </ul>
 <a name="noise-double-double-double-double-long-">
@@ -1058,54 +637,55 @@ implements <a href="../../squidpony/squidmath/Noise.Noise2D.html" title="interfa
 <ul class="blockList">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1447">noise</a>(double&nbsp;x,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.465">noise</a>(double&nbsp;x,
                            double&nbsp;y,
                            double&nbsp;z,
                            double&nbsp;w,
                            long&nbsp;seed)</pre>
-</li>
-</ul>
-<a name="noise-float-float-float-float-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1450">noise</a>(float&nbsp;x,
-                           float&nbsp;y,
-                           float&nbsp;z,
-                           float&nbsp;w,
-                           long&nbsp;seed)</pre>
+<div class="block">Delegates to <a href="../../squidpony/squidmath/WhirlingNoise.html#noise-double-double-double-double-long-"><code>WhirlingNoise.noise(double, double, double, double, long)</code></a>.
+ <br>
+ 4D simplex noise. Unlike <a href="../../squidpony/squidmath/PerlinNoise.html" title="class in squidpony.squidmath"><code>PerlinNoise</code></a>, uses its parameters verbatim, so the scale of the result will be
+ different when passing the same arguments to <a href="../../squidpony/squidmath/PerlinNoise.html#noise-double-double-double-double-"><code>PerlinNoise.noise(double, double, double, double)</code></a> and this
+ method. Roughly 20-25% faster than the equivalent method in PerlinNoise.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - X input</dd>
+<dd><code>y</code> - Y input</dd>
+<dd><code>z</code> - Z input</dd>
+<dd><code>w</code> - W input (fourth-dimensional)</dd>
+<dd><code>seed</code> - any long; will be used to completely alter the noise</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>noise from -1.0 to 1.0, inclusive</dd>
+</dl>
 </li>
 </ul>
 <a name="noise-double-double-double-double-double-double-long-">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1527">noise</a>(double&nbsp;x,
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.481">noise</a>(double&nbsp;x,
                            double&nbsp;y,
                            double&nbsp;z,
                            double&nbsp;w,
                            double&nbsp;u,
                            double&nbsp;v,
                            long&nbsp;seed)</pre>
-</li>
-</ul>
-<a name="noise-float-float-float-float-float-float-long-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>noise</h4>
-<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/MasonNoise.html#line.1532">noise</a>(float&nbsp;x,
-                           float&nbsp;y,
-                           float&nbsp;z,
-                           float&nbsp;w,
-                           float&nbsp;u,
-                           float&nbsp;v,
-                           long&nbsp;seed)</pre>
+<div class="block">Delegates to <a href="../../squidpony/squidmath/SeededNoise.html#noise-double-double-double-double-double-double-long-"><code>SeededNoise.noise(double, double, double, double, double, double, long)</code></a>.
+ <br></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - X input</dd>
+<dd><code>y</code> - Y input</dd>
+<dd><code>z</code> - Z input</dd>
+<dd><code>w</code> - W input (fourth-dimensional)</dd>
+<dd><code>u</code> - U input (fifth-dimensional)</dd>
+<dd><code>v</code> - V input (sixth-dimensional)</dd>
+<dd><code>seed</code> - any long; will be used to completely alter the noise</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>noise from -1.0 to 1.0, inclusive</dd>
+</dl>
 </li>
 </ul>
 </li>
