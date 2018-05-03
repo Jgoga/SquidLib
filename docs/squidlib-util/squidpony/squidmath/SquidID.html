@@ -113,13 +113,18 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../src-html/squidpony/squidmath/SquidID.html#line.14">SquidID</a>
+<pre>public class <a href="../../src-html/squidpony/squidmath/SquidID.html#line.19">SquidID</a>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../squidpony/squidmath/SquidID.html" title="class in squidpony.squidmath">SquidID</a>&gt;</pre>
 <div class="block">A UUID-like identifier; not compatible with Java's standard UUID but will work on GWT.
  <br>
  Meant to be used as an identity type for things like SpatialMap, especially when no special game-specific logic is
  needed for identities.
+ <br>
+ Changed on April 27, 2018 so it isn't possible to generate two identical SquidIDs until 2 to the 128 minus 1
+ SquidIDs have been generated, which will take a while. Before, there was a small possibility that even two sequential
+ SquidIDs could be the same, and the new way gives a better guarantee of how many can be produced without duplicates.
+ <br>
  Created by Tommy Ettinger on 4/30/2016.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -218,7 +223,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/SquidID.html#randomize--">randomize</a></span>()</code>
-<div class="block">Makes the IDs generated after calling this non-repeatable, with a random 1024-bit seed.</div>
+<div class="block">Makes the IDs generated after calling this non-repeatable, with a random 128-bit seed.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -265,7 +270,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>low</h4>
-<pre>public final&nbsp;long <a href="../../src-html/squidpony/squidmath/SquidID.html#line.17">low</a></pre>
+<pre>public final&nbsp;long <a href="../../src-html/squidpony/squidmath/SquidID.html#line.22">low</a></pre>
 </li>
 </ul>
 <a name="high">
@@ -274,7 +279,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>high</h4>
-<pre>public final&nbsp;long <a href="../../src-html/squidpony/squidmath/SquidID.html#line.17">high</a></pre>
+<pre>public final&nbsp;long <a href="../../src-html/squidpony/squidmath/SquidID.html#line.22">high</a></pre>
 </li>
 </ul>
 </li>
@@ -291,7 +296,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>SquidID</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.23">SquidID</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.28">SquidID</a>()</pre>
 <div class="block">Constructs a new random SquidID. If you want different random IDs with every run, the defaults should be fine.
  If you want stable IDs to be generated, use SquidID.stabilize(), but be careful about collisions!</div>
 </li>
@@ -302,7 +307,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SquidID</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.33">SquidID</a>(long&nbsp;low,
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.39">SquidID</a>(long&nbsp;low,
                long&nbsp;high)</pre>
 <div class="block">Constructs a fixed SquidID with the given low and high 64-bit longs.</div>
 <dl>
@@ -326,7 +331,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>randomUUID</h4>
-<pre>public static&nbsp;<a href="../../squidpony/squidmath/SquidID.html" title="class in squidpony.squidmath">SquidID</a>&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.43">randomUUID</a>()</pre>
+<pre>public static&nbsp;<a href="../../squidpony/squidmath/SquidID.html" title="class in squidpony.squidmath">SquidID</a>&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.49">randomUUID</a>()</pre>
 <div class="block">Gets a new random SquidID, the same as calling the no-argument constructor.
  The name is for compatibility with Java's standard UUID class.</div>
 <dl>
@@ -341,13 +346,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>stabilize</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.68">stabilize</a>()</pre>
+<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.74">stabilize</a>()</pre>
 <div class="block">Makes the IDs generated after calling this repeatable, with the same IDs generated in order after this is called.
  This class uses a random number generator with a random seed by default to produce IDs, and properties of the
- LongPeriodRNG this uses make it incredibly unlikely that IDs will repeat even if the game was run for the rest
- of your natural lifespan. For the purposes of tests, you may want stable SquidID values to be generated, the same
- for every startup of the program, generating the same IDs in order. This will change the seed used internally to
- a constant (large) seed the first time it is called, and it should only be called at or near the start of your
+ <a href="../../squidpony/squidmath/XoRoRNG.html" title="class in squidpony.squidmath"><code>XoRoRNG</code></a> this uses make it incredibly unlikely that IDs will repeat even if the game was run for years
+ without stopping. For the purposes of tests, you may want stable SquidID values to be generated, the same for
+ every startup of the program, generating the same IDs in order. This will change the seed used internally to a
+ constant (large) seed the first time it is called, and it should only be called at or near the start of your
  program, no more than once. If an ID is requested immediately after calling this method, and then this method is
  called again, the next ID to be generated will be identical to the previous one generated (a collision). There
  may be reasons you want this during testing, so there isn't any check for multiple calls to this method. If IDs
@@ -368,15 +373,15 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>randomize</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.94">randomize</a>()</pre>
-<div class="block">Makes the IDs generated after calling this non-repeatable, with a random 1024-bit seed.
+<pre>public static&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.100">randomize</a>()</pre>
+<div class="block">Makes the IDs generated after calling this non-repeatable, with a random 128-bit seed.
  This class uses a random number generator with a random seed by default to produce IDs, and properties of the
- LongPeriodRNG this uses make it incredibly unlikely that IDs will repeat even if the game was run for the rest
- of your natural lifespan. However, if you call stabilize(), generate some IDs, call stabilize() again, and
- generate some more IDs, the first, second, third, etc. IDs generated after each call will be identical -- hardly
- the unique ID you usually want. You can "undo" the effects of stabilize by calling this method, making the seed
- a new random value. This does not affect the constructor that takes two longs to produce an exact ID, nor will
- it change any IDs.</div>
+ <a href="../../squidpony/squidmath/XoRoRNG.html" title="class in squidpony.squidmath"><code>XoRoRNG</code></a> this uses make it incredibly unlikely that IDs will repeat even if the game was run for years
+ without stopping. However, if you call stabilize(), generate some IDs, call stabilize() again, and generate some
+ more IDs, the first, second, third, etc. IDs generated after each call will be identical -- hardly the unique ID
+ you usually want. You can "undo" the effects of stabilize by calling this method, making the seed a new random
+ value. This does not affect the constructor that takes two longs to produce an exact ID, nor will it change any
+ existing IDs.</div>
 </li>
 </ul>
 <a name="getLeastSignificantBits--">
@@ -385,7 +390,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>getLeastSignificantBits</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.104">getLeastSignificantBits</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.113">getLeastSignificantBits</a>()</pre>
 <div class="block">Gets the least-significant bits, also accessible by the field low.
  The name is for compatibility with Java's standard UUID class.</div>
 <dl>
@@ -400,7 +405,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>getMostSignificantBits</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.114">getMostSignificantBits</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.123">getMostSignificantBits</a>()</pre>
 <div class="block">Gets the most-significant bits, also accessible by the field high.
  The name is for compatibility with Java's standard UUID class.</div>
 <dl>
@@ -415,7 +420,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.120">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.129">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -428,7 +433,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.132">hashCode</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.141">hashCode</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -441,7 +446,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.137">toString</a>()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.146">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -454,7 +459,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>compareTo</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.143">compareTo</a>(<a href="../../squidpony/squidmath/SquidID.html" title="class in squidpony.squidmath">SquidID</a>&nbsp;o)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/SquidID.html#line.152">compareTo</a>(<a href="../../squidpony/squidmath/SquidID.html" title="class in squidpony.squidmath">SquidID</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html?is-external=true#compareTo-T-" title="class or interface in java.lang">compareTo</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../squidpony/squidmath/SquidID.html" title="class in squidpony.squidmath">SquidID</a>&gt;</code></dd>

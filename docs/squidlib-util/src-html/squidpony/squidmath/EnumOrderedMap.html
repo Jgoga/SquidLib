@@ -11,11 +11,11 @@
 <span class="sourceLineNo">003</span>/**<a name="line.3"></a>
 <span class="sourceLineNo">004</span> * A simple alternative to EnumMap that has a zero-argument constructor (which makes serialization easier) but is a<a name="line.4"></a>
 <span class="sourceLineNo">005</span> * little less efficient. However, it supports more features by inheriting from {@link OrderedMap}, such as retrieval of<a name="line.5"></a>
-<span class="sourceLineNo">006</span> * random keys or values with {@link #randomKey(RNG)} and  {@link #randomValue(RNG)}, iteration in insertion order<a name="line.6"></a>
-<span class="sourceLineNo">007</span> * instead of always using enum declaration order (order can be shuffled with {@link #shuffle(RNG)} or reordered with<a name="line.7"></a>
+<span class="sourceLineNo">006</span> * random keys or values with {@link #randomKey(IRNG)} and  {@link #randomValue(IRNG)}, iteration in insertion order<a name="line.6"></a>
+<span class="sourceLineNo">007</span> * instead of always using enum declaration order (order can be shuffled with {@link #shuffle(IRNG)} or reordered with<a name="line.7"></a>
 <span class="sourceLineNo">008</span> * {@link #reorder(int...)}), and a little more. The implementation is nearly trivial due to how OrderedMap allows<a name="line.8"></a>
 <span class="sourceLineNo">009</span> * customization of hashing strategy with its IHasher option, and this class always uses a specific custom IHasher to<a name="line.9"></a>
-<span class="sourceLineNo">010</span> * hash Enum values by their ordinal. This IHasher is shared with {@link EnumOrderedMap}.<a name="line.10"></a>
+<span class="sourceLineNo">010</span> * hash Enum values by their ordinal. This IHasher is shared with {@link EnumOrderedSet}.<a name="line.10"></a>
 <span class="sourceLineNo">011</span> * &lt;br&gt;<a name="line.11"></a>
 <span class="sourceLineNo">012</span> * Created by Tommy Ettinger on 10/21/2017.<a name="line.12"></a>
 <span class="sourceLineNo">013</span> */<a name="line.13"></a>

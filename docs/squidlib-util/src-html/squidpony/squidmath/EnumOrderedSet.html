@@ -11,8 +11,8 @@
 <span class="sourceLineNo">003</span>/**<a name="line.3"></a>
 <span class="sourceLineNo">004</span> * A simple Set of Enum items (which are already unique if used in a normal Set) that keeps insertion order. By<a name="line.4"></a>
 <span class="sourceLineNo">005</span> * inheriting from {@link OrderedSet}, it gets features not present in normal JDK Sets, such as retrieval of random<a name="line.5"></a>
-<span class="sourceLineNo">006</span> * items with {@link #randomItem(RNG)}, iteration in insertion order instead of always using enum declaration order<a name="line.6"></a>
-<span class="sourceLineNo">007</span> * (order can be shuffled with {@link #shuffle(RNG)} or reordered with {@link #reorder(int...)}), and a little more. The<a name="line.7"></a>
+<span class="sourceLineNo">006</span> * items with {@link #randomItem(IRNG)}, iteration in insertion order instead of always using enum declaration order<a name="line.6"></a>
+<span class="sourceLineNo">007</span> * (order can be shuffled with {@link #shuffle(IRNG)} or reordered with {@link #reorder(int...)}), and a little more. The<a name="line.7"></a>
 <span class="sourceLineNo">008</span> * implementation is nearly trivial due to how OrderedMap allows customization of hashing strategy with its IHasher<a name="line.8"></a>
 <span class="sourceLineNo">009</span> * option, and this class always uses a specific custom IHasher to hash Enum values by their ordinal. This IHasher is<a name="line.9"></a>
 <span class="sourceLineNo">010</span> * shared with {@link EnumOrderedMap}.<a name="line.10"></a>

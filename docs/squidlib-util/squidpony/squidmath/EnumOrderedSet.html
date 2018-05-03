@@ -122,8 +122,8 @@ var activeTableTab = "activeTableTab";
 extends <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;K&gt;</pre>
 <div class="block">A simple Set of Enum items (which are already unique if used in a normal Set) that keeps insertion order. By
  inheriting from <a href="../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath"><code>OrderedSet</code></a>, it gets features not present in normal JDK Sets, such as retrieval of random
- items with <code>#randomItem(RNG)</code>, iteration in insertion order instead of always using enum declaration order
- (order can be shuffled with <code>#shuffle(RNG)</code> or reordered with <a href="../../squidpony/squidmath/OrderedSet.html#reorder-int...-"><code>OrderedSet.reorder(int...)</code></a>), and a little more. The
+ items with <a href="../../squidpony/squidmath/OrderedSet.html#randomItem-squidpony.squidmath.IRNG-"><code>OrderedSet.randomItem(IRNG)</code></a>, iteration in insertion order instead of always using enum declaration order
+ (order can be shuffled with <a href="../../squidpony/squidmath/OrderedSet.html#shuffle-squidpony.squidmath.IRNG-"><code>OrderedSet.shuffle(IRNG)</code></a> or reordered with <a href="../../squidpony/squidmath/OrderedSet.html#reorder-int...-"><code>OrderedSet.reorder(int...)</code></a>), and a little more. The
  implementation is nearly trivial due to how OrderedMap allows customization of hashing strategy with its IHasher
  option, and this class always uses a specific custom IHasher to hash Enum values by their ordinal. This IHasher is
  shared with <a href="../../squidpony/squidmath/EnumOrderedMap.html" title="class in squidpony.squidmath"><code>EnumOrderedMap</code></a>.

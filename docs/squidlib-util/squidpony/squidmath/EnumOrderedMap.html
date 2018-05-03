@@ -122,11 +122,11 @@ var activeTableTab = "activeTableTab";
 extends <a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a>&lt;K,V&gt;</pre>
 <div class="block">A simple alternative to EnumMap that has a zero-argument constructor (which makes serialization easier) but is a
  little less efficient. However, it supports more features by inheriting from <a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath"><code>OrderedMap</code></a>, such as retrieval of
- random keys or values with <code>#randomKey(RNG)</code> and  <code>#randomValue(RNG)</code>, iteration in insertion order
- instead of always using enum declaration order (order can be shuffled with <code>#shuffle(RNG)</code> or reordered with
+ random keys or values with <a href="../../squidpony/squidmath/OrderedMap.html#randomKey-squidpony.squidmath.IRNG-"><code>OrderedMap.randomKey(IRNG)</code></a> and  <a href="../../squidpony/squidmath/OrderedMap.html#randomValue-squidpony.squidmath.IRNG-"><code>OrderedMap.randomValue(IRNG)</code></a>, iteration in insertion order
+ instead of always using enum declaration order (order can be shuffled with <a href="../../squidpony/squidmath/OrderedMap.html#shuffle-squidpony.squidmath.IRNG-"><code>OrderedMap.shuffle(IRNG)</code></a> or reordered with
  <a href="../../squidpony/squidmath/OrderedMap.html#reorder-int...-"><code>OrderedMap.reorder(int...)</code></a>), and a little more. The implementation is nearly trivial due to how OrderedMap allows
  customization of hashing strategy with its IHasher option, and this class always uses a specific custom IHasher to
- hash Enum values by their ordinal. This IHasher is shared with <a href="../../squidpony/squidmath/EnumOrderedMap.html" title="class in squidpony.squidmath"><code>EnumOrderedMap</code></a>.
+ hash Enum values by their ordinal. This IHasher is shared with <a href="../../squidpony/squidmath/EnumOrderedSet.html" title="class in squidpony.squidmath"><code>EnumOrderedSet</code></a>.
  <br>
  Created by Tommy Ettinger on 10/21/2017.</div>
 <dl>
