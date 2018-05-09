@@ -12844,9 +12844,9 @@
 <span class="sourceLineNo">12836</span>     * @return basis, after modification; it can be passed to this method as basis again<a name="line.12836"></a>
 <span class="sourceLineNo">12837</span>     */<a name="line.12837"></a>
 <span class="sourceLineNo">12838</span>    public static float[][][] mixColoredLighting(float[][][] basis, float[][][] other) {<a name="line.12838"></a>
-<span class="sourceLineNo">12839</span>        int w = basis[0].length, h = basis[0][0].length;<a name="line.12839"></a>
-<span class="sourceLineNo">12840</span>        for (int x = 0; x &lt; w &amp;&amp; x &lt; w; x++) {<a name="line.12840"></a>
-<span class="sourceLineNo">12841</span>            for (int y = 0; y &lt; h &amp;&amp; y &lt; h; y++) {<a name="line.12841"></a>
+<span class="sourceLineNo">12839</span>        int w = basis[0].length, h = basis[0][0].length, w2 = other[0].length, h2 = other[0][0].length;<a name="line.12839"></a>
+<span class="sourceLineNo">12840</span>        for (int x = 0; x &lt; w &amp;&amp; x &lt; w2; x++) {<a name="line.12840"></a>
+<span class="sourceLineNo">12841</span>            for (int y = 0; y &lt; h &amp;&amp; y &lt; h2; y++) {<a name="line.12841"></a>
 <span class="sourceLineNo">12842</span>                basis[1][x][y] = (basis[1][x][y] == FLOAT_WHITE)<a name="line.12842"></a>
 <span class="sourceLineNo">12843</span>                        ? other[1][x][y]<a name="line.12843"></a>
 <span class="sourceLineNo">12844</span>                        : (other[1][x][y] == FLOAT_WHITE)<a name="line.12844"></a>

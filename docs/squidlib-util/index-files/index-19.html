@@ -472,7 +472,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/RNG.html#randomRotation-java.util.List-">randomRotation(List&lt;T&gt;)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></dt>
 <dd>
-<div class="block">Given a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util"><code>List</code></a> l, this selects a random element of l to be the first value in the returned list l2.</div>
+<div class="block">Given a <a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util"><code>List</code></a> l, this selects a random element of l to be the first value in the returned list l2.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/CoordPacker.html#randomSample-short:A-double-squidpony.squidmath.IRNG-">randomSample(short[], double, IRNG)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath">CoordPacker</a></dt>
 <dd>
@@ -498,9 +498,15 @@
  accumulated random portion of positions as a Coord[].</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#randomSeparated-double-squidpony.squidmath.IRNG-">randomSeparated(double, IRNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Don't use this in new code; prefer <a href="../squidpony/squidmath/GreasedRegion.html#mixedRandomSeparated-double-int-long-"><code>GreasedRegion.mixedRandomSeparated(double, int, long)</code></a> with a random long as the
+ last parameter.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/GreasedRegion.html#randomSeparated-double-squidpony.squidmath.IRNG-int-">randomSeparated(double, IRNG, int)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Don't use this in new code; prefer <a href="../squidpony/squidmath/GreasedRegion.html#mixedRandomSeparated-double-int-long-"><code>GreasedRegion.mixedRandomSeparated(double, int, long)</code></a> with a random long as the
+ last parameter.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Region.html#randomSeparated-int-squidpony.squidmath.IRNG-">randomSeparated(int, IRNG)</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Region.html" title="class in squidpony.squidmath">Region</a></dt>
 <dd>
 <div class="block">Takes this region and walks through its Coords in chunks with length equal to separation, creating a new Region
@@ -1871,7 +1877,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#rng">rng</a></span> - Variable in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
 <dd>
-<div class="block">The RNG used to decide which one of multiple equally-short paths to take.</div>
+<div class="block">The IRNG used to decide which one of multiple equally-short paths to take.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/WaypointPathfinder.html#rng">rng</a></span> - Variable in class squidpony.squidai.<a href="../squidpony/squidai/WaypointPathfinder.html" title="class in squidpony.squidai">WaypointPathfinder</a></dt>
 <dd>&nbsp;</dd>

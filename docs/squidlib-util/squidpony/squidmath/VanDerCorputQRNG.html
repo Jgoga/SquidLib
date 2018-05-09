@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":9,"i2":9,"i3":9,"i4":9,"i5":10,"i6":10,"i7":9,"i8":9,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":9,"i16":9};
+var methods = {"i0":9,"i1":10,"i2":9,"i3":9,"i4":9,"i5":9,"i6":10,"i7":10,"i8":9,"i9":9,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":9,"i17":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -97,7 +97,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>squidpony.squidmath.VanDerCorputQRNG</li>
@@ -109,13 +109,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>, <a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a></dd>
+<dd><a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>, <a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.86">VanDerCorputQRNG</a>
-extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a>, <a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
+extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a>, <a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">A quasi-random number generator that goes through one of many sub-random sequences found by J.G. van der Corput.
  More specifically, this offers both the normal van der Corput sequence, which only changes the state by incrementing
  it (this works better in the normal usage as part of a 2D or 3D point generator) and a kind of scrambled van der
@@ -274,13 +274,21 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#altDetermine-long-int-">altDetermine</a></span>(long&nbsp;base,
+            int&nbsp;index)</code>
+<div class="block">Similar to <a href="../../squidpony/squidmath/VanDerCorputQRNG.html#determine-int-int-"><code>determine(int, int)</code></a>, but can take bases that aren't prime and can sometimes produce a
+ Halton-like sequence with better distance between points.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../squidpony/squidmath/VanDerCorputQRNG.html" title="class in squidpony.squidmath">VanDerCorputQRNG</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#copy--">copy</a></span>()</code>
 <div class="block">Produces a copy of this StatefulRandomness that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#determine-int-int-">determine</a></span>(int&nbsp;base,
          int&nbsp;index)</code>
@@ -288,21 +296,21 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
  <code>index</code> without needing to construct a VanDerCorputQRNG.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#determine2_scrambled-int-">determine2_scrambled</a></span>(int&nbsp;index)</code>
 <div class="block">Method to get a double from the van der Corput sequence with the base 2 at a scrambling of the requested
  <code>index</code> without needing to construct a VanDerCorputQRNG.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#determine2-int-">determine2</a></span>(int&nbsp;index)</code>
 <div class="block">Convenience method to get a double from the van der Corput sequence with the base 2 at the requested
  <code>index</code> without needing to construct a VanDerCorputQRNG.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#determineMixed-int-">determineMixed</a></span>(int&nbsp;index)</code>
 <div class="block">Chooses one sequence from the van der Corput sequences with bases 2, 3, and 5, where 5 is used 1/8 of the time,
@@ -310,17 +318,17 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
  specified <code>index</code>.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</code>&nbsp;</td>
-</tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#equals-java.lang.Object-">equals</a></span>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</code>&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#getState--">getState</a></span>()</code>
 <div class="block">Get the current internal state of the StatefulRandomness as a long.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#halton-int-int-int-">halton</a></span>(int&nbsp;width,
       int&nbsp;height,
@@ -328,7 +336,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <div class="block">Convenience method that gets a quasi-random Coord between integer (0,0) inclusive and (width,height) exclusive.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/Coord3D.html" title="class in squidpony.squidmath">Coord3D</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#halton-int-int-int-int-">halton</a></span>(int&nbsp;width,
       int&nbsp;height,
@@ -338,48 +346,48 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
  exclusive.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#next-int-">next</a></span>(int&nbsp;bits)</code>
 <div class="block">Using this method, any algorithm that might use the built-in Java Random
  can interface with this randomness source.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#nextDouble--">nextDouble</a></span>()</code>
 <div class="block">Gets the next quasi-random double from between 0.0 and 1.0 (normally both exclusive; only if state is negative or
  has wrapped around to a negative value can 0.0 ever be produced).</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#nextLong--">nextLong</a></span>()</code>
-<div class="block">Gets the next quasi-random long as a fraction of <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Long.html?is-external=true#MAX_VALUE" title="class or interface in java.lang"><code>Long.MAX_VALUE</code></a>; this can never produce a negative value.</div>
+<div class="block">Gets the next quasi-random long as a fraction of <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Long.html?is-external=true#MAX_VALUE" title="class or interface in java.lang"><code>Long.MAX_VALUE</code></a>; this can never produce a negative value.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#setState-long-">setState</a></span>(long&nbsp;state)</code>
 <div class="block">Set the current internal state of this StatefulRandomness with a long.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>static float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#weakDetermine-int-">weakDetermine</a></span>(int&nbsp;index)</code>
 <div class="block">Given any int (0 is allowed), this gets a somewhat-sub-random float from 0.0 (inclusive) to 1.0 (exclusive)
  using the same implementation as <a href="../../squidpony/squidmath/NumberTools.html#randomFloat-long-"><code>NumberTools.randomFloat(long)</code></a> but with index alterations.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>static float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/VanDerCorputQRNG.html#weakSignedDetermine-int-">weakSignedDetermine</a></span>(int&nbsp;index)</code>
 <div class="block">Like <a href="../../squidpony/squidmath/VanDerCorputQRNG.html#weakDetermine-int-"><code>weakDetermine(int)</code></a>, but returns a float between -1.0f and 1.0f, exclusive on both.</div>
@@ -390,8 +398,8 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -504,7 +512,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <li class="blockList">
 <h4>nextLong</h4>
 <pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.138">nextLong</a>()</pre>
-<div class="block">Gets the next quasi-random long as a fraction of <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Long.html?is-external=true#MAX_VALUE" title="class or interface in java.lang"><code>Long.MAX_VALUE</code></a>; this can never produce a negative value.
+<div class="block">Gets the next quasi-random long as a fraction of <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Long.html?is-external=true#MAX_VALUE" title="class or interface in java.lang"><code>Long.MAX_VALUE</code></a>; this can never produce a negative value.
  It is extremely unlikely to produce two identical values unless the state is very high or is negative; state
  increases by exactly 1 each time this, <a href="../../squidpony/squidmath/VanDerCorputQRNG.html#next-int-"><code>next(int)</code></a>, or <a href="../../squidpony/squidmath/VanDerCorputQRNG.html#nextDouble--"><code>nextDouble()</code></a> is called and can potentially
  wrap around to negative values after many generations.</div>
@@ -512,7 +520,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RandomnessSource.html#nextLong--">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a quasi-random non-negative long; may return 0 rarely, probably can't return <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Long.html?is-external=true#MAX_VALUE" title="class or interface in java.lang"><code>Long.MAX_VALUE</code></a></dd>
+<dd>a quasi-random non-negative long; may return 0 rarely, probably can't return <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Long.html?is-external=true#MAX_VALUE" title="class or interface in java.lang"><code>Long.MAX_VALUE</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -615,10 +623,10 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.191">toString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.191">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -628,10 +636,10 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.198">equals</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.198">equals</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -644,7 +652,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.209">hashCode</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -802,18 +810,12 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>weakDetermine</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.372">weakDetermine</a>(int&nbsp;index)</pre>
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.366">weakDetermine</a>(int&nbsp;index)</pre>
 <div class="block">Given any int (0 is allowed), this gets a somewhat-sub-random float from 0.0 (inclusive) to 1.0 (exclusive)
  using the same implementation as <a href="../../squidpony/squidmath/NumberTools.html#randomFloat-long-"><code>NumberTools.randomFloat(long)</code></a> but with index alterations. Only "weak"
  because it lacks the stronger certainty of subsequent numbers being separated that the Van der Corput sequence
- has. Not actually sub-random, but manages to be distributed remarkably evenly, likely due to the statistical
- strength of the algorithm it uses (the same as <a href="../../squidpony/squidmath/PintRNG.html" title="class in squidpony.squidmath"><code>PintRNG</code></a>, derived from PCG-Random). Because PintRNG is
- pseudo-random and uses very different starting states on subsequent calls to its <a href="../../squidpony/squidmath/PintRNG.html#next-int-"><code>PintRNG.next(int)</code></a>
- method, this method needs to perform some manipulation of index to keep a call that passes 2 for index different
- enough from a call that passes 3 (this should result in 0.4257662296295166 and 0.7359509468078613). You may want
- to perform a similar manipulation if you find yourself reseeding a PRNG with numerically-close seeds; this can be
- done for a value called index with <code>((index &gt;&gt;&gt; 19 | index &lt;&lt; 13) ^ 0x13A5BA1D)</code>.
-
+ has. Not actually sub-random, but should be distributed fairly well (internally uses <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a>'s
+ algorithm, which does not guarantee that its outputs are unique).
  <br>
  Not all int values for index will produce unique results, since this produces a float and there are less distinct
  floats between 0.0 and 1.0 than there are all ints (1/512 as many floats in that range as ints, specifically).
@@ -829,10 +831,10 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <a name="weakSignedDetermine-int-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>weakSignedDetermine</h4>
-<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.389">weakSignedDetermine</a>(int&nbsp;index)</pre>
+<pre>public static&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.383">weakSignedDetermine</a>(int&nbsp;index)</pre>
 <div class="block">Like <a href="../../squidpony/squidmath/VanDerCorputQRNG.html#weakDetermine-int-"><code>weakDetermine(int)</code></a>, but returns a float between -1.0f and 1.0f, exclusive on both. Uses
  <a href="../../squidpony/squidmath/NumberTools.html#randomSignedFloat-long-"><code>NumberTools.randomSignedFloat(long)</code></a> internally but alters the index parameter so calls with nearby values
  for index are less likely to have nearby results.</div>
@@ -841,6 +843,50 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <dd><code>index</code> - any int</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a sub-random float between -1.0f and 1.0f (both exclusive, unlike some other methods)</dd>
+</dl>
+</li>
+</ul>
+<a name="altDetermine-long-int-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>altDetermine</h4>
+<pre>public static&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/VanDerCorputQRNG.html#line.419">altDetermine</a>(long&nbsp;base,
+                                  int&nbsp;index)</pre>
+<div class="block">Similar to <a href="../../squidpony/squidmath/VanDerCorputQRNG.html#determine-int-int-"><code>determine(int, int)</code></a>, but can take bases that aren't prime and can sometimes produce a
+ Halton-like sequence with better distance between points. The base is allowed to be any odd long, but the upper
+ 21 bits won't ever be considered except for the sign bit (negative bases are allowed). The index can technically
+ also be negative, but if index is 0 this will return 0, so it's advised to start at index 1 and go up. This
+ returns a double between 0.0 inclusive and 1.0 exclusive. The best results so far found with this for a 2D point
+ sequence use the bases 0xDE4DBEEF and 0x1337D00D (or in decimal, -565330193 and 322424845; note that 0xDE4DBEEF
+ is a negative integer), with the same index used for both the x and y of a point. I have no idea why these
+ gimmicky numbers work so well, with about 6x the minimum distance when comparing 65536 points generated with this
+ method to the same number of points generated with <a href="../../squidpony/squidmath/VanDerCorputQRNG.html#determine-int-int-"><code>determine(int, int)</code></a> using bases 2 and 3. Other, less
+ gimmicky numbers seem to be similar to a typical Halton sequence made from two calls to different bases of
+ determine(). This method should be slightly faster than <a href="../../squidpony/squidmath/VanDerCorputQRNG.html#determine2-int-"><code>determine2(int)</code></a>, and significantly faster than
+ <a href="../../squidpony/squidmath/VanDerCorputQRNG.html#determine-int-int-"><code>determine(int, int)</code></a>, especially when the index is large.
+ <br>
+ Note, the source of this method is one line, and you may see benefits from copying that code into the call-site
+ with minor modifications. This returns
+ <code>(((base * Integer.reverse(index)) &lt;&lt; 21) &amp; 0x1fffffffffffffL) * 0x1p-53;</code>, where base is a long and index
+ is an int (as in the method signature). The multiplier 0x1p-53 is a very small hexadecimal double literal, using
+ the same syntax as other parts of SquidLib use for packed floats; using this helps avoid precision loss. If you
+ want a range larger than 0.0 to 1.0, you can change the multiplier <code>0x1p-53</code> to some other constant, like
+ declaring <code>final double upTo100 = 0x1p-53 * 100.0</code> before some code that wants quasi-random numbers between
+ 0.0 inclusive and 100.0 exclusive, then using
+ <code>(((base * Integer.reverse(index)) &lt;&lt; 21) &amp; 0x1fffffffffffffL) * upTo100;</code> to get those numbers. It isn't
+ precise to use this technique to get numbers with an upper bound less than 1.0, because 0x1p-53 is about as small
+ as a double can get with precision intact. In that case, you can use
+ <code>(((base * Integer.reverse(index)) &lt;&lt; 8) &amp; 0xffffffffffL) * smallBound;</code> where smallBound has been declared
+ as <code>final double smallBound = 0x1p-40 * 0.05;</code> (where 0.05 can be switched out for any double between
+ 1.0/8192.0 and 1.0).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>base</code> - any odd long; the most significant 21 bits (except the sign bit) are effectively ignored</dd>
+<dd><code>index</code> - any int; if 0 this will return 0</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a double between 0.0 inclusive and 1.0 exclusive</dd>
 </dl>
 </li>
 </ul>

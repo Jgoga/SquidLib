@@ -97,7 +97,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>squidpony.MarkovObject&lt;T&gt;</li>
@@ -109,14 +109,14 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></dd>
+<dd><a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></dd>
 </dl>
 <hr>
 <br>
 <pre><a href="../squidpony/annotation/Beta.html" title="annotation in squidpony.annotation">@Beta</a>
 public class <a href="../src-html/squidpony/MarkovObject.html#line.24">MarkovObject</a>&lt;T&gt;
-extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
+extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">A simple Markov chain generator that works with Lists of some type instead of text like <a href="../squidpony/MarkovText.html" title="class in squidpony"><code>MarkovText</code></a>.
  Call <a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>analyze(Iterable)</code></a> or <a href="../squidpony/MarkovObject.html#analyze-T:A-"><code>analyze(Object[])</code></a> once on a large sample Iterable or array where
  sequences of items matter (this is called a corpus, and could be e.g. a List or an array), then you can call
@@ -124,7 +124,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  serialization of the necessary data to call chain(); if you can store the <a href="../squidpony/MarkovObject.html#body"><code>body</code></a> and <a href="../squidpony/MarkovObject.html#processed"><code>processed</code></a> data
  structures in some serialized form, then you can reassign them to the same fields to avoid calling analyze(). This
  requires some way to serialize body, which is an <a href="../squidpony/squidmath/Arrangement.html" title="class in squidpony.squidmath"><code>Arrangement</code></a> of T, and so T must be serializable in some way
- (not necessarily the <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> interface, but possibly that).
+ (not necessarily the <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> interface, but possibly that).
  <br>
  Created by Tommy Ettinger on 2/26/2018.</div>
 <dl>
@@ -156,14 +156,14 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&gt;</code></td>
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#processed">processed</a></span></code>
 <div class="block">Complicated data that mixes probabilities and the indices of items in <a href="../squidpony/MarkovObject.html#body"><code>body</code></a>, generated during the latest
  call to <a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>analyze(Iterable)</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&gt;</code></td>
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#raw">raw</a></span></code>&nbsp;</td>
 </tr>
 </table>
@@ -200,7 +200,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-">analyze</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;corpus)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-">analyze</a></span>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;corpus)</code>
 <div class="block">This is the main necessary step before using a MarkovObject; you must call this method at some point before you
  can call any other methods.</div>
 </td>
@@ -213,18 +213,18 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;</code></td>
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#chain-long-">chain</a></span>(long&nbsp;seed)</code>
 <div class="block">Generates a 32-element List of T based on the given seed and previously analyzed corpus data (using
  <a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>analyze(Iterable)</code></a>).</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;</code></td>
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#chain-long-int-boolean-java.util.List-">chain</a></span>(long&nbsp;seed,
      int&nbsp;maxLength,
      boolean&nbsp;canStopEarly,
-     <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;buffer)</code>
+     <a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;buffer)</code>
 <div class="block">Adds T items to buffer to fill it up to maxLength, based on the given seed and previously analyzed corpus
  data (using <a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>analyze(Iterable)</code></a>).</div>
 </td>
@@ -240,8 +240,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -274,7 +274,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>processed</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&gt; <a href="../src-html/squidpony/MarkovObject.html#line.36">processed</a></pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&gt; <a href="../src-html/squidpony/MarkovObject.html#line.36">processed</a></pre>
 <div class="block">Complicated data that mixes probabilities and the indices of items in <a href="../squidpony/MarkovObject.html#body"><code>body</code></a>, generated during the latest
  call to <a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>analyze(Iterable)</code></a>. Will be null if analyze() was never called.</div>
 </li>
@@ -285,7 +285,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>raw</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&gt; <a href="../src-html/squidpony/MarkovObject.html#line.37">raw</a></pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&gt; <a href="../src-html/squidpony/MarkovObject.html#line.37">raw</a></pre>
 </li>
 </ul>
 </li>
@@ -319,7 +319,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>analyze</h4>
-<pre>public&nbsp;void&nbsp;<a href="../src-html/squidpony/MarkovObject.html#line.59">analyze</a>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;corpus)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../src-html/squidpony/MarkovObject.html#line.59">analyze</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;corpus)</pre>
 <div class="block">This is the main necessary step before using a MarkovObject; you must call this method at some point before you
  can call any other methods. This method analyzes the pairings of items in a (typically large) corpus Iterable.
  It only uses one preceding item to determine the subsequent word. It does not store any items as special stop
@@ -328,7 +328,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  encountered as part of corpus, it will be interpreted as a point to stop on and potentially start a new section.
  Since the last item in the corpus could have no known items to produce after it, the end of the corpus is treated
  as having null appended as well. When it finishes processing, it stores the results in <a href="../squidpony/MarkovObject.html#body"><code>body</code></a> and
- <a href="../squidpony/MarkovObject.html#processed"><code>processed</code></a>, which allows other methods to be called (they will throw a <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a> if
+ <a href="../squidpony/MarkovObject.html#processed"><code>processed</code></a>, which allows other methods to be called (they will throw a <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a> if
  analyze() hasn't been called).
  <br>
  Unlike in <a href="../squidpony/MarkovText.html" title="class in squidpony"><code>MarkovText</code></a>, you can analyze multiple corpus Iterables by calling this method more than once.</div>
@@ -355,7 +355,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
  encountered as part of corpus, it will be interpreted as a point to stop on and potentially start a new section.
  Since the last item in the corpus could have no known items to produce after it, the end of the corpus is treated
  as having null appended as well. When it finishes processing, it stores the results in <a href="../squidpony/MarkovObject.html#body"><code>body</code></a> and
- <a href="../squidpony/MarkovObject.html#processed"><code>processed</code></a>, which allows other methods to be called (they will throw a <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a> if
+ <a href="../squidpony/MarkovObject.html#processed"><code>processed</code></a>, which allows other methods to be called (they will throw a <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang"><code>NullPointerException</code></a> if
  analyze() hasn't been called).
  <br>
  Unlike in <a href="../squidpony/MarkovText.html" title="class in squidpony"><code>MarkovText</code></a>, you can analyze multiple corpus arrays by calling this method more than once.</div>
@@ -371,7 +371,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>chain</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;<a href="../src-html/squidpony/MarkovObject.html#line.302">chain</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;<a href="../src-html/squidpony/MarkovObject.html#line.302">chain</a>(long&nbsp;seed)</pre>
 <div class="block">Generates a 32-element List of T based on the given seed and previously analyzed corpus data (using
  <a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>analyze(Iterable)</code></a>). This can't stop before generating a chain of 32 items unless analyze() hasn't been
  called or it was called on an empty or invalid Iterable/array (i.e. all null).</div>
@@ -389,10 +389,10 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>chain</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;<a href="../src-html/squidpony/MarkovObject.html#line.321">chain</a>(long&nbsp;seed,
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;<a href="../src-html/squidpony/MarkovObject.html#line.321">chain</a>(long&nbsp;seed,
                      int&nbsp;maxLength,
                      boolean&nbsp;canStopEarly,
-                     <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;buffer)</pre>
+                     <a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt;&nbsp;buffer)</pre>
 <div class="block">Adds T items to buffer to fill it up to maxLength, based on the given seed and previously analyzed corpus
  data (using <a href="../squidpony/MarkovObject.html#analyze-java.lang.Iterable-"><code>analyze(Iterable)</code></a>). If buffer is already at least as long as maxLength, if analyze() hasn't
  been called or if it was called on an empty or invalid Iterable/array (i.e. all null), then this won't change

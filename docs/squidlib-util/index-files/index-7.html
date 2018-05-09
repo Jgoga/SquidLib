@@ -270,11 +270,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Noise.html#fastCeil-double-">fastCeil(double)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/Noise.html" title="class in squidpony.squidmath">Noise</a></dt>
 <dd>
-<div class="block">Like <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#ceil-double-" title="class or interface in java.lang"><code>Math.ceil(double)</code></a>, but returns an int.</div>
+<div class="block">Like <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#ceil-double-" title="class or interface in java.lang"><code>Math.ceil(double)</code></a>, but returns an int.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Noise.html#fastCeil-float-">fastCeil(float)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/Noise.html" title="class in squidpony.squidmath">Noise</a></dt>
 <dd>
-<div class="block">Like <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#ceil-double-" title="class or interface in java.lang"><code>Math.ceil(double)</code></a>, but takes a float and returns an int.</div>
+<div class="block">Like <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#ceil-double-" title="class or interface in java.lang"><code>Math.ceil(double)</code></a>, but takes a float and returns an int.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Arrangement.FastEntryIterator.html#FastEntryIterator--">FastEntryIterator()</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/Arrangement.FastEntryIterator.html" title="class in squidpony.squidmath">Arrangement.FastEntryIterator</a></dt>
 <dd>&nbsp;</dd>
@@ -286,11 +286,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Noise.html#fastFloor-double-">fastFloor(double)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/Noise.html" title="class in squidpony.squidmath">Noise</a></dt>
 <dd>
-<div class="block">Like <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#floor-double-" title="class or interface in java.lang"><code>Math.floor(double)</code></a> , but returns an int.</div>
+<div class="block">Like <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#floor-double-" title="class or interface in java.lang"><code>Math.floor(double)</code></a> , but returns an int.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Noise.html#fastFloor-float-">fastFloor(float)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/Noise.html" title="class in squidpony.squidmath">Noise</a></dt>
 <dd>
-<div class="block">Like <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#floor-double-" title="class or interface in java.lang"><code>Math.floor(double)</code></a>, but takes a float and returns an int.</div>
+<div class="block">Like <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Math.html?is-external=true#floor-double-" title="class or interface in java.lang"><code>Math.floor(double)</code></a>, but takes a float and returns an int.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntDoubleOrderedMap.MapEntrySet.html#fastIterator--">fastIterator()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/IntDoubleOrderedMap.MapEntrySet.html" title="class in squidpony.squidmath">IntDoubleOrderedMap.MapEntrySet</a></dt>
 <dd>&nbsp;</dd>
@@ -520,9 +520,17 @@
  a distance from a goal that is at least equal to minPreferredRange and no more than maxPreferredRange,
  which may go further from a goal if the minPreferredRange has not been met at the current distance.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findAttackPathLarge-int-int-int-squidpony.squidgrid.LOS-java.util.Collection-java.util.Collection-squidpony.squidmath.Coord-squidpony.squidmath.Coord...-">findAttackPathLarge(int, int, int, LOS, Collection&lt;Coord&gt;, Collection&lt;Coord&gt;, Coord, Coord...)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findAttackPath-java.util.ArrayList-int-int-int-squidpony.squidgrid.LOS-java.util.Collection-java.util.Collection-squidpony.squidmath.Coord-squidpony.squidmath.Coord...-">findAttackPath(ArrayList&lt;Coord&gt;, int, int, int, LOS, Collection&lt;Coord&gt;, Collection&lt;Coord&gt;, Coord, Coord...)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
 <dd>
 <div class="block">Scans the dungeon using DijkstraMap.scan with the listed goals and start point, and returns a list
+ of Coord positions (using the current measurement) needed to get closer to a goal, until a cell is reached with
+ a distance from a goal that is at least equal to minPreferredRange and no more than maxPreferredRange,
+ which may go further from a goal if the minPreferredRange has not been met at the current distance.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findAttackPathLarge-int-int-int-squidpony.squidgrid.LOS-java.util.Collection-java.util.Collection-squidpony.squidmath.Coord-squidpony.squidmath.Coord...-">findAttackPathLarge(int, int, int, LOS, Collection&lt;Coord&gt;, Collection&lt;Coord&gt;, Coord, Coord...)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
+<dd>
+<div class="block">For pathfinding creatures larger than 1x1 cell; scans the dungeon using DijkstraMap.scan with the listed goals
+ and start point, and returns a list
  of Coord positions (using the current measurement) needed to get closer to a goal, until preferredRange is
  reached, or further from a goal if the preferredRange has not been met at the current distance.</div>
 </dd>
@@ -574,6 +582,12 @@
  for running away.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findFleePath-int-int-double-java.util.Collection-java.util.Collection-squidpony.squidmath.Coord-squidpony.squidmath.Coord...-">findFleePath(int, int, double, Collection&lt;Coord&gt;, Collection&lt;Coord&gt;, Coord, Coord...)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
+<dd>
+<div class="block">Scans the dungeon using DijkstraMap.scan or DijkstraMap.partialScan with the listed fearSources and start
+ point, and returns a list of Coord positions (using this DijkstraMap's metric) needed to get further from
+ the closest fearSources, meant for running away.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findFleePath-java.util.ArrayList-int-int-double-java.util.Collection-java.util.Collection-squidpony.squidmath.Coord-squidpony.squidmath.Coord...-">findFleePath(ArrayList&lt;Coord&gt;, int, int, double, Collection&lt;Coord&gt;, Collection&lt;Coord&gt;, Coord, Coord...)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
 <dd>
 <div class="block">Scans the dungeon using DijkstraMap.scan or DijkstraMap.partialScan with the listed fearSources and start
  point, and returns a list of Coord positions (using this DijkstraMap's metric) needed to get further from
@@ -669,6 +683,12 @@
  point, and returns a list of Coord positions (using the current measurement) needed to get closer
  to the closest reachable goal.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findPath-java.util.ArrayList-int-int-java.util.Collection-java.util.Collection-squidpony.squidmath.Coord-squidpony.squidmath.Coord...-">findPath(ArrayList&lt;Coord&gt;, int, int, Collection&lt;Coord&gt;, Collection&lt;Coord&gt;, Coord, Coord...)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
+<dd>
+<div class="block">Scans the dungeon using DijkstraMap.scan or DijkstraMap.partialScan with the listed goals and start
+ point, and returns a list of Coord positions (using the current measurement) needed to get closer
+ to the closest reachable goal.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/CustomDijkstraMap.html#findPathLarge-int-int-squidpony.squidmath.IntVLA-squidpony.squidmath.IntVLA-int-int...-">findPathLarge(int, int, IntVLA, IntVLA, int, int...)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/CustomDijkstraMap.html" title="class in squidpony.squidai">CustomDijkstraMap</a></dt>
 <dd>
 <div class="block">Scans the dungeon using CustomDijkstraMap.scan with the listed goals and start point, and returns a list
@@ -683,7 +703,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findPathLarge-int-int-java.util.Collection-java.util.Collection-squidpony.squidmath.Coord-squidpony.squidmath.Coord...-">findPathLarge(int, int, Collection&lt;Coord&gt;, Collection&lt;Coord&gt;, Coord, Coord...)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
 <dd>
-<div class="block">Scans the dungeon using DijkstraMap.scan with the listed goals and start point, and returns a list
+<div class="block">For pathfinding creatures larger than 1x1 cell; scans the dungeon using DijkstraMap.scan with the listed goals
+ and start point, and returns a list
  of Coord positions (using the current measurement) needed to get closer to the closest reachable
  goal.</div>
 </dd>
@@ -691,7 +712,15 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findPathPreScanned-squidpony.squidmath.Coord-">findPathPreScanned(Coord)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
 <dd>
-<div class="block">Intended primarily for internal use.</div>
+<div class="block">When you can control how often the (relatively time-intensive) scan() method is called, but may need simple paths
+ very frequently (such as for a path that follows the mouse), you can use this method to reduce the amount of work
+ needed to find paths.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findPathPreScanned-java.util.ArrayList-squidpony.squidmath.Coord-">findPathPreScanned(ArrayList&lt;Coord&gt;, Coord)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
+<dd>
+<div class="block">When you can control how often the (relatively time-intensive) scan() method is called, but may need simple paths
+ very frequently (such as for a path that follows the mouse), you can use this method to reduce the amount of work
+ needed to find paths.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/CustomDijkstraMap.html#findRadius-squidpony.squidai.DijkstraMap.Measurement-">findRadius(DijkstraMap.Measurement)</a></span> - Static method in class squidpony.squidai.<a href="../squidpony/squidai/CustomDijkstraMap.html" title="class in squidpony.squidai">CustomDijkstraMap</a></dt>
 <dd>
@@ -727,6 +756,14 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/locks/RoomLayout.html#findSwitch--">findSwitch()</a></span> - Method in class squidpony.squidgrid.mapping.locks.<a href="../squidpony/squidgrid/mapping/locks/RoomLayout.html" title="class in squidpony.squidgrid.mapping.locks">RoomLayout</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findTechniquePath-int-squidpony.squidai.Technique-char:A:A-squidpony.squidgrid.LOS-java.util.Collection-java.util.Collection-squidpony.squidmath.Coord-java.util.Collection-">findTechniquePath(int, Technique, char[][], LOS, Collection&lt;Coord&gt;, Collection&lt;Coord&gt;, Coord, Collection&lt;Coord&gt;)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
+<dd>
+<div class="block">Scans the dungeon using DijkstraMap.scan with the listed goals and start point, and returns a list
+ of Coord positions (using the current measurement) needed to get closer to a goal, where goals are
+ considered valid if they are at a valid range for the given Technique to hit at least one target
+ and ideal if that Technique can affect as many targets as possible from a cell that can be moved
+ to with at most movelength steps.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidai/DijkstraMap.html#findTechniquePath-java.util.ArrayList-int-squidpony.squidai.Technique-char:A:A-squidpony.squidgrid.LOS-java.util.Collection-java.util.Collection-squidpony.squidmath.Coord-java.util.Collection-">findTechniquePath(ArrayList&lt;Coord&gt;, int, Technique, char[][], LOS, Collection&lt;Coord&gt;, Collection&lt;Coord&gt;, Coord, Collection&lt;Coord&gt;)</a></span> - Method in class squidpony.squidai.<a href="../squidpony/squidai/DijkstraMap.html" title="class in squidpony.squidai">DijkstraMap</a></dt>
 <dd>
 <div class="block">Scans the dungeon using DijkstraMap.scan with the listed goals and start point, and returns a list
  of Coord positions (using the current measurement) needed to get closer to a goal, where goals are
@@ -893,11 +930,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/NumberTools.html#floatToIntBits-float-">floatToIntBits(float)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/NumberTools.html" title="class in squidpony.squidmath">NumberTools</a></dt>
 <dd>
-<div class="block">Identical to <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Float.html?is-external=true#floatToIntBits-float-" title="class or interface in java.lang"><code>Float.floatToIntBits(float)</code></a> on desktop; optimized on GWT.</div>
+<div class="block">Identical to <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html?is-external=true#floatToIntBits-float-" title="class or interface in java.lang"><code>Float.floatToIntBits(float)</code></a> on desktop; optimized on GWT.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/NumberTools.html#floatToRawIntBits-float-">floatToRawIntBits(float)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/NumberTools.html" title="class in squidpony.squidmath">NumberTools</a></dt>
 <dd>
-<div class="block">Identical to <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Float.html?is-external=true#floatToIntBits-float-" title="class or interface in java.lang"><code>Float.floatToIntBits(float)</code></a> on desktop (note, not <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Float.html?is-external=true#floatToRawIntBits-float-" title="class or interface in java.lang"><code>Float.floatToRawIntBits(float)</code></a>);
+<div class="block">Identical to <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html?is-external=true#floatToIntBits-float-" title="class or interface in java.lang"><code>Float.floatToIntBits(float)</code></a> on desktop (note, not <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Float.html?is-external=true#floatToRawIntBits-float-" title="class or interface in java.lang"><code>Float.floatToRawIntBits(float)</code></a>);
  optimized on GWT.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/CoordPacker.html#flood-short:A-short:A-int-">flood(short[], short[], int)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/CoordPacker.html" title="class in squidpony.squidmath">CoordPacker</a></dt>

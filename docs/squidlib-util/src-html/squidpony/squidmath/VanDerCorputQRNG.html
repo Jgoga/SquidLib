@@ -362,42 +362,73 @@
 <span class="sourceLineNo">354</span>     * Given any int (0 is allowed), this gets a somewhat-sub-random float from 0.0 (inclusive) to 1.0 (exclusive)<a name="line.354"></a>
 <span class="sourceLineNo">355</span>     * using the same implementation as {@link NumberTools#randomFloat(long)} but with index alterations. Only "weak"<a name="line.355"></a>
 <span class="sourceLineNo">356</span>     * because it lacks the stronger certainty of subsequent numbers being separated that the Van der Corput sequence<a name="line.356"></a>
-<span class="sourceLineNo">357</span>     * has. Not actually sub-random, but manages to be distributed remarkably evenly, likely due to the statistical<a name="line.357"></a>
-<span class="sourceLineNo">358</span>     * strength of the algorithm it uses (the same as {@link PintRNG}, derived from PCG-Random). Because PintRNG is<a name="line.358"></a>
-<span class="sourceLineNo">359</span>     * pseudo-random and uses very different starting states on subsequent calls to its {@link PintRNG#next(int)}<a name="line.359"></a>
-<span class="sourceLineNo">360</span>     * method, this method needs to perform some manipulation of index to keep a call that passes 2 for index different<a name="line.360"></a>
-<span class="sourceLineNo">361</span>     * enough from a call that passes 3 (this should result in 0.4257662296295166 and 0.7359509468078613). You may want<a name="line.361"></a>
-<span class="sourceLineNo">362</span>     * to perform a similar manipulation if you find yourself reseeding a PRNG with numerically-close seeds; this can be<a name="line.362"></a>
-<span class="sourceLineNo">363</span>     * done for a value called index with {@code ((index &gt;&gt;&gt; 19 | index &lt;&lt; 13) ^ 0x13A5BA1D)}.<a name="line.363"></a>
-<span class="sourceLineNo">364</span>     *<a name="line.364"></a>
-<span class="sourceLineNo">365</span>     * &lt;br&gt;<a name="line.365"></a>
-<span class="sourceLineNo">366</span>     * Not all int values for index will produce unique results, since this produces a float and there are less distinct<a name="line.366"></a>
-<span class="sourceLineNo">367</span>     * floats between 0.0 and 1.0 than there are all ints (1/512 as many floats in that range as ints, specifically).<a name="line.367"></a>
-<span class="sourceLineNo">368</span>     * It should take a while calling this method before you hit an actual collision.<a name="line.368"></a>
-<span class="sourceLineNo">369</span>     * @param index any int<a name="line.369"></a>
-<span class="sourceLineNo">370</span>     * @return a float from 0.0 (inclusive) to 1.0 (exclusive) that should not be closely correlated to index<a name="line.370"></a>
-<span class="sourceLineNo">371</span>     */<a name="line.371"></a>
-<span class="sourceLineNo">372</span>    public static float weakDetermine(final int index)<a name="line.372"></a>
-<span class="sourceLineNo">373</span>    {<a name="line.373"></a>
-<span class="sourceLineNo">374</span>        return NumberTools.randomFloat((index &gt;&gt;&gt; 19 | index &lt;&lt; 13) ^ 0x13A5BA1D);<a name="line.374"></a>
-<span class="sourceLineNo">375</span>        //return NumberTools.longBitsToDouble(0x3ff0000000000000L | ((index&lt;&lt;1|1) * 0x9E3779B97F4A7C15L * ~index<a name="line.375"></a>
-<span class="sourceLineNo">376</span>        //        - ((index ^ ~(index * 11L)) * 0x632BE59BD9B4E019L)) &gt;&gt;&gt; 12) - 1.0;<a name="line.376"></a>
-<span class="sourceLineNo">377</span>        //return NumberTools.setExponent(<a name="line.377"></a>
-<span class="sourceLineNo">378</span>        //        (NumberTools.setExponent((index&lt;&lt;1|1) * 0.618033988749895, 0x3ff))<a name="line.378"></a>
-<span class="sourceLineNo">379</span>        //                * (0x232BE5 * (~index)), 0x3ff) - 1.0;<a name="line.379"></a>
-<span class="sourceLineNo">380</span>    }<a name="line.380"></a>
-<span class="sourceLineNo">381</span><a name="line.381"></a>
-<span class="sourceLineNo">382</span>    /**<a name="line.382"></a>
-<span class="sourceLineNo">383</span>     * Like {@link #weakDetermine(int)}, but returns a float between -1.0f and 1.0f, exclusive on both. Uses<a name="line.383"></a>
-<span class="sourceLineNo">384</span>     * {@link NumberTools#randomSignedFloat(long)} internally but alters the index parameter so calls with nearby values<a name="line.384"></a>
-<span class="sourceLineNo">385</span>     * for index are less likely to have nearby results.<a name="line.385"></a>
-<span class="sourceLineNo">386</span>     * @param index any int<a name="line.386"></a>
-<span class="sourceLineNo">387</span>     * @return a sub-random float between -1.0f and 1.0f (both exclusive, unlike some other methods)<a name="line.387"></a>
-<span class="sourceLineNo">388</span>     */<a name="line.388"></a>
-<span class="sourceLineNo">389</span>    public static float weakSignedDetermine(final int index) {<a name="line.389"></a>
-<span class="sourceLineNo">390</span>        return NumberTools.randomSignedFloat((index &gt;&gt;&gt; 19 | index &lt;&lt; 13) ^ 0x13A5BA1D);<a name="line.390"></a>
-<span class="sourceLineNo">391</span>    }<a name="line.391"></a>
-<span class="sourceLineNo">392</span>}<a name="line.392"></a>
+<span class="sourceLineNo">357</span>     * has. Not actually sub-random, but should be distributed fairly well (internally uses {@link ThrustAltRNG}'s<a name="line.357"></a>
+<span class="sourceLineNo">358</span>     * algorithm, which does not guarantee that its outputs are unique).<a name="line.358"></a>
+<span class="sourceLineNo">359</span>     * &lt;br&gt;<a name="line.359"></a>
+<span class="sourceLineNo">360</span>     * Not all int values for index will produce unique results, since this produces a float and there are less distinct<a name="line.360"></a>
+<span class="sourceLineNo">361</span>     * floats between 0.0 and 1.0 than there are all ints (1/512 as many floats in that range as ints, specifically).<a name="line.361"></a>
+<span class="sourceLineNo">362</span>     * It should take a while calling this method before you hit an actual collision.<a name="line.362"></a>
+<span class="sourceLineNo">363</span>     * @param index any int<a name="line.363"></a>
+<span class="sourceLineNo">364</span>     * @return a float from 0.0 (inclusive) to 1.0 (exclusive) that should not be closely correlated to index<a name="line.364"></a>
+<span class="sourceLineNo">365</span>     */<a name="line.365"></a>
+<span class="sourceLineNo">366</span>    public static float weakDetermine(final int index)<a name="line.366"></a>
+<span class="sourceLineNo">367</span>    {<a name="line.367"></a>
+<span class="sourceLineNo">368</span>        return NumberTools.randomFloat((index &gt;&gt;&gt; 19 | index &lt;&lt; 13) ^ 0x13A5BA1D);<a name="line.368"></a>
+<span class="sourceLineNo">369</span>        //return NumberTools.longBitsToDouble(0x3ff0000000000000L | ((index&lt;&lt;1|1) * 0x9E3779B97F4A7C15L * ~index<a name="line.369"></a>
+<span class="sourceLineNo">370</span>        //        - ((index ^ ~(index * 11L)) * 0x632BE59BD9B4E019L)) &gt;&gt;&gt; 12) - 1.0;<a name="line.370"></a>
+<span class="sourceLineNo">371</span>        //return NumberTools.setExponent(<a name="line.371"></a>
+<span class="sourceLineNo">372</span>        //        (NumberTools.setExponent((index&lt;&lt;1|1) * 0.618033988749895, 0x3ff))<a name="line.372"></a>
+<span class="sourceLineNo">373</span>        //                * (0x232BE5 * (~index)), 0x3ff) - 1.0;<a name="line.373"></a>
+<span class="sourceLineNo">374</span>    }<a name="line.374"></a>
+<span class="sourceLineNo">375</span><a name="line.375"></a>
+<span class="sourceLineNo">376</span>    /**<a name="line.376"></a>
+<span class="sourceLineNo">377</span>     * Like {@link #weakDetermine(int)}, but returns a float between -1.0f and 1.0f, exclusive on both. Uses<a name="line.377"></a>
+<span class="sourceLineNo">378</span>     * {@link NumberTools#randomSignedFloat(long)} internally but alters the index parameter so calls with nearby values<a name="line.378"></a>
+<span class="sourceLineNo">379</span>     * for index are less likely to have nearby results.<a name="line.379"></a>
+<span class="sourceLineNo">380</span>     * @param index any int<a name="line.380"></a>
+<span class="sourceLineNo">381</span>     * @return a sub-random float between -1.0f and 1.0f (both exclusive, unlike some other methods)<a name="line.381"></a>
+<span class="sourceLineNo">382</span>     */<a name="line.382"></a>
+<span class="sourceLineNo">383</span>    public static float weakSignedDetermine(final int index) {<a name="line.383"></a>
+<span class="sourceLineNo">384</span>        return NumberTools.randomSignedFloat((index &gt;&gt;&gt; 19 | index &lt;&lt; 13) ^ 0x13A5BA1D);<a name="line.384"></a>
+<span class="sourceLineNo">385</span>    }<a name="line.385"></a>
+<span class="sourceLineNo">386</span><a name="line.386"></a>
+<span class="sourceLineNo">387</span>    /**<a name="line.387"></a>
+<span class="sourceLineNo">388</span>     * Similar to {@link #determine(int, int)}, but can take bases that aren't prime and can sometimes produce a<a name="line.388"></a>
+<span class="sourceLineNo">389</span>     * Halton-like sequence with better distance between points. The base is allowed to be any odd long, but the upper<a name="line.389"></a>
+<span class="sourceLineNo">390</span>     * 21 bits won't ever be considered except for the sign bit (negative bases are allowed). The index can technically<a name="line.390"></a>
+<span class="sourceLineNo">391</span>     * also be negative, but if index is 0 this will return 0, so it's advised to start at index 1 and go up. This<a name="line.391"></a>
+<span class="sourceLineNo">392</span>     * returns a double between 0.0 inclusive and 1.0 exclusive. The best results so far found with this for a 2D point<a name="line.392"></a>
+<span class="sourceLineNo">393</span>     * sequence use the bases 0xDE4DBEEF and 0x1337D00D (or in decimal, -565330193 and 322424845; note that 0xDE4DBEEF<a name="line.393"></a>
+<span class="sourceLineNo">394</span>     * is a negative integer), with the same index used for both the x and y of a point. I have no idea why these<a name="line.394"></a>
+<span class="sourceLineNo">395</span>     * gimmicky numbers work so well, with about 6x the minimum distance when comparing 65536 points generated with this<a name="line.395"></a>
+<span class="sourceLineNo">396</span>     * method to the same number of points generated with {@link #determine(int, int)} using bases 2 and 3. Other, less<a name="line.396"></a>
+<span class="sourceLineNo">397</span>     * gimmicky numbers seem to be similar to a typical Halton sequence made from two calls to different bases of<a name="line.397"></a>
+<span class="sourceLineNo">398</span>     * determine(). This method should be slightly faster than {@link #determine2(int)}, and significantly faster than<a name="line.398"></a>
+<span class="sourceLineNo">399</span>     * {@link #determine(int, int)}, especially when the index is large.<a name="line.399"></a>
+<span class="sourceLineNo">400</span>     * &lt;br&gt;<a name="line.400"></a>
+<span class="sourceLineNo">401</span>     * Note, the source of this method is one line, and you may see benefits from copying that code into the call-site<a name="line.401"></a>
+<span class="sourceLineNo">402</span>     * with minor modifications. This returns<a name="line.402"></a>
+<span class="sourceLineNo">403</span>     * {@code (((base * Integer.reverse(index)) &lt;&lt; 21) &amp; 0x1fffffffffffffL) * 0x1p-53;}, where base is a long and index<a name="line.403"></a>
+<span class="sourceLineNo">404</span>     * is an int (as in the method signature). The multiplier 0x1p-53 is a very small hexadecimal double literal, using<a name="line.404"></a>
+<span class="sourceLineNo">405</span>     * the same syntax as other parts of SquidLib use for packed floats; using this helps avoid precision loss. If you<a name="line.405"></a>
+<span class="sourceLineNo">406</span>     * want a range larger than 0.0 to 1.0, you can change the multiplier {@code 0x1p-53} to some other constant, like<a name="line.406"></a>
+<span class="sourceLineNo">407</span>     * declaring {@code final double upTo100 = 0x1p-53 * 100.0} before some code that wants quasi-random numbers between<a name="line.407"></a>
+<span class="sourceLineNo">408</span>     * 0.0 inclusive and 100.0 exclusive, then using<a name="line.408"></a>
+<span class="sourceLineNo">409</span>     * {@code (((base * Integer.reverse(index)) &lt;&lt; 21) &amp; 0x1fffffffffffffL) * upTo100;} to get those numbers. It isn't<a name="line.409"></a>
+<span class="sourceLineNo">410</span>     * precise to use this technique to get numbers with an upper bound less than 1.0, because 0x1p-53 is about as small<a name="line.410"></a>
+<span class="sourceLineNo">411</span>     * as a double can get with precision intact. In that case, you can use<a name="line.411"></a>
+<span class="sourceLineNo">412</span>     * {@code (((base * Integer.reverse(index)) &lt;&lt; 8) &amp; 0xffffffffffL) * smallBound;} where smallBound has been declared<a name="line.412"></a>
+<span class="sourceLineNo">413</span>     * as {@code final double smallBound = 0x1p-40 * 0.05;} (where 0.05 can be switched out for any double between<a name="line.413"></a>
+<span class="sourceLineNo">414</span>     * 1.0/8192.0 and 1.0).<a name="line.414"></a>
+<span class="sourceLineNo">415</span>     * @param base any odd long; the most significant 21 bits (except the sign bit) are effectively ignored<a name="line.415"></a>
+<span class="sourceLineNo">416</span>     * @param index any int; if 0 this will return 0<a name="line.416"></a>
+<span class="sourceLineNo">417</span>     * @return a double between 0.0 inclusive and 1.0 exclusive<a name="line.417"></a>
+<span class="sourceLineNo">418</span>     */<a name="line.418"></a>
+<span class="sourceLineNo">419</span>    public static double altDetermine(final long base, final int index)<a name="line.419"></a>
+<span class="sourceLineNo">420</span>    {<a name="line.420"></a>
+<span class="sourceLineNo">421</span>        return (((base * Integer.reverse(index)) &lt;&lt; 21) &amp; 0x1fffffffffffffL) * 0x1p-53;<a name="line.421"></a>
+<span class="sourceLineNo">422</span>    }<a name="line.422"></a>
+<span class="sourceLineNo">423</span>}<a name="line.423"></a>
 
 
 
