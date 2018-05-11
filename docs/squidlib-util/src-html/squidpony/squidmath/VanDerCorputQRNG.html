@@ -424,11 +424,8 @@
 <span class="sourceLineNo">416</span>     * @param index any int; if 0 this will return 0<a name="line.416"></a>
 <span class="sourceLineNo">417</span>     * @return a double between 0.0 inclusive and 1.0 exclusive<a name="line.417"></a>
 <span class="sourceLineNo">418</span>     */<a name="line.418"></a>
-<span class="sourceLineNo">419</span>    public static double altDetermine(final long base, final int index)<a name="line.419"></a>
-<span class="sourceLineNo">420</span>    {<a name="line.420"></a>
-<span class="sourceLineNo">421</span>        return (((base * Integer.reverse(index)) &lt;&lt; 21) &amp; 0x1fffffffffffffL) * 0x1p-53;<a name="line.421"></a>
-<span class="sourceLineNo">422</span>    }<a name="line.422"></a>
-<span class="sourceLineNo">423</span>}<a name="line.423"></a>
+<span class="sourceLineNo">419</span>    public static double altDetermine(final long base, final int index) { return (((base * Integer.reverse(index)) &lt;&lt; 21) &amp; 0x1fffffffffffffL) * 0x1p-53; }<a name="line.419"></a>
+<span class="sourceLineNo">420</span>}<a name="line.420"></a>
 
 
 
