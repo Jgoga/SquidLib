@@ -495,7 +495,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.154">nextLong</a>(long&nbsp;lower,
+<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.162">nextLong</a>(long&nbsp;lower,
                            long&nbsp;upper)</pre>
 <div class="block">Inclusive lower, exclusive upper.</div>
 <dl>
@@ -513,7 +513,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDouble</h4>
-<pre>public final&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.164">nextDouble</a>()</pre>
+<pre>public final&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.172">nextDouble</a>()</pre>
 <div class="block">Gets a uniform random double in the range [0.0,1.0)</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -527,7 +527,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDouble</h4>
-<pre>public final&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.178">nextDouble</a>(double&nbsp;outer)</pre>
+<pre>public final&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.186">nextDouble</a>(double&nbsp;outer)</pre>
 <div class="block">Gets a uniform random double in the range [0.0,outer) given a positive parameter outer. If outer
  is negative, it will be the (exclusive) lower bound and 0.0 will be the (inclusive) upper bound.</div>
 <dl>
@@ -544,7 +544,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextFloat</h4>
-<pre>public final&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.189">nextFloat</a>()</pre>
+<pre>public final&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.197">nextFloat</a>()</pre>
 <div class="block">Gets a uniform random float in the range [0.0,1.0)</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -558,7 +558,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBoolean</h4>
-<pre>public final&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.200">nextBoolean</a>()</pre>
+<pre>public final&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.208">nextBoolean</a>()</pre>
 <div class="block">Gets a random value, true or false.
  Calls nextLong() once.</div>
 <dl>
@@ -573,7 +573,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBytes</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.211">nextBytes</a>(byte[]&nbsp;bytes)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.219">nextBytes</a>(byte[]&nbsp;bytes)</pre>
 <div class="block">Given a byte array as a parameter, this will fill the array with random bytes (modifying it
  in-place). Calls nextLong() <code>Math.ceil(bytes.length / 8.0)</code> times.</div>
 <dl>
@@ -588,7 +588,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>setState</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.225">setState</a>(long&nbsp;seed)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.233">setState</a>(long&nbsp;seed)</pre>
 <div class="block">Sets the seed (also the current state) of this generator.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -604,7 +604,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>getState</h4>
-<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.235">getState</a>()</pre>
+<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.243">getState</a>()</pre>
 <div class="block">Gets the current state of this generator.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -620,7 +620,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.240">toString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.248">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -633,7 +633,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.245">equals</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.253">equals</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -646,7 +646,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockListLast">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.252">hashCode</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.260">hashCode</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
