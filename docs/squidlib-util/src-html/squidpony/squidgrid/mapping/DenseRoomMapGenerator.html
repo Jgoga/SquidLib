@@ -86,7 +86,7 @@
 <span class="sourceLineNo">078</span>        }<a name="line.78"></a>
 <span class="sourceLineNo">079</span>        for (int x = 0; x &lt; width; x++) {<a name="line.79"></a>
 <span class="sourceLineNo">080</span>            for (int y = 0; y &lt; height; y++) {<a name="line.80"></a>
-<span class="sourceLineNo">081</span>                environment[x][y] = (map[x][y] == '.') ? MixedGenerator.ROOM_FLOOR : MixedGenerator.ROOM_WALL;<a name="line.81"></a>
+<span class="sourceLineNo">081</span>                environment[x][y] = (map[x][y] == '.') ? DungeonUtility.ROOM_FLOOR : DungeonUtility.ROOM_WALL;<a name="line.81"></a>
 <span class="sourceLineNo">082</span>            }<a name="line.82"></a>
 <span class="sourceLineNo">083</span>        }<a name="line.83"></a>
 <span class="sourceLineNo">084</span>//        tempPacked = CoordPacker.intersectPacked(<a name="line.84"></a>
@@ -97,7 +97,7 @@
 <span class="sourceLineNo">089</span>            if (((map[hole.x - 1][hole.y] == '.' &amp;&amp; map[hole.x + 1][hole.y] == '.') ||<a name="line.89"></a>
 <span class="sourceLineNo">090</span>                            (map[hole.x][hole.y - 1] == '.' &amp;&amp; map[hole.x][hole.y + 1] == '.'))) {<a name="line.90"></a>
 <span class="sourceLineNo">091</span>                map[hole.x][hole.y] = '.';<a name="line.91"></a>
-<span class="sourceLineNo">092</span>                environment[hole.x][hole.y] = MixedGenerator.CORRIDOR_FLOOR;<a name="line.92"></a>
+<span class="sourceLineNo">092</span>                environment[hole.x][hole.y] = DungeonUtility.CORRIDOR_FLOOR;<a name="line.92"></a>
 <span class="sourceLineNo">093</span>            }<a name="line.93"></a>
 <span class="sourceLineNo">094</span>        }<a name="line.94"></a>
 <span class="sourceLineNo">095</span><a name="line.95"></a>
@@ -129,14 +129,14 @@
 <span class="sourceLineNo">121</span>        for (int i = 0; i &lt; width; i++) {<a name="line.121"></a>
 <span class="sourceLineNo">122</span>            map[i][0] = '#';<a name="line.122"></a>
 <span class="sourceLineNo">123</span>            map[i][upperY] = '#';<a name="line.123"></a>
-<span class="sourceLineNo">124</span>            environment[i][0] = MixedGenerator.UNTOUCHED;<a name="line.124"></a>
-<span class="sourceLineNo">125</span>            environment[i][upperY] = MixedGenerator.UNTOUCHED;<a name="line.125"></a>
+<span class="sourceLineNo">124</span>            environment[i][0] = DungeonUtility.UNTOUCHED;<a name="line.124"></a>
+<span class="sourceLineNo">125</span>            environment[i][upperY] = DungeonUtility.UNTOUCHED;<a name="line.125"></a>
 <span class="sourceLineNo">126</span>        }<a name="line.126"></a>
 <span class="sourceLineNo">127</span>        for (int i = 0; i &lt; height; i++) {<a name="line.127"></a>
 <span class="sourceLineNo">128</span>            map[0][i] = '#';<a name="line.128"></a>
 <span class="sourceLineNo">129</span>            map[upperX][i] = '#';<a name="line.129"></a>
-<span class="sourceLineNo">130</span>            environment[0][i] = MixedGenerator.UNTOUCHED;<a name="line.130"></a>
-<span class="sourceLineNo">131</span>            environment[upperX][i] = MixedGenerator.UNTOUCHED;<a name="line.131"></a>
+<span class="sourceLineNo">130</span>            environment[0][i] = DungeonUtility.UNTOUCHED;<a name="line.130"></a>
+<span class="sourceLineNo">131</span>            environment[upperX][i] = DungeonUtility.UNTOUCHED;<a name="line.131"></a>
 <span class="sourceLineNo">132</span>        }<a name="line.132"></a>
 <span class="sourceLineNo">133</span><a name="line.133"></a>
 <span class="sourceLineNo">134</span>        return map;<a name="line.134"></a>

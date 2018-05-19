@@ -330,7 +330,7 @@
 <span class="sourceLineNo">322</span>                @Override<a name="line.322"></a>
 <span class="sourceLineNo">323</span>                /* Convenience implementation, feel free to override. */<a name="line.323"></a>
 <span class="sourceLineNo">324</span>                public Collection&lt;Coord&gt; getInternalBorder() {<a name="line.324"></a>
-<span class="sourceLineNo">325</span>                        return size() &lt;= 1 ? getAll() : DungeonUtility.border(getAll(), null);<a name="line.325"></a>
+<span class="sourceLineNo">325</span>                        return size() &lt;= 1 ? getAll() : Helper.border(getAll(), null);<a name="line.325"></a>
 <span class="sourceLineNo">326</span>                }<a name="line.326"></a>
 <span class="sourceLineNo">327</span><a name="line.327"></a>
 <span class="sourceLineNo">328</span>                @Override<a name="line.328"></a>
@@ -338,7 +338,7 @@
 <span class="sourceLineNo">330</span>                public Collection&lt;Coord&gt; getExternalBorder() {<a name="line.330"></a>
 <span class="sourceLineNo">331</span>                        final int sz = size();<a name="line.331"></a>
 <span class="sourceLineNo">332</span>                        final List&lt;Coord&gt; result = new ArrayList&lt;Coord&gt;(sz);<a name="line.332"></a>
-<span class="sourceLineNo">333</span>                        final List&lt;Coord&gt; internalBorder = sz &lt;= 1 ? getAll() : DungeonUtility.border(getAll(), null);<a name="line.333"></a>
+<span class="sourceLineNo">333</span>                        final List&lt;Coord&gt; internalBorder = sz &lt;= 1 ? getAll() : Helper.border(getAll(), null);<a name="line.333"></a>
 <span class="sourceLineNo">334</span>                        final int ibsz = internalBorder.size();<a name="line.334"></a>
 <span class="sourceLineNo">335</span>                        for (int i = 0; i &lt; ibsz; i++) {<a name="line.335"></a>
 <span class="sourceLineNo">336</span>                                final Coord b = internalBorder.get(i);<a name="line.336"></a>
@@ -381,7 +381,41 @@
 <span class="sourceLineNo">373</span>                        return max;<a name="line.373"></a>
 <span class="sourceLineNo">374</span>                }<a name="line.374"></a>
 <span class="sourceLineNo">375</span>        }<a name="line.375"></a>
-<span class="sourceLineNo">376</span>}<a name="line.376"></a>
+<span class="sourceLineNo">376</span>        final class Helper<a name="line.376"></a>
+<span class="sourceLineNo">377</span>        {<a name="line.377"></a>
+<span class="sourceLineNo">378</span>                private static boolean hasANeighborNotIn(Coord c, Collection&lt;Coord&gt; others) {<a name="line.378"></a>
+<span class="sourceLineNo">379</span>                        for (Direction dir : Direction.OUTWARDS) {<a name="line.379"></a>
+<span class="sourceLineNo">380</span>                                if (!others.contains(c.translate(dir)))<a name="line.380"></a>
+<span class="sourceLineNo">381</span>                                        return true;<a name="line.381"></a>
+<span class="sourceLineNo">382</span>                        }<a name="line.382"></a>
+<span class="sourceLineNo">383</span>                        return false;<a name="line.383"></a>
+<span class="sourceLineNo">384</span>                }<a name="line.384"></a>
+<span class="sourceLineNo">385</span><a name="line.385"></a>
+<span class="sourceLineNo">386</span>                /**<a name="line.386"></a>
+<span class="sourceLineNo">387</span>                 * An easy way to get the Coord items in a List of Coord that are at the edge of the region, using 8-way<a name="line.387"></a>
+<span class="sourceLineNo">388</span>                 * adjacency (a corner is adjacent to both orthogonal and diagonal neighbors). This is not the most<a name="line.388"></a>
+<span class="sourceLineNo">389</span>                 * efficient way to do this; If you find you need to do more complicated manipulations of regions or are<a name="line.389"></a>
+<span class="sourceLineNo">390</span>                 * calling this method often, consider using {@link squidpony.squidmath.GreasedRegion}, which should be<a name="line.390"></a>
+<span class="sourceLineNo">391</span>                 * significantly faster and has better support for more intricate alterations on an area of Coords.<a name="line.391"></a>
+<span class="sourceLineNo">392</span>                 * @param zone a List of Coord representing a region<a name="line.392"></a>
+<span class="sourceLineNo">393</span>                 * @param buffer The list to fill if non null (i.e. if non-null, it is<a name="line.393"></a>
+<span class="sourceLineNo">394</span>                 *               returned). If null, a fresh list will be allocated and<a name="line.394"></a>
+<span class="sourceLineNo">395</span>                 *               returned.<a name="line.395"></a>
+<span class="sourceLineNo">396</span>                 * @return Elements in {@code zone} that are neighbors to an element not in {@code zone}.<a name="line.396"></a>
+<span class="sourceLineNo">397</span>                 */<a name="line.397"></a>
+<span class="sourceLineNo">398</span>                public static List&lt;Coord&gt; border(final List&lt;Coord&gt; zone, /* @Nullable */ List&lt;Coord&gt; buffer) {<a name="line.398"></a>
+<span class="sourceLineNo">399</span>                        final int zsz = zone.size();<a name="line.399"></a>
+<span class="sourceLineNo">400</span>                        final List&lt;Coord&gt; border = buffer == null ? new ArrayList&lt;Coord&gt;(zsz / 4) : buffer;<a name="line.400"></a>
+<span class="sourceLineNo">401</span>                        for (int i = 0; i &lt; zsz; i++) {<a name="line.401"></a>
+<span class="sourceLineNo">402</span>                                final Coord c = zone.get(i);<a name="line.402"></a>
+<span class="sourceLineNo">403</span>                                if (hasANeighborNotIn(c, zone))<a name="line.403"></a>
+<span class="sourceLineNo">404</span>                                        border.add(c);<a name="line.404"></a>
+<span class="sourceLineNo">405</span>                        }<a name="line.405"></a>
+<span class="sourceLineNo">406</span>                        return border;<a name="line.406"></a>
+<span class="sourceLineNo">407</span>                }<a name="line.407"></a>
+<span class="sourceLineNo">408</span><a name="line.408"></a>
+<span class="sourceLineNo">409</span>        }<a name="line.409"></a>
+<span class="sourceLineNo">410</span>}<a name="line.410"></a>
 
 
 

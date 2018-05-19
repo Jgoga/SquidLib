@@ -462,21 +462,21 @@
 <span class="sourceLineNo">454</span>        for (Coord c : line) {<a name="line.454"></a>
 <span class="sourceLineNo">455</span>            if (map[c.x][c.y] == '#') {<a name="line.455"></a>
 <span class="sourceLineNo">456</span>                map[c.x][c.y] = '.';<a name="line.456"></a>
-<span class="sourceLineNo">457</span>                environment[c.x][c.y] = MixedGenerator.CORRIDOR_FLOOR;<a name="line.457"></a>
+<span class="sourceLineNo">457</span>                environment[c.x][c.y] = DungeonUtility.CORRIDOR_FLOOR;<a name="line.457"></a>
 <span class="sourceLineNo">458</span>                temp.add(c);<a name="line.458"></a>
 <span class="sourceLineNo">459</span>            }<a name="line.459"></a>
 <span class="sourceLineNo">460</span>        }<a name="line.460"></a>
 <span class="sourceLineNo">461</span>        if (wl != null &amp;&amp; map[wl.x][wl.y] == '#') {<a name="line.461"></a>
 <span class="sourceLineNo">462</span>            //if(line.isEmpty())<a name="line.462"></a>
 <span class="sourceLineNo">463</span>            map[wl.x][wl.y] = '.';<a name="line.463"></a>
-<span class="sourceLineNo">464</span>            environment[wl.x][wl.y] = MixedGenerator.ROOM_FLOOR;<a name="line.464"></a>
+<span class="sourceLineNo">464</span>            environment[wl.x][wl.y] = DungeonUtility.ROOM_FLOOR;<a name="line.464"></a>
 <span class="sourceLineNo">465</span>            //else<a name="line.465"></a>
 <span class="sourceLineNo">466</span>            //    map[wl.x][wl.y] = '+';<a name="line.466"></a>
 <span class="sourceLineNo">467</span>        }<a name="line.467"></a>
 <span class="sourceLineNo">468</span>        if (wr != null &amp;&amp; map[wr.x][wr.y] == '#') {<a name="line.468"></a>
 <span class="sourceLineNo">469</span>            //if(line.isEmpty())<a name="line.469"></a>
 <span class="sourceLineNo">470</span>            map[wr.x][wr.y] = '.';<a name="line.470"></a>
-<span class="sourceLineNo">471</span>            environment[wr.x][wr.y] = MixedGenerator.ROOM_FLOOR;<a name="line.471"></a>
+<span class="sourceLineNo">471</span>            environment[wr.x][wr.y] = DungeonUtility.ROOM_FLOOR;<a name="line.471"></a>
 <span class="sourceLineNo">472</span>            //else<a name="line.472"></a>
 <span class="sourceLineNo">473</span>            //    map[wr.x][wr.y] = '+';<a name="line.473"></a>
 <span class="sourceLineNo">474</span>        }<a name="line.474"></a>
@@ -529,14 +529,14 @@
 <span class="sourceLineNo">521</span>        for (Coord c : line) {<a name="line.521"></a>
 <span class="sourceLineNo">522</span>            if (map[c.x][c.y] == '#') {<a name="line.522"></a>
 <span class="sourceLineNo">523</span>                map[c.x][c.y] = '.';<a name="line.523"></a>
-<span class="sourceLineNo">524</span>                environment[c.x][c.y] = MixedGenerator.CORRIDOR_FLOOR;<a name="line.524"></a>
+<span class="sourceLineNo">524</span>                environment[c.x][c.y] = DungeonUtility.CORRIDOR_FLOOR;<a name="line.524"></a>
 <span class="sourceLineNo">525</span>                temp.add(c);<a name="line.525"></a>
 <span class="sourceLineNo">526</span>            }<a name="line.526"></a>
 <span class="sourceLineNo">527</span>        }<a name="line.527"></a>
 <span class="sourceLineNo">528</span>        if (wt != null &amp;&amp; map[wt.x][wt.y] == '#') {<a name="line.528"></a>
 <span class="sourceLineNo">529</span>            //if(line.isEmpty())<a name="line.529"></a>
 <span class="sourceLineNo">530</span>            map[wt.x][wt.y] = '.';<a name="line.530"></a>
-<span class="sourceLineNo">531</span>            environment[wt.x][wt.y] = MixedGenerator.ROOM_FLOOR;<a name="line.531"></a>
+<span class="sourceLineNo">531</span>            environment[wt.x][wt.y] = DungeonUtility.ROOM_FLOOR;<a name="line.531"></a>
 <span class="sourceLineNo">532</span>            //else<a name="line.532"></a>
 <span class="sourceLineNo">533</span>            //    map[wl.x][wl.y] = '+';<a name="line.533"></a>
 <span class="sourceLineNo">534</span><a name="line.534"></a>
@@ -544,7 +544,7 @@
 <span class="sourceLineNo">536</span>        if (wb != null &amp;&amp; map[wb.x][wb.y] == '#') {<a name="line.536"></a>
 <span class="sourceLineNo">537</span>            //if(line.isEmpty())<a name="line.537"></a>
 <span class="sourceLineNo">538</span>            map[wb.x][wb.y] = '.';<a name="line.538"></a>
-<span class="sourceLineNo">539</span>            environment[wb.x][wb.y] = MixedGenerator.ROOM_FLOOR;<a name="line.539"></a>
+<span class="sourceLineNo">539</span>            environment[wb.x][wb.y] = DungeonUtility.ROOM_FLOOR;<a name="line.539"></a>
 <span class="sourceLineNo">540</span>            //else<a name="line.540"></a>
 <span class="sourceLineNo">541</span>            //    map[wb.x][wb.y] = '+';<a name="line.541"></a>
 <span class="sourceLineNo">542</span>        }<a name="line.542"></a>

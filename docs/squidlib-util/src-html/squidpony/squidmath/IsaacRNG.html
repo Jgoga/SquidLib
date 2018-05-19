@@ -97,10 +97,10 @@
 <span class="sourceLineNo">089</span>            char[] chars = seed.toCharArray();<a name="line.89"></a>
 <span class="sourceLineNo">090</span>            int slen = seed.length(), i = 0;<a name="line.90"></a>
 <span class="sourceLineNo">091</span>            for (; i &lt; 256 &amp;&amp; i &lt; slen; i++) {<a name="line.91"></a>
-<span class="sourceLineNo">092</span>                results[i] = CrossHash.Wisp.hash64(chars, i, slen);<a name="line.92"></a>
+<span class="sourceLineNo">092</span>                results[i] = CrossHash.hash64(chars, i, slen);<a name="line.92"></a>
 <span class="sourceLineNo">093</span>            }<a name="line.93"></a>
 <span class="sourceLineNo">094</span>            for (; i &lt; 256; i++) {<a name="line.94"></a>
-<span class="sourceLineNo">095</span>                results[i] = CrossHash.Wisp.hash64(results);<a name="line.95"></a>
+<span class="sourceLineNo">095</span>                results[i] = CrossHash.hash64(results);<a name="line.95"></a>
 <span class="sourceLineNo">096</span>            }<a name="line.96"></a>
 <span class="sourceLineNo">097</span>            init(true);<a name="line.97"></a>
 <span class="sourceLineNo">098</span>        }<a name="line.98"></a>
@@ -207,10 +207,10 @@
 <span class="sourceLineNo">199</span>            char[] chars = seed.toCharArray();<a name="line.199"></a>
 <span class="sourceLineNo">200</span>            int slen = seed.length(), i = 0;<a name="line.200"></a>
 <span class="sourceLineNo">201</span>            for (; i &lt; 256 &amp;&amp; i &lt; slen; i++) {<a name="line.201"></a>
-<span class="sourceLineNo">202</span>                results[i] = CrossHash.Wisp.hash64(chars, i, slen);<a name="line.202"></a>
+<span class="sourceLineNo">202</span>                results[i] = CrossHash.hash64(chars, i, slen);<a name="line.202"></a>
 <span class="sourceLineNo">203</span>            }<a name="line.203"></a>
 <span class="sourceLineNo">204</span>            for (; i &lt; 256; i++) {<a name="line.204"></a>
-<span class="sourceLineNo">205</span>                results[i] = CrossHash.Wisp.hash64(results);<a name="line.205"></a>
+<span class="sourceLineNo">205</span>                results[i] = CrossHash.hash64(results);<a name="line.205"></a>
 <span class="sourceLineNo">206</span>            }<a name="line.206"></a>
 <span class="sourceLineNo">207</span>            init(true);<a name="line.207"></a>
 <span class="sourceLineNo">208</span>        }<a name="line.208"></a>
@@ -357,23 +357,11 @@
 <span class="sourceLineNo">349</span>    }<a name="line.349"></a>
 <span class="sourceLineNo">350</span><a name="line.350"></a>
 <span class="sourceLineNo">351</span>    @Override<a name="line.351"></a>
-<span class="sourceLineNo">352</span>    public int hashCode() {<a name="line.352"></a>
-<span class="sourceLineNo">353</span>        return 31 *<a name="line.353"></a>
-<span class="sourceLineNo">354</span>                (31 *<a name="line.354"></a>
-<span class="sourceLineNo">355</span>                        (31 *<a name="line.355"></a>
-<span class="sourceLineNo">356</span>                                (31 *<a name="line.356"></a>
-<span class="sourceLineNo">357</span>                                        (31 * count + CrossHash.Wisp.hash(results)<a name="line.357"></a>
-<span class="sourceLineNo">358</span>                                        ) + CrossHash.Wisp.hash(mem)<a name="line.358"></a>
-<span class="sourceLineNo">359</span>                                ) + (int) (a ^ (a &gt;&gt;&gt; 32))<a name="line.359"></a>
-<span class="sourceLineNo">360</span>                        ) + (int) (b ^ (b &gt;&gt;&gt; 32))<a name="line.360"></a>
-<span class="sourceLineNo">361</span>                ) + (int) (c ^ (c &gt;&gt;&gt; 32));<a name="line.361"></a>
-<span class="sourceLineNo">362</span>    }<a name="line.362"></a>
-<span class="sourceLineNo">363</span>    @Override<a name="line.363"></a>
-<span class="sourceLineNo">364</span>    public String toString()<a name="line.364"></a>
-<span class="sourceLineNo">365</span>    {<a name="line.365"></a>
-<span class="sourceLineNo">366</span>        return "IsaacRNG with a hidden state (id is " + System.identityHashCode(this) + ')';<a name="line.366"></a>
-<span class="sourceLineNo">367</span>    }<a name="line.367"></a>
-<span class="sourceLineNo">368</span>}<a name="line.368"></a>
+<span class="sourceLineNo">352</span>    public String toString()<a name="line.352"></a>
+<span class="sourceLineNo">353</span>    {<a name="line.353"></a>
+<span class="sourceLineNo">354</span>        return "IsaacRNG with a hidden state (id is " + System.identityHashCode(this) + ')';<a name="line.354"></a>
+<span class="sourceLineNo">355</span>    }<a name="line.355"></a>
+<span class="sourceLineNo">356</span>}<a name="line.356"></a>
 
 
 

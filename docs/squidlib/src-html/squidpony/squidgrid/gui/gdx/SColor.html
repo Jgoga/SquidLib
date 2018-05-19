@@ -12875,7 +12875,7 @@
 <span class="sourceLineNo">12867</span><a name="line.12867"></a>
 <span class="sourceLineNo">12868</span>    @Override<a name="line.12868"></a>
 <span class="sourceLineNo">12869</span>    public int hashCode() {<a name="line.12869"></a>
-<span class="sourceLineNo">12870</span>        return (155 + CrossHash.Wisp.hash(name)) * 31 + toIntBits();<a name="line.12870"></a>
+<span class="sourceLineNo">12870</span>        return (155 + CrossHash.hash(name)) * 31 ^ toIntBits();<a name="line.12870"></a>
 <span class="sourceLineNo">12871</span>    }<a name="line.12871"></a>
 <span class="sourceLineNo">12872</span>}<a name="line.12872"></a>
 

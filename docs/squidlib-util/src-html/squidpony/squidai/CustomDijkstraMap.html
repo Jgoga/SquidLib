@@ -2108,12 +2108,12 @@
 <span class="sourceLineNo">2100</span>            return new IntVLA(1);<a name="line.2100"></a>
 <span class="sourceLineNo">2101</span>        }<a name="line.2101"></a>
 <span class="sourceLineNo">2102</span>        if (cachedSize == 1 &amp;&amp; preferLongerPaths == cachedLongerPaths &amp;&amp; impassable2.hash64() == cachedImpassable &amp;&amp;<a name="line.2102"></a>
-<span class="sourceLineNo">2103</span>                CrossHash.Wisp.hash64(fearSources) == cachedFearSources) {<a name="line.2103"></a>
+<span class="sourceLineNo">2103</span>                CrossHash.hash64(fearSources) == cachedFearSources) {<a name="line.2103"></a>
 <span class="sourceLineNo">2104</span>            gradientMap = cachedFleeMap;<a name="line.2104"></a>
 <span class="sourceLineNo">2105</span>        } else {<a name="line.2105"></a>
 <span class="sourceLineNo">2106</span>            cachedLongerPaths = preferLongerPaths;<a name="line.2106"></a>
 <span class="sourceLineNo">2107</span>            cachedImpassable = impassable2.hash64();<a name="line.2107"></a>
-<span class="sourceLineNo">2108</span>            cachedFearSources = CrossHash.Wisp.hash64(fearSources);<a name="line.2108"></a>
+<span class="sourceLineNo">2108</span>            cachedFearSources = CrossHash.hash64(fearSources);<a name="line.2108"></a>
 <span class="sourceLineNo">2109</span>            cachedSize = 1;<a name="line.2109"></a>
 <span class="sourceLineNo">2110</span>            resetMap();<a name="line.2110"></a>
 <span class="sourceLineNo">2111</span>            for (int g = 0; g &lt; fearSources.length; g++) {<a name="line.2111"></a>
@@ -2733,12 +2733,12 @@
 <span class="sourceLineNo">2725</span>            return new IntVLA(1);<a name="line.2725"></a>
 <span class="sourceLineNo">2726</span>        }<a name="line.2726"></a>
 <span class="sourceLineNo">2727</span>        if (cachedSize == size &amp;&amp; preferLongerPaths == cachedLongerPaths &amp;&amp; impassable2.hash64() == cachedImpassable &amp;&amp;<a name="line.2727"></a>
-<span class="sourceLineNo">2728</span>                CrossHash.Wisp.hash64(fearSources) == cachedFearSources) {<a name="line.2728"></a>
+<span class="sourceLineNo">2728</span>                CrossHash.hash64(fearSources) == cachedFearSources) {<a name="line.2728"></a>
 <span class="sourceLineNo">2729</span>            gradientMap = cachedFleeMap;<a name="line.2729"></a>
 <span class="sourceLineNo">2730</span>        } else {<a name="line.2730"></a>
 <span class="sourceLineNo">2731</span>            cachedLongerPaths = preferLongerPaths;<a name="line.2731"></a>
 <span class="sourceLineNo">2732</span>            cachedImpassable = impassable2.hash64();<a name="line.2732"></a>
-<span class="sourceLineNo">2733</span>            cachedFearSources = CrossHash.Wisp.hash64(fearSources);<a name="line.2733"></a>
+<span class="sourceLineNo">2733</span>            cachedFearSources = CrossHash.hash64(fearSources);<a name="line.2733"></a>
 <span class="sourceLineNo">2734</span>            cachedSize = size;<a name="line.2734"></a>
 <span class="sourceLineNo">2735</span>            resetMap();<a name="line.2735"></a>
 <span class="sourceLineNo">2736</span>            for (int g = 0; g &lt; fearSources.length; g++) {<a name="line.2736"></a>

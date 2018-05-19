@@ -851,7 +851,7 @@
 <span class="sourceLineNo">843</span>            for (int j = 0; j &lt; height; j++) {<a name="line.843"></a>
 <span class="sourceLineNo">844</span>                if(dijkstra.gradientMap[i][j] &gt;= DijkstraMap.FLOOR) {<a name="line.844"></a>
 <span class="sourceLineNo">845</span>                    map[i][j] = '#';<a name="line.845"></a>
-<span class="sourceLineNo">846</span>                    env2[i][j] = MixedGenerator.UNTOUCHED;<a name="line.846"></a>
+<span class="sourceLineNo">846</span>                    env2[i][j] = DungeonUtility.UNTOUCHED;<a name="line.846"></a>
 <span class="sourceLineNo">847</span>                }<a name="line.847"></a>
 <span class="sourceLineNo">848</span>                else if(dijkstra.gradientMap[i][j] &gt; maxDijkstra) {<a name="line.848"></a>
 <span class="sourceLineNo">849</span>                    maxDijkstra = dijkstra.gradientMap[i][j];<a name="line.849"></a>
@@ -859,7 +859,7 @@
 <span class="sourceLineNo">851</span>                if (map[i][j] == '\t') {<a name="line.851"></a>
 <span class="sourceLineNo">852</span>                    map[i][j] = '.';<a name="line.852"></a>
 <span class="sourceLineNo">853</span>                    if((env2[i][j] &amp; 1) == 0) // environment is a wall here<a name="line.853"></a>
-<span class="sourceLineNo">854</span>                        env2[i][j] = MixedGenerator.CORRIDOR_FLOOR;<a name="line.854"></a>
+<span class="sourceLineNo">854</span>                        env2[i][j] = DungeonUtility.CORRIDOR_FLOOR;<a name="line.854"></a>
 <span class="sourceLineNo">855</span>                }<a name="line.855"></a>
 <span class="sourceLineNo">856</span>            }<a name="line.856"></a>
 <span class="sourceLineNo">857</span>        }<a name="line.857"></a>
@@ -912,7 +912,7 @@
 <span class="sourceLineNo">904</span>            for (int j = 0; j &lt; height; j++) {<a name="line.904"></a>
 <span class="sourceLineNo">905</span>                if (dijkstra.gradientMap[i][j] &gt;= DijkstraMap.FLOOR) {<a name="line.905"></a>
 <span class="sourceLineNo">906</span>                    map[i][j] = '#';<a name="line.906"></a>
-<span class="sourceLineNo">907</span>                    env2[i][j] = MixedGenerator.UNTOUCHED;<a name="line.907"></a>
+<span class="sourceLineNo">907</span>                    env2[i][j] = DungeonUtility.UNTOUCHED;<a name="line.907"></a>
 <span class="sourceLineNo">908</span>                }<a name="line.908"></a>
 <span class="sourceLineNo">909</span>            }<a name="line.909"></a>
 <span class="sourceLineNo">910</span>        }<a name="line.910"></a>
@@ -942,14 +942,14 @@
 <span class="sourceLineNo">934</span>                    dungeon[x][y] = roomMap[x][y];<a name="line.934"></a>
 <span class="sourceLineNo">935</span>                else if (lakesAndMazes[1][x][y] != '#') {<a name="line.935"></a>
 <span class="sourceLineNo">936</span>                    dungeon[x][y] = lakesAndMazes[1][x][y];<a name="line.936"></a>
-<span class="sourceLineNo">937</span>                    finder.environment[x][y] = MixedGenerator.CORRIDOR_FLOOR;<a name="line.937"></a>
+<span class="sourceLineNo">937</span>                    finder.environment[x][y] = DungeonUtility.CORRIDOR_FLOOR;<a name="line.937"></a>
 <span class="sourceLineNo">938</span>                } else if (corridorMap[x][y] != '#')<a name="line.938"></a>
 <span class="sourceLineNo">939</span>                    dungeon[x][y] = corridorMap[x][y];<a name="line.939"></a>
 <span class="sourceLineNo">940</span>                else if (caveMap[x][y] != '#')<a name="line.940"></a>
 <span class="sourceLineNo">941</span>                    dungeon[x][y] = caveMap[x][y];<a name="line.941"></a>
 <span class="sourceLineNo">942</span>                else if (lakesAndMazes[0][x][y] != '#') {<a name="line.942"></a>
 <span class="sourceLineNo">943</span>                    dungeon[x][y] = lakesAndMazes[0][x][y];<a name="line.943"></a>
-<span class="sourceLineNo">944</span>                    finder.environment[x][y] = MixedGenerator.CAVE_FLOOR;<a name="line.944"></a>
+<span class="sourceLineNo">944</span>                    finder.environment[x][y] = DungeonUtility.CAVE_FLOOR;<a name="line.944"></a>
 <span class="sourceLineNo">945</span>                }<a name="line.945"></a>
 <span class="sourceLineNo">946</span>            }<a name="line.946"></a>
 <span class="sourceLineNo">947</span>        }<a name="line.947"></a>
