@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -205,13 +205,21 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>int[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/GreasedZOI.html#nearestInfluences-short:A:A-squidpony.squidmath.Coord-">nearestInfluences</a></span>(short[][]&nbsp;zones,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/GreasedZOI.html#nearestInfluences-squidpony.squidmath.GreasedRegion:A-squidpony.squidmath.Coord-">nearestInfluences</a></span>(<a href="../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a>[]&nbsp;zones,
                  <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;point)</code>
 <div class="block">Given the zones resulting from this class' calculate method and a Coord to check, finds the indices of all
  influencing groups in zones that have the Coord in their area, and returns all such indices as an int array.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>int[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/GreasedZOI.html#nearestInfluences-short:A:A-squidpony.squidmath.Coord-">nearestInfluences</a></span>(short[][]&nbsp;zones,
+                 <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;point)</code>
+<div class="block">Given the zones resulting from this class' calculate method and a Coord to check, finds the indices of all
+ influencing groups in zones that have the Coord in their area, and returns all such indices as an int array.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidai/GreasedZOI.html#setInfluences-squidpony.squidmath.Coord:A:A-">setInfluences</a></span>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[][]&nbsp;influences)</code>
 <div class="block">Changes the influencing groups.</div>
@@ -358,13 +366,32 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 </dl>
 </li>
 </ul>
+<a name="nearestInfluences-squidpony.squidmath.GreasedRegion:A-squidpony.squidmath.Coord-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>nearestInfluences</h4>
+<pre>public&nbsp;int[]&nbsp;<a href="../../src-html/squidpony/squidai/GreasedZOI.html#line.183">nearestInfluences</a>(<a href="../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a>[]&nbsp;zones,
+                               <a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;point)</pre>
+<div class="block">Given the zones resulting from this class' calculate method and a Coord to check, finds the indices of all
+ influencing groups in zones that have the Coord in their area, and returns all such indices as an int array.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>zones</code> - a short[][] returned by calculate; not a multi-packed short[][] from CoordPacker !</dd>
+<dd><code>point</code> - the Coord to test</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>an int[] where each element is the index of an influencing group in zones</dd>
+</dl>
+</li>
+</ul>
 <a name="nearestInfluences-squidpony.squidmath.Coord-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>nearestInfluences</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&nbsp;<a href="../../src-html/squidpony/squidai/GreasedZOI.html#line.183">nearestInfluences</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;point)</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a>&nbsp;<a href="../../src-html/squidpony/squidai/GreasedZOI.html#line.200">nearestInfluences</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;point)</pre>
 <div class="block">This can be given a Coord to check in the results of the latest calculate() call. Finds the indices of all
  influencing groups in zones that have the Coord in their area, and returns all such indices as an <a href="../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath"><code>IntVLA</code></a>.
  You can convert the IntVLA to an array with <a href="../../squidpony/squidmath/IntVLA.html#toArray--"><code>IntVLA.toArray()</code></a> if you want to match ZOI's behavior.</div>
@@ -382,7 +409,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>getInfluences</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[][]&nbsp;<a href="../../src-html/squidpony/squidai/GreasedZOI.html#line.199">getInfluences</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[][]&nbsp;<a href="../../src-html/squidpony/squidai/GreasedZOI.html#line.216">getInfluences</a>()</pre>
 <div class="block">Gets the influencing groups; ideally the result should not be changed without setting it back with setInfluences.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -396,7 +423,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockListLast">
 <li class="blockList">
 <h4>setInfluences</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/GreasedZOI.html#line.208">setInfluences</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[][]&nbsp;influences)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidai/GreasedZOI.html#line.225">setInfluences</a>(<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[][]&nbsp;influences)</pre>
 <div class="block">Changes the influencing groups. This also invalidates the last calculation for the purposes of nearestInfluences,
  at least for the overload that takes only a Coord.</div>
 <dl>

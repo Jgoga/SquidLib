@@ -756,137 +756,139 @@
 <span class="sourceLineNo">748</span>                @Override<a name="line.748"></a>
 <span class="sourceLineNo">749</span>                public String presentWithMarkup(IMarkup&lt;T&gt; markup) {<a name="line.749"></a>
 <span class="sourceLineNo">750</span>                        final StringBuilder result = new StringBuilder();<a name="line.750"></a>
-<span class="sourceLineNo">751</span>                        boolean open = false;<a name="line.751"></a>
+<span class="sourceLineNo">751</span>//                      boolean open = false;<a name="line.751"></a>
 <span class="sourceLineNo">752</span>                        for (Bucket&lt;T&gt; fragment : fragments) {<a name="line.752"></a>
 <span class="sourceLineNo">753</span>                                if(fragment.color != null) {<a name="line.753"></a>
-<span class="sourceLineNo">754</span>                                        if (open)<a name="line.754"></a>
-<span class="sourceLineNo">755</span>                                                result.append(markup.closeMarkup());<a name="line.755"></a>
-<span class="sourceLineNo">756</span>                                        result.append(markup.getMarkup(fragment.color));<a name="line.756"></a>
-<span class="sourceLineNo">757</span>                                        open = true;<a name="line.757"></a>
-<span class="sourceLineNo">758</span>                                }<a name="line.758"></a>
-<span class="sourceLineNo">759</span>                                else {<a name="line.759"></a>
-<span class="sourceLineNo">760</span>                                        if (open)<a name="line.760"></a>
-<span class="sourceLineNo">761</span>                                                result.append(markup.closeMarkup());<a name="line.761"></a>
-<span class="sourceLineNo">762</span>                                        open = false;<a name="line.762"></a>
-<span class="sourceLineNo">763</span>                                }<a name="line.763"></a>
-<span class="sourceLineNo">764</span>                                // maybe try this line if escape() is re-added to IMarkup<a name="line.764"></a>
-<span class="sourceLineNo">765</span>                                //result.append(markup.escape(fragment.text));<a name="line.765"></a>
-<span class="sourceLineNo">766</span>                                result.append(fragment.text);<a name="line.766"></a>
-<span class="sourceLineNo">767</span>                        }<a name="line.767"></a>
-<span class="sourceLineNo">768</span>                        return result.toString();<a name="line.768"></a>
-<span class="sourceLineNo">769</span>                }<a name="line.769"></a>
-<span class="sourceLineNo">770</span><a name="line.770"></a>
-<span class="sourceLineNo">771</span>                @Override<a name="line.771"></a>
-<span class="sourceLineNo">772</span>                public Iterator&lt;Bucket&lt;T&gt;&gt; iterator() {<a name="line.772"></a>
-<span class="sourceLineNo">773</span>                        return fragments.iterator();<a name="line.773"></a>
-<span class="sourceLineNo">774</span>                }<a name="line.774"></a>
-<span class="sourceLineNo">775</span><a name="line.775"></a>
-<span class="sourceLineNo">776</span>                @Override<a name="line.776"></a>
-<span class="sourceLineNo">777</span>                public String toString() {<a name="line.777"></a>
-<span class="sourceLineNo">778</span>                        return present();<a name="line.778"></a>
-<span class="sourceLineNo">779</span>                }<a name="line.779"></a>
-<span class="sourceLineNo">780</span><a name="line.780"></a>
-<span class="sourceLineNo">781</span>                protected static boolean equals(Object o1, Object o2) {<a name="line.781"></a>
-<span class="sourceLineNo">782</span>                        if (o1 == null)<a name="line.782"></a>
-<span class="sourceLineNo">783</span>                                return o2 == null;<a name="line.783"></a>
-<span class="sourceLineNo">784</span>                        else<a name="line.784"></a>
-<span class="sourceLineNo">785</span>                                return o1.equals(o2);<a name="line.785"></a>
-<span class="sourceLineNo">786</span>                }<a name="line.786"></a>
-<span class="sourceLineNo">787</span><a name="line.787"></a>
-<span class="sourceLineNo">788</span>                private int nbSpaces(String s) {<a name="line.788"></a>
-<span class="sourceLineNo">789</span>                        final int bd = s.length();<a name="line.789"></a>
-<span class="sourceLineNo">790</span>                        int result = 0;<a name="line.790"></a>
-<span class="sourceLineNo">791</span>                        for (int i = 0; i &lt; bd; i++) {<a name="line.791"></a>
-<span class="sourceLineNo">792</span>                                final char c = s.charAt(i);<a name="line.792"></a>
-<span class="sourceLineNo">793</span>                                if (c == ' ')<a name="line.793"></a>
-<span class="sourceLineNo">794</span>                                        result++;<a name="line.794"></a>
-<span class="sourceLineNo">795</span>                        }<a name="line.795"></a>
-<span class="sourceLineNo">796</span>                        return result;<a name="line.796"></a>
-<span class="sourceLineNo">797</span>                }<a name="line.797"></a>
-<span class="sourceLineNo">798</span><a name="line.798"></a>
-<span class="sourceLineNo">799</span>                /* Some tests */<a name="line.799"></a>
-<span class="sourceLineNo">800</span>                /*<a name="line.800"></a>
-<span class="sourceLineNo">801</span>                public static void main(String[] args) {<a name="line.801"></a>
-<span class="sourceLineNo">802</span>                        final IColoredString&lt;Object&gt; rockNRoll = IColoredString.Impl.create();<a name="line.802"></a>
-<span class="sourceLineNo">803</span>                        rockNRoll.append("Rock", new Object());<a name="line.803"></a>
-<span class="sourceLineNo">804</span>                        rockNRoll.append(" ", new Object());<a name="line.804"></a>
-<span class="sourceLineNo">805</span>                        rockNRoll.append("'n", new Object());<a name="line.805"></a>
+<span class="sourceLineNo">754</span>                                        // extra close-markup tags can cause variable-width text to have huge spacing.<a name="line.754"></a>
+<span class="sourceLineNo">755</span>                    // they shouldn't be needed anyway.<a name="line.755"></a>
+<span class="sourceLineNo">756</span>//                                      if (open)<a name="line.756"></a>
+<span class="sourceLineNo">757</span>//                                              result.append(markup.closeMarkup());<a name="line.757"></a>
+<span class="sourceLineNo">758</span>                                        result.append(markup.getMarkup(fragment.color));<a name="line.758"></a>
+<span class="sourceLineNo">759</span>//                                      open = true;<a name="line.759"></a>
+<span class="sourceLineNo">760</span>                                }<a name="line.760"></a>
+<span class="sourceLineNo">761</span>//                              else {<a name="line.761"></a>
+<span class="sourceLineNo">762</span>////                                    if (open)<a name="line.762"></a>
+<span class="sourceLineNo">763</span>////                                            result.append(markup.closeMarkup());<a name="line.763"></a>
+<span class="sourceLineNo">764</span>//                                      open = false;<a name="line.764"></a>
+<span class="sourceLineNo">765</span>//                              }<a name="line.765"></a>
+<span class="sourceLineNo">766</span>                                // maybe try this line if escape() is re-added to IMarkup<a name="line.766"></a>
+<span class="sourceLineNo">767</span>                                //result.append(markup.escape(fragment.text));<a name="line.767"></a>
+<span class="sourceLineNo">768</span>                                result.append(fragment.text);<a name="line.768"></a>
+<span class="sourceLineNo">769</span>                        }<a name="line.769"></a>
+<span class="sourceLineNo">770</span>                        return result.toString();<a name="line.770"></a>
+<span class="sourceLineNo">771</span>                }<a name="line.771"></a>
+<span class="sourceLineNo">772</span><a name="line.772"></a>
+<span class="sourceLineNo">773</span>                @Override<a name="line.773"></a>
+<span class="sourceLineNo">774</span>                public Iterator&lt;Bucket&lt;T&gt;&gt; iterator() {<a name="line.774"></a>
+<span class="sourceLineNo">775</span>                        return fragments.iterator();<a name="line.775"></a>
+<span class="sourceLineNo">776</span>                }<a name="line.776"></a>
+<span class="sourceLineNo">777</span><a name="line.777"></a>
+<span class="sourceLineNo">778</span>                @Override<a name="line.778"></a>
+<span class="sourceLineNo">779</span>                public String toString() {<a name="line.779"></a>
+<span class="sourceLineNo">780</span>                        return present();<a name="line.780"></a>
+<span class="sourceLineNo">781</span>                }<a name="line.781"></a>
+<span class="sourceLineNo">782</span><a name="line.782"></a>
+<span class="sourceLineNo">783</span>                protected static boolean equals(Object o1, Object o2) {<a name="line.783"></a>
+<span class="sourceLineNo">784</span>                        if (o1 == null)<a name="line.784"></a>
+<span class="sourceLineNo">785</span>                                return o2 == null;<a name="line.785"></a>
+<span class="sourceLineNo">786</span>                        else<a name="line.786"></a>
+<span class="sourceLineNo">787</span>                                return o1.equals(o2);<a name="line.787"></a>
+<span class="sourceLineNo">788</span>                }<a name="line.788"></a>
+<span class="sourceLineNo">789</span><a name="line.789"></a>
+<span class="sourceLineNo">790</span>                private int nbSpaces(String s) {<a name="line.790"></a>
+<span class="sourceLineNo">791</span>                        final int bd = s.length();<a name="line.791"></a>
+<span class="sourceLineNo">792</span>                        int result = 0;<a name="line.792"></a>
+<span class="sourceLineNo">793</span>                        for (int i = 0; i &lt; bd; i++) {<a name="line.793"></a>
+<span class="sourceLineNo">794</span>                                final char c = s.charAt(i);<a name="line.794"></a>
+<span class="sourceLineNo">795</span>                                if (c == ' ')<a name="line.795"></a>
+<span class="sourceLineNo">796</span>                                        result++;<a name="line.796"></a>
+<span class="sourceLineNo">797</span>                        }<a name="line.797"></a>
+<span class="sourceLineNo">798</span>                        return result;<a name="line.798"></a>
+<span class="sourceLineNo">799</span>                }<a name="line.799"></a>
+<span class="sourceLineNo">800</span><a name="line.800"></a>
+<span class="sourceLineNo">801</span>                /* Some tests */<a name="line.801"></a>
+<span class="sourceLineNo">802</span>                /*<a name="line.802"></a>
+<span class="sourceLineNo">803</span>                public static void main(String[] args) {<a name="line.803"></a>
+<span class="sourceLineNo">804</span>                        final IColoredString&lt;Object&gt; rockNRoll = IColoredString.Impl.create();<a name="line.804"></a>
+<span class="sourceLineNo">805</span>                        rockNRoll.append("Rock", new Object());<a name="line.805"></a>
 <span class="sourceLineNo">806</span>                        rockNRoll.append(" ", new Object());<a name="line.806"></a>
-<span class="sourceLineNo">807</span>                        rockNRoll.append("Roll", new Object());<a name="line.807"></a>
-<span class="sourceLineNo">808</span>                        for (int i = 0; i &lt; rockNRoll.length(); i++)<a name="line.808"></a>
-<span class="sourceLineNo">809</span>                                System.out.println(rockNRoll.charAt(i));<a name="line.809"></a>
-<span class="sourceLineNo">810</span>                        System.out.println(rockNRoll.present());<a name="line.810"></a>
-<span class="sourceLineNo">811</span>                }<a name="line.811"></a>
-<span class="sourceLineNo">812</span>                */<a name="line.812"></a>
-<span class="sourceLineNo">813</span>        }<a name="line.813"></a>
-<span class="sourceLineNo">814</span><a name="line.814"></a>
-<span class="sourceLineNo">815</span>        /**<a name="line.815"></a>
-<span class="sourceLineNo">816</span>         * A piece of a {@link IColoredString}: a text and its color.<a name="line.816"></a>
-<span class="sourceLineNo">817</span>         * <a name="line.817"></a>
-<span class="sourceLineNo">818</span>         * @author smelC<a name="line.818"></a>
+<span class="sourceLineNo">807</span>                        rockNRoll.append("'n", new Object());<a name="line.807"></a>
+<span class="sourceLineNo">808</span>                        rockNRoll.append(" ", new Object());<a name="line.808"></a>
+<span class="sourceLineNo">809</span>                        rockNRoll.append("Roll", new Object());<a name="line.809"></a>
+<span class="sourceLineNo">810</span>                        for (int i = 0; i &lt; rockNRoll.length(); i++)<a name="line.810"></a>
+<span class="sourceLineNo">811</span>                                System.out.println(rockNRoll.charAt(i));<a name="line.811"></a>
+<span class="sourceLineNo">812</span>                        System.out.println(rockNRoll.present());<a name="line.812"></a>
+<span class="sourceLineNo">813</span>                }<a name="line.813"></a>
+<span class="sourceLineNo">814</span>                */<a name="line.814"></a>
+<span class="sourceLineNo">815</span>        }<a name="line.815"></a>
+<span class="sourceLineNo">816</span><a name="line.816"></a>
+<span class="sourceLineNo">817</span>        /**<a name="line.817"></a>
+<span class="sourceLineNo">818</span>         * A piece of a {@link IColoredString}: a text and its color.<a name="line.818"></a>
 <span class="sourceLineNo">819</span>         * <a name="line.819"></a>
-<span class="sourceLineNo">820</span>         * @param &lt;T&gt;<a name="line.820"></a>
-<span class="sourceLineNo">821</span>         *            The type of colors;<a name="line.821"></a>
-<span class="sourceLineNo">822</span>         */<a name="line.822"></a>
-<span class="sourceLineNo">823</span>        class Bucket&lt;T&gt; {<a name="line.823"></a>
-<span class="sourceLineNo">824</span><a name="line.824"></a>
-<span class="sourceLineNo">825</span>                protected final String text;<a name="line.825"></a>
-<span class="sourceLineNo">826</span>                protected final/* @Nullable */T color;<a name="line.826"></a>
-<span class="sourceLineNo">827</span><a name="line.827"></a>
-<span class="sourceLineNo">828</span>                public Bucket(String text, /* @Nullable */T color) {<a name="line.828"></a>
-<span class="sourceLineNo">829</span>                        this.text = text == null ? "" : text;<a name="line.829"></a>
-<span class="sourceLineNo">830</span>                        this.color = color;<a name="line.830"></a>
-<span class="sourceLineNo">831</span>                }<a name="line.831"></a>
-<span class="sourceLineNo">832</span><a name="line.832"></a>
-<span class="sourceLineNo">833</span>                /**<a name="line.833"></a>
-<span class="sourceLineNo">834</span>                 * @param text<a name="line.834"></a>
-<span class="sourceLineNo">835</span>                 * @return An instance whose text is {@code this.text + text}. Color is<a name="line.835"></a>
-<span class="sourceLineNo">836</span>                 *         unchanged.<a name="line.836"></a>
-<span class="sourceLineNo">837</span>                 */<a name="line.837"></a>
-<span class="sourceLineNo">838</span>                public Bucket&lt;T&gt; append(String text) {<a name="line.838"></a>
-<span class="sourceLineNo">839</span>                        if (text == null || text.isEmpty())<a name="line.839"></a>
-<span class="sourceLineNo">840</span>                                /* Let's save an allocation */<a name="line.840"></a>
-<span class="sourceLineNo">841</span>                                return this;<a name="line.841"></a>
-<span class="sourceLineNo">842</span>                        else<a name="line.842"></a>
-<span class="sourceLineNo">843</span>                                return new Bucket&lt;&gt;(this.text + text, color);<a name="line.843"></a>
-<span class="sourceLineNo">844</span>                }<a name="line.844"></a>
-<span class="sourceLineNo">845</span><a name="line.845"></a>
-<span class="sourceLineNo">846</span>                public Bucket&lt;T&gt; setLength(int l) {<a name="line.846"></a>
-<span class="sourceLineNo">847</span>                        final int here = text.length();<a name="line.847"></a>
-<span class="sourceLineNo">848</span>                        if (here &lt;= l)<a name="line.848"></a>
-<span class="sourceLineNo">849</span>                                return this;<a name="line.849"></a>
-<span class="sourceLineNo">850</span>                        else<a name="line.850"></a>
-<span class="sourceLineNo">851</span>                                return new Bucket&lt;&gt;(text.substring(0, l), color);<a name="line.851"></a>
-<span class="sourceLineNo">852</span>                }<a name="line.852"></a>
-<span class="sourceLineNo">853</span><a name="line.853"></a>
-<span class="sourceLineNo">854</span>                public Bucket&lt;T&gt; setColor(T t) {<a name="line.854"></a>
-<span class="sourceLineNo">855</span>                        return color == t ? this : new Bucket&lt;T&gt;(text, t);<a name="line.855"></a>
-<span class="sourceLineNo">856</span>                }<a name="line.856"></a>
-<span class="sourceLineNo">857</span><a name="line.857"></a>
-<span class="sourceLineNo">858</span>                /**<a name="line.858"></a>
-<span class="sourceLineNo">859</span>                 * @return The text that this bucket contains.<a name="line.859"></a>
-<span class="sourceLineNo">860</span>                 */<a name="line.860"></a>
-<span class="sourceLineNo">861</span>                public String getText() {<a name="line.861"></a>
-<span class="sourceLineNo">862</span>                        return text;<a name="line.862"></a>
-<span class="sourceLineNo">863</span>                }<a name="line.863"></a>
-<span class="sourceLineNo">864</span><a name="line.864"></a>
-<span class="sourceLineNo">865</span>                /**<a name="line.865"></a>
-<span class="sourceLineNo">866</span>                 * @return The color of {@link #getText()}. Or {@code null} if none.<a name="line.866"></a>
-<span class="sourceLineNo">867</span>                 */<a name="line.867"></a>
-<span class="sourceLineNo">868</span>                public/* @Nullable */T getColor() {<a name="line.868"></a>
-<span class="sourceLineNo">869</span>                        return color;<a name="line.869"></a>
-<span class="sourceLineNo">870</span>                }<a name="line.870"></a>
-<span class="sourceLineNo">871</span><a name="line.871"></a>
-<span class="sourceLineNo">872</span>                @Override<a name="line.872"></a>
-<span class="sourceLineNo">873</span>                public String toString() {<a name="line.873"></a>
-<span class="sourceLineNo">874</span>                        if (color == null)<a name="line.874"></a>
-<span class="sourceLineNo">875</span>                                return text;<a name="line.875"></a>
-<span class="sourceLineNo">876</span>                        else<a name="line.876"></a>
-<span class="sourceLineNo">877</span>                                return text + "(" + color + ")";<a name="line.877"></a>
-<span class="sourceLineNo">878</span>                }<a name="line.878"></a>
-<span class="sourceLineNo">879</span><a name="line.879"></a>
-<span class="sourceLineNo">880</span>        }<a name="line.880"></a>
-<span class="sourceLineNo">881</span>}<a name="line.881"></a>
+<span class="sourceLineNo">820</span>         * @author smelC<a name="line.820"></a>
+<span class="sourceLineNo">821</span>         * <a name="line.821"></a>
+<span class="sourceLineNo">822</span>         * @param &lt;T&gt;<a name="line.822"></a>
+<span class="sourceLineNo">823</span>         *            The type of colors;<a name="line.823"></a>
+<span class="sourceLineNo">824</span>         */<a name="line.824"></a>
+<span class="sourceLineNo">825</span>        class Bucket&lt;T&gt; {<a name="line.825"></a>
+<span class="sourceLineNo">826</span><a name="line.826"></a>
+<span class="sourceLineNo">827</span>                protected final String text;<a name="line.827"></a>
+<span class="sourceLineNo">828</span>                protected final/* @Nullable */T color;<a name="line.828"></a>
+<span class="sourceLineNo">829</span><a name="line.829"></a>
+<span class="sourceLineNo">830</span>                public Bucket(String text, /* @Nullable */T color) {<a name="line.830"></a>
+<span class="sourceLineNo">831</span>                        this.text = text == null ? "" : text;<a name="line.831"></a>
+<span class="sourceLineNo">832</span>                        this.color = color;<a name="line.832"></a>
+<span class="sourceLineNo">833</span>                }<a name="line.833"></a>
+<span class="sourceLineNo">834</span><a name="line.834"></a>
+<span class="sourceLineNo">835</span>                /**<a name="line.835"></a>
+<span class="sourceLineNo">836</span>                 * @param text<a name="line.836"></a>
+<span class="sourceLineNo">837</span>                 * @return An instance whose text is {@code this.text + text}. Color is<a name="line.837"></a>
+<span class="sourceLineNo">838</span>                 *         unchanged.<a name="line.838"></a>
+<span class="sourceLineNo">839</span>                 */<a name="line.839"></a>
+<span class="sourceLineNo">840</span>                public Bucket&lt;T&gt; append(String text) {<a name="line.840"></a>
+<span class="sourceLineNo">841</span>                        if (text == null || text.isEmpty())<a name="line.841"></a>
+<span class="sourceLineNo">842</span>                                /* Let's save an allocation */<a name="line.842"></a>
+<span class="sourceLineNo">843</span>                                return this;<a name="line.843"></a>
+<span class="sourceLineNo">844</span>                        else<a name="line.844"></a>
+<span class="sourceLineNo">845</span>                                return new Bucket&lt;&gt;(this.text + text, color);<a name="line.845"></a>
+<span class="sourceLineNo">846</span>                }<a name="line.846"></a>
+<span class="sourceLineNo">847</span><a name="line.847"></a>
+<span class="sourceLineNo">848</span>                public Bucket&lt;T&gt; setLength(int l) {<a name="line.848"></a>
+<span class="sourceLineNo">849</span>                        final int here = text.length();<a name="line.849"></a>
+<span class="sourceLineNo">850</span>                        if (here &lt;= l)<a name="line.850"></a>
+<span class="sourceLineNo">851</span>                                return this;<a name="line.851"></a>
+<span class="sourceLineNo">852</span>                        else<a name="line.852"></a>
+<span class="sourceLineNo">853</span>                                return new Bucket&lt;&gt;(text.substring(0, l), color);<a name="line.853"></a>
+<span class="sourceLineNo">854</span>                }<a name="line.854"></a>
+<span class="sourceLineNo">855</span><a name="line.855"></a>
+<span class="sourceLineNo">856</span>                public Bucket&lt;T&gt; setColor(T t) {<a name="line.856"></a>
+<span class="sourceLineNo">857</span>                        return color == t ? this : new Bucket&lt;T&gt;(text, t);<a name="line.857"></a>
+<span class="sourceLineNo">858</span>                }<a name="line.858"></a>
+<span class="sourceLineNo">859</span><a name="line.859"></a>
+<span class="sourceLineNo">860</span>                /**<a name="line.860"></a>
+<span class="sourceLineNo">861</span>                 * @return The text that this bucket contains.<a name="line.861"></a>
+<span class="sourceLineNo">862</span>                 */<a name="line.862"></a>
+<span class="sourceLineNo">863</span>                public String getText() {<a name="line.863"></a>
+<span class="sourceLineNo">864</span>                        return text;<a name="line.864"></a>
+<span class="sourceLineNo">865</span>                }<a name="line.865"></a>
+<span class="sourceLineNo">866</span><a name="line.866"></a>
+<span class="sourceLineNo">867</span>                /**<a name="line.867"></a>
+<span class="sourceLineNo">868</span>                 * @return The color of {@link #getText()}. Or {@code null} if none.<a name="line.868"></a>
+<span class="sourceLineNo">869</span>                 */<a name="line.869"></a>
+<span class="sourceLineNo">870</span>                public/* @Nullable */T getColor() {<a name="line.870"></a>
+<span class="sourceLineNo">871</span>                        return color;<a name="line.871"></a>
+<span class="sourceLineNo">872</span>                }<a name="line.872"></a>
+<span class="sourceLineNo">873</span><a name="line.873"></a>
+<span class="sourceLineNo">874</span>                @Override<a name="line.874"></a>
+<span class="sourceLineNo">875</span>                public String toString() {<a name="line.875"></a>
+<span class="sourceLineNo">876</span>                        if (color == null)<a name="line.876"></a>
+<span class="sourceLineNo">877</span>                                return text;<a name="line.877"></a>
+<span class="sourceLineNo">878</span>                        else<a name="line.878"></a>
+<span class="sourceLineNo">879</span>                                return text + "(" + color + ")";<a name="line.879"></a>
+<span class="sourceLineNo">880</span>                }<a name="line.880"></a>
+<span class="sourceLineNo">881</span><a name="line.881"></a>
+<span class="sourceLineNo">882</span>        }<a name="line.882"></a>
+<span class="sourceLineNo">883</span>}<a name="line.883"></a>
 
 
 

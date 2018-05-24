@@ -120,7 +120,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
  Uses CoordPacker for more memory-efficient storage and manipulation of zones; it's recommended if you use this class
  to be somewhat familiar with the methods for manipulating packed data in that class. This class is very similar in API and implementation to <a href="../../squidpony/squidai/ZOI.html" title="class in squidpony.squidai"><code>ZOI</code></a>, but should be
  slightly faster on large maps at the expense of usually using more memory. The main reason to choose between ZOI and
- GreasedZOI is whether your existing code uses GreasedRegions, like GreasedZOI, or uses CoordPacker, like thsi class.
+ GreasedZOI is whether your existing code uses GreasedRegions, like GreasedZOI, or uses CoordPacker, like this class.
  If you don't currently use either, GreasedZOI is probably preferable because the <a href="../../squidpony/squidai/GreasedZOI.html#calculate--"><code>GreasedZOI.calculate()</code></a>
  method produces a value that can be reasonably consumed by Collection-based APIs, while <a href="../../squidpony/squidai/ZOI.html#calculate--"><code>calculate()</code></a> produces
  a harder-to-use <code>short[]</code> that must be read by CoordPacker; GreasedZOI is probably not significantly faster for

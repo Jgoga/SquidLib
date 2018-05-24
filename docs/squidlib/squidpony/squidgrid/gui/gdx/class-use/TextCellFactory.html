@@ -476,7 +476,7 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory</a></code></td>
 <td class="colLast"><span class="typeNameLabel">TextCellFactory.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#initVerbatim--">initVerbatim</a></span>()</code>
-<div class="block">Initializes the factory to then be able to create text cells on demand.</div>
+<div class="block">Identical to <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#initBySize--"><code>initBySize()</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -501,6 +501,21 @@
 <td class="colFirst"><code><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory</a></code></td>
 <td class="colLast"><span class="typeNameLabel">TextCellFactory.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#removeSwap-java.lang.String-">removeSwap</a></span>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;find)</code>
 <div class="block">Removes the replacement pair, if present, that searches for the given key, find.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory</a></code></td>
+<td class="colLast"><span class="typeNameLabel">TextCellFactory.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#resetSize--">resetSize</a></span>()</code>
+<div class="block">Acts like calling <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#initBySize--"><code>initBySize()</code></a>, but doesn't create new ShaderPrograms or other objects if this has
+ already been initialized.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory</a></code></td>
+<td class="colLast"><span class="typeNameLabel">TextCellFactory.</span><code><span class="memberNameLink"><a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#resetSize-float-float-">resetSize</a></span>(float&nbsp;newWidth,
+         float&nbsp;newHeight)</code>
+<div class="block">Acts like calling <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#width-float-"><code>width(float)</code></a>, <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#height-float-"><code>height(float)</code></a>, and <a href="../../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html#initBySize--"><code>initBySize()</code></a> in succession, but
+ doesn't create new ShaderPrograms or other objects if this has already been initialized.</div>
 </td>
 </tr>
 <tr class="rowColor">

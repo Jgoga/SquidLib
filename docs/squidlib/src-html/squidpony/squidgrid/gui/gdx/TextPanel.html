@@ -206,7 +206,7 @@
 <span class="sourceLineNo">198</span>        if (distanceFieldFont != null)<a name="line.198"></a>
 <span class="sourceLineNo">199</span>        {<a name="line.199"></a>
 <span class="sourceLineNo">200</span>            tcf = distanceFieldFont;<a name="line.200"></a>
-<span class="sourceLineNo">201</span>            distanceField = distanceFieldFont.distanceField;<a name="line.201"></a>
+<span class="sourceLineNo">201</span>            distanceField = distanceFieldFont.distanceField || distanceFieldFont.msdf;<a name="line.201"></a>
 <span class="sourceLineNo">202</span>            tcf.initBySize();<a name="line.202"></a>
 <span class="sourceLineNo">203</span>            font = tcf.font();<a name="line.203"></a>
 <span class="sourceLineNo">204</span>            if (markup != null)<a name="line.204"></a>
@@ -269,7 +269,7 @@
 <span class="sourceLineNo">261</span>         */<a name="line.261"></a>
 <span class="sourceLineNo">262</span>        public void setMarkup(IMarkup&lt;T&gt; m) {<a name="line.262"></a>
 <span class="sourceLineNo">263</span>                if (font != null)<a name="line.263"></a>
-<span class="sourceLineNo">264</span>                        font.getData().markupEnabled |= true;<a name="line.264"></a>
+<span class="sourceLineNo">264</span>                        font.getData().markupEnabled = true;<a name="line.264"></a>
 <span class="sourceLineNo">265</span>                this.markup = m;<a name="line.265"></a>
 <span class="sourceLineNo">266</span>        }<a name="line.266"></a>
 <span class="sourceLineNo">267</span><a name="line.267"></a>
@@ -286,7 +286,7 @@
 <span class="sourceLineNo">278</span>        tcf = new TextCellFactory().font(font).height(MathUtils.ceil(font.getLineHeight()))<a name="line.278"></a>
 <span class="sourceLineNo">279</span>                .width(MathUtils.round(font.getSpaceWidth()));<a name="line.279"></a>
 <span class="sourceLineNo">280</span>                if (markup != null)<a name="line.280"></a>
-<span class="sourceLineNo">281</span>                        font.getData().markupEnabled |= true;<a name="line.281"></a>
+<span class="sourceLineNo">281</span>                        font.getData().markupEnabled = true;<a name="line.281"></a>
 <span class="sourceLineNo">282</span>        }<a name="line.282"></a>
 <span class="sourceLineNo">283</span><a name="line.283"></a>
 <span class="sourceLineNo">284</span>        /**<a name="line.284"></a>
@@ -468,54 +468,53 @@
 <span class="sourceLineNo">460</span>        }<a name="line.460"></a>
 <span class="sourceLineNo">461</span>        @Override<a name="line.461"></a>
 <span class="sourceLineNo">462</span>        public void draw(Batch batch, float parentAlpha) {<a name="line.462"></a>
-<span class="sourceLineNo">463</span><a name="line.463"></a>
-<span class="sourceLineNo">464</span>            final float tx = 0;//getX();<a name="line.464"></a>
-<span class="sourceLineNo">465</span>            final float ty = 0;//getY();<a name="line.465"></a>
-<span class="sourceLineNo">466</span>            final float twidth = getWidth();<a name="line.466"></a>
-<span class="sourceLineNo">467</span>            final float theight = getHeight();<a name="line.467"></a>
-<span class="sourceLineNo">468</span><a name="line.468"></a>
-<span class="sourceLineNo">469</span>            final float height = scrollPane.getHeight();<a name="line.469"></a>
-<span class="sourceLineNo">470</span><a name="line.470"></a>
-<span class="sourceLineNo">471</span>            if (backgroundColor != null) {<a name="line.471"></a>
-<span class="sourceLineNo">472</span>                batch.setColor(backgroundColor);<a name="line.472"></a>
-<span class="sourceLineNo">473</span>                batch.draw(tcf.getSolid(), tx, ty, twidth, theight);<a name="line.473"></a>
-<span class="sourceLineNo">474</span>                batch.setColor(Color.WHITE);<a name="line.474"></a>
-<span class="sourceLineNo">475</span>                /*<a name="line.475"></a>
-<span class="sourceLineNo">476</span>                batch.end();<a name="line.476"></a>
-<span class="sourceLineNo">477</span><a name="line.477"></a>
-<span class="sourceLineNo">478</span>                final Matrix4 m = batch.getTransformMatrix();<a name="line.478"></a>
-<span class="sourceLineNo">479</span>                final ShapeRenderer sr = getRenderer();<a name="line.479"></a>
-<span class="sourceLineNo">480</span>                sr.setTransformMatrix(m);<a name="line.480"></a>
-<span class="sourceLineNo">481</span>                sr.begin(ShapeType.Filled);<a name="line.481"></a>
-<span class="sourceLineNo">482</span>                sr.setColor(backgroundColor);<a name="line.482"></a>
-<span class="sourceLineNo">483</span>                UIUtil.drawRectangle(renderer, tx, ty, twidth, theight, ShapeType.Filled,<a name="line.483"></a>
-<span class="sourceLineNo">484</span>                        backgroundColor);<a name="line.484"></a>
-<span class="sourceLineNo">485</span>                sr.end();<a name="line.485"></a>
-<span class="sourceLineNo">486</span><a name="line.486"></a>
-<span class="sourceLineNo">487</span>                batch.begin();<a name="line.487"></a>
-<span class="sourceLineNo">488</span>                */<a name="line.488"></a>
-<span class="sourceLineNo">489</span>            }<a name="line.489"></a>
-<span class="sourceLineNo">490</span><a name="line.490"></a>
-<span class="sourceLineNo">491</span>            if (font == null)<a name="line.491"></a>
-<span class="sourceLineNo">492</span>                throw new NullPointerException(<a name="line.492"></a>
-<span class="sourceLineNo">493</span>                        "The font should be set when drawing a " + getClass().getSimpleName());<a name="line.493"></a>
-<span class="sourceLineNo">494</span>            if (text == null)<a name="line.494"></a>
-<span class="sourceLineNo">495</span>                throw new NullPointerException(<a name="line.495"></a>
-<span class="sourceLineNo">496</span>                        "The text should be set when drawing a " + getClass().getSimpleName());<a name="line.496"></a>
-<span class="sourceLineNo">497</span>            if (tcf != null) {<a name="line.497"></a>
-<span class="sourceLineNo">498</span>                tcf.configureShader(batch);<a name="line.498"></a>
-<span class="sourceLineNo">499</span>            }<a name="line.499"></a>
-<span class="sourceLineNo">500</span>            float yscroll = scrollPane.getScrollY();<a name="line.500"></a>
-<span class="sourceLineNo">501</span><a name="line.501"></a>
-<span class="sourceLineNo">502</span>            final float destx = tx, offY = (tcf != null) ? tcf.height * 0.5f : 0;<a name="line.502"></a>
-<span class="sourceLineNo">503</span>            getTypesetText();<a name="line.503"></a>
-<span class="sourceLineNo">504</span>            font.draw(batch, builder, destx, theight + yscroll - offY,<a name="line.504"></a>
-<span class="sourceLineNo">505</span>                    0, builder.length(), twidth, Align.left, true);<a name="line.505"></a>
-<span class="sourceLineNo">506</span><a name="line.506"></a>
-<span class="sourceLineNo">507</span>        }<a name="line.507"></a>
-<span class="sourceLineNo">508</span>    }<a name="line.508"></a>
-<span class="sourceLineNo">509</span><a name="line.509"></a>
-<span class="sourceLineNo">510</span>}<a name="line.510"></a>
+<span class="sourceLineNo">463</span>            final float tx = 0;//getX();<a name="line.463"></a>
+<span class="sourceLineNo">464</span>            final float ty = 0;//getY();<a name="line.464"></a>
+<span class="sourceLineNo">465</span>            final float twidth = getWidth();<a name="line.465"></a>
+<span class="sourceLineNo">466</span>            final float theight = getHeight();<a name="line.466"></a>
+<span class="sourceLineNo">467</span><a name="line.467"></a>
+<span class="sourceLineNo">468</span>            final float height = scrollPane.getHeight();<a name="line.468"></a>
+<span class="sourceLineNo">469</span><a name="line.469"></a>
+<span class="sourceLineNo">470</span>            if (backgroundColor != null) {<a name="line.470"></a>
+<span class="sourceLineNo">471</span>                batch.setColor(backgroundColor);<a name="line.471"></a>
+<span class="sourceLineNo">472</span>                batch.draw(tcf.getSolid(), tx, ty, twidth, theight);<a name="line.472"></a>
+<span class="sourceLineNo">473</span>                batch.setColor(Color.WHITE);<a name="line.473"></a>
+<span class="sourceLineNo">474</span>                /*<a name="line.474"></a>
+<span class="sourceLineNo">475</span>                batch.end();<a name="line.475"></a>
+<span class="sourceLineNo">476</span><a name="line.476"></a>
+<span class="sourceLineNo">477</span>                final Matrix4 m = batch.getTransformMatrix();<a name="line.477"></a>
+<span class="sourceLineNo">478</span>                final ShapeRenderer sr = getRenderer();<a name="line.478"></a>
+<span class="sourceLineNo">479</span>                sr.setTransformMatrix(m);<a name="line.479"></a>
+<span class="sourceLineNo">480</span>                sr.begin(ShapeType.Filled);<a name="line.480"></a>
+<span class="sourceLineNo">481</span>                sr.setColor(backgroundColor);<a name="line.481"></a>
+<span class="sourceLineNo">482</span>                UIUtil.drawRectangle(renderer, tx, ty, twidth, theight, ShapeType.Filled,<a name="line.482"></a>
+<span class="sourceLineNo">483</span>                        backgroundColor);<a name="line.483"></a>
+<span class="sourceLineNo">484</span>                sr.end();<a name="line.484"></a>
+<span class="sourceLineNo">485</span><a name="line.485"></a>
+<span class="sourceLineNo">486</span>                batch.begin();<a name="line.486"></a>
+<span class="sourceLineNo">487</span>                */<a name="line.487"></a>
+<span class="sourceLineNo">488</span>            }<a name="line.488"></a>
+<span class="sourceLineNo">489</span><a name="line.489"></a>
+<span class="sourceLineNo">490</span>            if (font == null)<a name="line.490"></a>
+<span class="sourceLineNo">491</span>                throw new NullPointerException(<a name="line.491"></a>
+<span class="sourceLineNo">492</span>                        "The font should be set when drawing a " + getClass().getSimpleName());<a name="line.492"></a>
+<span class="sourceLineNo">493</span>            if (text == null)<a name="line.493"></a>
+<span class="sourceLineNo">494</span>                throw new NullPointerException(<a name="line.494"></a>
+<span class="sourceLineNo">495</span>                        "The text should be set when drawing a " + getClass().getSimpleName());<a name="line.495"></a>
+<span class="sourceLineNo">496</span>            if (tcf != null) {<a name="line.496"></a>
+<span class="sourceLineNo">497</span>                tcf.configureShader(batch);<a name="line.497"></a>
+<span class="sourceLineNo">498</span>            }<a name="line.498"></a>
+<span class="sourceLineNo">499</span>            float yscroll = scrollPane.getScrollY();<a name="line.499"></a>
+<span class="sourceLineNo">500</span><a name="line.500"></a>
+<span class="sourceLineNo">501</span>            final float destx = tx, offY = (tcf != null) ? tcf.height * 0.5f : 0;<a name="line.501"></a>
+<span class="sourceLineNo">502</span>            getTypesetText();<a name="line.502"></a>
+<span class="sourceLineNo">503</span>            font.draw(batch, builder, destx, theight + yscroll - offY,<a name="line.503"></a>
+<span class="sourceLineNo">504</span>                    0, builder.length(), twidth, Align.left, true);<a name="line.504"></a>
+<span class="sourceLineNo">505</span><a name="line.505"></a>
+<span class="sourceLineNo">506</span>        }<a name="line.506"></a>
+<span class="sourceLineNo">507</span>    }<a name="line.507"></a>
+<span class="sourceLineNo">508</span><a name="line.508"></a>
+<span class="sourceLineNo">509</span>}<a name="line.509"></a>
 
 
 
