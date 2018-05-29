@@ -5313,8 +5313,32 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></code></td>
+<td class="colLast"><span class="typeNameLabel">VanDerCorputQRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/VanDerCorputQRNG.html#haltoid-int-int-int-int-int-int-">haltoid</a></span>(int&nbsp;seed,
+       int&nbsp;width,
+       int&nbsp;height,
+       int&nbsp;xOffset,
+       int&nbsp;yOffset,
+       int&nbsp;index)</code>
+<div class="block">Samples a quasi-random Coord sequence that is almost unique to the given seed, getting a Coord with x between
+ xOffset (inclusive) and width + xOffset (exclusive), y between yOffset (inclusive) and height + yOffset
+ (exclusive).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></code></td>
 <td class="colLast"><span class="typeNameLabel">VanDerCorputQRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/VanDerCorputQRNG.html#halton-int-int-int-">halton</a></span>(int&nbsp;width,
       int&nbsp;height,
+      int&nbsp;index)</code>
+<div class="block">Convenience method that gets a quasi-random Coord between integer (0,0) inclusive and (width,height) exclusive
+ and gets the corresponding Coord from the Coord pool.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></code></td>
+<td class="colLast"><span class="typeNameLabel">VanDerCorputQRNG.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/VanDerCorputQRNG.html#halton-int-int-int-int-int-">halton</a></span>(int&nbsp;width,
+      int&nbsp;height,
+      int&nbsp;xOffset,
+      int&nbsp;yOffset,
       int&nbsp;index)</code>
 <div class="block">Convenience method that gets a quasi-random Coord between integer (0,0) inclusive and (width,height) exclusive
  and gets the corresponding Coord from the Coord pool.</div>

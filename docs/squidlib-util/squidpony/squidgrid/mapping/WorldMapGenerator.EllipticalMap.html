@@ -127,7 +127,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre><a href="../../../squidpony/annotation/Beta.html" title="annotation in squidpony.annotation">@Beta</a>
-public static class <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.html#line.2147">WorldMapGenerator.EllipticalMap</a>
+public static class <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.html#line.2151">WorldMapGenerator.EllipticalMap</a>
 extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping">WorldMapGenerator</a></pre>
 <div class="block">A concrete implementation of <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" title="class in squidpony.squidgrid.mapping"><code>WorldMapGenerator</code></a> that projects the world map onto an ellipse that should be
  twice as wide as it is tall (although you can stretch it by width and height that don't have that ratio).
@@ -285,26 +285,23 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#EllipticalMap--">EllipticalMap</a></span>()</code>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#EllipticalMap-int-int-">EllipticalMap</a></span>(int&nbsp;mapWidth,
              int&nbsp;mapHeight)</code>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#EllipticalMap-long-int-int-">EllipticalMap</a></span>(long&nbsp;initialSeed,
              int&nbsp;mapWidth,
              int&nbsp;mapHeight)</code>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -312,9 +309,8 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
              int&nbsp;mapWidth,
              int&nbsp;mapHeight,
              double&nbsp;octaveMultiplier)</code>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -322,9 +318,8 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
              int&nbsp;mapWidth,
              int&nbsp;mapHeight,
              <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;noiseGenerator)</code>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -333,9 +328,8 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
              int&nbsp;mapHeight,
              <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;noiseGenerator,
              double&nbsp;octaveMultiplier)</code>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.</div>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.</div>
 </td>
 </tr>
 </table>
@@ -408,7 +402,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>terrainFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2148">terrainFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2152">terrainFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.terrainFreq">Constant Field Values</a></dd>
@@ -421,7 +415,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>terrainRidgedFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2148">terrainRidgedFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2152">terrainRidgedFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.terrainRidgedFreq">Constant Field Values</a></dd>
@@ -434,7 +428,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>heatFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2148">heatFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2152">heatFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.heatFreq">Constant Field Values</a></dd>
@@ -447,7 +441,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>moistureFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2148">moistureFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2152">moistureFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.moistureFreq">Constant Field Values</a></dd>
@@ -460,7 +454,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>otherFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2148">otherFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2152">otherFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.otherFreq">Constant Field Values</a></dd>
@@ -473,7 +467,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>riverRidgedFreq</h4>
-<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2148">riverRidgedFreq</a></pre>
+<pre>protected static final&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2152">riverRidgedFreq</a></pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.WorldMapGenerator.EllipticalMap.riverRidgedFreq">Constant Field Values</a></dd>
@@ -486,7 +480,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>minHeat0</h4>
-<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2149">minHeat0</a></pre>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2153">minHeat0</a></pre>
 </li>
 </ul>
 <a name="maxHeat0">
@@ -495,7 +489,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>maxHeat0</h4>
-<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2149">maxHeat0</a></pre>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2153">maxHeat0</a></pre>
 </li>
 </ul>
 <a name="minHeat1">
@@ -504,7 +498,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>minHeat1</h4>
-<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2150">minHeat1</a></pre>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2154">minHeat1</a></pre>
 </li>
 </ul>
 <a name="maxHeat1">
@@ -513,7 +507,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>maxHeat1</h4>
-<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2150">maxHeat1</a></pre>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2154">maxHeat1</a></pre>
 </li>
 </ul>
 <a name="minWet0">
@@ -522,7 +516,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>minWet0</h4>
-<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2151">minWet0</a></pre>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2155">minWet0</a></pre>
 </li>
 </ul>
 <a name="maxWet0">
@@ -531,7 +525,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>maxWet0</h4>
-<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2151">maxWet0</a></pre>
+<pre>protected&nbsp;double <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2155">maxWet0</a></pre>
 </li>
 </ul>
 <a name="terrain">
@@ -540,7 +534,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>terrain</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2153">terrain</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2157">terrain</a></pre>
 </li>
 </ul>
 <a name="heat">
@@ -549,7 +543,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>heat</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2153">heat</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2157">heat</a></pre>
 </li>
 </ul>
 <a name="moisture">
@@ -558,7 +552,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>moisture</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2153">moisture</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2157">moisture</a></pre>
 </li>
 </ul>
 <a name="otherRidged">
@@ -567,7 +561,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>otherRidged</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2153">otherRidged</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2157">otherRidged</a></pre>
 </li>
 </ul>
 <a name="riverRidged">
@@ -576,7 +570,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>riverRidged</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2153">riverRidged</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2157">riverRidged</a></pre>
 </li>
 </ul>
 <a name="terrainLayered">
@@ -585,7 +579,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>terrainLayered</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2153">terrainLayered</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2157">terrainLayered</a></pre>
 </li>
 </ul>
 <a name="terrain4D">
@@ -594,7 +588,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>terrain4D</h4>
-<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2154">terrain4D</a></pre>
+<pre>public final&nbsp;<a href="../../../squidpony/squidmath/Noise.Noise4D.html" title="interface in squidpony.squidmath">Noise.Noise4D</a> <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2158">terrain4D</a></pre>
 </li>
 </ul>
 <a name="xPositions">
@@ -603,7 +597,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>xPositions</h4>
-<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2155">xPositions</a></pre>
+<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2159">xPositions</a></pre>
 </li>
 </ul>
 <a name="yPositions">
@@ -612,7 +606,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>yPositions</h4>
-<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2156">yPositions</a></pre>
+<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2160">yPositions</a></pre>
 </li>
 </ul>
 <a name="zPositions">
@@ -621,7 +615,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>zPositions</h4>
-<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2157">zPositions</a></pre>
+<pre>public final&nbsp;double[][] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2161">zPositions</a></pre>
 </li>
 </ul>
 <a name="edges">
@@ -630,7 +624,7 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockListLast">
 <li class="blockList">
 <h4>edges</h4>
-<pre>protected final&nbsp;int[] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2158">edges</a></pre>
+<pre>protected final&nbsp;int[] <a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2162">edges</a></pre>
 </li>
 </ul>
 </li>
@@ -647,10 +641,9 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>EllipticalMap</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2170">EllipticalMap</a>()</pre>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2173">EllipticalMap</a>()</pre>
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.
  Always makes a 200x100 map.
  Uses WhirlingNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.
  If you were using <code>EllipticalMap#EllipticalMap(long, int, int, Noise3D, double)</code>, then this would be the
@@ -663,11 +656,10 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>EllipticalMap</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2186">EllipticalMap</a>(int&nbsp;mapWidth,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2188">EllipticalMap</a>(int&nbsp;mapWidth,
                      int&nbsp;mapHeight)</pre>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.
  Takes only the width/height of the map. The initial seed is set to the same large long
  every time, and it's likely that you would set the seed when you call <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#generate-long-"><code>WorldMapGenerator.generate(long)</code></a>. The width and
  height of the map cannot be changed after the fact, but you can zoom in.
@@ -685,12 +677,11 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>EllipticalMap</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2203">EllipticalMap</a>(long&nbsp;initialSeed,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/WorldMapGenerator.EllipticalMap.html#line.2204">EllipticalMap</a>(long&nbsp;initialSeed,
                      int&nbsp;mapWidth,
                      int&nbsp;mapHeight)</pre>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.
  Takes an initial seed and the width/height of the map. The <code>initialSeed</code>
  parameter may or may not be used, since you can specify the seed to use when you call <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#generate-long-"><code>WorldMapGenerator.generate(long)</code></a>.
  The width and height of the map cannot be changed after the fact, but you can zoom in.
@@ -713,9 +704,8 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
                      int&nbsp;mapWidth,
                      int&nbsp;mapHeight,
                      double&nbsp;octaveMultiplier)</pre>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.
  Takes an initial seed and the width/height of the map. The <code>initialSeed</code>
  parameter may or may not be used, since you can specify the seed to use when you call <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#generate-long-"><code>WorldMapGenerator.generate(long)</code></a>.
  The width and height of the map cannot be changed after the fact, but you can zoom in.
@@ -739,13 +729,13 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
                      int&nbsp;mapWidth,
                      int&nbsp;mapHeight,
                      <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;noiseGenerator)</pre>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.
  Takes an initial seed and the width/height of the map. The <code>initialSeed</code>
  parameter may or may not be used, since you can specify the seed to use when you call <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#generate-long-"><code>WorldMapGenerator.generate(long)</code></a>.
  The width and height of the map cannot be changed after the fact, but you can zoom in.
- Uses the given noise generator, with 1.0 as the octave multiplier affecting detail.</div>
+ Uses the given noise generator, with 1.0 as the octave multiplier affecting detail. The suggested Noise3D
+ implementation to use is <a href="../../../squidpony/squidmath/ClassicNoise.html#instance"><code>ClassicNoise.instance</code></a>, and <a href="../../../squidpony/squidmath/WhirlingNoise.html#instance"><code>WhirlingNoise.instance</code></a> is also good.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>initialSeed</code> - the seed for the StatefulRNG this uses; this may also be set per-call to generate</dd>
@@ -766,18 +756,18 @@ extends <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html" ti
                      int&nbsp;mapHeight,
                      <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath">Noise.Noise3D</a>&nbsp;noiseGenerator,
                      double&nbsp;octaveMultiplier)</pre>
-<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to wrap a sphere (as with a texture on a
- 3D model), with seamless east-west wrapping, no north-south wrapping, and distortion that causes the poles to
- have significantly-exaggerated-in-size features while the equator is not distorted.
- Takes an initial seed, the width/height of the map, and parameters for noise
- generation (a <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath"><code>Noise.Noise3D</code></a> implementation, which is usually <a href="../../../squidpony/squidmath/SeededNoise.html#instance"><code>SeededNoise.instance</code></a>, and a
+<div class="block">Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an
+ ellipse without distortion of the sizes of features but with significant distortion of shape.
+ Takes an initial seed, the width/height of the map, and parameters for noise generation (a
+ <a href="../../../squidpony/squidmath/Noise.Noise3D.html" title="interface in squidpony.squidmath"><code>Noise.Noise3D</code></a> implementation, where <a href="../../../squidpony/squidmath/ClassicNoise.html#instance"><code>ClassicNoise.instance</code></a> is suggested, and a
  multiplier on how many octaves of noise to use, with 1.0 being normal (high) detail and higher multipliers
  producing even more detailed noise when zoomed-in). The <code>initialSeed</code> parameter may or may not be used,
  since you can specify the seed to use when you call <a href="../../../squidpony/squidgrid/mapping/WorldMapGenerator.html#generate-long-"><code>WorldMapGenerator.generate(long)</code></a>. The width and height of the map
  cannot be changed after the fact, but you can zoom in. Both SeededNoise and WhirlingNoise make sense to use
  for <code>noiseGenerator</code>, and the seed it's constructed with doesn't matter because this will change the
  seed several times at different scales of noise (it's fine to use the static <a href="../../../squidpony/squidmath/SeededNoise.html#instance"><code>SeededNoise.instance</code></a> or
- <a href="../../../squidpony/squidmath/WhirlingNoise.html#instance"><code>WhirlingNoise.instance</code></a> because they have no changing state between runs of the program). The
+ <a href="../../../squidpony/squidmath/WhirlingNoise.html#instance"><code>WhirlingNoise.instance</code></a> because they have no changing state between runs of the program). Oddly,
+ <a href="../../../squidpony/squidmath/ClassicNoise.html" title="class in squidpony.squidmath"><code>ClassicNoise</code></a> performs better in terms of time used, and its quality may also be preferable. The
  <code>octaveMultiplier</code> parameter should probably be no lower than 0.5, but can be arbitrarily high if
  you're willing to spend much more time on generating detail only noticeable at very high zoom; normally 1.0
  is fine and may even be too high for maps that don't require zooming.</div>

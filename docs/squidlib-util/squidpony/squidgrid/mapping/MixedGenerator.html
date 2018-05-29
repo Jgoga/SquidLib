@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../squidpony/squidgrid/mapping/MetsaMapFactory.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.CarverType.html" title="enum in squidpony.squidgrid.mapping"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../squidpony/squidgrid/mapping/ModularMapGenerator.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?squidpony/squidgrid/mapping/MixedGenerator.html" target="_top">Frames</a></li>
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -141,25 +141,6 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- ======== NESTED CLASS SUMMARY ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="nested.class.summary">
-<!--   -->
-</a>
-<h3>Nested Class Summary</h3>
-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
-<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.CarverType.html" title="enum in squidpony.squidgrid.mapping">MixedGenerator.CarverType</a></span></code>&nbsp;</td>
-</tr>
-</table>
-</li>
-</ul>
 <!-- =========== FIELD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="field.summary">
@@ -173,8 +154,24 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="https://docs.oracle.com/javase/7/docs/api/java/util/EnumMap.html?is-external=true" title="class or interface in java.util">EnumMap</a>&lt;<a href="../../../squidpony/squidgrid/mapping/MixedGenerator.CarverType.html" title="enum in squidpony.squidgrid.mapping">MixedGenerator.CarverType</a>,<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#BOX">BOX</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#BOX_WALLED">BOX_WALLED</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected double[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#carvers">carvers</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../squidpony/squidmath/WeightedTable.html" title="class in squidpony.squidmath">WeightedTable</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#carverTable">carverTable</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#CAVE">CAVE</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static int</code></td>
@@ -251,6 +248,14 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <tr class="altColor">
 <td class="colFirst"><code>protected float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#roomWidth">roomWidth</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#ROUND">ROUND</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#ROUND_WALLED">ROUND_WALLED</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected int</code></td>
@@ -534,13 +539,78 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <!--   -->
 </a>
 <h3>Field Detail</h3>
+<a name="CAVE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CAVE</h4>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.28">CAVE</a></pre>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.MixedGenerator.CAVE">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a name="BOX">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>BOX</h4>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.29">BOX</a></pre>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.MixedGenerator.BOX">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a name="ROUND">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ROUND</h4>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.30">ROUND</a></pre>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.MixedGenerator.ROUND">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a name="BOX_WALLED">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>BOX_WALLED</h4>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.31">BOX_WALLED</a></pre>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.MixedGenerator.BOX_WALLED">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a name="ROUND_WALLED">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ROUND_WALLED</h4>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.32">ROUND_WALLED</a></pre>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../constant-values.html#squidpony.squidgrid.mapping.MixedGenerator.ROUND_WALLED">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
 <a name="UNTOUCHED">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>UNTOUCHED</h4>
-<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.42">UNTOUCHED</a></pre>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.39">UNTOUCHED</a></pre>
 <div class="block">Constant for environment tiles that are not near a cave, room, or corridor. Value is 0.
  Used by several classes that distinguish types of dungeon environment, like <a href="../../../squidpony/squidgrid/mapping/SectionDungeonGenerator.html" title="class in squidpony.squidgrid.mapping"><code>SectionDungeonGenerator</code></a>.
  Present here for compatibility; you should prefer <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#UNTOUCHED"><code>DungeonUtility.UNTOUCHED</code></a>.</div>
@@ -556,7 +626,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>ROOM_FLOOR</h4>
-<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.48">ROOM_FLOOR</a></pre>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.45">ROOM_FLOOR</a></pre>
 <div class="block">Constant for environment tiles that are floors for a room. Value is 1.
  Used by several classes that distinguish types of dungeon environment, like <a href="../../../squidpony/squidgrid/mapping/SectionDungeonGenerator.html" title="class in squidpony.squidgrid.mapping"><code>SectionDungeonGenerator</code></a>.
  Present here for compatibility; you should prefer <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#ROOM_FLOOR"><code>DungeonUtility.ROOM_FLOOR</code></a>.</div>
@@ -572,7 +642,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>ROOM_WALL</h4>
-<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.54">ROOM_WALL</a></pre>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.51">ROOM_WALL</a></pre>
 <div class="block">Constant for environment tiles that are walls near a room. Value is 2.
  Used by several classes that distinguish types of dungeon environment, like <a href="../../../squidpony/squidgrid/mapping/SectionDungeonGenerator.html" title="class in squidpony.squidgrid.mapping"><code>SectionDungeonGenerator</code></a>.
  Present here for compatibility; you should prefer <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#ROOM_WALL"><code>DungeonUtility.ROOM_WALL</code></a>.</div>
@@ -588,7 +658,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>CAVE_FLOOR</h4>
-<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.60">CAVE_FLOOR</a></pre>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.57">CAVE_FLOOR</a></pre>
 <div class="block">Constant for environment tiles that are floors for a cave. Value is 3.
  Used by several classes that distinguish types of dungeon environment, like <a href="../../../squidpony/squidgrid/mapping/SectionDungeonGenerator.html" title="class in squidpony.squidgrid.mapping"><code>SectionDungeonGenerator</code></a>.
  Present here for compatibility; you should prefer <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#CAVE_FLOOR"><code>DungeonUtility.CAVE_FLOOR</code></a>.</div>
@@ -604,7 +674,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>CAVE_WALL</h4>
-<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.66">CAVE_WALL</a></pre>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.63">CAVE_WALL</a></pre>
 <div class="block">Constant for environment tiles that are walls near a cave. Value is 4.
  Used by several classes that distinguish types of dungeon environment, like <a href="../../../squidpony/squidgrid/mapping/SectionDungeonGenerator.html" title="class in squidpony.squidgrid.mapping"><code>SectionDungeonGenerator</code></a>.
  Present here for compatibility; you should prefer <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#CAVE_WALL"><code>DungeonUtility.CAVE_WALL</code></a>.</div>
@@ -620,7 +690,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>CORRIDOR_FLOOR</h4>
-<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.72">CORRIDOR_FLOOR</a></pre>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.69">CORRIDOR_FLOOR</a></pre>
 <div class="block">Constant for environment tiles that are floors for a corridor. Value is 5.
  Used by several classes that distinguish types of dungeon environment, like <a href="../../../squidpony/squidgrid/mapping/SectionDungeonGenerator.html" title="class in squidpony.squidgrid.mapping"><code>SectionDungeonGenerator</code></a>.
  Present here for compatibility; you should prefer <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#CORRIDOR_FLOOR"><code>DungeonUtility.CORRIDOR_FLOOR</code></a>.</div>
@@ -636,7 +706,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>CORRIDOR_WALL</h4>
-<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.78">CORRIDOR_WALL</a></pre>
+<pre>public static final&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.75">CORRIDOR_WALL</a></pre>
 <div class="block">Constant for environment tiles that are walls near a corridor. Value is 6.
  Used by several classes that distinguish types of dungeon environment, like <a href="../../../squidpony/squidgrid/mapping/SectionDungeonGenerator.html" title="class in squidpony.squidgrid.mapping"><code>SectionDungeonGenerator</code></a>.
  Present here for compatibility; you should prefer <a href="../../../squidpony/squidgrid/mapping/DungeonUtility.html#CORRIDOR_WALL"><code>DungeonUtility.CORRIDOR_WALL</code></a>.</div>
@@ -652,7 +722,16 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>carvers</h4>
-<pre>protected&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/util/EnumMap.html?is-external=true" title="class or interface in java.util">EnumMap</a>&lt;<a href="../../../squidpony/squidgrid/mapping/MixedGenerator.CarverType.html" title="enum in squidpony.squidgrid.mapping">MixedGenerator.CarverType</a>,<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt; <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.80">carvers</a></pre>
+<pre>protected&nbsp;double[] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.78">carvers</a></pre>
+</li>
+</ul>
+<a name="carverTable">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>carverTable</h4>
+<pre>protected&nbsp;<a href="../../../squidpony/squidmath/WeightedTable.html" title="class in squidpony.squidmath">WeightedTable</a> <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.79">carverTable</a></pre>
 </li>
 </ul>
 <a name="width">
@@ -661,7 +740,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>width</h4>
-<pre>protected&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.81">width</a></pre>
+<pre>protected&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.80">width</a></pre>
 </li>
 </ul>
 <a name="height">
@@ -670,7 +749,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>height</h4>
-<pre>protected&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.81">height</a></pre>
+<pre>protected&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.80">height</a></pre>
 </li>
 </ul>
 <a name="roomWidth">
@@ -679,7 +758,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>roomWidth</h4>
-<pre>protected&nbsp;float <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.82">roomWidth</a></pre>
+<pre>protected&nbsp;float <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.81">roomWidth</a></pre>
 </li>
 </ul>
 <a name="roomHeight">
@@ -688,7 +767,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>roomHeight</h4>
-<pre>protected&nbsp;float <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.82">roomHeight</a></pre>
+<pre>protected&nbsp;float <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.81">roomHeight</a></pre>
 </li>
 </ul>
 <a name="rng">
@@ -697,7 +776,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>rng</h4>
-<pre>public&nbsp;<a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a> <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.83">rng</a></pre>
+<pre>public&nbsp;<a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a> <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.82">rng</a></pre>
 </li>
 </ul>
 <a name="dungeon">
@@ -706,7 +785,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>dungeon</h4>
-<pre>protected&nbsp;char[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.84">dungeon</a></pre>
+<pre>protected&nbsp;char[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.83">dungeon</a></pre>
 </li>
 </ul>
 <a name="generated">
@@ -715,7 +794,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>generated</h4>
-<pre>protected&nbsp;boolean <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.85">generated</a></pre>
+<pre>protected&nbsp;boolean <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.84">generated</a></pre>
 </li>
 </ul>
 <a name="environment">
@@ -724,7 +803,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>environment</h4>
-<pre>protected&nbsp;int[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.86">environment</a></pre>
+<pre>protected&nbsp;int[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.85">environment</a></pre>
 </li>
 </ul>
 <a name="marked">
@@ -733,7 +812,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>marked</h4>
-<pre>protected&nbsp;boolean[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.87">marked</a></pre>
+<pre>protected&nbsp;boolean[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.86">marked</a></pre>
 </li>
 </ul>
 <a name="walled">
@@ -742,7 +821,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>walled</h4>
-<pre>protected&nbsp;boolean[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.87">walled</a></pre>
+<pre>protected&nbsp;boolean[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.86">walled</a></pre>
 </li>
 </ul>
 <a name="fixedRooms">
@@ -751,7 +830,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>fixedRooms</h4>
-<pre>protected&nbsp;boolean[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.87">fixedRooms</a></pre>
+<pre>protected&nbsp;boolean[][] <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.86">fixedRooms</a></pre>
 </li>
 </ul>
 <a name="points">
@@ -760,7 +839,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>points</h4>
-<pre>protected&nbsp;<a href="../../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a> <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.88">points</a></pre>
+<pre>protected&nbsp;<a href="../../../squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a> <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.87">points</a></pre>
 </li>
 </ul>
 <a name="totalPoints">
@@ -769,7 +848,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockListLast">
 <li class="blockList">
 <h4>totalPoints</h4>
-<pre>protected&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.89">totalPoints</a></pre>
+<pre>protected&nbsp;int <a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.88">totalPoints</a></pre>
 </li>
 </ul>
 </li>
@@ -790,11 +869,11 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
                       int&nbsp;height,
                       <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given RNG.
- This version of the constructor uses Poisson Disk sampling to generate the points it will draw caves and
- corridors between, ensuring a minimum distance between points, but it does not ensure that paths between points
- will avoid overlapping with rooms or other paths. You call the different carver-adding methods to affect what the
- dungeon will look like, putCaveCarvers(), putBoxRoomCarvers(), and putRoundRoomCarvers(), defaulting to only
- caves if none are called. You call generate() after adding carvers, which returns a char[][] for a map.</div>
+ This version of the constructor uses a sub-random point sequence to generate the points it will draw caves and
+ corridors between, helping to ensure a minimum distance between points, but it does not ensure that paths between
+ points  will avoid overlapping with rooms or other paths. You call the different carver-adding methods to affect
+ what the dungeon will look like, putCaveCarvers(), putBoxRoomCarvers(), and putRoundRoomCarvers(), defaulting to
+ only caves if none are called. You call generate() after adding carvers, which returns a char[][] for a map.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>width</code> - the width of the final map in cells</dd>
@@ -932,7 +1011,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>basicPoints</h4>
-<pre>public static&nbsp;<a href="../../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.105">basicPoints</a>(int&nbsp;width,
+<pre>public static&nbsp;<a href="../../../squidpony/squidmath/OrderedSet.html" title="class in squidpony.squidmath">OrderedSet</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.104">basicPoints</a>(int&nbsp;width,
                                             int&nbsp;height,
                                             <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Mainly for internal use; this is used by <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#MixedGenerator-int-int-squidpony.squidmath.IRNG-"><code>MixedGenerator(int, int, IRNG)</code></a> to get its room positions.
@@ -960,7 +1039,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>cleanPoints</h4>
-<pre>public static&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.129">cleanPoints</a>(int&nbsp;width,
+<pre>public static&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.128">cleanPoints</a>(int&nbsp;width,
                                       int&nbsp;height,
                                       <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">Mainly for internal use; this was used by <a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html#MixedGenerator-int-int-squidpony.squidmath.IRNG-"><code>MixedGenerator(int, int, IRNG)</code></a> to get its room positions, and
@@ -1119,7 +1198,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>getDungeon</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.583">getDungeon</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.586">getDungeon</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html#getDungeon--">IDungeonGenerator</a></code></span></div>
 <div class="block">Gets the most recently-produced dungeon as a 2D char array, usually produced by calling <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html#generate--"><code>IDungeonGenerator.generate()</code></a> or
  some similar method present in a specific implementation. This normally passes a direct reference and not a copy,
@@ -1138,7 +1217,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>getEnvironment</h4>
-<pre>public&nbsp;int[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.587">getEnvironment</a>()</pre>
+<pre>public&nbsp;int[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.590">getEnvironment</a>()</pre>
 </li>
 </ul>
 <a name="hasGenerated--">
@@ -1147,7 +1226,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>hasGenerated</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.592">hasGenerated</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.595">hasGenerated</a>()</pre>
 </li>
 </ul>
 <a name="getFixedRooms--">
@@ -1156,7 +1235,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>getFixedRooms</h4>
-<pre>public&nbsp;boolean[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.597">getFixedRooms</a>()</pre>
+<pre>public&nbsp;boolean[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.600">getFixedRooms</a>()</pre>
 </li>
 </ul>
 <a name="setFixedRooms-boolean:A:A-">
@@ -1165,7 +1244,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>setFixedRooms</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.601">setFixedRooms</a>(boolean[][]&nbsp;fixedRooms)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.604">setFixedRooms</a>(boolean[][]&nbsp;fixedRooms)</pre>
 </li>
 </ul>
 <a name="store--">
@@ -1174,7 +1253,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>store</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.608">store</a>()</pre>
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.611">store</a>()</pre>
 <div class="block">Internal use. Takes cells that have been previously marked and permanently stores them as floors in the dungeon.</div>
 </li>
 </ul>
@@ -1184,7 +1263,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>markEnvironmentWalls</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.625">markEnvironmentWalls</a>()</pre>
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.628">markEnvironmentWalls</a>()</pre>
 <div class="block">Internal use. Finds all floor cells by environment and marks untouched adjacent (8-way) cells as walls, using the
  appropriate type for the nearby floor.</div>
 </li>
@@ -1195,7 +1274,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>mark</h4>
-<pre>protected&nbsp;boolean&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.676">mark</a>(int&nbsp;x,
+<pre>protected&nbsp;boolean&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.679">mark</a>(int&nbsp;x,
                        int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point to be made into floor.</div>
 <dl>
@@ -1213,7 +1292,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>markPiercing</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.689">markPiercing</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.692">markPiercing</a>(int&nbsp;x,
                             int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point to be made into floor.</div>
 <dl>
@@ -1229,7 +1308,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>markEnvironment</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.700">markEnvironment</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.703">markEnvironment</a>(int&nbsp;x,
                                int&nbsp;y,
                                int&nbsp;kind)</pre>
 <div class="block">Internal use. Marks a point's environment type as the appropriate kind of environment.</div>
@@ -1247,7 +1326,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>markEnvironmentCorridor</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.709">markEnvironmentCorridor</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.712">markEnvironmentCorridor</a>(int&nbsp;x,
                                        int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point's environment type as a corridor floor.</div>
 <dl>
@@ -1263,7 +1342,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>markEnvironmentRoom</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.720">markEnvironmentRoom</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.723">markEnvironmentRoom</a>(int&nbsp;x,
                                    int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point's environment type as a room floor.</div>
 <dl>
@@ -1279,7 +1358,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>markEnvironmentCave</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.731">markEnvironmentCave</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.734">markEnvironmentCave</a>(int&nbsp;x,
                                    int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point's environment type as a cave floor.</div>
 <dl>
@@ -1295,7 +1374,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>wallOff</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.741">wallOff</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.744">wallOff</a>(int&nbsp;x,
                        int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point to be made into floor.</div>
 <dl>
@@ -1311,7 +1390,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>mark</h4>
-<pre>protected&nbsp;boolean&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.752">mark</a>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pos)</pre>
+<pre>protected&nbsp;boolean&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.755">mark</a>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pos)</pre>
 <div class="block">Internal use. Marks a point to be made into floor.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1327,7 +1406,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>markPiercing</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.761">markPiercing</a>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pos)</pre>
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.764">markPiercing</a>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pos)</pre>
 <div class="block">Internal use. Marks a point to be made into floor, piercing walls.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1341,7 +1420,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>markPiercingCave</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.769">markPiercingCave</a>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pos)</pre>
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.772">markPiercingCave</a>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pos)</pre>
 <div class="block">Internal use. Marks a point to be made into floor, piercing walls, and also marks the point as a cave floor.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1355,7 +1434,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockListLast">
 <li class="blockList">
 <h4>markPiercingRoom</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.779">markPiercingRoom</a>(int&nbsp;x,
+<pre>protected&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/MixedGenerator.html#line.782">markPiercingRoom</a>(int&nbsp;x,
                                 int&nbsp;y)</pre>
 <div class="block">Internal use. Marks a point to be made into floor, piercing walls, and also marks the point as a room floor.</div>
 <dl>
@@ -1394,7 +1473,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../squidpony/squidgrid/mapping/MetsaMapFactory.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.CarverType.html" title="enum in squidpony.squidgrid.mapping"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../squidpony/squidgrid/mapping/ModularMapGenerator.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?squidpony/squidgrid/mapping/MixedGenerator.html" target="_top">Frames</a></li>
@@ -1418,7 +1497,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
