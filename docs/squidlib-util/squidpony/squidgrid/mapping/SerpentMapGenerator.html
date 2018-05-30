@@ -156,7 +156,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SerpentMapGenerator.html#SerpentMapGenerator-int-int-squidpony.squidmath.IRNG-boolean-">SerpentMapGenerator</a></span>(int&nbsp;width,
                    int&nbsp;height,
-                   <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
+                   <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random,
                    boolean&nbsp;symmetrical)</code>
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given IRNG.</div>
 </td>
@@ -172,7 +172,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../squidpony/squidgrid/mapping/SerpentMapGenerator.html#SerpentMapGenerator-int-int-squidpony.squidmath.IRNG-double-boolean-">SerpentMapGenerator</a></span>(int&nbsp;width,
                    int&nbsp;height,
-                   <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
+                   <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random,
                    double&nbsp;branchingChance,
                    boolean&nbsp;symmetrical)</code>
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given IRNG.</div>
@@ -278,7 +278,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>SerpentMapGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.40">SerpentMapGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.39">SerpentMapGenerator</a>(int&nbsp;width,
                            int&nbsp;height,
                            <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</pre>
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given IRNG.
@@ -302,9 +302,9 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>SerpentMapGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.57">SerpentMapGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.56">SerpentMapGenerator</a>(int&nbsp;width,
                            int&nbsp;height,
-                           <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
+                           <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random,
                            boolean&nbsp;symmetrical)</pre>
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given IRNG.
  The intended purpose is to carve a long path that loops through the whole dungeon, while hopefully maximizing
@@ -315,7 +315,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>width</code> - the width of the final map in cells</dd>
 <dd><code>height</code> - the height of the final map in cells</dd>
-<dd><code>rng</code> - an IRNG object to use for random choices; this make a lot of random choices.</dd>
+<dd><code>random</code> - an IRNG object to use for random choices; this make a lot of random choices.</dd>
 <dd><code>symmetrical</code> - true if this should generate a bi-radially symmetric map, false for a typical map</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../squidpony/squidgrid/mapping/MixedGenerator.html" title="class in squidpony.squidgrid.mapping"><code>MixedGenerator</code></a></dd>
@@ -328,7 +328,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>SerpentMapGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.120">SerpentMapGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.118">SerpentMapGenerator</a>(int&nbsp;width,
                            int&nbsp;height,
                            <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
                            double&nbsp;branchingChance)</pre>
@@ -354,9 +354,9 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SerpentMapGenerator</h4>
-<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.138">SerpentMapGenerator</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.136">SerpentMapGenerator</a>(int&nbsp;width,
                            int&nbsp;height,
-                           <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng,
+                           <a href="../../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;random,
                            double&nbsp;branchingChance,
                            boolean&nbsp;symmetrical)</pre>
 <div class="block">This prepares a map generator that will generate a map with the given width and height, using the given IRNG.
@@ -368,7 +368,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>width</code> - the width of the final map in cells</dd>
 <dd><code>height</code> - the height of the final map in cells</dd>
-<dd><code>rng</code> - an IRNG object to use for random choices; this make a lot of random choices.</dd>
+<dd><code>random</code> - an IRNG object to use for random choices; this make a lot of random choices.</dd>
 <dd><code>branchingChance</code> - the chance from 0.0 to 1.0 that each room will branch at least once</dd>
 <dd><code>symmetrical</code> - true if this should generate a bi-radially symmetric map, false for a typical map</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -390,7 +390,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putCaveCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.213">putCaveCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.210">putCaveCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create caves from one room to the next. If count is 0 or less, no caves
  will be made. If count is at least 1, caves are possible, and higher numbers relative to the other carvers make
  caves more likely. Carvers are shuffled when used, then repeat if exhausted during generation. Since typically
@@ -410,7 +410,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putBoxRoomCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.230">putBoxRoomCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.227">putBoxRoomCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create right-angle corridors from one room to the next, create rooms
  with a random size in a box shape at the start and end, and a small room at the corner if there is one. If count
  is 0 or less, no box-shaped rooms will be made. If count is at least 1, box-shaped rooms are possible, and higher
@@ -433,7 +433,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putWalledBoxRoomCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.248">putWalledBoxRoomCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.245">putWalledBoxRoomCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create right-angle corridors from one room to the next, create rooms
  with a random size in a box shape at the start and end, and a small room at the corner if there is one. This also
  ensures walls will be placed around the room, only allowing corridors and small cave openings to pass. If count
@@ -457,7 +457,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putRoundRoomCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.265">putRoundRoomCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.262">putRoundRoomCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create right-angle corridors from one room to the next, create rooms
  with a random size in a circle shape at the start and end, and a small circular room at the corner if there is
  one. If count is 0 or less, no circular rooms will be made. If count is at least 1, circular rooms are possible,
@@ -480,7 +480,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>putWalledRoundRoomCarvers</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.283">putWalledRoundRoomCarvers</a>(int&nbsp;count)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.280">putWalledRoundRoomCarvers</a>(int&nbsp;count)</pre>
 <div class="block">Changes the number of "carvers" that will create right-angle corridors from one room to the next, create rooms
  with a random size in a circle shape at the start and end, and a small circular room at the corner if there is
  one. This also ensures walls will be placed around the room, only allowing corridors and small cave openings to
@@ -504,7 +504,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>generate</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.297">generate</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.294">generate</a>()</pre>
 <div class="block">This generates a new map by stretching a 16x16 grid of potential rooms to fit the width and height passed to the
  constructor, randomly expanding columns and rows before contracting the whole to fit perfectly. This uses the
  Moore Curve, a space-filling curve that loops around on itself, to guarantee that the rooms will always have a
@@ -526,7 +526,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>getEnvironment</h4>
-<pre>public&nbsp;int[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.318">getEnvironment</a>()</pre>
+<pre>public&nbsp;int[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.315">getEnvironment</a>()</pre>
 <div class="block">Gets a 2D array of int constants, each representing a type of environment corresponding to a static field of
  MixedGenerator. This array will have the same size as the last char 2D array produced by generate(); the value
  of this method if called before generate() is undefined, but probably will be a 2D array of all 0 (UNTOUCHED).
@@ -551,7 +551,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getDungeon</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.322">getDungeon</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/SerpentMapGenerator.html#line.319">getDungeon</a>()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html#getDungeon--">IDungeonGenerator</a></code></span></div>
 <div class="block">Gets the most recently-produced dungeon as a 2D char array, usually produced by calling <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html#generate--"><code>IDungeonGenerator.generate()</code></a> or
  some similar method present in a specific implementation. This normally passes a direct reference and not a copy,

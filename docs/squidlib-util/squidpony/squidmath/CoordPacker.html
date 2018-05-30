@@ -144,7 +144,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
  <a href="../../squidpony/squidmath/CoordPacker.html#packMulti-byte:A:A-int-"><code>packMulti(byte[][], int)</code></a> and other Multi kinds of method, no <a href="../../squidpony/squidmath/CoordPacker.html#radiate-short:A-short:A-int-"><code>radiate(short[], short[], int)</code></a>, and no
  <a href="../../squidpony/squidmath/CoordPacker.html#reachable-short:A-short:A-squidpony.squidai.Reach-"><code>reachable(short[], short[], Reach)</code></a>, while CoordPacker has no equivalent to
  <a href="../../squidpony/squidmath/GreasedRegion.html#expandSeriesToLimit--"><code>GreasedRegion.expandSeriesToLimit()</code></a> and other ToLimit kinds of method, no
- <a href="../../squidpony/squidmath/GreasedRegion.html#flip-int-int-"><code>GreasedRegion.flip(int, int)</code></a>, no <code>GreasedRegion#deteriorate(RNG, int)</code>, no
+ <a href="../../squidpony/squidmath/GreasedRegion.html#flip-int-int-"><code>GreasedRegion.flip(int, int)</code></a>, no <a href="../../squidpony/squidmath/GreasedRegion.html#deteriorate-squidpony.squidmath.RandomnessSource-int-"><code>GreasedRegion.deteriorate(RandomnessSource, int)</code></a>, no
  <a href="../../squidpony/squidmath/GreasedRegion.html#insert-int-int-squidpony.squidmath.GreasedRegion-"><code>GreasedRegion.insert(int, int, GreasedRegion)</code></a> (though CoordPacker can generally use
  <a href="../../squidpony/squidmath/CoordPacker.html#unionPacked-short:A-short:A-"><code>unionPacked(short[], short[])</code></a> for that), and several other methods don't have equivalents. In general, you
  will probably find GreasedRegion more intuitive because it involves working with objects instead of a short[] that is
@@ -4326,7 +4326,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
  in 2D space that corresponds to that point on the Hilbert curve. This uses a lookup table for the
  16x16 Hilbert curve, which should make it faster than calculating the position repeatedly.
  The parameter moore is an int but only 8 unsigned bits are used, and since the Moore Curve loops, it is
- calculated as <code>moore % 256</code>.</div>
+ calculated as <code>moore &amp; 255</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>moore</code> - a distance to travel down the Moore Curve</dd>
