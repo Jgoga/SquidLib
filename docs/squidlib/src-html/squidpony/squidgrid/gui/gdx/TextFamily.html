@@ -9,60 +9,60 @@
 <pre><span class="sourceLineNo">001</span>package squidpony.squidgrid.gui.gdx;<a name="line.1"></a>
 <span class="sourceLineNo">002</span><a name="line.2"></a>
 <span class="sourceLineNo">003</span>import com.badlogic.gdx.assets.AssetManager;<a name="line.3"></a>
-<span class="sourceLineNo">004</span>import squidpony.squidmath.OrderedMap;<a name="line.4"></a>
-<span class="sourceLineNo">005</span><a name="line.5"></a>
-<span class="sourceLineNo">006</span>/**<a name="line.6"></a>
-<span class="sourceLineNo">007</span> * A variant of {@link TextCellFactory} that allows switching between regular, bold, italic, and bold italic styles.<a name="line.7"></a>
-<span class="sourceLineNo">008</span> * It adds only one field to TextCellFactory, and is interchangeable except that (potentially importantly) it does not<a name="line.8"></a>
-<span class="sourceLineNo">009</span> * correctly render chars above {@code '\\u3fff'} due to using some of the bits that normally represent late-in-Unicode<a name="line.9"></a>
-<span class="sourceLineNo">010</span> * character codes to instead represent bold and italic modes. Two TextFamily values are present in DefaultResources,<a name="line.10"></a>
-<span class="sourceLineNo">011</span> * {@link DefaultResources#getLeanFamily()} and {@link DefaultResources#getSlabFamily()}; using them is currently the<a name="line.11"></a>
-<span class="sourceLineNo">012</span> * recommended way to use this class.<a name="line.12"></a>
-<span class="sourceLineNo">013</span> * &lt;br&gt;<a name="line.13"></a>
-<span class="sourceLineNo">014</span> * You may want to use {@link GDXMarkup#colorString(CharSequence)} to produce an {@link squidpony.panel.IColoredString}<a name="line.14"></a>
-<span class="sourceLineNo">015</span> * that contains the specially-altered chars that store bold and italic mode data.<a name="line.15"></a>
-<span class="sourceLineNo">016</span> * &lt;br&gt;<a name="line.16"></a>
-<span class="sourceLineNo">017</span> * Created by Tommy Ettinger on 10/26/2017.<a name="line.17"></a>
-<span class="sourceLineNo">018</span> */<a name="line.18"></a>
-<span class="sourceLineNo">019</span>public class TextFamily extends TextCellFactory {<a name="line.19"></a>
-<span class="sourceLineNo">020</span><a name="line.20"></a>
-<span class="sourceLineNo">021</span>    // constants used by some fonts for format information; this stores their order for reference.<a name="line.21"></a>
-<span class="sourceLineNo">022</span>    public static final int REGULAR = 0, BOLD = 1, ITALIC = 2, BOLD_ITALIC = 3;<a name="line.22"></a>
-<span class="sourceLineNo">023</span>    /**<a name="line.23"></a>
-<span class="sourceLineNo">024</span>     * How many styles are supported by this TextCellFactory; always 4 in TextFamily.<a name="line.24"></a>
-<span class="sourceLineNo">025</span>     */<a name="line.25"></a>
-<span class="sourceLineNo">026</span>    public final int STYLES = 4;<a name="line.26"></a>
-<span class="sourceLineNo">027</span>    /**<a name="line.27"></a>
-<span class="sourceLineNo">028</span>     * Creates a default valued factory. One of the initialization methods must<a name="line.28"></a>
-<span class="sourceLineNo">029</span>     * be called before this factory can be used!<a name="line.29"></a>
-<span class="sourceLineNo">030</span>     */<a name="line.30"></a>
-<span class="sourceLineNo">031</span>    public TextFamily() {<a name="line.31"></a>
-<span class="sourceLineNo">032</span>        super(null);<a name="line.32"></a>
-<span class="sourceLineNo">033</span>    }<a name="line.33"></a>
-<span class="sourceLineNo">034</span><a name="line.34"></a>
-<span class="sourceLineNo">035</span>    /**<a name="line.35"></a>
-<span class="sourceLineNo">036</span>     * A default valued factory that uses the given {@link AssetManager} to load<a name="line.36"></a>
-<span class="sourceLineNo">037</span>     * the font file. Use this constructor if you are likely to load the same<a name="line.37"></a>
-<span class="sourceLineNo">038</span>     * font over and over (recall that, without an {@link AssetManager}, each<a name="line.38"></a>
-<span class="sourceLineNo">039</span>     * instance of {@link TextCellFactory} will load its font from disk). This<a name="line.39"></a>
-<span class="sourceLineNo">040</span>     * primarily matters if you are using fonts not bundled with SquidLib, since<a name="line.40"></a>
-<span class="sourceLineNo">041</span>     * accessing a BitmapFont with a method (not a String) from DefaultResources<a name="line.41"></a>
-<span class="sourceLineNo">042</span>     * caches the BitmapFont already.<a name="line.42"></a>
-<span class="sourceLineNo">043</span>     *<a name="line.43"></a>
-<span class="sourceLineNo">044</span>     * @param assetManager an ordinary libGDX AssetManager<a name="line.44"></a>
-<span class="sourceLineNo">045</span>     */<a name="line.45"></a>
-<span class="sourceLineNo">046</span>    public TextFamily(/* Nullable */ AssetManager assetManager) {<a name="line.46"></a>
-<span class="sourceLineNo">047</span>        super(assetManager);<a name="line.47"></a>
-<span class="sourceLineNo">048</span>    }<a name="line.48"></a>
-<span class="sourceLineNo">049</span>    @Override<a name="line.49"></a>
-<span class="sourceLineNo">050</span>    public TextFamily copy()<a name="line.50"></a>
-<span class="sourceLineNo">051</span>    {<a name="line.51"></a>
-<span class="sourceLineNo">052</span>        TextFamily next = new TextFamily(assetManager);<a name="line.52"></a>
-<span class="sourceLineNo">053</span>        if(bmpFont == null)<a name="line.53"></a>
-<span class="sourceLineNo">054</span>            bmpFont = DefaultResources.getIncludedFont();<a name="line.54"></a>
-<span class="sourceLineNo">055</span>        next.bmpFont = DefaultResources.copyFont(bmpFont);<a name="line.55"></a>
-<span class="sourceLineNo">056</span>        next.block = block;<a name="line.56"></a>
-<span class="sourceLineNo">057</span>        next.swap = new OrderedMap&lt;&gt;(swap);<a name="line.57"></a>
+<span class="sourceLineNo">004</span><a name="line.4"></a>
+<span class="sourceLineNo">005</span>/**<a name="line.5"></a>
+<span class="sourceLineNo">006</span> * A variant of {@link TextCellFactory} that allows switching between regular, bold, italic, and bold italic styles.<a name="line.6"></a>
+<span class="sourceLineNo">007</span> * It adds only one field to TextCellFactory, and is interchangeable except that (potentially importantly) it does not<a name="line.7"></a>
+<span class="sourceLineNo">008</span> * correctly render chars above {@code '\\u3fff'} due to using some of the bits that normally represent late-in-Unicode<a name="line.8"></a>
+<span class="sourceLineNo">009</span> * character codes to instead represent bold and italic modes. Two TextFamily values are present in DefaultResources,<a name="line.9"></a>
+<span class="sourceLineNo">010</span> * {@link DefaultResources#getLeanFamily()} and {@link DefaultResources#getSlabFamily()}; using them is currently the<a name="line.10"></a>
+<span class="sourceLineNo">011</span> * recommended way to use this class.<a name="line.11"></a>
+<span class="sourceLineNo">012</span> * &lt;br&gt;<a name="line.12"></a>
+<span class="sourceLineNo">013</span> * You may want to use {@link GDXMarkup#colorString(CharSequence)} to produce an {@link squidpony.panel.IColoredString}<a name="line.13"></a>
+<span class="sourceLineNo">014</span> * that contains the specially-altered chars that store bold and italic mode data.<a name="line.14"></a>
+<span class="sourceLineNo">015</span> * &lt;br&gt;<a name="line.15"></a>
+<span class="sourceLineNo">016</span> * Created by Tommy Ettinger on 10/26/2017.<a name="line.16"></a>
+<span class="sourceLineNo">017</span> */<a name="line.17"></a>
+<span class="sourceLineNo">018</span>public class TextFamily extends TextCellFactory {<a name="line.18"></a>
+<span class="sourceLineNo">019</span><a name="line.19"></a>
+<span class="sourceLineNo">020</span>    // constants used by some fonts for format information; this stores their order for reference.<a name="line.20"></a>
+<span class="sourceLineNo">021</span>    public static final int REGULAR = 0, BOLD = 1, ITALIC = 2, BOLD_ITALIC = 3;<a name="line.21"></a>
+<span class="sourceLineNo">022</span>    /**<a name="line.22"></a>
+<span class="sourceLineNo">023</span>     * How many styles are supported by this TextCellFactory; always 4 in TextFamily.<a name="line.23"></a>
+<span class="sourceLineNo">024</span>     */<a name="line.24"></a>
+<span class="sourceLineNo">025</span>    public final int STYLES = 4;<a name="line.25"></a>
+<span class="sourceLineNo">026</span>    /**<a name="line.26"></a>
+<span class="sourceLineNo">027</span>     * Creates a default valued factory. One of the initialization methods must<a name="line.27"></a>
+<span class="sourceLineNo">028</span>     * be called before this factory can be used!<a name="line.28"></a>
+<span class="sourceLineNo">029</span>     */<a name="line.29"></a>
+<span class="sourceLineNo">030</span>    public TextFamily() {<a name="line.30"></a>
+<span class="sourceLineNo">031</span>        super(null);<a name="line.31"></a>
+<span class="sourceLineNo">032</span>    }<a name="line.32"></a>
+<span class="sourceLineNo">033</span><a name="line.33"></a>
+<span class="sourceLineNo">034</span>    /**<a name="line.34"></a>
+<span class="sourceLineNo">035</span>     * A default valued factory that uses the given {@link AssetManager} to load<a name="line.35"></a>
+<span class="sourceLineNo">036</span>     * the font file. Use this constructor if you are likely to load the same<a name="line.36"></a>
+<span class="sourceLineNo">037</span>     * font over and over (recall that, without an {@link AssetManager}, each<a name="line.37"></a>
+<span class="sourceLineNo">038</span>     * instance of {@link TextCellFactory} will load its font from disk). This<a name="line.38"></a>
+<span class="sourceLineNo">039</span>     * primarily matters if you are using fonts not bundled with SquidLib, since<a name="line.39"></a>
+<span class="sourceLineNo">040</span>     * accessing a BitmapFont with a method (not a String) from DefaultResources<a name="line.40"></a>
+<span class="sourceLineNo">041</span>     * caches the BitmapFont already.<a name="line.41"></a>
+<span class="sourceLineNo">042</span>     *<a name="line.42"></a>
+<span class="sourceLineNo">043</span>     * @param assetManager an ordinary libGDX AssetManager<a name="line.43"></a>
+<span class="sourceLineNo">044</span>     */<a name="line.44"></a>
+<span class="sourceLineNo">045</span>    public TextFamily(/* Nullable */ AssetManager assetManager) {<a name="line.45"></a>
+<span class="sourceLineNo">046</span>        super(assetManager);<a name="line.46"></a>
+<span class="sourceLineNo">047</span>    }<a name="line.47"></a>
+<span class="sourceLineNo">048</span>    @Override<a name="line.48"></a>
+<span class="sourceLineNo">049</span>    public TextFamily copy()<a name="line.49"></a>
+<span class="sourceLineNo">050</span>    {<a name="line.50"></a>
+<span class="sourceLineNo">051</span>        TextFamily next = new TextFamily(assetManager);<a name="line.51"></a>
+<span class="sourceLineNo">052</span>        if(bmpFont == null)<a name="line.52"></a>
+<span class="sourceLineNo">053</span>            bmpFont = DefaultResources.getIncludedFont();<a name="line.53"></a>
+<span class="sourceLineNo">054</span>        next.bmpFont = DefaultResources.copyFont(bmpFont);<a name="line.54"></a>
+<span class="sourceLineNo">055</span>        next.block = block;<a name="line.55"></a>
+<span class="sourceLineNo">056</span>        next.swap = swap.clone(); // explicitly implemented by CharCharMap<a name="line.56"></a>
+<span class="sourceLineNo">057</span>        next.swap.defaultReturnValue('\uffff'); // ... but it forgets to copy this field<a name="line.57"></a>
 <span class="sourceLineNo">058</span>        next.distanceField = distanceField;<a name="line.58"></a>
 <span class="sourceLineNo">059</span>        next.msdf = msdf;<a name="line.59"></a>
 <span class="sourceLineNo">060</span>        next.distanceFieldScaleX = distanceFieldScaleX;<a name="line.60"></a>
