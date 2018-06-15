@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -222,26 +222,44 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextInt-int-">nextInt</a></span>(int&nbsp;n)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextInt-int-">nextInt</a></span>(int&nbsp;bound)</code>
+<div class="block">Exclusive on the outer bound; the inner bound is 0.</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextInt-int-int-">nextInt</a></span>(int&nbsp;inner,
+       int&nbsp;outer)</code>
+<div class="block">Inclusive lower, exclusive upper.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextLong--">nextLong</a></span>()</code>
 <div class="block">Using this method, any algorithm that needs to efficiently generate more
  than 32 bits of random data can interface with this randomness source.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextLong-long-">nextLong</a></span>(long&nbsp;n)</code>&nbsp;</td>
-</tr>
 <tr id="i12" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextLong-long-">nextLong</a></span>(long&nbsp;bound)</code>
+<div class="block">Exclusive on the outer bound; the inner bound is 0.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#nextLong-long-long-">nextLong</a></span>(long&nbsp;inner,
+        long&nbsp;outer)</code>
+<div class="block">Inclusive inner, exclusive outer; both inner and outer can be positive or negative.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-">setSeed</a></span>(long&nbsp;seed)</code>
 <div class="block">Sets the seed of this generator.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-long-">setSeed</a></span>(long&nbsp;stateA,
        long&nbsp;stateB)</code>
@@ -249,7 +267,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
  state variable corresponding to stateA 1 instead).</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/XorRNG.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -379,7 +397,33 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.77">nextInt</a>(int&nbsp;n)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.83">nextInt</a>(int&nbsp;bound)</pre>
+<div class="block">Exclusive on the outer bound; the inner bound is 0. The bound may be negative, which will produce a non-positive
+ result.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>bound</code> - the outer exclusive bound; may be positive or negative</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a random int between 0 (inclusive) and bound (exclusive)</dd>
+</dl>
+</li>
+</ul>
+<a name="nextInt-int-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>nextInt</h4>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.92">nextInt</a>(int&nbsp;inner,
+                   int&nbsp;outer)</pre>
+<div class="block">Inclusive lower, exclusive upper.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>inner</code> - the inner bound, inclusive, can be positive or negative</dd>
+<dd><code>outer</code> - the outer bound, exclusive, should be positive, should usually be greater than inner</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a random int that may be equal to inner and will otherwise be between inner and outer</dd>
+</dl>
 </li>
 </ul>
 <a name="nextLong-long-">
@@ -388,7 +432,33 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.84">nextLong</a>(long&nbsp;n)</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.102">nextLong</a>(long&nbsp;bound)</pre>
+<div class="block">Exclusive on the outer bound; the inner bound is 0. The bound may be negative, which will produce a non-positive
+ result.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>bound</code> - the outer exclusive bound; may be positive or negative</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a random long between 0 (inclusive) and bound (exclusive)</dd>
+</dl>
+</li>
+</ul>
+<a name="nextLong-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>nextLong</h4>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.115">nextLong</a>(long&nbsp;inner,
+                     long&nbsp;outer)</pre>
+<div class="block">Inclusive inner, exclusive outer; both inner and outer can be positive or negative.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>inner</code> - the inner bound, inclusive, can be positive or negative</dd>
+<dd><code>outer</code> - the outer bound, exclusive, can be positive or negative and may be greater than or less than inner</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a random long that may be equal to inner and will otherwise be between inner and outer</dd>
+</dl>
 </li>
 </ul>
 <a name="nextDouble--">
@@ -397,7 +467,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDouble</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.97">nextDouble</a>()</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.119">nextDouble</a>()</pre>
 </li>
 </ul>
 <a name="nextFloat--">
@@ -406,7 +476,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextFloat</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.101">nextFloat</a>()</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.123">nextFloat</a>()</pre>
 </li>
 </ul>
 <a name="nextBoolean--">
@@ -415,7 +485,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBoolean</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.105">nextBoolean</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.127">nextBoolean</a>()</pre>
 </li>
 </ul>
 <a name="nextBytes-byte:A-">
@@ -424,7 +494,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBytes</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.109">nextBytes</a>(byte[]&nbsp;bytes)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.131">nextBytes</a>(byte[]&nbsp;bytes)</pre>
 </li>
 </ul>
 <a name="setSeed-long-">
@@ -433,7 +503,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>setSeed</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.136">setSeed</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.158">setSeed</a>(long&nbsp;seed)</pre>
 <div class="block">Sets the seed of this generator. Passing this 0 will just set it to -1
  instead.</div>
 <dl>
@@ -448,7 +518,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>setSeed</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.148">setSeed</a>(long&nbsp;stateA,
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.170">setSeed</a>(long&nbsp;stateA,
                     long&nbsp;stateB)</pre>
 <div class="block">Sets the seed of this generator using two longs, using them without changes unless both are 0 (then it makes the
  state variable corresponding to stateA 1 instead).</div>
@@ -465,7 +535,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>getStateA</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.163">getStateA</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.185">getStateA</a>()</pre>
 <div class="block">Gets the first component of this generator's two-part state, as a long. This can be 0 on its own, but will never
  be 0 at the same time as the other component of state, <a href="../../squidpony/squidmath/XorRNG.html#getStateB--"><code>getStateB()</code></a>. You can set the state with two exact
  values using <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-long-"><code>setSeed(long, long)</code></a>, but the alternative overload <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-"><code>setSeed(long)</code></a> won't use the
@@ -482,7 +552,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>getStateB</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.174">getStateB</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.196">getStateB</a>()</pre>
 <div class="block">Gets the second component of this generator's two-part state, as a long. This can be 0 on its own, but will never
  be 0 at the same time as the other component of state, <a href="../../squidpony/squidmath/XorRNG.html#getStateA--"><code>getStateA()</code></a>. You can set the state with two exact
  values using <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-long-"><code>setSeed(long, long)</code></a>, but the alternative overload <a href="../../squidpony/squidmath/XorRNG.html#setSeed-long-"><code>setSeed(long)</code></a> won't use the
@@ -499,7 +569,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.180">toString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.202">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -512,7 +582,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockListLast">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/XorRNG.html" title="class in squidpony.squidmath">XorRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.192">copy</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/XorRNG.html" title="class in squidpony.squidmath">XorRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XorRNG.html#line.214">copy</a>()</pre>
 <div class="block">Produces a copy of this RandomnessSource that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called. This just needs to
  copy the state so it isn't shared, usually, and produce a new value with the same exact state.</div>

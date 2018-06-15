@@ -251,9 +251,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/PermutedRNG.html#nextDouble--">nextDouble</a></span>()</code>
-<div class="block">Gets a uniform random double in the range [0.0,1.0)
-
- Calls nextLong() exactly one time.</div>
+<div class="block">Gets a uniform random double in the range <code>[0.0,1.0)</code>.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
@@ -265,9 +263,8 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/PermutedRNG.html#nextFloat--">nextFloat</a></span>()</code>
-<div class="block">Gets a uniform random float in the range [0.0,1.0)
-
- Calls nextLong() exactly one time.</div>
+<div class="block">Gets a uniform random float in the range <code>[0.0,1.0)</code>
+ Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly once.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -297,15 +294,15 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/PermutedRNG.html#nextLong-long-">nextLong</a></span>(long&nbsp;n)</code>
-<div class="block">Exclusive on the upper bound n.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/PermutedRNG.html#nextLong-long-">nextLong</a></span>(long&nbsp;bound)</code>
+<div class="block">Exclusive on the outer bound; the inner bound is 0.</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/PermutedRNG.html#nextLong-long-long-">nextLong</a></span>(long&nbsp;lower,
-        long&nbsp;upper)</code>
-<div class="block">Exclusive on the upper bound n.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/PermutedRNG.html#nextLong-long-long-">nextLong</a></span>(long&nbsp;inner,
+        long&nbsp;outer)</code>
+<div class="block">Inclusive inner, exclusive outer; both inner and outer can be positive or negative.</div>
 </td>
 </tr>
 <tr id="i16" class="altColor">
@@ -410,7 +407,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <h4>next</h4>
 <pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.91">next</a>(int&nbsp;bits)</pre>
 <div class="block">Gets a random int with at most the specified number of bits.
- Equivalent in its effect on the state to calling nextLong() exactly one time.</div>
+ Equivalent in its effect on the state to calling <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly one time.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RandomnessSource.html#next-int-">next</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a></code></dd>
@@ -429,7 +426,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <h4>nextInt</h4>
 <pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.102">nextInt</a>()</pre>
 <div class="block">Can return any int, positive or negative, of any size permissible in a 32-bit signed integer.
- Equivalent in its effect on the state to calling nextLong() exactly one time.</div>
+ Equivalent in its effect on the state to calling <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly one time.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>any int, all 32 bits are random</dd>
@@ -480,7 +477,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <h4>nextInt</h4>
 <pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.141">nextInt</a>(int&nbsp;bound)</pre>
 <div class="block">Exclusive on the outer bound; the inner bound is 0.
- Will call nextLong() with no arguments exactly once.</div>
+ Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly once.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>bound</code> - the upper bound; can be positive or negative</dd>
@@ -499,7 +496,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
                    int&nbsp;upper)</pre>
 <div class="block">Inclusive lower, exclusive upper. The upper bound is really the outer bound, and the lower bound the inner bound,
  because upper is permitted to be less than lower, though upper is still exclusive there.
- Will call nextLong() with no arguments exactly once.</div>
+ Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly once.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>lower</code> - the lower bound, inclusive, can be positive or negative</dd>
@@ -516,15 +513,14 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.165">nextLong</a>(long&nbsp;n)</pre>
-<div class="block">Exclusive on the upper bound n. The lower bound is 0.
-
- Will call nextLong() with no arguments at least 1 time, possibly more.</div>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.164">nextLong</a>(long&nbsp;bound)</pre>
+<div class="block">Exclusive on the outer bound; the inner bound is 0. The bound may be negative, which will produce a non-positive
+ result. Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly once.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>n</code> - the upper bound; should be positive</dd>
+<dd><code>bound</code> - the outer exclusive bound; may be positive or negative</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a random long less than n</dd>
+<dd>a random long between 0 (inclusive) and bound (exclusive)</dd>
 </dl>
 </li>
 </ul>
@@ -534,17 +530,16 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.183">nextLong</a>(long&nbsp;lower,
-                     long&nbsp;upper)</pre>
-<div class="block">Exclusive on the upper bound n. The lower bound is 0.
-
- Will call nextLong() at least 1 time, possibly more.</div>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.178">nextLong</a>(long&nbsp;inner,
+                     long&nbsp;outer)</pre>
+<div class="block">Inclusive inner, exclusive outer; both inner and outer can be positive or negative. Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a>
+ exactly once.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>lower</code> - the lower bound, inclusive, can be positive or negative</dd>
-<dd><code>upper</code> - the upper bound, exclusive, should be positive, must be greater than lower</dd>
+<dd><code>inner</code> - the inner bound, inclusive, can be positive or negative</dd>
+<dd><code>outer</code> - the outer bound, exclusive, can be positive or negative and may be greater than or less than inner</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a random long at least equal to lower and less than upper</dd>
+<dd>a random long that may be equal to inner and will otherwise be between inner and outer</dd>
 </dl>
 </li>
 </ul>
@@ -554,10 +549,9 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDouble</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.195">nextDouble</a>()</pre>
-<div class="block">Gets a uniform random double in the range [0.0,1.0)
-
- Calls nextLong() exactly one time.</div>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.186">nextDouble</a>()</pre>
+<div class="block">Gets a uniform random double in the range <code>[0.0,1.0)</code>.
+ Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly once.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random double at least equal to 0.0 and less than 1.0</dd>
@@ -570,11 +564,10 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDouble</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.208">nextDouble</a>(double&nbsp;outer)</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.197">nextDouble</a>(double&nbsp;outer)</pre>
 <div class="block">Gets a uniform random double in the range [0.0,outer) given a positive parameter outer. If outer
  is negative, it will be the (exclusive) lower bound and 0.0 will be the (inclusive) upper bound.
-
- Calls nextLong() exactly one time.</div>
+ Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly once.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>outer</code> - the exclusive outer bound, can be negative</dd>
@@ -589,10 +582,9 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextFloat</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.219">nextFloat</a>()</pre>
-<div class="block">Gets a uniform random float in the range [0.0,1.0)
-
- Calls nextLong() exactly one time.</div>
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.207">nextFloat</a>()</pre>
+<div class="block">Gets a uniform random float in the range <code>[0.0,1.0)</code>
+ Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly once.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random float at least equal to 0.0f and less than 1.0f</dd>
@@ -605,9 +597,9 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBoolean</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.228">nextBoolean</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.216">nextBoolean</a>()</pre>
 <div class="block">Gets a random value, true or false.
- Calls nextLong() once.</div>
+ Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> exactly once.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random true or false value.</dd>
@@ -620,9 +612,9 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBytes</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.237">nextBytes</a>(byte[]&nbsp;bytes)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.225">nextBytes</a>(byte[]&nbsp;bytes)</pre>
 <div class="block">Given a byte array as a parameter, this will fill the array with random bytes (modifying it
- in-place). Calls nextLong() <code>Math.ceil(bytes.length / 8.0)</code> times.</div>
+ in-place). Calls <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> <code>Math.ceil(bytes.length / 8.0)</code> times.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>bytes</code> - a byte array that will have its contents overwritten with random bytes.</dd>
@@ -635,7 +627,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>setSeed</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.250">setSeed</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.238">setSeed</a>(long&nbsp;seed)</pre>
 <div class="block">Sets the seed of this generator (which is also the current state).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -649,7 +641,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>setState</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.258">setState</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.246">setState</a>(long&nbsp;seed)</pre>
 <div class="block">Sets the seed (also the current state) of this generator.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -665,13 +657,13 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>getState</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.266">getState</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.254">getState</a>()</pre>
 <div class="block">Gets the current state of this generator.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/StatefulRandomness.html#getState--">getState</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the current seed of this PermutedRNG, changed once per call to nextLong()</dd>
+<dd>the current seed of this PermutedRNG, changed once per call to <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -681,12 +673,13 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>skip</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.280">skip</a>(long&nbsp;advance)</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.269">skip</a>(long&nbsp;advance)</pre>
 <div class="block">Advances or rolls back the PermutedRNG's state without actually generating each number. Skips forward
- or backward a number of steps specified by advance, where a step is equal to one call to nextLong(),
+ or backward a number of steps specified by advance, where a step is equal to one call to <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a>,
  and returns the random number produced at that step (you can get the state with <a href="../../squidpony/squidmath/PermutedRNG.html#getState--"><code>getState()</code></a>).
  Skipping ahead or behind takes more than constant time, unlike with <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a>, but less time
- than calling nextLong() <code>advance</code> times. Skipping backwards by one step is the worst case for this.</div>
+ than calling <a href="../../squidpony/squidmath/PermutedRNG.html#nextLong--"><code>nextLong()</code></a> <code>advance</code> times. Skipping backwards by one step is the worst case for this
+ technique.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/SkippingRandomness.html#skip-long-">skip</a></code>&nbsp;in interface&nbsp;<code><a href="../../squidpony/squidmath/SkippingRandomness.html" title="interface in squidpony.squidmath">SkippingRandomness</a></code></dd>
@@ -703,7 +696,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.306">toString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.295">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -716,7 +709,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>determine</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.319">determine</a>(long&nbsp;state)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.308">determine</a>(long&nbsp;state)</pre>
 <div class="block">Given suitably-different inputs as <code>state</code>, this will permute that state to get a seemingly-unrelated
  number. Unlike <a href="../../squidpony/squidmath/LightRNG.html#determine-long-"><code>LightRNG.determine(long)</code></a>, this will not work with inputs that are sequential, and it is
  recommended that subsequent calls change state with a linear congruential generator like
@@ -736,7 +729,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockListLast">
 <li class="blockList">
 <h4>determineBounded</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.335">determineBounded</a>(long&nbsp;state,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/PermutedRNG.html#line.324">determineBounded</a>(long&nbsp;state,
                                    int&nbsp;bound)</pre>
 <div class="block">Given suitably-different inputs as <code>state</code>, this will permute that state to get a seemingly-unrelated
  number as an int between 0 and bound. Unlike <a href="../../squidpony/squidmath/LightRNG.html#determine-long-"><code>LightRNG.determine(long)</code></a>, this will not work with inputs

@@ -113,19 +113,22 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public final class <a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.38">LinnormRNG</a>
+<pre>public final class <a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.41">LinnormRNG</a>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>, <a href="../../squidpony/squidmath/StatefulRandomness.html" title="interface in squidpony.squidmath">StatefulRandomness</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">A very-high-quality StatefulRandomness that is the fastest 64-bit generator in this library that passes statistical
  tests and is equidistributed. Has 64 bits of state and natively outputs 64 bits at a time, changing the state with a
  basic linear congruential generator (it is simply <code>state = state * 1103515245 + 1</code>). Starting with that LCG's
- output, it xorshifts that output, multiplies by a very large negative long, then returns another xorshift. For
+ output, it xorshifts that long, multiplies by a very large negative long, then returns another xorshift. For
  whatever reason, the output of this simple function passes all 32TB of PractRand with no anomalies, meaning its
  statistical quality is excellent. As mentioned earlier, this is the fastest high-quality generator here other than
  <a href="../../squidpony/squidmath/ThrustAltRNG.html" title="class in squidpony.squidmath"><code>ThrustAltRNG</code></a>. Unlike ThrustAltRNG, this can produce all long values as output; ThrustAltRNG bunches some
  outputs and makes producing them more likely while others can't be produced at all. Notably, this generator is faster
  than <a href="../../squidpony/squidmath/LightRNG.html" title="class in squidpony.squidmath"><code>LightRNG</code></a> while keeping the same or higher quality, and also faster than <a href="../../squidpony/squidmath/XoRoRNG.html" title="class in squidpony.squidmath"><code>XoRoRNG</code></a> while passing
- tests that XoRoRNG always or frequently fails, such as binary matrix rank tests.
+ tests that XoRoRNG always or frequently fails, such as binary matrix rank tests. It is not the fastest option on GWT;
+ if you intend to target GWT then <a href="../../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath"><code>Lathe32RNG</code></a> or <a href="../../squidpony/squidmath/GWTRNG.html" title="class in squidpony.squidmath"><code>GWTRNG</code></a> is recommended (they use the same algorithm,
+ xoroshiro64++ as it has recently been termed, and it has almost identical period to LinnormRNG but avoids math on
+ longs to increase performance on GWT).
  <br>
  This generator is a StatefulRandomness but not a SkippingRandomness, so it can't (efficiently) have the skip() method
  that LightRNG has. A method could be written to run the generator's state backwards, though, as well as to get the
@@ -312,14 +315,15 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LinnormRNG.html#nextLong-long-">nextLong</a></span>(long&nbsp;bound)</code>
-<div class="block">Exclusive on the upper bound.</div>
+<div class="block">Exclusive on bound (which may be positive or negative), with an inner bound of 0.</div>
 </td>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LinnormRNG.html#nextLong-long-long-">nextLong</a></span>(long&nbsp;lower,
         long&nbsp;upper)</code>
-<div class="block">Inclusive lower, exclusive upper.</div>
+<div class="block">Inclusive inner, exclusive outer; lower and upper can be positive or negative and there's no requirement for one
+ to be greater than or less than the other.</div>
 </td>
 </tr>
 <tr id="i20" class="altColor">
@@ -360,7 +364,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>LinnormRNG</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.47">LinnormRNG</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.50">LinnormRNG</a>()</pre>
 <div class="block">Constructor that seeds the generator with two calls to Math.random.</div>
 </li>
 </ul>
@@ -370,7 +374,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>LinnormRNG</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.56">LinnormRNG</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.59">LinnormRNG</a>(long&nbsp;seed)</pre>
 <div class="block">Constructor that uses the given seed as the state without changes; all long seeds are acceptable.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -384,7 +388,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockListLast">
 <li class="blockList">
 <h4>LinnormRNG</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.64">LinnormRNG</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;seed)</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.67">LinnormRNG</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;seed)</pre>
 <div class="block">Constructor that hashes seed with <a href="../../squidpony/squidmath/CrossHash.html#hash64-java.lang.CharSequence-"><code>CrossHash.hash64(CharSequence)</code></a> and uses the result as the state.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -406,7 +410,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>next</h4>
-<pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.69">next</a>(int&nbsp;bits)</pre>
+<pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.72">next</a>(int&nbsp;bits)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../squidpony/squidmath/RandomnessSource.html#next-int-">RandomnessSource</a></code></span></div>
 <div class="block">Using this method, any algorithm that might use the built-in Java Random
  can interface with this randomness source.</div>
@@ -426,7 +430,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.82">nextLong</a>()</pre>
+<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.85">nextLong</a>()</pre>
 <div class="block">Can return any long, positive or negative, of any size permissible in a 64-bit signed integer.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -442,7 +446,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/LinnormRNG.html" title="class in squidpony.squidmath">LinnormRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.96">copy</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/LinnormRNG.html" title="class in squidpony.squidmath">LinnormRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.99">copy</a>()</pre>
 <div class="block">Produces a copy of this LinnormRNG that, if next() and/or nextLong() are called on this object and the
  copy, both will generate the same sequence of random numbers from the point copy() was called. This just need to
  copy the state so it isn't shared, usually, and produce a new value with the same exact state.</div>
@@ -462,7 +466,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.105">nextInt</a>()</pre>
+<pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.108">nextInt</a>()</pre>
 <div class="block">Can return any int, positive or negative, of any size permissible in a 32-bit signed integer.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -476,7 +480,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.118">nextInt</a>(int&nbsp;bound)</pre>
+<pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.121">nextInt</a>(int&nbsp;bound)</pre>
 <div class="block">Exclusive on the outer bound.  The inner bound is 0.
  The bound can be negative, which makes this produce either a negative int or 0.</div>
 <dl>
@@ -493,7 +497,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.131">nextInt</a>(int&nbsp;inner,
+<pre>public final&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.134">nextInt</a>(int&nbsp;inner,
                          int&nbsp;outer)</pre>
 <div class="block">Inclusive inner, exclusive outer.</div>
 <dl>
@@ -511,13 +515,20 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.141">nextLong</a>(long&nbsp;bound)</pre>
-<div class="block">Exclusive on the upper bound. The lower bound is 0.</div>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.150">nextLong</a>(long&nbsp;bound)</pre>
+<div class="block">Exclusive on bound (which may be positive or negative), with an inner bound of 0.
+ If bound is negative this returns a negative long; if bound is positive this returns a positive long. The bound
+ can even be 0, which will cause this to return 0L every time.
+ <br>
+ Credit for this method goes to <a href="https://oroboro.com/large-random-in-range/">Rafael Baptista's blog</a>,
+ with some adaptation for signed long values and a 64-bit generator. This method is drastically faster than the
+ previous implementation when the bound varies often (roughly 4x faster, possibly more). It also always gets at
+ most one random number, so it advances the state as much as <a href="../../squidpony/squidmath/LinnormRNG.html#nextInt-int-"><code>nextInt(int)</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>bound</code> - the upper bound; should be positive (if negative, this returns 0)</dd>
+<dd><code>bound</code> - the outer exclusive bound; can be positive or negative</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a random long less than n</dd>
+<dd>a random long between 0 (inclusive) and bound (exclusive)</dd>
 </dl>
 </li>
 </ul>
@@ -527,15 +538,16 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.166">nextLong</a>(long&nbsp;lower,
+<pre>public final&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LinnormRNG.html#line.167">nextLong</a>(long&nbsp;lower,
                            long&nbsp;upper)</pre>
-<div class="block">Inclusive lower, exclusive upper.</div>
+<div class="block">Inclusive inner, exclusive outer; lower and upper can be positive or negative and there's no requirement for one
+ to be greater than or less than the other.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>lower</code> - the lower bound, inclusive, can be positive or negative</dd>
-<dd><code>upper</code> - the upper bound, exclusive, should be positive, must be greater than lower</dd>
+<dd><code>upper</code> - the upper bound, exclusive, can be positive or negative</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a random long at least equal to lower and less than upper</dd>
+<dd>a random long that may be equal to lower and will otherwise be between lower and upper</dd>
 </dl>
 </li>
 </ul>

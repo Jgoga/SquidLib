@@ -186,13 +186,13 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/StatefulRNG.html#StatefulRNG-java.lang.CharSequence-">StatefulRNG</a></span>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;seedString)</code>
-<div class="block">String-seeded constructor uses the hash of the String as a seed for LightRNG, which is of high quality, but
+<div class="block">String-seeded constructor uses the hash of the String as a seed for LinnormRNG, which is of high quality, but
  low period (which rarely matters for games), and has good speed and tiny state size.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/StatefulRNG.html#StatefulRNG-long-">StatefulRNG</a></span>(long&nbsp;seed)</code>
-<div class="block">Seeded constructor uses LightRNG, which is of high quality, but low period (which rarely matters for games),
+<div class="block">Seeded constructor uses LinnormRNG, which is of high quality, but low period (which rarely matters for games),
  and has good speed and tiny state size.</div>
 </td>
 </tr>
@@ -309,7 +309,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <li class="blockList">
 <h4>StatefulRNG</h4>
 <pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.27">StatefulRNG</a>(long&nbsp;seed)</pre>
-<div class="block">Seeded constructor uses LightRNG, which is of high quality, but low period (which rarely matters for games),
+<div class="block">Seeded constructor uses LinnormRNG, which is of high quality, but low period (which rarely matters for games),
  and has good speed and tiny state size.</div>
 </li>
 </ul>
@@ -319,17 +319,18 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockListLast">
 <li class="blockList">
 <h4>StatefulRNG</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.42">StatefulRNG</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;seedString)</pre>
-<div class="block">String-seeded constructor uses the hash of the String as a seed for LightRNG, which is of high quality, but
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.43">StatefulRNG</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;seedString)</pre>
+<div class="block">String-seeded constructor uses the hash of the String as a seed for LinnormRNG, which is of high quality, but
  low period (which rarely matters for games), and has good speed and tiny state size.
 
- Note: This constructor changed behavior on April 22, 2017, and again on December 23, 2017. The first was when it
- was noticed that it was not seeding very effectively (only assigning to 32 bits of seed instead of all 64). The
- older behavior isn't fully preserved, since it used a rather low-quality String hashing algorithm and so probably
- had problems producing good starting seeds, but you can get close by replacing <code>new StatefulRNG(text)</code> with
- <code>new StatefulRNG(new LightRNG(CrossHash.hash(text)))</code>. The new technique assigns to all 64 bits and has
- less correlation between similar inputs causing similar starting states. It's also faster, but that shouldn't
- matter in a constructor. It uses a better hashing algorithm because CrossHash no longer has the older, worse one.</div>
+ Note: This constructor changed behavior on April 22, 2017, again on December 23, 2017, and again on June 14,
+ 2018. The first was when it was noticed that it was not seeding very effectively (only assigning to 32 bits of
+ seed instead of all 64). The older behavior isn't fully preserved, since it used a rather low-quality String
+ hashing algorithm and so probably had problems producing good starting seeds, but you can get close by replacing
+ <code>new StatefulRNG(text)</code> with <code>new StatefulRNG(new LightRNG(CrossHash.hash(text)))</code>. The new technique
+ assigns to all 64 bits and has less correlation between similar inputs causing similar starting states. It's also
+ faster, but that shouldn't matter in a constructor. It uses a better hashing algorithm because CrossHash no
+ longer has the older, worse one. The latest change in June switched to LinnormRNG instead of LightRNG.</div>
 </li>
 </ul>
 </li>
@@ -346,7 +347,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandomness</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.47">setRandomness</a>(<a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;random)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.48">setRandomness</a>(<a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;random)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#setRandomness-squidpony.squidmath.RandomnessSource-">setRandomness</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
@@ -359,7 +360,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.59">copy</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/StatefulRNG.html" title="class in squidpony.squidmath">StatefulRNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.60">copy</a>()</pre>
 <div class="block">Creates a copy of this StatefulRNG; it will generate the same random numbers, given the same calls in order, as
  this StatefulRNG at the point copy() is called. The copy will not share references with this StatefulRNG.</div>
 <dl>
@@ -380,7 +381,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>getState</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.67">getState</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.68">getState</a>()</pre>
 <div class="block">Get a long that can be used to reproduce the sequence of random numbers this object will generate starting now.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -394,7 +395,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>setState</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.77">setState</a>(long&nbsp;state)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.78">setState</a>(long&nbsp;state)</pre>
 <div class="block">Sets the state of the random number generator to a given long, which will alter future random numbers this
  produces based on the state.</div>
 <dl>
@@ -409,7 +410,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.83">toString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.84">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../squidpony/squidmath/RNG.html#toString--">toString</a></code>&nbsp;in class&nbsp;<code><a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a></code></dd>
@@ -422,7 +423,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toSerializable</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.91">toSerializable</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>&nbsp;<a href="../../src-html/squidpony/squidmath/StatefulRNG.html#line.92">toSerializable</a>()</pre>
 <div class="block">Returns this StatefulRNG in a way that can be deserialized even if only <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath"><code>IRNG</code></a>'s methods can be called.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>

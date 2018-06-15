@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10};
+var methods = {"i0":10,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -294,13 +294,13 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LFSR.html#nextInt-int-">nextInt</a></span>(int&nbsp;bound)</code>
-<div class="block">Exclusive on the upper bound.</div>
+<div class="block">Exclusive on the outer bound; the inner bound is 0.</div>
 </td>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LFSR.html#nextInt-int-int-">nextInt</a></span>(int&nbsp;lower,
-       int&nbsp;upper)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LFSR.html#nextInt-int-int-">nextInt</a></span>(int&nbsp;inner,
+       int&nbsp;outer)</code>
 <div class="block">Inclusive lower, exclusive upper.</div>
 </td>
 </tr>
@@ -314,16 +314,23 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <tr id="i21" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LFSR.html#nextLong-long-">nextLong</a></span>(long&nbsp;bound)</code>
-<div class="block">Exclusive on the upper bound.</div>
+<div class="block">Exclusive on the outer bound; the inner bound is 0.</div>
 </td>
 </tr>
 <tr id="i22" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LFSR.html#nextLong-long-long-">nextLong</a></span>(long&nbsp;inner,
+        long&nbsp;outer)</code>
+<div class="block">Inclusive inner, exclusive outer; both inner and outer can be positive or negative.</div>
+</td>
+</tr>
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LFSR.html#setState-long-">setState</a></span>(long&nbsp;seed)</code>
 <div class="block">Sets the seed of this generator using one long, running that through LightRNG's algorithm twice to get the state.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/LFSR.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -482,13 +489,14 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.88">nextInt</a>(int&nbsp;bound)</pre>
-<div class="block">Exclusive on the upper bound.  The lower bound is 0.</div>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.89">nextInt</a>(int&nbsp;bound)</pre>
+<div class="block">Exclusive on the outer bound; the inner bound is 0. The bound may be negative, which will produce a non-positive
+ result.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>bound</code> - the upper bound; should be positive</dd>
+<dd><code>bound</code> - the outer exclusive bound; may be positive or negative</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a random int less than n and at least equal to 0</dd>
+<dd>a random long between 0 (inclusive) and bound (exclusive)</dd>
 </dl>
 </li>
 </ul>
@@ -498,15 +506,15 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.97">nextInt</a>(int&nbsp;lower,
-                   int&nbsp;upper)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.98">nextInt</a>(int&nbsp;inner,
+                   int&nbsp;outer)</pre>
 <div class="block">Inclusive lower, exclusive upper.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>lower</code> - the lower bound, inclusive, can be positive or negative</dd>
-<dd><code>upper</code> - the upper bound, exclusive, should be positive, must be greater than lower</dd>
+<dd><code>inner</code> - the inner bound, inclusive, can be positive or negative</dd>
+<dd><code>outer</code> - the outer bound, exclusive, should be positive, should usually be greater than inner</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a random int at least equal to lower and less than upper</dd>
+<dd>a random int that may be equal to inner and will otherwise be between inner and outer</dd>
 </dl>
 </li>
 </ul>
@@ -516,13 +524,32 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.107">nextLong</a>(long&nbsp;bound)</pre>
-<div class="block">Exclusive on the upper bound. The lower bound is 0.</div>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.108">nextLong</a>(long&nbsp;bound)</pre>
+<div class="block">Exclusive on the outer bound; the inner bound is 0. The bound may be negative, which will produce a non-positive
+ result.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>bound</code> - the upper bound; should be positive</dd>
+<dd><code>bound</code> - the outer exclusive bound; may be positive or negative</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a random long less than n</dd>
+<dd>a random long between 0 (inclusive) and bound (exclusive)</dd>
+</dl>
+</li>
+</ul>
+<a name="nextLong-long-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>nextLong</h4>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.122">nextLong</a>(long&nbsp;inner,
+                     long&nbsp;outer)</pre>
+<div class="block">Inclusive inner, exclusive outer; both inner and outer can be positive or negative.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>inner</code> - the inner bound, inclusive, can be positive or negative</dd>
+<dd><code>outer</code> - the outer bound, exclusive, can be positive or negative and may be greater than or less than inner</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a random long that may be equal to inner and will otherwise be between inner and outer</dd>
 </dl>
 </li>
 </ul>
@@ -532,7 +559,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDouble</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.117">nextDouble</a>()</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.126">nextDouble</a>()</pre>
 </li>
 </ul>
 <a name="nextFloat--">
@@ -541,7 +568,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>nextFloat</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.121">nextFloat</a>()</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.130">nextFloat</a>()</pre>
 </li>
 </ul>
 <a name="nextBoolean--">
@@ -550,7 +577,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBoolean</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.125">nextBoolean</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.134">nextBoolean</a>()</pre>
 </li>
 </ul>
 <a name="nextBytes-byte:A-">
@@ -559,7 +586,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBytes</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.129">nextBytes</a>(byte[]&nbsp;bytes)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.138">nextBytes</a>(byte[]&nbsp;bytes)</pre>
 </li>
 </ul>
 <a name="getState--">
@@ -568,7 +595,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>getState</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.145">getState</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.154">getState</a>()</pre>
 <div class="block">Get the current internal state of the StatefulRandomness as a long.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -584,7 +611,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>setState</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.153">setState</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.162">setState</a>(long&nbsp;seed)</pre>
 <div class="block">Sets the seed of this generator using one long, running that through LightRNG's algorithm twice to get the state.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -600,7 +627,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.161">toString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.170">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -613,7 +640,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.166">equals</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.175">equals</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -626,7 +653,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.176">hashCode</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.185">hashCode</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -639,7 +666,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>determine</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.189">determine</a>(long&nbsp;state)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.198">determine</a>(long&nbsp;state)</pre>
 <div class="block">Gets the next number that an LFSR would produce using <a href="../../squidpony/squidmath/LFSR.html#nextLong--"><code>nextLong()</code></a> if its state was <code>state</code>.
  Does not allow state to be 0. Strongly consider using the result of this and assigning it to state if you expect
  to call this again, such as with <code>(state = LFSR.determine(state))</code>, which will ensure the long-term
@@ -659,7 +686,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>determineByte</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.204">determineByte</a>(byte&nbsp;state)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.213">determineByte</a>(byte&nbsp;state)</pre>
 <div class="block">Gets the next number from 1 to 255 that a different kind of LFSR would produce if its state was <code>state</code>.
  Does not allow state to be 0. If given all byte values except 0 as arguments, will produce all ints 1-255.
  Strongly consider using the result of this and assigning it to state if you expect to call this again, such as
@@ -680,7 +707,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>determineInt</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.219">determineInt</a>(int&nbsp;state)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.228">determineInt</a>(int&nbsp;state)</pre>
 <div class="block">Gets the next number that a different kind of 32-bit LFSR would produce if its state was <code>state</code>.
  Does not allow state to be 0. If given all int values except 0 as arguments, will produce all ints except 0.
  Strongly consider using the result of this and assigning it to state if you expect to call this again, such as
@@ -701,7 +728,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>determinePositiveLong</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.234">determinePositiveLong</a>(long&nbsp;state)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.243">determinePositiveLong</a>(long&nbsp;state)</pre>
 <div class="block">Gets the next positive long that a different kind of 63-bit LFSR would produce if its state was <code>state</code>.
  Does not allow state to be 0 or negative. If given all positive long values (not including 0) as arguments, will
  produce all longs greater than 0. Strongly consider using the result of this and assigning it to state if you
@@ -722,7 +749,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>determinePositiveInt</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.255">determinePositiveInt</a>(int&nbsp;state)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.264">determinePositiveInt</a>(int&nbsp;state)</pre>
 <div class="block">Gets the next positive int that a different kind of 31-bit LFSR would produce if its state was <code>state</code>.
  Does not allow state to be 0 or negative. If given all positive int values (not including 0) as arguments, will
  produce all ints greater than 0. Strongly consider using the result of this and assigning it to state if you
@@ -749,7 +776,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>determineIntSymmetrical</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.276">determineIntSymmetrical</a>(int&nbsp;state)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.285">determineIntSymmetrical</a>(int&nbsp;state)</pre>
 <div class="block">Gets the next int that a different kind of LFSR would produce if its state was <code>state</code>.
  Does not allow state to be <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true#MIN_VALUE" title="class or interface in java.lang"><code>Integer.MIN_VALUE</code></a>, nor will this produce a result of <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true#MIN_VALUE" title="class or interface in java.lang"><code>Integer.MIN_VALUE</code></a>
  (as long as <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true#MIN_VALUE" title="class or interface in java.lang"><code>Integer.MIN_VALUE</code></a> was not the input). If given all int values except
@@ -776,7 +803,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>determineBounded</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.290">determineBounded</a>(long&nbsp;state,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.299">determineBounded</a>(long&nbsp;state,
                                    int&nbsp;bound)</pre>
 <div class="block">Gets the next number that an LFSR would produce using <a href="../../squidpony/squidmath/LFSR.html#nextInt-int-"><code>nextInt(int)</code></a> if its state was <code>state</code> and
  <code>bound</code> was passed to nextInt(). Does not allow state to be 0, but bound can be negative, which causes this
@@ -797,7 +824,7 @@ implements <a href="../../squidpony/squidmath/StatefulRandomness.html" title="in
 <ul class="blockListLast">
 <li class="blockList">
 <h4>determineBounded</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.301">determineBounded</a>(int&nbsp;state,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/LFSR.html#line.310">determineBounded</a>(int&nbsp;state,
                                    int&nbsp;bound)</pre>
 <div class="block">Gets an int using <a href="../../squidpony/squidmath/LFSR.html#determineInt-int-"><code>determineInt(int)</code></a> and bounds it to fit between 0 (inclusive) and bound (exclusive).
  Does not allow state to be 0, but bound can be negative, which causes this not to produce positive numbers.</div>

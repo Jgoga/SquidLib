@@ -567,7 +567,7 @@
 <span class="sourceLineNo">559</span>    public static Coord haltoid(int seed, int width, int height, int xOffset, int yOffset, int index)<a name="line.559"></a>
 <span class="sourceLineNo">560</span>    {<a name="line.560"></a>
 <span class="sourceLineNo">561</span>        int morton = GreasedRegion.disperseBits(Integer.reverse((seed * 0x2C9277B5 | 1) * (index + 1)));<a name="line.561"></a>
-<span class="sourceLineNo">562</span>        return Coord.get((int)(width * ((morton &amp; 0xffff) * 0x1p-16)) + xOffset, (int)(((morton &gt;&gt;&gt; 16 &amp; 0xffff) * 0x1p-16) * height) + yOffset);<a name="line.562"></a>
+<span class="sourceLineNo">562</span>        return Coord.get((int)(width * ((morton &amp; 0xffff) * 0x1p-16)) + xOffset, (int)(((morton &gt;&gt;&gt; 16) * 0x1p-16) * height) + yOffset);<a name="line.562"></a>
 <span class="sourceLineNo">563</span>    }<a name="line.563"></a>
 <span class="sourceLineNo">564</span><a name="line.564"></a>
 <span class="sourceLineNo">565</span>}<a name="line.565"></a>
