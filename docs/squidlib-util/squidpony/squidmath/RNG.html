@@ -1587,7 +1587,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.891">nextInt</a>(int&nbsp;bound)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.895">nextInt</a>(int&nbsp;bound)</pre>
 <div class="block">Returns a random non-negative integer below the given bound, or 0 if the bound is 0 or
  negative. Always makes one call to the <a href="../../squidpony/squidmath/RandomnessSource.html#next-int-"><code>RandomnessSource.next(int)</code></a> method of the RandomnessSource that
  would be returned by <a href="../../squidpony/squidmath/RNG.html#getRandomness--"><code>getRandomness()</code></a>, even if bound is 0 or negative, to avoid branching and also to
@@ -1617,7 +1617,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>nextIntHasty</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.913">nextIntHasty</a>(int&nbsp;bound)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.917">nextIntHasty</a>(int&nbsp;bound)</pre>
 <div class="block">Returns a random non-negative integer between 0 (inclusive) and the given bound (exclusive),
  or 0 if the bound is 0. The bound can be negative, which will produce 0 or a negative result.
  Uses an aggressively optimized technique that has some bias, but mostly for values of
@@ -1639,7 +1639,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBytes</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.928">nextBytes</a>(byte[]&nbsp;bytes)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.932">nextBytes</a>(byte[]&nbsp;bytes)</pre>
 <div class="block">Generates random bytes and places them into the given byte array, modifying it in-place.
  The number of random bytes produced is equal to the length of the byte array. Unlike the
  method in java.util.Random, this generates 8 bytes at a time, which can be more efficient
@@ -1661,7 +1661,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>nextInt</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.940">nextInt</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.944">nextInt</a>()</pre>
 <div class="block">Get a random integer between Integer.MIN_VALUE to Integer.MAX_VALUE (both inclusive).</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -1677,7 +1677,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>next</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.952">next</a>(int&nbsp;bits)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.956">next</a>(int&nbsp;bits)</pre>
 <div class="block">Get up to 32 bits (inclusive) of random output; the int this produces
  will not require more than <code>bits</code> bits to represent.</div>
 <dl>
@@ -1698,7 +1698,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomness</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.956">getRandomness</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.960">getRandomness</a>()</pre>
 </li>
 </ul>
 <a name="setRandomness-squidpony.squidmath.RandomnessSource-">
@@ -1707,7 +1707,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandomness</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.960">setRandomness</a>(<a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;random)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.964">setRandomness</a>(<a href="../../squidpony/squidmath/RandomnessSource.html" title="interface in squidpony.squidmath">RandomnessSource</a>&nbsp;random)</pre>
 </li>
 </ul>
 <a name="copy--">
@@ -1716,7 +1716,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.971">copy</a>()</pre>
+<pre>public&nbsp;<a href="../../squidpony/squidmath/RNG.html" title="class in squidpony.squidmath">RNG</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.975">copy</a>()</pre>
 <div class="block">Creates a copy of this RNG; it will generate the same random numbers, given the same calls in order, as this RNG
  at the point copy() is called. The copy will not share references with this RNG.</div>
 <dl>
@@ -1736,7 +1736,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <li class="blockList">
 <h4>approximateBits</h4>
 <pre><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
-public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.991">approximateBits</a>(int&nbsp;bitCount)</pre>
+public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.995">approximateBits</a>(int&nbsp;bitCount)</pre>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">see the version in GreasedRegion, <a href="../../squidpony/squidmath/GreasedRegion.html#approximateBits-squidpony.squidmath.RandomnessSource-int-"><code>GreasedRegion.approximateBits(RandomnessSource, int)</code></a></span></div>
 <div class="block">Generates a random 64-bit long with a number of '1' bits (Hamming weight) equal on average to bitCount.
  For example, calling this with a parameter of 32 will be equivalent to calling nextLong() on this object's
@@ -1762,7 +1762,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <li class="blockList">
 <h4>randomInterleave</h4>
 <pre><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
-public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1020">randomInterleave</a>()</pre>
+public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1024">randomInterleave</a>()</pre>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">See <a href="../../squidpony/squidmath/GreasedRegion.html#randomInterleave-squidpony.squidmath.RandomnessSource-"><code>GreasedRegion.randomInterleave(RandomnessSource)</code></a> for where this will be moved</span></div>
 <div class="block">Gets a somewhat-random long with exactly 32 bits set; in each pair of bits starting at bit 0 and bit 1, then bit
  2 and bit 3, up to bit 62 and bit 3, one bit will be 1 and one bit will be 0 in each pair.
@@ -1781,7 +1781,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>minLongOf</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1053">minLongOf</a>(long&nbsp;bound,
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1057">minLongOf</a>(long&nbsp;bound,
                       int&nbsp;trials)</pre>
 <div class="block">Gets the minimum random long between 0 and <code>bound</code> generated out of <code>trials</code> generated numbers.
  Useful for when numbers should have a strong bias toward zero, but all possible values are between 0, inclusive,
@@ -1801,7 +1801,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>maxLongOf</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1069">maxLongOf</a>(long&nbsp;bound,
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1073">maxLongOf</a>(long&nbsp;bound,
                       int&nbsp;trials)</pre>
 <div class="block">Gets the maximum random long between 0 and <code>bound</code> generated out of <code>trials</code> generated numbers.
  Useful for when numbers should have a strong bias away from zero, but all possible values are between 0,
@@ -1821,7 +1821,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>minIntOf</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1086">minIntOf</a>(int&nbsp;bound,
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1090">minIntOf</a>(int&nbsp;bound,
                     int&nbsp;trials)</pre>
 <div class="block">Gets the minimum random int between 0 and <code>bound</code> generated out of <code>trials</code> generated numbers.
  Useful for when numbers should have a strong bias toward zero, but all possible values are between 0, inclusive,
@@ -1841,7 +1841,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>maxIntOf</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1102">maxIntOf</a>(int&nbsp;bound,
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1106">maxIntOf</a>(int&nbsp;bound,
                     int&nbsp;trials)</pre>
 <div class="block">Gets the maximum random int between 0 and <code>bound</code> generated out of <code>trials</code> generated numbers.
  Useful for when numbers should have a strong bias away from zero, but all possible values are between 0,
@@ -1861,7 +1861,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>minDoubleOf</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1119">minDoubleOf</a>(double&nbsp;bound,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1123">minDoubleOf</a>(double&nbsp;bound,
                           int&nbsp;trials)</pre>
 <div class="block">Gets the minimum random double between 0 and <code>bound</code> generated out of <code>trials</code> generated numbers.
  Useful for when numbers should have a strong bias toward zero, but all possible values are between 0, inclusive,
@@ -1881,7 +1881,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>maxDoubleOf</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1136">maxDoubleOf</a>(double&nbsp;bound,
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1140">maxDoubleOf</a>(double&nbsp;bound,
                           int&nbsp;trials)</pre>
 <div class="block">Gets the maximum random double between 0 and <code>bound</code> generated out of <code>trials</code> generated numbers.
  Useful for when numbers should have a strong bias away from zero, but all possible values are between 0,
@@ -1901,7 +1901,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>minFloatOf</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1152">minFloatOf</a>(float&nbsp;bound,
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1156">minFloatOf</a>(float&nbsp;bound,
                         int&nbsp;trials)</pre>
 <div class="block">Gets the minimum random float between 0 and <code>bound</code> generated out of <code>trials</code> generated numbers.
  Useful for when numbers should have a strong bias toward zero, but all possible values are between 0, inclusive,
@@ -1921,7 +1921,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>maxFloatOf</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1169">maxFloatOf</a>(float&nbsp;bound,
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1173">maxFloatOf</a>(float&nbsp;bound,
                         int&nbsp;trials)</pre>
 <div class="block">Gets the maximum random float between 0 and <code>bound</code> generated out of <code>trials</code> generated numbers.
  Useful for when numbers should have a strong bias away from zero, but all possible values are between 0,
@@ -1941,7 +1941,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1180">toString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1184">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -1954,7 +1954,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1185">equals</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1189">equals</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -1967,7 +1967,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1195">hashCode</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1199">hashCode</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -1982,7 +1982,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>randomPortion</h4>
-<pre>public&nbsp;&lt;T&gt;&nbsp;T[]&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1214">randomPortion</a>(T[]&nbsp;data,
+<pre>public&nbsp;&lt;T&gt;&nbsp;T[]&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1218">randomPortion</a>(T[]&nbsp;data,
                              T[]&nbsp;output)</pre>
 <div class="block">Gets a random portion of data (an array), assigns that portion to output (an array) so that it fills as much as
  it can, and then returns output. Will only use a given position in the given data at most once; does this by
@@ -2009,7 +2009,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDoubleInclusive</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1233">nextDoubleInclusive</a>()</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1237">nextDoubleInclusive</a>()</pre>
 <div class="block">Gets a random double between 0.0 inclusive and 1.0 inclusive.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -2023,7 +2023,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDoubleInclusive</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1246">nextDoubleInclusive</a>(double&nbsp;outer)</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1250">nextDoubleInclusive</a>(double&nbsp;outer)</pre>
 <div class="block">This returns a random double between 0.0 (inclusive) and outer (inclusive). The value for outer can be positive
  or negative. Because of how math on doubles works, there are at most 2 to the 53 values this can return for any
  given outer bound, and very large values for outer will not necessarily produce all numbers you might expect.</div>
@@ -2041,7 +2041,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>nextFloatInclusive</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1255">nextFloatInclusive</a>()</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1259">nextFloatInclusive</a>()</pre>
 <div class="block">Gets a random float between 0.0f inclusive and 1.0f inclusive.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -2055,7 +2055,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>nextFloatInclusive</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1267">nextFloatInclusive</a>(float&nbsp;outer)</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1271">nextFloatInclusive</a>(float&nbsp;outer)</pre>
 <div class="block">This returns a random float between 0.0f (inclusive) and outer (inclusive). The value for outer can be positive
  or negative. Because of how math on floats works, there are at most 2 to the 24 values this can return for any
  given outer bound, and very large values for outer will not necessarily produce all numbers you might expect.</div>
@@ -2073,7 +2073,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>nextCoord</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1291">nextCoord</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1295">nextCoord</a>(int&nbsp;width,
                        int&nbsp;height)</pre>
 <div class="block">Gets a random Coord that has x between 0 (inclusive) and width (exclusive) and y between 0 (inclusive)
  and height (exclusive). This makes one call to randomLong to generate (more than) 31 random bits for
@@ -2100,7 +2100,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomCellsIterable</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1307">getRandomCellsIterable</a>(int&nbsp;width,
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1311">getRandomCellsIterable</a>(int&nbsp;width,
                                               int&nbsp;height,
                                               int&nbsp;size)</pre>
 <div class="block">Use that to get random cells in a rectangular map.</div>
@@ -2123,7 +2123,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomUniqueCells</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1350">getRandomUniqueCells</a>(int&nbsp;startX,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1354">getRandomUniqueCells</a>(int&nbsp;startX,
                                     int&nbsp;startY,
                                     int&nbsp;width,
                                     int&nbsp;height)</pre>
@@ -2146,7 +2146,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomUniqueCells</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1368">getRandomUniqueCells</a>(int&nbsp;startX,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1372">getRandomUniqueCells</a>(int&nbsp;startX,
                                     int&nbsp;startY,
                                     int&nbsp;width,
                                     int&nbsp;height,
@@ -2172,7 +2172,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomUniqueCells</h4>
-<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1388">getRandomUniqueCells</a>(int&nbsp;startX,
+<pre>public&nbsp;<a href="../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>[]&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1392">getRandomUniqueCells</a>(int&nbsp;startX,
                                     int&nbsp;startY,
                                     int&nbsp;width,
                                     int&nbsp;height,
@@ -2199,7 +2199,7 @@ public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toSerializable</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1404">toSerializable</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>&nbsp;<a href="../../src-html/squidpony/squidmath/RNG.html#line.1408">toSerializable</a>()</pre>
 <div class="block">Returns this RNG in a way that can be deserialized even if only <a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath"><code>IRNG</code></a>'s methods can be called.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>

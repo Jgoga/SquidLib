@@ -505,7 +505,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextLong</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.171">nextLong</a>(long&nbsp;inner,
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.176">nextLong</a>(long&nbsp;inner,
                      long&nbsp;outer)</pre>
 <div class="block">Inclusive inner, exclusive outer; both inner and outer can be positive or negative.</div>
 <dl>
@@ -523,7 +523,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextDouble</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.175">nextDouble</a>()</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.180">nextDouble</a>()</pre>
 </li>
 </ul>
 <a name="nextFloat--">
@@ -532,7 +532,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextFloat</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.179">nextFloat</a>()</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.184">nextFloat</a>()</pre>
 </li>
 </ul>
 <a name="nextBoolean--">
@@ -541,7 +541,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBoolean</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.183">nextBoolean</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.188">nextBoolean</a>()</pre>
 </li>
 </ul>
 <a name="nextBytes-byte:A-">
@@ -550,7 +550,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>nextBytes</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.187">nextBytes</a>(byte[]&nbsp;bytes)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.192">nextBytes</a>(byte[]&nbsp;bytes)</pre>
 </li>
 </ul>
 <a name="setSeed-long-">
@@ -559,7 +559,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>setSeed</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.201">setSeed</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.206">setSeed</a>(long&nbsp;seed)</pre>
 <div class="block">Sets the seed of this generator using one long, running that through LightRNG's algorithm twice to get the state.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -573,7 +573,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>setSeed</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.221">setSeed</a>(long&nbsp;stateA,
+<pre>public&nbsp;void&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.226">setSeed</a>(long&nbsp;stateA,
                     long&nbsp;stateB)</pre>
 <div class="block">Sets the seed of this generator using two longs, using them without changes unless both are 0 (then it makes the
  state variable corresponding to stateA 1 instead).</div>
@@ -590,7 +590,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>getStateA</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.236">getStateA</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.241">getStateA</a>()</pre>
 <div class="block">Gets the first component of this generator's two-part state, as a long. This can be 0 on its own, but will never
  be 0 at the same time as the other component of state, <a href="../../squidpony/squidmath/XoRoRNG.html#getStateB--"><code>getStateB()</code></a>. You can set the state with two exact
  values using <a href="../../squidpony/squidmath/XoRoRNG.html#setSeed-long-long-"><code>setSeed(long, long)</code></a>, but the alternative overload <a href="../../squidpony/squidmath/XoRoRNG.html#setSeed-long-"><code>setSeed(long)</code></a> won't use the
@@ -607,7 +607,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>getStateB</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.247">getStateB</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.252">getStateB</a>()</pre>
 <div class="block">Gets the second component of this generator's two-part state, as a long. This can be 0 on its own, but will never
  be 0 at the same time as the other component of state, <a href="../../squidpony/squidmath/XoRoRNG.html#getStateA--"><code>getStateA()</code></a>. You can set the state with two exact
  values using <a href="../../squidpony/squidmath/XoRoRNG.html#setSeed-long-long-"><code>setSeed(long, long)</code></a>, but the alternative overload <a href="../../squidpony/squidmath/XoRoRNG.html#setSeed-long-"><code>setSeed(long)</code></a> won't use the
@@ -624,7 +624,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.253">toString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.258">toString</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -637,7 +637,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.258">equals</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.263">equals</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -650,7 +650,7 @@ implements <a href="../../squidpony/squidmath/RandomnessSource.html" title="inte
 <ul class="blockListLast">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.269">hashCode</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/XoRoRNG.html#line.274">hashCode</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
