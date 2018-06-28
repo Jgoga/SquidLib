@@ -11,715 +11,583 @@
 <span class="sourceLineNo">003</span>import com.badlogic.gdx.files.FileHandle;<a name="line.3"></a>
 <span class="sourceLineNo">004</span>import com.badlogic.gdx.graphics.Pixmap;<a name="line.4"></a>
 <span class="sourceLineNo">005</span>import com.badlogic.gdx.math.MathUtils;<a name="line.5"></a>
-<span class="sourceLineNo">006</span>import com.badlogic.gdx.utils.*;<a name="line.6"></a>
-<span class="sourceLineNo">007</span>import squidpony.annotation.GwtIncompatible;<a name="line.7"></a>
-<span class="sourceLineNo">008</span><a name="line.8"></a>
-<span class="sourceLineNo">009</span>import java.io.ByteArrayOutputStream;<a name="line.9"></a>
-<span class="sourceLineNo">010</span>import java.io.DataOutputStream;<a name="line.10"></a>
-<span class="sourceLineNo">011</span>import java.io.IOException;<a name="line.11"></a>
-<span class="sourceLineNo">012</span>import java.io.OutputStream;<a name="line.12"></a>
-<span class="sourceLineNo">013</span>import java.nio.ByteBuffer;<a name="line.13"></a>
-<span class="sourceLineNo">014</span>import java.util.Arrays;<a name="line.14"></a>
-<span class="sourceLineNo">015</span>import java.util.Iterator;<a name="line.15"></a>
+<span class="sourceLineNo">006</span>import com.badlogic.gdx.utils.ByteArray;<a name="line.6"></a>
+<span class="sourceLineNo">007</span>import com.badlogic.gdx.utils.Disposable;<a name="line.7"></a>
+<span class="sourceLineNo">008</span>import com.badlogic.gdx.utils.StreamUtils;<a name="line.8"></a>
+<span class="sourceLineNo">009</span>import squidpony.annotation.GwtIncompatible;<a name="line.9"></a>
+<span class="sourceLineNo">010</span><a name="line.10"></a>
+<span class="sourceLineNo">011</span>import java.io.ByteArrayOutputStream;<a name="line.11"></a>
+<span class="sourceLineNo">012</span>import java.io.DataOutputStream;<a name="line.12"></a>
+<span class="sourceLineNo">013</span>import java.io.IOException;<a name="line.13"></a>
+<span class="sourceLineNo">014</span>import java.io.OutputStream;<a name="line.14"></a>
+<span class="sourceLineNo">015</span>import java.nio.ByteBuffer;<a name="line.15"></a>
 <span class="sourceLineNo">016</span>import java.util.zip.CRC32;<a name="line.16"></a>
 <span class="sourceLineNo">017</span>import java.util.zip.CheckedOutputStream;<a name="line.17"></a>
 <span class="sourceLineNo">018</span>import java.util.zip.Deflater;<a name="line.18"></a>
 <span class="sourceLineNo">019</span>import java.util.zip.DeflaterOutputStream;<a name="line.19"></a>
 <span class="sourceLineNo">020</span><a name="line.20"></a>
 <span class="sourceLineNo">021</span>/** PNG-8 encoder with compression. An instance can be reused to encode multiple PNGs with minimal allocation.<a name="line.21"></a>
-<span class="sourceLineNo">022</span> *<a name="line.22"></a>
-<span class="sourceLineNo">023</span> * &lt;pre&gt;<a name="line.23"></a>
-<span class="sourceLineNo">024</span> * Copyright (c) 2007 Matthias Mann - www.matthiasmann.de<a name="line.24"></a>
-<span class="sourceLineNo">025</span> * Copyright (c) 2014 Nathan Sweet<a name="line.25"></a>
-<span class="sourceLineNo">026</span> * Copyright (c) 2018 Tommy Ettinger<a name="line.26"></a>
-<span class="sourceLineNo">027</span> *<a name="line.27"></a>
-<span class="sourceLineNo">028</span> * Permission is hereby granted, free of charge, to any person obtaining a copy<a name="line.28"></a>
-<span class="sourceLineNo">029</span> * of this software and associated documentation files (the "Software"), to deal<a name="line.29"></a>
-<span class="sourceLineNo">030</span> * in the Software without restriction, including without limitation the rights<a name="line.30"></a>
-<span class="sourceLineNo">031</span> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell<a name="line.31"></a>
-<span class="sourceLineNo">032</span> * copies of the Software, and to permit persons to whom the Software is<a name="line.32"></a>
-<span class="sourceLineNo">033</span> * furnished to do so, subject to the following conditions:<a name="line.33"></a>
-<span class="sourceLineNo">034</span> *<a name="line.34"></a>
-<span class="sourceLineNo">035</span> * The above copyright notice and this permission notice shall be included in<a name="line.35"></a>
-<span class="sourceLineNo">036</span> * all copies or substantial portions of the Software.<a name="line.36"></a>
-<span class="sourceLineNo">037</span> *<a name="line.37"></a>
-<span class="sourceLineNo">038</span> * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<a name="line.38"></a>
-<span class="sourceLineNo">039</span> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<a name="line.39"></a>
-<span class="sourceLineNo">040</span> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<a name="line.40"></a>
-<span class="sourceLineNo">041</span> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<a name="line.41"></a>
-<span class="sourceLineNo">042</span> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,<a name="line.42"></a>
-<span class="sourceLineNo">043</span> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN<a name="line.43"></a>
-<span class="sourceLineNo">044</span> * THE SOFTWARE.<a name="line.44"></a>
-<span class="sourceLineNo">045</span> * &lt;/pre&gt;<a name="line.45"></a>
-<span class="sourceLineNo">046</span> * @author Matthias Mann<a name="line.46"></a>
-<span class="sourceLineNo">047</span> * @author Nathan Sweet<a name="line.47"></a>
-<span class="sourceLineNo">048</span> * @author Tommy Ettinger (PNG-8 parts only) */<a name="line.48"></a>
-<span class="sourceLineNo">049</span>@GwtIncompatible<a name="line.49"></a>
-<span class="sourceLineNo">050</span>public class PNG8 implements Disposable {<a name="line.50"></a>
-<span class="sourceLineNo">051</span>    static private final byte[] SIGNATURE = {(byte)137, 80, 78, 71, 13, 10, 26, 10};<a name="line.51"></a>
-<span class="sourceLineNo">052</span>    static private final int IHDR = 0x49484452, IDAT = 0x49444154, IEND = 0x49454E44,<a name="line.52"></a>
-<span class="sourceLineNo">053</span>            PLTE = 0x504C5445, TRNS = 0x74524E53;<a name="line.53"></a>
-<span class="sourceLineNo">054</span>    static private final byte COLOR_INDEXED = 3;<a name="line.54"></a>
-<span class="sourceLineNo">055</span>    static private final byte COMPRESSION_DEFLATE = 0;<a name="line.55"></a>
-<span class="sourceLineNo">056</span>    static private final byte FILTER_NONE = 0;<a name="line.56"></a>
-<span class="sourceLineNo">057</span>    static private final byte INTERLACE_NONE = 0;<a name="line.57"></a>
-<span class="sourceLineNo">058</span>    static private final byte PAETH = 4;<a name="line.58"></a>
-<span class="sourceLineNo">059</span><a name="line.59"></a>
-<span class="sourceLineNo">060</span>    private final ChunkBuffer buffer;<a name="line.60"></a>
-<span class="sourceLineNo">061</span>    private final Deflater deflater;<a name="line.61"></a>
-<span class="sourceLineNo">062</span>    private ByteArray lineOutBytes, curLineBytes, prevLineBytes;<a name="line.62"></a>
-<span class="sourceLineNo">063</span>    private ByteArray curErrorRedBytes, nextErrorRedBytes, curErrorGreenBytes, nextErrorGreenBytes, curErrorBlueBytes, nextErrorBlueBytes;<a name="line.63"></a>
+<span class="sourceLineNo">022</span> * &lt;br&gt;<a name="line.22"></a>
+<span class="sourceLineNo">023</span> * From LibGDX in the class PixmapIO, with modifications to support indexed-mode files, dithering, and other features.<a name="line.23"></a>
+<span class="sourceLineNo">024</span> * &lt;pre&gt;<a name="line.24"></a>
+<span class="sourceLineNo">025</span> * Copyright (c) 2007 Matthias Mann - www.matthiasmann.de<a name="line.25"></a>
+<span class="sourceLineNo">026</span> * Copyright (c) 2014 Nathan Sweet<a name="line.26"></a>
+<span class="sourceLineNo">027</span> * Copyright (c) 2018 Tommy Ettinger<a name="line.27"></a>
+<span class="sourceLineNo">028</span> *<a name="line.28"></a>
+<span class="sourceLineNo">029</span> * Permission is hereby granted, free of charge, to any person obtaining a copy<a name="line.29"></a>
+<span class="sourceLineNo">030</span> * of this software and associated documentation files (the "Software"), to deal<a name="line.30"></a>
+<span class="sourceLineNo">031</span> * in the Software without restriction, including without limitation the rights<a name="line.31"></a>
+<span class="sourceLineNo">032</span> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell<a name="line.32"></a>
+<span class="sourceLineNo">033</span> * copies of the Software, and to permit persons to whom the Software is<a name="line.33"></a>
+<span class="sourceLineNo">034</span> * furnished to do so, subject to the following conditions:<a name="line.34"></a>
+<span class="sourceLineNo">035</span> *<a name="line.35"></a>
+<span class="sourceLineNo">036</span> * The above copyright notice and this permission notice shall be included in<a name="line.36"></a>
+<span class="sourceLineNo">037</span> * all copies or substantial portions of the Software.<a name="line.37"></a>
+<span class="sourceLineNo">038</span> *<a name="line.38"></a>
+<span class="sourceLineNo">039</span> * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<a name="line.39"></a>
+<span class="sourceLineNo">040</span> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<a name="line.40"></a>
+<span class="sourceLineNo">041</span> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<a name="line.41"></a>
+<span class="sourceLineNo">042</span> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<a name="line.42"></a>
+<span class="sourceLineNo">043</span> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,<a name="line.43"></a>
+<span class="sourceLineNo">044</span> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN<a name="line.44"></a>
+<span class="sourceLineNo">045</span> * THE SOFTWARE.<a name="line.45"></a>
+<span class="sourceLineNo">046</span> * &lt;/pre&gt;<a name="line.46"></a>
+<span class="sourceLineNo">047</span> * @author Matthias Mann<a name="line.47"></a>
+<span class="sourceLineNo">048</span> * @author Nathan Sweet<a name="line.48"></a>
+<span class="sourceLineNo">049</span> * @author Tommy Ettinger (PNG-8 parts only) */<a name="line.49"></a>
+<span class="sourceLineNo">050</span>@GwtIncompatible<a name="line.50"></a>
+<span class="sourceLineNo">051</span>public class PNG8 implements Disposable {<a name="line.51"></a>
+<span class="sourceLineNo">052</span>    static private final byte[] SIGNATURE = {(byte)137, 80, 78, 71, 13, 10, 26, 10};<a name="line.52"></a>
+<span class="sourceLineNo">053</span>    static private final int IHDR = 0x49484452, IDAT = 0x49444154, IEND = 0x49454E44,<a name="line.53"></a>
+<span class="sourceLineNo">054</span>            PLTE = 0x504C5445, TRNS = 0x74524E53;<a name="line.54"></a>
+<span class="sourceLineNo">055</span>    static private final byte COLOR_INDEXED = 3;<a name="line.55"></a>
+<span class="sourceLineNo">056</span>    static private final byte COMPRESSION_DEFLATE = 0;<a name="line.56"></a>
+<span class="sourceLineNo">057</span>    static private final byte FILTER_NONE = 0;<a name="line.57"></a>
+<span class="sourceLineNo">058</span>    static private final byte INTERLACE_NONE = 0;<a name="line.58"></a>
+<span class="sourceLineNo">059</span>    static private final byte PAETH = 4;<a name="line.59"></a>
+<span class="sourceLineNo">060</span><a name="line.60"></a>
+<span class="sourceLineNo">061</span>    private final ChunkBuffer buffer;<a name="line.61"></a>
+<span class="sourceLineNo">062</span>    private final Deflater deflater;<a name="line.62"></a>
+<span class="sourceLineNo">063</span>    private ByteArray lineOutBytes, curLineBytes, prevLineBytes;<a name="line.63"></a>
 <span class="sourceLineNo">064</span>    private boolean flipY = true;<a name="line.64"></a>
 <span class="sourceLineNo">065</span>    private int lastLineLen;<a name="line.65"></a>
 <span class="sourceLineNo">066</span><a name="line.66"></a>
-<span class="sourceLineNo">067</span>    public final byte[] paletteMapping = new byte[0x8000];<a name="line.67"></a>
-<span class="sourceLineNo">068</span>    public final int[] paletteArray = new int[256];<a name="line.68"></a>
-<span class="sourceLineNo">069</span><a name="line.69"></a>
-<span class="sourceLineNo">070</span>    /**<a name="line.70"></a>
-<span class="sourceLineNo">071</span>     * A lookup table from 32 possible levels in the red channel to 6 possible values in the red channel.<a name="line.71"></a>
-<span class="sourceLineNo">072</span>     */<a name="line.72"></a>
-<span class="sourceLineNo">073</span>    private static final int[]<a name="line.73"></a>
-<span class="sourceLineNo">074</span>            redLUT =   {<a name="line.74"></a>
-<span class="sourceLineNo">075</span>            0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE00003A,<a name="line.75"></a>
-<span class="sourceLineNo">076</span>            0xFE00003A, 0xFE00003A, 0xFE00003A, 0xFE00003A, 0xFE00003A, 0xFE00003A, 0xFE000074, 0xFE000074,<a name="line.76"></a>
-<span class="sourceLineNo">077</span>            0xFE000074, 0xFE000074, 0xFE000074, 0xFE0000B6, 0xFE0000B6, 0xFE0000B6, 0xFE0000B6, 0xFE0000B6,<a name="line.77"></a>
-<span class="sourceLineNo">078</span>            0xFE0000E0, 0xFE0000E0, 0xFE0000E0, 0xFE0000E0, 0xFE0000FF, 0xFE0000FF, 0xFE0000FF, 0xFE0000FF,};<a name="line.78"></a>
-<span class="sourceLineNo">079</span>    /**<a name="line.79"></a>
-<span class="sourceLineNo">080</span>     * The 6 possible values that can be used in the red channel with {@link #redLUT}.<a name="line.80"></a>
-<span class="sourceLineNo">081</span>     */<a name="line.81"></a>
-<span class="sourceLineNo">082</span>    private static final byte[] redPossibleLUT = {0x00, 0x3A, 0x74, (byte)0xB6, (byte)0xE0, (byte)0xFF};<a name="line.82"></a>
-<span class="sourceLineNo">083</span><a name="line.83"></a>
-<span class="sourceLineNo">084</span>    /**<a name="line.84"></a>
-<span class="sourceLineNo">085</span>     * A lookup table from 32 possible levels in the green channel to 7 possible values in the green channel.<a name="line.85"></a>
-<span class="sourceLineNo">086</span>     */<a name="line.86"></a>
-<span class="sourceLineNo">087</span>    private static final int[]<a name="line.87"></a>
-<span class="sourceLineNo">088</span>            greenLUT = {<a name="line.88"></a>
-<span class="sourceLineNo">089</span>            0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE003800,<a name="line.89"></a>
-<span class="sourceLineNo">090</span>            0xFE003800, 0xFE003800, 0xFE003800, 0xFE003800, 0xFE006000, 0xFE006000, 0xFE006000, 0xFE006000,<a name="line.90"></a>
-<span class="sourceLineNo">091</span>            0xFE006000, 0xFE009800, 0xFE009800, 0xFE009800, 0xFE009800, 0xFE00C400, 0xFE00C400, 0xFE00C400,<a name="line.91"></a>
-<span class="sourceLineNo">092</span>            0xFE00C400, 0xFE00EE00, 0xFE00EE00, 0xFE00EE00, 0xFE00EE00, 0xFE00FF00, 0xFE00FF00, 0xFE00FF00,};<a name="line.92"></a>
-<span class="sourceLineNo">093</span>    /**<a name="line.93"></a>
-<span class="sourceLineNo">094</span>     * The 7 possible values that can be used in the green channel with {@link #greenLUT}.<a name="line.94"></a>
-<span class="sourceLineNo">095</span>     */<a name="line.95"></a>
-<span class="sourceLineNo">096</span>    private static final byte[] greenPossibleLUT = {0x00, 0x38, 0x60, (byte)0x98, (byte)0xC4, (byte)0xEE, (byte)0xFF};<a name="line.96"></a>
-<span class="sourceLineNo">097</span>    /**<a name="line.97"></a>
-<span class="sourceLineNo">098</span>     * A lookup table from 32 possible levels in the blue channel to 6 possible values in the blue channel.<a name="line.98"></a>
-<span class="sourceLineNo">099</span>     */<a name="line.99"></a>
-<span class="sourceLineNo">100</span>    private static final int[]<a name="line.100"></a>
-<span class="sourceLineNo">101</span>            blueLUT =  {<a name="line.101"></a>
-<span class="sourceLineNo">102</span>            0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE380000,<a name="line.102"></a>
-<span class="sourceLineNo">103</span>            0xFE380000, 0xFE380000, 0xFE380000, 0xFE380000, 0xFE380000, 0xFE760000, 0xFE760000, 0xFE760000,<a name="line.103"></a>
-<span class="sourceLineNo">104</span>            0xFE760000, 0xFE760000, 0xFE760000, 0xFEAC0000, 0xFEAC0000, 0xFEAC0000, 0xFEAC0000, 0xFEAC0000,<a name="line.104"></a>
-<span class="sourceLineNo">105</span>            0xFEEA0000, 0xFEEA0000, 0xFEEA0000, 0xFEEA0000, 0xFEFF0000, 0xFEFF0000, 0xFEFF0000, 0xFEFF0000,};<a name="line.105"></a>
-<span class="sourceLineNo">106</span>    /**<a name="line.106"></a>
-<span class="sourceLineNo">107</span>     * The 6 possible values that can be used in the blue channel with {@link #blueLUT}.<a name="line.107"></a>
-<span class="sourceLineNo">108</span>     */<a name="line.108"></a>
-<span class="sourceLineNo">109</span>    private static final byte[] bluePossibleLUT = {0x00, 0x38, 0x76, (byte)0xAC, (byte)0xEA, (byte)0xFF};<a name="line.109"></a>
-<span class="sourceLineNo">110</span><a name="line.110"></a>
-<span class="sourceLineNo">111</span>    /**<a name="line.111"></a>
-<span class="sourceLineNo">112</span>     * DawnBringer's 256-color Aurora palette, version 1.1, with the grayscale values consolidated to make room for one<a name="line.112"></a>
-<span class="sourceLineNo">113</span>     * fully transparent color. Meant for use with {@link #buildKnownPalette(int[])}.<a name="line.113"></a>
-<span class="sourceLineNo">114</span>     */<a name="line.114"></a>
-<span class="sourceLineNo">115</span>    public static final int[] auroraPalette = {<a name="line.115"></a>
-<span class="sourceLineNo">116</span>            0x00000000, 0x010101FF, 0x131313FF, 0x252525FF, 0x373737FF, 0x494949FF, 0x5B5B5BFF, 0x6E6E6EFF,<a name="line.116"></a>
-<span class="sourceLineNo">117</span>            0x808080FF, 0x929292FF, 0xA4A4A4FF, 0xB6B6B6FF, 0xC9C9C9FF, 0xDBDBDBFF, 0xEDEDEDFF, 0xFFFFFFFF,<a name="line.117"></a>
-<span class="sourceLineNo">118</span>            0x007F7FFF, 0x3FBFBFFF, 0x00FFFFFF, 0xBFFFFFFF, 0x8181FFFF, 0x0000FFFF, 0x3F3FBFFF, 0x00007FFF,<a name="line.118"></a>
-<span class="sourceLineNo">119</span>            0x0F0F50FF, 0x7F007FFF, 0xBF3FBFFF, 0xF500F5FF, 0xFD81FFFF, 0xFFC0CBFF, 0xFF8181FF, 0xFF0000FF,<a name="line.119"></a>
-<span class="sourceLineNo">120</span>            0xBF3F3FFF, 0x7F0000FF, 0x551414FF, 0x7F3F00FF, 0xBF7F3FFF, 0xFF7F00FF, 0xFFBF81FF, 0xFFFFBFFF,<a name="line.120"></a>
-<span class="sourceLineNo">121</span>            0xFFFF00FF, 0xBFBF3FFF, 0x7F7F00FF, 0x007F00FF, 0x3FBF3FFF, 0x00FF00FF, 0xAFFFAFFF, 0x00BFFFFF,<a name="line.121"></a>
-<span class="sourceLineNo">122</span>            0x007FFFFF, 0x4B7DC8FF, 0xBCAFC0FF, 0xCBAA89FF, 0xA6A090FF, 0x7E9494FF, 0x6E8287FF, 0x7E6E60FF,<a name="line.122"></a>
-<span class="sourceLineNo">123</span>            0xA0695FFF, 0xC07872FF, 0xD08A74FF, 0xE19B7DFF, 0xEBAA8CFF, 0xF5B99BFF, 0xF6C8AFFF, 0xF5E1D2FF,<a name="line.123"></a>
-<span class="sourceLineNo">124</span>            0x7F00FFFF, 0x573B3BFF, 0x73413CFF, 0x8E5555FF, 0xAB7373FF, 0xC78F8FFF, 0xE3ABABFF, 0xF8D2DAFF,<a name="line.124"></a>
-<span class="sourceLineNo">125</span>            0xE3C7ABFF, 0xC49E73FF, 0x8F7357FF, 0x73573BFF, 0x3B2D1FFF, 0x414123FF, 0x73733BFF, 0x8F8F57FF,<a name="line.125"></a>
-<span class="sourceLineNo">126</span>            0xA2A255FF, 0xB5B572FF, 0xC7C78FFF, 0xDADAABFF, 0xEDEDC7FF, 0xC7E3ABFF, 0xABC78FFF, 0x8EBE55FF,<a name="line.126"></a>
-<span class="sourceLineNo">127</span>            0x738F57FF, 0x587D3EFF, 0x465032FF, 0x191E0FFF, 0x235037FF, 0x3B573BFF, 0x506450FF, 0x3B7349FF,<a name="line.127"></a>
-<span class="sourceLineNo">128</span>            0x578F57FF, 0x73AB73FF, 0x64C082FF, 0x8FC78FFF, 0xA2D8A2FF, 0xE1F8FAFF, 0xB4EECAFF, 0xABE3C5FF,<a name="line.128"></a>
-<span class="sourceLineNo">129</span>            0x87B48EFF, 0x507D5FFF, 0x0F6946FF, 0x1E2D23FF, 0x234146FF, 0x3B7373FF, 0x64ABABFF, 0x8FC7C7FF,<a name="line.129"></a>
-<span class="sourceLineNo">130</span>            0xABE3E3FF, 0xC7F1F1FF, 0xBED2F0FF, 0xABC7E3FF, 0xA8B9DCFF, 0x8FABC7FF, 0x578FC7FF, 0x57738FFF,<a name="line.130"></a>
-<span class="sourceLineNo">131</span>            0x3B5773FF, 0x0F192DFF, 0x1F1F3BFF, 0x3B3B57FF, 0x494973FF, 0x57578FFF, 0x736EAAFF, 0x7676CAFF,<a name="line.131"></a>
-<span class="sourceLineNo">132</span>            0x8F8FC7FF, 0xABABE3FF, 0xD0DAF8FF, 0xE3E3FFFF, 0xAB8FC7FF, 0x8F57C7FF, 0x73578FFF, 0x573B73FF,<a name="line.132"></a>
-<span class="sourceLineNo">133</span>            0x3C233CFF, 0x463246FF, 0x724072FF, 0x8F578FFF, 0xAB57ABFF, 0xAB73ABFF, 0xEBACE1FF, 0xFFDCF5FF,<a name="line.133"></a>
-<span class="sourceLineNo">134</span>            0xE3C7E3FF, 0xE1B9D2FF, 0xD7A0BEFF, 0xC78FB9FF, 0xC87DA0FF, 0xC35A91FF, 0x4B2837FF, 0x321623FF,<a name="line.134"></a>
-<span class="sourceLineNo">135</span>            0x280A1EFF, 0x401811FF, 0x621800FF, 0xA5140AFF, 0xDA2010FF, 0xD5524AFF, 0xFF3C0AFF, 0xF55A32FF,<a name="line.135"></a>
-<span class="sourceLineNo">136</span>            0xFF6262FF, 0xF6BD31FF, 0xFFA53CFF, 0xD79B0FFF, 0xDA6E0AFF, 0xB45A00FF, 0xA04B05FF, 0x5F3214FF,<a name="line.136"></a>
-<span class="sourceLineNo">137</span>            0x53500AFF, 0x626200FF, 0x8C805AFF, 0xAC9400FF, 0xB1B10AFF, 0xE6D55AFF, 0xFFD510FF, 0xFFEA4AFF,<a name="line.137"></a>
-<span class="sourceLineNo">138</span>            0xC8FF41FF, 0x9BF046FF, 0x96DC19FF, 0x73C805FF, 0x6AA805FF, 0x3C6E14FF, 0x283405FF, 0x204608FF,<a name="line.138"></a>
-<span class="sourceLineNo">139</span>            0x0C5C0CFF, 0x149605FF, 0x0AD70AFF, 0x14E60AFF, 0x7DFF73FF, 0x4BF05AFF, 0x00C514FF, 0x05B450FF,<a name="line.139"></a>
-<span class="sourceLineNo">140</span>            0x1C8C4EFF, 0x123832FF, 0x129880FF, 0x06C491FF, 0x00DE6AFF, 0x2DEBA8FF, 0x3CFEA5FF, 0x6AFFCDFF,<a name="line.140"></a>
-<span class="sourceLineNo">141</span>            0x91EBFFFF, 0x55E6FFFF, 0x7DD7F0FF, 0x08DED5FF, 0x109CDEFF, 0x055A5CFF, 0x162C52FF, 0x0F377DFF,<a name="line.141"></a>
-<span class="sourceLineNo">142</span>            0x004A9CFF, 0x326496FF, 0x0052F6FF, 0x186ABDFF, 0x2378DCFF, 0x699DC3FF, 0x4AA4FFFF, 0x90B0FFFF,<a name="line.142"></a>
-<span class="sourceLineNo">143</span>            0x5AC5FFFF, 0xBEB9FAFF, 0x786EF0FF, 0x4A5AFFFF, 0x6241F6FF, 0x3C3CF5FF, 0x101CDAFF, 0x0010BDFF,<a name="line.143"></a>
-<span class="sourceLineNo">144</span>            0x231094FF, 0x0C2148FF, 0x5010B0FF, 0x6010D0FF, 0x8732D2FF, 0x9C41FFFF, 0xBD62FFFF, 0xB991FFFF,<a name="line.144"></a>
-<span class="sourceLineNo">145</span>            0xD7A5FFFF, 0xD7C3FAFF, 0xF8C6FCFF, 0xE673FFFF, 0xFF52FFFF, 0xDA20E0FF, 0xBD29FFFF, 0xBD10C5FF,<a name="line.145"></a>
-<span class="sourceLineNo">146</span>            0x8C14BEFF, 0x5A187BFF, 0x641464FF, 0x410062FF, 0x320A46FF, 0x551937FF, 0xA01982FF, 0xC80078FF,<a name="line.146"></a>
-<span class="sourceLineNo">147</span>            0xFF50BFFF, 0xFF6AC5FF, 0xFAA0B9FF, 0xFC3A8CFF, 0xE61E78FF, 0xBD1039FF, 0x98344DFF, 0x911437FF,<a name="line.147"></a>
-<span class="sourceLineNo">148</span>    };<a name="line.148"></a>
-<span class="sourceLineNo">149</span>    <a name="line.149"></a>
-<span class="sourceLineNo">150</span>    public void build253Palette()<a name="line.150"></a>
-<span class="sourceLineNo">151</span>    {<a name="line.151"></a>
-<span class="sourceLineNo">152</span>        Arrays.fill(paletteArray, 0);<a name="line.152"></a>
-<span class="sourceLineNo">153</span>        int i = 0, j, rl, gl, bl, rMin, rMax=0, gMin, gMax, bMin, bMax;<a name="line.153"></a>
-<span class="sourceLineNo">154</span>        for (int r = 0; r &lt; 6; r++) {<a name="line.154"></a>
-<span class="sourceLineNo">155</span>            rl = SColor.redPossibleLUT[r] &amp; 0xFF;<a name="line.155"></a>
-<span class="sourceLineNo">156</span>            rMin=rMax;<a name="line.156"></a>
-<span class="sourceLineNo">157</span>            for (j = rMin; j &lt; 32 &amp;&amp; (SColor.redLUT[j] &amp; 0xFF) == rl; j++) { }<a name="line.157"></a>
-<span class="sourceLineNo">158</span>            rMax=j;<a name="line.158"></a>
-<span class="sourceLineNo">159</span>            gMax = 0;<a name="line.159"></a>
-<span class="sourceLineNo">160</span>            for (int g = 0; g &lt; 7; g++) {<a name="line.160"></a>
-<span class="sourceLineNo">161</span>                gl = SColor.greenPossibleLUT[g] &amp; 0xFF;<a name="line.161"></a>
-<span class="sourceLineNo">162</span>                gMin=gMax;<a name="line.162"></a>
-<span class="sourceLineNo">163</span>                for (j = gMin; j &lt; 32 &amp;&amp; (SColor.greenLUT[j] &gt;&gt; 8 &amp; 0xFF) == gl; j++) { }<a name="line.163"></a>
-<span class="sourceLineNo">164</span>                gMax=j;<a name="line.164"></a>
-<span class="sourceLineNo">165</span>                bMax = 0;<a name="line.165"></a>
-<span class="sourceLineNo">166</span>                for (int b = 0; b &lt; 6; b++) {<a name="line.166"></a>
-<span class="sourceLineNo">167</span>                    bl = SColor.bluePossibleLUT[b] &amp; 0xFF;<a name="line.167"></a>
-<span class="sourceLineNo">168</span>                    bMin=bMax;<a name="line.168"></a>
-<span class="sourceLineNo">169</span>                    for (j = bMin; j &lt; 32 &amp;&amp; (SColor.blueLUT[j] &gt;&gt; 16 &amp; 0xFF) == bl; j++) { }<a name="line.169"></a>
-<span class="sourceLineNo">170</span>                    bMax=j;<a name="line.170"></a>
-<span class="sourceLineNo">171</span>                    paletteArray[++i] =<a name="line.171"></a>
-<span class="sourceLineNo">172</span>                            (rl &lt;&lt; 24<a name="line.172"></a>
-<span class="sourceLineNo">173</span>                                    | (gl &lt;&lt; 16 &amp; 0xFF0000)<a name="line.173"></a>
-<span class="sourceLineNo">174</span>                                    | (bl &lt;&lt; 8 &amp; 0xFF00) | 0xFE);<a name="line.174"></a>
-<span class="sourceLineNo">175</span>                    for (int rm = rMin; rm &lt; rMax; rm++) {<a name="line.175"></a>
-<span class="sourceLineNo">176</span>                        for (int gm = gMin; gm &lt; gMax; gm++) {<a name="line.176"></a>
-<span class="sourceLineNo">177</span>                            Arrays.fill(paletteMapping, (rm &lt;&lt; 10) + (gm &lt;&lt; 5) + (bMin), (rm &lt;&lt; 10) + (gm &lt;&lt; 5) + (bMax), (byte)i);<a name="line.177"></a>
-<span class="sourceLineNo">178</span>                        }<a name="line.178"></a>
-<span class="sourceLineNo">179</span>                    }<a name="line.179"></a>
-<span class="sourceLineNo">180</span>                }<a name="line.180"></a>
-<span class="sourceLineNo">181</span>            }<a name="line.181"></a>
-<span class="sourceLineNo">182</span>        }<a name="line.182"></a>
-<span class="sourceLineNo">183</span>    }<a name="line.183"></a>
-<span class="sourceLineNo">184</span>    private int quickDistance(final int r, final int g, final int b)<a name="line.184"></a>
-<span class="sourceLineNo">185</span>    {<a name="line.185"></a>
-<span class="sourceLineNo">186</span>        return r * r + g * g + b * b;<a name="line.186"></a>
-<span class="sourceLineNo">187</span>    }<a name="line.187"></a>
-<span class="sourceLineNo">188</span>    private int quickDistance(final int color, final int r, final int g, final int b)<a name="line.188"></a>
-<span class="sourceLineNo">189</span>    {<a name="line.189"></a>
-<span class="sourceLineNo">190</span>        return quickDistance((color &gt;&gt;&gt; 27 &amp; 0x1F) - r, (color &gt;&gt;&gt; 19 &amp; 0x1F) - g, (color &gt;&gt;&gt; 11 &amp; 0x1F) - b);<a name="line.190"></a>
-<span class="sourceLineNo">191</span>    }<a name="line.191"></a>
-<span class="sourceLineNo">192</span><a name="line.192"></a>
-<span class="sourceLineNo">193</span>    public static int difference2(final int color1, final int color2)<a name="line.193"></a>
-<span class="sourceLineNo">194</span>    {<a name="line.194"></a>
-<span class="sourceLineNo">195</span>        int rmean = ((color1 &gt;&gt;&gt; 24) + (color2 &gt;&gt;&gt; 24)) &gt;&gt; 1;<a name="line.195"></a>
-<span class="sourceLineNo">196</span>        int r = (color1 &gt;&gt;&gt; 24) - (color2 &gt;&gt;&gt; 24);<a name="line.196"></a>
-<span class="sourceLineNo">197</span>        int g = (color1 &gt;&gt;&gt; 16 &amp; 0xFF) - (color2 &gt;&gt;&gt; 16 &amp; 0xFF);<a name="line.197"></a>
-<span class="sourceLineNo">198</span>        int b = (color1 &gt;&gt;&gt; 8 &amp; 0xFF) - (color2 &gt;&gt;&gt; 8 &amp; 0xFF);<a name="line.198"></a>
-<span class="sourceLineNo">199</span>        return (((512+rmean)*r*r)&gt;&gt;8) + 4*g*g + (((767-rmean)*b*b)&gt;&gt;8);<a name="line.199"></a>
-<span class="sourceLineNo">200</span>    }<a name="line.200"></a>
-<span class="sourceLineNo">201</span>    public static int difference2(final int color1, int r2, int g2, int b2)<a name="line.201"></a>
-<span class="sourceLineNo">202</span>    {<a name="line.202"></a>
-<span class="sourceLineNo">203</span>        r2 = (r2 &lt;&lt; 3 | r2 &gt;&gt;&gt; 2);<a name="line.203"></a>
-<span class="sourceLineNo">204</span>        g2 = (g2 &lt;&lt; 3 | g2 &gt;&gt;&gt; 2);<a name="line.204"></a>
-<span class="sourceLineNo">205</span>        b2 = (b2 &lt;&lt; 3 | b2 &gt;&gt;&gt; 2);<a name="line.205"></a>
-<span class="sourceLineNo">206</span>        final int rmean = ((color1 &gt;&gt;&gt; 24) + r2) &gt;&gt; 1, <a name="line.206"></a>
-<span class="sourceLineNo">207</span>                r = (color1 &gt;&gt;&gt; 24) - r2,<a name="line.207"></a>
-<span class="sourceLineNo">208</span>                g = (color1 &gt;&gt;&gt; 16 &amp; 0xFF) - g2 &lt;&lt; 1,<a name="line.208"></a>
-<span class="sourceLineNo">209</span>                b = (color1 &gt;&gt;&gt; 8 &amp; 0xFF) - b2;<a name="line.209"></a>
-<span class="sourceLineNo">210</span>        return (((512+rmean)*r*r)&gt;&gt;8) + g*g + (((767-rmean)*b*b)&gt;&gt;8);<a name="line.210"></a>
-<span class="sourceLineNo">211</span>    }<a name="line.211"></a>
-<span class="sourceLineNo">212</span>    public static int difference2(final int r1, final int r2, final int g1, final int g2, final int b1, final int b2)<a name="line.212"></a>
-<span class="sourceLineNo">213</span>    {<a name="line.213"></a>
-<span class="sourceLineNo">214</span>        final int rmean = (r1 + r2) &gt;&gt; 1,<a name="line.214"></a>
-<span class="sourceLineNo">215</span>                r = r1 - r2,<a name="line.215"></a>
-<span class="sourceLineNo">216</span>                g = g1 - g2 &lt;&lt; 1,<a name="line.216"></a>
-<span class="sourceLineNo">217</span>                b = b1 - b2;<a name="line.217"></a>
-<span class="sourceLineNo">218</span>        return (((512+rmean)*r*r)&gt;&gt;8) + g*g + (((767-rmean)*b*b)&gt;&gt;8);<a name="line.218"></a>
-<span class="sourceLineNo">219</span>    }<a name="line.219"></a>
-<span class="sourceLineNo">220</span><a name="line.220"></a>
-<span class="sourceLineNo">221</span>//    public static float differenceYCbCr(final int color1, final int color2, final float lumaBias)<a name="line.221"></a>
-<span class="sourceLineNo">222</span>//    {<a name="line.222"></a>
-<span class="sourceLineNo">223</span>//        final int r1 = color1 &gt;&gt;&gt; 24, r2 = color2 &gt;&gt;&gt; 24,<a name="line.223"></a>
-<span class="sourceLineNo">224</span>//                g1 = color1 &gt;&gt;&gt; 16 &amp; 255, g2 = color2 &gt;&gt;&gt; 16 &amp; 255,<a name="line.224"></a>
-<span class="sourceLineNo">225</span>//                b1 = color1 &gt;&gt;&gt; 8 &amp; 255, b2 = color2 &gt;&gt;&gt; 8 &amp; 255;<a name="line.225"></a>
-<span class="sourceLineNo">226</span>//        final float<a name="line.226"></a>
-<span class="sourceLineNo">227</span>//                y1 = r1 * 0.299f + g1 * 0.587f + b1 * 0.114f,<a name="line.227"></a>
-<span class="sourceLineNo">228</span>//                y2 = r2 * 0.299f + g2 * 0.587f + b2 * 0.114f,<a name="line.228"></a>
-<span class="sourceLineNo">229</span>//                cr1 = r1 * 0.5f + g1 * -0.418688f + b1 * -0.081312f,<a name="line.229"></a>
-<span class="sourceLineNo">230</span>//                cr2 = r2 * 0.5f + g2 * -0.418688f + b2 * -0.081312f,<a name="line.230"></a>
-<span class="sourceLineNo">231</span>//                cb1 = r1 * -0.168736f + g1 * -0.331264f + b1 * 0.5f,<a name="line.231"></a>
-<span class="sourceLineNo">232</span>//                cb2 = r2 * -0.168736f + g2 * -0.331264f + b2 * 0.5f,<a name="line.232"></a>
-<span class="sourceLineNo">233</span>//                y = y2 - y1, cb = cb2 - cb1, cr = cr2 - cr1;<a name="line.233"></a>
-<span class="sourceLineNo">234</span>//        return y * y + cb * cb + cr * cr;<a name="line.234"></a>
-<span class="sourceLineNo">235</span>//    }<a name="line.235"></a>
-<span class="sourceLineNo">236</span>//<a name="line.236"></a>
-<span class="sourceLineNo">237</span>//    public static float differenceYCbCr(final int color1, int r2, int g2, int b2)<a name="line.237"></a>
-<span class="sourceLineNo">238</span>//    {<a name="line.238"></a>
-<span class="sourceLineNo">239</span>//        r2 = (r2 &lt;&lt; 3 | r2 &gt;&gt;&gt; 2);<a name="line.239"></a>
-<span class="sourceLineNo">240</span>//        g2 = (g2 &lt;&lt; 3 | g2 &gt;&gt;&gt; 2);<a name="line.240"></a>
-<span class="sourceLineNo">241</span>//        b2 = (b2 &lt;&lt; 3 | b2 &gt;&gt;&gt; 2);<a name="line.241"></a>
-<span class="sourceLineNo">242</span>//        final int r1 = color1 &gt;&gt;&gt; 24,<a name="line.242"></a>
-<span class="sourceLineNo">243</span>//                g1 = color1 &gt;&gt;&gt; 16 &amp; 255,<a name="line.243"></a>
-<span class="sourceLineNo">244</span>//                b1 = color1 &gt;&gt;&gt; 8 &amp; 255;<a name="line.244"></a>
-<span class="sourceLineNo">245</span>//        final float<a name="line.245"></a>
-<span class="sourceLineNo">246</span>//                y1 = r1 * 0.299f + g1 * 0.587f + b1 * 0.114f,<a name="line.246"></a>
-<span class="sourceLineNo">247</span>//                y2 = r2 * 0.299f + g2 * 0.587f + b2 * 0.114f,<a name="line.247"></a>
-<span class="sourceLineNo">248</span>//                cr1 = r1 * 0.5f + g1 * -0.418688f + b1 * -0.081312f,<a name="line.248"></a>
-<span class="sourceLineNo">249</span>//                cr2 = r2 * 0.5f + g2 * -0.418688f + b2 * -0.081312f,<a name="line.249"></a>
-<span class="sourceLineNo">250</span>//                cb1 = r1 * -0.168736f + g1 * -0.331264f + b1 * 0.5f,<a name="line.250"></a>
-<span class="sourceLineNo">251</span>//                cb2 = r2 * -0.168736f + g2 * -0.331264f + b2 * 0.5f,<a name="line.251"></a>
-<span class="sourceLineNo">252</span>//                y = y2 - y1, cb = cb2 - cb1, cr = cr2 - cr1;<a name="line.252"></a>
-<span class="sourceLineNo">253</span>//        return y * y + cb * cb + cr * cr;<a name="line.253"></a>
-<span class="sourceLineNo">254</span>//    }<a name="line.254"></a>
-<span class="sourceLineNo">255</span>//<a name="line.255"></a>
-<span class="sourceLineNo">256</span>//    public static float differenceYCbCr(final int r1, final int r2, final int g1, final int g2, final int b1, final int b2)<a name="line.256"></a>
-<span class="sourceLineNo">257</span>//    {<a name="line.257"></a>
-<span class="sourceLineNo">258</span>//        final float<a name="line.258"></a>
-<span class="sourceLineNo">259</span>//                y1 = r1 * 0.299f + g1 * 0.587f + b1 * 0.114f,<a name="line.259"></a>
-<span class="sourceLineNo">260</span>//                y2 = r2 * 0.299f + g2 * 0.587f + b2 * 0.114f,<a name="line.260"></a>
-<span class="sourceLineNo">261</span>//                cr1 = r1 * 0.5f + g1 * -0.418688f + b1 * -0.081312f,<a name="line.261"></a>
-<span class="sourceLineNo">262</span>//                cr2 = r2 * 0.5f + g2 * -0.418688f + b2 * -0.081312f,<a name="line.262"></a>
-<span class="sourceLineNo">263</span>//                cb1 = r1 * -0.168736f + g1 * -0.331264f + b1 * 0.5f,<a name="line.263"></a>
-<span class="sourceLineNo">264</span>//                cb2 = r2 * -0.168736f + g2 * -0.331264f + b2 * 0.5f,<a name="line.264"></a>
-<span class="sourceLineNo">265</span>//                y = y2 - y1, cb = cb2 - cb1, cr = cr2 - cr1;<a name="line.265"></a>
-<span class="sourceLineNo">266</span>//        return y * y + cb * cb + cr * cr;<a name="line.266"></a>
-<span class="sourceLineNo">267</span>//    }<a name="line.267"></a>
-<span class="sourceLineNo">268</span><a name="line.268"></a>
-<span class="sourceLineNo">269</span>    public void buildKnownPalette(int[] rgbaPalette)<a name="line.269"></a>
-<span class="sourceLineNo">270</span>    {<a name="line.270"></a>
-<span class="sourceLineNo">271</span>        if(rgbaPalette == null || rgbaPalette.length &lt; 2)<a name="line.271"></a>
-<span class="sourceLineNo">272</span>        {<a name="line.272"></a>
-<span class="sourceLineNo">273</span>            build253Palette();<a name="line.273"></a>
-<span class="sourceLineNo">274</span>            return;<a name="line.274"></a>
-<span class="sourceLineNo">275</span>        }<a name="line.275"></a>
-<span class="sourceLineNo">276</span>        Arrays.fill(paletteArray, 0);<a name="line.276"></a>
-<span class="sourceLineNo">277</span>        Arrays.fill(paletteMapping, (byte) 0);<a name="line.277"></a>
-<span class="sourceLineNo">278</span>        final int plen = Math.min(256, rgbaPalette.length);<a name="line.278"></a>
-<span class="sourceLineNo">279</span>        int color, c2;<a name="line.279"></a>
-<span class="sourceLineNo">280</span>        int dist;<a name="line.280"></a>
-<span class="sourceLineNo">281</span>        for (int i = 0; i &lt; plen; i++) {<a name="line.281"></a>
-<span class="sourceLineNo">282</span>            color = rgbaPalette[i];<a name="line.282"></a>
-<span class="sourceLineNo">283</span>            paletteArray[i] = color;<a name="line.283"></a>
-<span class="sourceLineNo">284</span>            paletteMapping[(color &gt;&gt;&gt; 17 &amp; 0x7C00) | (color &gt;&gt;&gt; 14 &amp; 0x3E0) | (color &gt;&gt;&gt; 11 &amp; 0x1F)] = (byte) i;<a name="line.284"></a>
-<span class="sourceLineNo">285</span>        }<a name="line.285"></a>
-<span class="sourceLineNo">286</span>        for (int r = 0; r &lt; 32; r++) {<a name="line.286"></a>
-<span class="sourceLineNo">287</span>            for (int g = 0; g &lt; 32; g++) {<a name="line.287"></a>
-<span class="sourceLineNo">288</span>                for (int b = 0; b &lt; 32; b++) {<a name="line.288"></a>
-<span class="sourceLineNo">289</span>                    c2 = r &lt;&lt; 10 | g &lt;&lt; 5 | b;<a name="line.289"></a>
-<span class="sourceLineNo">290</span>                    if(paletteMapping[c2] == 0)<a name="line.290"></a>
-<span class="sourceLineNo">291</span>                    {<a name="line.291"></a>
-<span class="sourceLineNo">292</span>                        dist = 0x7FFFFFFF;<a name="line.292"></a>
-<span class="sourceLineNo">293</span>                        for (int i = 1; i &lt; 256; i++) {<a name="line.293"></a>
-<span class="sourceLineNo">294</span>                            if(dist &gt; (dist = Math.min(dist, difference2(paletteArray[i], r, g, b))))<a name="line.294"></a>
-<span class="sourceLineNo">295</span>                                paletteMapping[c2] = (byte)i;<a name="line.295"></a>
-<span class="sourceLineNo">296</span>                        }<a name="line.296"></a>
-<span class="sourceLineNo">297</span>                    }<a name="line.297"></a>
-<span class="sourceLineNo">298</span>                }<a name="line.298"></a>
-<span class="sourceLineNo">299</span>            }<a name="line.299"></a>
-<span class="sourceLineNo">300</span>        }<a name="line.300"></a>
-<span class="sourceLineNo">301</span>    }<a name="line.301"></a>
-<span class="sourceLineNo">302</span>    public void buildComputedPalette(Pixmap pixmap) {<a name="line.302"></a>
-<span class="sourceLineNo">303</span>        Arrays.fill(paletteArray, 0);<a name="line.303"></a>
-<span class="sourceLineNo">304</span>        int color;<a name="line.304"></a>
-<span class="sourceLineNo">305</span>        final ByteBuffer pixels = pixmap.getPixels();<a name="line.305"></a>
-<span class="sourceLineNo">306</span>        IntIntMap counts = new IntIntMap(256);<a name="line.306"></a>
-<span class="sourceLineNo">307</span>        int hasTransparent = 0;<a name="line.307"></a>
-<span class="sourceLineNo">308</span>        switch (pixmap.getFormat()) {<a name="line.308"></a>
-<span class="sourceLineNo">309</span>            case RGBA8888: {<a name="line.309"></a>
-<span class="sourceLineNo">310</span>                while (pixels.remaining() &gt;= 4) {<a name="line.310"></a>
-<span class="sourceLineNo">311</span>                    color = (pixels.getInt() &amp; 0xF8F8F880);<a name="line.311"></a>
-<span class="sourceLineNo">312</span>                    if ((color &amp; 0x80) != 0) {<a name="line.312"></a>
-<span class="sourceLineNo">313</span>                        color |= (color &gt;&gt;&gt; 5 &amp; 0x07070700) | 0xFE;<a name="line.313"></a>
-<span class="sourceLineNo">314</span>                        counts.getAndIncrement(color, 0, 1);<a name="line.314"></a>
-<span class="sourceLineNo">315</span>                    }<a name="line.315"></a>
-<span class="sourceLineNo">316</span>                    else<a name="line.316"></a>
-<span class="sourceLineNo">317</span>                    {<a name="line.317"></a>
-<span class="sourceLineNo">318</span>                        hasTransparent = 1;<a name="line.318"></a>
-<span class="sourceLineNo">319</span>                    }<a name="line.319"></a>
-<span class="sourceLineNo">320</span>                }<a name="line.320"></a>
-<span class="sourceLineNo">321</span>                if(counts.size + hasTransparent &lt;= 256)<a name="line.321"></a>
-<span class="sourceLineNo">322</span>                {<a name="line.322"></a>
-<span class="sourceLineNo">323</span>                    int idx = hasTransparent;<a name="line.323"></a>
-<span class="sourceLineNo">324</span>                    IntIntMap.Keys ks = counts.keys();<a name="line.324"></a>
-<span class="sourceLineNo">325</span>                    while(ks.hasNext())<a name="line.325"></a>
-<span class="sourceLineNo">326</span>                    {<a name="line.326"></a>
-<span class="sourceLineNo">327</span>                        color = ks.next();<a name="line.327"></a>
-<span class="sourceLineNo">328</span>                        paletteArray[idx] = color;<a name="line.328"></a>
-<span class="sourceLineNo">329</span>                        paletteMapping[(color &gt;&gt;&gt; 17 &amp; 0x7C00) | (color &gt;&gt;&gt; 14 &amp; 0x3E0) | (color &gt;&gt;&gt; 11 &amp; 0x1F)] = (byte) idx++;<a name="line.329"></a>
-<span class="sourceLineNo">330</span>                    }<a name="line.330"></a>
+<span class="sourceLineNo">067</span>    public PaletteReducer palette;<a name="line.67"></a>
+<span class="sourceLineNo">068</span>//    /**<a name="line.68"></a>
+<span class="sourceLineNo">069</span>//     * A lookup table from 32 possible levels in the red channel to 6 possible values in the red channel.<a name="line.69"></a>
+<span class="sourceLineNo">070</span>//     */<a name="line.70"></a>
+<span class="sourceLineNo">071</span>//    private static final int[]<a name="line.71"></a>
+<span class="sourceLineNo">072</span>//            redLUT =   {<a name="line.72"></a>
+<span class="sourceLineNo">073</span>//            0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE00003A,<a name="line.73"></a>
+<span class="sourceLineNo">074</span>//            0xFE00003A, 0xFE00003A, 0xFE00003A, 0xFE00003A, 0xFE00003A, 0xFE00003A, 0xFE000074, 0xFE000074,<a name="line.74"></a>
+<span class="sourceLineNo">075</span>//            0xFE000074, 0xFE000074, 0xFE000074, 0xFE0000B6, 0xFE0000B6, 0xFE0000B6, 0xFE0000B6, 0xFE0000B6,<a name="line.75"></a>
+<span class="sourceLineNo">076</span>//            0xFE0000E0, 0xFE0000E0, 0xFE0000E0, 0xFE0000E0, 0xFE0000FF, 0xFE0000FF, 0xFE0000FF, 0xFE0000FF,};<a name="line.76"></a>
+<span class="sourceLineNo">077</span>//    /**<a name="line.77"></a>
+<span class="sourceLineNo">078</span>//     * The 6 possible values that can be used in the red channel with {@link #redLUT}.<a name="line.78"></a>
+<span class="sourceLineNo">079</span>//     */<a name="line.79"></a>
+<span class="sourceLineNo">080</span>//    private static final byte[] redPossibleLUT = {0x00, 0x3A, 0x74, (byte)0xB6, (byte)0xE0, (byte)0xFF};<a name="line.80"></a>
+<span class="sourceLineNo">081</span>//<a name="line.81"></a>
+<span class="sourceLineNo">082</span>//    /**<a name="line.82"></a>
+<span class="sourceLineNo">083</span>//     * A lookup table from 32 possible levels in the green channel to 7 possible values in the green channel.<a name="line.83"></a>
+<span class="sourceLineNo">084</span>//     */<a name="line.84"></a>
+<span class="sourceLineNo">085</span>//    private static final int[]<a name="line.85"></a>
+<span class="sourceLineNo">086</span>//            greenLUT = {<a name="line.86"></a>
+<span class="sourceLineNo">087</span>//            0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE003800,<a name="line.87"></a>
+<span class="sourceLineNo">088</span>//            0xFE003800, 0xFE003800, 0xFE003800, 0xFE003800, 0xFE006000, 0xFE006000, 0xFE006000, 0xFE006000,<a name="line.88"></a>
+<span class="sourceLineNo">089</span>//            0xFE006000, 0xFE009800, 0xFE009800, 0xFE009800, 0xFE009800, 0xFE00C400, 0xFE00C400, 0xFE00C400,<a name="line.89"></a>
+<span class="sourceLineNo">090</span>//            0xFE00C400, 0xFE00EE00, 0xFE00EE00, 0xFE00EE00, 0xFE00EE00, 0xFE00FF00, 0xFE00FF00, 0xFE00FF00,};<a name="line.90"></a>
+<span class="sourceLineNo">091</span>//    /**<a name="line.91"></a>
+<span class="sourceLineNo">092</span>//     * The 7 possible values that can be used in the green channel with {@link #greenLUT}.<a name="line.92"></a>
+<span class="sourceLineNo">093</span>//     */<a name="line.93"></a>
+<span class="sourceLineNo">094</span>//    private static final byte[] greenPossibleLUT = {0x00, 0x38, 0x60, (byte)0x98, (byte)0xC4, (byte)0xEE, (byte)0xFF};<a name="line.94"></a>
+<span class="sourceLineNo">095</span>//    /**<a name="line.95"></a>
+<span class="sourceLineNo">096</span>//     * A lookup table from 32 possible levels in the blue channel to 6 possible values in the blue channel.<a name="line.96"></a>
+<span class="sourceLineNo">097</span>//     */<a name="line.97"></a>
+<span class="sourceLineNo">098</span>//    private static final int[]<a name="line.98"></a>
+<span class="sourceLineNo">099</span>//            blueLUT =  {<a name="line.99"></a>
+<span class="sourceLineNo">100</span>//            0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE000000, 0xFE380000,<a name="line.100"></a>
+<span class="sourceLineNo">101</span>//            0xFE380000, 0xFE380000, 0xFE380000, 0xFE380000, 0xFE380000, 0xFE760000, 0xFE760000, 0xFE760000,<a name="line.101"></a>
+<span class="sourceLineNo">102</span>//            0xFE760000, 0xFE760000, 0xFE760000, 0xFEAC0000, 0xFEAC0000, 0xFEAC0000, 0xFEAC0000, 0xFEAC0000,<a name="line.102"></a>
+<span class="sourceLineNo">103</span>//            0xFEEA0000, 0xFEEA0000, 0xFEEA0000, 0xFEEA0000, 0xFEFF0000, 0xFEFF0000, 0xFEFF0000, 0xFEFF0000,};<a name="line.103"></a>
+<span class="sourceLineNo">104</span>//    /**<a name="line.104"></a>
+<span class="sourceLineNo">105</span>//     * The 6 possible values that can be used in the blue channel with {@link #blueLUT}.<a name="line.105"></a>
+<span class="sourceLineNo">106</span>//     */<a name="line.106"></a>
+<span class="sourceLineNo">107</span>//    private static final byte[] bluePossibleLUT = {0x00, 0x38, 0x76, (byte)0xAC, (byte)0xEA, (byte)0xFF};<a name="line.107"></a>
+<span class="sourceLineNo">108</span>    <a name="line.108"></a>
+<span class="sourceLineNo">109</span>//    public void build253Palette()<a name="line.109"></a>
+<span class="sourceLineNo">110</span>//    {<a name="line.110"></a>
+<span class="sourceLineNo">111</span>//        Arrays.fill(paletteArray, 0);<a name="line.111"></a>
+<span class="sourceLineNo">112</span>//        int i = 0, j, rl, gl, bl, rMin, rMax=0, gMin, gMax, bMin, bMax;<a name="line.112"></a>
+<span class="sourceLineNo">113</span>//        for (int r = 0; r &lt; 6; r++) {<a name="line.113"></a>
+<span class="sourceLineNo">114</span>//            rl = redPossibleLUT[r] &amp; 0xFF;<a name="line.114"></a>
+<span class="sourceLineNo">115</span>//            rMin=rMax;<a name="line.115"></a>
+<span class="sourceLineNo">116</span>//            for (j = rMin; j &lt; 32 &amp;&amp; (redLUT[j] &amp; 0xFF) == rl; j++) { }<a name="line.116"></a>
+<span class="sourceLineNo">117</span>//            rMax=j;<a name="line.117"></a>
+<span class="sourceLineNo">118</span>//            gMax = 0;<a name="line.118"></a>
+<span class="sourceLineNo">119</span>//            for (int g = 0; g &lt; 7; g++) {<a name="line.119"></a>
+<span class="sourceLineNo">120</span>//                gl = greenPossibleLUT[g] &amp; 0xFF;<a name="line.120"></a>
+<span class="sourceLineNo">121</span>//                gMin=gMax;<a name="line.121"></a>
+<span class="sourceLineNo">122</span>//                for (j = gMin; j &lt; 32 &amp;&amp; (greenLUT[j] &gt;&gt; 8 &amp; 0xFF) == gl; j++) { }<a name="line.122"></a>
+<span class="sourceLineNo">123</span>//                gMax=j;<a name="line.123"></a>
+<span class="sourceLineNo">124</span>//                bMax = 0;<a name="line.124"></a>
+<span class="sourceLineNo">125</span>//                for (int b = 0; b &lt; 6; b++) {<a name="line.125"></a>
+<span class="sourceLineNo">126</span>//                    bl = bluePossibleLUT[b] &amp; 0xFF;<a name="line.126"></a>
+<span class="sourceLineNo">127</span>//                    bMin=bMax;<a name="line.127"></a>
+<span class="sourceLineNo">128</span>//                    for (j = bMin; j &lt; 32 &amp;&amp; (blueLUT[j] &gt;&gt; 16 &amp; 0xFF) == bl; j++) { }<a name="line.128"></a>
+<span class="sourceLineNo">129</span>//                    bMax=j;<a name="line.129"></a>
+<span class="sourceLineNo">130</span>//                    paletteArray[++i] =<a name="line.130"></a>
+<span class="sourceLineNo">131</span>//                            (rl &lt;&lt; 24<a name="line.131"></a>
+<span class="sourceLineNo">132</span>//                                    | (gl &lt;&lt; 16 &amp; 0xFF0000)<a name="line.132"></a>
+<span class="sourceLineNo">133</span>//                                    | (bl &lt;&lt; 8 &amp; 0xFF00) | 0xFE);<a name="line.133"></a>
+<span class="sourceLineNo">134</span>//                    for (int rm = rMin; rm &lt; rMax; rm++) {<a name="line.134"></a>
+<span class="sourceLineNo">135</span>//                        for (int gm = gMin; gm &lt; gMax; gm++) {<a name="line.135"></a>
+<span class="sourceLineNo">136</span>//                            Arrays.fill(paletteMapping, (rm &lt;&lt; 10) + (gm &lt;&lt; 5) + (bMin), (rm &lt;&lt; 10) + (gm &lt;&lt; 5) + (bMax), (byte)i);<a name="line.136"></a>
+<span class="sourceLineNo">137</span>//                        }<a name="line.137"></a>
+<span class="sourceLineNo">138</span>//                    }<a name="line.138"></a>
+<span class="sourceLineNo">139</span>//                }<a name="line.139"></a>
+<span class="sourceLineNo">140</span>//            }<a name="line.140"></a>
+<span class="sourceLineNo">141</span>//        }<a name="line.141"></a>
+<span class="sourceLineNo">142</span>//    }<a name="line.142"></a>
+<span class="sourceLineNo">143</span>    <a name="line.143"></a>
+<span class="sourceLineNo">144</span>    public PNG8() {<a name="line.144"></a>
+<span class="sourceLineNo">145</span>        this(128 * 128);<a name="line.145"></a>
+<span class="sourceLineNo">146</span>    }<a name="line.146"></a>
+<span class="sourceLineNo">147</span><a name="line.147"></a>
+<span class="sourceLineNo">148</span>    public PNG8(int initialBufferSize) {<a name="line.148"></a>
+<span class="sourceLineNo">149</span>        buffer = new ChunkBuffer(initialBufferSize);<a name="line.149"></a>
+<span class="sourceLineNo">150</span>        deflater = new Deflater();<a name="line.150"></a>
+<span class="sourceLineNo">151</span>    }<a name="line.151"></a>
+<span class="sourceLineNo">152</span><a name="line.152"></a>
+<span class="sourceLineNo">153</span>    /** If true, the resulting PNG is flipped vertically. Default is true. */<a name="line.153"></a>
+<span class="sourceLineNo">154</span>    public void setFlipY (boolean flipY) {<a name="line.154"></a>
+<span class="sourceLineNo">155</span>        this.flipY = flipY;<a name="line.155"></a>
+<span class="sourceLineNo">156</span>    }<a name="line.156"></a>
+<span class="sourceLineNo">157</span><a name="line.157"></a>
+<span class="sourceLineNo">158</span>    /** Sets the deflate compression level. Default is {@link Deflater#DEFAULT_COMPRESSION}. */<a name="line.158"></a>
+<span class="sourceLineNo">159</span>    public void setCompression (int level) {<a name="line.159"></a>
+<span class="sourceLineNo">160</span>        deflater.setLevel(level);<a name="line.160"></a>
+<span class="sourceLineNo">161</span>    }<a name="line.161"></a>
+<span class="sourceLineNo">162</span><a name="line.162"></a>
+<span class="sourceLineNo">163</span>    /**<a name="line.163"></a>
+<span class="sourceLineNo">164</span>     * Writes the given Pixmap to the requested FileHandle, computing an 8-bit palette from the most common colors in<a name="line.164"></a>
+<span class="sourceLineNo">165</span>     * pixmap. If there are 256 or less colors and none are transparent, this will use 256 colors in its palette exactly<a name="line.165"></a>
+<span class="sourceLineNo">166</span>     * with no transparent entry, but if there are more than 256 colors or any are transparent, then one color will be<a name="line.166"></a>
+<span class="sourceLineNo">167</span>     * used for "fully transparent" and 255 opaque colors will be used.<a name="line.167"></a>
+<span class="sourceLineNo">168</span>     * @param file a FileHandle that must be writable, and will have the given Pixmap written as a PNG-8 image<a name="line.168"></a>
+<span class="sourceLineNo">169</span>     * @param pixmap a Pixmap to write to the given file<a name="line.169"></a>
+<span class="sourceLineNo">170</span>     * @throws IOException if file writing fails for any reason<a name="line.170"></a>
+<span class="sourceLineNo">171</span>     */<a name="line.171"></a>
+<span class="sourceLineNo">172</span>    public void write (FileHandle file, Pixmap pixmap) throws IOException {<a name="line.172"></a>
+<span class="sourceLineNo">173</span>        write(file, pixmap, true);<a name="line.173"></a>
+<span class="sourceLineNo">174</span>    }<a name="line.174"></a>
+<span class="sourceLineNo">175</span><a name="line.175"></a>
+<span class="sourceLineNo">176</span>    /**<a name="line.176"></a>
+<span class="sourceLineNo">177</span>     * Writes the given Pixmap to the requested FileHandle, optionally computing an 8-bit palette from the most common<a name="line.177"></a>
+<span class="sourceLineNo">178</span>     * colors in pixmap. When computePalette is true, if there are 256 or less colors and none are transparent, this<a name="line.178"></a>
+<span class="sourceLineNo">179</span>     * will use 256 colors in its palette exactly with no transparent entry, but if there are more than 256 colors or<a name="line.179"></a>
+<span class="sourceLineNo">180</span>     * any are transparent, then one color will be used for "fully transparent" and 255 opaque colors will be used. When<a name="line.180"></a>
+<span class="sourceLineNo">181</span>     * computePalette is false, this uses the last palette this had computed, or a 253-color bold palette with one<a name="line.181"></a>
+<span class="sourceLineNo">182</span>     * fully-transparent color if no palette had been computed yet.<a name="line.182"></a>
+<span class="sourceLineNo">183</span>     * @param file a FileHandle that must be writable, and will have the given Pixmap written as a PNG-8 image<a name="line.183"></a>
+<span class="sourceLineNo">184</span>     * @param pixmap a Pixmap to write to the given file<a name="line.184"></a>
+<span class="sourceLineNo">185</span>     * @param computePalette if true, this will analyze the Pixmap and use the most common colors<a name="line.185"></a>
+<span class="sourceLineNo">186</span>     * @throws IOException if file writing fails for any reason<a name="line.186"></a>
+<span class="sourceLineNo">187</span>     */<a name="line.187"></a>
+<span class="sourceLineNo">188</span>    public void write (FileHandle file, Pixmap pixmap, boolean computePalette) throws IOException {<a name="line.188"></a>
+<span class="sourceLineNo">189</span>        OutputStream output = file.write(false);<a name="line.189"></a>
+<span class="sourceLineNo">190</span>        try {<a name="line.190"></a>
+<span class="sourceLineNo">191</span>            write(output, pixmap, computePalette);<a name="line.191"></a>
+<span class="sourceLineNo">192</span>        } finally {<a name="line.192"></a>
+<span class="sourceLineNo">193</span>            StreamUtils.closeQuietly(output);<a name="line.193"></a>
+<span class="sourceLineNo">194</span>        }<a name="line.194"></a>
+<span class="sourceLineNo">195</span>    }<a name="line.195"></a>
+<span class="sourceLineNo">196</span>    /**<a name="line.196"></a>
+<span class="sourceLineNo">197</span>     * Writes the pixmap to the stream without closing the stream, optionally computing an 8-bit palette from the given<a name="line.197"></a>
+<span class="sourceLineNo">198</span>     * Pixmap. If {@link #palette} is null (the default unless it has been assigned a PaletteReducer value), this will<a name="line.198"></a>
+<span class="sourceLineNo">199</span>     * compute a palette from the given Pixmap regardless of computePalette. Optionally dithers the result if<a name="line.199"></a>
+<span class="sourceLineNo">200</span>     * {@code dither} is true.<a name="line.200"></a>
+<span class="sourceLineNo">201</span>     * @param file a FileHandle that must be writable, and will have the given Pixmap written as a PNG-8 image<a name="line.201"></a>
+<span class="sourceLineNo">202</span>     * @param pixmap a Pixmap to write to the given output stream<a name="line.202"></a>
+<span class="sourceLineNo">203</span>     * @param computePalette if true, this will analyze the Pixmap and use the most common colors<a name="line.203"></a>
+<span class="sourceLineNo">204</span>     * @param dither true if this should dither colors that can't be represented exactly<a name="line.204"></a>
+<span class="sourceLineNo">205</span>     * @throws IOException if file writing fails for any reason<a name="line.205"></a>
+<span class="sourceLineNo">206</span>     */<a name="line.206"></a>
+<span class="sourceLineNo">207</span>    public void write (FileHandle file, Pixmap pixmap, boolean computePalette, boolean dither) throws IOException {<a name="line.207"></a>
+<span class="sourceLineNo">208</span>        OutputStream output = file.write(false);<a name="line.208"></a>
+<span class="sourceLineNo">209</span>        try {<a name="line.209"></a>
+<span class="sourceLineNo">210</span>            write(output, pixmap, computePalette, dither);<a name="line.210"></a>
+<span class="sourceLineNo">211</span>        } finally {<a name="line.211"></a>
+<span class="sourceLineNo">212</span>            StreamUtils.closeQuietly(output);<a name="line.212"></a>
+<span class="sourceLineNo">213</span>        }<a name="line.213"></a>
+<span class="sourceLineNo">214</span>    }<a name="line.214"></a>
+<span class="sourceLineNo">215</span><a name="line.215"></a>
+<span class="sourceLineNo">216</span>    /** Writes the pixmap to the stream without closing the stream and computes an 8-bit palette from the Pixmap.<a name="line.216"></a>
+<span class="sourceLineNo">217</span>     * @param output an OutputStream that will not be closed<a name="line.217"></a>
+<span class="sourceLineNo">218</span>     * @param pixmap a Pixmap to write to the given output stream<a name="line.218"></a>
+<span class="sourceLineNo">219</span>     */<a name="line.219"></a>
+<span class="sourceLineNo">220</span>    public void write (OutputStream output, Pixmap pixmap) throws IOException {<a name="line.220"></a>
+<span class="sourceLineNo">221</span>        write(output, pixmap, true);<a name="line.221"></a>
+<span class="sourceLineNo">222</span>    }<a name="line.222"></a>
+<span class="sourceLineNo">223</span><a name="line.223"></a>
+<span class="sourceLineNo">224</span>    /**<a name="line.224"></a>
+<span class="sourceLineNo">225</span>     * Writes the pixmap to the stream without closing the stream, optionally computing an 8-bit palette from the given<a name="line.225"></a>
+<span class="sourceLineNo">226</span>     * Pixmap. If {@link #palette} is null (the default unless it has been assigned a PaletteReducer value), this will<a name="line.226"></a>
+<span class="sourceLineNo">227</span>     * compute a palette from the given Pixmap regardless of computePalette.<a name="line.227"></a>
+<span class="sourceLineNo">228</span>     * @param output an OutputStream that will not be closed<a name="line.228"></a>
+<span class="sourceLineNo">229</span>     * @param pixmap a Pixmap to write to the given output stream<a name="line.229"></a>
+<span class="sourceLineNo">230</span>     * @param computePalette if true, this will analyze the Pixmap and use the most common colors<a name="line.230"></a>
+<span class="sourceLineNo">231</span>     */<a name="line.231"></a>
+<span class="sourceLineNo">232</span>    public void write (OutputStream output, Pixmap pixmap, boolean computePalette) throws IOException     <a name="line.232"></a>
+<span class="sourceLineNo">233</span>    {<a name="line.233"></a>
+<span class="sourceLineNo">234</span>        write(output, pixmap, computePalette, true);<a name="line.234"></a>
+<span class="sourceLineNo">235</span>    }<a name="line.235"></a>
+<span class="sourceLineNo">236</span><a name="line.236"></a>
+<span class="sourceLineNo">237</span>    /**<a name="line.237"></a>
+<span class="sourceLineNo">238</span>     * Writes the pixmap to the stream without closing the stream, optionally computing an 8-bit palette from the given<a name="line.238"></a>
+<span class="sourceLineNo">239</span>     * Pixmap. If {@link #palette} is null (the default unless it has been assigned a PaletteReducer value), this will<a name="line.239"></a>
+<span class="sourceLineNo">240</span>     * compute a palette from the given Pixmap regardless of computePalette.<a name="line.240"></a>
+<span class="sourceLineNo">241</span>     * @param output an OutputStream that will not be closed<a name="line.241"></a>
+<span class="sourceLineNo">242</span>     * @param pixmap a Pixmap to write to the given output stream<a name="line.242"></a>
+<span class="sourceLineNo">243</span>     * @param computePalette if true, this will analyze the Pixmap and use the most common colors<a name="line.243"></a>
+<span class="sourceLineNo">244</span>     * @param dither true if this should dither colors that can't be represented exactly<a name="line.244"></a>
+<span class="sourceLineNo">245</span>     */<a name="line.245"></a>
+<span class="sourceLineNo">246</span>    public void write (OutputStream output, Pixmap pixmap, boolean computePalette, boolean dither) throws IOException<a name="line.246"></a>
+<span class="sourceLineNo">247</span>    {<a name="line.247"></a>
+<span class="sourceLineNo">248</span>        if(dither) writeDithered(output, pixmap, computePalette);<a name="line.248"></a>
+<span class="sourceLineNo">249</span>        else writeSolid(output, pixmap, computePalette);<a name="line.249"></a>
+<span class="sourceLineNo">250</span>    }<a name="line.250"></a>
+<span class="sourceLineNo">251</span>    private void writeSolid (OutputStream output, Pixmap pixmap, boolean computePalette) throws IOException{<a name="line.251"></a>
+<span class="sourceLineNo">252</span>        DeflaterOutputStream deflaterOutput = new DeflaterOutputStream(buffer, deflater);<a name="line.252"></a>
+<span class="sourceLineNo">253</span>        if(palette == null)<a name="line.253"></a>
+<span class="sourceLineNo">254</span>        {<a name="line.254"></a>
+<span class="sourceLineNo">255</span>            palette = new PaletteReducer(pixmap);<a name="line.255"></a>
+<span class="sourceLineNo">256</span>        }<a name="line.256"></a>
+<span class="sourceLineNo">257</span>        else if(computePalette)<a name="line.257"></a>
+<span class="sourceLineNo">258</span>        {<a name="line.258"></a>
+<span class="sourceLineNo">259</span>            palette.analyze(pixmap);<a name="line.259"></a>
+<span class="sourceLineNo">260</span>        }<a name="line.260"></a>
+<span class="sourceLineNo">261</span>        final int[] paletteArray = palette.paletteArray;<a name="line.261"></a>
+<span class="sourceLineNo">262</span>        final byte[] paletteMapping = palette.paletteMapping;<a name="line.262"></a>
+<span class="sourceLineNo">263</span><a name="line.263"></a>
+<span class="sourceLineNo">264</span><a name="line.264"></a>
+<span class="sourceLineNo">265</span>        DataOutputStream dataOutput = new DataOutputStream(output);<a name="line.265"></a>
+<span class="sourceLineNo">266</span>        dataOutput.write(SIGNATURE);<a name="line.266"></a>
+<span class="sourceLineNo">267</span><a name="line.267"></a>
+<span class="sourceLineNo">268</span>        buffer.writeInt(IHDR);<a name="line.268"></a>
+<span class="sourceLineNo">269</span>        buffer.writeInt(pixmap.getWidth());<a name="line.269"></a>
+<span class="sourceLineNo">270</span>        buffer.writeInt(pixmap.getHeight());<a name="line.270"></a>
+<span class="sourceLineNo">271</span>        buffer.writeByte(8); // 8 bits per component.<a name="line.271"></a>
+<span class="sourceLineNo">272</span>        buffer.writeByte(COLOR_INDEXED);<a name="line.272"></a>
+<span class="sourceLineNo">273</span>        buffer.writeByte(COMPRESSION_DEFLATE);<a name="line.273"></a>
+<span class="sourceLineNo">274</span>        buffer.writeByte(FILTER_NONE);<a name="line.274"></a>
+<span class="sourceLineNo">275</span>        buffer.writeByte(INTERLACE_NONE);<a name="line.275"></a>
+<span class="sourceLineNo">276</span>        buffer.endChunk(dataOutput);<a name="line.276"></a>
+<span class="sourceLineNo">277</span><a name="line.277"></a>
+<span class="sourceLineNo">278</span>        buffer.writeInt(PLTE);<a name="line.278"></a>
+<span class="sourceLineNo">279</span>        for (int i = 0; i &lt; paletteArray.length; i++) {<a name="line.279"></a>
+<span class="sourceLineNo">280</span>            int p = paletteArray[i];<a name="line.280"></a>
+<span class="sourceLineNo">281</span>            buffer.write(p&gt;&gt;&gt;24);<a name="line.281"></a>
+<span class="sourceLineNo">282</span>            buffer.write(p&gt;&gt;&gt;16);<a name="line.282"></a>
+<span class="sourceLineNo">283</span>            buffer.write(p&gt;&gt;&gt;8);<a name="line.283"></a>
+<span class="sourceLineNo">284</span>        }<a name="line.284"></a>
+<span class="sourceLineNo">285</span>        buffer.endChunk(dataOutput);<a name="line.285"></a>
+<span class="sourceLineNo">286</span><a name="line.286"></a>
+<span class="sourceLineNo">287</span>        boolean hasTransparent = false;<a name="line.287"></a>
+<span class="sourceLineNo">288</span>        if(paletteArray[0] == 0) {<a name="line.288"></a>
+<span class="sourceLineNo">289</span>            hasTransparent = true;<a name="line.289"></a>
+<span class="sourceLineNo">290</span>            buffer.writeInt(TRNS);<a name="line.290"></a>
+<span class="sourceLineNo">291</span>            buffer.write(0);<a name="line.291"></a>
+<span class="sourceLineNo">292</span>            buffer.endChunk(dataOutput);<a name="line.292"></a>
+<span class="sourceLineNo">293</span>        }<a name="line.293"></a>
+<span class="sourceLineNo">294</span>        buffer.writeInt(IDAT);<a name="line.294"></a>
+<span class="sourceLineNo">295</span>        deflater.reset();<a name="line.295"></a>
+<span class="sourceLineNo">296</span><a name="line.296"></a>
+<span class="sourceLineNo">297</span>        int lineLen = pixmap.getWidth();<a name="line.297"></a>
+<span class="sourceLineNo">298</span>        byte[] lineOut, curLine, prevLine;<a name="line.298"></a>
+<span class="sourceLineNo">299</span>        if (lineOutBytes == null) {<a name="line.299"></a>
+<span class="sourceLineNo">300</span>            lineOut = (lineOutBytes = new ByteArray(lineLen)).items;<a name="line.300"></a>
+<span class="sourceLineNo">301</span>            curLine = (curLineBytes = new ByteArray(lineLen)).items;<a name="line.301"></a>
+<span class="sourceLineNo">302</span>            prevLine = (prevLineBytes = new ByteArray(lineLen)).items;<a name="line.302"></a>
+<span class="sourceLineNo">303</span>        } else {<a name="line.303"></a>
+<span class="sourceLineNo">304</span>            lineOut = lineOutBytes.ensureCapacity(lineLen);<a name="line.304"></a>
+<span class="sourceLineNo">305</span>            curLine = curLineBytes.ensureCapacity(lineLen);<a name="line.305"></a>
+<span class="sourceLineNo">306</span>            prevLine = prevLineBytes.ensureCapacity(lineLen);<a name="line.306"></a>
+<span class="sourceLineNo">307</span>            for (int i = 0, n = lastLineLen; i &lt; n; i++)<a name="line.307"></a>
+<span class="sourceLineNo">308</span>            {<a name="line.308"></a>
+<span class="sourceLineNo">309</span>                prevLine[i] = 0;<a name="line.309"></a>
+<span class="sourceLineNo">310</span>            }<a name="line.310"></a>
+<span class="sourceLineNo">311</span>        }<a name="line.311"></a>
+<span class="sourceLineNo">312</span><a name="line.312"></a>
+<span class="sourceLineNo">313</span>        lastLineLen = lineLen;<a name="line.313"></a>
+<span class="sourceLineNo">314</span><a name="line.314"></a>
+<span class="sourceLineNo">315</span>        ByteBuffer pixels = pixmap.getPixels();<a name="line.315"></a>
+<span class="sourceLineNo">316</span>        int oldPosition = pixels.position(), color;<a name="line.316"></a>
+<span class="sourceLineNo">317</span>        final int w = pixmap.getWidth();<a name="line.317"></a>
+<span class="sourceLineNo">318</span>        for (int y = 0, h = pixmap.getHeight(); y &lt; h; y++) {<a name="line.318"></a>
+<span class="sourceLineNo">319</span>            int py = flipY ? (h - y - 1) : y;<a name="line.319"></a>
+<span class="sourceLineNo">320</span>            for (int px = 0; px &lt; w; px++) {<a name="line.320"></a>
+<span class="sourceLineNo">321</span>                color = pixmap.getPixel(px, py);<a name="line.321"></a>
+<span class="sourceLineNo">322</span>                if ((color &amp; 0x80) == 0 &amp;&amp; hasTransparent)<a name="line.322"></a>
+<span class="sourceLineNo">323</span>                    curLine[px] = 0;<a name="line.323"></a>
+<span class="sourceLineNo">324</span>                else {<a name="line.324"></a>
+<span class="sourceLineNo">325</span>                    int rr = ((color &gt;&gt;&gt; 24)       );<a name="line.325"></a>
+<span class="sourceLineNo">326</span>                    int gg = ((color &gt;&gt;&gt; 16) &amp; 0xFF);<a name="line.326"></a>
+<span class="sourceLineNo">327</span>                    int bb = ((color &gt;&gt;&gt; 8)  &amp; 0xFF);<a name="line.327"></a>
+<span class="sourceLineNo">328</span>                    curLine[px] = paletteMapping[((rr &lt;&lt; 7) &amp; 0x7C00)<a name="line.328"></a>
+<span class="sourceLineNo">329</span>                                    | ((gg &lt;&lt; 2) &amp; 0x3E0)<a name="line.329"></a>
+<span class="sourceLineNo">330</span>                                    | ((bb &gt;&gt;&gt; 3))];<a name="line.330"></a>
 <span class="sourceLineNo">331</span>                }<a name="line.331"></a>
-<span class="sourceLineNo">332</span>                else<a name="line.332"></a>
-<span class="sourceLineNo">333</span>                {<a name="line.333"></a>
-<span class="sourceLineNo">334</span>                    IntIntMap.Entries es = counts.entries();<a name="line.334"></a>
-<span class="sourceLineNo">335</span>                    SortedIntList&lt;IntIntMap.Entry&gt; sil = new SortedIntList&lt;&gt;();<a name="line.335"></a>
-<span class="sourceLineNo">336</span>                    while (es.hasNext())<a name="line.336"></a>
-<span class="sourceLineNo">337</span>                    {<a name="line.337"></a>
-<span class="sourceLineNo">338</span>                        IntIntMap.Entry ent = es.next(), ent2 = new IntIntMap.Entry();<a name="line.338"></a>
-<span class="sourceLineNo">339</span>                        ent2.key = ent.key;<a name="line.339"></a>
-<span class="sourceLineNo">340</span>                        ent2.value = ent.value;<a name="line.340"></a>
-<span class="sourceLineNo">341</span>                        sil.insert(-ent.value, ent2);<a name="line.341"></a>
-<span class="sourceLineNo">342</span>                    }<a name="line.342"></a>
-<span class="sourceLineNo">343</span>                    Arrays.fill(paletteMapping, (byte) 0);<a name="line.343"></a>
-<span class="sourceLineNo">344</span>                    Iterator&lt;SortedIntList.Node&lt;IntIntMap.Entry&gt;&gt; it = sil.iterator();<a name="line.344"></a>
-<span class="sourceLineNo">345</span>                    int[] reds = new int[256], greens = new int[256], blues = new int[256]; <a name="line.345"></a>
-<span class="sourceLineNo">346</span>                    for (int i = 1; i &lt; 256 &amp;&amp; it.hasNext(); i++) {<a name="line.346"></a>
-<span class="sourceLineNo">347</span>                        color = it.next().value.key;<a name="line.347"></a>
-<span class="sourceLineNo">348</span>                        paletteArray[i] = color;<a name="line.348"></a>
-<span class="sourceLineNo">349</span>                        color = (color &gt;&gt;&gt; 17 &amp; 0x7C00) | (color &gt;&gt;&gt; 14 &amp; 0x3E0) | (color &gt;&gt;&gt; 11 &amp; 0x1F);<a name="line.349"></a>
-<span class="sourceLineNo">350</span>                        paletteMapping[color] = (byte) i;<a name="line.350"></a>
-<span class="sourceLineNo">351</span>                        reds[i] = color &gt;&gt;&gt; 10;<a name="line.351"></a>
-<span class="sourceLineNo">352</span>                        greens[i] = color &gt;&gt;&gt; 5 &amp; 31;<a name="line.352"></a>
-<span class="sourceLineNo">353</span>                        blues[i] = color &amp; 31;<a name="line.353"></a>
-<span class="sourceLineNo">354</span>                    }<a name="line.354"></a>
-<span class="sourceLineNo">355</span>                    int c2, dist;<a name="line.355"></a>
-<span class="sourceLineNo">356</span>                    for (int r = 0; r &lt; 32; r++) {<a name="line.356"></a>
-<span class="sourceLineNo">357</span>                        for (int g = 0; g &lt; 32; g++) {<a name="line.357"></a>
-<span class="sourceLineNo">358</span>                            for (int b = 0; b &lt; 32; b++) {<a name="line.358"></a>
-<span class="sourceLineNo">359</span>                                c2 = r &lt;&lt; 10 | g &lt;&lt; 5 | b;<a name="line.359"></a>
-<span class="sourceLineNo">360</span>                                if(paletteMapping[c2] == 0)<a name="line.360"></a>
-<span class="sourceLineNo">361</span>                                {<a name="line.361"></a>
-<span class="sourceLineNo">362</span>                                    dist = 0x7FFFFFFF;<a name="line.362"></a>
-<span class="sourceLineNo">363</span>                                    for (int i = 1; i &lt; 256; i++) {<a name="line.363"></a>
-<span class="sourceLineNo">364</span>//                                        if(dist &gt; (dist = Math.min(dist, quickDistance(reds[i] - r, greens[i] - g, blues[i] - b))))<a name="line.364"></a>
-<span class="sourceLineNo">365</span>                                        if(dist &gt; (dist = Math.min(dist, difference2(reds[i], r, greens[i], g, blues[i], b))))<a name="line.365"></a>
-<span class="sourceLineNo">366</span>                                            paletteMapping[c2] = (byte)i;<a name="line.366"></a>
-<span class="sourceLineNo">367</span>                                    }<a name="line.367"></a>
-<span class="sourceLineNo">368</span>                                }<a name="line.368"></a>
-<span class="sourceLineNo">369</span>                            }<a name="line.369"></a>
-<span class="sourceLineNo">370</span>                        }<a name="line.370"></a>
-<span class="sourceLineNo">371</span>                    }<a name="line.371"></a>
-<span class="sourceLineNo">372</span>                }<a name="line.372"></a>
-<span class="sourceLineNo">373</span><a name="line.373"></a>
-<span class="sourceLineNo">374</span>            }<a name="line.374"></a>
-<span class="sourceLineNo">375</span>            case RGB888: {<a name="line.375"></a>
-<span class="sourceLineNo">376</span>                while (pixels.remaining() &gt;= 6) {<a name="line.376"></a>
-<span class="sourceLineNo">377</span>                    color = (pixels.getInt() &amp; 0xF8F8F800);<a name="line.377"></a>
-<span class="sourceLineNo">378</span>                    color |= (color &gt;&gt;&gt; 5 &amp; 0x07070700) | 0xFE;<a name="line.378"></a>
-<span class="sourceLineNo">379</span>                    pixels.position(pixels.position() - 1);<a name="line.379"></a>
-<span class="sourceLineNo">380</span>                    counts.getAndIncrement(color, 0, 1);<a name="line.380"></a>
-<span class="sourceLineNo">381</span>                }<a name="line.381"></a>
-<span class="sourceLineNo">382</span>                if (pixels.remaining() &gt;= 3) {<a name="line.382"></a>
-<span class="sourceLineNo">383</span>                    color = ((pixels.get() &amp; 0xF8) &lt;&lt; 24 | (pixels.get() &amp; 0xF8) &lt;&lt; 16 | (pixels.get() &amp; 0xF8) &lt;&lt; 8);<a name="line.383"></a>
-<span class="sourceLineNo">384</span>                    color |= (color &gt;&gt;&gt; 5 &amp; 0x07070700) | 0xFE;<a name="line.384"></a>
-<span class="sourceLineNo">385</span>                    counts.getAndIncrement(color, 0, 1);<a name="line.385"></a>
-<span class="sourceLineNo">386</span>                }<a name="line.386"></a>
-<span class="sourceLineNo">387</span>                if(counts.size &lt;= 256)<a name="line.387"></a>
-<span class="sourceLineNo">388</span>                {<a name="line.388"></a>
-<span class="sourceLineNo">389</span>                    int idx = 0;<a name="line.389"></a>
-<span class="sourceLineNo">390</span>                    IntIntMap.Keys ks = counts.keys();<a name="line.390"></a>
-<span class="sourceLineNo">391</span>                    while(ks.hasNext())<a name="line.391"></a>
-<span class="sourceLineNo">392</span>                    {<a name="line.392"></a>
-<span class="sourceLineNo">393</span>                        color = ks.next();<a name="line.393"></a>
-<span class="sourceLineNo">394</span>                        paletteArray[idx] = color;<a name="line.394"></a>
-<span class="sourceLineNo">395</span>                        paletteMapping[(color &gt;&gt;&gt; 17 &amp; 0x7C00) | (color &gt;&gt;&gt; 14 &amp; 0x3E0) | (color &gt;&gt;&gt; 11 &amp; 0x1F)] = (byte) idx++;<a name="line.395"></a>
-<span class="sourceLineNo">396</span>                    }<a name="line.396"></a>
-<span class="sourceLineNo">397</span>                }<a name="line.397"></a>
-<span class="sourceLineNo">398</span>                else<a name="line.398"></a>
-<span class="sourceLineNo">399</span>                {<a name="line.399"></a>
-<span class="sourceLineNo">400</span>                    IntIntMap.Entries es = counts.entries();<a name="line.400"></a>
-<span class="sourceLineNo">401</span>                    SortedIntList&lt;IntIntMap.Entry&gt; sil = new SortedIntList&lt;&gt;();<a name="line.401"></a>
-<span class="sourceLineNo">402</span>                    while (es.hasNext())<a name="line.402"></a>
-<span class="sourceLineNo">403</span>                    {<a name="line.403"></a>
-<span class="sourceLineNo">404</span>                        IntIntMap.Entry ent = es.next(), ent2 = new IntIntMap.Entry();<a name="line.404"></a>
-<span class="sourceLineNo">405</span>                        ent2.key = ent.key;<a name="line.405"></a>
-<span class="sourceLineNo">406</span>                        ent2.value = ent.value;<a name="line.406"></a>
-<span class="sourceLineNo">407</span>                        sil.insert(-ent.value, ent2);<a name="line.407"></a>
-<span class="sourceLineNo">408</span>                    }<a name="line.408"></a>
-<span class="sourceLineNo">409</span>                    Arrays.fill(paletteMapping, (byte) 0);<a name="line.409"></a>
-<span class="sourceLineNo">410</span>                    Iterator&lt;SortedIntList.Node&lt;IntIntMap.Entry&gt;&gt; it = sil.iterator();<a name="line.410"></a>
-<span class="sourceLineNo">411</span>                    int[] reds = new int[256], greens = new int[256], blues = new int[256];<a name="line.411"></a>
-<span class="sourceLineNo">412</span>                    for (int i = 1; i &lt; 256 &amp;&amp; it.hasNext(); i++) {<a name="line.412"></a>
-<span class="sourceLineNo">413</span>                        color = it.next().value.key;<a name="line.413"></a>
-<span class="sourceLineNo">414</span>                        paletteArray[i] = color;<a name="line.414"></a>
-<span class="sourceLineNo">415</span>                        color = (color &gt;&gt;&gt; 17 &amp; 0x7C00) | (color &gt;&gt;&gt; 14 &amp; 0x3E0) | (color &gt;&gt;&gt; 11 &amp; 0x1F);<a name="line.415"></a>
-<span class="sourceLineNo">416</span>                        paletteMapping[color] = (byte) i;<a name="line.416"></a>
-<span class="sourceLineNo">417</span>                        reds[i] = color &gt;&gt;&gt; 10;<a name="line.417"></a>
-<span class="sourceLineNo">418</span>                        greens[i] = color &gt;&gt;&gt; 5 &amp; 31;<a name="line.418"></a>
-<span class="sourceLineNo">419</span>                        blues[i] = color &amp; 31;<a name="line.419"></a>
-<span class="sourceLineNo">420</span>                    }<a name="line.420"></a>
-<span class="sourceLineNo">421</span>                    int c2, dist;<a name="line.421"></a>
-<span class="sourceLineNo">422</span>                    for (int r = 0; r &lt; 32; r++) {<a name="line.422"></a>
-<span class="sourceLineNo">423</span>                        for (int g = 0; g &lt; 32; g++) {<a name="line.423"></a>
-<span class="sourceLineNo">424</span>                            for (int b = 0; b &lt; 32; b++) {<a name="line.424"></a>
-<span class="sourceLineNo">425</span>                                c2 = r &lt;&lt; 10 | g &lt;&lt; 5 | b;<a name="line.425"></a>
-<span class="sourceLineNo">426</span>                                if(paletteMapping[c2] == 0)<a name="line.426"></a>
-<span class="sourceLineNo">427</span>                                {<a name="line.427"></a>
-<span class="sourceLineNo">428</span>                                    dist = 0x7FFFFFFF;<a name="line.428"></a>
-<span class="sourceLineNo">429</span>                                    for (int i = 1; i &lt; 256; i++) {<a name="line.429"></a>
-<span class="sourceLineNo">430</span>                                        if(dist &gt; (dist = Math.min(dist, difference2(reds[i], r, greens[i], g, blues[i], b))))<a name="line.430"></a>
-<span class="sourceLineNo">431</span>                                            paletteMapping[c2] = (byte)i;<a name="line.431"></a>
-<span class="sourceLineNo">432</span>                                    }<a name="line.432"></a>
-<span class="sourceLineNo">433</span>                                }<a name="line.433"></a>
-<span class="sourceLineNo">434</span>                            }<a name="line.434"></a>
-<span class="sourceLineNo">435</span>                        }<a name="line.435"></a>
-<span class="sourceLineNo">436</span>                    }<a name="line.436"></a>
-<span class="sourceLineNo">437</span>                }<a name="line.437"></a>
-<span class="sourceLineNo">438</span><a name="line.438"></a>
-<span class="sourceLineNo">439</span>            }<a name="line.439"></a>
-<span class="sourceLineNo">440</span>        }<a name="line.440"></a>
-<span class="sourceLineNo">441</span>        pixels.rewind();<a name="line.441"></a>
-<span class="sourceLineNo">442</span>        //compressed = (color &gt;&gt;&gt; 17 &amp; 0x7C00) | (color &gt;&gt;&gt; 14 &amp; 0x3E0) | (color &gt;&gt;&gt; 11 &amp; 0x1F);<a name="line.442"></a>
-<span class="sourceLineNo">443</span>    }<a name="line.443"></a>
-<span class="sourceLineNo">444</span><a name="line.444"></a>
-<span class="sourceLineNo">445</span><a name="line.445"></a>
-<span class="sourceLineNo">446</span>    public PNG8() {<a name="line.446"></a>
-<span class="sourceLineNo">447</span>        this(128 * 128);<a name="line.447"></a>
-<span class="sourceLineNo">448</span>    }<a name="line.448"></a>
-<span class="sourceLineNo">449</span><a name="line.449"></a>
-<span class="sourceLineNo">450</span>    public PNG8(int initialBufferSize) {<a name="line.450"></a>
-<span class="sourceLineNo">451</span>        buffer = new ChunkBuffer(initialBufferSize);<a name="line.451"></a>
-<span class="sourceLineNo">452</span>        deflater = new Deflater();<a name="line.452"></a>
-<span class="sourceLineNo">453</span>        build253Palette();<a name="line.453"></a>
-<span class="sourceLineNo">454</span>    }<a name="line.454"></a>
-<span class="sourceLineNo">455</span><a name="line.455"></a>
-<span class="sourceLineNo">456</span>    /** If true, the resulting PNG is flipped vertically. Default is true. */<a name="line.456"></a>
-<span class="sourceLineNo">457</span>    public void setFlipY (boolean flipY) {<a name="line.457"></a>
-<span class="sourceLineNo">458</span>        this.flipY = flipY;<a name="line.458"></a>
-<span class="sourceLineNo">459</span>    }<a name="line.459"></a>
-<span class="sourceLineNo">460</span><a name="line.460"></a>
-<span class="sourceLineNo">461</span>    /** Sets the deflate compression level. Default is {@link Deflater#DEFAULT_COMPRESSION}. */<a name="line.461"></a>
-<span class="sourceLineNo">462</span>    public void setCompression (int level) {<a name="line.462"></a>
-<span class="sourceLineNo">463</span>        deflater.setLevel(level);<a name="line.463"></a>
-<span class="sourceLineNo">464</span>    }<a name="line.464"></a>
-<span class="sourceLineNo">465</span><a name="line.465"></a>
-<span class="sourceLineNo">466</span>    /**<a name="line.466"></a>
-<span class="sourceLineNo">467</span>     * Writes the given Pixmap to the requested FileHandle, computing an 8-bit palette from the most common colors in<a name="line.467"></a>
-<span class="sourceLineNo">468</span>     * pixmap. If there are 256 or less colors and none are transparent, this will use 256 colors in its palette exactly<a name="line.468"></a>
-<span class="sourceLineNo">469</span>     * with no transparent entry, but if there are more than 256 colors or any are transparent, then one color will be<a name="line.469"></a>
-<span class="sourceLineNo">470</span>     * used for "fully transparent" and 255 opaque colors will be used.<a name="line.470"></a>
-<span class="sourceLineNo">471</span>     * @param file a FileHandle that must be writable, and will have the given Pixmap written as a PNG-8 image<a name="line.471"></a>
-<span class="sourceLineNo">472</span>     * @param pixmap a Pixmap to write to the given file<a name="line.472"></a>
-<span class="sourceLineNo">473</span>     * @throws IOException if file writing fails for any reason<a name="line.473"></a>
-<span class="sourceLineNo">474</span>     */<a name="line.474"></a>
-<span class="sourceLineNo">475</span>    public void write (FileHandle file, Pixmap pixmap) throws IOException {<a name="line.475"></a>
-<span class="sourceLineNo">476</span>        write(file, pixmap, true);<a name="line.476"></a>
-<span class="sourceLineNo">477</span>    }<a name="line.477"></a>
-<span class="sourceLineNo">478</span><a name="line.478"></a>
-<span class="sourceLineNo">479</span>    /**<a name="line.479"></a>
-<span class="sourceLineNo">480</span>     * Writes the given Pixmap to the requested FileHandle, optionally computing an 8-bit palette from the most common<a name="line.480"></a>
-<span class="sourceLineNo">481</span>     * colors in pixmap. When computePalette is true, if there are 256 or less colors and none are transparent, this<a name="line.481"></a>
-<span class="sourceLineNo">482</span>     * will use 256 colors in its palette exactly with no transparent entry, but if there are more than 256 colors or<a name="line.482"></a>
-<span class="sourceLineNo">483</span>     * any are transparent, then one color will be used for "fully transparent" and 255 opaque colors will be used. When<a name="line.483"></a>
-<span class="sourceLineNo">484</span>     * computePalette is false, this uses the last palette this had computed, or a 253-color bold palette with one<a name="line.484"></a>
-<span class="sourceLineNo">485</span>     * fully-transparent color if no palette had been computed yet.<a name="line.485"></a>
-<span class="sourceLineNo">486</span>     * @param file a FileHandle that must be writable, and will have the given Pixmap written as a PNG-8 image<a name="line.486"></a>
-<span class="sourceLineNo">487</span>     * @param pixmap a Pixmap to write to the given file<a name="line.487"></a>
-<span class="sourceLineNo">488</span>     * @param computePalette if true, this will analyze the Pixmap and use the most common colors<a name="line.488"></a>
-<span class="sourceLineNo">489</span>     * @throws IOException if file writing fails for any reason<a name="line.489"></a>
-<span class="sourceLineNo">490</span>     */<a name="line.490"></a>
-<span class="sourceLineNo">491</span>    public void write (FileHandle file, Pixmap pixmap, boolean computePalette) throws IOException {<a name="line.491"></a>
-<span class="sourceLineNo">492</span>        OutputStream output = file.write(false);<a name="line.492"></a>
-<span class="sourceLineNo">493</span>        try {<a name="line.493"></a>
-<span class="sourceLineNo">494</span>            write(output, pixmap, computePalette);<a name="line.494"></a>
-<span class="sourceLineNo">495</span>        } finally {<a name="line.495"></a>
-<span class="sourceLineNo">496</span>            StreamUtils.closeQuietly(output);<a name="line.496"></a>
-<span class="sourceLineNo">497</span>        }<a name="line.497"></a>
-<span class="sourceLineNo">498</span>    }<a name="line.498"></a>
-<span class="sourceLineNo">499</span><a name="line.499"></a>
-<span class="sourceLineNo">500</span>    /** Writes the pixmap to the stream without closing the stream and computes an 8-bit palette from the Pixmap.<a name="line.500"></a>
-<span class="sourceLineNo">501</span>     * @param output an OutputStream that will not be closed<a name="line.501"></a>
-<span class="sourceLineNo">502</span>     * @param pixmap a Pixmap to write to the given output stream<a name="line.502"></a>
-<span class="sourceLineNo">503</span>     */<a name="line.503"></a>
-<span class="sourceLineNo">504</span>    public void write (OutputStream output, Pixmap pixmap) throws IOException {<a name="line.504"></a>
-<span class="sourceLineNo">505</span>        write(output, pixmap, true);<a name="line.505"></a>
-<span class="sourceLineNo">506</span>    }<a name="line.506"></a>
-<span class="sourceLineNo">507</span><a name="line.507"></a>
-<span class="sourceLineNo">508</span>    /**<a name="line.508"></a>
-<span class="sourceLineNo">509</span>     * Writes the pixmap to the stream without closing the stream,<a name="line.509"></a>
-<span class="sourceLineNo">510</span>     * optionally computing an 8-bit palette from the Pixmap.<a name="line.510"></a>
-<span class="sourceLineNo">511</span>     * @param output an OutputStream that will not be closed<a name="line.511"></a>
-<span class="sourceLineNo">512</span>     * @param pixmap a Pixmap to write to the given output stream<a name="line.512"></a>
-<span class="sourceLineNo">513</span>     * @param computePalette if true, this will analyze the Pixmap and use the most common colors<a name="line.513"></a>
-<span class="sourceLineNo">514</span>     */<a name="line.514"></a>
-<span class="sourceLineNo">515</span>    public void write (OutputStream output, Pixmap pixmap, boolean computePalette) throws IOException {<a name="line.515"></a>
-<span class="sourceLineNo">516</span>        DeflaterOutputStream deflaterOutput = new DeflaterOutputStream(buffer, deflater);<a name="line.516"></a>
-<span class="sourceLineNo">517</span>        if(computePalette) <a name="line.517"></a>
-<span class="sourceLineNo">518</span>            buildComputedPalette(pixmap);<a name="line.518"></a>
-<span class="sourceLineNo">519</span>        DataOutputStream dataOutput = new DataOutputStream(output);<a name="line.519"></a>
-<span class="sourceLineNo">520</span>        dataOutput.write(SIGNATURE);<a name="line.520"></a>
-<span class="sourceLineNo">521</span><a name="line.521"></a>
-<span class="sourceLineNo">522</span>        buffer.writeInt(IHDR);<a name="line.522"></a>
-<span class="sourceLineNo">523</span>        buffer.writeInt(pixmap.getWidth());<a name="line.523"></a>
-<span class="sourceLineNo">524</span>        buffer.writeInt(pixmap.getHeight());<a name="line.524"></a>
-<span class="sourceLineNo">525</span>        buffer.writeByte(8); // 8 bits per component.<a name="line.525"></a>
-<span class="sourceLineNo">526</span>        buffer.writeByte(COLOR_INDEXED);<a name="line.526"></a>
-<span class="sourceLineNo">527</span>        buffer.writeByte(COMPRESSION_DEFLATE);<a name="line.527"></a>
-<span class="sourceLineNo">528</span>        buffer.writeByte(FILTER_NONE);<a name="line.528"></a>
-<span class="sourceLineNo">529</span>        buffer.writeByte(INTERLACE_NONE);<a name="line.529"></a>
-<span class="sourceLineNo">530</span>        buffer.endChunk(dataOutput);<a name="line.530"></a>
-<span class="sourceLineNo">531</span>        <a name="line.531"></a>
-<span class="sourceLineNo">532</span>        buffer.writeInt(PLTE);<a name="line.532"></a>
-<span class="sourceLineNo">533</span>        for (int i = 0; i &lt; paletteArray.length; i++) {<a name="line.533"></a>
-<span class="sourceLineNo">534</span>            int p = paletteArray[i];<a name="line.534"></a>
-<span class="sourceLineNo">535</span>            buffer.write(p&gt;&gt;&gt;24);<a name="line.535"></a>
-<span class="sourceLineNo">536</span>            buffer.write(p&gt;&gt;&gt;16);<a name="line.536"></a>
-<span class="sourceLineNo">537</span>            buffer.write(p&gt;&gt;&gt;8);<a name="line.537"></a>
-<span class="sourceLineNo">538</span>        }<a name="line.538"></a>
-<span class="sourceLineNo">539</span>        buffer.endChunk(dataOutput);<a name="line.539"></a>
-<span class="sourceLineNo">540</span>        if(paletteArray[0] == 0) {<a name="line.540"></a>
-<span class="sourceLineNo">541</span>            buffer.writeInt(TRNS);<a name="line.541"></a>
-<span class="sourceLineNo">542</span>            buffer.write(0);<a name="line.542"></a>
-<span class="sourceLineNo">543</span>            buffer.endChunk(dataOutput);<a name="line.543"></a>
-<span class="sourceLineNo">544</span>        }<a name="line.544"></a>
-<span class="sourceLineNo">545</span>        buffer.writeInt(IDAT);<a name="line.545"></a>
-<span class="sourceLineNo">546</span>        deflater.reset();<a name="line.546"></a>
+<span class="sourceLineNo">332</span>            }<a name="line.332"></a>
+<span class="sourceLineNo">333</span><a name="line.333"></a>
+<span class="sourceLineNo">334</span>            lineOut[0] = (byte)(curLine[0] - prevLine[0]);<a name="line.334"></a>
+<span class="sourceLineNo">335</span><a name="line.335"></a>
+<span class="sourceLineNo">336</span>            //Paeth<a name="line.336"></a>
+<span class="sourceLineNo">337</span>            for (int x = 1; x &lt; lineLen; x++) {<a name="line.337"></a>
+<span class="sourceLineNo">338</span>                int a = curLine[x - 1] &amp; 0xff;<a name="line.338"></a>
+<span class="sourceLineNo">339</span>                int b = prevLine[x] &amp; 0xff;<a name="line.339"></a>
+<span class="sourceLineNo">340</span>                int c = prevLine[x - 1] &amp; 0xff;<a name="line.340"></a>
+<span class="sourceLineNo">341</span>                int p = a + b - c;<a name="line.341"></a>
+<span class="sourceLineNo">342</span>                int pa = p - a;<a name="line.342"></a>
+<span class="sourceLineNo">343</span>                if (pa &lt; 0) pa = -pa;<a name="line.343"></a>
+<span class="sourceLineNo">344</span>                int pb = p - b;<a name="line.344"></a>
+<span class="sourceLineNo">345</span>                if (pb &lt; 0) pb = -pb;<a name="line.345"></a>
+<span class="sourceLineNo">346</span>                int pc = p - c;<a name="line.346"></a>
+<span class="sourceLineNo">347</span>                if (pc &lt; 0) pc = -pc;<a name="line.347"></a>
+<span class="sourceLineNo">348</span>                if (pa &lt;= pb &amp;&amp; pa &lt;= pc)<a name="line.348"></a>
+<span class="sourceLineNo">349</span>                    c = a;<a name="line.349"></a>
+<span class="sourceLineNo">350</span>                else if (pb &lt;= pc)<a name="line.350"></a>
+<span class="sourceLineNo">351</span>                    c = b;<a name="line.351"></a>
+<span class="sourceLineNo">352</span>                lineOut[x] = (byte)(curLine[x] - c);<a name="line.352"></a>
+<span class="sourceLineNo">353</span>            }<a name="line.353"></a>
+<span class="sourceLineNo">354</span><a name="line.354"></a>
+<span class="sourceLineNo">355</span>            deflaterOutput.write(PAETH);<a name="line.355"></a>
+<span class="sourceLineNo">356</span>            deflaterOutput.write(lineOut, 0, lineLen);<a name="line.356"></a>
+<span class="sourceLineNo">357</span><a name="line.357"></a>
+<span class="sourceLineNo">358</span>            byte[] temp = curLine;<a name="line.358"></a>
+<span class="sourceLineNo">359</span>            curLine = prevLine;<a name="line.359"></a>
+<span class="sourceLineNo">360</span>            prevLine = temp;<a name="line.360"></a>
+<span class="sourceLineNo">361</span>        }<a name="line.361"></a>
+<span class="sourceLineNo">362</span>        pixels.position(oldPosition);<a name="line.362"></a>
+<span class="sourceLineNo">363</span>        deflaterOutput.finish();<a name="line.363"></a>
+<span class="sourceLineNo">364</span>        buffer.endChunk(dataOutput);<a name="line.364"></a>
+<span class="sourceLineNo">365</span><a name="line.365"></a>
+<span class="sourceLineNo">366</span>        buffer.writeInt(IEND);<a name="line.366"></a>
+<span class="sourceLineNo">367</span>        buffer.endChunk(dataOutput);<a name="line.367"></a>
+<span class="sourceLineNo">368</span><a name="line.368"></a>
+<span class="sourceLineNo">369</span>        output.flush();<a name="line.369"></a>
+<span class="sourceLineNo">370</span>    }<a name="line.370"></a>
+<span class="sourceLineNo">371</span><a name="line.371"></a>
+<span class="sourceLineNo">372</span>    private void writeDithered (OutputStream output, Pixmap pixmap, boolean computePalette) throws IOException{<a name="line.372"></a>
+<span class="sourceLineNo">373</span>        DeflaterOutputStream deflaterOutput = new DeflaterOutputStream(buffer, deflater);<a name="line.373"></a>
+<span class="sourceLineNo">374</span>        if(palette == null)<a name="line.374"></a>
+<span class="sourceLineNo">375</span>        {<a name="line.375"></a>
+<span class="sourceLineNo">376</span>            palette = new PaletteReducer(pixmap);<a name="line.376"></a>
+<span class="sourceLineNo">377</span>        }<a name="line.377"></a>
+<span class="sourceLineNo">378</span>        else if(computePalette)<a name="line.378"></a>
+<span class="sourceLineNo">379</span>        {<a name="line.379"></a>
+<span class="sourceLineNo">380</span>            palette.analyze(pixmap);<a name="line.380"></a>
+<span class="sourceLineNo">381</span>        }<a name="line.381"></a>
+<span class="sourceLineNo">382</span>        final int[] paletteArray = palette.paletteArray;<a name="line.382"></a>
+<span class="sourceLineNo">383</span>        final byte[] paletteMapping = palette.paletteMapping;<a name="line.383"></a>
+<span class="sourceLineNo">384</span><a name="line.384"></a>
+<span class="sourceLineNo">385</span><a name="line.385"></a>
+<span class="sourceLineNo">386</span>        DataOutputStream dataOutput = new DataOutputStream(output);<a name="line.386"></a>
+<span class="sourceLineNo">387</span>        dataOutput.write(SIGNATURE);<a name="line.387"></a>
+<span class="sourceLineNo">388</span><a name="line.388"></a>
+<span class="sourceLineNo">389</span>        buffer.writeInt(IHDR);<a name="line.389"></a>
+<span class="sourceLineNo">390</span>        buffer.writeInt(pixmap.getWidth());<a name="line.390"></a>
+<span class="sourceLineNo">391</span>        buffer.writeInt(pixmap.getHeight());<a name="line.391"></a>
+<span class="sourceLineNo">392</span>        buffer.writeByte(8); // 8 bits per component.<a name="line.392"></a>
+<span class="sourceLineNo">393</span>        buffer.writeByte(COLOR_INDEXED);<a name="line.393"></a>
+<span class="sourceLineNo">394</span>        buffer.writeByte(COMPRESSION_DEFLATE);<a name="line.394"></a>
+<span class="sourceLineNo">395</span>        buffer.writeByte(FILTER_NONE);<a name="line.395"></a>
+<span class="sourceLineNo">396</span>        buffer.writeByte(INTERLACE_NONE);<a name="line.396"></a>
+<span class="sourceLineNo">397</span>        buffer.endChunk(dataOutput);<a name="line.397"></a>
+<span class="sourceLineNo">398</span><a name="line.398"></a>
+<span class="sourceLineNo">399</span>        buffer.writeInt(PLTE);<a name="line.399"></a>
+<span class="sourceLineNo">400</span>        for (int i = 0; i &lt; paletteArray.length; i++) {<a name="line.400"></a>
+<span class="sourceLineNo">401</span>            int p = paletteArray[i];<a name="line.401"></a>
+<span class="sourceLineNo">402</span>            buffer.write(p&gt;&gt;&gt;24);<a name="line.402"></a>
+<span class="sourceLineNo">403</span>            buffer.write(p&gt;&gt;&gt;16);<a name="line.403"></a>
+<span class="sourceLineNo">404</span>            buffer.write(p&gt;&gt;&gt;8);<a name="line.404"></a>
+<span class="sourceLineNo">405</span>        }<a name="line.405"></a>
+<span class="sourceLineNo">406</span>        buffer.endChunk(dataOutput);<a name="line.406"></a>
+<span class="sourceLineNo">407</span><a name="line.407"></a>
+<span class="sourceLineNo">408</span>        boolean hasTransparent = false;<a name="line.408"></a>
+<span class="sourceLineNo">409</span>        if(paletteArray[0] == 0) {<a name="line.409"></a>
+<span class="sourceLineNo">410</span>            hasTransparent = true;<a name="line.410"></a>
+<span class="sourceLineNo">411</span>            buffer.writeInt(TRNS);<a name="line.411"></a>
+<span class="sourceLineNo">412</span>            buffer.write(0);<a name="line.412"></a>
+<span class="sourceLineNo">413</span>            buffer.endChunk(dataOutput);<a name="line.413"></a>
+<span class="sourceLineNo">414</span>        }<a name="line.414"></a>
+<span class="sourceLineNo">415</span>        buffer.writeInt(IDAT);<a name="line.415"></a>
+<span class="sourceLineNo">416</span>        deflater.reset();<a name="line.416"></a>
+<span class="sourceLineNo">417</span><a name="line.417"></a>
+<span class="sourceLineNo">418</span>        int lineLen = pixmap.getWidth();<a name="line.418"></a>
+<span class="sourceLineNo">419</span>        byte[] lineOut, curLine, prevLine;<a name="line.419"></a>
+<span class="sourceLineNo">420</span>        byte[] curErrorRed, nextErrorRed, curErrorGreen, nextErrorGreen, curErrorBlue, nextErrorBlue;<a name="line.420"></a>
+<span class="sourceLineNo">421</span>        if (lineOutBytes == null) {<a name="line.421"></a>
+<span class="sourceLineNo">422</span>            lineOut = (lineOutBytes = new ByteArray(lineLen)).items;<a name="line.422"></a>
+<span class="sourceLineNo">423</span>            curLine = (curLineBytes = new ByteArray(lineLen)).items;<a name="line.423"></a>
+<span class="sourceLineNo">424</span>            prevLine = (prevLineBytes = new ByteArray(lineLen)).items;<a name="line.424"></a>
+<span class="sourceLineNo">425</span>        } else {<a name="line.425"></a>
+<span class="sourceLineNo">426</span>            lineOut = lineOutBytes.ensureCapacity(lineLen);<a name="line.426"></a>
+<span class="sourceLineNo">427</span>            curLine = curLineBytes.ensureCapacity(lineLen);<a name="line.427"></a>
+<span class="sourceLineNo">428</span>            prevLine = prevLineBytes.ensureCapacity(lineLen);<a name="line.428"></a>
+<span class="sourceLineNo">429</span>            for (int i = 0, n = lastLineLen; i &lt; n; i++)<a name="line.429"></a>
+<span class="sourceLineNo">430</span>            {<a name="line.430"></a>
+<span class="sourceLineNo">431</span>                prevLine[i] = 0;<a name="line.431"></a>
+<span class="sourceLineNo">432</span>            }<a name="line.432"></a>
+<span class="sourceLineNo">433</span>        }<a name="line.433"></a>
+<span class="sourceLineNo">434</span>        if(palette.curErrorRedBytes == null)<a name="line.434"></a>
+<span class="sourceLineNo">435</span>        {<a name="line.435"></a>
+<span class="sourceLineNo">436</span>            curErrorRed = (palette.curErrorRedBytes = new ByteArray(lineLen)).items;<a name="line.436"></a>
+<span class="sourceLineNo">437</span>            nextErrorRed = (palette.nextErrorRedBytes = new ByteArray(lineLen)).items;<a name="line.437"></a>
+<span class="sourceLineNo">438</span>            curErrorGreen = (palette.curErrorGreenBytes = new ByteArray(lineLen)).items;<a name="line.438"></a>
+<span class="sourceLineNo">439</span>            nextErrorGreen = (palette.nextErrorGreenBytes = new ByteArray(lineLen)).items;<a name="line.439"></a>
+<span class="sourceLineNo">440</span>            curErrorBlue = (palette.curErrorBlueBytes = new ByteArray(lineLen)).items;<a name="line.440"></a>
+<span class="sourceLineNo">441</span>            nextErrorBlue = (palette.nextErrorBlueBytes = new ByteArray(lineLen)).items;<a name="line.441"></a>
+<span class="sourceLineNo">442</span>        } else {<a name="line.442"></a>
+<span class="sourceLineNo">443</span>            curErrorRed = palette.curErrorRedBytes.ensureCapacity(lineLen);<a name="line.443"></a>
+<span class="sourceLineNo">444</span>            nextErrorRed = palette.nextErrorRedBytes.ensureCapacity(lineLen);<a name="line.444"></a>
+<span class="sourceLineNo">445</span>            curErrorGreen = palette.curErrorGreenBytes.ensureCapacity(lineLen);<a name="line.445"></a>
+<span class="sourceLineNo">446</span>            nextErrorGreen = palette.nextErrorGreenBytes.ensureCapacity(lineLen);<a name="line.446"></a>
+<span class="sourceLineNo">447</span>            curErrorBlue = palette.curErrorBlueBytes.ensureCapacity(lineLen);<a name="line.447"></a>
+<span class="sourceLineNo">448</span>            nextErrorBlue = palette.nextErrorBlueBytes.ensureCapacity(lineLen);<a name="line.448"></a>
+<span class="sourceLineNo">449</span>            for (int i = 0; i &lt; lineLen; i++) {<a name="line.449"></a>
+<span class="sourceLineNo">450</span>                nextErrorRed[i] = 0;<a name="line.450"></a>
+<span class="sourceLineNo">451</span>                nextErrorGreen[i] = 0;<a name="line.451"></a>
+<span class="sourceLineNo">452</span>                nextErrorBlue[i] = 0;<a name="line.452"></a>
+<span class="sourceLineNo">453</span>            }<a name="line.453"></a>
+<span class="sourceLineNo">454</span><a name="line.454"></a>
+<span class="sourceLineNo">455</span>        }<a name="line.455"></a>
+<span class="sourceLineNo">456</span><a name="line.456"></a>
+<span class="sourceLineNo">457</span><a name="line.457"></a>
+<span class="sourceLineNo">458</span>        lastLineLen = lineLen;<a name="line.458"></a>
+<span class="sourceLineNo">459</span><a name="line.459"></a>
+<span class="sourceLineNo">460</span>        ByteBuffer pixels = pixmap.getPixels();<a name="line.460"></a>
+<span class="sourceLineNo">461</span>        int oldPosition = pixels.position(), color, used, rdiff, gdiff, bdiff;<a name="line.461"></a>
+<span class="sourceLineNo">462</span>        byte er, eg, eb, paletteIndex;<a name="line.462"></a>
+<span class="sourceLineNo">463</span>        final int w = pixmap.getWidth();<a name="line.463"></a>
+<span class="sourceLineNo">464</span>        for (int y = 0, h = pixmap.getHeight(); y &lt; h; y++) {<a name="line.464"></a>
+<span class="sourceLineNo">465</span>            int py = flipY ? (h - y - 1) : y;<a name="line.465"></a>
+<span class="sourceLineNo">466</span>            int ny = flipY ? (h - y - 2) : y + 1;<a name="line.466"></a>
+<span class="sourceLineNo">467</span>            for (int i = 0; i &lt; lineLen; i++) {<a name="line.467"></a>
+<span class="sourceLineNo">468</span>                curErrorRed[i] = nextErrorRed[i];<a name="line.468"></a>
+<span class="sourceLineNo">469</span>                curErrorGreen[i] = nextErrorGreen[i];<a name="line.469"></a>
+<span class="sourceLineNo">470</span>                curErrorBlue[i] = nextErrorBlue[i];<a name="line.470"></a>
+<span class="sourceLineNo">471</span>                nextErrorRed[i] = 0;<a name="line.471"></a>
+<span class="sourceLineNo">472</span>                nextErrorGreen[i] = 0;<a name="line.472"></a>
+<span class="sourceLineNo">473</span>                nextErrorBlue[i] = 0;<a name="line.473"></a>
+<span class="sourceLineNo">474</span>            }<a name="line.474"></a>
+<span class="sourceLineNo">475</span>            for (int px = 0; px &lt; w; px++) {<a name="line.475"></a>
+<span class="sourceLineNo">476</span>                color = pixmap.getPixel(px, py) &amp; 0xF8F8F880;<a name="line.476"></a>
+<span class="sourceLineNo">477</span>                if ((color &amp; 0x80) == 0 &amp;&amp; hasTransparent)<a name="line.477"></a>
+<span class="sourceLineNo">478</span>                    curLine[px] = 0;<a name="line.478"></a>
+<span class="sourceLineNo">479</span>                else {<a name="line.479"></a>
+<span class="sourceLineNo">480</span>                    er = curErrorRed[px];<a name="line.480"></a>
+<span class="sourceLineNo">481</span>                    eg = curErrorGreen[px];<a name="line.481"></a>
+<span class="sourceLineNo">482</span>                    eb = curErrorBlue[px];<a name="line.482"></a>
+<span class="sourceLineNo">483</span>                    color |= (color &gt;&gt;&gt; 5 &amp; 0x07070700) | 0xFE;<a name="line.483"></a>
+<span class="sourceLineNo">484</span>                    int rr = MathUtils.clamp(((color &gt;&gt;&gt; 24)       ) + (er), 0, 0xFF);<a name="line.484"></a>
+<span class="sourceLineNo">485</span>                    int gg = MathUtils.clamp(((color &gt;&gt;&gt; 16) &amp; 0xFF) + (eg), 0, 0xFF);<a name="line.485"></a>
+<span class="sourceLineNo">486</span>                    int bb = MathUtils.clamp(((color &gt;&gt;&gt; 8)  &amp; 0xFF) + (eb), 0, 0xFF);<a name="line.486"></a>
+<span class="sourceLineNo">487</span>                    curLine[px] = paletteIndex =<a name="line.487"></a>
+<span class="sourceLineNo">488</span>                            paletteMapping[((rr &lt;&lt; 7) &amp; 0x7C00)<a name="line.488"></a>
+<span class="sourceLineNo">489</span>                                    | ((gg &lt;&lt; 2) &amp; 0x3E0)<a name="line.489"></a>
+<span class="sourceLineNo">490</span>                                    | ((bb &gt;&gt;&gt; 3))];<a name="line.490"></a>
+<span class="sourceLineNo">491</span>                    used = paletteArray[paletteIndex &amp; 0xFF];<a name="line.491"></a>
+<span class="sourceLineNo">492</span>                    rdiff = (color&gt;&gt;&gt;24)-    (used&gt;&gt;&gt;24);<a name="line.492"></a>
+<span class="sourceLineNo">493</span>                    gdiff = (color&gt;&gt;&gt;16&amp;255)-(used&gt;&gt;&gt;16&amp;255);<a name="line.493"></a>
+<span class="sourceLineNo">494</span>                    bdiff = (color&gt;&gt;&gt;8&amp;255)- (used&gt;&gt;&gt;8&amp;255);<a name="line.494"></a>
+<span class="sourceLineNo">495</span>                    if(px &lt; w - 1)<a name="line.495"></a>
+<span class="sourceLineNo">496</span>                    {<a name="line.496"></a>
+<span class="sourceLineNo">497</span>                        curErrorRed[px+1]   += rdiff &gt;&gt; 1;<a name="line.497"></a>
+<span class="sourceLineNo">498</span>                        curErrorGreen[px+1] += gdiff &gt;&gt; 1;<a name="line.498"></a>
+<span class="sourceLineNo">499</span>                        curErrorBlue[px+1]  += bdiff &gt;&gt; 1;<a name="line.499"></a>
+<span class="sourceLineNo">500</span>                    }<a name="line.500"></a>
+<span class="sourceLineNo">501</span>                    if(ny &gt;= 0 &amp;&amp; ny &lt; h)<a name="line.501"></a>
+<span class="sourceLineNo">502</span>                    {<a name="line.502"></a>
+<span class="sourceLineNo">503</span>                        if(px &gt; 0)<a name="line.503"></a>
+<span class="sourceLineNo">504</span>                        {<a name="line.504"></a>
+<span class="sourceLineNo">505</span>                            nextErrorRed[px-1]   += rdiff &gt;&gt; 2;<a name="line.505"></a>
+<span class="sourceLineNo">506</span>                            nextErrorGreen[px-1] += gdiff &gt;&gt; 2;<a name="line.506"></a>
+<span class="sourceLineNo">507</span>                            nextErrorBlue[px-1]  += bdiff &gt;&gt; 2;<a name="line.507"></a>
+<span class="sourceLineNo">508</span>                        }<a name="line.508"></a>
+<span class="sourceLineNo">509</span>                        nextErrorRed[px]   += rdiff &gt;&gt; 2;<a name="line.509"></a>
+<span class="sourceLineNo">510</span>                        nextErrorGreen[px] += gdiff &gt;&gt; 2;<a name="line.510"></a>
+<span class="sourceLineNo">511</span>                        nextErrorBlue[px]  += bdiff &gt;&gt; 2;<a name="line.511"></a>
+<span class="sourceLineNo">512</span>                    }<a name="line.512"></a>
+<span class="sourceLineNo">513</span>                }<a name="line.513"></a>
+<span class="sourceLineNo">514</span>            }<a name="line.514"></a>
+<span class="sourceLineNo">515</span><a name="line.515"></a>
+<span class="sourceLineNo">516</span>            lineOut[0] = (byte)(curLine[0] - prevLine[0]);<a name="line.516"></a>
+<span class="sourceLineNo">517</span><a name="line.517"></a>
+<span class="sourceLineNo">518</span>            //Paeth<a name="line.518"></a>
+<span class="sourceLineNo">519</span>            for (int x = 1; x &lt; lineLen; x++) {<a name="line.519"></a>
+<span class="sourceLineNo">520</span>                int a = curLine[x - 1] &amp; 0xff;<a name="line.520"></a>
+<span class="sourceLineNo">521</span>                int b = prevLine[x] &amp; 0xff;<a name="line.521"></a>
+<span class="sourceLineNo">522</span>                int c = prevLine[x - 1] &amp; 0xff;<a name="line.522"></a>
+<span class="sourceLineNo">523</span>                int p = a + b - c;<a name="line.523"></a>
+<span class="sourceLineNo">524</span>                int pa = p - a;<a name="line.524"></a>
+<span class="sourceLineNo">525</span>                if (pa &lt; 0) pa = -pa;<a name="line.525"></a>
+<span class="sourceLineNo">526</span>                int pb = p - b;<a name="line.526"></a>
+<span class="sourceLineNo">527</span>                if (pb &lt; 0) pb = -pb;<a name="line.527"></a>
+<span class="sourceLineNo">528</span>                int pc = p - c;<a name="line.528"></a>
+<span class="sourceLineNo">529</span>                if (pc &lt; 0) pc = -pc;<a name="line.529"></a>
+<span class="sourceLineNo">530</span>                if (pa &lt;= pb &amp;&amp; pa &lt;= pc)<a name="line.530"></a>
+<span class="sourceLineNo">531</span>                    c = a;<a name="line.531"></a>
+<span class="sourceLineNo">532</span>                else if (pb &lt;= pc)<a name="line.532"></a>
+<span class="sourceLineNo">533</span>                    c = b;<a name="line.533"></a>
+<span class="sourceLineNo">534</span>                lineOut[x] = (byte)(curLine[x] - c);<a name="line.534"></a>
+<span class="sourceLineNo">535</span>            }<a name="line.535"></a>
+<span class="sourceLineNo">536</span><a name="line.536"></a>
+<span class="sourceLineNo">537</span>            deflaterOutput.write(PAETH);<a name="line.537"></a>
+<span class="sourceLineNo">538</span>            deflaterOutput.write(lineOut, 0, lineLen);<a name="line.538"></a>
+<span class="sourceLineNo">539</span><a name="line.539"></a>
+<span class="sourceLineNo">540</span>            byte[] temp = curLine;<a name="line.540"></a>
+<span class="sourceLineNo">541</span>            curLine = prevLine;<a name="line.541"></a>
+<span class="sourceLineNo">542</span>            prevLine = temp;<a name="line.542"></a>
+<span class="sourceLineNo">543</span>        }<a name="line.543"></a>
+<span class="sourceLineNo">544</span>        pixels.position(oldPosition);<a name="line.544"></a>
+<span class="sourceLineNo">545</span>        deflaterOutput.finish();<a name="line.545"></a>
+<span class="sourceLineNo">546</span>        buffer.endChunk(dataOutput);<a name="line.546"></a>
 <span class="sourceLineNo">547</span><a name="line.547"></a>
-<span class="sourceLineNo">548</span>        int lineLen = pixmap.getWidth();<a name="line.548"></a>
-<span class="sourceLineNo">549</span>        byte[] lineOut, curLine, prevLine;<a name="line.549"></a>
-<span class="sourceLineNo">550</span>        byte[] curErrorRed, nextErrorRed, curErrorGreen, nextErrorGreen, curErrorBlue, nextErrorBlue;<a name="line.550"></a>
-<span class="sourceLineNo">551</span>        if (lineOutBytes == null) {<a name="line.551"></a>
-<span class="sourceLineNo">552</span>            lineOut = (lineOutBytes = new ByteArray(lineLen)).items;<a name="line.552"></a>
-<span class="sourceLineNo">553</span>            curLine = (curLineBytes = new ByteArray(lineLen)).items;<a name="line.553"></a>
-<span class="sourceLineNo">554</span>            prevLine = (prevLineBytes = new ByteArray(lineLen)).items;<a name="line.554"></a>
-<span class="sourceLineNo">555</span>            curErrorRed = (curErrorRedBytes = new ByteArray(lineLen)).items;<a name="line.555"></a>
-<span class="sourceLineNo">556</span>            nextErrorRed = (nextErrorRedBytes = new ByteArray(lineLen)).items;<a name="line.556"></a>
-<span class="sourceLineNo">557</span>            curErrorGreen = (curErrorGreenBytes = new ByteArray(lineLen)).items;<a name="line.557"></a>
-<span class="sourceLineNo">558</span>            nextErrorGreen = (nextErrorGreenBytes = new ByteArray(lineLen)).items;<a name="line.558"></a>
-<span class="sourceLineNo">559</span>            curErrorBlue = (curErrorBlueBytes = new ByteArray(lineLen)).items;<a name="line.559"></a>
-<span class="sourceLineNo">560</span>            nextErrorBlue = (nextErrorBlueBytes = new ByteArray(lineLen)).items;<a name="line.560"></a>
-<span class="sourceLineNo">561</span>        } else {<a name="line.561"></a>
-<span class="sourceLineNo">562</span>            lineOut = lineOutBytes.ensureCapacity(lineLen);<a name="line.562"></a>
-<span class="sourceLineNo">563</span>            curLine = curLineBytes.ensureCapacity(lineLen);<a name="line.563"></a>
-<span class="sourceLineNo">564</span>            prevLine = prevLineBytes.ensureCapacity(lineLen);<a name="line.564"></a>
-<span class="sourceLineNo">565</span>            curErrorRed = curErrorRedBytes.ensureCapacity(lineLen);<a name="line.565"></a>
-<span class="sourceLineNo">566</span>            nextErrorRed = nextErrorRedBytes.ensureCapacity(lineLen);<a name="line.566"></a>
-<span class="sourceLineNo">567</span>            curErrorGreen = curErrorGreenBytes.ensureCapacity(lineLen);<a name="line.567"></a>
-<span class="sourceLineNo">568</span>            nextErrorGreen = nextErrorGreenBytes.ensureCapacity(lineLen);<a name="line.568"></a>
-<span class="sourceLineNo">569</span>            curErrorBlue = curErrorBlueBytes.ensureCapacity(lineLen);<a name="line.569"></a>
-<span class="sourceLineNo">570</span>            nextErrorBlue = nextErrorBlueBytes.ensureCapacity(lineLen);<a name="line.570"></a>
-<span class="sourceLineNo">571</span>            for (int i = 0, n = lastLineLen; i &lt; n; i++)<a name="line.571"></a>
-<span class="sourceLineNo">572</span>            {<a name="line.572"></a>
-<span class="sourceLineNo">573</span>                prevLine[i] = 0;<a name="line.573"></a>
-<span class="sourceLineNo">574</span>            }<a name="line.574"></a>
-<span class="sourceLineNo">575</span>            for (int i = 0; i &lt; lineLen; i++) {<a name="line.575"></a>
-<span class="sourceLineNo">576</span>                nextErrorRed[i] = 0;<a name="line.576"></a>
-<span class="sourceLineNo">577</span>                nextErrorGreen[i] = 0;<a name="line.577"></a>
-<span class="sourceLineNo">578</span>                nextErrorBlue[i] = 0;<a name="line.578"></a>
-<span class="sourceLineNo">579</span>            }<a name="line.579"></a>
-<span class="sourceLineNo">580</span><a name="line.580"></a>
-<span class="sourceLineNo">581</span>        }<a name="line.581"></a>
-<span class="sourceLineNo">582</span><a name="line.582"></a>
-<span class="sourceLineNo">583</span>        lastLineLen = lineLen;<a name="line.583"></a>
-<span class="sourceLineNo">584</span><a name="line.584"></a>
-<span class="sourceLineNo">585</span>        ByteBuffer pixels = pixmap.getPixels();<a name="line.585"></a>
-<span class="sourceLineNo">586</span>        int oldPosition = pixels.position(), color, used, rdiff, gdiff, bdiff;<a name="line.586"></a>
-<span class="sourceLineNo">587</span>        byte er, eg, eb, paletteIndex;<a name="line.587"></a>
-<span class="sourceLineNo">588</span>        final int w = pixmap.getWidth();<a name="line.588"></a>
-<span class="sourceLineNo">589</span>        for (int y = 0, h = pixmap.getHeight(); y &lt; h; y++) {<a name="line.589"></a>
-<span class="sourceLineNo">590</span>            int py = flipY ? (h - y - 1) : y;<a name="line.590"></a>
-<span class="sourceLineNo">591</span>            int ny = flipY ? (h - y - 2) : y + 1;<a name="line.591"></a>
-<span class="sourceLineNo">592</span>            for (int i = 0; i &lt; lineLen; i++) {<a name="line.592"></a>
-<span class="sourceLineNo">593</span>                curErrorRed[i] = nextErrorRed[i];<a name="line.593"></a>
-<span class="sourceLineNo">594</span>                curErrorGreen[i] = nextErrorGreen[i];<a name="line.594"></a>
-<span class="sourceLineNo">595</span>                curErrorBlue[i] = nextErrorBlue[i];<a name="line.595"></a>
-<span class="sourceLineNo">596</span>                nextErrorRed[i] = 0;<a name="line.596"></a>
-<span class="sourceLineNo">597</span>                nextErrorGreen[i] = 0;<a name="line.597"></a>
-<span class="sourceLineNo">598</span>                nextErrorBlue[i] = 0;<a name="line.598"></a>
-<span class="sourceLineNo">599</span>            }<a name="line.599"></a>
-<span class="sourceLineNo">600</span>//            for (int px = 0; px &lt; w; px++) {<a name="line.600"></a>
-<span class="sourceLineNo">601</span>//                color = pixmap.getPixel(px, py);<a name="line.601"></a>
-<span class="sourceLineNo">602</span>//                if ((color &amp; 0x80) == 0)<a name="line.602"></a>
-<span class="sourceLineNo">603</span>//                    curLine[px] = 0;<a name="line.603"></a>
-<span class="sourceLineNo">604</span>//                else {<a name="line.604"></a>
-<span class="sourceLineNo">605</span>//                    curLine[px] = paletteMapping[(color &gt;&gt;&gt; 17 &amp; 0x7C00) | (color &gt;&gt;&gt; 14 &amp; 0x3E0) | (color &gt;&gt;&gt; 11 &amp; 0x1F)];<a name="line.605"></a>
-<span class="sourceLineNo">606</span>//                }<a name="line.606"></a>
-<span class="sourceLineNo">607</span>//            }<a name="line.607"></a>
-<span class="sourceLineNo">608</span>            for (int px = 0; px &lt; w; px++) {<a name="line.608"></a>
-<span class="sourceLineNo">609</span>                color = pixmap.getPixel(px, py);<a name="line.609"></a>
-<span class="sourceLineNo">610</span>                if ((color &amp; 0x80) == 0)<a name="line.610"></a>
-<span class="sourceLineNo">611</span>                    curLine[px] = 0;<a name="line.611"></a>
-<span class="sourceLineNo">612</span>                else {<a name="line.612"></a>
-<span class="sourceLineNo">613</span>                    er = curErrorRed[px];<a name="line.613"></a>
-<span class="sourceLineNo">614</span>                    eg = curErrorRed[px];<a name="line.614"></a>
-<span class="sourceLineNo">615</span>                    eb = curErrorRed[px];<a name="line.615"></a>
-<span class="sourceLineNo">616</span>                    int rr = MathUtils.clamp(((color &gt;&gt;&gt; 24)       ) + (er &lt;&lt; 1), 0, 0xFF);<a name="line.616"></a>
-<span class="sourceLineNo">617</span>                    int gg = MathUtils.clamp(((color &gt;&gt;&gt; 16) &amp; 0xFF) + (eg &lt;&lt; 1), 0, 0xFF);<a name="line.617"></a>
-<span class="sourceLineNo">618</span>                    int bb = MathUtils.clamp(((color &gt;&gt;&gt; 8)  &amp; 0xFF) + (eb &lt;&lt; 1), 0, 0xFF);<a name="line.618"></a>
-<span class="sourceLineNo">619</span>                    curLine[px] = paletteIndex = <a name="line.619"></a>
-<span class="sourceLineNo">620</span>                            paletteMapping[((rr &lt;&lt; 7) &amp; 0x7C00)<a name="line.620"></a>
-<span class="sourceLineNo">621</span>                                    | ((gg &lt;&lt; 2) &amp; 0x3E0)<a name="line.621"></a>
-<span class="sourceLineNo">622</span>                                    | ((bb &gt;&gt;&gt; 3))];<a name="line.622"></a>
-<span class="sourceLineNo">623</span>                    used = paletteArray[paletteIndex &amp; 0xFF];<a name="line.623"></a>
-<span class="sourceLineNo">624</span>                    rdiff = (color&gt;&gt;&gt;24)-    (used&gt;&gt;&gt;24);<a name="line.624"></a>
-<span class="sourceLineNo">625</span>                    gdiff = (color&gt;&gt;&gt;16&amp;255)-(used&gt;&gt;&gt;16&amp;255);<a name="line.625"></a>
-<span class="sourceLineNo">626</span>                    bdiff = (color&gt;&gt;&gt;8&amp;255)- (used&gt;&gt;&gt;8&amp;255);<a name="line.626"></a>
-<span class="sourceLineNo">627</span>                    if(px &lt; w - 1)<a name="line.627"></a>
-<span class="sourceLineNo">628</span>                    {<a name="line.628"></a>
-<span class="sourceLineNo">629</span>                        curErrorRed[px+1]   += rdiff &gt;&gt; 2;<a name="line.629"></a>
-<span class="sourceLineNo">630</span>                        curErrorGreen[px+1] += gdiff &gt;&gt; 2;<a name="line.630"></a>
-<span class="sourceLineNo">631</span>                        curErrorBlue[px+1]  += bdiff &gt;&gt; 2;<a name="line.631"></a>
-<span class="sourceLineNo">632</span>                    }<a name="line.632"></a>
-<span class="sourceLineNo">633</span>                    if(ny &gt;= 0 &amp;&amp; ny &lt; h)<a name="line.633"></a>
-<span class="sourceLineNo">634</span>                    {<a name="line.634"></a>
-<span class="sourceLineNo">635</span>                        if(px &gt; 0)<a name="line.635"></a>
-<span class="sourceLineNo">636</span>                        {<a name="line.636"></a>
-<span class="sourceLineNo">637</span>                            nextErrorRed[px-1]   += rdiff &gt;&gt; 3;<a name="line.637"></a>
-<span class="sourceLineNo">638</span>                            nextErrorGreen[px-1] += gdiff &gt;&gt; 3;<a name="line.638"></a>
-<span class="sourceLineNo">639</span>                            nextErrorBlue[px-1]  += bdiff &gt;&gt; 3;<a name="line.639"></a>
-<span class="sourceLineNo">640</span>                        }<a name="line.640"></a>
-<span class="sourceLineNo">641</span>                        nextErrorRed[px]   += rdiff &gt;&gt; 3;<a name="line.641"></a>
-<span class="sourceLineNo">642</span>                        nextErrorGreen[px] += gdiff &gt;&gt; 3;<a name="line.642"></a>
-<span class="sourceLineNo">643</span>                        nextErrorBlue[px]  += bdiff &gt;&gt; 3;<a name="line.643"></a>
-<span class="sourceLineNo">644</span>                    }<a name="line.644"></a>
-<span class="sourceLineNo">645</span>                }<a name="line.645"></a>
-<span class="sourceLineNo">646</span>            }<a name="line.646"></a>
-<span class="sourceLineNo">647</span>                <a name="line.647"></a>
-<span class="sourceLineNo">648</span>            lineOut[0] = (byte)(curLine[0] - prevLine[0]);<a name="line.648"></a>
-<span class="sourceLineNo">649</span>            <a name="line.649"></a>
-<span class="sourceLineNo">650</span>            //Paeth<a name="line.650"></a>
-<span class="sourceLineNo">651</span>            for (int x = 1; x &lt; lineLen; x++) {<a name="line.651"></a>
-<span class="sourceLineNo">652</span>                int a = curLine[x - 1] &amp; 0xff;<a name="line.652"></a>
-<span class="sourceLineNo">653</span>                int b = prevLine[x] &amp; 0xff;<a name="line.653"></a>
-<span class="sourceLineNo">654</span>                int c = prevLine[x - 1] &amp; 0xff;<a name="line.654"></a>
-<span class="sourceLineNo">655</span>                int p = a + b - c;<a name="line.655"></a>
-<span class="sourceLineNo">656</span>                int pa = p - a;<a name="line.656"></a>
-<span class="sourceLineNo">657</span>                if (pa &lt; 0) pa = -pa;<a name="line.657"></a>
-<span class="sourceLineNo">658</span>                int pb = p - b;<a name="line.658"></a>
-<span class="sourceLineNo">659</span>                if (pb &lt; 0) pb = -pb;<a name="line.659"></a>
-<span class="sourceLineNo">660</span>                int pc = p - c;<a name="line.660"></a>
-<span class="sourceLineNo">661</span>                if (pc &lt; 0) pc = -pc;<a name="line.661"></a>
-<span class="sourceLineNo">662</span>                if (pa &lt;= pb &amp;&amp; pa &lt;= pc)<a name="line.662"></a>
-<span class="sourceLineNo">663</span>                    c = a;<a name="line.663"></a>
-<span class="sourceLineNo">664</span>                else if (pb &lt;= pc) //<a name="line.664"></a>
-<span class="sourceLineNo">665</span>                    c = b;<a name="line.665"></a>
-<span class="sourceLineNo">666</span>                lineOut[x] = (byte)(curLine[x] - c);<a name="line.666"></a>
-<span class="sourceLineNo">667</span>            }<a name="line.667"></a>
-<span class="sourceLineNo">668</span><a name="line.668"></a>
-<span class="sourceLineNo">669</span>            deflaterOutput.write(PAETH);<a name="line.669"></a>
-<span class="sourceLineNo">670</span>            deflaterOutput.write(lineOut, 0, lineLen);<a name="line.670"></a>
-<span class="sourceLineNo">671</span><a name="line.671"></a>
-<span class="sourceLineNo">672</span>            byte[] temp = curLine;<a name="line.672"></a>
-<span class="sourceLineNo">673</span>            curLine = prevLine;<a name="line.673"></a>
-<span class="sourceLineNo">674</span>            prevLine = temp;<a name="line.674"></a>
-<span class="sourceLineNo">675</span>        }<a name="line.675"></a>
-<span class="sourceLineNo">676</span>        pixels.position(oldPosition);<a name="line.676"></a>
-<span class="sourceLineNo">677</span>        deflaterOutput.finish();<a name="line.677"></a>
-<span class="sourceLineNo">678</span>        buffer.endChunk(dataOutput);<a name="line.678"></a>
-<span class="sourceLineNo">679</span><a name="line.679"></a>
-<span class="sourceLineNo">680</span>        buffer.writeInt(IEND);<a name="line.680"></a>
-<span class="sourceLineNo">681</span>        buffer.endChunk(dataOutput);<a name="line.681"></a>
-<span class="sourceLineNo">682</span><a name="line.682"></a>
-<span class="sourceLineNo">683</span>        output.flush();<a name="line.683"></a>
-<span class="sourceLineNo">684</span>    }<a name="line.684"></a>
-<span class="sourceLineNo">685</span><a name="line.685"></a>
-<span class="sourceLineNo">686</span>    /** Disposal will happen automatically in {@link #finalize()} but can be done explicitly if desired. */<a name="line.686"></a>
-<span class="sourceLineNo">687</span>    public void dispose () {<a name="line.687"></a>
-<span class="sourceLineNo">688</span>        deflater.end();<a name="line.688"></a>
-<span class="sourceLineNo">689</span>    }<a name="line.689"></a>
-<span class="sourceLineNo">690</span><a name="line.690"></a>
-<span class="sourceLineNo">691</span>    static class ChunkBuffer extends DataOutputStream {<a name="line.691"></a>
-<span class="sourceLineNo">692</span>        final ByteArrayOutputStream buffer;<a name="line.692"></a>
-<span class="sourceLineNo">693</span>        final CRC32 crc;<a name="line.693"></a>
-<span class="sourceLineNo">694</span><a name="line.694"></a>
-<span class="sourceLineNo">695</span>        ChunkBuffer (int initialSize) {<a name="line.695"></a>
-<span class="sourceLineNo">696</span>            this(new ByteArrayOutputStream(initialSize), new CRC32());<a name="line.696"></a>
-<span class="sourceLineNo">697</span>        }<a name="line.697"></a>
-<span class="sourceLineNo">698</span><a name="line.698"></a>
-<span class="sourceLineNo">699</span>        private ChunkBuffer (ByteArrayOutputStream buffer, CRC32 crc) {<a name="line.699"></a>
-<span class="sourceLineNo">700</span>            super(new CheckedOutputStream(buffer, crc));<a name="line.700"></a>
-<span class="sourceLineNo">701</span>            this.buffer = buffer;<a name="line.701"></a>
-<span class="sourceLineNo">702</span>            this.crc = crc;<a name="line.702"></a>
-<span class="sourceLineNo">703</span>        }<a name="line.703"></a>
-<span class="sourceLineNo">704</span><a name="line.704"></a>
-<span class="sourceLineNo">705</span>        public void endChunk (DataOutputStream target) throws IOException {<a name="line.705"></a>
-<span class="sourceLineNo">706</span>            flush();<a name="line.706"></a>
-<span class="sourceLineNo">707</span>            target.writeInt(buffer.size() - 4);<a name="line.707"></a>
-<span class="sourceLineNo">708</span>            buffer.writeTo(target);<a name="line.708"></a>
-<span class="sourceLineNo">709</span>            target.writeInt((int)crc.getValue());<a name="line.709"></a>
-<span class="sourceLineNo">710</span>            buffer.reset();<a name="line.710"></a>
-<span class="sourceLineNo">711</span>            crc.reset();<a name="line.711"></a>
-<span class="sourceLineNo">712</span>        }<a name="line.712"></a>
-<span class="sourceLineNo">713</span>    }<a name="line.713"></a>
-<span class="sourceLineNo">714</span>}<a name="line.714"></a>
+<span class="sourceLineNo">548</span>        buffer.writeInt(IEND);<a name="line.548"></a>
+<span class="sourceLineNo">549</span>        buffer.endChunk(dataOutput);<a name="line.549"></a>
+<span class="sourceLineNo">550</span><a name="line.550"></a>
+<span class="sourceLineNo">551</span>        output.flush();<a name="line.551"></a>
+<span class="sourceLineNo">552</span>    }<a name="line.552"></a>
+<span class="sourceLineNo">553</span><a name="line.553"></a>
+<span class="sourceLineNo">554</span>    /** Disposal will happen automatically in {@link #finalize()} but can be done explicitly if desired. */<a name="line.554"></a>
+<span class="sourceLineNo">555</span>    public void dispose () {<a name="line.555"></a>
+<span class="sourceLineNo">556</span>        deflater.end();<a name="line.556"></a>
+<span class="sourceLineNo">557</span>    }<a name="line.557"></a>
+<span class="sourceLineNo">558</span><a name="line.558"></a>
+<span class="sourceLineNo">559</span>    static class ChunkBuffer extends DataOutputStream {<a name="line.559"></a>
+<span class="sourceLineNo">560</span>        final ByteArrayOutputStream buffer;<a name="line.560"></a>
+<span class="sourceLineNo">561</span>        final CRC32 crc;<a name="line.561"></a>
+<span class="sourceLineNo">562</span><a name="line.562"></a>
+<span class="sourceLineNo">563</span>        ChunkBuffer (int initialSize) {<a name="line.563"></a>
+<span class="sourceLineNo">564</span>            this(new ByteArrayOutputStream(initialSize), new CRC32());<a name="line.564"></a>
+<span class="sourceLineNo">565</span>        }<a name="line.565"></a>
+<span class="sourceLineNo">566</span><a name="line.566"></a>
+<span class="sourceLineNo">567</span>        private ChunkBuffer (ByteArrayOutputStream buffer, CRC32 crc) {<a name="line.567"></a>
+<span class="sourceLineNo">568</span>            super(new CheckedOutputStream(buffer, crc));<a name="line.568"></a>
+<span class="sourceLineNo">569</span>            this.buffer = buffer;<a name="line.569"></a>
+<span class="sourceLineNo">570</span>            this.crc = crc;<a name="line.570"></a>
+<span class="sourceLineNo">571</span>        }<a name="line.571"></a>
+<span class="sourceLineNo">572</span><a name="line.572"></a>
+<span class="sourceLineNo">573</span>        public void endChunk (DataOutputStream target) throws IOException {<a name="line.573"></a>
+<span class="sourceLineNo">574</span>            flush();<a name="line.574"></a>
+<span class="sourceLineNo">575</span>            target.writeInt(buffer.size() - 4);<a name="line.575"></a>
+<span class="sourceLineNo">576</span>            buffer.writeTo(target);<a name="line.576"></a>
+<span class="sourceLineNo">577</span>            target.writeInt((int)crc.getValue());<a name="line.577"></a>
+<span class="sourceLineNo">578</span>            buffer.reset();<a name="line.578"></a>
+<span class="sourceLineNo">579</span>            crc.reset();<a name="line.579"></a>
+<span class="sourceLineNo">580</span>        }<a name="line.580"></a>
+<span class="sourceLineNo">581</span>    }<a name="line.581"></a>
+<span class="sourceLineNo">582</span>}<a name="line.582"></a>
 
 
 
