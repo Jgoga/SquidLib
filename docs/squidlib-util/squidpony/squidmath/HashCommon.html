@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -196,11 +196,23 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.html#mix-int-">mix</a></span>(int&nbsp;x)</code>
+<div class="block">Thoroughly mixes the bits of an integer.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>static long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.html#mix-long-">mix</a></span>(long&nbsp;x)</code>
+<div class="block">Quickly mixes the bits of a long integer.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>static int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.html#nextPowerOfTwo-int-">nextPowerOfTwo</a></span>(int&nbsp;x)</code>
 <div class="block">Return the least power of two greater than or equal to the specified value.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/HashCommon.html#nextPowerOfTwo-long-">nextPowerOfTwo</a></span>(long&nbsp;x)</code>
 <div class="block">Return the least power of two greater than or equal to the specified value.</div>
@@ -301,6 +313,50 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="mix-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mix</h4>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/HashCommon.html#line.72">mix</a>(int&nbsp;x)</pre>
+<div class="block">Thoroughly mixes the bits of an integer.
+ <br>
+ This method mixes the bits of the argument using a multiplication by a smaller int (19 bits) followed by XOR with
+ two different rotations of the earlier product; it should work well even on GWT, where overflow can't be relied
+ on without bitwise operations being used. The previous mix(int) method would lose precision rather than
+ overflowing on GWT, which could have serious effects on the performance of a hash table (where lost precision
+ means more collisions).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - an integer.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a hash value obtained by mixing the bits of <code>x</code>.</dd>
+</dl>
+</li>
+</ul>
+<a name="mix-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mix</h4>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/HashCommon.html#line.100">mix</a>(long&nbsp;x)</pre>
+<div class="block">Quickly mixes the bits of a long integer.
+ <br>This method mixes the bits of the argument by multiplying by the golden ratio and
+ xorshifting twice the result. It is borrowed from <a href="https://github.com/OpenHFT/Koloboke">Koloboke</a>, and
+ it has slightly worse behaviour than MurmurHash3 (in open-addressing hash tables the average number of probes
+ is slightly larger), but it's much faster.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - a long integer.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a hash value obtained by mixing the bits of <code>x</code>.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../squidpony/squidmath/HashCommon.html#invMix-long-"><code>invMix(long)</code></a></dd>
+</dl>
+</li>
+</ul>
 <a name="nextPowerOfTwo-int-">
 <!--   -->
 </a>

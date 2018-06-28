@@ -77,7 +77,7 @@
 <span class="sourceLineNo">069</span>     * @param x an integer.<a name="line.69"></a>
 <span class="sourceLineNo">070</span>     * @return a hash value obtained by mixing the bits of {@code x}.<a name="line.70"></a>
 <span class="sourceLineNo">071</span>     */<a name="line.71"></a>
-<span class="sourceLineNo">072</span>    static int mix(int x)<a name="line.72"></a>
+<span class="sourceLineNo">072</span>    public static int mix(int x)<a name="line.72"></a>
 <span class="sourceLineNo">073</span>    {<a name="line.73"></a>
 <span class="sourceLineNo">074</span>//        x = ((x *= 0x62BD5) ^ x &gt;&gt;&gt; 13) * ((x &amp; 0xFFFF8) ^ 0xCD7B5);<a name="line.74"></a>
 <span class="sourceLineNo">075</span>//        return ((x &lt;&lt; 21) | (x &gt;&gt;&gt; 11)) ^ (((x &lt;&lt; 7) | (x &gt;&gt;&gt; 25)) * 0x62BD5);<a name="line.75"></a>
@@ -105,7 +105,7 @@
 <span class="sourceLineNo">097</span>     * @return a hash value obtained by mixing the bits of {@code x}.<a name="line.97"></a>
 <span class="sourceLineNo">098</span>     * @see #invMix(long)<a name="line.98"></a>
 <span class="sourceLineNo">099</span>     */<a name="line.99"></a>
-<span class="sourceLineNo">100</span>    static long mix(final long x) {<a name="line.100"></a>
+<span class="sourceLineNo">100</span>    public static long mix(final long x) {<a name="line.100"></a>
 <span class="sourceLineNo">101</span>        long h = x * LONG_PHI;<a name="line.101"></a>
 <span class="sourceLineNo">102</span>        h ^= h &gt;&gt;&gt; 32;<a name="line.102"></a>
 <span class="sourceLineNo">103</span>        return h ^ (h &gt;&gt;&gt; 16);<a name="line.103"></a>
