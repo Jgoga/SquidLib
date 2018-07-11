@@ -142,9 +142,9 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#animationCount">animationCount</a></span></code>
-<div class="block">The current count of how many animations are running; checked by <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#hasActiveAnimations--"><code>hasActiveAnimations()</code></a>, and if certain
- states occur where this variable becomes out of step with the actual animations in process, hasActiveAnimations()
- can return incorrect values.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Use <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#hasActiveAnimations--"><code>hasActiveAnimations()</code></a> instead of adjusting this manually</span></div>
+</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -1620,11 +1620,13 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>animationCount</h4>
-<pre>public&nbsp;int <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.78">animationCount</a></pre>
-<div class="block">The current count of how many animations are running; checked by <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#hasActiveAnimations--"><code>hasActiveAnimations()</code></a>, and if certain
- states occur where this variable becomes out of step with the actual animations in process, hasActiveAnimations()
- can return incorrect values. This variable is public to allow manual correction of the animation count in such
- conditions, but shouldn't be changed frequently because various other methods may rely on it or change it.</div>
+<pre>public&nbsp;int <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.80">animationCount</a></pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">Use <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#hasActiveAnimations--"><code>hasActiveAnimations()</code></a> instead of adjusting this manually</span></div>
+<div class="block">Will always be 0 unless user code affects it; use <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#hasActiveAnimations--"><code>hasActiveAnimations()</code></a> to track animations instead.
+ The approach of tracking animations via a counter was prone to error when multiple effects might remove a Glyph
+ or adjust the animationCount in one direction but not the other. This could result in never-ending phases of a
+ game where input wasn't handled because animationCount was greater than 0, but whatever effect was supposed to
+ reduce animationCount would never happen.</div>
 </li>
 </ul>
 <a name="glyphs">
@@ -1633,7 +1635,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>glyphs</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&gt; <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.84">glyphs</a></pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&gt; <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.86">glyphs</a></pre>
 <div class="block">A list of individually-movable Glyph objects. This field is public, and though it shouldn't be assigned null (you
  don't really need to be told that), there may be cases where you may need manual control over what Glyph objects
  should be added or removed from this SparseLayers.</div>
@@ -1645,7 +1647,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockListLast">
 <li class="blockList">
 <h4>scc</h4>
-<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt; <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.89">scc</a></pre>
+<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt; <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.91">scc</a></pre>
 <div class="block">An IColorCenter to affect color caching and filtering; usually a SquidColorCenter, which can be easily obtained
  via <a href="../../../../squidpony/squidgrid/gui/gdx/DefaultResources.html#getSCC--"><code>DefaultResources.getSCC()</code></a>.</div>
 </li>
@@ -1664,7 +1666,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>SparseLayers</h4>
-<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.91">SparseLayers</a>(int&nbsp;gridWidth,
+<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.93">SparseLayers</a>(int&nbsp;gridWidth,
                     int&nbsp;gridHeight)</pre>
 </li>
 </ul>
@@ -1674,7 +1676,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>SparseLayers</h4>
-<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.96">SparseLayers</a>(int&nbsp;gridWidth,
+<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.98">SparseLayers</a>(int&nbsp;gridWidth,
                     int&nbsp;gridHeight,
                     float&nbsp;cellWidth,
                     float&nbsp;cellHeight)</pre>
@@ -1686,7 +1688,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>SparseLayers</h4>
-<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.101">SparseLayers</a>(int&nbsp;gridWidth,
+<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.103">SparseLayers</a>(int&nbsp;gridWidth,
                     int&nbsp;gridHeight,
                     float&nbsp;cellWidth,
                     float&nbsp;cellHeight,
@@ -1699,7 +1701,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SparseLayers</h4>
-<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.105">SparseLayers</a>(int&nbsp;gridWidth,
+<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.107">SparseLayers</a>(int&nbsp;gridWidth,
                     int&nbsp;gridHeight,
                     float&nbsp;cellWidth,
                     float&nbsp;cellHeight,
@@ -1722,7 +1724,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>getLayerCount</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.131">getLayerCount</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.133">getLayerCount</a>()</pre>
 <div class="block">Gets the number of layers currently used in this SparseLayers; if a layer is put into that is equal to or greater
  than this layer count, then a new layer is created to hold the latest placement. It is recommended that you
  assign to the layer equal to the result of this method if you want to add a layer. You can add to layers that are
@@ -1740,7 +1742,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>getLayer</h4>
-<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/SparseTextMap.html" title="class in squidpony.squidgrid.gui.gdx">SparseTextMap</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.143">getLayer</a>(int&nbsp;layer)</pre>
+<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/SparseTextMap.html" title="class in squidpony.squidgrid.gui.gdx">SparseTextMap</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.145">getLayer</a>(int&nbsp;layer)</pre>
 <div class="block">Gets the layer, as a SparseTextMap, that is associated with the given int. If none is associated, this returns
  null. The associating number does not necessarily have to be less than the number of layers in this SparseLayers.
  Returns a direct reference to the SparseTextMap layer.</div>
@@ -1758,7 +1760,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>setLayer</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.158">setLayer</a>(int&nbsp;layerNumber,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.160">setLayer</a>(int&nbsp;layerNumber,
                      <a href="../../../../squidpony/squidgrid/gui/gdx/SparseTextMap.html" title="class in squidpony.squidgrid.gui.gdx">SparseTextMap</a>&nbsp;contents)</pre>
 <div class="block">Sets the SparseTextMap associated with the given layerNumber to the given contents. If layerNumber is too high
  to set an existing layer, this will add contents as a new layer on top of the others.</div>
@@ -1775,7 +1777,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>findLayer</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.180">findLayer</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/SparseTextMap.html" title="class in squidpony.squidgrid.gui.gdx">SparseTextMap</a>&nbsp;layerMap)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.182">findLayer</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/SparseTextMap.html" title="class in squidpony.squidgrid.gui.gdx">SparseTextMap</a>&nbsp;layerMap)</pre>
 <div class="block">Finds the layer number associated with layerMap, or -1 if the given SparseTextMap is not in this SparseLayers.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1791,7 +1793,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>addLayer</h4>
-<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/SparseTextMap.html" title="class in squidpony.squidgrid.gui.gdx">SparseTextMap</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.198">addLayer</a>()</pre>
+<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/SparseTextMap.html" title="class in squidpony.squidgrid.gui.gdx">SparseTextMap</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.200">addLayer</a>()</pre>
 <div class="block">Adds a layer as a SparseTextMap to this SparseLayers and returns the one just added. The layer will generally be
  associated with a layer number equal to the number of layers currently present, and will be rendered over the
  existing layers. It might not be associated with the same number if layers were added out-of-order or with skips
@@ -1811,7 +1813,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>addLayer</h4>
-<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/SparseTextMap.html" title="class in squidpony.squidgrid.gui.gdx">SparseTextMap</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.216">addLayer</a>(int&nbsp;association)</pre>
+<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/SparseTextMap.html" title="class in squidpony.squidgrid.gui.gdx">SparseTextMap</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.218">addLayer</a>(int&nbsp;association)</pre>
 <div class="block">Adds a layer as a SparseTextMap to this SparseLayers and returns the one just added, or returns an existing layer
  if one is already associated with the given number. The layer can be greater than the number of layers currently
  present, which will add a layer to be rendered over the existing layers, but the number that refers to that layer
@@ -1832,7 +1834,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.242">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.244">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 char&nbsp;c)</pre>
 <div class="block">Puts the character <code>c</code> at <code>(x, y)</code> with the default foreground. Does not change the background.</div>
@@ -1852,7 +1854,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.261">put</a>(int&nbsp;xOffset,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.263">put</a>(int&nbsp;xOffset,
                 int&nbsp;yOffset,
                 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;string,
                 com.badlogic.gdx.graphics.Color&nbsp;foreground)</pre>
@@ -1880,7 +1882,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.280">put</a>(int&nbsp;xOffset,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.282">put</a>(int&nbsp;xOffset,
                 int&nbsp;yOffset,
                 <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/IColoredString.html?is-external=true" title="class or interface in squidpony.panel">IColoredString</a>&lt;? extends com.badlogic.gdx.graphics.Color&gt;&nbsp;cs)</pre>
 <div class="block">Puts the given string horizontally with the first character at the given
@@ -1907,7 +1909,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.300">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.302">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 char&nbsp;c,
                 com.badlogic.gdx.graphics.Color&nbsp;color)</pre>
@@ -1930,7 +1932,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.309">put</a>(com.badlogic.gdx.graphics.Color[][]&nbsp;colors)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.311">put</a>(com.badlogic.gdx.graphics.Color[][]&nbsp;colors)</pre>
 <div class="block">Sets the background colors to match the given Color 2D array. If the colors argument is null, does nothing.
  This will filter each Color in colors if the color center this uses has a filter.</div>
 <dl>
@@ -1945,7 +1947,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.319">put</a>(float[][]&nbsp;colors)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.321">put</a>(float[][]&nbsp;colors)</pre>
 <div class="block">Sets the background colors to match the given 2D array of colors as packed floats. If the colors argument is
  null, does nothing. This will not filter the passed colors at all.</div>
 <dl>
@@ -1960,7 +1962,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.332">put</a>(char[][]&nbsp;chars,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.334">put</a>(char[][]&nbsp;chars,
                 com.badlogic.gdx.graphics.Color[][]&nbsp;colors)</pre>
 <div class="block">Places the given char 2D array, if-non-null, in the default foreground color starting at x=0, y=0, while also
  setting the background colors to match the given Color 2D array. If the colors argument is null, does nothing. If
@@ -1981,7 +1983,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.381">put</a>(char[][]&nbsp;chars,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.383">put</a>(char[][]&nbsp;chars,
                 float[][]&nbsp;colors)</pre>
 <div class="block">Places the given char 2D array, if-non-null, in the default foreground color starting at x=0, y=0, while also
  setting the background colors to match the given 2D array of colors as packed floats. If the colors argument is
@@ -2000,7 +2002,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.427">put</a>(char[][]&nbsp;chars,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.429">put</a>(char[][]&nbsp;chars,
                 com.badlogic.gdx.graphics.Color[][]&nbsp;fgColors,
                 com.badlogic.gdx.graphics.Color[][]&nbsp;bgColors)</pre>
 <div class="block">Places the given char 2D array, if-non-null, with the given foreground colors in the first Color 2D array,
@@ -2023,7 +2025,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.475">put</a>(char[][]&nbsp;chars,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.477">put</a>(char[][]&nbsp;chars,
                 float[][]&nbsp;fgColors,
                 float[][]&nbsp;bgColors)</pre>
 <div class="block">Places the given char 2D array, if-non-null, with the given foreground colors in the first float 2D array,
@@ -2045,7 +2047,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>gridWidth</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.516">gridWidth</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.518">gridWidth</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true#gridWidth--" title="class or interface in squidpony.panel">gridWidth</a></code>&nbsp;in interface&nbsp;<code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;com.badlogic.gdx.graphics.Color&gt;</code></dd>
@@ -2060,7 +2062,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>gridHeight</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.524">gridHeight</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.526">gridHeight</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true#gridHeight--" title="class or interface in squidpony.panel">gridHeight</a></code>&nbsp;in interface&nbsp;<code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;com.badlogic.gdx.graphics.Color&gt;</code></dd>
@@ -2075,7 +2077,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>cellWidth</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.532">cellWidth</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.534">cellWidth</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true#cellWidth--" title="class or interface in squidpony.panel">cellWidth</a></code>&nbsp;in interface&nbsp;<code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;com.badlogic.gdx.graphics.Color&gt;</code></dd>
@@ -2090,7 +2092,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>cellHeight</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.540">cellHeight</a>()</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.542">cellHeight</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true#cellHeight--" title="class or interface in squidpony.panel">cellHeight</a></code>&nbsp;in interface&nbsp;<code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;com.badlogic.gdx.graphics.Color&gt;</code></dd>
@@ -2105,7 +2107,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>setDefaultForeground</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.551">setDefaultForeground</a>(com.badlogic.gdx.graphics.Color&nbsp;color)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.553">setDefaultForeground</a>(com.badlogic.gdx.graphics.Color&nbsp;color)</pre>
 <div class="block">Sets the default foreground color.
  Unlike most ISquidPanel implementations, color can be null, which will
  usually not be rendered unless a different color is specified.</div>
@@ -2123,7 +2125,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>getDefaultForegroundColor</h4>
-<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.566">getDefaultForegroundColor</a>()</pre>
+<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.568">getDefaultForegroundColor</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true#getDefaultForegroundColor--" title="class or interface in squidpony.panel">getDefaultForegroundColor</a></code>&nbsp;in interface&nbsp;<code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;com.badlogic.gdx.graphics.Color&gt;</code></dd>
@@ -2142,7 +2144,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>setDefaultBackground</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.576">setDefaultBackground</a>(com.badlogic.gdx.graphics.Color&nbsp;color)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.578">setDefaultBackground</a>(com.badlogic.gdx.graphics.Color&nbsp;color)</pre>
 <div class="block">Sets the default background color.
  Unlike most ISquidPanel implementations, color can be null, which will
  usually not be rendered unless a different color is specified.</div>
@@ -2158,7 +2160,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>getDefaultBackgroundColor</h4>
-<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.590">getDefaultBackgroundColor</a>()</pre>
+<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.592">getDefaultBackgroundColor</a>()</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The default background color (if none was set with
@@ -2175,7 +2177,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>setColorCenter</h4>
-<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.602">setColorCenter</a>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;icc)</pre>
+<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.604">setColorCenter</a>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;icc)</pre>
 <div class="block">Method to change the backing <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony"><code>IColorCenter</code></a>.
  Note that the IColorCenter is not used to filter floats that encode colors, so passing the result of
  <code>Color.toFloatBits()</code> can be used to bypass the filtering if you want a color to be used exactly.</div>
@@ -2195,7 +2197,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>getColorCenter</h4>
-<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.613">getColorCenter</a>()</pre>
+<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.615">getColorCenter</a>()</pre>
 <div class="block">Gets the IColorCenter this can use to filter Color objects; this is usually a <a href="../../../../squidpony/squidgrid/gui/gdx/SquidColorCenter.html" title="class in squidpony.squidgrid.gui.gdx"><code>SquidColorCenter</code></a>.
  Note that the IColorCenter is not used to filter floats that encode colors, so passing the result of
  <code>Color.toFloatBits()</code> can be used to bypass the filtering if you want a color to be used exactly.</div>
@@ -2211,7 +2213,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>getBacker</h4>
-<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;?&gt;&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.627">getBacker</a>()</pre>
+<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;?&gt;&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.629">getBacker</a>()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true#getBacker--" title="class or interface in squidpony.panel">getBacker</a></code>&nbsp;in interface&nbsp;<code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/panel/ISquidPanel.html?is-external=true" title="class or interface in squidpony.panel">ISquidPanel</a>&lt;com.badlogic.gdx.graphics.Color&gt;</code></dd>
@@ -2232,7 +2234,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.642">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.644">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 char&nbsp;c,
                 com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -2257,7 +2259,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.658">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.660">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 char&nbsp;c,
                 float&nbsp;foreground,
@@ -2282,7 +2284,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.677">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.679">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 char&nbsp;c,
                 float&nbsp;foreground)</pre>
@@ -2305,7 +2307,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.699">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.701">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 char&nbsp;c,
                 com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -2336,7 +2338,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.720">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.722">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 char&nbsp;c,
                 float&nbsp;foreground,
@@ -2366,7 +2368,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.753">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.755">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text,
                 com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -2391,7 +2393,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.767">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.769">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text,
                 float&nbsp;foreground,
@@ -2415,7 +2417,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.790">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.792">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text,
                 com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -2446,7 +2448,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.809">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.811">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text,
                 float&nbsp;foreground,
@@ -2476,7 +2478,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.844">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.846">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 com.badlogic.gdx.graphics.Color&nbsp;color)</pre>
 <div class="block">Changes the background at position x,y to the given Color. If the color is null, then this will make the
@@ -2497,7 +2499,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>put</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.857">put</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.859">put</a>(int&nbsp;x,
                 int&nbsp;y,
                 float&nbsp;color)</pre>
 <div class="block">Changes the background at position x,y to the given color as an encoded float. The color can be transparent,
@@ -2520,7 +2522,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.873">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.875">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          com.badlogic.gdx.graphics.Color&nbsp;background,
                          com.badlogic.gdx.graphics.Color&nbsp;lightColor,
@@ -2544,7 +2546,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.887">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.889">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          com.badlogic.gdx.graphics.Color&nbsp;background,
                          com.badlogic.gdx.graphics.Color&nbsp;lightColor,
@@ -2568,7 +2570,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.904">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.906">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          char&nbsp;c,
                          com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -2596,7 +2598,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.921">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.923">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          char&nbsp;c,
                          com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -2624,7 +2626,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.940">putWithConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.942">putWithConsistentLight</a>(int&nbsp;x,
                                    int&nbsp;y,
                                    float&nbsp;background,
                                    float&nbsp;lightColor,
@@ -2652,7 +2654,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.958">putWithConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.960">putWithConsistentLight</a>(int&nbsp;x,
                                    int&nbsp;y,
                                    float&nbsp;background,
                                    float&nbsp;lightColor,
@@ -2682,7 +2684,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.979">putWithConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.981">putWithConsistentLight</a>(int&nbsp;x,
                                    int&nbsp;y,
                                    com.badlogic.gdx.graphics.Color&nbsp;background,
                                    com.badlogic.gdx.graphics.Color&nbsp;lightColor,
@@ -2710,7 +2712,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.997">putWithConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.999">putWithConsistentLight</a>(int&nbsp;x,
                                    int&nbsp;y,
                                    com.badlogic.gdx.graphics.Color&nbsp;background,
                                    com.badlogic.gdx.graphics.Color&nbsp;lightColor,
@@ -2740,7 +2742,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1020">putWithConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1022">putWithConsistentLight</a>(int&nbsp;x,
                                    int&nbsp;y,
                                    char&nbsp;c,
                                    float&nbsp;foreground,
@@ -2771,7 +2773,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1038">putWithConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1040">putWithConsistentLight</a>(int&nbsp;x,
                                    int&nbsp;y,
                                    char&nbsp;c,
                                    float&nbsp;foreground,
@@ -2802,7 +2804,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1058">putWithConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1060">putWithConsistentLight</a>(int&nbsp;x,
                                    int&nbsp;y,
                                    char&nbsp;c,
                                    float&nbsp;foreground,
@@ -2836,7 +2838,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithReverseConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1082">putWithReverseConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1084">putWithReverseConsistentLight</a>(int&nbsp;x,
                                           int&nbsp;y,
                                           char&nbsp;c,
                                           float&nbsp;foreground,
@@ -2869,7 +2871,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithReverseConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1103">putWithReverseConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1105">putWithReverseConsistentLight</a>(int&nbsp;x,
                                           int&nbsp;y,
                                           char&nbsp;c,
                                           float&nbsp;foreground,
@@ -2904,7 +2906,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1127">putWithConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1129">putWithConsistentLight</a>(int&nbsp;x,
                                    int&nbsp;y,
                                    char&nbsp;c,
                                    com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -2936,7 +2938,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1147">putWithConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1149">putWithConsistentLight</a>(int&nbsp;x,
                                    int&nbsp;y,
                                    char&nbsp;c,
                                    com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -2970,7 +2972,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithReverseConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1175">putWithReverseConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1177">putWithReverseConsistentLight</a>(int&nbsp;x,
                                           int&nbsp;y,
                                           char&nbsp;c,
                                           com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -3005,7 +3007,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithReverseConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1196">putWithReverseConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1198">putWithReverseConsistentLight</a>(int&nbsp;x,
                                           int&nbsp;y,
                                           char&nbsp;c,
                                           com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -3039,7 +3041,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithReverseConsistentLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1222">putWithReverseConsistentLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1224">putWithReverseConsistentLight</a>(int&nbsp;x,
                                           int&nbsp;y,
                                           char&nbsp;c,
                                           com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -3073,7 +3075,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1241">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1243">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          float&nbsp;background,
                          float&nbsp;lightColor,
@@ -3097,7 +3099,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1256">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1258">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          float&nbsp;background,
                          float&nbsp;lightColor,
@@ -3121,7 +3123,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1274">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1276">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          char&nbsp;c,
                          float&nbsp;foreground,
@@ -3149,7 +3151,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1292">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1294">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          char&nbsp;c,
                          float&nbsp;foreground,
@@ -3177,7 +3179,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithReverseLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1310">putWithReverseLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1312">putWithReverseLight</a>(int&nbsp;x,
                                 int&nbsp;y,
                                 char&nbsp;c,
                                 float&nbsp;foreground,
@@ -3205,7 +3207,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithReverseLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1327">putWithReverseLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1329">putWithReverseLight</a>(int&nbsp;x,
                                 int&nbsp;y,
                                 char&nbsp;c,
                                 float&nbsp;foreground,
@@ -3233,7 +3235,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1345">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1347">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          com.badlogic.gdx.graphics.Color&nbsp;background,
                          com.badlogic.gdx.graphics.Color&nbsp;lightColor,
@@ -3262,7 +3264,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1365">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1367">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          char&nbsp;c,
                          com.badlogic.gdx.graphics.Color&nbsp;foreground,
@@ -3295,7 +3297,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1383">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1385">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          float&nbsp;background,
                          float&nbsp;lightColor,
@@ -3324,7 +3326,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>putWithLight</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1402">putWithLight</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1404">putWithLight</a>(int&nbsp;x,
                          int&nbsp;y,
                          char&nbsp;c,
                          float&nbsp;foreground,
@@ -3357,7 +3359,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>clear</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1420">clear</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1422">clear</a>(int&nbsp;x,
                   int&nbsp;y)</pre>
 <div class="block">Removes the foreground chars, where present, in all layers at the given x,y position.
  The backgrounds will be unchanged.</div>
@@ -3376,7 +3378,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>clear</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1438">clear</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1440">clear</a>(int&nbsp;x,
                   int&nbsp;y,
                   int&nbsp;layer)</pre>
 <div class="block">Removes the foreground char, if present, in the given layer at the given x,y position.
@@ -3395,7 +3397,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>clear</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1451">clear</a>()</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1453">clear</a>()</pre>
 <div class="block">Removes all background colors, setting them to transparent, and all foreground chars in all layers.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
@@ -3409,7 +3411,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>clear</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1462">clear</a>(int&nbsp;layer)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1464">clear</a>(int&nbsp;layer)</pre>
 <div class="block">Removes all foreground chars in the requested layer; does not affect the background or other layers.</div>
 </li>
 </ul>
@@ -3419,7 +3421,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>fillBackground</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1472">fillBackground</a>(com.badlogic.gdx.graphics.Color&nbsp;color)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1474">fillBackground</a>(com.badlogic.gdx.graphics.Color&nbsp;color)</pre>
 <div class="block">Fills all of the background with the given color as libGDX Color object.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3433,7 +3435,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>fillBackground</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1481">fillBackground</a>(float&nbsp;color)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1483">fillBackground</a>(float&nbsp;color)</pre>
 <div class="block">Fills all of the background with the given color as a packed float.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3447,7 +3449,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>fillArea</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1494">fillArea</a>(com.badlogic.gdx.graphics.Color&nbsp;color,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1496">fillArea</a>(com.badlogic.gdx.graphics.Color&nbsp;color,
                      int&nbsp;x,
                      int&nbsp;y,
                      int&nbsp;width,
@@ -3469,7 +3471,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>fillArea</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1505">fillArea</a>(float&nbsp;color,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1507">fillArea</a>(float&nbsp;color,
                      int&nbsp;x,
                      int&nbsp;y,
                      int&nbsp;width,
@@ -3491,7 +3493,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>hasActiveAnimations</h4>
-<pre>public&nbsp;boolean&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1528">hasActiveAnimations</a>()</pre>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1530">hasActiveAnimations</a>()</pre>
 <div class="block">Gets whether any animations or other scene2d Actions are running on this SparseLayers.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -3507,7 +3509,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>getBackgrounds</h4>
-<pre>public&nbsp;float[][]&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1537">getBackgrounds</a>()</pre>
+<pre>public&nbsp;float[][]&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1544">getBackgrounds</a>()</pre>
 <div class="block">Gets a direct reference to the 2D float array this uses for background colors.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -3521,7 +3523,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>setBackgrounds</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1547">setBackgrounds</a>(float[][]&nbsp;backgrounds)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1554">setBackgrounds</a>(float[][]&nbsp;backgrounds)</pre>
 <div class="block">Changes the reference this uses for the float array for background colors; this will not accept null parameters,
  nor will it accept any 2D array with dimensions that do not match the (unchanging) gridWidth and gridHeight of
  this SparseLayers.</div>
@@ -3537,7 +3539,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>getFont</h4>
-<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1559">getFont</a>()</pre>
+<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1566">getFont</a>()</pre>
 <div class="block">Gets a direct reference to the TextCellFactory this uses to draw and size its text items and cells.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -3551,7 +3553,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>setFont</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1569">setFont</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory</a>&nbsp;font)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1576">setFont</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory</a>&nbsp;font)</pre>
 <div class="block">Sets the TextCellFactory this uses to draw and size its text items and cells. The given TextCellFactory must not
  be null. If font is uninitialized, this will initialize it using cellWidth and cellHeight. If font has been
  initialized with a different height and width, then the sizing of this SparseLayers will change.</div>
@@ -3567,7 +3569,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>getScc</h4>
-<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1582">getScc</a>()</pre>
+<pre>public&nbsp;<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1589">getScc</a>()</pre>
 <div class="block">Gets the IColorCenter for Color objects (almost always a SquidColorCenter, but this isn't guaranteed) that this
  uses to cache and possibly alter Colors that given to it as parameters.</div>
 <dl>
@@ -3582,7 +3584,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>setScc</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1591">setScc</a>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;scc)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1598">setScc</a>(<a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IColorCenter.html?is-external=true" title="class or interface in squidpony">IColorCenter</a>&lt;com.badlogic.gdx.graphics.Color&gt;&nbsp;scc)</pre>
 <div class="block">Sets the IColorCenter for Color objects that this uses to cache and modify Colors given to it; does not accept
  null parameters.</div>
 <dl>
@@ -3597,7 +3599,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>worldX</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1602">worldX</a>(int&nbsp;gridX)</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1609">worldX</a>(int&nbsp;gridX)</pre>
 <div class="block">Used internally to go between grid positions and world positions.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3613,7 +3615,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>worldY</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1611">worldY</a>(int&nbsp;gridY)</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1618">worldY</a>(int&nbsp;gridY)</pre>
 <div class="block">Used internally to go between grid positions and world positions.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3629,7 +3631,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>gridX</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1621">gridX</a>(float&nbsp;worldX)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1628">gridX</a>(float&nbsp;worldX)</pre>
 <div class="block">Used internally to go between world positions and grid positions.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3645,7 +3647,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>gridY</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1631">gridY</a>(float&nbsp;worldY)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1638">gridY</a>(float&nbsp;worldY)</pre>
 <div class="block">Used internally to go between world positions and grid positions.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -3661,7 +3663,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>blend</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1637">blend</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1644">blend</a>(int&nbsp;x,
                   int&nbsp;y,
                   float&nbsp;color,
                   float&nbsp;mixBy)</pre>
@@ -3686,7 +3688,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>glyph</h4>
-<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1653">glyph</a>(char&nbsp;shown,
+<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1660">glyph</a>(char&nbsp;shown,
                                    com.badlogic.gdx.graphics.Color&nbsp;color,
                                    int&nbsp;x,
                                    int&nbsp;y)</pre>
@@ -3711,7 +3713,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>glyph</h4>
-<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1669">glyph</a>(char&nbsp;shown,
+<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1676">glyph</a>(char&nbsp;shown,
                                    float&nbsp;color,
                                    int&nbsp;x,
                                    int&nbsp;y)</pre>
@@ -3736,7 +3738,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>glyphFromGrid</h4>
-<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1687">glyphFromGrid</a>(int&nbsp;x,
+<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1694">glyphFromGrid</a>(int&nbsp;x,
                                            int&nbsp;y)</pre>
 <div class="block">"Promotes" a colorful char in the first layer to a Glyph that can be positioned independently of the contents of
  this SparseLayers. Various effects in this class take a Glyph parameter and can perform visual effects with one.
@@ -3757,7 +3759,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>glyphFromGrid</h4>
-<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1709">glyphFromGrid</a>(int&nbsp;x,
+<pre>public&nbsp;<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1716">glyphFromGrid</a>(int&nbsp;x,
                                            int&nbsp;y,
                                            int&nbsp;layer)</pre>
 <div class="block">"Promotes" a colorful char in the given layer to a Glyph that can be positioned independently of the contents of
@@ -3780,7 +3782,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recallToGrid</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1733">recallToGrid</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1740">recallToGrid</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph)</pre>
 <div class="block">Brings a Glyph back into normal rendering, removing it from the Glyphs this class knows about and filling the
  grid's char at the Glyph's position in the first layer with the Glyph's char and color.</div>
 <dl>
@@ -3795,7 +3797,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recallToGrid</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1744">recallToGrid</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1751">recallToGrid</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
                          int&nbsp;layer)</pre>
 <div class="block">Brings a Glyph back into normal rendering, removing it from the Glyphs this class knows about and filling the
  grid's char at the Glyph's position in the given layer with the Glyph's char and color.</div>
@@ -3811,10 +3813,9 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>removeGlyph</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1757">removeGlyph</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1763">removeGlyph</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph)</pre>
 <div class="block">A way to remove a Glyph from the group of glyphs this renders, while also ending any animations or other Actions
- that the removed Glyph was scheduled to perform. This can be important to keep the animation count, for
- <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#hasActiveAnimations--"><code>hasActiveAnimations()</code></a>, at the correct value if a Glyph is removed before its animations end.</div>
+ that the removed Glyph was scheduled to perform.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>glyph</code> - a Glyph that should be removed from the <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#glyphs"><code>glyphs</code></a> List this holds</dd>
@@ -3827,7 +3828,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>bump</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1770">bump</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1776">bump</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
                  <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidgrid/Direction.html?is-external=true" title="class or interface in squidpony.squidgrid">Direction</a>&nbsp;direction,
                  float&nbsp;duration)</pre>
 <div class="block">Start a bumping animation in the given direction that will last duration seconds.</div>
@@ -3846,7 +3847,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>bump</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1785">bump</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1791">bump</a>(float&nbsp;delay,
                  <a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
                  <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidgrid/Direction.html?is-external=true" title="class or interface in squidpony.squidgrid">Direction</a>&nbsp;direction,
                  float&nbsp;duration,
@@ -3856,7 +3857,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>delay</code> - how long to wait in seconds before starting the effect</dd>
-<dd><code>glyph</code> - A <a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx"><code>TextCellFactory.Glyph</code></a>, probably produced by
+<dd><code>glyph</code> - A <a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx"><code>TextCellFactory.Glyph</code></a>, which should be produced by a SparseLayers method like
               <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#glyph-char-float-int-int-"><code>glyph(char, float, int, int)</code></a> or <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#glyphFromGrid-int-int-"><code>glyphFromGrid(int, int)</code></a></dd>
 <dd><code>direction</code> - the direction for the glyph to bump towards</dd>
 <dd><code>duration</code> - a float, measured in seconds, for how long the animation should last; commonly 0.12f</dd>
@@ -3870,7 +3871,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>slide</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1835">slide</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1833">slide</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
                   int&nbsp;startX,
                   int&nbsp;startY,
                   int&nbsp;newX,
@@ -3900,7 +3901,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>slide</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1862">slide</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1860">slide</a>(float&nbsp;delay,
                   <a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
                   int&nbsp;startX,
                   int&nbsp;startY,
@@ -3932,7 +3933,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>wiggle</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1898">wiggle</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1888">wiggle</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
                    float&nbsp;duration)</pre>
 <div class="block">Starts an wiggling animation for the object at the given location for the given duration in seconds.</div>
 <dl>
@@ -3949,7 +3950,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>wiggle</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1913">wiggle</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1903">wiggle</a>(float&nbsp;delay,
                    <a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
                    float&nbsp;duration,
                    <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>&nbsp;postRunnable)</pre>
@@ -3971,7 +3972,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>tint</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1960">tint</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1942">tint</a>(int&nbsp;x,
                  int&nbsp;y,
                  com.badlogic.gdx.graphics.Color&nbsp;color,
                  float&nbsp;duration)</pre>
@@ -3997,7 +3998,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>tint</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1976">tint</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1958">tint</a>(int&nbsp;x,
                  int&nbsp;y,
                  float&nbsp;encodedColor,
                  float&nbsp;duration)</pre>
@@ -4023,7 +4024,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>tint</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1995">tint</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.1977">tint</a>(float&nbsp;delay,
                  int&nbsp;x,
                  int&nbsp;y,
                  float&nbsp;encodedColor,
@@ -4054,7 +4055,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>tint</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2053">tint</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2032">tint</a>(int&nbsp;x,
                  int&nbsp;y,
                  int&nbsp;layer,
                  com.badlogic.gdx.graphics.Color&nbsp;color,
@@ -4086,7 +4087,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>tint</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2075">tint</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2054">tint</a>(int&nbsp;x,
                  int&nbsp;y,
                  int&nbsp;layer,
                  float&nbsp;encodedColor,
@@ -4118,7 +4119,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>tint</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2100">tint</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2079">tint</a>(float&nbsp;delay,
                  int&nbsp;x,
                  int&nbsp;y,
                  int&nbsp;layer,
@@ -4156,16 +4157,12 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>tint</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2152">tint</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2125">tint</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
                  float&nbsp;encodedColor,
                  float&nbsp;duration)</pre>
 <div class="block">Tints the given glyph (which may or may not be part of the <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#glyphs"><code>glyphs</code></a> list this holds) so it becomes the
  given encodedColor, then after the tint is complete it returns the cell to its original color, taking duration
- seconds.
- <br>
- This is not a method on <a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx"><code>TextCellFactory.Glyph</code></a> because it increments the <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#animationCount"><code>animationCount</code></a> variable
- while the tint animation is running, and decrements it when it finishes the animation (it also resets the glyph
- to its pre-tint color at this time).</div>
+ seconds. This resets the glyph to its pre-tint color before it ends.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>glyph</code> - the <a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx"><code>TextCellFactory.Glyph</code></a> to tint</dd>
@@ -4180,7 +4177,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>tint</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2170">tint</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2140">tint</a>(float&nbsp;delay,
                  <a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx">TextCellFactory.Glyph</a>&nbsp;glyph,
                  float&nbsp;encodedColor,
                  float&nbsp;duration,
@@ -4188,11 +4185,8 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <div class="block">Tints the given glyph (which may or may not be part of the <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#glyphs"><code>glyphs</code></a> list this holds) so it becomes the
  given encodedColor, waiting for <code>delay</code> (in seconds) before performing it, then after the tint is complete
  it returns the cell to its original color, taking duration seconds. Additionally, enqueue <code>postRunnable</code>
- for running after the created action ends.
- <br>
- This is not a method on <a href="../../../../squidpony/squidgrid/gui/gdx/TextCellFactory.Glyph.html" title="class in squidpony.squidgrid.gui.gdx"><code>TextCellFactory.Glyph</code></a> because it increments the <a href="../../../../squidpony/squidgrid/gui/gdx/SparseLayers.html#animationCount"><code>animationCount</code></a> variable
- while the tint animation is running, and decrements it when it finishes the animation (it also resets the glyph
- to its pre-tint color at this time).</div>
+ for running after the created action ends. This resets the glyph to its pre-tint color before it runs any
+ <code>postRunnable</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>delay</code> - how long to wait in seconds before starting the effect</dd>
@@ -4209,7 +4203,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>summon</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2222">summon</a>(int&nbsp;startX,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2190">summon</a>(int&nbsp;startX,
                    int&nbsp;startY,
                    int&nbsp;endX,
                    int&nbsp;endY,
@@ -4242,7 +4236,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>summon</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2245">summon</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2213">summon</a>(float&nbsp;delay,
                    int&nbsp;startX,
                    int&nbsp;startY,
                    int&nbsp;endX,
@@ -4279,7 +4273,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>summon</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2296">summon</a>(float&nbsp;startX,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2262">summon</a>(float&nbsp;startX,
                    float&nbsp;startY,
                    float&nbsp;endX,
                    float&nbsp;endY,
@@ -4312,7 +4306,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>summon</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2320">summon</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2286">summon</a>(float&nbsp;delay,
                    float&nbsp;startX,
                    float&nbsp;startY,
                    float&nbsp;endX,
@@ -4350,7 +4344,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>burst</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2377">burst</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2341">burst</a>(int&nbsp;x,
                   int&nbsp;y,
                   int&nbsp;distance,
                   <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidgrid/Radius.html?is-external=true" title="class or interface in squidpony.squidgrid">Radius</a>&nbsp;measurement,
@@ -4388,7 +4382,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>burst</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2407">burst</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2371">burst</a>(float&nbsp;delay,
                   int&nbsp;x,
                   int&nbsp;y,
                   int&nbsp;distance,
@@ -4433,7 +4427,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>burst</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2467">burst</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2431">burst</a>(int&nbsp;x,
                   int&nbsp;y,
                   int&nbsp;distance,
                   <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidgrid/Radius.html?is-external=true" title="class or interface in squidpony.squidgrid">Radius</a>&nbsp;measurement,
@@ -4471,7 +4465,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>burst</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2497">burst</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2461">burst</a>(float&nbsp;delay,
                   int&nbsp;x,
                   int&nbsp;y,
                   int&nbsp;distance,
@@ -4516,7 +4510,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recolor</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2554">recolor</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2518">recolor</a>(int&nbsp;x,
                     int&nbsp;y,
                     com.badlogic.gdx.graphics.Color&nbsp;color,
                     float&nbsp;duration)</pre>
@@ -4542,7 +4536,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recolor</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2571">recolor</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2535">recolor</a>(int&nbsp;x,
                     int&nbsp;y,
                     float&nbsp;encodedColor,
                     float&nbsp;duration)</pre>
@@ -4568,7 +4562,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recolor</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2590">recolor</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2554">recolor</a>(float&nbsp;delay,
                     int&nbsp;x,
                     int&nbsp;y,
                     float&nbsp;encodedColor,
@@ -4597,7 +4591,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recolor</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2609">recolor</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2573">recolor</a>(float&nbsp;delay,
                     int&nbsp;x,
                     int&nbsp;y,
                     float&nbsp;encodedColor,
@@ -4628,7 +4622,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recolor</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2660">recolor</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2622">recolor</a>(int&nbsp;x,
                     int&nbsp;y,
                     int&nbsp;layer,
                     com.badlogic.gdx.graphics.Color&nbsp;color,
@@ -4656,7 +4650,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recolor</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2677">recolor</a>(int&nbsp;x,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2639">recolor</a>(int&nbsp;x,
                     int&nbsp;y,
                     int&nbsp;layer,
                     float&nbsp;encodedColor,
@@ -4684,7 +4678,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recolor</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2698">recolor</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2660">recolor</a>(float&nbsp;delay,
                     int&nbsp;x,
                     int&nbsp;y,
                     int&nbsp;layer,
@@ -4715,7 +4709,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockList">
 <li class="blockList">
 <h4>recolor</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2721">recolor</a>(float&nbsp;delay,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2683">recolor</a>(float&nbsp;delay,
                     int&nbsp;x,
                     int&nbsp;y,
                     int&nbsp;layer,
@@ -4749,7 +4743,7 @@ implements <a href="../../../../squidpony/squidgrid/gui/gdx/IPackedColorPanel.ht
 <ul class="blockListLast">
 <li class="blockList">
 <h4>draw</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2767">draw</a>(com.badlogic.gdx.graphics.g2d.Batch&nbsp;batch,
+<pre>public&nbsp;void&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/SparseLayers.html#line.2727">draw</a>(com.badlogic.gdx.graphics.g2d.Batch&nbsp;batch,
                  float&nbsp;parentAlpha)</pre>
 <div class="block">Draws the actor. The batch is configured to draw in the parent's coordinate system.
  <code>This draw method</code> is convenient to draw a rotated and scaled TextureRegion. <code>Batch.begin()</code> has already been called on

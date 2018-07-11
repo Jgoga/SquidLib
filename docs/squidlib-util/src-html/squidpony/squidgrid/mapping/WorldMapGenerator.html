@@ -3290,9 +3290,9 @@
 <span class="sourceLineNo">3282</span>         * Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an<a name="line.3282"></a>
 <span class="sourceLineNo">3283</span>         * ellipse without distortion of the sizes of features but with significant distortion of shape.<a name="line.3283"></a>
 <span class="sourceLineNo">3284</span>         * Always makes a 200x100 map.<a name="line.3284"></a>
-<span class="sourceLineNo">3285</span>         * Uses WhirlingNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.<a name="line.3285"></a>
+<span class="sourceLineNo">3285</span>         * Uses ClassicNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.<a name="line.3285"></a>
 <span class="sourceLineNo">3286</span>         * If you were using {@link RoundSideMap#RoundSideMap(long, int, int, Noise3D, double)}, then this would be the<a name="line.3286"></a>
-<span class="sourceLineNo">3287</span>         * same as passing the parameters {@code 0x1337BABE1337D00DL, 200, 100, WhirlingNoise.instance, 1.0}.<a name="line.3287"></a>
+<span class="sourceLineNo">3287</span>         * same as passing the parameters {@code 0x1337BABE1337D00DL, 200, 100, ClassicNoise.instance, 1.0}.<a name="line.3287"></a>
 <span class="sourceLineNo">3288</span>         */<a name="line.3288"></a>
 <span class="sourceLineNo">3289</span>        public RoundSideMap() {<a name="line.3289"></a>
 <span class="sourceLineNo">3290</span>            this(0x1337BABE1337D00DL, 200, 100, ClassicNoise.instance, 1.0);<a name="line.3290"></a>
@@ -3304,7 +3304,7 @@
 <span class="sourceLineNo">3296</span>         * Takes only the width/height of the map. The initial seed is set to the same large long<a name="line.3296"></a>
 <span class="sourceLineNo">3297</span>         * every time, and it's likely that you would set the seed when you call {@link #generate(long)}. The width and<a name="line.3297"></a>
 <span class="sourceLineNo">3298</span>         * height of the map cannot be changed after the fact, but you can zoom in.<a name="line.3298"></a>
-<span class="sourceLineNo">3299</span>         * Uses WhirlingNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.<a name="line.3299"></a>
+<span class="sourceLineNo">3299</span>         * Uses ClassicNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.<a name="line.3299"></a>
 <span class="sourceLineNo">3300</span>         *<a name="line.3300"></a>
 <span class="sourceLineNo">3301</span>         * @param mapWidth  the width of the map(s) to generate; cannot be changed later<a name="line.3301"></a>
 <span class="sourceLineNo">3302</span>         * @param mapHeight the height of the map(s) to generate; cannot be changed later<a name="line.3302"></a>
@@ -3319,7 +3319,7 @@
 <span class="sourceLineNo">3311</span>         * Takes an initial seed and the width/height of the map. The {@code initialSeed}<a name="line.3311"></a>
 <span class="sourceLineNo">3312</span>         * parameter may or may not be used, since you can specify the seed to use when you call {@link #generate(long)}.<a name="line.3312"></a>
 <span class="sourceLineNo">3313</span>         * The width and height of the map cannot be changed after the fact, but you can zoom in.<a name="line.3313"></a>
-<span class="sourceLineNo">3314</span>         * Uses WhirlingNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.<a name="line.3314"></a>
+<span class="sourceLineNo">3314</span>         * Uses ClassicNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.<a name="line.3314"></a>
 <span class="sourceLineNo">3315</span>         *<a name="line.3315"></a>
 <span class="sourceLineNo">3316</span>         * @param initialSeed the seed for the StatefulRNG this uses; this may also be set per-call to generate<a name="line.3316"></a>
 <span class="sourceLineNo">3317</span>         * @param mapWidth    the width of the map(s) to generate; cannot be changed later<a name="line.3317"></a>
@@ -3335,7 +3335,7 @@
 <span class="sourceLineNo">3327</span>         * Takes an initial seed and the width/height of the map. The {@code initialSeed}<a name="line.3327"></a>
 <span class="sourceLineNo">3328</span>         * parameter may or may not be used, since you can specify the seed to use when you call {@link #generate(long)}.<a name="line.3328"></a>
 <span class="sourceLineNo">3329</span>         * The width and height of the map cannot be changed after the fact, but you can zoom in.<a name="line.3329"></a>
-<span class="sourceLineNo">3330</span>         * Uses WhirlingNoise as its noise generator, with the given octave multiplier affecting detail.<a name="line.3330"></a>
+<span class="sourceLineNo">3330</span>         * Uses ClassicNoise as its noise generator, with the given octave multiplier affecting detail.<a name="line.3330"></a>
 <span class="sourceLineNo">3331</span>         *<a name="line.3331"></a>
 <span class="sourceLineNo">3332</span>         * @param initialSeed the seed for the StatefulRNG this uses; this may also be set per-call to generate<a name="line.3332"></a>
 <span class="sourceLineNo">3333</span>         * @param mapWidth    the width of the map(s) to generate; cannot be changed later<a name="line.3333"></a>
@@ -3358,7 +3358,7 @@
 <span class="sourceLineNo">3350</span>         * @param initialSeed the seed for the StatefulRNG this uses; this may also be set per-call to generate<a name="line.3350"></a>
 <span class="sourceLineNo">3351</span>         * @param mapWidth    the width of the map(s) to generate; cannot be changed later<a name="line.3351"></a>
 <span class="sourceLineNo">3352</span>         * @param mapHeight   the height of the map(s) to generate; cannot be changed later<a name="line.3352"></a>
-<span class="sourceLineNo">3353</span>         * @param noiseGenerator an instance of a noise generator capable of 3D noise, usually {@link WhirlingNoise} or {@link SeededNoise}<a name="line.3353"></a>
+<span class="sourceLineNo">3353</span>         * @param noiseGenerator an instance of a noise generator capable of 3D noise, usually {@link WhirlingNoise} or {@link ClassicNoise}<a name="line.3353"></a>
 <span class="sourceLineNo">3354</span>         */<a name="line.3354"></a>
 <span class="sourceLineNo">3355</span>        public RoundSideMap(long initialSeed, int mapWidth, int mapHeight, Noise3D noiseGenerator) {<a name="line.3355"></a>
 <span class="sourceLineNo">3356</span>            this(initialSeed, mapWidth, mapHeight, noiseGenerator, 1.0);<a name="line.3356"></a>
@@ -3383,7 +3383,7 @@
 <span class="sourceLineNo">3375</span>         * @param initialSeed the seed for the StatefulRNG this uses; this may also be set per-call to generate<a name="line.3375"></a>
 <span class="sourceLineNo">3376</span>         * @param mapWidth the width of the map(s) to generate; cannot be changed later<a name="line.3376"></a>
 <span class="sourceLineNo">3377</span>         * @param mapHeight the height of the map(s) to generate; cannot be changed later<a name="line.3377"></a>
-<span class="sourceLineNo">3378</span>         * @param noiseGenerator an instance of a noise generator capable of 3D noise, usually {@link WhirlingNoise} or {@link SeededNoise}<a name="line.3378"></a>
+<span class="sourceLineNo">3378</span>         * @param noiseGenerator an instance of a noise generator capable of 3D noise, usually {@link WhirlingNoise} or {@link ClassicNoise}<a name="line.3378"></a>
 <span class="sourceLineNo">3379</span>         * @param octaveMultiplier used to adjust the level of detail, with 0.5 at the bare-minimum detail and 1.0 normal<a name="line.3379"></a>
 <span class="sourceLineNo">3380</span>         */<a name="line.3380"></a>
 <span class="sourceLineNo">3381</span>        public RoundSideMap(long initialSeed, int mapWidth, int mapHeight, Noise3D noiseGenerator, double octaveMultiplier) {<a name="line.3381"></a>
@@ -3643,8 +3643,387 @@
 <span class="sourceLineNo">3635</span>            */<a name="line.3635"></a>
 <span class="sourceLineNo">3636</span>        }<a name="line.3636"></a>
 <span class="sourceLineNo">3637</span>    }<a name="line.3637"></a>
-<span class="sourceLineNo">3638</span><a name="line.3638"></a>
-<span class="sourceLineNo">3639</span>}<a name="line.3639"></a>
+<span class="sourceLineNo">3638</span>    /**<a name="line.3638"></a>
+<span class="sourceLineNo">3639</span>     * A concrete implementation of {@link WorldMapGenerator} that projects the world map onto a shape that resembles a<a name="line.3639"></a>
+<span class="sourceLineNo">3640</span>     * mix part-way between an ellipse and a rectangle. This is an equal-area projection, like EllipticalMap, so effects that fill<a name="line.3640"></a>
+<span class="sourceLineNo">3641</span>     * areas on a map like {@link PoliticalMapper} will fill (almost) equally on any part of the map. This has less<a name="line.3641"></a>
+<span class="sourceLineNo">3642</span>     * distortion around all the edges than the other maps here, especially when comparing the North and South poles<a name="line.3642"></a>
+<span class="sourceLineNo">3643</span>     * with RoundSideMap.<a name="line.3643"></a>
+<span class="sourceLineNo">3644</span>     * This uses the &lt;a href="https://en.wikipedia.org/wiki/Tobler_hyperelliptical_projection"&gt;Tobler hyperelliptical projection&lt;/a&gt;.<a name="line.3644"></a>
+<span class="sourceLineNo">3645</span>     * &lt;a href=""&gt;Example map&lt;/a&gt;<a name="line.3645"></a>
+<span class="sourceLineNo">3646</span>     */<a name="line.3646"></a>
+<span class="sourceLineNo">3647</span>    @Beta<a name="line.3647"></a>
+<span class="sourceLineNo">3648</span>    public static class HyperellipticalMap extends WorldMapGenerator {<a name="line.3648"></a>
+<span class="sourceLineNo">3649</span>        protected static final double terrainFreq = 1.35, terrainRidgedFreq = 1.8, heatFreq = 2.1, moistureFreq = 2.125, otherFreq = 3.375, riverRidgedFreq = 21.7;<a name="line.3649"></a>
+<span class="sourceLineNo">3650</span>        protected double minHeat0 = Double.POSITIVE_INFINITY, maxHeat0 = Double.NEGATIVE_INFINITY,<a name="line.3650"></a>
+<span class="sourceLineNo">3651</span>                minHeat1 = Double.POSITIVE_INFINITY, maxHeat1 = Double.NEGATIVE_INFINITY,<a name="line.3651"></a>
+<span class="sourceLineNo">3652</span>                minWet0 = Double.POSITIVE_INFINITY, maxWet0 = Double.NEGATIVE_INFINITY;<a name="line.3652"></a>
+<span class="sourceLineNo">3653</span><a name="line.3653"></a>
+<span class="sourceLineNo">3654</span>        public final Noise3D terrain, heat, moisture, otherRidged, riverRidged, terrainLayered;<a name="line.3654"></a>
+<span class="sourceLineNo">3655</span>        //        public final Noise4D terrain4D;<a name="line.3655"></a>
+<span class="sourceLineNo">3656</span>        public final double[][] xPositions,<a name="line.3656"></a>
+<span class="sourceLineNo">3657</span>                yPositions,<a name="line.3657"></a>
+<span class="sourceLineNo">3658</span>                zPositions;<a name="line.3658"></a>
+<span class="sourceLineNo">3659</span>        protected final int[] edges;<a name="line.3659"></a>
+<span class="sourceLineNo">3660</span>        private final double alpha, kappa, epsilon;<a name="line.3660"></a>
+<span class="sourceLineNo">3661</span>        private final double[] Z;<a name="line.3661"></a>
+<span class="sourceLineNo">3662</span><a name="line.3662"></a>
+<span class="sourceLineNo">3663</span><a name="line.3663"></a>
+<span class="sourceLineNo">3664</span>        /**<a name="line.3664"></a>
+<span class="sourceLineNo">3665</span>         * Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an<a name="line.3665"></a>
+<span class="sourceLineNo">3666</span>         * ellipse without distortion of the sizes of features but with significant distortion of shape.<a name="line.3666"></a>
+<span class="sourceLineNo">3667</span>         * Always makes a 200x100 map.<a name="line.3667"></a>
+<span class="sourceLineNo">3668</span>         * Uses ClassicNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.<a name="line.3668"></a>
+<span class="sourceLineNo">3669</span>         * If you were using {@link HyperellipticalMap#HyperellipticalMap(long, int, int, Noise3D, double)}, then this would be the<a name="line.3669"></a>
+<span class="sourceLineNo">3670</span>         * same as passing the parameters {@code 0x1337BABE1337D00DL, 200, 100, ClassicNoise.instance, 1.0}.<a name="line.3670"></a>
+<span class="sourceLineNo">3671</span>         */<a name="line.3671"></a>
+<span class="sourceLineNo">3672</span>        public HyperellipticalMap() {<a name="line.3672"></a>
+<span class="sourceLineNo">3673</span>            this(0x1337BABE1337D00DL, 200, 100, ClassicNoise.instance, 1.0);<a name="line.3673"></a>
+<span class="sourceLineNo">3674</span>        }<a name="line.3674"></a>
+<span class="sourceLineNo">3675</span><a name="line.3675"></a>
+<span class="sourceLineNo">3676</span>        /**<a name="line.3676"></a>
+<span class="sourceLineNo">3677</span>         * Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an<a name="line.3677"></a>
+<span class="sourceLineNo">3678</span>         * ellipse without distortion of the sizes of features but with significant distortion of shape.<a name="line.3678"></a>
+<span class="sourceLineNo">3679</span>         * Takes only the width/height of the map. The initial seed is set to the same large long<a name="line.3679"></a>
+<span class="sourceLineNo">3680</span>         * every time, and it's likely that you would set the seed when you call {@link #generate(long)}. The width and<a name="line.3680"></a>
+<span class="sourceLineNo">3681</span>         * height of the map cannot be changed after the fact, but you can zoom in.<a name="line.3681"></a>
+<span class="sourceLineNo">3682</span>         * Uses ClassicNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.<a name="line.3682"></a>
+<span class="sourceLineNo">3683</span>         *<a name="line.3683"></a>
+<span class="sourceLineNo">3684</span>         * @param mapWidth  the width of the map(s) to generate; cannot be changed later<a name="line.3684"></a>
+<span class="sourceLineNo">3685</span>         * @param mapHeight the height of the map(s) to generate; cannot be changed later<a name="line.3685"></a>
+<span class="sourceLineNo">3686</span>         */<a name="line.3686"></a>
+<span class="sourceLineNo">3687</span>        public HyperellipticalMap(int mapWidth, int mapHeight) {<a name="line.3687"></a>
+<span class="sourceLineNo">3688</span>            this(0x1337BABE1337D00DL, mapWidth, mapHeight,  ClassicNoise.instance,1.0);<a name="line.3688"></a>
+<span class="sourceLineNo">3689</span>        }<a name="line.3689"></a>
+<span class="sourceLineNo">3690</span><a name="line.3690"></a>
+<span class="sourceLineNo">3691</span>        /**<a name="line.3691"></a>
+<span class="sourceLineNo">3692</span>         * Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an<a name="line.3692"></a>
+<span class="sourceLineNo">3693</span>         * ellipse without distortion of the sizes of features but with significant distortion of shape.<a name="line.3693"></a>
+<span class="sourceLineNo">3694</span>         * Takes an initial seed and the width/height of the map. The {@code initialSeed}<a name="line.3694"></a>
+<span class="sourceLineNo">3695</span>         * parameter may or may not be used, since you can specify the seed to use when you call {@link #generate(long)}.<a name="line.3695"></a>
+<span class="sourceLineNo">3696</span>         * The width and height of the map cannot be changed after the fact, but you can zoom in.<a name="line.3696"></a>
+<span class="sourceLineNo">3697</span>         * Uses ClassicNoise as its noise generator, with 1.0 as the octave multiplier affecting detail.<a name="line.3697"></a>
+<span class="sourceLineNo">3698</span>         *<a name="line.3698"></a>
+<span class="sourceLineNo">3699</span>         * @param initialSeed the seed for the StatefulRNG this uses; this may also be set per-call to generate<a name="line.3699"></a>
+<span class="sourceLineNo">3700</span>         * @param mapWidth    the width of the map(s) to generate; cannot be changed later<a name="line.3700"></a>
+<span class="sourceLineNo">3701</span>         * @param mapHeight   the height of the map(s) to generate; cannot be changed later<a name="line.3701"></a>
+<span class="sourceLineNo">3702</span>         */<a name="line.3702"></a>
+<span class="sourceLineNo">3703</span>        public HyperellipticalMap(long initialSeed, int mapWidth, int mapHeight) {<a name="line.3703"></a>
+<span class="sourceLineNo">3704</span>            this(initialSeed, mapWidth, mapHeight, ClassicNoise.instance, 1.0);<a name="line.3704"></a>
+<span class="sourceLineNo">3705</span>        }<a name="line.3705"></a>
+<span class="sourceLineNo">3706</span><a name="line.3706"></a>
+<span class="sourceLineNo">3707</span>        /**<a name="line.3707"></a>
+<span class="sourceLineNo">3708</span>         * Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an<a name="line.3708"></a>
+<span class="sourceLineNo">3709</span>         * ellipse without distortion of the sizes of features but with significant distortion of shape.<a name="line.3709"></a>
+<span class="sourceLineNo">3710</span>         * Takes an initial seed and the width/height of the map. The {@code initialSeed}<a name="line.3710"></a>
+<span class="sourceLineNo">3711</span>         * parameter may or may not be used, since you can specify the seed to use when you call {@link #generate(long)}.<a name="line.3711"></a>
+<span class="sourceLineNo">3712</span>         * The width and height of the map cannot be changed after the fact, but you can zoom in.<a name="line.3712"></a>
+<span class="sourceLineNo">3713</span>         * Uses ClassicNoise as its noise generator, with the given octave multiplier affecting detail.<a name="line.3713"></a>
+<span class="sourceLineNo">3714</span>         *<a name="line.3714"></a>
+<span class="sourceLineNo">3715</span>         * @param initialSeed the seed for the StatefulRNG this uses; this may also be set per-call to generate<a name="line.3715"></a>
+<span class="sourceLineNo">3716</span>         * @param mapWidth    the width of the map(s) to generate; cannot be changed later<a name="line.3716"></a>
+<span class="sourceLineNo">3717</span>         * @param mapHeight   the height of the map(s) to generate; cannot be changed later<a name="line.3717"></a>
+<span class="sourceLineNo">3718</span>         * @param octaveMultiplier used to adjust the level of detail, with 0.5 at the bare-minimum detail and 1.0 normal<a name="line.3718"></a>
+<span class="sourceLineNo">3719</span>         */<a name="line.3719"></a>
+<span class="sourceLineNo">3720</span>        public HyperellipticalMap(long initialSeed, int mapWidth, int mapHeight, double octaveMultiplier) {<a name="line.3720"></a>
+<span class="sourceLineNo">3721</span>            this(initialSeed, mapWidth, mapHeight, ClassicNoise.instance, octaveMultiplier);<a name="line.3721"></a>
+<span class="sourceLineNo">3722</span>        }<a name="line.3722"></a>
+<span class="sourceLineNo">3723</span><a name="line.3723"></a>
+<span class="sourceLineNo">3724</span>        /**<a name="line.3724"></a>
+<span class="sourceLineNo">3725</span>         * Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an<a name="line.3725"></a>
+<span class="sourceLineNo">3726</span>         * ellipse without distortion of the sizes of features but with significant distortion of shape.<a name="line.3726"></a>
+<span class="sourceLineNo">3727</span>         * Takes an initial seed and the width/height of the map. The {@code initialSeed}<a name="line.3727"></a>
+<span class="sourceLineNo">3728</span>         * parameter may or may not be used, since you can specify the seed to use when you call {@link #generate(long)}.<a name="line.3728"></a>
+<span class="sourceLineNo">3729</span>         * The width and height of the map cannot be changed after the fact, but you can zoom in.<a name="line.3729"></a>
+<span class="sourceLineNo">3730</span>         * Uses the given noise generator, with 1.0 as the octave multiplier affecting detail. The suggested Noise3D<a name="line.3730"></a>
+<span class="sourceLineNo">3731</span>         * implementation to use is {@link ClassicNoise#instance}, and {@link WhirlingNoise#instance} is also good.<a name="line.3731"></a>
+<span class="sourceLineNo">3732</span>         *<a name="line.3732"></a>
+<span class="sourceLineNo">3733</span>         * @param initialSeed the seed for the StatefulRNG this uses; this may also be set per-call to generate<a name="line.3733"></a>
+<span class="sourceLineNo">3734</span>         * @param mapWidth    the width of the map(s) to generate; cannot be changed later<a name="line.3734"></a>
+<span class="sourceLineNo">3735</span>         * @param mapHeight   the height of the map(s) to generate; cannot be changed later<a name="line.3735"></a>
+<span class="sourceLineNo">3736</span>         * @param noiseGenerator an instance of a noise generator capable of 3D noise, usually {@link WhirlingNoise} or {@link ClassicNoise}<a name="line.3736"></a>
+<span class="sourceLineNo">3737</span>         */<a name="line.3737"></a>
+<span class="sourceLineNo">3738</span>        public HyperellipticalMap(long initialSeed, int mapWidth, int mapHeight, Noise3D noiseGenerator) {<a name="line.3738"></a>
+<span class="sourceLineNo">3739</span>            this(initialSeed, mapWidth, mapHeight, noiseGenerator, 1.0);<a name="line.3739"></a>
+<span class="sourceLineNo">3740</span>        }<a name="line.3740"></a>
+<span class="sourceLineNo">3741</span><a name="line.3741"></a>
+<span class="sourceLineNo">3742</span>        /**<a name="line.3742"></a>
+<span class="sourceLineNo">3743</span>         * Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an<a name="line.3743"></a>
+<span class="sourceLineNo">3744</span>         * ellipse without distortion of the sizes of features but with significant distortion of shape.<a name="line.3744"></a>
+<span class="sourceLineNo">3745</span>         * Takes an initial seed, the width/height of the map, and parameters for noise generation (a<a name="line.3745"></a>
+<span class="sourceLineNo">3746</span>         * {@link Noise3D} implementation, where {@link ClassicNoise#instance} is suggested, and a<a name="line.3746"></a>
+<span class="sourceLineNo">3747</span>         * multiplier on how many octaves of noise to use, with 1.0 being normal (high) detail and higher multipliers<a name="line.3747"></a>
+<span class="sourceLineNo">3748</span>         * producing even more detailed noise when zoomed-in). The {@code initialSeed} parameter may or may not be used,<a name="line.3748"></a>
+<span class="sourceLineNo">3749</span>         * since you can specify the seed to use when you call {@link #generate(long)}. The width and height of the map<a name="line.3749"></a>
+<span class="sourceLineNo">3750</span>         * cannot be changed after the fact, but you can zoom in. Both SeededNoise and WhirlingNoise make sense to use<a name="line.3750"></a>
+<span class="sourceLineNo">3751</span>         * for {@code noiseGenerator}, and the seed it's constructed with doesn't matter because this will change the<a name="line.3751"></a>
+<span class="sourceLineNo">3752</span>         * seed several times at different scales of noise (it's fine to use the static {@link SeededNoise#instance} or<a name="line.3752"></a>
+<span class="sourceLineNo">3753</span>         * {@link WhirlingNoise#instance} because they have no changing state between runs of the program). Oddly,<a name="line.3753"></a>
+<span class="sourceLineNo">3754</span>         * {@link ClassicNoise} performs better in terms of time used, and its quality may also be preferable. The<a name="line.3754"></a>
+<span class="sourceLineNo">3755</span>         * {@code octaveMultiplier} parameter should probably be no lower than 0.5, but can be arbitrarily high if<a name="line.3755"></a>
+<span class="sourceLineNo">3756</span>         * you're willing to spend much more time on generating detail only noticeable at very high zoom; normally 1.0<a name="line.3756"></a>
+<span class="sourceLineNo">3757</span>         * is fine and may even be too high for maps that don't require zooming.<a name="line.3757"></a>
+<span class="sourceLineNo">3758</span>         * @param initialSeed the seed for the StatefulRNG this uses; this may also be set per-call to generate<a name="line.3758"></a>
+<span class="sourceLineNo">3759</span>         * @param mapWidth the width of the map(s) to generate; cannot be changed later<a name="line.3759"></a>
+<span class="sourceLineNo">3760</span>         * @param mapHeight the height of the map(s) to generate; cannot be changed later<a name="line.3760"></a>
+<span class="sourceLineNo">3761</span>         * @param noiseGenerator an instance of a noise generator capable of 3D noise, usually {@link WhirlingNoise} or {@link ClassicNoise}<a name="line.3761"></a>
+<span class="sourceLineNo">3762</span>         * @param octaveMultiplier used to adjust the level of detail, with 0.5 at the bare-minimum detail and 1.0 normal<a name="line.3762"></a>
+<span class="sourceLineNo">3763</span>         */<a name="line.3763"></a>
+<span class="sourceLineNo">3764</span>        public HyperellipticalMap(long initialSeed, int mapWidth, int mapHeight, Noise3D noiseGenerator, double octaveMultiplier){<a name="line.3764"></a>
+<span class="sourceLineNo">3765</span>            this(initialSeed, mapWidth, mapHeight, noiseGenerator, octaveMultiplier, 0.1, 3.25);<a name="line.3765"></a>
+<span class="sourceLineNo">3766</span>        }<a name="line.3766"></a>
+<span class="sourceLineNo">3767</span><a name="line.3767"></a>
+<span class="sourceLineNo">3768</span>        /**<a name="line.3768"></a>
+<span class="sourceLineNo">3769</span>         * Constructs a concrete WorldMapGenerator for a map that can be used to display a projection of a globe onto an<a name="line.3769"></a>
+<span class="sourceLineNo">3770</span>         * ellipse without distortion of the sizes of features but with significant distortion of shape.<a name="line.3770"></a>
+<span class="sourceLineNo">3771</span>         * Takes an initial seed, the width/height of the map, and parameters for noise generation (a<a name="line.3771"></a>
+<span class="sourceLineNo">3772</span>         * {@link Noise3D} implementation, where {@link ClassicNoise#instance} is suggested, and a<a name="line.3772"></a>
+<span class="sourceLineNo">3773</span>         * multiplier on how many octaves of noise to use, with 1.0 being normal (high) detail and higher multipliers<a name="line.3773"></a>
+<span class="sourceLineNo">3774</span>         * producing even more detailed noise when zoomed-in). The {@code initialSeed} parameter may or may not be used,<a name="line.3774"></a>
+<span class="sourceLineNo">3775</span>         * since you can specify the seed to use when you call {@link #generate(long)}. The width and height of the map<a name="line.3775"></a>
+<span class="sourceLineNo">3776</span>         * cannot be changed after the fact, but you can zoom in. Both SeededNoise and WhirlingNoise make sense to use<a name="line.3776"></a>
+<span class="sourceLineNo">3777</span>         * for {@code noiseGenerator}, and the seed it's constructed with doesn't matter because this will change the<a name="line.3777"></a>
+<span class="sourceLineNo">3778</span>         * seed several times at different scales of noise (it's fine to use the static {@link SeededNoise#instance} or<a name="line.3778"></a>
+<span class="sourceLineNo">3779</span>         * {@link WhirlingNoise#instance} because they have no changing state between runs of the program). Oddly,<a name="line.3779"></a>
+<span class="sourceLineNo">3780</span>         * {@link ClassicNoise} performs better in terms of time used, and its quality may also be preferable. The<a name="line.3780"></a>
+<span class="sourceLineNo">3781</span>         * {@code octaveMultiplier} parameter should probably be no lower than 0.5, but can be arbitrarily high if<a name="line.3781"></a>
+<span class="sourceLineNo">3782</span>         * you're willing to spend much more time on generating detail only noticeable at very high zoom; normally 1.0<a name="line.3782"></a>
+<span class="sourceLineNo">3783</span>         * is fine and may even be too high for maps that don't require zooming.<a name="line.3783"></a>
+<span class="sourceLineNo">3784</span>         * @param initialSeed the seed for the StatefulRNG this uses; this may also be set per-call to generate<a name="line.3784"></a>
+<span class="sourceLineNo">3785</span>         * @param mapWidth the width of the map(s) to generate; cannot be changed later<a name="line.3785"></a>
+<span class="sourceLineNo">3786</span>         * @param mapHeight the height of the map(s) to generate; cannot be changed later<a name="line.3786"></a>
+<span class="sourceLineNo">3787</span>         * @param noiseGenerator an instance of a noise generator capable of 3D noise, usually {@link WhirlingNoise} or {@link ClassicNoise}<a name="line.3787"></a>
+<span class="sourceLineNo">3788</span>         * @param octaveMultiplier used to adjust the level of detail, with 0.5 at the bare-minimum detail and 1.0 normal<a name="line.3788"></a>
+<span class="sourceLineNo">3789</span>         * @param alpha one of the Tobler parameters;  0.1 is the default and this can range from 0.0 to 1.0 at least<a name="line.3789"></a>
+<span class="sourceLineNo">3790</span>         * @param kappa one of the Tobler parameters; 3.25 is the default but 2.0-5.0 range values are also often used<a name="line.3790"></a>
+<span class="sourceLineNo">3791</span>         */<a name="line.3791"></a>
+<span class="sourceLineNo">3792</span>        public HyperellipticalMap(long initialSeed, int mapWidth, int mapHeight, Noise3D noiseGenerator,<a name="line.3792"></a>
+<span class="sourceLineNo">3793</span>                                  double octaveMultiplier, double alpha, double kappa){<a name="line.3793"></a>
+<span class="sourceLineNo">3794</span>            super(initialSeed, mapWidth, mapHeight);<a name="line.3794"></a>
+<span class="sourceLineNo">3795</span>            xPositions = new double[width][height];<a name="line.3795"></a>
+<span class="sourceLineNo">3796</span>            yPositions = new double[width][height];<a name="line.3796"></a>
+<span class="sourceLineNo">3797</span>            zPositions = new double[width][height];<a name="line.3797"></a>
+<span class="sourceLineNo">3798</span>            edges = new int[height &lt;&lt; 1];<a name="line.3798"></a>
+<span class="sourceLineNo">3799</span>            terrain = new Noise.Ridged3D(noiseGenerator, (int) (0.5 + octaveMultiplier * 8), terrainFreq);<a name="line.3799"></a>
+<span class="sourceLineNo">3800</span>            terrainLayered = new Noise.Layered3D(noiseGenerator, (int) (1 + octaveMultiplier * 6), terrainRidgedFreq * 5.25);<a name="line.3800"></a>
+<span class="sourceLineNo">3801</span>            heat = new Noise.InverseLayered3D(noiseGenerator, (int) (0.5 + octaveMultiplier * 3), heatFreq, 0.75);<a name="line.3801"></a>
+<span class="sourceLineNo">3802</span>            moisture = new Noise.InverseLayered3D(noiseGenerator, (int) (0.5 + octaveMultiplier * 4), moistureFreq, 0.55);<a name="line.3802"></a>
+<span class="sourceLineNo">3803</span>            otherRidged = new Noise.Ridged3D(noiseGenerator, (int) (0.5 + octaveMultiplier * 6), otherFreq);<a name="line.3803"></a>
+<span class="sourceLineNo">3804</span>            riverRidged = new Noise.Ridged3D(noiseGenerator, (int)(0.5 + octaveMultiplier * 4), riverRidgedFreq);<a name="line.3804"></a>
+<span class="sourceLineNo">3805</span>            this.alpha = alpha;<a name="line.3805"></a>
+<span class="sourceLineNo">3806</span>            this.kappa = kappa;<a name="line.3806"></a>
+<span class="sourceLineNo">3807</span>            this.Z = new double[height &lt;&lt; 2];<a name="line.3807"></a>
+<span class="sourceLineNo">3808</span>            this.epsilon = ProjectionTools.simpsonIntegrateHyperellipse(0.0, 1.0, 0.25 / height, kappa);<a name="line.3808"></a>
+<span class="sourceLineNo">3809</span>            ProjectionTools.simpsonODESolveHyperellipse(1, this.Z, 0.25 / height, alpha, kappa, epsilon);<a name="line.3809"></a>
+<span class="sourceLineNo">3810</span>        }<a name="line.3810"></a>
+<span class="sourceLineNo">3811</span><a name="line.3811"></a>
+<span class="sourceLineNo">3812</span>        @Override<a name="line.3812"></a>
+<span class="sourceLineNo">3813</span>        public int wrapX(final int x, int y) {<a name="line.3813"></a>
+<span class="sourceLineNo">3814</span>            y = Math.max(0, Math.min(y, height - 1));<a name="line.3814"></a>
+<span class="sourceLineNo">3815</span>            if(x &lt; edges[y &lt;&lt; 1])<a name="line.3815"></a>
+<span class="sourceLineNo">3816</span>                return edges[y &lt;&lt; 1 | 1];<a name="line.3816"></a>
+<span class="sourceLineNo">3817</span>            else if(x &gt; edges[y &lt;&lt; 1 | 1])<a name="line.3817"></a>
+<span class="sourceLineNo">3818</span>                return edges[y &lt;&lt; 1];<a name="line.3818"></a>
+<span class="sourceLineNo">3819</span>            else return x;<a name="line.3819"></a>
+<span class="sourceLineNo">3820</span>        }<a name="line.3820"></a>
+<span class="sourceLineNo">3821</span><a name="line.3821"></a>
+<span class="sourceLineNo">3822</span>        @Override<a name="line.3822"></a>
+<span class="sourceLineNo">3823</span>        public int wrapY(final int x, final int y)  {<a name="line.3823"></a>
+<span class="sourceLineNo">3824</span>            return Math.max(0, Math.min(y, height - 1));<a name="line.3824"></a>
+<span class="sourceLineNo">3825</span>        }<a name="line.3825"></a>
+<span class="sourceLineNo">3826</span><a name="line.3826"></a>
+<span class="sourceLineNo">3827</span>        protected void regenerate(int startX, int startY, int usedWidth, int usedHeight,<a name="line.3827"></a>
+<span class="sourceLineNo">3828</span>                                  double landMod, double coolMod, long state)<a name="line.3828"></a>
+<span class="sourceLineNo">3829</span>        {<a name="line.3829"></a>
+<span class="sourceLineNo">3830</span>            boolean fresh = false;<a name="line.3830"></a>
+<span class="sourceLineNo">3831</span>            if(cachedState != state || landMod != landModifier || coolMod != coolingModifier)<a name="line.3831"></a>
+<span class="sourceLineNo">3832</span>            {<a name="line.3832"></a>
+<span class="sourceLineNo">3833</span>                minHeight = Double.POSITIVE_INFINITY;<a name="line.3833"></a>
+<span class="sourceLineNo">3834</span>                maxHeight = Double.NEGATIVE_INFINITY;<a name="line.3834"></a>
+<span class="sourceLineNo">3835</span>                minHeightActual = Double.POSITIVE_INFINITY;<a name="line.3835"></a>
+<span class="sourceLineNo">3836</span>                maxHeightActual = Double.NEGATIVE_INFINITY;<a name="line.3836"></a>
+<span class="sourceLineNo">3837</span>                minHeat0 = Double.POSITIVE_INFINITY;<a name="line.3837"></a>
+<span class="sourceLineNo">3838</span>                maxHeat0 = Double.NEGATIVE_INFINITY;<a name="line.3838"></a>
+<span class="sourceLineNo">3839</span>                minHeat1 = Double.POSITIVE_INFINITY;<a name="line.3839"></a>
+<span class="sourceLineNo">3840</span>                maxHeat1 = Double.NEGATIVE_INFINITY;<a name="line.3840"></a>
+<span class="sourceLineNo">3841</span>                minHeat = Double.POSITIVE_INFINITY;<a name="line.3841"></a>
+<span class="sourceLineNo">3842</span>                maxHeat = Double.NEGATIVE_INFINITY;<a name="line.3842"></a>
+<span class="sourceLineNo">3843</span>                minWet0 = Double.POSITIVE_INFINITY;<a name="line.3843"></a>
+<span class="sourceLineNo">3844</span>                maxWet0 = Double.NEGATIVE_INFINITY;<a name="line.3844"></a>
+<span class="sourceLineNo">3845</span>                minWet = Double.POSITIVE_INFINITY;<a name="line.3845"></a>
+<span class="sourceLineNo">3846</span>                maxWet = Double.NEGATIVE_INFINITY;<a name="line.3846"></a>
+<span class="sourceLineNo">3847</span>                cachedState = state;<a name="line.3847"></a>
+<span class="sourceLineNo">3848</span>                fresh = true;<a name="line.3848"></a>
+<span class="sourceLineNo">3849</span>            }<a name="line.3849"></a>
+<span class="sourceLineNo">3850</span>            rng.setState(state);<a name="line.3850"></a>
+<span class="sourceLineNo">3851</span>            long seedA = rng.nextLong(), seedB = rng.nextLong(), seedC = rng.nextLong();<a name="line.3851"></a>
+<span class="sourceLineNo">3852</span>            int t;<a name="line.3852"></a>
+<span class="sourceLineNo">3853</span><a name="line.3853"></a>
+<span class="sourceLineNo">3854</span>            landModifier = (landMod &lt;= 0) ? rng.nextDouble(0.2) + 0.91 : landMod;<a name="line.3854"></a>
+<span class="sourceLineNo">3855</span>            coolingModifier = (coolMod &lt;= 0) ? rng.nextDouble(0.45) * (rng.nextDouble()-0.5) + 1.1 : coolMod;<a name="line.3855"></a>
+<span class="sourceLineNo">3856</span><a name="line.3856"></a>
+<span class="sourceLineNo">3857</span>            double p,<a name="line.3857"></a>
+<span class="sourceLineNo">3858</span>                    ps, pc,<a name="line.3858"></a>
+<span class="sourceLineNo">3859</span>                    qs, qc,<a name="line.3859"></a>
+<span class="sourceLineNo">3860</span>                    h, temp, yPos, xPos,<a name="line.3860"></a>
+<span class="sourceLineNo">3861</span>                    i_uw = usedWidth / (double)width,<a name="line.3861"></a>
+<span class="sourceLineNo">3862</span>                    i_uh = usedHeight / (double)height,<a name="line.3862"></a>
+<span class="sourceLineNo">3863</span>                    th, lon,<a name="line.3863"></a>
+<span class="sourceLineNo">3864</span>                    rx = width * 0.5, irx = Math.PI / rx, hw = width * 0.5,<a name="line.3864"></a>
+<span class="sourceLineNo">3865</span>                    ry = height * 0.5, iry = 1.0 / ry;<a name="line.3865"></a>
+<span class="sourceLineNo">3866</span><a name="line.3866"></a>
+<span class="sourceLineNo">3867</span>            yPos = startY - ry;<a name="line.3867"></a>
+<span class="sourceLineNo">3868</span>            for (int y = 0; y &lt; height; y++, yPos += i_uh) {<a name="line.3868"></a>
+<span class="sourceLineNo">3869</span>//                thy = yPos * iry;//NumberTools.sin(thb);<a name="line.3869"></a>
+<span class="sourceLineNo">3870</span>//                thb = asin(thy);<a name="line.3870"></a>
+<span class="sourceLineNo">3871</span>//                thx = NumberTools.cos(thb);<a name="line.3871"></a>
+<span class="sourceLineNo">3872</span>//                //1.3265004 0.7538633073600218  1.326500428177002<a name="line.3872"></a>
+<span class="sourceLineNo">3873</span>//                lon = (thx == Math.PI * 0.5 || thx == Math.PI * -0.5) ? 0x1.0p100 : irx / (0.42223820031577125 * (1.0 + thx));<a name="line.3873"></a>
+<span class="sourceLineNo">3874</span>//                qs = (thb + (thx + 2.0) * thy) * 0.2800495767557787;<a name="line.3874"></a>
+<span class="sourceLineNo">3875</span>//                lat = asin(qs);<a name="line.3875"></a>
+<span class="sourceLineNo">3876</span>//<a name="line.3876"></a>
+<span class="sourceLineNo">3877</span>//                qc = NumberTools.cos(lat);<a name="line.3877"></a>
+<span class="sourceLineNo">3878</span>                <a name="line.3878"></a>
+<span class="sourceLineNo">3879</span>                lon = asin(Z[(int)(0.5 + Math.abs(yPos*iry)*(Z.length-1))])*Math.signum(yPos);<a name="line.3879"></a>
+<span class="sourceLineNo">3880</span>                qs = NumberTools.sin(lon);<a name="line.3880"></a>
+<span class="sourceLineNo">3881</span>                qc = NumberTools.cos(lon);<a name="line.3881"></a>
+<span class="sourceLineNo">3882</span><a name="line.3882"></a>
+<span class="sourceLineNo">3883</span>                boolean inSpace = true;<a name="line.3883"></a>
+<span class="sourceLineNo">3884</span>                xPos = startX - hw;<a name="line.3884"></a>
+<span class="sourceLineNo">3885</span>                for (int x = 0/*, xt = 0*/; x &lt; width; x++, xPos += i_uw) {<a name="line.3885"></a>
+<span class="sourceLineNo">3886</span>                    //th = lon * xPos;<a name="line.3886"></a>
+<span class="sourceLineNo">3887</span>                    th = xPos * irx / Math.abs(alpha + (1-alpha)*ProjectionTools.hyperellipse(yPos * iry, kappa));<a name="line.3887"></a>
+<span class="sourceLineNo">3888</span>                    if(th &lt; -3.141592653589793 || th &gt; 3.141592653589793) {<a name="line.3888"></a>
+<span class="sourceLineNo">3889</span>                    //if(th &lt; -2.0 || th &gt; 2.0) {<a name="line.3889"></a>
+<span class="sourceLineNo">3890</span>                        heightCodeData[x][y] = 10000;<a name="line.3890"></a>
+<span class="sourceLineNo">3891</span>                        inSpace = true;<a name="line.3891"></a>
+<span class="sourceLineNo">3892</span>                        continue;<a name="line.3892"></a>
+<span class="sourceLineNo">3893</span>                    }<a name="line.3893"></a>
+<span class="sourceLineNo">3894</span>                    if(inSpace)<a name="line.3894"></a>
+<span class="sourceLineNo">3895</span>                    {<a name="line.3895"></a>
+<span class="sourceLineNo">3896</span>                        inSpace = false;<a name="line.3896"></a>
+<span class="sourceLineNo">3897</span>                        edges[y &lt;&lt; 1] = x;<a name="line.3897"></a>
+<span class="sourceLineNo">3898</span>                    }<a name="line.3898"></a>
+<span class="sourceLineNo">3899</span>                    edges[y &lt;&lt; 1 | 1] = x;<a name="line.3899"></a>
+<span class="sourceLineNo">3900</span>                    th += centerLongitude;<a name="line.3900"></a>
+<span class="sourceLineNo">3901</span>                    ps = NumberTools.sin(th) * qc;<a name="line.3901"></a>
+<span class="sourceLineNo">3902</span>                    pc = NumberTools.cos(th) * qc;<a name="line.3902"></a>
+<span class="sourceLineNo">3903</span>                    xPositions[x][y] = pc;<a name="line.3903"></a>
+<span class="sourceLineNo">3904</span>                    yPositions[x][y] = ps;<a name="line.3904"></a>
+<span class="sourceLineNo">3905</span>                    zPositions[x][y] = qs;<a name="line.3905"></a>
+<span class="sourceLineNo">3906</span>                    heightData[x][y] = (h = terrainLayered.getNoiseWithSeed(pc +<a name="line.3906"></a>
+<span class="sourceLineNo">3907</span>                                    terrain.getNoiseWithSeed(pc, ps, qs,seedB - seedA),<a name="line.3907"></a>
+<span class="sourceLineNo">3908</span>                            ps, qs, seedA) + landModifier - 1.0);<a name="line.3908"></a>
+<span class="sourceLineNo">3909</span>                    heatData[x][y] = (p = heat.getNoiseWithSeed(pc, ps<a name="line.3909"></a>
+<span class="sourceLineNo">3910</span>                                    + otherRidged.getNoiseWithSeed(pc, ps, qs,seedB + seedC)<a name="line.3910"></a>
+<span class="sourceLineNo">3911</span>                            , qs, seedB));<a name="line.3911"></a>
+<span class="sourceLineNo">3912</span>                    moistureData[x][y] = (temp = moisture.getNoiseWithSeed(pc, ps, qs<a name="line.3912"></a>
+<span class="sourceLineNo">3913</span>                                    + otherRidged.getNoiseWithSeed(pc, ps, qs, seedC + seedA)<a name="line.3913"></a>
+<span class="sourceLineNo">3914</span>                            , seedC));<a name="line.3914"></a>
+<span class="sourceLineNo">3915</span>                    freshwaterData[x][y] = (ps = Math.min(<a name="line.3915"></a>
+<span class="sourceLineNo">3916</span>                            NumberTools.sway(riverRidged.getNoiseWithSeed(pc * 0.46, ps * 0.46, qs * 0.46, seedC - seedA - seedB) + 0.38),<a name="line.3916"></a>
+<span class="sourceLineNo">3917</span>                            NumberTools.sway( riverRidged.getNoiseWithSeed(pc, ps, qs, seedC - seedA - seedB) + 0.5))) * ps * ps * 45.42;<a name="line.3917"></a>
+<span class="sourceLineNo">3918</span>                    minHeightActual = Math.min(minHeightActual, h);<a name="line.3918"></a>
+<span class="sourceLineNo">3919</span>                    maxHeightActual = Math.max(maxHeightActual, h);<a name="line.3919"></a>
+<span class="sourceLineNo">3920</span>                    if(fresh) {<a name="line.3920"></a>
+<span class="sourceLineNo">3921</span>                        minHeight = Math.min(minHeight, h);<a name="line.3921"></a>
+<span class="sourceLineNo">3922</span>                        maxHeight = Math.max(maxHeight, h);<a name="line.3922"></a>
+<span class="sourceLineNo">3923</span><a name="line.3923"></a>
+<span class="sourceLineNo">3924</span>                        minHeat0 = Math.min(minHeat0, p);<a name="line.3924"></a>
+<span class="sourceLineNo">3925</span>                        maxHeat0 = Math.max(maxHeat0, p);<a name="line.3925"></a>
+<span class="sourceLineNo">3926</span><a name="line.3926"></a>
+<span class="sourceLineNo">3927</span>                        minWet0 = Math.min(minWet0, temp);<a name="line.3927"></a>
+<span class="sourceLineNo">3928</span>                        maxWet0 = Math.max(maxWet0, temp);<a name="line.3928"></a>
+<span class="sourceLineNo">3929</span>                    }<a name="line.3929"></a>
+<span class="sourceLineNo">3930</span>                }<a name="line.3930"></a>
+<span class="sourceLineNo">3931</span>                minHeightActual = Math.min(minHeightActual, minHeight);<a name="line.3931"></a>
+<span class="sourceLineNo">3932</span>                maxHeightActual = Math.max(maxHeightActual, maxHeight);<a name="line.3932"></a>
+<span class="sourceLineNo">3933</span><a name="line.3933"></a>
+<span class="sourceLineNo">3934</span>            }<a name="line.3934"></a>
+<span class="sourceLineNo">3935</span>            double  heatDiff = 0.8 / (maxHeat0 - minHeat0),<a name="line.3935"></a>
+<span class="sourceLineNo">3936</span>                    wetDiff = 1.0 / (maxWet0 - minWet0),<a name="line.3936"></a>
+<span class="sourceLineNo">3937</span>                    hMod,<a name="line.3937"></a>
+<span class="sourceLineNo">3938</span>                    halfHeight = (height - 1) * 0.5, i_half = 1.0 / halfHeight;<a name="line.3938"></a>
+<span class="sourceLineNo">3939</span>            yPos = startY + i_uh;<a name="line.3939"></a>
+<span class="sourceLineNo">3940</span>            ps = Double.POSITIVE_INFINITY;<a name="line.3940"></a>
+<span class="sourceLineNo">3941</span>            pc = Double.NEGATIVE_INFINITY;<a name="line.3941"></a>
+<span class="sourceLineNo">3942</span><a name="line.3942"></a>
+<span class="sourceLineNo">3943</span>            for (int y = 0; y &lt; height; y++, yPos += i_uh) {<a name="line.3943"></a>
+<span class="sourceLineNo">3944</span>                temp = Math.abs(yPos - halfHeight) * i_half;<a name="line.3944"></a>
+<span class="sourceLineNo">3945</span>                temp *= (2.4 - temp);<a name="line.3945"></a>
+<span class="sourceLineNo">3946</span>                temp = 2.2 - temp;<a name="line.3946"></a>
+<span class="sourceLineNo">3947</span>                for (int x = 0; x &lt; width; x++) {<a name="line.3947"></a>
+<span class="sourceLineNo">3948</span>                    h = heightData[x][y];<a name="line.3948"></a>
+<span class="sourceLineNo">3949</span>                    if(heightCodeData[x][y] == 10000) {<a name="line.3949"></a>
+<span class="sourceLineNo">3950</span>                        heightCodeData[x][y] = 1000;<a name="line.3950"></a>
+<span class="sourceLineNo">3951</span>                        continue;<a name="line.3951"></a>
+<span class="sourceLineNo">3952</span>                    }<a name="line.3952"></a>
+<span class="sourceLineNo">3953</span>                    else<a name="line.3953"></a>
+<span class="sourceLineNo">3954</span>                        heightCodeData[x][y] = (t = codeHeight(h));<a name="line.3954"></a>
+<span class="sourceLineNo">3955</span>                    hMod = 1.0;<a name="line.3955"></a>
+<span class="sourceLineNo">3956</span>                    switch (t) {<a name="line.3956"></a>
+<span class="sourceLineNo">3957</span>                        case 0:<a name="line.3957"></a>
+<span class="sourceLineNo">3958</span>                        case 1:<a name="line.3958"></a>
+<span class="sourceLineNo">3959</span>                        case 2:<a name="line.3959"></a>
+<span class="sourceLineNo">3960</span>                        case 3:<a name="line.3960"></a>
+<span class="sourceLineNo">3961</span>                            h = 0.4;<a name="line.3961"></a>
+<span class="sourceLineNo">3962</span>                            hMod = 0.2;<a name="line.3962"></a>
+<span class="sourceLineNo">3963</span>                            break;<a name="line.3963"></a>
+<span class="sourceLineNo">3964</span>                        case 6:<a name="line.3964"></a>
+<span class="sourceLineNo">3965</span>                            h = -0.1 * (h - forestLower - 0.08);<a name="line.3965"></a>
+<span class="sourceLineNo">3966</span>                            break;<a name="line.3966"></a>
+<span class="sourceLineNo">3967</span>                        case 7:<a name="line.3967"></a>
+<span class="sourceLineNo">3968</span>                            h *= -0.25;<a name="line.3968"></a>
+<span class="sourceLineNo">3969</span>                            break;<a name="line.3969"></a>
+<span class="sourceLineNo">3970</span>                        case 8:<a name="line.3970"></a>
+<span class="sourceLineNo">3971</span>                            h *= -0.4;<a name="line.3971"></a>
+<span class="sourceLineNo">3972</span>                            break;<a name="line.3972"></a>
+<span class="sourceLineNo">3973</span>                        default:<a name="line.3973"></a>
+<span class="sourceLineNo">3974</span>                            h *= 0.05;<a name="line.3974"></a>
+<span class="sourceLineNo">3975</span>                    }<a name="line.3975"></a>
+<span class="sourceLineNo">3976</span>                    heatData[x][y] = (h = (((heatData[x][y] - minHeat0) * heatDiff * hMod) + h + 0.6) * temp);<a name="line.3976"></a>
+<span class="sourceLineNo">3977</span>                    if (fresh) {<a name="line.3977"></a>
+<span class="sourceLineNo">3978</span>                        ps = Math.min(ps, h); //minHeat0<a name="line.3978"></a>
+<span class="sourceLineNo">3979</span>                        pc = Math.max(pc, h); //maxHeat0<a name="line.3979"></a>
+<span class="sourceLineNo">3980</span>                    }<a name="line.3980"></a>
+<span class="sourceLineNo">3981</span>                }<a name="line.3981"></a>
+<span class="sourceLineNo">3982</span>            }<a name="line.3982"></a>
+<span class="sourceLineNo">3983</span>            if(fresh)<a name="line.3983"></a>
+<span class="sourceLineNo">3984</span>            {<a name="line.3984"></a>
+<span class="sourceLineNo">3985</span>                minHeat1 = ps;<a name="line.3985"></a>
+<span class="sourceLineNo">3986</span>                maxHeat1 = pc;<a name="line.3986"></a>
+<span class="sourceLineNo">3987</span>            }<a name="line.3987"></a>
+<span class="sourceLineNo">3988</span>            heatDiff = coolingModifier / (maxHeat1 - minHeat1);<a name="line.3988"></a>
+<span class="sourceLineNo">3989</span>            qs = Double.POSITIVE_INFINITY;<a name="line.3989"></a>
+<span class="sourceLineNo">3990</span>            qc = Double.NEGATIVE_INFINITY;<a name="line.3990"></a>
+<span class="sourceLineNo">3991</span>            ps = Double.POSITIVE_INFINITY;<a name="line.3991"></a>
+<span class="sourceLineNo">3992</span>            pc = Double.NEGATIVE_INFINITY;<a name="line.3992"></a>
+<span class="sourceLineNo">3993</span><a name="line.3993"></a>
+<span class="sourceLineNo">3994</span><a name="line.3994"></a>
+<span class="sourceLineNo">3995</span>            for (int y = 0; y &lt; height; y++) {<a name="line.3995"></a>
+<span class="sourceLineNo">3996</span>                for (int x = 0; x &lt; width; x++) {<a name="line.3996"></a>
+<span class="sourceLineNo">3997</span>                    heatData[x][y] = (h = ((heatData[x][y] - minHeat1) * heatDiff));<a name="line.3997"></a>
+<span class="sourceLineNo">3998</span>                    moistureData[x][y] = (temp = (moistureData[x][y] - minWet0) * wetDiff);<a name="line.3998"></a>
+<span class="sourceLineNo">3999</span>                    if (fresh) {<a name="line.3999"></a>
+<span class="sourceLineNo">4000</span>                        qs = Math.min(qs, h);<a name="line.4000"></a>
+<span class="sourceLineNo">4001</span>                        qc = Math.max(qc, h);<a name="line.4001"></a>
+<span class="sourceLineNo">4002</span>                        ps = Math.min(ps, temp);<a name="line.4002"></a>
+<span class="sourceLineNo">4003</span>                        pc = Math.max(pc, temp);<a name="line.4003"></a>
+<span class="sourceLineNo">4004</span>                    }<a name="line.4004"></a>
+<span class="sourceLineNo">4005</span>                }<a name="line.4005"></a>
+<span class="sourceLineNo">4006</span>            }<a name="line.4006"></a>
+<span class="sourceLineNo">4007</span>            if(fresh)<a name="line.4007"></a>
+<span class="sourceLineNo">4008</span>            {<a name="line.4008"></a>
+<span class="sourceLineNo">4009</span>                minHeat = qs;<a name="line.4009"></a>
+<span class="sourceLineNo">4010</span>                maxHeat = qc;<a name="line.4010"></a>
+<span class="sourceLineNo">4011</span>                minWet = ps;<a name="line.4011"></a>
+<span class="sourceLineNo">4012</span>                maxWet = pc;<a name="line.4012"></a>
+<span class="sourceLineNo">4013</span>            }<a name="line.4013"></a>
+<span class="sourceLineNo">4014</span>            landData.refill(heightCodeData, 4, 999);<a name="line.4014"></a>
+<span class="sourceLineNo">4015</span>        }<a name="line.4015"></a>
+<span class="sourceLineNo">4016</span>    }<a name="line.4016"></a>
+<span class="sourceLineNo">4017</span><a name="line.4017"></a>
+<span class="sourceLineNo">4018</span>}<a name="line.4018"></a>
 
 
 
