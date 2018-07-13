@@ -6517,66 +6517,90 @@
 <span class="sourceLineNo">6509</span>        return copy().surface8way();<a name="line.6509"></a>
 <span class="sourceLineNo">6510</span>    }<a name="line.6510"></a>
 <span class="sourceLineNo">6511</span><a name="line.6511"></a>
-<span class="sourceLineNo">6512</span>    public class GRIterator implements Iterator&lt;Coord&gt;<a name="line.6512"></a>
-<span class="sourceLineNo">6513</span>    {<a name="line.6513"></a>
-<span class="sourceLineNo">6514</span>        public int index = 0;<a name="line.6514"></a>
-<span class="sourceLineNo">6515</span>        private long t, w;<a name="line.6515"></a>
-<span class="sourceLineNo">6516</span>        public GRIterator()<a name="line.6516"></a>
-<span class="sourceLineNo">6517</span>        {<a name="line.6517"></a>
-<span class="sourceLineNo">6518</span>            if(!tallied)<a name="line.6518"></a>
-<span class="sourceLineNo">6519</span>                tally();<a name="line.6519"></a>
-<span class="sourceLineNo">6520</span>        }<a name="line.6520"></a>
-<span class="sourceLineNo">6521</span>        @Override<a name="line.6521"></a>
-<span class="sourceLineNo">6522</span>        public boolean hasNext() {<a name="line.6522"></a>
-<span class="sourceLineNo">6523</span>            return index &lt; ct;<a name="line.6523"></a>
-<span class="sourceLineNo">6524</span>        }<a name="line.6524"></a>
-<span class="sourceLineNo">6525</span><a name="line.6525"></a>
-<span class="sourceLineNo">6526</span>        @Override<a name="line.6526"></a>
-<span class="sourceLineNo">6527</span>        public Coord next() {<a name="line.6527"></a>
-<span class="sourceLineNo">6528</span>            int c;<a name="line.6528"></a>
-<span class="sourceLineNo">6529</span>            if(index &gt;= ct)<a name="line.6529"></a>
-<span class="sourceLineNo">6530</span>                return null;<a name="line.6530"></a>
-<span class="sourceLineNo">6531</span>            for (int s = 0; s &lt; ySections; s++) {<a name="line.6531"></a>
-<span class="sourceLineNo">6532</span>                for (int x = 0; x &lt; width; x++) {<a name="line.6532"></a>
-<span class="sourceLineNo">6533</span>                    if ((c = counts[x * ySections + s]) &gt; index) {<a name="line.6533"></a>
-<span class="sourceLineNo">6534</span>                        t = data[x * ySections + s];<a name="line.6534"></a>
-<span class="sourceLineNo">6535</span>                        w = NumberTools.lowestOneBit(t);<a name="line.6535"></a>
-<span class="sourceLineNo">6536</span>                        for (--c; w != 0; c--) {<a name="line.6536"></a>
-<span class="sourceLineNo">6537</span>                            if (c == index)<a name="line.6537"></a>
-<span class="sourceLineNo">6538</span>                            {<a name="line.6538"></a>
-<span class="sourceLineNo">6539</span>                                if(index++ &lt; ct)<a name="line.6539"></a>
-<span class="sourceLineNo">6540</span>                                    return Coord.get(x, (s &lt;&lt; 6) | Long.numberOfTrailingZeros(w));<a name="line.6540"></a>
-<span class="sourceLineNo">6541</span>                                else<a name="line.6541"></a>
-<span class="sourceLineNo">6542</span>                                    return null;<a name="line.6542"></a>
-<span class="sourceLineNo">6543</span>                            }<a name="line.6543"></a>
-<span class="sourceLineNo">6544</span>                            t ^= w;<a name="line.6544"></a>
-<span class="sourceLineNo">6545</span>                            w = NumberTools.lowestOneBit(t);<a name="line.6545"></a>
-<span class="sourceLineNo">6546</span>                        }<a name="line.6546"></a>
-<span class="sourceLineNo">6547</span>                    }<a name="line.6547"></a>
-<span class="sourceLineNo">6548</span>                }<a name="line.6548"></a>
-<span class="sourceLineNo">6549</span>            }<a name="line.6549"></a>
-<span class="sourceLineNo">6550</span>            return null;<a name="line.6550"></a>
-<span class="sourceLineNo">6551</span><a name="line.6551"></a>
-<span class="sourceLineNo">6552</span>            /*<a name="line.6552"></a>
-<span class="sourceLineNo">6553</span>            for (int x = 0; x &lt; width; x++) {<a name="line.6553"></a>
-<span class="sourceLineNo">6554</span>                for (int s = 0; s &lt; ySections; s++) {<a name="line.6554"></a>
-<span class="sourceLineNo">6555</span>                    if ((w = NumberTools.lowestOneBit(data[x * ySections + s])) != 0 &amp;&amp; i++ &gt;= index) {<a name="line.6555"></a>
-<span class="sourceLineNo">6556</span>                        if(index++ &lt; limit)<a name="line.6556"></a>
-<span class="sourceLineNo">6557</span>                            return Coord.get(x, (s &lt;&lt; 6) | Long.numberOfTrailingZeros(w));<a name="line.6557"></a>
-<span class="sourceLineNo">6558</span>                        else<a name="line.6558"></a>
-<span class="sourceLineNo">6559</span>                            return null;<a name="line.6559"></a>
-<span class="sourceLineNo">6560</span>                    }<a name="line.6560"></a>
-<span class="sourceLineNo">6561</span>                }<a name="line.6561"></a>
-<span class="sourceLineNo">6562</span>            }<a name="line.6562"></a>
-<span class="sourceLineNo">6563</span>            */<a name="line.6563"></a>
-<span class="sourceLineNo">6564</span>        }<a name="line.6564"></a>
-<span class="sourceLineNo">6565</span><a name="line.6565"></a>
-<span class="sourceLineNo">6566</span>        @Override<a name="line.6566"></a>
-<span class="sourceLineNo">6567</span>        public void remove() {<a name="line.6567"></a>
-<span class="sourceLineNo">6568</span>            throw new UnsupportedOperationException("remove() is not supported on this Iterator.");<a name="line.6568"></a>
-<span class="sourceLineNo">6569</span>        }<a name="line.6569"></a>
-<span class="sourceLineNo">6570</span>    }<a name="line.6570"></a>
-<span class="sourceLineNo">6571</span>}<a name="line.6571"></a>
+<span class="sourceLineNo">6512</span><a name="line.6512"></a>
+<span class="sourceLineNo">6513</span><a name="line.6513"></a>
+<span class="sourceLineNo">6514</span>    public Coord singleRandomAlt(IRNG rng)<a name="line.6514"></a>
+<span class="sourceLineNo">6515</span>    {<a name="line.6515"></a>
+<span class="sourceLineNo">6516</span>        int ct = size(), tmp = rng.nextInt(ct);<a name="line.6516"></a>
+<span class="sourceLineNo">6517</span>        long t, w;<a name="line.6517"></a>
+<span class="sourceLineNo">6518</span>        for (int s = 0; s &lt; ySections; s++) {<a name="line.6518"></a>
+<span class="sourceLineNo">6519</span>            for (int x = 0; x &lt; width; x++) {<a name="line.6519"></a>
+<span class="sourceLineNo">6520</span>                if ((ct = counts[x * ySections + s]) &gt; tmp) {<a name="line.6520"></a>
+<span class="sourceLineNo">6521</span>                    t = data[x * ySections + s];<a name="line.6521"></a>
+<span class="sourceLineNo">6522</span>                    for (--ct; t != 0; ct--) {<a name="line.6522"></a>
+<span class="sourceLineNo">6523</span>                        w = t &amp; -t;<a name="line.6523"></a>
+<span class="sourceLineNo">6524</span>                        if (ct == tmp)<a name="line.6524"></a>
+<span class="sourceLineNo">6525</span>                            return Coord.get(x, (s &lt;&lt; 6) | Long.bitCount(w-1));<a name="line.6525"></a>
+<span class="sourceLineNo">6526</span>                        t ^= w;<a name="line.6526"></a>
+<span class="sourceLineNo">6527</span>                    }<a name="line.6527"></a>
+<span class="sourceLineNo">6528</span>                }<a name="line.6528"></a>
+<span class="sourceLineNo">6529</span>            }<a name="line.6529"></a>
+<span class="sourceLineNo">6530</span>        }<a name="line.6530"></a>
+<span class="sourceLineNo">6531</span>        return Coord.get(-1, -1);<a name="line.6531"></a>
+<span class="sourceLineNo">6532</span>    }<a name="line.6532"></a>
+<span class="sourceLineNo">6533</span><a name="line.6533"></a>
+<span class="sourceLineNo">6534</span><a name="line.6534"></a>
+<span class="sourceLineNo">6535</span><a name="line.6535"></a>
+<span class="sourceLineNo">6536</span>    public class GRIterator implements Iterator&lt;Coord&gt;<a name="line.6536"></a>
+<span class="sourceLineNo">6537</span>    {<a name="line.6537"></a>
+<span class="sourceLineNo">6538</span>        public int index = 0;<a name="line.6538"></a>
+<span class="sourceLineNo">6539</span>        private long t, w;<a name="line.6539"></a>
+<span class="sourceLineNo">6540</span>        public GRIterator()<a name="line.6540"></a>
+<span class="sourceLineNo">6541</span>        {<a name="line.6541"></a>
+<span class="sourceLineNo">6542</span>            if(!tallied)<a name="line.6542"></a>
+<span class="sourceLineNo">6543</span>                tally();<a name="line.6543"></a>
+<span class="sourceLineNo">6544</span>        }<a name="line.6544"></a>
+<span class="sourceLineNo">6545</span>        @Override<a name="line.6545"></a>
+<span class="sourceLineNo">6546</span>        public boolean hasNext() {<a name="line.6546"></a>
+<span class="sourceLineNo">6547</span>            return index &lt; ct;<a name="line.6547"></a>
+<span class="sourceLineNo">6548</span>        }<a name="line.6548"></a>
+<span class="sourceLineNo">6549</span><a name="line.6549"></a>
+<span class="sourceLineNo">6550</span>        @Override<a name="line.6550"></a>
+<span class="sourceLineNo">6551</span>        public Coord next() {<a name="line.6551"></a>
+<span class="sourceLineNo">6552</span>            int c;<a name="line.6552"></a>
+<span class="sourceLineNo">6553</span>            if(index &gt;= ct)<a name="line.6553"></a>
+<span class="sourceLineNo">6554</span>                return null;<a name="line.6554"></a>
+<span class="sourceLineNo">6555</span>            for (int s = 0; s &lt; ySections; s++) {<a name="line.6555"></a>
+<span class="sourceLineNo">6556</span>                for (int x = 0; x &lt; width; x++) {<a name="line.6556"></a>
+<span class="sourceLineNo">6557</span>                    if ((c = counts[x * ySections + s]) &gt; index) {<a name="line.6557"></a>
+<span class="sourceLineNo">6558</span>                        t = data[x * ySections + s];<a name="line.6558"></a>
+<span class="sourceLineNo">6559</span>                        w = NumberTools.lowestOneBit(t);<a name="line.6559"></a>
+<span class="sourceLineNo">6560</span>                        for (--c; w != 0; c--) {<a name="line.6560"></a>
+<span class="sourceLineNo">6561</span>                            if (c == index)<a name="line.6561"></a>
+<span class="sourceLineNo">6562</span>                            {<a name="line.6562"></a>
+<span class="sourceLineNo">6563</span>                                if(index++ &lt; ct)<a name="line.6563"></a>
+<span class="sourceLineNo">6564</span>                                    return Coord.get(x, (s &lt;&lt; 6) | Long.numberOfTrailingZeros(w));<a name="line.6564"></a>
+<span class="sourceLineNo">6565</span>                                else<a name="line.6565"></a>
+<span class="sourceLineNo">6566</span>                                    return null;<a name="line.6566"></a>
+<span class="sourceLineNo">6567</span>                            }<a name="line.6567"></a>
+<span class="sourceLineNo">6568</span>                            t ^= w;<a name="line.6568"></a>
+<span class="sourceLineNo">6569</span>                            w = NumberTools.lowestOneBit(t);<a name="line.6569"></a>
+<span class="sourceLineNo">6570</span>                        }<a name="line.6570"></a>
+<span class="sourceLineNo">6571</span>                    }<a name="line.6571"></a>
+<span class="sourceLineNo">6572</span>                }<a name="line.6572"></a>
+<span class="sourceLineNo">6573</span>            }<a name="line.6573"></a>
+<span class="sourceLineNo">6574</span>            return null;<a name="line.6574"></a>
+<span class="sourceLineNo">6575</span><a name="line.6575"></a>
+<span class="sourceLineNo">6576</span>            /*<a name="line.6576"></a>
+<span class="sourceLineNo">6577</span>            for (int x = 0; x &lt; width; x++) {<a name="line.6577"></a>
+<span class="sourceLineNo">6578</span>                for (int s = 0; s &lt; ySections; s++) {<a name="line.6578"></a>
+<span class="sourceLineNo">6579</span>                    if ((w = NumberTools.lowestOneBit(data[x * ySections + s])) != 0 &amp;&amp; i++ &gt;= index) {<a name="line.6579"></a>
+<span class="sourceLineNo">6580</span>                        if(index++ &lt; limit)<a name="line.6580"></a>
+<span class="sourceLineNo">6581</span>                            return Coord.get(x, (s &lt;&lt; 6) | Long.numberOfTrailingZeros(w));<a name="line.6581"></a>
+<span class="sourceLineNo">6582</span>                        else<a name="line.6582"></a>
+<span class="sourceLineNo">6583</span>                            return null;<a name="line.6583"></a>
+<span class="sourceLineNo">6584</span>                    }<a name="line.6584"></a>
+<span class="sourceLineNo">6585</span>                }<a name="line.6585"></a>
+<span class="sourceLineNo">6586</span>            }<a name="line.6586"></a>
+<span class="sourceLineNo">6587</span>            */<a name="line.6587"></a>
+<span class="sourceLineNo">6588</span>        }<a name="line.6588"></a>
+<span class="sourceLineNo">6589</span><a name="line.6589"></a>
+<span class="sourceLineNo">6590</span>        @Override<a name="line.6590"></a>
+<span class="sourceLineNo">6591</span>        public void remove() {<a name="line.6591"></a>
+<span class="sourceLineNo">6592</span>            throw new UnsupportedOperationException("remove() is not supported on this Iterator.");<a name="line.6592"></a>
+<span class="sourceLineNo">6593</span>        }<a name="line.6593"></a>
+<span class="sourceLineNo">6594</span>    }<a name="line.6594"></a>
+<span class="sourceLineNo">6595</span>}<a name="line.6595"></a>
 
 
 
