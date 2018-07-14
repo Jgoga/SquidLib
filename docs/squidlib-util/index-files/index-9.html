@@ -863,8 +863,8 @@
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Coord.html#hashCode--">hashCode()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a></dt>
 <dd>
 <div class="block">Gets the hash code for this Coord; does not use the standard "auto-complete" style of hash that most IDEs will
- generate, but instead uses bit mixing (differently for x and y, with each multiplied by a different large long),
- a XOR of the mixed x and y, a seemingly-random right shift, and an overflowing multiplication by a large prime.</div>
+ generate, but instead uses a highly-specific technique based on <a href="../squidpony/squidmath/Lathe32RNG.html" title="class in squidpony.squidmath"><code>Lathe32RNG</code></a>'s random int generation, which
+ also has two independent ints it uses like a Coord's x and y.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/Coord3D.html#hashCode--">hashCode()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/Coord3D.html" title="class in squidpony.squidmath">Coord3D</a></dt>
 <dd>&nbsp;</dd>

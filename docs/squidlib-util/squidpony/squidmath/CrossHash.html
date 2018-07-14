@@ -337,19 +337,26 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.html#objectArrayHasher">objectArrayHasher</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.html#mildHasher">mildHasher</a></span></code>
+<div class="block">The most basic IHasher type; effectively delegates to <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Objects.html?is-external=true#hashCode-java.lang.Object-" title="class or interface in java.util"><code>Objects.hashCode(Object)</code></a> and
+ <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Objects.html?is-external=true#equals-java.lang.Object-java.lang.Object-" title="class or interface in java.util"><code>Objects.equals(Object, Object)</code></a>.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.html#shortHasher">shortHasher</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.html#objectArrayHasher">objectArrayHasher</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.html#shortHasher">shortHasher</a></span></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.html#stringArrayHasher">stringArrayHasher</a></span></code>
 <div class="block">Though the name suggests this only hashes String arrays, it can actually hash any CharSequence array as well.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.html#stringHasher">stringHasher</a></span></code>&nbsp;</td>
 </tr>
@@ -770,13 +777,26 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <pre>public static final&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/CrossHash.html#line.1018">defaultHasher</a></pre>
 </li>
 </ul>
+<a name="mildHasher">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mildHasher</h4>
+<pre>public static final&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/CrossHash.html#line.1043">mildHasher</a></pre>
+<div class="block">The most basic IHasher type; effectively delegates to <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Objects.html?is-external=true#hashCode-java.lang.Object-" title="class or interface in java.util"><code>Objects.hashCode(Object)</code></a> and
+ <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Objects.html?is-external=true#equals-java.lang.Object-java.lang.Object-" title="class or interface in java.util"><code>Objects.equals(Object, Object)</code></a>. Might not scramble the bits of a hash well enough to have good
+ performance in a hash table lke <a href="../../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath"><code>OrderedMap</code></a> or <a href="../../squidpony/squidmath/UnorderedSet.html" title="class in squidpony.squidmath"><code>UnorderedSet</code></a>, unless the objects being hashed have
+ good hashCode() implementations already.</div>
+</li>
+</ul>
 <a name="identityHasher">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>identityHasher</h4>
-<pre>public static final&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/CrossHash.html#line.1036">identityHasher</a></pre>
+<pre>public static final&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/CrossHash.html#line.1060">identityHasher</a></pre>
 </li>
 </ul>
 <a name="generalHasher">
@@ -785,7 +805,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockListLast">
 <li class="blockList">
 <h4>generalHasher</h4>
-<pre>public static final&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/CrossHash.html#line.1081">generalHasher</a></pre>
+<pre>public static final&nbsp;<a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a> <a href="../../src-html/squidpony/squidmath/CrossHash.html#line.1105">generalHasher</a></pre>
 <div class="block">This IHasher is the one you should use if you aren't totally certain what types will go in an OrderedMap's keys
  or an OrderedSet's items, since it can handle mixes of elements.</div>
 </li>
