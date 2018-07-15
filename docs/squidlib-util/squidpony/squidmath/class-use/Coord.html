@@ -1554,6 +1554,15 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#partialScan-squidpony.squidmath.Coord-int-java.util.Collection-boolean-">partialScan</a></span>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;start,
+           int&nbsp;limit,
+           <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable,
+           boolean&nbsp;nonZeroOptimum)</code>
+<div class="block">Recalculate the Dijkstra map up to a limit and return it.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#partialScan-int-squidpony.squidmath.Coord-java.util.Collection-int-">partialScan</a></span>(int&nbsp;limit,
            <a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;start,
            <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable,
@@ -1561,14 +1570,14 @@
 <div class="block">Recalculate the Dijkstra map for a creature that is potentially larger than 1x1 cell and return it.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Technique.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/Technique.html#possibleTargets-squidpony.squidmath.Coord-">possibleTargets</a></span>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;user)</code>
 <div class="block">Gets all possible target-able Coords when using this technique from the given Coord <code>user</code>, returning them
  in a GreasedRegion.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../squidpony/squidmath/GreasedRegion.html" title="class in squidpony.squidmath">GreasedRegion</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Technique.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/Technique.html#possibleTargets-squidpony.squidmath.Coord-double:A:A-">possibleTargets</a></span>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;user,
                double[][]&nbsp;resistanceMap)</code>
@@ -1576,16 +1585,24 @@
  in a GreasedRegion.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#resetCell-squidpony.squidmath.Coord-">resetCell</a></span>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;pt)</code>
 <div class="block">Reverts a cell to the value stored in the original state of the level as known by physicalMap.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#scan-squidpony.squidmath.Coord-java.util.Collection-">scan</a></span>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;start,
     <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable)</code>
+<div class="block">Recalculate the Dijkstra map and return it.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#scan-squidpony.squidmath.Coord-java.util.Collection-boolean-">scan</a></span>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;start,
+    <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable,
+    boolean&nbsp;nonZeroOptimum)</code>
 <div class="block">Recalculate the Dijkstra map and return it.</div>
 </td>
 </tr>
@@ -2692,13 +2709,22 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#partialScan-squidpony.squidmath.Coord-int-java.util.Collection-boolean-">partialScan</a></span>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;start,
+           int&nbsp;limit,
+           <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable,
+           boolean&nbsp;nonZeroOptimum)</code>
+<div class="block">Recalculate the Dijkstra map up to a limit and return it.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>double[][]</code></td>
 <td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#partialScan-int-java.util.Collection-">partialScan</a></span>(int&nbsp;limit,
            <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable)</code>
 <div class="block">Recalculate the Dijkstra map up to a limit and return it.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>double[][]</code></td>
 <td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#partialScan-int-java.util.Collection-int-">partialScan</a></span>(int&nbsp;limit,
            <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable,
@@ -2706,7 +2732,7 @@
 <div class="block">Recalculate the Dijkstra map for a creature that is potentially larger than 1x1 cell and return it.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#partialScan-int-squidpony.squidmath.Coord-java.util.Collection-int-">partialScan</a></span>(int&nbsp;limit,
            <a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;start,
@@ -2715,23 +2741,31 @@
 <div class="block">Recalculate the Dijkstra map for a creature that is potentially larger than 1x1 cell and return it.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>double[][]</code></td>
 <td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#scan-java.util.Collection-">scan</a></span>(<a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable)</code>
 <div class="block">Recalculate the Dijkstra map and return it.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>double[][]</code></td>
 <td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#scan-java.util.Collection-int-">scan</a></span>(<a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable,
     int&nbsp;size)</code>
 <div class="block">Recalculate the Dijkstra map for a creature that is potentially larger than 1x1 cell and return it.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#scan-squidpony.squidmath.Coord-java.util.Collection-">scan</a></span>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;start,
     <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable)</code>
+<div class="block">Recalculate the Dijkstra map and return it.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">DijkstraMap.</span><code><span class="memberNameLink"><a href="../../../squidpony/squidai/DijkstraMap.html#scan-squidpony.squidmath.Coord-java.util.Collection-boolean-">scan</a></span>(<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&nbsp;start,
+    <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../squidpony/squidmath/Coord.html" title="class in squidpony.squidmath">Coord</a>&gt;&nbsp;impassable,
+    boolean&nbsp;nonZeroOptimum)</code>
 <div class="block">Recalculate the Dijkstra map and return it.</div>
 </td>
 </tr>

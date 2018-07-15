@@ -183,7 +183,7 @@
 <span class="sourceLineNo">175</span>                    else compositeMap[i][x][y] = DijkstraMap.WALL;<a name="line.175"></a>
 <span class="sourceLineNo">176</span>                }<a name="line.176"></a>
 <span class="sourceLineNo">177</span>            }<a name="line.177"></a>
-<span class="sourceLineNo">178</span>            if(compositeMap[i][ts[i].x][ts[i].y] &gt; DijkstraMap.FLOOR)<a name="line.178"></a>
+<span class="sourceLineNo">178</span>            if(compositeMap[i][ts[i].x][ts[i].y] &gt;= DijkstraMap.FLOOR)<a name="line.178"></a>
 <span class="sourceLineNo">179</span>            {<a name="line.179"></a>
 <span class="sourceLineNo">180</span>                for (int x = 0; x &lt; dungeon.length; x++) {<a name="line.180"></a>
 <span class="sourceLineNo">181</span>                    Arrays.fill(compositeMap[i][x], 99999.0);<a name="line.181"></a>
@@ -194,7 +194,7 @@
 <span class="sourceLineNo">186</span><a name="line.186"></a>
 <span class="sourceLineNo">187</span>            dm.initialize(compositeMap[i]);<a name="line.187"></a>
 <span class="sourceLineNo">188</span>            dm.setGoal(t);<a name="line.188"></a>
-<span class="sourceLineNo">189</span>            dm.scan(null);<a name="line.189"></a>
+<span class="sourceLineNo">189</span>            dm.scan(null, null);<a name="line.189"></a>
 <span class="sourceLineNo">190</span>            for (int x = 0; x &lt; dungeon.length; x++) {<a name="line.190"></a>
 <span class="sourceLineNo">191</span>                for (int y = 0; y &lt; dungeon[x].length; y++) {<a name="line.191"></a>
 <span class="sourceLineNo">192</span>                    compositeMap[i][x][y] = (dm.gradientMap[x][y] &lt; DijkstraMap.FLOOR  &amp;&amp; dungeonCopy[x][y] != '!') ? dm.gradientMap[x][y] : 99999.0;<a name="line.192"></a>
@@ -322,7 +322,7 @@
 <span class="sourceLineNo">314</span>                    else compositeMap[i][x][y] = DijkstraMap.WALL;<a name="line.314"></a>
 <span class="sourceLineNo">315</span>                }<a name="line.315"></a>
 <span class="sourceLineNo">316</span>            }<a name="line.316"></a>
-<span class="sourceLineNo">317</span>            if(compositeMap[i][pts[i].x][pts[i].y] &gt; DijkstraMap.FLOOR)<a name="line.317"></a>
+<span class="sourceLineNo">317</span>            if(compositeMap[i][pts[i].x][pts[i].y] &gt;= DijkstraMap.FLOOR)<a name="line.317"></a>
 <span class="sourceLineNo">318</span>            {<a name="line.318"></a>
 <span class="sourceLineNo">319</span>                for (int x = 0; x &lt; dungeon.length; x++) {<a name="line.319"></a>
 <span class="sourceLineNo">320</span>                    Arrays.fill(compositeMap[i][x], 399999.0);<a name="line.320"></a>
@@ -332,7 +332,7 @@
 <span class="sourceLineNo">324</span><a name="line.324"></a>
 <span class="sourceLineNo">325</span>            dm.initialize(compositeMap[i]);<a name="line.325"></a>
 <span class="sourceLineNo">326</span>            dm.setGoal(t);<a name="line.326"></a>
-<span class="sourceLineNo">327</span>            dm.scan(null);<a name="line.327"></a>
+<span class="sourceLineNo">327</span>            dm.scan(null, null);<a name="line.327"></a>
 <span class="sourceLineNo">328</span>            for (int x = 0; x &lt; dungeon.length; x++) {<a name="line.328"></a>
 <span class="sourceLineNo">329</span>                for (int y = 0; y &lt; dungeon[x].length; y++) {<a name="line.329"></a>
 <span class="sourceLineNo">330</span>                    compositeMap[i][x][y] = (dm.gradientMap[x][y] &lt; DijkstraMap.FLOOR  &amp;&amp; dungeonCopy[x][y] != '!') ? dm.gradientMap[x][y] : 399999.0;<a name="line.330"></a>
@@ -362,7 +362,7 @@
 <span class="sourceLineNo">354</span>                    else compositeMap[i][x][y] = DijkstraMap.WALL;<a name="line.354"></a>
 <span class="sourceLineNo">355</span>                }<a name="line.355"></a>
 <span class="sourceLineNo">356</span>            }<a name="line.356"></a>
-<span class="sourceLineNo">357</span>            if(compositeMap[i][lts[i - pts.length].x][lts[i - pts.length].y] &gt; DijkstraMap.FLOOR)<a name="line.357"></a>
+<span class="sourceLineNo">357</span>            if(compositeMap[i][lts[i - pts.length].x][lts[i - pts.length].y] &gt;= DijkstraMap.FLOOR)<a name="line.357"></a>
 <span class="sourceLineNo">358</span>            {<a name="line.358"></a>
 <span class="sourceLineNo">359</span>                for (int x = 0; x &lt; dungeon.length; x++)<a name="line.359"></a>
 <span class="sourceLineNo">360</span>                {<a name="line.360"></a>
@@ -373,7 +373,7 @@
 <span class="sourceLineNo">365</span><a name="line.365"></a>
 <span class="sourceLineNo">366</span>            dm.initialize(compositeMap[i]);<a name="line.366"></a>
 <span class="sourceLineNo">367</span>            dm.setGoal(t);<a name="line.367"></a>
-<span class="sourceLineNo">368</span>            dm.scan(null);<a name="line.368"></a>
+<span class="sourceLineNo">368</span>            dm.scan(null, null);<a name="line.368"></a>
 <span class="sourceLineNo">369</span>            for (int x = 0; x &lt; dungeon.length; x++) {<a name="line.369"></a>
 <span class="sourceLineNo">370</span>                for (int y = 0; y &lt; dungeon[x].length; y++) {<a name="line.370"></a>
 <span class="sourceLineNo">371</span>                    compositeMap[i][x][y] = (dm.gradientMap[x][y] &lt; DijkstraMap.FLOOR  &amp;&amp; dungeonCopy[x][y] != '!' &amp;&amp; dungeonPriorities[x][y] != '#') ? dm.gradientMap[x][y] : 99999.0;<a name="line.371"></a>

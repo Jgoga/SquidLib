@@ -876,7 +876,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>generate</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.451">generate</a>()</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.455">generate</a>()</pre>
 <div class="block">Generate a char[][] dungeon using TilesetType.DEFAULT_DUNGEON; this produces a dungeon appropriate for a level
  of ruins or a partially constructed dungeon. This uses '#' for walls, '.' for floors, '~' for deep water, ',' for
  shallow water, '^' for traps, '+' for doors that provide horizontal passage, and '/' for doors that provide
@@ -897,7 +897,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>generate</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.466">generate</a>(<a href="../../../squidpony/squidgrid/mapping/styled/TilesetType.html" title="enum in squidpony.squidgrid.mapping.styled">TilesetType</a>&nbsp;kind)</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.470">generate</a>(<a href="../../../squidpony/squidgrid/mapping/styled/TilesetType.html" title="enum in squidpony.squidgrid.mapping.styled">TilesetType</a>&nbsp;kind)</pre>
 <div class="block">Generate a char[][] dungeon given a TilesetType; the comments in that class provide some opinions on what
  each TilesetType value could be used for in a game. This uses '#' for walls, '.' for floors, '~' for deep water,
  ',' for shallow water, '^' for traps, '+' for doors that provide horizontal passage, and '/' for doors that
@@ -920,7 +920,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>generate</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.491">generate</a>(char[][]&nbsp;baseDungeon)</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.495">generate</a>(char[][]&nbsp;baseDungeon)</pre>
 <div class="block">Generate a char[][] dungeon with extra features given a baseDungeon that has already been generated.
  Typically, you want to call generate with a TilesetType or no argument for the easiest generation; this method
  is meant for adding features like water and doors to existing simple maps.
@@ -949,7 +949,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>generateRespectingStairs</h4>
-<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.553">generateRespectingStairs</a>(char[][]&nbsp;baseDungeon)</pre>
+<pre>public&nbsp;char[][]&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.557">generateRespectingStairs</a>(char[][]&nbsp;baseDungeon)</pre>
 <div class="block">Generate a char[][] dungeon with extra features given a baseDungeon that has already been generated, and that
  already has staircases represented by greater than and less than signs.
  Typically, you want to call generate with a TilesetType or no argument for the easiest generation; this method
@@ -973,7 +973,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockList">
 <li class="blockList">
 <h4>getRebuildSeed</h4>
-<pre>public&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.805">getRebuildSeed</a>()</pre>
+<pre>public&nbsp;long&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.809">getRebuildSeed</a>()</pre>
 <div class="block">Gets the seed that can be used to rebuild an identical dungeon to the latest one generated (or the seed that
  will be used to generate the first dungeon if none has been made yet). You can pass the long this returns to
  the setState() method on this class' rng field, which assuming all other calls to generate a dungeon are
@@ -996,7 +996,7 @@ implements <a href="../../../squidpony/squidgrid/mapping/IDungeonGenerator.html"
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.815">toString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/squidpony/squidgrid/mapping/DungeonGenerator.html#line.819">toString</a>()</pre>
 <div class="block">Provides a string representation of the latest generated dungeon.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
