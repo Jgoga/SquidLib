@@ -182,12 +182,12 @@
 <span class="sourceLineNo">174</span>    }<a name="line.174"></a>
 <span class="sourceLineNo">175</span><a name="line.175"></a>
 <span class="sourceLineNo">176</span>    @Override<a name="line.176"></a>
-<span class="sourceLineNo">177</span>        public Coord getOrigin() {<a name="line.177"></a>
+<span class="sourceLineNo">177</span>    public Coord getOrigin() {<a name="line.177"></a>
 <span class="sourceLineNo">178</span>        return origin;<a name="line.178"></a>
 <span class="sourceLineNo">179</span>    }<a name="line.179"></a>
 <span class="sourceLineNo">180</span><a name="line.180"></a>
 <span class="sourceLineNo">181</span>    @Override<a name="line.181"></a>
-<span class="sourceLineNo">182</span>        public void setOrigin(Coord origin) {<a name="line.182"></a>
+<span class="sourceLineNo">182</span>    public void setOrigin(Coord origin) {<a name="line.182"></a>
 <span class="sourceLineNo">183</span>        this.origin = origin;<a name="line.183"></a>
 <span class="sourceLineNo">184</span>        dijkstra.resetMap();<a name="line.184"></a>
 <span class="sourceLineNo">185</span>        dijkstra.clearGoals();<a name="line.185"></a>
@@ -399,7 +399,7 @@
 <span class="sourceLineNo">391</span>                    else compositeMap[i][x][y] = DijkstraMap.WALL;<a name="line.391"></a>
 <span class="sourceLineNo">392</span>                }<a name="line.392"></a>
 <span class="sourceLineNo">393</span>            }<a name="line.393"></a>
-<span class="sourceLineNo">394</span>            if(compositeMap[i][ts[i].x][ts[i].y] &gt;= DijkstraMap.FLOOR)<a name="line.394"></a>
+<span class="sourceLineNo">394</span>            if(compositeMap[i][ts[i].x][ts[i].y] &gt; DijkstraMap.FLOOR)<a name="line.394"></a>
 <span class="sourceLineNo">395</span>            {<a name="line.395"></a>
 <span class="sourceLineNo">396</span>                for (int x = 0; x &lt; dungeon.length; x++) {<a name="line.396"></a>
 <span class="sourceLineNo">397</span>                    Arrays.fill(compositeMap[i][x], 99999.0);<a name="line.397"></a>
@@ -547,7 +547,7 @@
 <span class="sourceLineNo">539</span>                    else compositeMap[i][x][y] = DijkstraMap.WALL;<a name="line.539"></a>
 <span class="sourceLineNo">540</span>                }<a name="line.540"></a>
 <span class="sourceLineNo">541</span>            }<a name="line.541"></a>
-<span class="sourceLineNo">542</span>            if(compositeMap[i][pts[i].x][pts[i].y] &gt;= DijkstraMap.FLOOR)<a name="line.542"></a>
+<span class="sourceLineNo">542</span>            if(compositeMap[i][pts[i].x][pts[i].y] &gt; DijkstraMap.FLOOR)<a name="line.542"></a>
 <span class="sourceLineNo">543</span>            {<a name="line.543"></a>
 <span class="sourceLineNo">544</span>                for (int x = 0; x &lt; dungeon.length; x++) {<a name="line.544"></a>
 <span class="sourceLineNo">545</span>                    Arrays.fill(compositeMap[i][x], 399999.0);<a name="line.545"></a>
@@ -600,7 +600,7 @@
 <span class="sourceLineNo">592</span>                    else compositeMap[i][x][y] = DijkstraMap.WALL;<a name="line.592"></a>
 <span class="sourceLineNo">593</span>                }<a name="line.593"></a>
 <span class="sourceLineNo">594</span>            }<a name="line.594"></a>
-<span class="sourceLineNo">595</span>            if(compositeMap[i][lts[i - pts.length].x][lts[i - pts.length].y] &gt;= DijkstraMap.FLOOR)<a name="line.595"></a>
+<span class="sourceLineNo">595</span>            if(compositeMap[i][lts[i - pts.length].x][lts[i - pts.length].y] &gt; DijkstraMap.FLOOR)<a name="line.595"></a>
 <span class="sourceLineNo">596</span>            {<a name="line.596"></a>
 <span class="sourceLineNo">597</span>                for (int x = 0; x &lt; dungeon.length; x++)<a name="line.597"></a>
 <span class="sourceLineNo">598</span>                {<a name="line.598"></a>
