@@ -74,13 +74,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields.inherited.from.class.squidpony.squidgrid.gui.gdx.Filter">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -99,12 +99,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="class in squidpony.squidgrid.gui.gdx">squidpony.squidgrid.gui.gdx.Filter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</li>
-<li>
-<ul class="inheritance">
 <li>squidpony.squidgrid.gui.gdx.Filters.MaxValueFilter</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -121,10 +116,12 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public static class <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.html#line.94">Filters.MaxValueFilter</a>
-extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="class in squidpony.squidgrid.gui.gdx">Filter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</pre>
-<div class="block">A Filter that tracks the highest brightness for any component it was assigned and stores it in state as the first
- and only element.</div>
+<pre>public static class <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.html#line.96">Filters.MaxValueFilter</a>
+extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true" title="class or interface in squidpony">IFilter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</pre>
+<div class="block">An IFilter that tracks the highest brightness for any component it was assigned and stores it in its <a href="../../../../squidpony/squidgrid/gui/gdx/Filters.MaxValueFilter.html#state"><code>state</code></a>
+ field. You probably want to set state to 0f before filtering a bunch of colors, if this is being used to find
+ the brightest color on the screen.</div>
 </li>
 </ul>
 </div>
@@ -137,13 +134,17 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <!--   -->
 </a>
 <h3>Field Summary</h3>
-<ul class="blockList">
-<li class="blockList"><a name="fields.inherited.from.class.squidpony.squidgrid.gui.gdx.Filter">
-<!--   -->
-</a>
-<h3>Fields inherited from class&nbsp;squidpony.squidgrid.gui.gdx.<a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="class in squidpony.squidgrid.gui.gdx">Filter</a></h3>
-<code><a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html#state">state</a></code></li>
-</ul>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>float</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/Filters.MaxValueFilter.html#state">state</a></span></code>&nbsp;</td>
+</tr>
+</table>
 </li>
 </ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -198,6 +199,23 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="state">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>state</h4>
+<pre>public&nbsp;float <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MaxValueFilter.html#line.98">state</a></pre>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
@@ -210,7 +228,7 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MaxValueFilter</h4>
-<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MaxValueFilter.html#line.96">MaxValueFilter</a>()</pre>
+<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MaxValueFilter.html#line.99">MaxValueFilter</a>()</pre>
 </li>
 </ul>
 </li>
@@ -227,10 +245,14 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="blockListLast">
 <li class="blockList">
 <h4>alter</h4>
-<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MaxValueFilter.html#line.102">alter</a>(float&nbsp;r,
+<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MaxValueFilter.html#line.105">alter</a>(float&nbsp;r,
                                              float&nbsp;g,
                                              float&nbsp;b,
                                              float&nbsp;a)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true#alter-float-float-float-float-" title="class or interface in squidpony">alter</a></code>&nbsp;in interface&nbsp;<code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true" title="class or interface in squidpony">IFilter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</code></dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -286,13 +308,13 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields.inherited.from.class.squidpony.squidgrid.gui.gdx.Filter">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

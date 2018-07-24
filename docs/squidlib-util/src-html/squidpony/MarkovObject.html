@@ -17,7 +17,7 @@
 <span class="sourceLineNo">009</span>import java.util.List;<a name="line.9"></a>
 <span class="sourceLineNo">010</span><a name="line.10"></a>
 <span class="sourceLineNo">011</span>/**<a name="line.11"></a>
-<span class="sourceLineNo">012</span> * A simple Markov chain generator that works with Lists of some type instead of text like {@link MarkovText}.<a name="line.12"></a>
+<span class="sourceLineNo">012</span> * A simple Markov chain generator that works with Lists of some type instead of text like {@link MarkovTextLimited}.<a name="line.12"></a>
 <span class="sourceLineNo">013</span> * Call {@link #analyze(Iterable)} or {@link #analyze(Object[])} once on a large sample Iterable or array where<a name="line.13"></a>
 <span class="sourceLineNo">014</span> * sequences of items matter (this is called a corpus, and could be e.g. a List or an array), then you can call<a name="line.14"></a>
 <span class="sourceLineNo">015</span> * {@link #chain(long)} many times to get "remixes" of the sample Iterable/array as a List. This is meant to allow easy<a name="line.15"></a>
@@ -60,7 +60,7 @@
 <span class="sourceLineNo">052</span>     * {@link #processed}, which allows other methods to be called (they will throw a {@link NullPointerException} if<a name="line.52"></a>
 <span class="sourceLineNo">053</span>     * analyze() hasn't been called).<a name="line.53"></a>
 <span class="sourceLineNo">054</span>     * &lt;br&gt;<a name="line.54"></a>
-<span class="sourceLineNo">055</span>     * Unlike in {@link MarkovText}, you can analyze multiple corpus Iterables by calling this method more than once.<a name="line.55"></a>
+<span class="sourceLineNo">055</span>     * Unlike in {@link MarkovTextLimited}, you can analyze multiple corpus Iterables by calling this method more than once.<a name="line.55"></a>
 <span class="sourceLineNo">056</span>     *<a name="line.56"></a>
 <span class="sourceLineNo">057</span>     * @param corpus a typically-large sample Iterable in the style that should be mimicked<a name="line.57"></a>
 <span class="sourceLineNo">058</span>     */<a name="line.58"></a>
@@ -186,7 +186,7 @@
 <span class="sourceLineNo">178</span>     * {@link #processed}, which allows other methods to be called (they will throw a {@link NullPointerException} if<a name="line.178"></a>
 <span class="sourceLineNo">179</span>     * analyze() hasn't been called).<a name="line.179"></a>
 <span class="sourceLineNo">180</span>     * &lt;br&gt;<a name="line.180"></a>
-<span class="sourceLineNo">181</span>     * Unlike in {@link MarkovText}, you can analyze multiple corpus arrays by calling this method more than once.<a name="line.181"></a>
+<span class="sourceLineNo">181</span>     * Unlike in {@link MarkovTextLimited}, you can analyze multiple corpus arrays by calling this method more than once.<a name="line.181"></a>
 <span class="sourceLineNo">182</span>     *<a name="line.182"></a>
 <span class="sourceLineNo">183</span>     * @param corpus a typically-large sample array of T in the style that should be mimicked<a name="line.183"></a>
 <span class="sourceLineNo">184</span>     */<a name="line.184"></a>

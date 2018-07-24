@@ -585,16 +585,16 @@
 <span class="sourceLineNo">577</span>        }<a name="line.577"></a>
 <span class="sourceLineNo">578</span>    };<a name="line.578"></a>
 <span class="sourceLineNo">579</span><a name="line.579"></a>
-<span class="sourceLineNo">580</span>    public static final StringConvert&lt;MarkovText&gt; convertMarkovText = new StringConvert&lt;MarkovText&gt;("MarkovText")<a name="line.580"></a>
+<span class="sourceLineNo">580</span>    public static final StringConvert&lt;MarkovTextLimited&gt; convertMarkovText = new StringConvert&lt;MarkovTextLimited&gt;("MarkovTextLimited")<a name="line.580"></a>
 <span class="sourceLineNo">581</span>    {<a name="line.581"></a>
 <span class="sourceLineNo">582</span>        @Override<a name="line.582"></a>
-<span class="sourceLineNo">583</span>        public String stringify(MarkovText item) {<a name="line.583"></a>
+<span class="sourceLineNo">583</span>        public String stringify(MarkovTextLimited item) {<a name="line.583"></a>
 <span class="sourceLineNo">584</span>            return item.serializeToString();<a name="line.584"></a>
 <span class="sourceLineNo">585</span>        }<a name="line.585"></a>
 <span class="sourceLineNo">586</span><a name="line.586"></a>
 <span class="sourceLineNo">587</span>        @Override<a name="line.587"></a>
-<span class="sourceLineNo">588</span>        public MarkovText restore(String text) {<a name="line.588"></a>
-<span class="sourceLineNo">589</span>            return MarkovText.deserializeFromString(text);<a name="line.589"></a>
+<span class="sourceLineNo">588</span>        public MarkovTextLimited restore(String text) {<a name="line.588"></a>
+<span class="sourceLineNo">589</span>            return MarkovTextLimited.deserializeFromString(text);<a name="line.589"></a>
 <span class="sourceLineNo">590</span>        }<a name="line.590"></a>
 <span class="sourceLineNo">591</span>    };<a name="line.591"></a>
 <span class="sourceLineNo">592</span><a name="line.592"></a>

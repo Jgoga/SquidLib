@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../squidpony/MarkovObject.html" title="class in squidpony"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../squidpony/Messaging.html" title="class in squidpony"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../squidpony/MarkovTextLimited.html" title="class in squidpony"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../index.html?squidpony/MarkovText.html" target="_top">Frames</a></li>
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre><a href="../squidpony/annotation/Beta.html" title="annotation in squidpony.annotation">@Beta</a>
-public class <a href="../src-html/squidpony/MarkovText.html#line.25">MarkovText</a>
+public class <a href="../src-html/squidpony/MarkovText.html#line.26">MarkovText</a>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">A simple Markov chain text generator; call <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a> once on a large sample text, then you can
@@ -149,13 +149,19 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>int[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovText.html#processed">processed</a></span></code>
-<div class="block">Complicated data that mixes probabilities and the indices of words in <a href="../squidpony/MarkovText.html#words"><code>words</code></a>, generated during the latest
- call to <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>.</div>
+<td class="colFirst"><code><a href="../squidpony/squidmath/IntIntOrderedMap.html" title="class in squidpony.squidmath">IntIntOrderedMap</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovText.html#pairs">pairs</a></span></code>
+<div class="block">Map of all pairs of words encountered to the position in the order they were encountered.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>int[][]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovText.html#processed">processed</a></span></code>
+<div class="block">Complicated data that mixes probabilities of words using their indices in <a href="../squidpony/MarkovText.html#words"><code>words</code></a> and the indices of word
+ pairs in <a href="../squidpony/MarkovText.html#pairs"><code>pairs</code></a>, generated during the latest call to <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../squidpony/MarkovText.html#words">words</a></span></code>
 <div class="block">All words (case-sensitive and counting some punctuation as part of words) that this encountered during the latest
@@ -274,9 +280,23 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>words</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[] <a href="../src-html/squidpony/MarkovText.html#line.32">words</a></pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[] <a href="../src-html/squidpony/MarkovText.html#line.33">words</a></pre>
 <div class="block">All words (case-sensitive and counting some punctuation as part of words) that this encountered during the latest
- call to <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>. Will be null if analyze() was never called.</div>
+ call to <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>. Will be null if <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a> was never called.</div>
+</li>
+</ul>
+<a name="pairs">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>pairs</h4>
+<pre>public&nbsp;<a href="../squidpony/squidmath/IntIntOrderedMap.html" title="class in squidpony.squidmath">IntIntOrderedMap</a> <a href="../src-html/squidpony/MarkovText.html#line.42">pairs</a></pre>
+<div class="block">Map of all pairs of words encountered to the position in the order they were encountered. Pairs are stored using
+ their 16-bit <a href="../squidpony/MarkovText.html#words"><code>words</code></a> indices placed into the most-significant bits for the first word and the
+ least-significant bits for the second word. The size of this IntIntOrderedMap is likely to be larger than the
+ String array <a href="../squidpony/MarkovText.html#words"><code>words</code></a>, but should be equal to <code>processed.length</code>. Will be null if
+ <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a> was never called.</div>
 </li>
 </ul>
 <a name="processed">
@@ -285,9 +305,10 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockListLast">
 <li class="blockList">
 <h4>processed</h4>
-<pre>public&nbsp;int[][] <a href="../src-html/squidpony/MarkovText.html#line.37">processed</a></pre>
-<div class="block">Complicated data that mixes probabilities and the indices of words in <a href="../squidpony/MarkovText.html#words"><code>words</code></a>, generated during the latest
- call to <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>. This is a jagged 2D array. Will be null if analyze() was never called.</div>
+<pre>public&nbsp;int[][] <a href="../src-html/squidpony/MarkovText.html#line.48">processed</a></pre>
+<div class="block">Complicated data that mixes probabilities of words using their indices in <a href="../squidpony/MarkovText.html#words"><code>words</code></a> and the indices of word
+ pairs in <a href="../squidpony/MarkovText.html#pairs"><code>pairs</code></a>, generated during the latest call to <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>. This is a jagged 2D
+ array. Will be null if <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a> was never called.</div>
 </li>
 </ul>
 </li>
@@ -304,7 +325,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MarkovText</h4>
-<pre>public&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.41">MarkovText</a>()</pre>
+<pre>public&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.52">MarkovText</a>()</pre>
 </li>
 </ul>
 </li>
@@ -321,7 +342,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>analyze</h4>
-<pre>public&nbsp;void&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.55">analyze</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;corpus)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.66">analyze</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;corpus)</pre>
 <div class="block">This is the main necessary step before using a MarkovText; you must call this method at some point before you can
  call any other methods. You can serialize this MarkovText after calling to avoid needing to call this again on later
  runs, or even include serialized MarkovText objects with a game to only need to call this during pre-processing.
@@ -341,7 +362,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>changeNames</h4>
-<pre>public&nbsp;void&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.182">changeNames</a>(<a href="../squidpony/NaturalLanguageCipher.html" title="class in squidpony">NaturalLanguageCipher</a>&nbsp;translator)</pre>
+<pre>public&nbsp;void&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.197">changeNames</a>(<a href="../squidpony/NaturalLanguageCipher.html" title="class in squidpony">NaturalLanguageCipher</a>&nbsp;translator)</pre>
 <div class="block">After calling <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>, you can optionally call this to alter any words in this MarkovText that
  were used as a proper noun (determined by whether they were capitalized in the middle of a sentence), changing
  them to a ciphered version using the given <a href="../squidpony/NaturalLanguageCipher.html" title="class in squidpony"><code>NaturalLanguageCipher</code></a>. Normally you would initialize a
@@ -360,7 +381,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>chain</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.209">chain</a>(long&nbsp;seed)</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.224">chain</a>(long&nbsp;seed)</pre>
 <div class="block">Generate a roughly-sentence-sized piece of text based on the previously analyzed corpus text (using
  <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>) that terminates when stop punctuation is used (".", "!", "?", or "..."), or once
  the length would be greater than 200 characters without encountering stop punctuation(it terminates such a
@@ -379,7 +400,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>chain</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.221">chain</a>(long&nbsp;seed,
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.236">chain</a>(long&nbsp;seed,
                     int&nbsp;maxLength)</pre>
 <div class="block">Generate a roughly-sentence-sized piece of text based on the previously analyzed corpus text (using
  <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>) that terminates when stop punctuation is used (".", "!", "?", or "...") or once
@@ -399,7 +420,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>serializeToString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.279">serializeToString</a>()</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.295">serializeToString</a>()</pre>
 <div class="block">Returns a representation of this MarkovText as a String; use <a href="../squidpony/MarkovText.html#deserializeFromString-java.lang.String-"><code>deserializeFromString(String)</code></a> to get a
  MarkovText back from this String. The <a href="../squidpony/MarkovText.html#words"><code>words</code></a> and <a href="../squidpony/MarkovText.html#processed"><code>processed</code></a> fields must have been given values by
  either direct assignment, calling <a href="../squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>analyze(CharSequence)</code></a>, or building this MarkovTest with the
@@ -416,7 +437,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockList">
 <li class="blockList">
 <h4>deserializeFromString</h4>
-<pre>public static&nbsp;<a href="../squidpony/MarkovText.html" title="class in squidpony">MarkovText</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.289">deserializeFromString</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;data)</pre>
+<pre>public static&nbsp;<a href="../squidpony/MarkovText.html" title="class in squidpony">MarkovText</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.305">deserializeFromString</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;data)</pre>
 <div class="block">Recreates an already-analyzed MarkovText given a String produced by <a href="../squidpony/MarkovText.html#serializeToString--"><code>serializeToString()</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -432,7 +453,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <ul class="blockListLast">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public&nbsp;<a href="../squidpony/MarkovText.html" title="class in squidpony">MarkovText</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.305">copy</a>()</pre>
+<pre>public&nbsp;<a href="../squidpony/MarkovText.html" title="class in squidpony">MarkovText</a>&nbsp;<a href="../src-html/squidpony/MarkovText.html#line.323">copy</a>()</pre>
 <div class="block">Copies the String array <a href="../squidpony/MarkovText.html#words"><code>words</code></a> and the 2D jagged int array <a href="../squidpony/MarkovText.html#processed"><code>processed</code></a> into a new MarkovText.
  None of the arrays will be equivalent references, but the Strings (being immutable) will be the same objects in
  both MarkovText instances. This is primarily useful with <a href="../squidpony/MarkovText.html#changeNames-squidpony.NaturalLanguageCipher-"><code>changeNames(NaturalLanguageCipher)</code></a>, which can
@@ -472,7 +493,7 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 <div class="subNav">
 <ul class="navList">
 <li><a href="../squidpony/MarkovObject.html" title="class in squidpony"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../squidpony/Messaging.html" title="class in squidpony"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../squidpony/MarkovTextLimited.html" title="class in squidpony"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../index.html?squidpony/MarkovText.html" target="_top">Frames</a></li>

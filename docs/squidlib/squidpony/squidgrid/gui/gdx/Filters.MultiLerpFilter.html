@@ -74,13 +74,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields.inherited.from.class.squidpony.squidgrid.gui.gdx.Filter">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -99,12 +99,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="class in squidpony.squidgrid.gui.gdx">squidpony.squidgrid.gui.gdx.Filter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</li>
-<li>
-<ul class="inheritance">
 <li>squidpony.squidgrid.gui.gdx.Filters.MultiLerpFilter</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -121,9 +116,10 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public static class <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.html#line.168">Filters.MultiLerpFilter</a>
-extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="class in squidpony.squidgrid.gui.gdx">Filter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</pre>
-<div class="block">A Filter that is constructed with a group of colors and linear-interpolates any color it is told to alter toward
+<pre>public static class <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.html#line.185">Filters.MultiLerpFilter</a>
+extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true" title="class or interface in squidpony">IFilter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</pre>
+<div class="block">An IFilter that is constructed with a group of colors and linear-interpolates any color it is told to alter toward
  the color it was constructed with that has the closest hue.</div>
 </li>
 </ul>
@@ -137,13 +133,17 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <!--   -->
 </a>
 <h3>Field Summary</h3>
-<ul class="blockList">
-<li class="blockList"><a name="fields.inherited.from.class.squidpony.squidgrid.gui.gdx.Filter">
-<!--   -->
-</a>
-<h3>Fields inherited from class&nbsp;squidpony.squidgrid.gui.gdx.<a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="class in squidpony.squidgrid.gui.gdx">Filter</a></h3>
-<code><a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html#state">state</a></code></li>
-</ul>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>float[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/Filters.MultiLerpFilter.html#state">state</a></span></code>&nbsp;</td>
+</tr>
+</table>
 </li>
 </ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -211,6 +211,23 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="state">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>state</h4>
+<pre>public&nbsp;float[] <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MultiLerpFilter.html#line.187">state</a></pre>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
@@ -223,7 +240,7 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="blockList">
 <li class="blockList">
 <h4>MultiLerpFilter</h4>
-<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MultiLerpFilter.html#line.180">MultiLerpFilter</a>(float[]&nbsp;r,
+<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MultiLerpFilter.html#line.198">MultiLerpFilter</a>(float[]&nbsp;r,
                        float[]&nbsp;g,
                        float[]&nbsp;b,
                        float[]&nbsp;a,
@@ -246,7 +263,7 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MultiLerpFilter</h4>
-<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MultiLerpFilter.html#line.198">MultiLerpFilter</a>(com.badlogic.gdx.graphics.Color[]&nbsp;colors,
+<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MultiLerpFilter.html#line.216">MultiLerpFilter</a>(com.badlogic.gdx.graphics.Color[]&nbsp;colors,
                        float[]&nbsp;amount)</pre>
 <div class="block">Sets up a MultiLerpFilter with the desired colors to linearly interpolate towards and their amounts.</div>
 <dl>
@@ -270,10 +287,14 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="blockListLast">
 <li class="blockList">
 <h4>alter</h4>
-<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MultiLerpFilter.html#line.212">alter</a>(float&nbsp;r,
+<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.MultiLerpFilter.html#line.230">alter</a>(float&nbsp;r,
                                              float&nbsp;g,
                                              float&nbsp;b,
                                              float&nbsp;a)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true#alter-float-float-float-float-" title="class or interface in squidpony">alter</a></code>&nbsp;in interface&nbsp;<code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true" title="class or interface in squidpony">IFilter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</code></dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -329,13 +350,13 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields.inherited.from.class.squidpony.squidgrid.gui.gdx.Filter">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

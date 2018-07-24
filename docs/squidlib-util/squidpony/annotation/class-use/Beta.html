@@ -163,7 +163,7 @@
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/MarkovObject.html" title="class in squidpony">MarkovObject</a>&lt;T&gt;</span></code>
-<div class="block">A simple Markov chain generator that works with Lists of some type instead of text like <a href="../../../squidpony/MarkovText.html" title="class in squidpony"><code>MarkovText</code></a>.</div>
+<div class="block">A simple Markov chain generator that works with Lists of some type instead of text like <a href="../../../squidpony/MarkovTextLimited.html" title="class in squidpony"><code>MarkovTextLimited</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -175,17 +175,24 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/MarkovTextLimited.html" title="class in squidpony">MarkovTextLimited</a></span></code>
+<div class="block">A simple Markov chain text generator; it is called "Limited" because it only can be used as an order-1 Markov chain,
+ meaning only one prior word is looked at.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/ObText.html" title="class in squidpony">ObText</a></span></code>
 <div class="block">A simple format parser for String-based configuration or data files where JSON is overkill.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/StringConvert.html" title="class in squidpony">StringConvert</a>&lt;T&gt;</span></code>
 <div class="block">Used to standardize conversion for a given type, <code>T</code>, to and from a serialized String format.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/WeightedLetterNamegen.html" title="class in squidpony">WeightedLetterNamegen</a></span></code>
 <div class="block">Based on work by Nolithius available at the following two sites
@@ -445,15 +452,16 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/CrossHash.Jolt.html" title="class in squidpony.squidmath">CrossHash.Jolt</a></span></code>
-<div class="block">A high-quality hashing function that can sometimes be about twice as fast as the de facto Java hashCode()
- implementation; the only one of the CrossHash hashes that has been tested with SMHasher and has passed all of it.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/CrossHash.Hive.html" title="class in squidpony.squidmath">CrossHash.Hive</a></span></code>
+<div class="block">A reasonably-fast hashing function that passes SMHasher's quality tests even on <code>long[]</code> inputs (passing on
+ those should mean it can pass with other types of array as well).</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/CrossHash.Metro.html" title="class in squidpony.squidmath">CrossHash.Metro</a></span></code>
-<div class="block">Google's MetroHash algorithm, ported in a somewhat rudimentary way to Java.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../squidpony/squidmath/CrossHash.Jolt.html" title="class in squidpony.squidmath">CrossHash.Jolt</a></span></code>
+<div class="block">A mid-quality hashing function that has been tested with SMHasher and has passed all of it when running on
+ <code>byte[]</code> data, not larger items like <code>char[]</code> or <code>long[]</code>.</div>
 </td>
 </tr>
 <tr class="rowColor">

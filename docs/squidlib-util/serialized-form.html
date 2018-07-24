@@ -324,6 +324,44 @@
 <h3>Class <a href="squidpony/MarkovText.html" title="class in squidpony">squidpony.MarkovText</a> extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
 <dl class="nameValue">
 <dt>serialVersionUID:</dt>
+<dd>1L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>words</h4>
+<pre><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[] words</pre>
+<div class="block">All words (case-sensitive and counting some punctuation as part of words) that this encountered during the latest
+ call to <a href="squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a>. Will be null if <a href="squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a> was never called.</div>
+</li>
+<li class="blockList">
+<h4>pairs</h4>
+<pre><a href="squidpony/squidmath/IntIntOrderedMap.html" title="class in squidpony.squidmath">IntIntOrderedMap</a> pairs</pre>
+<div class="block">Map of all pairs of words encountered to the position in the order they were encountered. Pairs are stored using
+ their 16-bit <a href="squidpony/MarkovText.html#words"><code>MarkovText.words</code></a> indices placed into the most-significant bits for the first word and the
+ least-significant bits for the second word. The size of this IntIntOrderedMap is likely to be larger than the
+ String array <a href="squidpony/MarkovText.html#words"><code>MarkovText.words</code></a>, but should be equal to <code>processed.length</code>. Will be null if
+ <a href="squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a> was never called.</div>
+</li>
+<li class="blockListLast">
+<h4>processed</h4>
+<pre>int[][] processed</pre>
+<div class="block">Complicated data that mixes probabilities of words using their indices in <a href="squidpony/MarkovText.html#words"><code>MarkovText.words</code></a> and the indices of word
+ pairs in <a href="squidpony/MarkovText.html#pairs"><code>MarkovText.pairs</code></a>, generated during the latest call to <a href="squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a>. This is a jagged 2D
+ array. Will be null if <a href="squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a> was never called.</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.MarkovTextLimited">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/MarkovTextLimited.html" title="class in squidpony">squidpony.MarkovTextLimited</a> extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
 <dd>0L</dd>
 </dl>
 <ul class="blockList">
@@ -334,13 +372,13 @@
 <h4>words</h4>
 <pre><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[] words</pre>
 <div class="block">All words (case-sensitive and counting some punctuation as part of words) that this encountered during the latest
- call to <a href="squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a>. Will be null if analyze() was never called.</div>
+ call to <a href="squidpony/MarkovTextLimited.html#analyze-java.lang.CharSequence-"><code>MarkovTextLimited.analyze(CharSequence)</code></a>. Will be null if analyze() was never called.</div>
 </li>
 <li class="blockListLast">
 <h4>processed</h4>
 <pre>int[][] processed</pre>
-<div class="block">Complicated data that mixes probabilities and the indices of words in <a href="squidpony/MarkovText.html#words"><code>MarkovText.words</code></a>, generated during the latest
- call to <a href="squidpony/MarkovText.html#analyze-java.lang.CharSequence-"><code>MarkovText.analyze(CharSequence)</code></a>. This is a jagged 2D array. Will be null if analyze() was never called.</div>
+<div class="block">Complicated data that mixes probabilities and the indices of words in <a href="squidpony/MarkovTextLimited.html#words"><code>MarkovTextLimited.words</code></a>, generated during the latest
+ call to <a href="squidpony/MarkovTextLimited.html#analyze-java.lang.CharSequence-"><code>MarkovTextLimited.analyze(CharSequence)</code></a>. This is a jagged 2D array. Will be null if analyze() was never called.</div>
 </li>
 </ul>
 </li>
@@ -3774,6 +3812,178 @@
 </ul>
 </li>
 </ul>
+</li>
+<li class="blockList"><a name="squidpony.squidmath.IntIntOrderedMap">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidmath/IntIntOrderedMap.html" title="class in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap</a> extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialization Methods</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>readObject</h4>
+<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/IntIntOrderedMap.html#line.1903">readObject</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/io/ObjectInputStream.html?is-external=true" title="class or interface in java.io">ObjectInputStream</a>&nbsp;s)
+                 throws <a href="https://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a>,
+                        <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/ClassNotFoundException.html?is-external=true" title="class or interface in java.lang">ClassNotFoundException</a></pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/ClassNotFoundException.html?is-external=true" title="class or interface in java.lang">ClassNotFoundException</a></code></dd>
+</dl>
+</li>
+<li class="blockListLast">
+<h4>writeObject</h4>
+<pre>private&nbsp;void&nbsp;<a href="src-html/squidpony/squidmath/IntIntOrderedMap.html#line.1889">writeObject</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/io/ObjectOutputStream.html?is-external=true" title="class or interface in java.io">ObjectOutputStream</a>&nbsp;s)
+                  throws <a href="https://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code></dd>
+</dl>
+</li>
+</ul>
+</li>
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>key</h4>
+<pre>int[] key</pre>
+<div class="block">The array of keys.</div>
+</li>
+<li class="blockList">
+<h4>value</h4>
+<pre>int[] value</pre>
+<div class="block">The array of values.</div>
+</li>
+<li class="blockList">
+<h4>mask</h4>
+<pre>int mask</pre>
+<div class="block">The mask for wrapping a position counter.</div>
+</li>
+<li class="blockList">
+<h4>containsNullKey</h4>
+<pre>boolean containsNullKey</pre>
+<div class="block">Whether this set contains the key zero.</div>
+</li>
+<li class="blockList">
+<h4>order</h4>
+<pre><a href="squidpony/squidmath/IntVLA.html" title="class in squidpony.squidmath">IntVLA</a> order</pre>
+<div class="block">An IntVLA (variable-length int sequence) that stores the positions in the key array of specific keys, with the
+ positions in insertion order. The order can be changed with <a href="squidpony/squidmath/IntIntOrderedMap.html#reorder-int...-"><code>IntIntOrderedMap.reorder(int...)</code></a> and other methods.</div>
+</li>
+<li class="blockList">
+<h4>n</h4>
+<pre>int n</pre>
+<div class="block">The current table size.</div>
+</li>
+<li class="blockList">
+<h4>maxFill</h4>
+<pre>int maxFill</pre>
+<div class="block">Threshold after which we rehash. It must be the table size times <a href="squidpony/squidmath/IntIntOrderedMap.html#f"><code>IntIntOrderedMap.f</code></a>.</div>
+</li>
+<li class="blockList">
+<h4>size</h4>
+<pre>int size</pre>
+<div class="block">Number of entries in the set (including the key zero, if present).</div>
+</li>
+<li class="blockList">
+<h4>f</h4>
+<pre>float f</pre>
+<div class="block">The acceptable load factor.</div>
+</li>
+<li class="blockList">
+<h4>entries</h4>
+<pre><a href="squidpony/squidmath/IntIntOrderedMap.MapEntrySet.html" title="class in squidpony.squidmath">IntIntOrderedMap.MapEntrySet</a> entries</pre>
+<div class="block">Cached set of entries.</div>
+</li>
+<li class="blockList">
+<h4>keys</h4>
+<pre><a href="squidpony/squidmath/IntIntOrderedMap.KeySet.html" title="class in squidpony.squidmath">IntIntOrderedMap.KeySet</a> keys</pre>
+<div class="block">Cached set of keys.</div>
+</li>
+<li class="blockList">
+<h4>values</h4>
+<pre><a href="squidpony/squidmath/IntIntOrderedMap.ValueCollection.html" title="class in squidpony.squidmath">IntIntOrderedMap.ValueCollection</a> values</pre>
+<div class="block">Cached collection of values.</div>
+</li>
+<li class="blockListLast">
+<h4>defRetValue</h4>
+<pre>int defRetValue</pre>
+<div class="block">Default return value.</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.squidmath.IntIntOrderedMap.FastEntryIterator">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidmath/IntIntOrderedMap.FastEntryIterator.html" title="class in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.FastEntryIterator</a> extends <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/IntIntOrderedMap.MapIterator.html?is-external=true" title="class or interface in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.MapIterator</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockListLast">
+<h4>entry</h4>
+<pre><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/IntIntOrderedMap.MapEntry.html?is-external=true" title="class or interface in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.MapEntry</a> entry</pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="squidpony.squidmath.IntIntOrderedMap.KeyIterator">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidmath/IntIntOrderedMap.KeyIterator.html" title="class in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.KeyIterator</a> extends <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/IntIntOrderedMap.MapIterator.html?is-external=true" title="class or interface in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.MapIterator</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+</li>
+<li class="blockList"><a name="squidpony.squidmath.IntIntOrderedMap.KeySet">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidmath/IntIntOrderedMap.KeySet.html" title="class in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.KeySet</a> extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+</li>
+<li class="blockList"><a name="squidpony.squidmath.IntIntOrderedMap.MapEntrySet">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidmath/IntIntOrderedMap.MapEntrySet.html" title="class in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.MapEntrySet</a> extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+</li>
+<li class="blockList"><a name="squidpony.squidmath.IntIntOrderedMap.ValueCollection">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidmath/IntIntOrderedMap.ValueCollection.html" title="class in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.ValueCollection</a> extends <a href="https://docs.oracle.com/javase/7/docs/api/java/util/AbstractCollection.html?is-external=true" title="class or interface in java.util">AbstractCollection</a>&lt;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt; implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
+</li>
+<li class="blockList"><a name="squidpony.squidmath.IntIntOrderedMap.ValueIterator">
+<!--   -->
+</a>
+<h3>Class <a href="squidpony/squidmath/IntIntOrderedMap.ValueIterator.html" title="class in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.ValueIterator</a> extends <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/squidmath/IntIntOrderedMap.MapIterator.html?is-external=true" title="class or interface in squidpony.squidmath">squidpony.squidmath.IntIntOrderedMap.MapIterator</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>0L</dd>
+</dl>
 </li>
 <li class="blockList"><a name="squidpony.squidmath.IntVLA">
 <!--   -->

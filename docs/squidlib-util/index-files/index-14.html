@@ -164,6 +164,15 @@
 <dd>
 <div class="block">Makes an ArrayList of T given an array or vararg of T elements.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntIntOrderedMap.html#makeMap-int-int-int...-">makeMap(int, int, int...)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/IntIntOrderedMap.html" title="class in squidpony.squidmath">IntIntOrderedMap</a></dt>
+<dd>
+<div class="block">Makes an IntIntOrderedMap using the given int keys and values in alternating key-value-key-value order.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntIntOrderedMap.html#makeMap--">makeMap()</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/IntIntOrderedMap.html" title="class in squidpony.squidmath">IntIntOrderedMap</a></dt>
+<dd>
+<div class="block">Makes an empty IntIntOrderedMap.This method is provided for completeness relative to makeMap() with 2 or more 
+ parameters.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedMap.html#makeMap-K-V-java.lang.Object...-">makeMap(K, V, Object...)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a></dt>
 <dd>
 <div class="block">Makes an OrderedMap (OM) with the given load factor (which should be between 0.1 and 0.9), key and value types
@@ -288,6 +297,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntDoubleOrderedMap.MapEntrySet.html#MapEntrySet--">MapEntrySet()</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/IntDoubleOrderedMap.MapEntrySet.html" title="class in squidpony.squidmath">IntDoubleOrderedMap.MapEntrySet</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntIntOrderedMap.MapEntrySet.html#MapEntrySet--">MapEntrySet()</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/IntIntOrderedMap.MapEntrySet.html" title="class in squidpony.squidmath">IntIntOrderedMap.MapEntrySet</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedMap.html#mapEntrySet--">mapEntrySet()</a></span> - Method in class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedMap.html" title="class in squidpony.squidmath">OrderedMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/OrderedMap.MapEntrySet.html#MapEntrySet--">MapEntrySet()</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/OrderedMap.MapEntrySet.html" title="class in squidpony.squidmath">OrderedMap.MapEntrySet</a></dt>
@@ -365,7 +376,7 @@
 </dd>
 <dt><a href="../squidpony/MarkovObject.html" title="class in squidpony"><span class="typeNameLink">MarkovObject</span></a>&lt;<a href="../squidpony/MarkovObject.html" title="type parameter in MarkovObject">T</a>&gt; - Class in <a href="../squidpony/package-summary.html">squidpony</a></dt>
 <dd>
-<div class="block">A simple Markov chain generator that works with Lists of some type instead of text like <a href="../squidpony/MarkovText.html" title="class in squidpony"><code>MarkovText</code></a>.</div>
+<div class="block">A simple Markov chain generator that works with Lists of some type instead of text like <a href="../squidpony/MarkovTextLimited.html" title="class in squidpony"><code>MarkovTextLimited</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/MarkovObject.html#MarkovObject--">MarkovObject()</a></span> - Constructor for class squidpony.<a href="../squidpony/MarkovObject.html" title="class in squidpony">MarkovObject</a></dt>
 <dd>&nbsp;</dd>
@@ -375,6 +386,13 @@
  call <a href="../squidpony/MarkovText.html#chain-long-"><code>MarkovText.chain(long)</code></a> many times to get odd-sounding "remixes" of the sample text.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/MarkovText.html#MarkovText--">MarkovText()</a></span> - Constructor for class squidpony.<a href="../squidpony/MarkovText.html" title="class in squidpony">MarkovText</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="../squidpony/MarkovTextLimited.html" title="class in squidpony"><span class="typeNameLink">MarkovTextLimited</span></a> - Class in <a href="../squidpony/package-summary.html">squidpony</a></dt>
+<dd>
+<div class="block">A simple Markov chain text generator; it is called "Limited" because it only can be used as an order-1 Markov chain,
+ meaning only one prior word is looked at.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/MarkovTextLimited.html#MarkovTextLimited--">MarkovTextLimited()</a></span> - Constructor for class squidpony.<a href="../squidpony/MarkovTextLimited.html" title="class in squidpony">MarkovTextLimited</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/mapping/MixedGenerator.html#markPiercing-int-int-">markPiercing(int, int)</a></span> - Method in class squidpony.squidgrid.mapping.<a href="../squidpony/squidgrid/mapping/MixedGenerator.html" title="class in squidpony.squidgrid.mapping">MixedGenerator</a></dt>
 <dd>
@@ -427,6 +445,10 @@
  and where a cell is "off", it instead writes the short filler.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntDoubleOrderedMap.html#mask">mask</a></span> - Variable in class squidpony.squidmath.<a href="../squidpony/squidmath/IntDoubleOrderedMap.html" title="class in squidpony.squidmath">IntDoubleOrderedMap</a></dt>
+<dd>
+<div class="block">The mask for wrapping a position counter.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntIntOrderedMap.html#mask">mask</a></span> - Variable in class squidpony.squidmath.<a href="../squidpony/squidmath/IntIntOrderedMap.html" title="class in squidpony.squidmath">IntIntOrderedMap</a></dt>
 <dd>
 <div class="block">The mask for wrapping a position counter.</div>
 </dd>
@@ -530,6 +552,14 @@
 <div class="block">Returns the maximum number of entries that can be filled before rehashing.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntDoubleOrderedMap.html#maxFill-long-float-">maxFill(long, float)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/IntDoubleOrderedMap.html" title="class in squidpony.squidmath">IntDoubleOrderedMap</a></dt>
+<dd>
+<div class="block">Returns the maximum number of entries that can be filled before rehashing.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntIntOrderedMap.html#maxFill">maxFill</a></span> - Variable in class squidpony.squidmath.<a href="../squidpony/squidmath/IntIntOrderedMap.html" title="class in squidpony.squidmath">IntIntOrderedMap</a></dt>
+<dd>
+<div class="block">Threshold after which we rehash.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/IntIntOrderedMap.html#maxFill-int-float-">maxFill(int, float)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/IntIntOrderedMap.html" title="class in squidpony.squidmath">IntIntOrderedMap</a></dt>
 <dd>
 <div class="block">Returns the maximum number of entries that can be filled before rehashing.</div>
 </dd>
@@ -758,8 +788,6 @@
 <dd>
 <div class="block">Determines how distance will be measured.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="../squidpony/squidmath/CrossHash.Metro.html#Metro--">Metro()</a></span> - Constructor for class squidpony.squidmath.<a href="../squidpony/squidmath/CrossHash.Metro.html" title="class in squidpony.squidmath">CrossHash.Metro</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="../squidpony/squidgrid/mapping/MetsaMapFactory.html" title="class in squidpony.squidgrid.mapping"><span class="typeNameLink">MetsaMapFactory</span></a> - Class in <a href="../squidpony/squidgrid/mapping/package-summary.html">squidpony.squidgrid.mapping</a></dt>
 <dd>
 <div class="block">A map generation factory using Perlin noise to make island chain style maps.</div>
@@ -1014,6 +1042,10 @@
 <div class="block">Gets a Coord array from the "on" contents of this GreasedRegion, using a deterministic but random-seeming
  scattering of chosen cells with a count that matches the given <code>fraction</code> of the total amount of "on" cells
  in this.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidmath/HashCommon.html#mixOther-int-">mixOther(int)</a></span> - Static method in class squidpony.squidmath.<a href="../squidpony/squidmath/HashCommon.html" title="class in squidpony.squidmath">HashCommon</a></dt>
+<dd>
+<div class="block">Thoroughly mixes the bits of an integer.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/FOV.html#mixVisibleFOVs-double:A:A-double:A:A...-">mixVisibleFOVs(double[][], double[][]...)</a></span> - Static method in class squidpony.squidgrid.<a href="../squidpony/squidgrid/FOV.html" title="class in squidpony.squidgrid">FOV</a></dt>
 <dd>

@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields.inherited.from.class.squidpony.squidgrid.gui.gdx.Filter">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
@@ -99,12 +99,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="class in squidpony.squidgrid.gui.gdx">squidpony.squidgrid.gui.gdx.Filter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</li>
-<li>
-<ul class="inheritance">
 <li>squidpony.squidgrid.gui.gdx.Filters.HallucinateFilter</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -121,9 +116,10 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public static class <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.html#line.314">Filters.HallucinateFilter</a>
-extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="class in squidpony.squidgrid.gui.gdx">Filter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</pre>
-<div class="block">A Filter that makes the colors requested from it highly saturated, with the original hue, value and a timer that
+<pre>public static class <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.html#line.335">Filters.HallucinateFilter</a>
+extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true" title="class or interface in squidpony">IFilter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</pre>
+<div class="block">An IFilter that makes the colors requested from it highly saturated, with the original hue, value and a timer that
  increments very slowly altering hue, with hue, value and the timer altering saturation, and the original hue,
  saturation, and value all altering value. It should look like a hallucination.
  <br>
@@ -135,21 +131,6 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- =========== FIELD SUMMARY =========== -->
-<ul class="blockList">
-<li class="blockList"><a name="field.summary">
-<!--   -->
-</a>
-<h3>Field Summary</h3>
-<ul class="blockList">
-<li class="blockList"><a name="fields.inherited.from.class.squidpony.squidgrid.gui.gdx.Filter">
-<!--   -->
-</a>
-<h3>Fields inherited from class&nbsp;squidpony.squidgrid.gui.gdx.<a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="class in squidpony.squidgrid.gui.gdx">Filter</a></h3>
-<code><a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html#state">state</a></code></li>
-</ul>
-</li>
-</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.summary">
@@ -216,7 +197,7 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="blockListLast">
 <li class="blockList">
 <h4>HallucinateFilter</h4>
-<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.HallucinateFilter.html#line.319">HallucinateFilter</a>()</pre>
+<pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.HallucinateFilter.html#line.340">HallucinateFilter</a>()</pre>
 <div class="block">Sets up a HallucinateFilter with the timer at 0..</div>
 </li>
 </ul>
@@ -234,10 +215,14 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="blockListLast">
 <li class="blockList">
 <h4>alter</h4>
-<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.HallucinateFilter.html#line.325">alter</a>(float&nbsp;r,
+<pre>public&nbsp;com.badlogic.gdx.graphics.Color&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/Filters.HallucinateFilter.html#line.344">alter</a>(float&nbsp;r,
                                              float&nbsp;g,
                                              float&nbsp;b,
                                              float&nbsp;a)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true#alter-float-float-float-float-" title="class or interface in squidpony">alter</a></code>&nbsp;in interface&nbsp;<code><a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true" title="class or interface in squidpony">IFilter</a>&lt;com.badlogic.gdx.graphics.Color&gt;</code></dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -293,7 +278,7 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/Filter.html" title="cla
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields.inherited.from.class.squidpony.squidgrid.gui.gdx.Filter">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>

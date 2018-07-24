@@ -233,29 +233,30 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.Hive.html" title="class in squidpony.squidmath">CrossHash.Hive</a></span></code>
+<div class="block">A reasonably-fast hashing function that passes SMHasher's quality tests even on <code>long[]</code> inputs (passing on
+ those should mean it can pass with other types of array as well).</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static interface&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.IHasher.html" title="interface in squidpony.squidmath">CrossHash.IHasher</a></span></code>
 <div class="block">An interface that can be used to move the logic for the hashCode() and equals() methods from a class' methods to
  an implementation of IHasher that certain collections in SquidLib can use.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.Jolt.html" title="class in squidpony.squidmath">CrossHash.Jolt</a></span></code>
-<div class="block">A high-quality hashing function that can sometimes be about twice as fast as the de facto Java hashCode()
- implementation; the only one of the CrossHash hashes that has been tested with SMHasher and has passed all of it.</div>
+<div class="block">A mid-quality hashing function that has been tested with SMHasher and has passed all of it when running on
+ <code>byte[]</code> data, not larger items like <code>char[]</code> or <code>long[]</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.Lightning.html" title="class in squidpony.squidmath">CrossHash.Lightning</a></span></code>
 <div class="block">A quick, simple hashing function that seems to have good results.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/CrossHash.Metro.html" title="class in squidpony.squidmath">CrossHash.Metro</a></span></code>
-<div class="block">Google's MetroHash algorithm, ported in a somewhat rudimentary way to Java.</div>
 </td>
 </tr>
 <tr class="rowColor">

@@ -2122,7 +2122,7 @@
 <span class="sourceLineNo">2114</span>    public static int maxFill(final int n, final float f) {<a name="line.2114"></a>
 <span class="sourceLineNo">2115</span>        /* We must guarantee that there is always at least<a name="line.2115"></a>
 <span class="sourceLineNo">2116</span>         * one free entry (even with pathological load factors). */<a name="line.2116"></a>
-<span class="sourceLineNo">2117</span>        return Math.min((int)(n * f + 99999994f), n - 1);<a name="line.2117"></a>
+<span class="sourceLineNo">2117</span>        return Math.min((int)(n * f + 0.99999994f), n - 1);<a name="line.2117"></a>
 <span class="sourceLineNo">2118</span>    }<a name="line.2118"></a>
 <span class="sourceLineNo">2119</span><a name="line.2119"></a>
 <span class="sourceLineNo">2120</span>    /**<a name="line.2120"></a>
@@ -2657,7 +2657,7 @@
 <span class="sourceLineNo">2649</span>     * @return {@code true} if the value was replaced<a name="line.2649"></a>
 <span class="sourceLineNo">2650</span>     */<a name="line.2650"></a>
 <span class="sourceLineNo">2651</span>    public boolean replace(K key, V oldValue, V newValue) {<a name="line.2651"></a>
-<span class="sourceLineNo">2652</span>        if (containsKey(key) &amp;&amp; Objects.equals(get(key), value)) {<a name="line.2652"></a>
+<span class="sourceLineNo">2652</span>        if (containsKey(key) &amp;&amp; Objects.equals(get(key), newValue)) {<a name="line.2652"></a>
 <span class="sourceLineNo">2653</span>            put(key, newValue);<a name="line.2653"></a>
 <span class="sourceLineNo">2654</span>            return true;<a name="line.2654"></a>
 <span class="sourceLineNo">2655</span>        } else<a name="line.2655"></a>
