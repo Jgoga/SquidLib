@@ -228,6 +228,8 @@
 <div class="block">Implementations of <a href="http://squidpony.github.io/SquidLib/squidlib-util/squidpony/IFilter.html?is-external=true" title="class or interface in squidpony"><code>IFilter</code></a>, that all are meant to perform different changes to colors before they are
  created.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../squidpony/squidgrid/gui/gdx/FloatFilters.ChainFilter.html#filters">filters</a></span> - Variable in class squidpony.squidgrid.gui.gdx.<a href="../squidpony/squidgrid/gui/gdx/FloatFilters.ChainFilter.html" title="class in squidpony.squidgrid.gui.gdx">FloatFilters.ChainFilter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="../squidpony/squidgrid/gui/gdx/Filters.ChainFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">Filters.ChainFilter</span></a> - Class in <a href="../squidpony/squidgrid/gui/gdx/package-summary.html">squidpony.squidgrid.gui.gdx</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="../squidpony/squidgrid/gui/gdx/Filters.ColorizeFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">Filters.ColorizeFilter</span></a> - Class in <a href="../squidpony/squidgrid/gui/gdx/package-summary.html">squidpony.squidgrid.gui.gdx</a></dt>
@@ -359,6 +361,11 @@
 <dd>
 <div class="block">Pre-made FloatFilter classes that you can use to filter colors without producing extra Color objects.</div>
 </dd>
+<dt><a href="../squidpony/squidgrid/gui/gdx/FloatFilters.ChainFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">FloatFilters.ChainFilter</span></a> - Class in <a href="../squidpony/squidgrid/gui/gdx/package-summary.html">squidpony.squidgrid.gui.gdx</a></dt>
+<dd>
+<div class="block">A FloatFilter that chains together one or more FloatFilters one after the next, passing the float output of one
+ as input to the next until the chain has all been called.</div>
+</dd>
 <dt><a href="../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">FloatFilters.ColorizeFilter</span></a> - Class in <a href="../squidpony/squidgrid/gui/gdx/package-summary.html">squidpony.squidgrid.gui.gdx</a></dt>
 <dd>
 <div class="block">Changes all colors this alters to have the same hue as, and a closer saturation to, a target color given in the
@@ -370,10 +377,28 @@
  people with at least some forms of red-green color-blindness (deuteranopia should be handled well, protanopia
  very well, and tritanopia may not benefit at all).</div>
 </dd>
+<dt><a href="../squidpony/squidgrid/gui/gdx/FloatFilters.GrayscaleFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">FloatFilters.GrayscaleFilter</span></a> - Class in <a href="../squidpony/squidgrid/gui/gdx/package-summary.html">squidpony.squidgrid.gui.gdx</a></dt>
+<dd>
+<div class="block">A FloatFilter that makes all colors given to it grayscale, using only their luma as calculated by
+ <a href="../squidpony/squidgrid/gui/gdx/SColor.html#lumaOfFloat-float-"><code>SColor.lumaOfFloat(float)</code></a> as the lightness (it does also preserve alpha transparency).</div>
+</dd>
 <dt><a href="../squidpony/squidgrid/gui/gdx/FloatFilters.HSVFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">FloatFilters.HSVFilter</span></a> - Class in <a href="../squidpony/squidgrid/gui/gdx/package-summary.html">squidpony.squidgrid.gui.gdx</a></dt>
 <dd>
 <div class="block">Wraps the functionality of <a href="../squidpony/squidgrid/gui/gdx/SColor.html#toEditedFloat-float-float-float-float-float-"><code>SColor.toEditedFloat(float, float, float, float, float)</code></a> so it can be called as
  a FloatFilter, adding values to hue, saturation, and value (clamping saturation and value and wrapping hue).</div>
+</dd>
+<dt><a href="../squidpony/squidgrid/gui/gdx/FloatFilters.IdentityFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">FloatFilters.IdentityFilter</span></a> - Class in <a href="../squidpony/squidgrid/gui/gdx/package-summary.html">squidpony.squidgrid.gui.gdx</a></dt>
+<dd>
+<div class="block">A FloatFilter that makes no changes to the colors given to it; useful as a default for when no filter is wanted.</div>
+</dd>
+<dt><a href="../squidpony/squidgrid/gui/gdx/FloatFilters.LerpFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">FloatFilters.LerpFilter</span></a> - Class in <a href="../squidpony/squidgrid/gui/gdx/package-summary.html">squidpony.squidgrid.gui.gdx</a></dt>
+<dd>
+<div class="block">A FloatFilter that linearly interpolates (lerps) any color it is given toward a specified color by a specified
+ amount.</div>
+</dd>
+<dt><a href="../squidpony/squidgrid/gui/gdx/FloatFilters.YCbCrFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">FloatFilters.YCbCrFilter</span></a> - Class in <a href="../squidpony/squidgrid/gui/gdx/package-summary.html">squidpony.squidgrid.gui.gdx</a></dt>
+<dd>
+<div class="block">Like <a href="../squidpony/squidgrid/gui/gdx/FloatFilters.HSVFilter.html" title="class in squidpony.squidgrid.gui.gdx"><code>FloatFilters.HSVFilter</code></a>, but edits its input colors in YCbCr color space, and multiplies rather than adds.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../squidpony/squidgrid/gui/gdx/SColor.html#floatGet-float-float-float-float-">floatGet(float, float, float, float)</a></span> - Static method in class squidpony.squidgrid.gui.gdx.<a href="../squidpony/squidgrid/gui/gdx/SColor.html" title="class in squidpony.squidgrid.gui.gdx">SColor</a></dt>
 <dd>

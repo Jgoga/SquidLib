@@ -2058,343 +2058,264 @@
 <span class="sourceLineNo">2050</span>        order.reorder(ordering);<a name="line.2050"></a>
 <span class="sourceLineNo">2051</span>        return this;<a name="line.2051"></a>
 <span class="sourceLineNo">2052</span>    }<a name="line.2052"></a>
-<span class="sourceLineNo">2053</span>    private int alterEntry(final int pos, final int replacement) {<a name="line.2053"></a>
-<span class="sourceLineNo">2054</span>        shiftKeys(pos);<a name="line.2054"></a>
-<span class="sourceLineNo">2055</span>        final int[] value = this.value;<a name="line.2055"></a>
-<span class="sourceLineNo">2056</span>        int v = value[pos];<a name="line.2056"></a>
-<span class="sourceLineNo">2057</span><a name="line.2057"></a>
-<span class="sourceLineNo">2058</span>        int rep;<a name="line.2058"></a>
-<span class="sourceLineNo">2059</span>        if (replacement == 0) {<a name="line.2059"></a>
-<span class="sourceLineNo">2060</span>            if (containsNullKey)<a name="line.2060"></a>
-<span class="sourceLineNo">2061</span>                return v;<a name="line.2061"></a>
-<span class="sourceLineNo">2062</span>            rep = n;<a name="line.2062"></a>
-<span class="sourceLineNo">2063</span>            containsNullKey = true;<a name="line.2063"></a>
-<span class="sourceLineNo">2064</span>        } else {<a name="line.2064"></a>
-<span class="sourceLineNo">2065</span>            int curr;<a name="line.2065"></a>
-<span class="sourceLineNo">2066</span>            final int[] key = this.key;<a name="line.2066"></a>
-<span class="sourceLineNo">2067</span><a name="line.2067"></a>
-<span class="sourceLineNo">2068</span>            // The starting point.<a name="line.2068"></a>
-<span class="sourceLineNo">2069</span>            if (!((curr = key[rep = (HashCommon.mix(replacement)) &amp; mask]) == 0)) {<a name="line.2069"></a>
-<span class="sourceLineNo">2070</span>                if (curr == replacement)<a name="line.2070"></a>
-<span class="sourceLineNo">2071</span>                    return v;<a name="line.2071"></a>
-<span class="sourceLineNo">2072</span>                while (!((curr = key[rep = (rep + 1) &amp; mask]) == 0))<a name="line.2072"></a>
-<span class="sourceLineNo">2073</span>                    if (curr == replacement)<a name="line.2073"></a>
-<span class="sourceLineNo">2074</span>                        return v;<a name="line.2074"></a>
-<span class="sourceLineNo">2075</span>            }<a name="line.2075"></a>
-<span class="sourceLineNo">2076</span>            key[rep] = replacement;<a name="line.2076"></a>
-<span class="sourceLineNo">2077</span>            value[rep] = v;<a name="line.2077"></a>
-<span class="sourceLineNo">2078</span>        }<a name="line.2078"></a>
-<span class="sourceLineNo">2079</span>        fixOrder(pos, rep);<a name="line.2079"></a>
-<span class="sourceLineNo">2080</span>        return v;<a name="line.2080"></a>
-<span class="sourceLineNo">2081</span>    }<a name="line.2081"></a>
-<span class="sourceLineNo">2082</span>    private int alterNullEntry(final int replacement) {<a name="line.2082"></a>
-<span class="sourceLineNo">2083</span>        if (replacement == 0)<a name="line.2083"></a>
-<span class="sourceLineNo">2084</span>            return value[n];<a name="line.2084"></a>
-<span class="sourceLineNo">2085</span>        containsNullKey = false;<a name="line.2085"></a>
-<span class="sourceLineNo">2086</span>        final int[] value = this.value;<a name="line.2086"></a>
-<span class="sourceLineNo">2087</span>        int v = value[n];<a name="line.2087"></a>
-<span class="sourceLineNo">2088</span><a name="line.2088"></a>
-<span class="sourceLineNo">2089</span>        int rep;<a name="line.2089"></a>
-<span class="sourceLineNo">2090</span>        int curr;<a name="line.2090"></a>
-<span class="sourceLineNo">2091</span>        final int[] key = this.key;<a name="line.2091"></a>
-<span class="sourceLineNo">2092</span>        // The starting point.<a name="line.2092"></a>
-<span class="sourceLineNo">2093</span>        if ((curr = key[rep = (HashCommon.mix(replacement)) &amp; mask]) != 0) {<a name="line.2093"></a>
-<span class="sourceLineNo">2094</span>            if (curr == replacement)<a name="line.2094"></a>
-<span class="sourceLineNo">2095</span>                return v;<a name="line.2095"></a>
-<span class="sourceLineNo">2096</span>            while ((curr = key[rep = (rep + 1) &amp; mask]) != 0)<a name="line.2096"></a>
-<span class="sourceLineNo">2097</span>                if (curr == replacement)<a name="line.2097"></a>
-<span class="sourceLineNo">2098</span>                    return v;<a name="line.2098"></a>
-<span class="sourceLineNo">2099</span>        }<a name="line.2099"></a>
-<span class="sourceLineNo">2100</span>        key[rep] = replacement;<a name="line.2100"></a>
-<span class="sourceLineNo">2101</span>        value[rep] = v;<a name="line.2101"></a>
-<span class="sourceLineNo">2102</span>        fixOrder(n, rep);<a name="line.2102"></a>
-<span class="sourceLineNo">2103</span>        return v;<a name="line.2103"></a>
-<span class="sourceLineNo">2104</span>    }<a name="line.2104"></a>
-<span class="sourceLineNo">2105</span>    /*<a name="line.2105"></a>
-<span class="sourceLineNo">2106</span>        public V alter(final K original, final K replacement) {<a name="line.2106"></a>
-<span class="sourceLineNo">2107</span>            if (original == null) {<a name="line.2107"></a>
-<span class="sourceLineNo">2108</span>                if (containsNullKey) {<a name="line.2108"></a>
-<span class="sourceLineNo">2109</span>                    return alterNullEntry(replacement);<a name="line.2109"></a>
-<span class="sourceLineNo">2110</span>                }<a name="line.2110"></a>
-<span class="sourceLineNo">2111</span>                else<a name="line.2111"></a>
-<span class="sourceLineNo">2112</span>                    return put(replacement, null);<a name="line.2112"></a>
-<span class="sourceLineNo">2113</span>            }<a name="line.2113"></a>
-<span class="sourceLineNo">2114</span>            else if(original == replacement)<a name="line.2114"></a>
-<span class="sourceLineNo">2115</span>                return get(original);<a name="line.2115"></a>
-<span class="sourceLineNo">2116</span>            K curr;<a name="line.2116"></a>
-<span class="sourceLineNo">2117</span>            final K[] key = this.key;<a name="line.2117"></a>
-<span class="sourceLineNo">2118</span>            int pos;<a name="line.2118"></a>
-<span class="sourceLineNo">2119</span>    <a name="line.2119"></a>
-<span class="sourceLineNo">2120</span>            if ((curr = key[pos = (HashCommon.mix(original)) &amp; mask]) == null)<a name="line.2120"></a>
-<span class="sourceLineNo">2121</span>                return put(replacement, null);<a name="line.2121"></a>
-<span class="sourceLineNo">2122</span>            if (original == curr)<a name="line.2122"></a>
-<span class="sourceLineNo">2123</span>                return alterEntry(pos, replacement);<a name="line.2123"></a>
-<span class="sourceLineNo">2124</span>            while (true) {<a name="line.2124"></a>
-<span class="sourceLineNo">2125</span>                if ((curr = key[pos = (pos + 1) &amp; mask]) == null)<a name="line.2125"></a>
-<span class="sourceLineNo">2126</span>                    return put(replacement, null);<a name="line.2126"></a>
-<span class="sourceLineNo">2127</span>                if (original == curr)<a name="line.2127"></a>
-<span class="sourceLineNo">2128</span>                    return alterEntry(pos, replacement);<a name="line.2128"></a>
+<span class="sourceLineNo">2053</span>    private int alterEntry(final int pos) {<a name="line.2053"></a>
+<span class="sourceLineNo">2054</span>        size--;<a name="line.2054"></a>
+<span class="sourceLineNo">2055</span>        int idx = fixOrder(pos);<a name="line.2055"></a>
+<span class="sourceLineNo">2056</span>        shiftKeys(pos);<a name="line.2056"></a>
+<span class="sourceLineNo">2057</span>        return idx;<a name="line.2057"></a>
+<span class="sourceLineNo">2058</span>    }<a name="line.2058"></a>
+<span class="sourceLineNo">2059</span>    private int alterNullEntry() {<a name="line.2059"></a>
+<span class="sourceLineNo">2060</span>        containsNullKey = false;<a name="line.2060"></a>
+<span class="sourceLineNo">2061</span>        size--;<a name="line.2061"></a>
+<span class="sourceLineNo">2062</span>        return fixOrder(n);<a name="line.2062"></a>
+<span class="sourceLineNo">2063</span>    }<a name="line.2063"></a>
+<span class="sourceLineNo">2064</span>    /**<a name="line.2064"></a>
+<span class="sourceLineNo">2065</span>     * Swaps a key, original, for another key, replacement, while keeping replacement at the same point in the iteration<a name="line.2065"></a>
+<span class="sourceLineNo">2066</span>     * order as original and keeping it associated with the same value (which also keeps its iteration index). Unlike<a name="line.2066"></a>
+<span class="sourceLineNo">2067</span>     * the similar method {@link #alter(int, int)}, this will not change this OrderedMap if replacement is already<a name="line.2067"></a>
+<span class="sourceLineNo">2068</span>     * present. To contrast, alter() can reduce the size of the OrderedMap if both original and replacement are already<a name="line.2068"></a>
+<span class="sourceLineNo">2069</span>     * in the Map. If replacement is found, this returns the default return value, otherwise it switches out original<a name="line.2069"></a>
+<span class="sourceLineNo">2070</span>     * for replacement and returns whatever was associated with original.<a name="line.2070"></a>
+<span class="sourceLineNo">2071</span>     * @param original the key to find and swap out<a name="line.2071"></a>
+<span class="sourceLineNo">2072</span>     * @param replacement the key to replace original with<a name="line.2072"></a>
+<span class="sourceLineNo">2073</span>     * @return the value associated with original before, and replacement now<a name="line.2073"></a>
+<span class="sourceLineNo">2074</span>     */<a name="line.2074"></a>
+<span class="sourceLineNo">2075</span>    public int alterCarefully(final int original, final int replacement) {<a name="line.2075"></a>
+<span class="sourceLineNo">2076</span>        if(!containsKey(replacement))<a name="line.2076"></a>
+<span class="sourceLineNo">2077</span>            return alter(original, replacement);<a name="line.2077"></a>
+<span class="sourceLineNo">2078</span>        else<a name="line.2078"></a>
+<span class="sourceLineNo">2079</span>            return defRetValue;<a name="line.2079"></a>
+<span class="sourceLineNo">2080</span>    }<a name="line.2080"></a>
+<span class="sourceLineNo">2081</span>    /**<a name="line.2081"></a>
+<span class="sourceLineNo">2082</span>     * Swaps a key, original, for another key, replacement, while keeping replacement at the same point in the iteration<a name="line.2082"></a>
+<span class="sourceLineNo">2083</span>     * order as original and keeping it associated with the same value (which also keeps its iteration index).<a name="line.2083"></a>
+<span class="sourceLineNo">2084</span>     * Be aware that if both original and replacement are present in the OrderedMap, this will still replace original<a name="line.2084"></a>
+<span class="sourceLineNo">2085</span>     * with replacement but will also remove the other occurrence of replacement to avoid duplicate keys. This can throw<a name="line.2085"></a>
+<span class="sourceLineNo">2086</span>     * off the expected order because the duplicate could be at any point in the ordering when it is removed. You may<a name="line.2086"></a>
+<span class="sourceLineNo">2087</span>     * want to prefer {@link #alterCarefully(int, int)} if you don't feel like checking by hand for whether<a name="line.2087"></a>
+<span class="sourceLineNo">2088</span>     * replacement is already present, but using this method is perfectly reasonable if you know overlaps won't happen.<a name="line.2088"></a>
+<span class="sourceLineNo">2089</span>     * @param original the key to find and swap out<a name="line.2089"></a>
+<span class="sourceLineNo">2090</span>     * @param replacement the key to replace original with<a name="line.2090"></a>
+<span class="sourceLineNo">2091</span>     * @return the value associated with original before, and replacement now<a name="line.2091"></a>
+<span class="sourceLineNo">2092</span>     */<a name="line.2092"></a>
+<span class="sourceLineNo">2093</span>    public int alter(final int original, final int replacement) {<a name="line.2093"></a>
+<span class="sourceLineNo">2094</span>        int v;<a name="line.2094"></a>
+<span class="sourceLineNo">2095</span>        int idx;<a name="line.2095"></a>
+<span class="sourceLineNo">2096</span>        if (original == 0) {<a name="line.2096"></a>
+<span class="sourceLineNo">2097</span>            if (containsNullKey) {<a name="line.2097"></a>
+<span class="sourceLineNo">2098</span>                v = value[n];<a name="line.2098"></a>
+<span class="sourceLineNo">2099</span>                idx = alterNullEntry();<a name="line.2099"></a>
+<span class="sourceLineNo">2100</span>                putAt(replacement, v, idx);<a name="line.2100"></a>
+<span class="sourceLineNo">2101</span>                return v;<a name="line.2101"></a>
+<span class="sourceLineNo">2102</span>            }<a name="line.2102"></a>
+<span class="sourceLineNo">2103</span>            else<a name="line.2103"></a>
+<span class="sourceLineNo">2104</span>                v = defRetValue;<a name="line.2104"></a>
+<span class="sourceLineNo">2105</span>            return v;<a name="line.2105"></a>
+<span class="sourceLineNo">2106</span>        }<a name="line.2106"></a>
+<span class="sourceLineNo">2107</span>        int curr;<a name="line.2107"></a>
+<span class="sourceLineNo">2108</span>        final int[] key = this.key;<a name="line.2108"></a>
+<span class="sourceLineNo">2109</span>        int pos;<a name="line.2109"></a>
+<span class="sourceLineNo">2110</span>        // The starting point.<a name="line.2110"></a>
+<span class="sourceLineNo">2111</span>        if ((curr = key[pos = (HashCommon.mix(original)) &amp; mask]) == 0)<a name="line.2111"></a>
+<span class="sourceLineNo">2112</span>            return defRetValue;<a name="line.2112"></a>
+<span class="sourceLineNo">2113</span>        if (original == curr)<a name="line.2113"></a>
+<span class="sourceLineNo">2114</span>        {<a name="line.2114"></a>
+<span class="sourceLineNo">2115</span>            v = value[pos];<a name="line.2115"></a>
+<span class="sourceLineNo">2116</span>            idx = alterEntry(pos);<a name="line.2116"></a>
+<span class="sourceLineNo">2117</span>            putAt(replacement, v, idx);<a name="line.2117"></a>
+<span class="sourceLineNo">2118</span>            return v;<a name="line.2118"></a>
+<span class="sourceLineNo">2119</span>        }<a name="line.2119"></a>
+<span class="sourceLineNo">2120</span>        while (true) {<a name="line.2120"></a>
+<span class="sourceLineNo">2121</span>            if ((curr = key[pos = (pos + 1) &amp; mask]) == 0)<a name="line.2121"></a>
+<span class="sourceLineNo">2122</span>                return defRetValue;<a name="line.2122"></a>
+<span class="sourceLineNo">2123</span>            if (original == curr)<a name="line.2123"></a>
+<span class="sourceLineNo">2124</span>            {<a name="line.2124"></a>
+<span class="sourceLineNo">2125</span>                v = value[pos];<a name="line.2125"></a>
+<span class="sourceLineNo">2126</span>                idx = alterEntry(pos);<a name="line.2126"></a>
+<span class="sourceLineNo">2127</span>                putAt(replacement, v, idx);<a name="line.2127"></a>
+<span class="sourceLineNo">2128</span>                return v;<a name="line.2128"></a>
 <span class="sourceLineNo">2129</span>            }<a name="line.2129"></a>
 <span class="sourceLineNo">2130</span>        }<a name="line.2130"></a>
-<span class="sourceLineNo">2131</span>        */<a name="line.2131"></a>
-<span class="sourceLineNo">2132</span>    private int alterEntry(final int pos) {<a name="line.2132"></a>
-<span class="sourceLineNo">2133</span>        size--;<a name="line.2133"></a>
-<span class="sourceLineNo">2134</span>        int idx = fixOrder(pos);<a name="line.2134"></a>
-<span class="sourceLineNo">2135</span>        shiftKeys(pos);<a name="line.2135"></a>
-<span class="sourceLineNo">2136</span>        return idx;<a name="line.2136"></a>
-<span class="sourceLineNo">2137</span>    }<a name="line.2137"></a>
-<span class="sourceLineNo">2138</span>    private int alterNullEntry() {<a name="line.2138"></a>
-<span class="sourceLineNo">2139</span>        containsNullKey = false;<a name="line.2139"></a>
-<span class="sourceLineNo">2140</span>        size--;<a name="line.2140"></a>
-<span class="sourceLineNo">2141</span>        return fixOrder(n);<a name="line.2141"></a>
-<span class="sourceLineNo">2142</span>    }<a name="line.2142"></a>
-<span class="sourceLineNo">2143</span>    /**<a name="line.2143"></a>
-<span class="sourceLineNo">2144</span>     * Swaps a key, original, for another key, replacement, while keeping replacement at the same point in the iteration<a name="line.2144"></a>
-<span class="sourceLineNo">2145</span>     * order as original and keeping it associated with the same value (which also keeps its iteration index). Unlike<a name="line.2145"></a>
-<span class="sourceLineNo">2146</span>     * the similar method {@link #alter(int, int)}, this will not change this OrderedMap if replacement is already<a name="line.2146"></a>
-<span class="sourceLineNo">2147</span>     * present. To contrast, alter() can reduce the size of the OrderedMap if both original and replacement are already<a name="line.2147"></a>
-<span class="sourceLineNo">2148</span>     * in the Map. If replacement is found, this returns the default return value, otherwise it switches out original<a name="line.2148"></a>
-<span class="sourceLineNo">2149</span>     * for replacement and returns whatever was associated with original.<a name="line.2149"></a>
-<span class="sourceLineNo">2150</span>     * @param original the key to find and swap out<a name="line.2150"></a>
-<span class="sourceLineNo">2151</span>     * @param replacement the key to replace original with<a name="line.2151"></a>
-<span class="sourceLineNo">2152</span>     * @return the value associated with original before, and replacement now<a name="line.2152"></a>
-<span class="sourceLineNo">2153</span>     */<a name="line.2153"></a>
-<span class="sourceLineNo">2154</span>    public int alterCarefully(final int original, final int replacement) {<a name="line.2154"></a>
-<span class="sourceLineNo">2155</span>        if(!containsKey(replacement))<a name="line.2155"></a>
-<span class="sourceLineNo">2156</span>            return alter(original, replacement);<a name="line.2156"></a>
-<span class="sourceLineNo">2157</span>        else<a name="line.2157"></a>
-<span class="sourceLineNo">2158</span>            return defRetValue;<a name="line.2158"></a>
-<span class="sourceLineNo">2159</span>    }<a name="line.2159"></a>
-<span class="sourceLineNo">2160</span>    /**<a name="line.2160"></a>
-<span class="sourceLineNo">2161</span>     * Swaps a key, original, for another key, replacement, while keeping replacement at the same point in the iteration<a name="line.2161"></a>
-<span class="sourceLineNo">2162</span>     * order as original and keeping it associated with the same value (which also keeps its iteration index).<a name="line.2162"></a>
-<span class="sourceLineNo">2163</span>     * Be aware that if both original and replacement are present in the OrderedMap, this will still replace original<a name="line.2163"></a>
-<span class="sourceLineNo">2164</span>     * with replacement but will also remove the other occurrence of replacement to avoid duplicate keys. This can throw<a name="line.2164"></a>
-<span class="sourceLineNo">2165</span>     * off the expected order because the duplicate could be at any point in the ordering when it is removed. You may<a name="line.2165"></a>
-<span class="sourceLineNo">2166</span>     * want to prefer {@link #alterCarefully(int, int)} if you don't feel like checking by hand for whether<a name="line.2166"></a>
-<span class="sourceLineNo">2167</span>     * replacement is already present, but using this method is perfectly reasonable if you know overlaps won't happen.<a name="line.2167"></a>
-<span class="sourceLineNo">2168</span>     * @param original the key to find and swap out<a name="line.2168"></a>
-<span class="sourceLineNo">2169</span>     * @param replacement the key to replace original with<a name="line.2169"></a>
-<span class="sourceLineNo">2170</span>     * @return the value associated with original before, and replacement now<a name="line.2170"></a>
-<span class="sourceLineNo">2171</span>     */<a name="line.2171"></a>
-<span class="sourceLineNo">2172</span>    public int alter(final int original, final int replacement) {<a name="line.2172"></a>
-<span class="sourceLineNo">2173</span>        int v;<a name="line.2173"></a>
-<span class="sourceLineNo">2174</span>        int idx;<a name="line.2174"></a>
-<span class="sourceLineNo">2175</span>        if (original == 0) {<a name="line.2175"></a>
-<span class="sourceLineNo">2176</span>            if (containsNullKey) {<a name="line.2176"></a>
-<span class="sourceLineNo">2177</span>                v = value[n];<a name="line.2177"></a>
-<span class="sourceLineNo">2178</span>                idx = alterNullEntry();<a name="line.2178"></a>
-<span class="sourceLineNo">2179</span>                putAt(replacement, v, idx);<a name="line.2179"></a>
-<span class="sourceLineNo">2180</span>                return v;<a name="line.2180"></a>
-<span class="sourceLineNo">2181</span>            }<a name="line.2181"></a>
-<span class="sourceLineNo">2182</span>            else<a name="line.2182"></a>
-<span class="sourceLineNo">2183</span>                v = defRetValue;<a name="line.2183"></a>
-<span class="sourceLineNo">2184</span>            return v;<a name="line.2184"></a>
-<span class="sourceLineNo">2185</span>        }<a name="line.2185"></a>
-<span class="sourceLineNo">2186</span>        int curr;<a name="line.2186"></a>
-<span class="sourceLineNo">2187</span>        final int[] key = this.key;<a name="line.2187"></a>
-<span class="sourceLineNo">2188</span>        int pos;<a name="line.2188"></a>
-<span class="sourceLineNo">2189</span>        // The starting point.<a name="line.2189"></a>
-<span class="sourceLineNo">2190</span>        if ((curr = key[pos = (HashCommon.mix(original)) &amp; mask]) == 0)<a name="line.2190"></a>
-<span class="sourceLineNo">2191</span>            return defRetValue;<a name="line.2191"></a>
-<span class="sourceLineNo">2192</span>        if (original == curr)<a name="line.2192"></a>
-<span class="sourceLineNo">2193</span>        {<a name="line.2193"></a>
-<span class="sourceLineNo">2194</span>            v = value[pos];<a name="line.2194"></a>
-<span class="sourceLineNo">2195</span>            idx = alterEntry(pos);<a name="line.2195"></a>
-<span class="sourceLineNo">2196</span>            putAt(replacement, v, idx);<a name="line.2196"></a>
-<span class="sourceLineNo">2197</span>            return v;<a name="line.2197"></a>
-<span class="sourceLineNo">2198</span>        }<a name="line.2198"></a>
-<span class="sourceLineNo">2199</span>        while (true) {<a name="line.2199"></a>
-<span class="sourceLineNo">2200</span>            if ((curr = key[pos = (pos + 1) &amp; mask]) == 0)<a name="line.2200"></a>
-<span class="sourceLineNo">2201</span>                return defRetValue;<a name="line.2201"></a>
-<span class="sourceLineNo">2202</span>            if (original == curr)<a name="line.2202"></a>
-<span class="sourceLineNo">2203</span>            {<a name="line.2203"></a>
-<span class="sourceLineNo">2204</span>                v = value[pos];<a name="line.2204"></a>
-<span class="sourceLineNo">2205</span>                idx = alterEntry(pos);<a name="line.2205"></a>
-<span class="sourceLineNo">2206</span>                putAt(replacement, v, idx);<a name="line.2206"></a>
-<span class="sourceLineNo">2207</span>                return v;<a name="line.2207"></a>
-<span class="sourceLineNo">2208</span>            }<a name="line.2208"></a>
-<span class="sourceLineNo">2209</span>        }<a name="line.2209"></a>
-<span class="sourceLineNo">2210</span>    }<a name="line.2210"></a>
-<span class="sourceLineNo">2211</span><a name="line.2211"></a>
-<span class="sourceLineNo">2212</span>    public IntVLA getMany(int... keys)<a name="line.2212"></a>
-<span class="sourceLineNo">2213</span>    {<a name="line.2213"></a>
-<span class="sourceLineNo">2214</span>        if(keys == null)<a name="line.2214"></a>
-<span class="sourceLineNo">2215</span>            return new IntVLA(1);<a name="line.2215"></a>
-<span class="sourceLineNo">2216</span>        final int len = keys.length;<a name="line.2216"></a>
-<span class="sourceLineNo">2217</span>        IntVLA vals = new IntVLA(len);<a name="line.2217"></a>
-<span class="sourceLineNo">2218</span>        for (int i = 0; i &lt; len; i++) {<a name="line.2218"></a>
-<span class="sourceLineNo">2219</span>            vals.add(get(keys[i]));<a name="line.2219"></a>
-<span class="sourceLineNo">2220</span>        }<a name="line.2220"></a>
-<span class="sourceLineNo">2221</span>        return vals;<a name="line.2221"></a>
+<span class="sourceLineNo">2131</span>    }<a name="line.2131"></a>
+<span class="sourceLineNo">2132</span><a name="line.2132"></a>
+<span class="sourceLineNo">2133</span>    public IntVLA getMany(int... keys)<a name="line.2133"></a>
+<span class="sourceLineNo">2134</span>    {<a name="line.2134"></a>
+<span class="sourceLineNo">2135</span>        if(keys == null)<a name="line.2135"></a>
+<span class="sourceLineNo">2136</span>            return new IntVLA(1);<a name="line.2136"></a>
+<span class="sourceLineNo">2137</span>        final int len = keys.length;<a name="line.2137"></a>
+<span class="sourceLineNo">2138</span>        IntVLA vals = new IntVLA(len);<a name="line.2138"></a>
+<span class="sourceLineNo">2139</span>        for (int i = 0; i &lt; len; i++) {<a name="line.2139"></a>
+<span class="sourceLineNo">2140</span>            vals.add(get(keys[i]));<a name="line.2140"></a>
+<span class="sourceLineNo">2141</span>        }<a name="line.2141"></a>
+<span class="sourceLineNo">2142</span>        return vals;<a name="line.2142"></a>
+<span class="sourceLineNo">2143</span>    }<a name="line.2143"></a>
+<span class="sourceLineNo">2144</span>    /**<a name="line.2144"></a>
+<span class="sourceLineNo">2145</span>     * Changes the int at the given index to replacement while keeping replacement at the same point in the ordering.<a name="line.2145"></a>
+<span class="sourceLineNo">2146</span>     * Be aware that if replacement is present in the OrderedMap, this will still replace the given index<a name="line.2146"></a>
+<span class="sourceLineNo">2147</span>     * with replacement but will also remove the other occurrence of replacement to avoid duplicate keys. This can throw<a name="line.2147"></a>
+<span class="sourceLineNo">2148</span>     * off the expected order because the duplicate could be at any point in the ordering when it is removed. You may<a name="line.2148"></a>
+<span class="sourceLineNo">2149</span>     * want to prefer {@link #alterAtCarefully(int, int)} if you don't feel like checking by hand for whether<a name="line.2149"></a>
+<span class="sourceLineNo">2150</span>     * replacement is already present, but using this method is perfectly reasonable if you know overlaps won't happen.<a name="line.2150"></a>
+<span class="sourceLineNo">2151</span>     * @param index       an index to replace the int key at<a name="line.2151"></a>
+<span class="sourceLineNo">2152</span>     * @param replacement another int key that will replace the original at the remembered index<a name="line.2152"></a>
+<span class="sourceLineNo">2153</span>     * @return the value associated with the possibly-altered key<a name="line.2153"></a>
+<span class="sourceLineNo">2154</span>     */<a name="line.2154"></a>
+<span class="sourceLineNo">2155</span>    public int alterAt(int index, int replacement)<a name="line.2155"></a>
+<span class="sourceLineNo">2156</span>    {<a name="line.2156"></a>
+<span class="sourceLineNo">2157</span>        return alter(keyAt(index), replacement);<a name="line.2157"></a>
+<span class="sourceLineNo">2158</span>    }<a name="line.2158"></a>
+<span class="sourceLineNo">2159</span>    /**<a name="line.2159"></a>
+<span class="sourceLineNo">2160</span>     * Changes the int at the given index to replacement while keeping replacement at the same point in the ordering.<a name="line.2160"></a>
+<span class="sourceLineNo">2161</span>     * Unlike the similar method {@link #alterAt(int, int)}, this will not change this OrderedMap if replacement is<a name="line.2161"></a>
+<span class="sourceLineNo">2162</span>     * already present. To contrast, alterAt() can reduce the size of the OrderedMap if replacement is already<a name="line.2162"></a>
+<span class="sourceLineNo">2163</span>     * in the Map. If replacement is found, this returns the default return value, otherwise it switches out the index<a name="line.2163"></a>
+<span class="sourceLineNo">2164</span>     * for replacement and returns whatever value was at the index before.<a name="line.2164"></a>
+<span class="sourceLineNo">2165</span>     * @param index       an index to replace the int key at<a name="line.2165"></a>
+<span class="sourceLineNo">2166</span>     * @param replacement another int key that will replace the original at the remembered index<a name="line.2166"></a>
+<span class="sourceLineNo">2167</span>     * @return the value associated with the key at the altered index before, and replacement now<a name="line.2167"></a>
+<span class="sourceLineNo">2168</span>     */<a name="line.2168"></a>
+<span class="sourceLineNo">2169</span>    public int alterAtCarefully(int index, int replacement)<a name="line.2169"></a>
+<span class="sourceLineNo">2170</span>    {<a name="line.2170"></a>
+<span class="sourceLineNo">2171</span>        return alterCarefully(keyAt(index), replacement);<a name="line.2171"></a>
+<span class="sourceLineNo">2172</span>    }<a name="line.2172"></a>
+<span class="sourceLineNo">2173</span><a name="line.2173"></a>
+<span class="sourceLineNo">2174</span>    /**<a name="line.2174"></a>
+<span class="sourceLineNo">2175</span>     * If the specified key is not already associated with a value, associates it with the given value<a name="line.2175"></a>
+<span class="sourceLineNo">2176</span>     * and returns that value, else returns the current value without changing anything.<a name="line.2176"></a>
+<span class="sourceLineNo">2177</span>     *<a name="line.2177"></a>
+<span class="sourceLineNo">2178</span>     * @param key   key with which the specified value is to be associated<a name="line.2178"></a>
+<span class="sourceLineNo">2179</span>     * @param value value to be associated with the specified key<a name="line.2179"></a>
+<span class="sourceLineNo">2180</span>     * @return the previous value associated with the specified key, or<a name="line.2180"></a>
+<span class="sourceLineNo">2181</span>     * {@code value} if there was no mapping for the key.<a name="line.2181"></a>
+<span class="sourceLineNo">2182</span>     */<a name="line.2182"></a>
+<span class="sourceLineNo">2183</span>    public int putIfAbsent(int key, int value) {<a name="line.2183"></a>
+<span class="sourceLineNo">2184</span>        if(containsKey(key))<a name="line.2184"></a>
+<span class="sourceLineNo">2185</span>            return get(key);         <a name="line.2185"></a>
+<span class="sourceLineNo">2186</span>        put(key, value);<a name="line.2186"></a>
+<span class="sourceLineNo">2187</span>        return value;<a name="line.2187"></a>
+<span class="sourceLineNo">2188</span>    }<a name="line.2188"></a>
+<span class="sourceLineNo">2189</span><a name="line.2189"></a>
+<span class="sourceLineNo">2190</span>    /**<a name="line.2190"></a>
+<span class="sourceLineNo">2191</span>     * Removes the entry for the specified key only if it is currently<a name="line.2191"></a>
+<span class="sourceLineNo">2192</span>     * mapped to the specified value.<a name="line.2192"></a>
+<span class="sourceLineNo">2193</span>     *<a name="line.2193"></a>
+<span class="sourceLineNo">2194</span>     * @param key   key with which the specified value is associated<a name="line.2194"></a>
+<span class="sourceLineNo">2195</span>     * @param value value expected to be associated with the specified key<a name="line.2195"></a>
+<span class="sourceLineNo">2196</span>     * @return {@code true} if the value was removed<a name="line.2196"></a>
+<span class="sourceLineNo">2197</span>     */<a name="line.2197"></a>
+<span class="sourceLineNo">2198</span>    public boolean remove(int key, int value) {<a name="line.2198"></a>
+<span class="sourceLineNo">2199</span>        if (containsKey(key) &amp;&amp; get(key) == value) {<a name="line.2199"></a>
+<span class="sourceLineNo">2200</span>            remove(key);<a name="line.2200"></a>
+<span class="sourceLineNo">2201</span>            return true;<a name="line.2201"></a>
+<span class="sourceLineNo">2202</span>        } else<a name="line.2202"></a>
+<span class="sourceLineNo">2203</span>            return false;<a name="line.2203"></a>
+<span class="sourceLineNo">2204</span>    }<a name="line.2204"></a>
+<span class="sourceLineNo">2205</span><a name="line.2205"></a>
+<span class="sourceLineNo">2206</span>    /**<a name="line.2206"></a>
+<span class="sourceLineNo">2207</span>     * Replaces the entry for the specified key only if currently<a name="line.2207"></a>
+<span class="sourceLineNo">2208</span>     * mapped to the specified value. The position in the iteration<a name="line.2208"></a>
+<span class="sourceLineNo">2209</span>     * order is retained.<a name="line.2209"></a>
+<span class="sourceLineNo">2210</span>     *<a name="line.2210"></a>
+<span class="sourceLineNo">2211</span>     * @param key      key with which the specified value is associated<a name="line.2211"></a>
+<span class="sourceLineNo">2212</span>     * @param oldValue value expected to be associated with the specified key<a name="line.2212"></a>
+<span class="sourceLineNo">2213</span>     * @param newValue value to be associated with the specified key<a name="line.2213"></a>
+<span class="sourceLineNo">2214</span>     * @return {@code true} if the value was replaced<a name="line.2214"></a>
+<span class="sourceLineNo">2215</span>     */<a name="line.2215"></a>
+<span class="sourceLineNo">2216</span>    public boolean replace(int key, int oldValue, int newValue) {<a name="line.2216"></a>
+<span class="sourceLineNo">2217</span>        if (containsKey(key) &amp;&amp; get(key) == oldValue) {<a name="line.2217"></a>
+<span class="sourceLineNo">2218</span>            put(key, newValue);<a name="line.2218"></a>
+<span class="sourceLineNo">2219</span>            return true;<a name="line.2219"></a>
+<span class="sourceLineNo">2220</span>        } else<a name="line.2220"></a>
+<span class="sourceLineNo">2221</span>            return false;<a name="line.2221"></a>
 <span class="sourceLineNo">2222</span>    }<a name="line.2222"></a>
-<span class="sourceLineNo">2223</span>    /**<a name="line.2223"></a>
-<span class="sourceLineNo">2224</span>     * Changes the int at the given index to replacement while keeping replacement at the same point in the ordering.<a name="line.2224"></a>
-<span class="sourceLineNo">2225</span>     * Be aware that if replacement is present in the OrderedMap, this will still replace the given index<a name="line.2225"></a>
-<span class="sourceLineNo">2226</span>     * with replacement but will also remove the other occurrence of replacement to avoid duplicate keys. This can throw<a name="line.2226"></a>
-<span class="sourceLineNo">2227</span>     * off the expected order because the duplicate could be at any point in the ordering when it is removed. You may<a name="line.2227"></a>
-<span class="sourceLineNo">2228</span>     * want to prefer {@link #alterAtCarefully(int, int)} if you don't feel like checking by hand for whether<a name="line.2228"></a>
-<span class="sourceLineNo">2229</span>     * replacement is already present, but using this method is perfectly reasonable if you know overlaps won't happen.<a name="line.2229"></a>
-<span class="sourceLineNo">2230</span>     * @param index       an index to replace the int key at<a name="line.2230"></a>
-<span class="sourceLineNo">2231</span>     * @param replacement another int key that will replace the original at the remembered index<a name="line.2231"></a>
-<span class="sourceLineNo">2232</span>     * @return the value associated with the possibly-altered key<a name="line.2232"></a>
-<span class="sourceLineNo">2233</span>     */<a name="line.2233"></a>
-<span class="sourceLineNo">2234</span>    public int alterAt(int index, int replacement)<a name="line.2234"></a>
-<span class="sourceLineNo">2235</span>    {<a name="line.2235"></a>
-<span class="sourceLineNo">2236</span>        return alter(keyAt(index), replacement);<a name="line.2236"></a>
-<span class="sourceLineNo">2237</span>    }<a name="line.2237"></a>
-<span class="sourceLineNo">2238</span>    /**<a name="line.2238"></a>
-<span class="sourceLineNo">2239</span>     * Changes the int at the given index to replacement while keeping replacement at the same point in the ordering.<a name="line.2239"></a>
-<span class="sourceLineNo">2240</span>     * Unlike the similar method {@link #alterAt(int, int)}, this will not change this OrderedMap if replacement is<a name="line.2240"></a>
-<span class="sourceLineNo">2241</span>     * already present. To contrast, alterAt() can reduce the size of the OrderedMap if replacement is already<a name="line.2241"></a>
-<span class="sourceLineNo">2242</span>     * in the Map. If replacement is found, this returns the default return value, otherwise it switches out the index<a name="line.2242"></a>
-<span class="sourceLineNo">2243</span>     * for replacement and returns whatever value was at the index before.<a name="line.2243"></a>
-<span class="sourceLineNo">2244</span>     * @param index       an index to replace the int key at<a name="line.2244"></a>
-<span class="sourceLineNo">2245</span>     * @param replacement another int key that will replace the original at the remembered index<a name="line.2245"></a>
-<span class="sourceLineNo">2246</span>     * @return the value associated with the key at the altered index before, and replacement now<a name="line.2246"></a>
-<span class="sourceLineNo">2247</span>     */<a name="line.2247"></a>
-<span class="sourceLineNo">2248</span>    public int alterAtCarefully(int index, int replacement)<a name="line.2248"></a>
-<span class="sourceLineNo">2249</span>    {<a name="line.2249"></a>
-<span class="sourceLineNo">2250</span>        return alterCarefully(keyAt(index), replacement);<a name="line.2250"></a>
-<span class="sourceLineNo">2251</span>    }<a name="line.2251"></a>
-<span class="sourceLineNo">2252</span><a name="line.2252"></a>
-<span class="sourceLineNo">2253</span>    /**<a name="line.2253"></a>
-<span class="sourceLineNo">2254</span>     * If the specified key is not already associated with a value, associates it with the given value<a name="line.2254"></a>
-<span class="sourceLineNo">2255</span>     * and returns that value, else returns the current value without changing anything.<a name="line.2255"></a>
-<span class="sourceLineNo">2256</span>     *<a name="line.2256"></a>
-<span class="sourceLineNo">2257</span>     * @param key   key with which the specified value is to be associated<a name="line.2257"></a>
-<span class="sourceLineNo">2258</span>     * @param value value to be associated with the specified key<a name="line.2258"></a>
-<span class="sourceLineNo">2259</span>     * @return the previous value associated with the specified key, or<a name="line.2259"></a>
-<span class="sourceLineNo">2260</span>     * {@code value} if there was no mapping for the key.<a name="line.2260"></a>
-<span class="sourceLineNo">2261</span>     */<a name="line.2261"></a>
-<span class="sourceLineNo">2262</span>    public int putIfAbsent(int key, int value) {<a name="line.2262"></a>
-<span class="sourceLineNo">2263</span>        if(containsKey(key))<a name="line.2263"></a>
-<span class="sourceLineNo">2264</span>            return get(key);         <a name="line.2264"></a>
-<span class="sourceLineNo">2265</span>        put(key, value);<a name="line.2265"></a>
-<span class="sourceLineNo">2266</span>        return value;<a name="line.2266"></a>
-<span class="sourceLineNo">2267</span>    }<a name="line.2267"></a>
-<span class="sourceLineNo">2268</span><a name="line.2268"></a>
-<span class="sourceLineNo">2269</span>    /**<a name="line.2269"></a>
-<span class="sourceLineNo">2270</span>     * Removes the entry for the specified key only if it is currently<a name="line.2270"></a>
-<span class="sourceLineNo">2271</span>     * mapped to the specified value.<a name="line.2271"></a>
-<span class="sourceLineNo">2272</span>     *<a name="line.2272"></a>
-<span class="sourceLineNo">2273</span>     * @param key   key with which the specified value is associated<a name="line.2273"></a>
-<span class="sourceLineNo">2274</span>     * @param value value expected to be associated with the specified key<a name="line.2274"></a>
-<span class="sourceLineNo">2275</span>     * @return {@code true} if the value was removed<a name="line.2275"></a>
-<span class="sourceLineNo">2276</span>     */<a name="line.2276"></a>
-<span class="sourceLineNo">2277</span>    public boolean remove(int key, int value) {<a name="line.2277"></a>
-<span class="sourceLineNo">2278</span>        if (containsKey(key) &amp;&amp; get(key) == value) {<a name="line.2278"></a>
-<span class="sourceLineNo">2279</span>            remove(key);<a name="line.2279"></a>
-<span class="sourceLineNo">2280</span>            return true;<a name="line.2280"></a>
-<span class="sourceLineNo">2281</span>        } else<a name="line.2281"></a>
-<span class="sourceLineNo">2282</span>            return false;<a name="line.2282"></a>
-<span class="sourceLineNo">2283</span>    }<a name="line.2283"></a>
-<span class="sourceLineNo">2284</span><a name="line.2284"></a>
-<span class="sourceLineNo">2285</span>    /**<a name="line.2285"></a>
-<span class="sourceLineNo">2286</span>     * Replaces the entry for the specified key only if currently<a name="line.2286"></a>
-<span class="sourceLineNo">2287</span>     * mapped to the specified value. The position in the iteration<a name="line.2287"></a>
-<span class="sourceLineNo">2288</span>     * order is retained.<a name="line.2288"></a>
-<span class="sourceLineNo">2289</span>     *<a name="line.2289"></a>
-<span class="sourceLineNo">2290</span>     * @param key      key with which the specified value is associated<a name="line.2290"></a>
-<span class="sourceLineNo">2291</span>     * @param oldValue value expected to be associated with the specified key<a name="line.2291"></a>
-<span class="sourceLineNo">2292</span>     * @param newValue value to be associated with the specified key<a name="line.2292"></a>
-<span class="sourceLineNo">2293</span>     * @return {@code true} if the value was replaced<a name="line.2293"></a>
-<span class="sourceLineNo">2294</span>     */<a name="line.2294"></a>
-<span class="sourceLineNo">2295</span>    public boolean replace(int key, int oldValue, int newValue) {<a name="line.2295"></a>
-<span class="sourceLineNo">2296</span>        if (containsKey(key) &amp;&amp; get(key) == newValue) {<a name="line.2296"></a>
-<span class="sourceLineNo">2297</span>            put(key, newValue);<a name="line.2297"></a>
-<span class="sourceLineNo">2298</span>            return true;<a name="line.2298"></a>
-<span class="sourceLineNo">2299</span>        } else<a name="line.2299"></a>
-<span class="sourceLineNo">2300</span>            return false;<a name="line.2300"></a>
-<span class="sourceLineNo">2301</span>    }<a name="line.2301"></a>
-<span class="sourceLineNo">2302</span><a name="line.2302"></a>
-<span class="sourceLineNo">2303</span>    /**<a name="line.2303"></a>
-<span class="sourceLineNo">2304</span>     * Replaces the entry for the specified key only if it is<a name="line.2304"></a>
-<span class="sourceLineNo">2305</span>     * currently mapped to some value. Preserves the existing key's<a name="line.2305"></a>
-<span class="sourceLineNo">2306</span>     * position in the iteration order.<a name="line.2306"></a>
-<span class="sourceLineNo">2307</span>     *<a name="line.2307"></a>
-<span class="sourceLineNo">2308</span>     * @param key   key with which the specified value is associated<a name="line.2308"></a>
-<span class="sourceLineNo">2309</span>     * @param value value to be associated with the specified key<a name="line.2309"></a>
-<span class="sourceLineNo">2310</span>     * @return the previous value associated with the specified key, or<a name="line.2310"></a>
-<span class="sourceLineNo">2311</span>     * {@code null} if there was no mapping for the key.<a name="line.2311"></a>
-<span class="sourceLineNo">2312</span>     * (A {@code null} return can also indicate that the map<a name="line.2312"></a>
-<span class="sourceLineNo">2313</span>     * previously associated {@code null} with the key.)<a name="line.2313"></a>
-<span class="sourceLineNo">2314</span>     */<a name="line.2314"></a>
-<span class="sourceLineNo">2315</span>    public int replace(int key, int value) {<a name="line.2315"></a>
-<span class="sourceLineNo">2316</span>        if (containsKey(key)) {<a name="line.2316"></a>
-<span class="sourceLineNo">2317</span>            return put(key, value);<a name="line.2317"></a>
-<span class="sourceLineNo">2318</span>        } else<a name="line.2318"></a>
-<span class="sourceLineNo">2319</span>            return defRetValue;<a name="line.2319"></a>
-<span class="sourceLineNo">2320</span>    }<a name="line.2320"></a>
-<span class="sourceLineNo">2321</span>    /**<a name="line.2321"></a>
-<span class="sourceLineNo">2322</span>     * Given alternating key and value arguments in pairs, puts each key-value pair into this OrderedMap as if by<a name="line.2322"></a>
-<span class="sourceLineNo">2323</span>     * calling {@link #put(int, int)} repeatedly for each pair. This mimics the parameter syntax used for<a name="line.2323"></a>
-<span class="sourceLineNo">2324</span>     * {@link #makeMap(int, int, int...)}, and can be used to retain that style of insertion after an<a name="line.2324"></a>
-<span class="sourceLineNo">2325</span>     * IntIntOrderedMap has been instantiated.<a name="line.2325"></a>
-<span class="sourceLineNo">2326</span>     * @param k0 the first key to add<a name="line.2326"></a>
-<span class="sourceLineNo">2327</span>     * @param v0 the first value to add<a name="line.2327"></a>
-<span class="sourceLineNo">2328</span>     * @param rest an array or vararg of keys and values in pairs; should contain alternating only int elements<a name="line.2328"></a>
-<span class="sourceLineNo">2329</span>     * @return this, after adding all viable key-value pairs given<a name="line.2329"></a>
-<span class="sourceLineNo">2330</span>     */<a name="line.2330"></a>
-<span class="sourceLineNo">2331</span>    @SuppressWarnings("unchecked")<a name="line.2331"></a>
-<span class="sourceLineNo">2332</span>    public IntIntOrderedMap putPairs(int k0, int v0, int... rest)<a name="line.2332"></a>
-<span class="sourceLineNo">2333</span>    {<a name="line.2333"></a>
-<span class="sourceLineNo">2334</span>        if(rest == null || rest.length == 0)<a name="line.2334"></a>
-<span class="sourceLineNo">2335</span>        {<a name="line.2335"></a>
-<span class="sourceLineNo">2336</span>            put(k0, v0);<a name="line.2336"></a>
-<span class="sourceLineNo">2337</span>            return this;<a name="line.2337"></a>
-<span class="sourceLineNo">2338</span>        }<a name="line.2338"></a>
-<span class="sourceLineNo">2339</span>        put(k0, v0);<a name="line.2339"></a>
-<span class="sourceLineNo">2340</span><a name="line.2340"></a>
-<span class="sourceLineNo">2341</span>        for (int i = 0; i &lt; rest.length - 1; i+=2) {<a name="line.2341"></a>
-<span class="sourceLineNo">2342</span>            put(rest[i], rest[i + 1]);<a name="line.2342"></a>
-<span class="sourceLineNo">2343</span>        }<a name="line.2343"></a>
-<span class="sourceLineNo">2344</span>        return this;<a name="line.2344"></a>
-<span class="sourceLineNo">2345</span>    }<a name="line.2345"></a>
-<span class="sourceLineNo">2346</span><a name="line.2346"></a>
-<span class="sourceLineNo">2347</span>    /**<a name="line.2347"></a>
-<span class="sourceLineNo">2348</span>     * Makes an IntIntOrderedMap using the given int keys and values in alternating key-value-key-value order. If rest<a name="line.2348"></a>
-<span class="sourceLineNo">2349</span>     * has an odd-number length, then it discards the last item. If any item in rest is not an int, this will not<a name="line.2349"></a>
-<span class="sourceLineNo">2350</span>     * compile. This is similar to the makeOM method in the Maker class, but produces an IntIntOrderedMap.<a name="line.2350"></a>
-<span class="sourceLineNo">2351</span>     * &lt;br&gt;<a name="line.2351"></a>
-<span class="sourceLineNo">2352</span>     * This is named makeMap to indicate that it expects key and value parameters, unlike a Set or List. This convention<a name="line.2352"></a>
-<span class="sourceLineNo">2353</span>     * may be extended to other data structures that also have static methods for instantiation.<a name="line.2353"></a>
-<span class="sourceLineNo">2354</span>     * @param k0 the first key; used to infer the types of other keys if generic parameters aren't specified.<a name="line.2354"></a>
-<span class="sourceLineNo">2355</span>     * @param v0 the first value; used to infer the types of other values if generic parameters aren't specified.<a name="line.2355"></a>
-<span class="sourceLineNo">2356</span>     * @param rest an array or vararg of keys and values in pairs; should contain only int elements<a name="line.2356"></a>
-<span class="sourceLineNo">2357</span>     * @return a freshly-made IntIntOrderedMap, using k0, v0, and the contents of rest to fill it<a name="line.2357"></a>
-<span class="sourceLineNo">2358</span>     */<a name="line.2358"></a>
-<span class="sourceLineNo">2359</span>    @SuppressWarnings("unchecked")<a name="line.2359"></a>
-<span class="sourceLineNo">2360</span>    public static IntIntOrderedMap makeMap(int k0, int v0, int... rest)<a name="line.2360"></a>
-<span class="sourceLineNo">2361</span>    {<a name="line.2361"></a>
-<span class="sourceLineNo">2362</span>        if(rest == null || rest.length == 0)<a name="line.2362"></a>
-<span class="sourceLineNo">2363</span>        {<a name="line.2363"></a>
-<span class="sourceLineNo">2364</span>            IntIntOrderedMap om = new IntIntOrderedMap(2);<a name="line.2364"></a>
-<span class="sourceLineNo">2365</span>            om.put(k0, v0);<a name="line.2365"></a>
-<span class="sourceLineNo">2366</span>            return om;<a name="line.2366"></a>
-<span class="sourceLineNo">2367</span>        }<a name="line.2367"></a>
-<span class="sourceLineNo">2368</span>        IntIntOrderedMap om = new IntIntOrderedMap(1 + (rest.length &gt;&gt; 1));<a name="line.2368"></a>
-<span class="sourceLineNo">2369</span>        om.put(k0, v0);<a name="line.2369"></a>
-<span class="sourceLineNo">2370</span><a name="line.2370"></a>
-<span class="sourceLineNo">2371</span>        for (int i = 0; i &lt; rest.length - 1; i+=2) {<a name="line.2371"></a>
-<span class="sourceLineNo">2372</span>            try {<a name="line.2372"></a>
-<span class="sourceLineNo">2373</span>                om.put(rest[i], rest[i + 1]);<a name="line.2373"></a>
-<span class="sourceLineNo">2374</span>            }catch (ClassCastException ignored) {<a name="line.2374"></a>
-<span class="sourceLineNo">2375</span>            }<a name="line.2375"></a>
-<span class="sourceLineNo">2376</span>        }<a name="line.2376"></a>
-<span class="sourceLineNo">2377</span>        return om;<a name="line.2377"></a>
-<span class="sourceLineNo">2378</span>    }<a name="line.2378"></a>
-<span class="sourceLineNo">2379</span><a name="line.2379"></a>
-<span class="sourceLineNo">2380</span>    /**<a name="line.2380"></a>
-<span class="sourceLineNo">2381</span>     * Makes an empty IntIntOrderedMap.This method is provided for completeness relative to makeMap() with 2 or more <a name="line.2381"></a>
-<span class="sourceLineNo">2382</span>     * parameters.<a name="line.2382"></a>
-<span class="sourceLineNo">2383</span>     * @return an empty IntIntOrderedMap<a name="line.2383"></a>
-<span class="sourceLineNo">2384</span>     */<a name="line.2384"></a>
-<span class="sourceLineNo">2385</span>    public static IntIntOrderedMap makeMap()<a name="line.2385"></a>
-<span class="sourceLineNo">2386</span>    {<a name="line.2386"></a>
-<span class="sourceLineNo">2387</span>        return new IntIntOrderedMap();<a name="line.2387"></a>
-<span class="sourceLineNo">2388</span>    }<a name="line.2388"></a>
-<span class="sourceLineNo">2389</span>}<a name="line.2389"></a>
+<span class="sourceLineNo">2223</span><a name="line.2223"></a>
+<span class="sourceLineNo">2224</span>    /**<a name="line.2224"></a>
+<span class="sourceLineNo">2225</span>     * Replaces the entry for the specified key only if it is<a name="line.2225"></a>
+<span class="sourceLineNo">2226</span>     * currently mapped to some value. Preserves the existing key's<a name="line.2226"></a>
+<span class="sourceLineNo">2227</span>     * position in the iteration order.<a name="line.2227"></a>
+<span class="sourceLineNo">2228</span>     *<a name="line.2228"></a>
+<span class="sourceLineNo">2229</span>     * @param key   key with which the specified value is associated<a name="line.2229"></a>
+<span class="sourceLineNo">2230</span>     * @param value value to be associated with the specified key<a name="line.2230"></a>
+<span class="sourceLineNo">2231</span>     * @return the previous value associated with the specified key, or<a name="line.2231"></a>
+<span class="sourceLineNo">2232</span>     * {@code null} if there was no mapping for the key.<a name="line.2232"></a>
+<span class="sourceLineNo">2233</span>     * (A {@code null} return can also indicate that the map<a name="line.2233"></a>
+<span class="sourceLineNo">2234</span>     * previously associated {@code null} with the key.)<a name="line.2234"></a>
+<span class="sourceLineNo">2235</span>     */<a name="line.2235"></a>
+<span class="sourceLineNo">2236</span>    public int replace(int key, int value) {<a name="line.2236"></a>
+<span class="sourceLineNo">2237</span>        if (containsKey(key)) {<a name="line.2237"></a>
+<span class="sourceLineNo">2238</span>            return put(key, value);<a name="line.2238"></a>
+<span class="sourceLineNo">2239</span>        } else<a name="line.2239"></a>
+<span class="sourceLineNo">2240</span>            return defRetValue;<a name="line.2240"></a>
+<span class="sourceLineNo">2241</span>    }<a name="line.2241"></a>
+<span class="sourceLineNo">2242</span>    /**<a name="line.2242"></a>
+<span class="sourceLineNo">2243</span>     * Given alternating key and value arguments in pairs, puts each key-value pair into this OrderedMap as if by<a name="line.2243"></a>
+<span class="sourceLineNo">2244</span>     * calling {@link #put(int, int)} repeatedly for each pair. This mimics the parameter syntax used for<a name="line.2244"></a>
+<span class="sourceLineNo">2245</span>     * {@link #makeMap(int, int, int...)}, and can be used to retain that style of insertion after an<a name="line.2245"></a>
+<span class="sourceLineNo">2246</span>     * IntIntOrderedMap has been instantiated.<a name="line.2246"></a>
+<span class="sourceLineNo">2247</span>     * @param k0 the first key to add<a name="line.2247"></a>
+<span class="sourceLineNo">2248</span>     * @param v0 the first value to add<a name="line.2248"></a>
+<span class="sourceLineNo">2249</span>     * @param rest an array or vararg of keys and values in pairs; should contain alternating only int elements<a name="line.2249"></a>
+<span class="sourceLineNo">2250</span>     * @return this, after adding all viable key-value pairs given<a name="line.2250"></a>
+<span class="sourceLineNo">2251</span>     */<a name="line.2251"></a>
+<span class="sourceLineNo">2252</span>    @SuppressWarnings("unchecked")<a name="line.2252"></a>
+<span class="sourceLineNo">2253</span>    public IntIntOrderedMap putPairs(int k0, int v0, int... rest)<a name="line.2253"></a>
+<span class="sourceLineNo">2254</span>    {<a name="line.2254"></a>
+<span class="sourceLineNo">2255</span>        if(rest == null || rest.length == 0)<a name="line.2255"></a>
+<span class="sourceLineNo">2256</span>        {<a name="line.2256"></a>
+<span class="sourceLineNo">2257</span>            put(k0, v0);<a name="line.2257"></a>
+<span class="sourceLineNo">2258</span>            return this;<a name="line.2258"></a>
+<span class="sourceLineNo">2259</span>        }<a name="line.2259"></a>
+<span class="sourceLineNo">2260</span>        put(k0, v0);<a name="line.2260"></a>
+<span class="sourceLineNo">2261</span><a name="line.2261"></a>
+<span class="sourceLineNo">2262</span>        for (int i = 0; i &lt; rest.length - 1; i+=2) {<a name="line.2262"></a>
+<span class="sourceLineNo">2263</span>            put(rest[i], rest[i + 1]);<a name="line.2263"></a>
+<span class="sourceLineNo">2264</span>        }<a name="line.2264"></a>
+<span class="sourceLineNo">2265</span>        return this;<a name="line.2265"></a>
+<span class="sourceLineNo">2266</span>    }<a name="line.2266"></a>
+<span class="sourceLineNo">2267</span><a name="line.2267"></a>
+<span class="sourceLineNo">2268</span>    /**<a name="line.2268"></a>
+<span class="sourceLineNo">2269</span>     * Makes an IntIntOrderedMap using the given int keys and values in alternating key-value-key-value order. If rest<a name="line.2269"></a>
+<span class="sourceLineNo">2270</span>     * has an odd-number length, then it discards the last item. If any item in rest is not an int, this will not<a name="line.2270"></a>
+<span class="sourceLineNo">2271</span>     * compile. This is similar to the makeOM method in the Maker class, but produces an IntIntOrderedMap.<a name="line.2271"></a>
+<span class="sourceLineNo">2272</span>     * &lt;br&gt;<a name="line.2272"></a>
+<span class="sourceLineNo">2273</span>     * This is named makeMap to indicate that it expects key and value parameters, unlike a Set or List. This convention<a name="line.2273"></a>
+<span class="sourceLineNo">2274</span>     * may be extended to other data structures that also have static methods for instantiation.<a name="line.2274"></a>
+<span class="sourceLineNo">2275</span>     * @param k0 the first key; used to infer the types of other keys if generic parameters aren't specified.<a name="line.2275"></a>
+<span class="sourceLineNo">2276</span>     * @param v0 the first value; used to infer the types of other values if generic parameters aren't specified.<a name="line.2276"></a>
+<span class="sourceLineNo">2277</span>     * @param rest an array or vararg of keys and values in pairs; should contain only int elements<a name="line.2277"></a>
+<span class="sourceLineNo">2278</span>     * @return a freshly-made IntIntOrderedMap, using k0, v0, and the contents of rest to fill it<a name="line.2278"></a>
+<span class="sourceLineNo">2279</span>     */<a name="line.2279"></a>
+<span class="sourceLineNo">2280</span>    @SuppressWarnings("unchecked")<a name="line.2280"></a>
+<span class="sourceLineNo">2281</span>    public static IntIntOrderedMap makeMap(int k0, int v0, int... rest)<a name="line.2281"></a>
+<span class="sourceLineNo">2282</span>    {<a name="line.2282"></a>
+<span class="sourceLineNo">2283</span>        if(rest == null || rest.length == 0)<a name="line.2283"></a>
+<span class="sourceLineNo">2284</span>        {<a name="line.2284"></a>
+<span class="sourceLineNo">2285</span>            IntIntOrderedMap om = new IntIntOrderedMap(2);<a name="line.2285"></a>
+<span class="sourceLineNo">2286</span>            om.put(k0, v0);<a name="line.2286"></a>
+<span class="sourceLineNo">2287</span>            return om;<a name="line.2287"></a>
+<span class="sourceLineNo">2288</span>        }<a name="line.2288"></a>
+<span class="sourceLineNo">2289</span>        IntIntOrderedMap om = new IntIntOrderedMap(1 + (rest.length &gt;&gt; 1));<a name="line.2289"></a>
+<span class="sourceLineNo">2290</span>        om.put(k0, v0);<a name="line.2290"></a>
+<span class="sourceLineNo">2291</span><a name="line.2291"></a>
+<span class="sourceLineNo">2292</span>        for (int i = 0; i &lt; rest.length - 1; i+=2) {<a name="line.2292"></a>
+<span class="sourceLineNo">2293</span>            try {<a name="line.2293"></a>
+<span class="sourceLineNo">2294</span>                om.put(rest[i], rest[i + 1]);<a name="line.2294"></a>
+<span class="sourceLineNo">2295</span>            }catch (ClassCastException ignored) {<a name="line.2295"></a>
+<span class="sourceLineNo">2296</span>            }<a name="line.2296"></a>
+<span class="sourceLineNo">2297</span>        }<a name="line.2297"></a>
+<span class="sourceLineNo">2298</span>        return om;<a name="line.2298"></a>
+<span class="sourceLineNo">2299</span>    }<a name="line.2299"></a>
+<span class="sourceLineNo">2300</span><a name="line.2300"></a>
+<span class="sourceLineNo">2301</span>    /**<a name="line.2301"></a>
+<span class="sourceLineNo">2302</span>     * Makes an empty IntIntOrderedMap.This method is provided for completeness relative to makeMap() with 2 or more <a name="line.2302"></a>
+<span class="sourceLineNo">2303</span>     * parameters.<a name="line.2303"></a>
+<span class="sourceLineNo">2304</span>     * @return an empty IntIntOrderedMap<a name="line.2304"></a>
+<span class="sourceLineNo">2305</span>     */<a name="line.2305"></a>
+<span class="sourceLineNo">2306</span>    public static IntIntOrderedMap makeMap()<a name="line.2306"></a>
+<span class="sourceLineNo">2307</span>    {<a name="line.2307"></a>
+<span class="sourceLineNo">2308</span>        return new IntIntOrderedMap();<a name="line.2308"></a>
+<span class="sourceLineNo">2309</span>    }<a name="line.2309"></a>
+<span class="sourceLineNo">2310</span>}<a name="line.2310"></a>
 
 
 

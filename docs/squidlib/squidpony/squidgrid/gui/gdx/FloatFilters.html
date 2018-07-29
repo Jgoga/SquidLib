@@ -43,7 +43,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ChainFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?squidpony/squidgrid/gui/gdx/FloatFilters.html" target="_top">Frames</a></li>
@@ -102,7 +102,7 @@
 <li class="blockList">
 <hr>
 <br>
-<pre>public final class <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.html#line.13">FloatFilters</a>
+<pre>public final class <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.html#line.15">FloatFilters</a>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Pre-made FloatFilter classes that you can use to filter colors without producing extra Color objects.
  <br>
@@ -127,12 +127,19 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ChainFilter.html" title="class in squidpony.squidgrid.gui.gdx">FloatFilters.ChainFilter</a></span></code>
+<div class="block">A FloatFilter that chains together one or more FloatFilters one after the next, passing the float output of one
+ as input to the next until the chain has all been called.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html" title="class in squidpony.squidgrid.gui.gdx">FloatFilters.ColorizeFilter</a></span></code>
 <div class="block">Changes all colors this alters to have the same hue as, and a closer saturation to, a target color given in the
  constructor, as well as optionally multiplying saturation of the result and/or adding lightness/value.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.DistinctRedGreenFilter.html" title="class in squidpony.squidgrid.gui.gdx">FloatFilters.DistinctRedGreenFilter</a></span></code>
 <div class="block">A FloatFilter that alters primarily-red and primarily-green colors so they can be more easily be distinguished by
@@ -140,11 +147,37 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
  very well, and tritanopia may not benefit at all).</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.GrayscaleFilter.html" title="class in squidpony.squidgrid.gui.gdx">FloatFilters.GrayscaleFilter</a></span></code>
+<div class="block">A FloatFilter that makes all colors given to it grayscale, using only their luma as calculated by
+ <a href="../../../../squidpony/squidgrid/gui/gdx/SColor.html#lumaOfFloat-float-"><code>SColor.lumaOfFloat(float)</code></a> as the lightness (it does also preserve alpha transparency).</div>
+</td>
+</tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.HSVFilter.html" title="class in squidpony.squidgrid.gui.gdx">FloatFilters.HSVFilter</a></span></code>
 <div class="block">Wraps the functionality of <a href="../../../../squidpony/squidgrid/gui/gdx/SColor.html#toEditedFloat-float-float-float-float-float-"><code>SColor.toEditedFloat(float, float, float, float, float)</code></a> so it can be called as
  a FloatFilter, adding values to hue, saturation, and value (clamping saturation and value and wrapping hue).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.IdentityFilter.html" title="class in squidpony.squidgrid.gui.gdx">FloatFilters.IdentityFilter</a></span></code>
+<div class="block">A FloatFilter that makes no changes to the colors given to it; useful as a default for when no filter is wanted.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.LerpFilter.html" title="class in squidpony.squidgrid.gui.gdx">FloatFilters.LerpFilter</a></span></code>
+<div class="block">A FloatFilter that linearly interpolates (lerps) any color it is given toward a specified color by a specified
+ amount.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.YCbCrFilter.html" title="class in squidpony.squidgrid.gui.gdx">FloatFilters.YCbCrFilter</a></span></code>
+<div class="block">Like <a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.HSVFilter.html" title="class in squidpony.squidgrid.gui.gdx"><code>FloatFilters.HSVFilter</code></a>, but edits its input colors in YCbCr color space, and multiplies rather than adds.</div>
 </td>
 </tr>
 </table>
@@ -191,7 +224,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ChainFilter.html" title="class in squidpony.squidgrid.gui.gdx"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?squidpony/squidgrid/gui/gdx/FloatFilters.html" target="_top">Frames</a></li>
