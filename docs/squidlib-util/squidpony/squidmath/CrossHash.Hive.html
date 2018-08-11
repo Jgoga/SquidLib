@@ -114,25 +114,34 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre><a href="../../squidpony/annotation/Beta.html" title="annotation in squidpony.annotation">@Beta</a>
-public static final class <a href="../../src-html/squidpony/squidmath/CrossHash.html#line.4158">CrossHash.Hive</a>
+public static final class <a href="../../src-html/squidpony/squidmath/CrossHash.html#line.4188">CrossHash.Hive</a>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">A reasonably-fast hashing function that passes SMHasher's quality tests even on <code>long[]</code> inputs (passing on
  those should mean it can pass with other types of array as well). This is the default used by methods in the
  outer class like <a href="../../squidpony/squidmath/CrossHash.html#hash-int:A-"><code>CrossHash.hash(int[])</code></a>, which should be the same as <a href="../../squidpony/squidmath/CrossHash.Hive.html#hash-int:A-"><code>hash(int[])</code></a>;
- you should prefer using the outer class since this inner class is only here for reference. <a href="../../squidpony/squidmath/CrossHash.Jolt.html" title="class in squidpony.squidmath"><code>CrossHash.Jolt</code></a> passes on
- <code>byte[]</code> inputs, but treating a <code>long[]</code> as a <code>byte[]</code> slows down hashing by worse than a
- factor of 8, so Hive only uses Jolt's algorithm for <code>byte[]</code> and <code>boolean[]</code> inputs, and elsewhere
- uses its own technique. Speed-wise, it is about 20% slower than Wisp, but in hash tables it doesn't have clear
- failure cases like Wisp does on some inputs (such as fixed-length Strings with identical prefixes). If collisions
- are expensive or profiling shows that Wisp's algorithm is colliding at a high rate, you should probably use the
- normal IHasher and CrossHash.hash() methods, since those will use Hive.
+ you should prefer using the outer class since this inner class is only here for reference.
+ <br>
+ This mixes three different algorithms: the main one is used whenever inputs or outputs are 64-bit (so, all hash64()
+ overloads and <a href="../../squidpony/squidmath/CrossHash.Hive.html#hash-long:A-"><code>hash(long[])</code></a> for long and double), a modification of the main one to perform better on
+ GWT (only used on hash() overloads, and only when inputs are individually 32-bit or less), and
+ <a href="../../squidpony/squidmath/CrossHash.Jolt.html" title="class in squidpony.squidmath"><code>CrossHash.Jolt</code></a>'s algorithm for hash64() on boolean and byte data.
+ <br>
+ Speed-wise, the main algorithm is about 20% slower than Wisp, but in hash tables it doesn't have clea failure 
+ cases like Wisp does on some inputs (such as fixed-length Strings with identical prefixes). If collisions are
+ expensive or profiling shows that Wisp's algorithm is colliding at a high rate, you should probably use the
+ normal IHasher and CrossHash.hash() methods, since those will use Hive. The modified algorithm for GWT is a
+ little slower than the main algorithm in the C++ implementation that was used to check SMHasher quality, but it
+ may perform similarly to the main algorithm in Java on desktop platforms. Since it avoids creating longs or doing
+ any math on them, it should be at least 3x faster than the main algorithm on GWT (a GWT long is internally
+ represented by 3 JS numbers, so barring special optimizations it takes at least 3x as many math operations to use
+ longs there).
  <br>
  Its design uses two states like <a href="../../squidpony/squidmath/CrossHash.Lightning.html" title="class in squidpony.squidmath"><code>CrossHash.Lightning</code></a> or <a href="../../squidpony/squidmath/CrossHash.Wisp.html" title="class in squidpony.squidmath"><code>CrossHash.Wisp</code></a>, updating them differently from each other, and
  bitwise-rotates one at each step. It combines the states (xorshifting one state, multiplying it by a huge
  constant, and adding that to the other state) and then runs that through MurmurHash3's finalization function (its
- <code>fmix64()</code> function, without one xorshift at the end that proved unnecessary). Parts of the code here are
- inspired by the design of <a href="../../squidpony/squidmath/LinnormRNG.html" title="class in squidpony.squidmath"><code>LinnormRNG</code></a>, particularly its determine() method since both use an XLCG (XOR
- Linear Congruential Generator, as PractRand calls it) as a processing step.
+ <code>fmix64()</code> function; the main algorithm elides one xorshift at the end that proved unnecessary). Parts of
+ the code here are inspired by the design of <a href="../../squidpony/squidmath/LinnormRNG.html" title="class in squidpony.squidmath"><code>LinnormRNG</code></a>, particularly its determine() method since both
+ use an XLCG (XOR Linear Congruential Generator, as PractRand calls it) as a processing step.
  <br>
  The name comes from the song I was listening to when I finally got the tests to pass ("Slave The Hive" by High On
  Fire) and from the wide assortment of code that I had to employ to achieve a SMHasher successful run.</div>
@@ -420,7 +429,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Hive</h4>
-<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4158">Hive</a>()</pre>
+<pre>public&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4188">Hive</a>()</pre>
 </li>
 </ul>
 </li>
@@ -437,7 +446,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4159">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4189">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-boolean:A-">
@@ -446,7 +455,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4173">hash64</a>(boolean[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4203">hash64</a>(boolean[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-byte:A-">
@@ -455,7 +464,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4188">hash64</a>(byte[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4218">hash64</a>(byte[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-short:A-">
@@ -464,7 +473,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4203">hash64</a>(short[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4233">hash64</a>(short[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-int:A-">
@@ -473,7 +482,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4217">hash64</a>(int[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4247">hash64</a>(int[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-long:A-">
@@ -482,7 +491,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4231">hash64</a>(long[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4261">hash64</a>(long[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-char:A-">
@@ -491,7 +500,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4245">hash64</a>(char[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4275">hash64</a>(char[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-float:A-">
@@ -500,7 +509,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4259">hash64</a>(float[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4289">hash64</a>(float[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-double:A-">
@@ -509,7 +518,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4273">hash64</a>(double[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4303">hash64</a>(double[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-char:A-int-int-">
@@ -518,7 +527,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4295">hash64</a>(char[]&nbsp;data,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4325">hash64</a>(char[]&nbsp;data,
                           int&nbsp;start,
                           int&nbsp;end)</pre>
 <div class="block">Hashes only a subsection of the given data, starting at start (inclusive) and ending before end (exclusive).</div>
@@ -538,7 +547,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4317">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4347">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data,
                           int&nbsp;start,
                           int&nbsp;end)</pre>
 <div class="block">Hashes only a subsection of the given data, starting at start (inclusive) and ending before end (exclusive).</div>
@@ -558,7 +567,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4342">hash64</a>(char[]&nbsp;data,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4372">hash64</a>(char[]&nbsp;data,
                           int&nbsp;start,
                           int&nbsp;end,
                           int&nbsp;step)</pre>
@@ -581,7 +590,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4366">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data,
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4396">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data,
                           int&nbsp;start,
                           int&nbsp;end,
                           int&nbsp;step)</pre>
@@ -604,7 +613,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4380">hash64</a>(char[][]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4410">hash64</a>(char[][]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-int:A:A-">
@@ -613,7 +622,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4394">hash64</a>(int[][]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4424">hash64</a>(int[][]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-long:A:A-">
@@ -622,7 +631,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4408">hash64</a>(long[][]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4438">hash64</a>(long[][]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-java.lang.CharSequence:A-">
@@ -631,7 +640,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4422">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4452">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-java.lang.CharSequence:A...-">
@@ -640,7 +649,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4436">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>[]...&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4466">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>[]...&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-java.lang.Iterable-">
@@ -649,7 +658,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4450">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&gt;&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4480">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&gt;&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-java.util.List-">
@@ -658,7 +667,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4464">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&gt;&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4494">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&gt;&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-java.lang.Object:A-">
@@ -667,7 +676,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4479">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[]&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4509">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash64-java.lang.Object-">
@@ -676,7 +685,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash64</h4>
-<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4494">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;data)</pre>
+<pre>public static&nbsp;long&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4524">hash64</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-java.lang.CharSequence-">
@@ -685,7 +694,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4503">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4533">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-boolean:A-">
@@ -694,7 +703,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4517">hash</a>(boolean[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4548">hash</a>(boolean[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-byte:A-">
@@ -703,7 +712,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4532">hash</a>(byte[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4563">hash</a>(byte[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-short:A-">
@@ -712,7 +721,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4547">hash</a>(short[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4578">hash</a>(short[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-int:A-">
@@ -721,7 +730,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4561">hash</a>(int[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4593">hash</a>(int[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-long:A-">
@@ -730,7 +739,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4575">hash</a>(long[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4608">hash</a>(long[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-char:A-">
@@ -739,7 +748,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4589">hash</a>(char[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4622">hash</a>(char[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-float:A-">
@@ -748,7 +757,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4603">hash</a>(float[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4637">hash</a>(float[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-double:A-">
@@ -757,7 +766,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4617">hash</a>(double[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4653">hash</a>(double[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-char:A-int-int-">
@@ -766,7 +775,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4639">hash</a>(char[]&nbsp;data,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4675">hash</a>(char[]&nbsp;data,
                        int&nbsp;start,
                        int&nbsp;end)</pre>
 <div class="block">Hashes only a subsection of the given data, starting at start (inclusive) and ending before end (exclusive).</div>
@@ -786,7 +795,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4661">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4698">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data,
                        int&nbsp;start,
                        int&nbsp;end)</pre>
 <div class="block">Hashes only a subsection of the given data, starting at start (inclusive) and ending before end (exclusive).</div>
@@ -806,7 +815,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4686">hash</a>(char[]&nbsp;data,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4723">hash</a>(char[]&nbsp;data,
                        int&nbsp;start,
                        int&nbsp;end,
                        int&nbsp;step)</pre>
@@ -829,7 +838,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4710">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data,
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4748">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&nbsp;data,
                        int&nbsp;start,
                        int&nbsp;end,
                        int&nbsp;step)</pre>
@@ -852,7 +861,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4724">hash</a>(char[][]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4763">hash</a>(char[][]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-int:A:A-">
@@ -861,7 +870,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4738">hash</a>(int[][]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4778">hash</a>(int[][]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-long:A:A-">
@@ -870,7 +879,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4752">hash</a>(long[][]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4793">hash</a>(long[][]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-java.lang.CharSequence:A-">
@@ -879,7 +888,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4766">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4807">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-java.lang.CharSequence:A...-">
@@ -888,7 +897,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4780">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>[]...&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4822">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>[]...&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-java.lang.Iterable-">
@@ -897,7 +906,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4794">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&gt;&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4837">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&gt;&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-java.util.List-">
@@ -906,7 +915,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4808">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&gt;&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4852">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/CharSequence.html?is-external=true" title="class or interface in java.lang">CharSequence</a>&gt;&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-java.lang.Object:A-">
@@ -915,7 +924,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4823">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[]&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4868">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[]&nbsp;data)</pre>
 </li>
 </ul>
 <a name="hash-java.lang.Object-">
@@ -924,7 +933,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockListLast">
 <li class="blockList">
 <h4>hash</h4>
-<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4838">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;data)</pre>
+<pre>public static&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/CrossHash.Hive.html#line.4884">hash</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;data)</pre>
 </li>
 </ul>
 </li>

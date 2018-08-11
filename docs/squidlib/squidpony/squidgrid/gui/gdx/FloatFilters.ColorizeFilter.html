@@ -143,19 +143,15 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilter.html" title
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>float</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#saturationMultiplier">saturationMultiplier</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#lumaAddend">lumaAddend</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>float</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#targetHue">targetHue</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#targetCb">targetCb</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>float</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#targetSaturation">targetSaturation</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>float</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#valueAddend">valueAddend</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#targetCr">targetCr</a></span></code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -176,16 +172,16 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilter.html" title
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#ColorizeFilter-com.badlogic.gdx.graphics.Color-float-float-">ColorizeFilter</a></span>(com.badlogic.gdx.graphics.Color&nbsp;color,
-              float&nbsp;saturationMul,
-              float&nbsp;valueAdd)</code>&nbsp;</td>
+              float&nbsp;chromaMul,
+              float&nbsp;lumaAdd)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#ColorizeFilter-float-">ColorizeFilter</a></span>(float&nbsp;color)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#ColorizeFilter-float-float-float-">ColorizeFilter</a></span>(float&nbsp;color,
-              float&nbsp;saturationMul,
-              float&nbsp;valueAdd)</code>&nbsp;</td>
+              float&nbsp;chromaMul,
+              float&nbsp;lumaAdd)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -237,40 +233,31 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilter.html" title
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a name="targetHue">
+<a name="targetCb">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>targetHue</h4>
-<pre>public&nbsp;float <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.56">targetHue</a></pre>
+<h4>targetCb</h4>
+<pre>public&nbsp;float <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.56">targetCb</a></pre>
 </li>
 </ul>
-<a name="targetSaturation">
+<a name="targetCr">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>targetSaturation</h4>
-<pre>public&nbsp;float <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.56">targetSaturation</a></pre>
+<h4>targetCr</h4>
+<pre>public&nbsp;float <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.56">targetCr</a></pre>
 </li>
 </ul>
-<a name="saturationMultiplier">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>saturationMultiplier</h4>
-<pre>public&nbsp;float <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.56">saturationMultiplier</a></pre>
-</li>
-</ul>
-<a name="valueAddend">
+<a name="lumaAddend">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>valueAddend</h4>
-<pre>public&nbsp;float <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.56">valueAddend</a></pre>
+<h4>lumaAddend</h4>
+<pre>public&nbsp;float <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.56">lumaAddend</a></pre>
 </li>
 </ul>
 </li>
@@ -306,8 +293,8 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilter.html" title
 <li class="blockList">
 <h4>ColorizeFilter</h4>
 <pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.66">ColorizeFilter</a>(com.badlogic.gdx.graphics.Color&nbsp;color,
-                      float&nbsp;saturationMul,
-                      float&nbsp;valueAdd)</pre>
+                      float&nbsp;chromaMul,
+                      float&nbsp;lumaAdd)</pre>
 </li>
 </ul>
 <a name="ColorizeFilter-float-float-float-">
@@ -317,8 +304,8 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilter.html" title
 <li class="blockList">
 <h4>ColorizeFilter</h4>
 <pre>public&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.70">ColorizeFilter</a>(float&nbsp;color,
-                      float&nbsp;saturationMul,
-                      float&nbsp;valueAdd)</pre>
+                      float&nbsp;chromaMul,
+                      float&nbsp;lumaAdd)</pre>
 </li>
 </ul>
 </li>
@@ -335,7 +322,7 @@ extends <a href="../../../../squidpony/squidgrid/gui/gdx/FloatFilter.html" title
 <ul class="blockListLast">
 <li class="blockList">
 <h4>alter</h4>
-<pre>public&nbsp;float&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.84">alter</a>(float&nbsp;color)</pre>
+<pre>public&nbsp;float&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/FloatFilters.ColorizeFilter.html#line.83">alter</a>(float&nbsp;color)</pre>
 <div class="block">Takes a packed float color and produces a potentially-different packed float color that this FloatFilter edited.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>

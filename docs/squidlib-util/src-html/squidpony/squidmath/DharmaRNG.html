@@ -139,7 +139,7 @@
 <span class="sourceLineNo">131</span>     */<a name="line.131"></a>
 <span class="sourceLineNo">132</span>    @Override<a name="line.132"></a>
 <span class="sourceLineNo">133</span>    public double nextDouble() {<a name="line.133"></a>
-<span class="sourceLineNo">134</span>        double gen = (random.nextLong() &amp; 0x1fffffffffffffL) * DOUBLE_UNIT;<a name="line.134"></a>
+<span class="sourceLineNo">134</span>        double gen = (random.nextLong() &amp; 0x1fffffffffffffL) * 0x1p-53;<a name="line.134"></a>
 <span class="sourceLineNo">135</span>        /*if(Math.abs((produced + gen) - (baseline + fairness)) &gt; 1.5) {<a name="line.135"></a>
 <span class="sourceLineNo">136</span>            //do some reseeding here if possible<a name="line.136"></a>
 <span class="sourceLineNo">137</span>        }*/<a name="line.137"></a>

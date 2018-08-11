@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -199,40 +199,32 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>protected int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#nextIntHasty-int-">nextIntHasty</a></span>(int&nbsp;bound)</code>
-<div class="block">Replicate the behavior of <a href="../../squidpony/squidmath/RNG.html#nextIntHasty-int-"><code>RNG.nextIntHasty(int)</code></a> using the more broadly-implemented <a href="../../squidpony/squidmath/IRNG.html#next-int-"><code>IRNG.next(int)</code></a>
- method, that is, this produces a pseudo-random int between 0 (inclusive) and bound (exclusive), where bound may
- be positive or negative.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#roll-java.lang.String-">roll</a></span>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;rollCode)</code>
 <div class="block">Evaluate the String <code>rollCode</code> as dice roll notation and roll to get a random result of that dice roll.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#rollDice-int-int-">rollDice</a></span>(int&nbsp;n,
         int&nbsp;sides)</code>
 <div class="block">Emulate a dice roll and return the sum.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#rollExplodingDice-int-int-">rollExplodingDice</a></span>(int&nbsp;n,
                  int&nbsp;sides)</code>
 <div class="block">Emulate an exploding dice roll and return the sum.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#setRandom-squidpony.squidmath.IRNG-">setRandom</a></span>(<a href="../../squidpony/squidmath/IRNG.html" title="interface in squidpony.squidmath">IRNG</a>&nbsp;rng)</code>
 <div class="block">Sets the random number generator to be used.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../squidpony/squidmath/Dice.html#worstOf-int-int-java.lang.String-">worstOf</a></span>(int&nbsp;n,
        int&nbsp;dice,
@@ -439,31 +431,13 @@ implements <a href="https://docs.oracle.com/javase/7/docs/api/java/io/Serializab
 </dl>
 </li>
 </ul>
-<a name="nextIntHasty-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>nextIntHasty</h4>
-<pre>protected&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.281">nextIntHasty</a>(int&nbsp;bound)</pre>
-<div class="block">Replicate the behavior of <a href="../../squidpony/squidmath/RNG.html#nextIntHasty-int-"><code>RNG.nextIntHasty(int)</code></a> using the more broadly-implemented <a href="../../squidpony/squidmath/IRNG.html#next-int-"><code>IRNG.next(int)</code></a>
- method, that is, this produces a pseudo-random int between 0 (inclusive) and bound (exclusive), where bound may
- be positive or negative.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>bound</code> - an outer exclusive bound, positive or negative; should be under a billion or so</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>an int between 0 (inclusive) and bound (exclusive)</dd>
-</dl>
-</li>
-</ul>
 <a name="roll-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>roll</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.337">roll</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;rollCode)</pre>
+<pre>public&nbsp;int&nbsp;<a href="../../src-html/squidpony/squidmath/Dice.html#line.325">roll</a>(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;rollCode)</pre>
 <div class="block">Evaluate the String <code>rollCode</code> as dice roll notation and roll to get a random result of that dice roll.
  This is the main way of using the Dice class. This effectively allows rolling one or more dice and performing
  certain operations on the dice and their result. One of the more frequent uses is rolling some amount of dice and
