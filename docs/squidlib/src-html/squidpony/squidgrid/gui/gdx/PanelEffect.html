@@ -650,7 +650,7 @@
 <span class="sourceLineNo">642</span>         */<a name="line.642"></a>
 <span class="sourceLineNo">643</span>        public char shown = '·';<a name="line.643"></a>
 <span class="sourceLineNo">644</span>        /**<a name="line.644"></a>
-<span class="sourceLineNo">645</span>         * The color used for the projectile as a packed float.<a name="line.645"></a>
+<span class="sourceLineNo">645</span>         * The color used for the projectile as a packed float; defaults to white.<a name="line.645"></a>
 <span class="sourceLineNo">646</span>         */<a name="line.646"></a>
 <span class="sourceLineNo">647</span>        public float color = SColor.FLOAT_WHITE;<a name="line.647"></a>
 <span class="sourceLineNo">648</span>        /**<a name="line.648"></a>
@@ -780,205 +780,289 @@
 <span class="sourceLineNo">772</span>            }<a name="line.772"></a>
 <span class="sourceLineNo">773</span>        }<a name="line.773"></a>
 <span class="sourceLineNo">774</span>    }<a name="line.774"></a>
-<span class="sourceLineNo">775</span>    @Beta<a name="line.775"></a>
-<span class="sourceLineNo">776</span>    public static class GlowBallEffect extends PanelEffect<a name="line.776"></a>
-<span class="sourceLineNo">777</span>    {<a name="line.777"></a>
-<span class="sourceLineNo">778</span>        /**<a name="line.778"></a>
-<span class="sourceLineNo">779</span>         * This will change over the course of the effect's duration, and includes 16 overlapping faint glowing areas.<a name="line.779"></a>
-<span class="sourceLineNo">780</span>         */<a name="line.780"></a>
-<span class="sourceLineNo">781</span>        public Coord[] centers = new Coord[16];<a name="line.781"></a>
-<span class="sourceLineNo">782</span><a name="line.782"></a>
-<span class="sourceLineNo">783</span>        /**<a name="line.783"></a>
-<span class="sourceLineNo">784</span>         * Where the glow effect should travel towards as a whole.<a name="line.784"></a>
-<span class="sourceLineNo">785</span>         */<a name="line.785"></a>
-<span class="sourceLineNo">786</span>        public Coord end;<a name="line.786"></a>
-<span class="sourceLineNo">787</span>        /**<a name="line.787"></a>
-<span class="sourceLineNo">788</span>         * Normally you should set this in the constructor, and not change it later.<a name="line.788"></a>
-<span class="sourceLineNo">789</span>         */<a name="line.789"></a>
-<span class="sourceLineNo">790</span>        public int radius = 3;<a name="line.790"></a>
-<span class="sourceLineNo">791</span>        /**<a name="line.791"></a>
-<span class="sourceLineNo">792</span>         * The default glow ball color is medium-light blue.<a name="line.792"></a>
-<span class="sourceLineNo">793</span>         */<a name="line.793"></a>
-<span class="sourceLineNo">794</span>        public float color = SColor.CW_AZURE.toFloatBits();<a name="line.794"></a>
-<span class="sourceLineNo">795</span>        /**<a name="line.795"></a>
-<span class="sourceLineNo">796</span>         * The internal representation of how affected each cell is by the explosion, based on proximity to center.<a name="line.796"></a>
-<span class="sourceLineNo">797</span>         * This always has 16 light maps, but many will be identical and only calculated once.<a name="line.797"></a>
-<span class="sourceLineNo">798</span>         */<a name="line.798"></a>
-<span class="sourceLineNo">799</span>        public double[][][] lightMaps = new double[16][][];<a name="line.799"></a>
-<span class="sourceLineNo">800</span>        private double[][] resMap;<a name="line.800"></a>
-<span class="sourceLineNo">801</span>        /**<a name="line.801"></a>
-<span class="sourceLineNo">802</span>         * The raw list of Coords that might be affected by the explosion; may include some cells that aren't going to<a name="line.802"></a>
-<span class="sourceLineNo">803</span>         * show as exploding (it usually has some false positives), but shouldn't exclude any cells that should show as<a name="line.803"></a>
-<span class="sourceLineNo">804</span>         * such (no false negatives). You can edit this if you need to, but it isn't recommended.<a name="line.804"></a>
-<span class="sourceLineNo">805</span>         */<a name="line.805"></a>
-<span class="sourceLineNo">806</span>        public List&lt;Coord&gt; affected;<a name="line.806"></a>
-<span class="sourceLineNo">807</span>        /**<a name="line.807"></a>
-<span class="sourceLineNo">808</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.808"></a>
-<span class="sourceLineNo">809</span>         * the full expanse of the IPackedColorPanel. The duration will be 1 second.<a name="line.809"></a>
-<span class="sourceLineNo">810</span>         * @param targeting the IPackedColorPanel to affect<a name="line.810"></a>
-<span class="sourceLineNo">811</span>         * @param start the starting point for the glow ball(s)<a name="line.811"></a>
-<span class="sourceLineNo">812</span>         * @param end the ending point for the glow ball(s)<a name="line.812"></a>
-<span class="sourceLineNo">813</span>         * @param radius the radius of the explosion, in cells<a name="line.813"></a>
-<span class="sourceLineNo">814</span>         */<a name="line.814"></a>
-<span class="sourceLineNo">815</span><a name="line.815"></a>
-<span class="sourceLineNo">816</span>        public GlowBallEffect(IPackedColorPanel targeting, Coord start, Coord end, int radius)<a name="line.816"></a>
-<span class="sourceLineNo">817</span>        {<a name="line.817"></a>
-<span class="sourceLineNo">818</span>            this(targeting, 1f, start, end, radius);<a name="line.818"></a>
-<span class="sourceLineNo">819</span>        }<a name="line.819"></a>
-<span class="sourceLineNo">820</span>        /**<a name="line.820"></a>
-<span class="sourceLineNo">821</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.821"></a>
-<span class="sourceLineNo">822</span>         * the full expanse of the IPackedColorPanel.<a name="line.822"></a>
-<span class="sourceLineNo">823</span>         * @param targeting the IPackedColorPanel to affect<a name="line.823"></a>
-<span class="sourceLineNo">824</span>         * @param duration the duration of this PanelEffect in seconds, as a float<a name="line.824"></a>
-<span class="sourceLineNo">825</span>         * @param start the starting point for the glow ball(s)<a name="line.825"></a>
-<span class="sourceLineNo">826</span>         * @param end the ending point for the glow ball(s)<a name="line.826"></a>
-<span class="sourceLineNo">827</span>         * @param radius the radius of the explosion, in cells<a name="line.827"></a>
-<span class="sourceLineNo">828</span>         */<a name="line.828"></a>
-<span class="sourceLineNo">829</span>        public GlowBallEffect(IPackedColorPanel targeting, float duration, Coord start, Coord end, int radius)<a name="line.829"></a>
-<span class="sourceLineNo">830</span>        {<a name="line.830"></a>
-<span class="sourceLineNo">831</span>            super(targeting, duration);<a name="line.831"></a>
-<span class="sourceLineNo">832</span>            Arrays.fill(centers, start);<a name="line.832"></a>
-<span class="sourceLineNo">833</span>            this.end = end;<a name="line.833"></a>
-<span class="sourceLineNo">834</span>            this.radius = radius;<a name="line.834"></a>
-<span class="sourceLineNo">835</span>            resMap = new double[validCells.width][validCells.height];<a name="line.835"></a>
-<span class="sourceLineNo">836</span>            lightMaps[0] = new double[validCells.width][validCells.height];<a name="line.836"></a>
-<span class="sourceLineNo">837</span>            FOV.reuseFOV(resMap, lightMaps[0], start.x, start.y, radius + 0.5);<a name="line.837"></a>
-<span class="sourceLineNo">838</span>            for (int i = 1; i &lt; 16; i++) {<a name="line.838"></a>
-<span class="sourceLineNo">839</span>                lightMaps[i] = lightMaps[0];<a name="line.839"></a>
-<span class="sourceLineNo">840</span>            }<a name="line.840"></a>
-<span class="sourceLineNo">841</span>            affected = Radius.inCircle(start.x, start.y, radius, false, validCells.width, validCells.height);<a name="line.841"></a>
-<span class="sourceLineNo">842</span>        }<a name="line.842"></a>
-<span class="sourceLineNo">843</span>        /**<a name="line.843"></a>
-<span class="sourceLineNo">844</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.844"></a>
-<span class="sourceLineNo">845</span>         * the full expanse of the IPackedColorPanel.<a name="line.845"></a>
-<span class="sourceLineNo">846</span>         * @param targeting the IPackedColorPanel to affect<a name="line.846"></a>
-<span class="sourceLineNo">847</span>         * @param duration the duration of this PanelEffect in seconds, as a float<a name="line.847"></a>
-<span class="sourceLineNo">848</span>         * @param valid the valid cells that can be changed by this PanelEffect, as a GreasedRegion<a name="line.848"></a>
-<span class="sourceLineNo">849</span>         * @param start the starting point for the glow ball(s)<a name="line.849"></a>
-<span class="sourceLineNo">850</span>         * @param end the ending point for the glow ball(s)<a name="line.850"></a>
-<span class="sourceLineNo">851</span>         * @param radius the radius of the explosion, in cells<a name="line.851"></a>
-<span class="sourceLineNo">852</span>         */<a name="line.852"></a>
-<span class="sourceLineNo">853</span>        public GlowBallEffect(IPackedColorPanel targeting, float duration, GreasedRegion valid, Coord start, Coord end, int radius)<a name="line.853"></a>
-<span class="sourceLineNo">854</span>        {<a name="line.854"></a>
-<span class="sourceLineNo">855</span>            super(targeting, duration, valid);<a name="line.855"></a>
-<span class="sourceLineNo">856</span>            Arrays.fill(centers, start);<a name="line.856"></a>
-<span class="sourceLineNo">857</span>            this.end = end;<a name="line.857"></a>
-<span class="sourceLineNo">858</span>            this.radius = radius;<a name="line.858"></a>
-<span class="sourceLineNo">859</span><a name="line.859"></a>
-<span class="sourceLineNo">860</span>            resMap = ArrayTools.fill(1.0, validCells.width, validCells.height);<a name="line.860"></a>
-<span class="sourceLineNo">861</span>            validCells.writeDoublesInto(resMap, 0.0);<a name="line.861"></a>
-<span class="sourceLineNo">862</span>            lightMaps[0] = new double[validCells.width][validCells.height];<a name="line.862"></a>
-<span class="sourceLineNo">863</span>            FOV.reuseFOV(resMap, lightMaps[0], start.x, start.y, radius + 0.5);<a name="line.863"></a>
-<span class="sourceLineNo">864</span>            validCells.not().writeDoublesInto(lightMaps[0], 0.0);<a name="line.864"></a>
-<span class="sourceLineNo">865</span>            validCells.not();<a name="line.865"></a>
-<span class="sourceLineNo">866</span>            for (int i = 1; i &lt; 16; i++) {<a name="line.866"></a>
-<span class="sourceLineNo">867</span>                lightMaps[i] = lightMaps[0];<a name="line.867"></a>
-<span class="sourceLineNo">868</span>            }<a name="line.868"></a>
-<span class="sourceLineNo">869</span>            affected = Radius.inCircle(start.x, start.y, radius, false, validCells.width, validCells.height);<a name="line.869"></a>
-<span class="sourceLineNo">870</span>        }<a name="line.870"></a>
-<span class="sourceLineNo">871</span><a name="line.871"></a>
-<span class="sourceLineNo">872</span>        /**<a name="line.872"></a>
-<span class="sourceLineNo">873</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.873"></a>
-<span class="sourceLineNo">874</span>         * the full expanse of the IPackedColorPanel.<a name="line.874"></a>
-<span class="sourceLineNo">875</span>         * @param targeting the IPackedColorPanel to affect<a name="line.875"></a>
-<span class="sourceLineNo">876</span>         * @param duration the duration of this PanelEffect in seconds, as a float<a name="line.876"></a>
-<span class="sourceLineNo">877</span>         * @param valid the valid cells that can be changed by this PanelEffect, as a GreasedRegion<a name="line.877"></a>
-<span class="sourceLineNo">878</span>         * @param start the starting point for the glow ball(s)<a name="line.878"></a>
-<span class="sourceLineNo">879</span>         * @param end the ending point for the glow ball(s)<a name="line.879"></a>
-<span class="sourceLineNo">880</span>         * @param radius the radius of the explosion, in cells<a name="line.880"></a>
-<span class="sourceLineNo">881</span>         */<a name="line.881"></a>
-<span class="sourceLineNo">882</span>        public GlowBallEffect(IPackedColorPanel targeting, float duration, GreasedRegion valid, Coord start, Coord end, int radius, Color coloring)<a name="line.882"></a>
-<span class="sourceLineNo">883</span>        {<a name="line.883"></a>
-<span class="sourceLineNo">884</span>            this(targeting, duration, valid, start, end, radius, coloring.toFloatBits());<a name="line.884"></a>
-<span class="sourceLineNo">885</span>        }<a name="line.885"></a>
-<span class="sourceLineNo">886</span><a name="line.886"></a>
-<span class="sourceLineNo">887</span>        /**<a name="line.887"></a>
-<span class="sourceLineNo">888</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.888"></a>
-<span class="sourceLineNo">889</span>         * the full expanse of the IPackedColorPanel.<a name="line.889"></a>
-<span class="sourceLineNo">890</span>         * @param targeting the IPackedColorPanel to affect<a name="line.890"></a>
-<span class="sourceLineNo">891</span>         * @param duration the duration of this PanelEffect in seconds, as a float<a name="line.891"></a>
-<span class="sourceLineNo">892</span>         * @param valid the valid cells that can be changed by this PanelEffect, as a GreasedRegion<a name="line.892"></a>
-<span class="sourceLineNo">893</span>         * @param start the starting point for the glow ball(s)<a name="line.893"></a>
-<span class="sourceLineNo">894</span>         * @param end the ending point for the glow ball(s)<a name="line.894"></a>
-<span class="sourceLineNo">895</span>         * @param radius the radius of the explosion, in cells<a name="line.895"></a>
-<span class="sourceLineNo">896</span>         */<a name="line.896"></a>
-<span class="sourceLineNo">897</span>        public GlowBallEffect(IPackedColorPanel targeting, float duration, GreasedRegion valid, Coord start, Coord end, int radius, float coloring)<a name="line.897"></a>
-<span class="sourceLineNo">898</span>        {<a name="line.898"></a>
-<span class="sourceLineNo">899</span>            this(targeting, duration, valid, start, end, radius);<a name="line.899"></a>
-<span class="sourceLineNo">900</span>            color = coloring;<a name="line.900"></a>
-<span class="sourceLineNo">901</span>        }<a name="line.901"></a>
-<span class="sourceLineNo">902</span>        private static float adjust(final float x, final int amt) { return ((x * (16 + amt)) + ((16 - amt) * x * x * (3f - 2f * x))) * 0.03125f; }<a name="line.902"></a>
-<span class="sourceLineNo">903</span>        /**<a name="line.903"></a>
-<span class="sourceLineNo">904</span>         * Called each frame.<a name="line.904"></a>
-<span class="sourceLineNo">905</span>         *<a name="line.905"></a>
-<span class="sourceLineNo">906</span>         * @param percent The percentage of completion for this action, growing from 0 to 1 over the duration. If<a name="line.906"></a>
-<span class="sourceLineNo">907</span>         *                {@link #setReverse(boolean) reversed}, this will shrink from 1 to 0.<a name="line.907"></a>
-<span class="sourceLineNo">908</span>         */<a name="line.908"></a>
-<span class="sourceLineNo">909</span>        @Override<a name="line.909"></a>
-<span class="sourceLineNo">910</span>        protected void update(float percent) {<a name="line.910"></a>
-<span class="sourceLineNo">911</span>            affected.clear();<a name="line.911"></a>
-<span class="sourceLineNo">912</span>            Radius.inCircle(centers[0].x, centers[0].y, radius, false, validCells.width, validCells.height, affected);<a name="line.912"></a>
-<span class="sourceLineNo">913</span>            int len = affected.size();<a name="line.913"></a>
-<span class="sourceLineNo">914</span>            Coord c;<a name="line.914"></a>
-<span class="sourceLineNo">915</span>            float f, light;<a name="line.915"></a>
-<span class="sourceLineNo">916</span>            Coord prev = centers[0];<a name="line.916"></a>
-<span class="sourceLineNo">917</span>            for (int i = 0; i &lt; 16; i++) {<a name="line.917"></a>
-<span class="sourceLineNo">918</span>                centers[i] = centers[i].interpolate(end, adjust(percent, i));<a name="line.918"></a>
-<span class="sourceLineNo">919</span>            }<a name="line.919"></a>
-<span class="sourceLineNo">920</span>            validCells.not();<a name="line.920"></a>
-<span class="sourceLineNo">921</span>            if(!prev.equals(centers[0]))<a name="line.921"></a>
-<span class="sourceLineNo">922</span>            {<a name="line.922"></a>
-<span class="sourceLineNo">923</span>                FOV.reuseFOV(resMap, lightMaps[0], centers[0].x, centers[0].y, radius + 0.5);<a name="line.923"></a>
-<span class="sourceLineNo">924</span>                validCells.writeDoublesInto(lightMaps[0], 0.0);<a name="line.924"></a>
-<span class="sourceLineNo">925</span>            }<a name="line.925"></a>
-<span class="sourceLineNo">926</span>            for (int i = 1; i &lt; 16; i++) {<a name="line.926"></a>
-<span class="sourceLineNo">927</span>                if(!centers[i-1].equals(centers[i]))<a name="line.927"></a>
-<span class="sourceLineNo">928</span>                {<a name="line.928"></a>
-<span class="sourceLineNo">929</span>                    FOV.reuseFOV(resMap, lightMaps[i], centers[i].x, centers[i].y, radius + 0.5);<a name="line.929"></a>
-<span class="sourceLineNo">930</span>                    validCells.writeDoublesInto(lightMaps[i], 0.0);<a name="line.930"></a>
-<span class="sourceLineNo">931</span>                }<a name="line.931"></a>
-<span class="sourceLineNo">932</span>                else<a name="line.932"></a>
-<span class="sourceLineNo">933</span>                {<a name="line.933"></a>
-<span class="sourceLineNo">934</span>                    lightMaps[i] = lightMaps[i-1];<a name="line.934"></a>
-<span class="sourceLineNo">935</span>                }<a name="line.935"></a>
-<span class="sourceLineNo">936</span>            }<a name="line.936"></a>
-<span class="sourceLineNo">937</span>            validCells.not();<a name="line.937"></a>
-<span class="sourceLineNo">938</span>            for (int i = 0; i &lt; len; i++) {<a name="line.938"></a>
-<span class="sourceLineNo">939</span>                c = affected.get(i);<a name="line.939"></a>
-<span class="sourceLineNo">940</span>                for (int j = 0; j &lt; 16; j++) {<a name="line.940"></a>
-<span class="sourceLineNo">941</span>                    if ((light = (float) lightMaps[j][c.x][c.y]) &lt;= 0f)<a name="line.941"></a>
-<span class="sourceLineNo">942</span>                        continue;<a name="line.942"></a>
-<span class="sourceLineNo">943</span>                    target.blend(c.x, c.y, color,  light * 0.0625f);<a name="line.943"></a>
-<span class="sourceLineNo">944</span>                }<a name="line.944"></a>
-<span class="sourceLineNo">945</span>            }<a name="line.945"></a>
-<span class="sourceLineNo">946</span>        }<a name="line.946"></a>
-<span class="sourceLineNo">947</span>    }<a name="line.947"></a>
-<span class="sourceLineNo">948</span><a name="line.948"></a>
-<span class="sourceLineNo">949</span><a name="line.949"></a>
-<span class="sourceLineNo">950</span>    public static Interpolation fastInSlowMidFastOut = new Interpolation() {<a name="line.950"></a>
-<span class="sourceLineNo">951</span>        private final float value = 2, power = 3;<a name="line.951"></a>
-<span class="sourceLineNo">952</span>        @Override<a name="line.952"></a>
-<span class="sourceLineNo">953</span>        public float apply(float a) {<a name="line.953"></a>
-<span class="sourceLineNo">954</span>            if (a &lt;= 0.5f) return (1 - ((float)Math.pow(value, -power * (a * 2)) - 0.125f) * 1.1428572f) * 0.5f;<a name="line.954"></a>
-<span class="sourceLineNo">955</span>            return (1 + (float) Math.pow(value, power * (a * 2 - 2)) - 0.25f) * 0.5714286f;<a name="line.955"></a>
-<span class="sourceLineNo">956</span>        }<a name="line.956"></a>
-<span class="sourceLineNo">957</span>    };<a name="line.957"></a>
-<span class="sourceLineNo">958</span><a name="line.958"></a>
-<span class="sourceLineNo">959</span>    /**<a name="line.959"></a>
-<span class="sourceLineNo">960</span>     * Convenience method to make a ProjectileEffect take an "arc-like" path toward the target, where it is fast at the<a name="line.960"></a>
-<span class="sourceLineNo">961</span>     * beginning and end of its motion and is reaching the height of its arc at the center, before triggering another<a name="line.961"></a>
-<span class="sourceLineNo">962</span>     * Action when the projectile stops (often this might be an {@link PanelEffect.ExplosionEffect}, but could be any<a name="line.962"></a>
-<span class="sourceLineNo">963</span>     * scene2d Action).<a name="line.963"></a>
-<span class="sourceLineNo">964</span>     * @param projectile a {@link PanelEffect.ProjectileEffect} to run as the first step<a name="line.964"></a>
-<span class="sourceLineNo">965</span>     * @param result an {@link Action} to run after the ProjectileEffect completes<a name="line.965"></a>
-<span class="sourceLineNo">966</span>     * @return an Action that can be added to a scene2d Actor, such as a SquidLayers or SparseLayers<a name="line.966"></a>
-<span class="sourceLineNo">967</span>     */<a name="line.967"></a>
-<span class="sourceLineNo">968</span>    public static Action makeGrenadeEffect(ProjectileEffect projectile, Action result)<a name="line.968"></a>
-<span class="sourceLineNo">969</span>    {<a name="line.969"></a>
-<span class="sourceLineNo">970</span>        projectile.useArcPathInterpolation();<a name="line.970"></a>
-<span class="sourceLineNo">971</span>        return Actions.sequence(projectile, result);<a name="line.971"></a>
-<span class="sourceLineNo">972</span>    }<a name="line.972"></a>
-<span class="sourceLineNo">973</span>}<a name="line.973"></a>
+<span class="sourceLineNo">775</span><a name="line.775"></a>
+<span class="sourceLineNo">776</span>    /**<a name="line.776"></a>
+<span class="sourceLineNo">777</span>     * Almost exactly lke {@link ProjectileEffect}, but its duration specifies the amount of time to spend crossing each<a name="line.777"></a>
+<span class="sourceLineNo">778</span>     * cell (in seconds), not the duration of the entire effect. For ranged weapons like arrows, a fixed duration for<a name="line.778"></a>
+<span class="sourceLineNo">779</span>     * the effect (as in ProjectileEffect) would mean an arrow shot at a close-by target travels slowly and an arrow<a name="line.779"></a>
+<span class="sourceLineNo">780</span>     * shot at a far-away target travels very quickly; this class avoids that issue. Note that the time spent by the<a name="line.780"></a>
+<span class="sourceLineNo">781</span>     * whole effect will vary based on the Chebyshev distance between the start and end points. The speed the projectile<a name="line.781"></a>
+<span class="sourceLineNo">782</span>     * travels at is also dependent on the size and aspect ratio of cells it travels over.<a name="line.782"></a>
+<span class="sourceLineNo">783</span>     */<a name="line.783"></a>
+<span class="sourceLineNo">784</span>    @Beta<a name="line.784"></a>
+<span class="sourceLineNo">785</span>    public static class SteadyProjectileEffect extends ProjectileEffect<a name="line.785"></a>
+<span class="sourceLineNo">786</span>    {<a name="line.786"></a>
+<span class="sourceLineNo">787</span><a name="line.787"></a>
+<span class="sourceLineNo">788</span>        /**<a name="line.788"></a>
+<span class="sourceLineNo">789</span>         * Constructs a SteadyProjectileEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.789"></a>
+<span class="sourceLineNo">790</span>         * the full expanse of the IPackedColorPanel. The duration will be 0.05 seconds per cell crossed.<a name="line.790"></a>
+<span class="sourceLineNo">791</span>         *<a name="line.791"></a>
+<span class="sourceLineNo">792</span>         * @param targeting  the IPackedColorPanel to affect<a name="line.792"></a>
+<span class="sourceLineNo">793</span>         * @param startPoint the starting point of the projectile; may be best if it is adjacent to whatever fires it<a name="line.793"></a>
+<span class="sourceLineNo">794</span>         * @param endPoint   the point to try to hit with the projectile; this should always succeed with no obstructions<a name="line.794"></a>
+<span class="sourceLineNo">795</span>         */<a name="line.795"></a>
+<span class="sourceLineNo">796</span>        public SteadyProjectileEffect(IPackedColorPanel targeting, Coord startPoint, Coord endPoint) {<a name="line.796"></a>
+<span class="sourceLineNo">797</span>            this(targeting, 0.05f, startPoint, endPoint);<a name="line.797"></a>
+<span class="sourceLineNo">798</span>        }<a name="line.798"></a>
+<span class="sourceLineNo">799</span><a name="line.799"></a>
+<span class="sourceLineNo">800</span>        /**<a name="line.800"></a>
+<span class="sourceLineNo">801</span>         * Constructs a SteadyProjectileEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.801"></a>
+<span class="sourceLineNo">802</span>         * the full expanse of the IPackedColorPanel.<a name="line.802"></a>
+<span class="sourceLineNo">803</span>         *<a name="line.803"></a>
+<span class="sourceLineNo">804</span>         * @param targeting  the IPackedColorPanel to affect<a name="line.804"></a>
+<span class="sourceLineNo">805</span>         * @param duration   the time the projectile will take to cross one cell, in seconds as a float<a name="line.805"></a>
+<span class="sourceLineNo">806</span>         * @param startPoint the starting point of the projectile; may be best if it is adjacent to whatever fires it<a name="line.806"></a>
+<span class="sourceLineNo">807</span>         * @param endPoint   the point to try to hit with the projectile; this should always succeed with no obstructions<a name="line.807"></a>
+<span class="sourceLineNo">808</span>         */<a name="line.808"></a>
+<span class="sourceLineNo">809</span>        public SteadyProjectileEffect(IPackedColorPanel targeting, float duration, Coord startPoint, Coord endPoint) {<a name="line.809"></a>
+<span class="sourceLineNo">810</span>            super(targeting, (float) Radius.SQUARE.radius(startPoint, endPoint) * duration, startPoint, endPoint);<a name="line.810"></a>
+<span class="sourceLineNo">811</span>        }<a name="line.811"></a>
+<span class="sourceLineNo">812</span><a name="line.812"></a>
+<span class="sourceLineNo">813</span>        /**<a name="line.813"></a>
+<span class="sourceLineNo">814</span>         * Constructs a SteadyProjectileEffect with explicit settings for most fields.<a name="line.814"></a>
+<span class="sourceLineNo">815</span>         *<a name="line.815"></a>
+<span class="sourceLineNo">816</span>         * @param targeting  the IPackedColorPanel to affect<a name="line.816"></a>
+<span class="sourceLineNo">817</span>         * @param duration   the duration of this PanelEffect in seconds, as a float<a name="line.817"></a>
+<span class="sourceLineNo">818</span>         * @param valid      the valid cells that can be changed by this PanelEffect, as a GreasedRegion<a name="line.818"></a>
+<span class="sourceLineNo">819</span>         * @param startPoint the starting point of the projectile; may be best if it is adjacent to whatever fires it<a name="line.819"></a>
+<span class="sourceLineNo">820</span>         * @param endPoint   the point to try to hit with the projectile; this may not be reached if the path crosses a cell not in valid<a name="line.820"></a>
+<span class="sourceLineNo">821</span>         */<a name="line.821"></a>
+<span class="sourceLineNo">822</span>        public SteadyProjectileEffect(IPackedColorPanel targeting, float duration, GreasedRegion valid, Coord startPoint, Coord endPoint) {<a name="line.822"></a>
+<span class="sourceLineNo">823</span>            super(targeting, (float) Radius.SQUARE.radius(startPoint, endPoint) * duration, valid, startPoint, endPoint);<a name="line.823"></a>
+<span class="sourceLineNo">824</span>        }<a name="line.824"></a>
+<span class="sourceLineNo">825</span><a name="line.825"></a>
+<span class="sourceLineNo">826</span>        /**<a name="line.826"></a>
+<span class="sourceLineNo">827</span>         * Constructs a SteadyProjectileEffect with explicit settings for most fields but also an alternate Color<a name="line.827"></a>
+<span class="sourceLineNo">828</span>         * object for the projectile instead of the default white color.<a name="line.828"></a>
+<span class="sourceLineNo">829</span>         *<a name="line.829"></a>
+<span class="sourceLineNo">830</span>         * @param targeting  the IPackedColorPanel to affect<a name="line.830"></a>
+<span class="sourceLineNo">831</span>         * @param duration   the time the projectile will take to cross one cell, in seconds as a float<a name="line.831"></a>
+<span class="sourceLineNo">832</span>         * @param valid      the valid cells that can be changed by this PanelEffect, as a GreasedRegion<a name="line.832"></a>
+<span class="sourceLineNo">833</span>         * @param startPoint the starting point of the projectile; may be best if it is adjacent to whatever fires it<a name="line.833"></a>
+<span class="sourceLineNo">834</span>         * @param endPoint   the point to try to hit with the projectile; this may not be reached if the path crosses a cell not in valid<a name="line.834"></a>
+<span class="sourceLineNo">835</span>         * @param shown      the char to show at each step of the projectile's path as it advances<a name="line.835"></a>
+<span class="sourceLineNo">836</span>         * @param coloring   a Color or subclass thereof that will replace the default white color here<a name="line.836"></a>
+<span class="sourceLineNo">837</span>         */<a name="line.837"></a>
+<span class="sourceLineNo">838</span>        public SteadyProjectileEffect(IPackedColorPanel targeting, float duration, GreasedRegion valid, Coord startPoint, Coord endPoint, char shown, Color coloring) {<a name="line.838"></a>
+<span class="sourceLineNo">839</span>            super(targeting, (float) Radius.SQUARE.radius(startPoint, endPoint) * duration, valid, startPoint, endPoint, shown, coloring);<a name="line.839"></a>
+<span class="sourceLineNo">840</span>        }<a name="line.840"></a>
+<span class="sourceLineNo">841</span><a name="line.841"></a>
+<span class="sourceLineNo">842</span>        /**<a name="line.842"></a>
+<span class="sourceLineNo">843</span>         * Constructs a SteadyProjectileEffect with explicit settings for most fields but also an alternate Color<a name="line.843"></a>
+<span class="sourceLineNo">844</span>         * object for the projectile instead of the default white color.<a name="line.844"></a>
+<span class="sourceLineNo">845</span>         *<a name="line.845"></a>
+<span class="sourceLineNo">846</span>         * @param targeting  the IPackedColorPanel to affect<a name="line.846"></a>
+<span class="sourceLineNo">847</span>         * @param duration   the time the projectile will take to cross one cell, in seconds as a float<a name="line.847"></a>
+<span class="sourceLineNo">848</span>         * @param valid      the valid cells that can be changed by this PanelEffect, as a GreasedRegion<a name="line.848"></a>
+<span class="sourceLineNo">849</span>         * @param startPoint the starting point of the projectile; may be best if it is adjacent to whatever fires it<a name="line.849"></a>
+<span class="sourceLineNo">850</span>         * @param endPoint   the point to try to hit with the projectile; this may not be reached if the path crosses a cell not in valid<a name="line.850"></a>
+<span class="sourceLineNo">851</span>         * @param shown      the char to show at each step of the projectile's path as it advances<a name="line.851"></a>
+<span class="sourceLineNo">852</span>         * @param coloring   an array of colors as packed floats that will replace the default white color here<a name="line.852"></a>
+<span class="sourceLineNo">853</span>         */<a name="line.853"></a>
+<span class="sourceLineNo">854</span>        public SteadyProjectileEffect(IPackedColorPanel targeting, float duration, GreasedRegion valid, Coord startPoint, Coord endPoint, char shown, float coloring) {<a name="line.854"></a>
+<span class="sourceLineNo">855</span>            super(targeting, (float) Radius.SQUARE.radius(startPoint, endPoint) * duration, valid, startPoint, endPoint, shown, coloring);<a name="line.855"></a>
+<span class="sourceLineNo">856</span>        }<a name="line.856"></a>
+<span class="sourceLineNo">857</span>    }<a name="line.857"></a>
+<span class="sourceLineNo">858</span>    <a name="line.858"></a>
+<span class="sourceLineNo">859</span>    @Beta<a name="line.859"></a>
+<span class="sourceLineNo">860</span>    public static class GlowBallEffect extends PanelEffect<a name="line.860"></a>
+<span class="sourceLineNo">861</span>    {<a name="line.861"></a>
+<span class="sourceLineNo">862</span>        /**<a name="line.862"></a>
+<span class="sourceLineNo">863</span>         * This will change over the course of the effect's duration, and includes 16 overlapping faint glowing areas.<a name="line.863"></a>
+<span class="sourceLineNo">864</span>         */<a name="line.864"></a>
+<span class="sourceLineNo">865</span>        public Coord[] centers = new Coord[16];<a name="line.865"></a>
+<span class="sourceLineNo">866</span><a name="line.866"></a>
+<span class="sourceLineNo">867</span>        /**<a name="line.867"></a>
+<span class="sourceLineNo">868</span>         * Where the glow effect should travel towards as a whole.<a name="line.868"></a>
+<span class="sourceLineNo">869</span>         */<a name="line.869"></a>
+<span class="sourceLineNo">870</span>        public Coord end;<a name="line.870"></a>
+<span class="sourceLineNo">871</span>        /**<a name="line.871"></a>
+<span class="sourceLineNo">872</span>         * Normally you should set this in the constructor, and not change it later.<a name="line.872"></a>
+<span class="sourceLineNo">873</span>         */<a name="line.873"></a>
+<span class="sourceLineNo">874</span>        public int radius = 3;<a name="line.874"></a>
+<span class="sourceLineNo">875</span>        /**<a name="line.875"></a>
+<span class="sourceLineNo">876</span>         * The default glow ball color is medium-light blue.<a name="line.876"></a>
+<span class="sourceLineNo">877</span>         */<a name="line.877"></a>
+<span class="sourceLineNo">878</span>        public float color = SColor.CW_AZURE.toFloatBits();<a name="line.878"></a>
+<span class="sourceLineNo">879</span>        /**<a name="line.879"></a>
+<span class="sourceLineNo">880</span>         * The internal representation of how affected each cell is by the explosion, based on proximity to center.<a name="line.880"></a>
+<span class="sourceLineNo">881</span>         * This always has 16 light maps, but many will be identical and only calculated once.<a name="line.881"></a>
+<span class="sourceLineNo">882</span>         */<a name="line.882"></a>
+<span class="sourceLineNo">883</span>        public double[][][] lightMaps = new double[16][][];<a name="line.883"></a>
+<span class="sourceLineNo">884</span>        private double[][] resMap;<a name="line.884"></a>
+<span class="sourceLineNo">885</span>        /**<a name="line.885"></a>
+<span class="sourceLineNo">886</span>         * The raw list of Coords that might be affected by the explosion; may include some cells that aren't going to<a name="line.886"></a>
+<span class="sourceLineNo">887</span>         * show as exploding (it usually has some false positives), but shouldn't exclude any cells that should show as<a name="line.887"></a>
+<span class="sourceLineNo">888</span>         * such (no false negatives). You can edit this if you need to, but it isn't recommended.<a name="line.888"></a>
+<span class="sourceLineNo">889</span>         */<a name="line.889"></a>
+<span class="sourceLineNo">890</span>        public List&lt;Coord&gt; affected;<a name="line.890"></a>
+<span class="sourceLineNo">891</span>        /**<a name="line.891"></a>
+<span class="sourceLineNo">892</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.892"></a>
+<span class="sourceLineNo">893</span>         * the full expanse of the IPackedColorPanel. The duration will be 1 second.<a name="line.893"></a>
+<span class="sourceLineNo">894</span>         * @param targeting the IPackedColorPanel to affect<a name="line.894"></a>
+<span class="sourceLineNo">895</span>         * @param start the starting point for the glow ball(s)<a name="line.895"></a>
+<span class="sourceLineNo">896</span>         * @param end the ending point for the glow ball(s)<a name="line.896"></a>
+<span class="sourceLineNo">897</span>         * @param radius the radius of the explosion, in cells<a name="line.897"></a>
+<span class="sourceLineNo">898</span>         */<a name="line.898"></a>
+<span class="sourceLineNo">899</span><a name="line.899"></a>
+<span class="sourceLineNo">900</span>        public GlowBallEffect(IPackedColorPanel targeting, Coord start, Coord end, int radius)<a name="line.900"></a>
+<span class="sourceLineNo">901</span>        {<a name="line.901"></a>
+<span class="sourceLineNo">902</span>            this(targeting, 1f, start, end, radius);<a name="line.902"></a>
+<span class="sourceLineNo">903</span>        }<a name="line.903"></a>
+<span class="sourceLineNo">904</span>        /**<a name="line.904"></a>
+<span class="sourceLineNo">905</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.905"></a>
+<span class="sourceLineNo">906</span>         * the full expanse of the IPackedColorPanel.<a name="line.906"></a>
+<span class="sourceLineNo">907</span>         * @param targeting the IPackedColorPanel to affect<a name="line.907"></a>
+<span class="sourceLineNo">908</span>         * @param duration the duration of this PanelEffect in seconds, as a float<a name="line.908"></a>
+<span class="sourceLineNo">909</span>         * @param start the starting point for the glow ball(s)<a name="line.909"></a>
+<span class="sourceLineNo">910</span>         * @param end the ending point for the glow ball(s)<a name="line.910"></a>
+<span class="sourceLineNo">911</span>         * @param radius the radius of the explosion, in cells<a name="line.911"></a>
+<span class="sourceLineNo">912</span>         */<a name="line.912"></a>
+<span class="sourceLineNo">913</span>        public GlowBallEffect(IPackedColorPanel targeting, float duration, Coord start, Coord end, int radius)<a name="line.913"></a>
+<span class="sourceLineNo">914</span>        {<a name="line.914"></a>
+<span class="sourceLineNo">915</span>            super(targeting, duration);<a name="line.915"></a>
+<span class="sourceLineNo">916</span>            Arrays.fill(centers, start);<a name="line.916"></a>
+<span class="sourceLineNo">917</span>            this.end = end;<a name="line.917"></a>
+<span class="sourceLineNo">918</span>            this.radius = radius;<a name="line.918"></a>
+<span class="sourceLineNo">919</span>            resMap = new double[validCells.width][validCells.height];<a name="line.919"></a>
+<span class="sourceLineNo">920</span>            lightMaps[0] = new double[validCells.width][validCells.height];<a name="line.920"></a>
+<span class="sourceLineNo">921</span>            FOV.reuseFOV(resMap, lightMaps[0], start.x, start.y, radius + 0.5);<a name="line.921"></a>
+<span class="sourceLineNo">922</span>            for (int i = 1; i &lt; 16; i++) {<a name="line.922"></a>
+<span class="sourceLineNo">923</span>                lightMaps[i] = lightMaps[0];<a name="line.923"></a>
+<span class="sourceLineNo">924</span>            }<a name="line.924"></a>
+<span class="sourceLineNo">925</span>            affected = Radius.inCircle(start.x, start.y, radius, false, validCells.width, validCells.height);<a name="line.925"></a>
+<span class="sourceLineNo">926</span>        }<a name="line.926"></a>
+<span class="sourceLineNo">927</span>        /**<a name="line.927"></a>
+<span class="sourceLineNo">928</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.928"></a>
+<span class="sourceLineNo">929</span>         * the full expanse of the IPackedColorPanel.<a name="line.929"></a>
+<span class="sourceLineNo">930</span>         * @param targeting the IPackedColorPanel to affect<a name="line.930"></a>
+<span class="sourceLineNo">931</span>         * @param duration the duration of this PanelEffect in seconds, as a float<a name="line.931"></a>
+<span class="sourceLineNo">932</span>         * @param valid the valid cells that can be changed by this PanelEffect, as a GreasedRegion<a name="line.932"></a>
+<span class="sourceLineNo">933</span>         * @param start the starting point for the glow ball(s)<a name="line.933"></a>
+<span class="sourceLineNo">934</span>         * @param end the ending point for the glow ball(s)<a name="line.934"></a>
+<span class="sourceLineNo">935</span>         * @param radius the radius of the explosion, in cells<a name="line.935"></a>
+<span class="sourceLineNo">936</span>         */<a name="line.936"></a>
+<span class="sourceLineNo">937</span>        public GlowBallEffect(IPackedColorPanel targeting, float duration, GreasedRegion valid, Coord start, Coord end, int radius)<a name="line.937"></a>
+<span class="sourceLineNo">938</span>        {<a name="line.938"></a>
+<span class="sourceLineNo">939</span>            super(targeting, duration, valid);<a name="line.939"></a>
+<span class="sourceLineNo">940</span>            Arrays.fill(centers, start);<a name="line.940"></a>
+<span class="sourceLineNo">941</span>            this.end = end;<a name="line.941"></a>
+<span class="sourceLineNo">942</span>            this.radius = radius;<a name="line.942"></a>
+<span class="sourceLineNo">943</span><a name="line.943"></a>
+<span class="sourceLineNo">944</span>            resMap = ArrayTools.fill(1.0, validCells.width, validCells.height);<a name="line.944"></a>
+<span class="sourceLineNo">945</span>            validCells.writeDoublesInto(resMap, 0.0);<a name="line.945"></a>
+<span class="sourceLineNo">946</span>            lightMaps[0] = new double[validCells.width][validCells.height];<a name="line.946"></a>
+<span class="sourceLineNo">947</span>            FOV.reuseFOV(resMap, lightMaps[0], start.x, start.y, radius + 0.5);<a name="line.947"></a>
+<span class="sourceLineNo">948</span>            validCells.not().writeDoublesInto(lightMaps[0], 0.0);<a name="line.948"></a>
+<span class="sourceLineNo">949</span>            validCells.not();<a name="line.949"></a>
+<span class="sourceLineNo">950</span>            for (int i = 1; i &lt; 16; i++) {<a name="line.950"></a>
+<span class="sourceLineNo">951</span>                lightMaps[i] = lightMaps[0];<a name="line.951"></a>
+<span class="sourceLineNo">952</span>            }<a name="line.952"></a>
+<span class="sourceLineNo">953</span>            affected = Radius.inCircle(start.x, start.y, radius, false, validCells.width, validCells.height);<a name="line.953"></a>
+<span class="sourceLineNo">954</span>        }<a name="line.954"></a>
+<span class="sourceLineNo">955</span><a name="line.955"></a>
+<span class="sourceLineNo">956</span>        /**<a name="line.956"></a>
+<span class="sourceLineNo">957</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.957"></a>
+<span class="sourceLineNo">958</span>         * the full expanse of the IPackedColorPanel.<a name="line.958"></a>
+<span class="sourceLineNo">959</span>         * @param targeting the IPackedColorPanel to affect<a name="line.959"></a>
+<span class="sourceLineNo">960</span>         * @param duration the duration of this PanelEffect in seconds, as a float<a name="line.960"></a>
+<span class="sourceLineNo">961</span>         * @param valid the valid cells that can be changed by this PanelEffect, as a GreasedRegion<a name="line.961"></a>
+<span class="sourceLineNo">962</span>         * @param start the starting point for the glow ball(s)<a name="line.962"></a>
+<span class="sourceLineNo">963</span>         * @param end the ending point for the glow ball(s)<a name="line.963"></a>
+<span class="sourceLineNo">964</span>         * @param radius the radius of the explosion, in cells<a name="line.964"></a>
+<span class="sourceLineNo">965</span>         */<a name="line.965"></a>
+<span class="sourceLineNo">966</span>        public GlowBallEffect(IPackedColorPanel targeting, float duration, GreasedRegion valid, Coord start, Coord end, int radius, Color coloring)<a name="line.966"></a>
+<span class="sourceLineNo">967</span>        {<a name="line.967"></a>
+<span class="sourceLineNo">968</span>            this(targeting, duration, valid, start, end, radius, coloring.toFloatBits());<a name="line.968"></a>
+<span class="sourceLineNo">969</span>        }<a name="line.969"></a>
+<span class="sourceLineNo">970</span><a name="line.970"></a>
+<span class="sourceLineNo">971</span>        /**<a name="line.971"></a>
+<span class="sourceLineNo">972</span>         * Constructs a GlowBallEffect with explicit settings for some fields. The valid cells this can affect will be<a name="line.972"></a>
+<span class="sourceLineNo">973</span>         * the full expanse of the IPackedColorPanel.<a name="line.973"></a>
+<span class="sourceLineNo">974</span>         * @param targeting the IPackedColorPanel to affect<a name="line.974"></a>
+<span class="sourceLineNo">975</span>         * @param duration the duration of this PanelEffect in seconds, as a float<a name="line.975"></a>
+<span class="sourceLineNo">976</span>         * @param valid the valid cells that can be changed by this PanelEffect, as a GreasedRegion<a name="line.976"></a>
+<span class="sourceLineNo">977</span>         * @param start the starting point for the glow ball(s)<a name="line.977"></a>
+<span class="sourceLineNo">978</span>         * @param end the ending point for the glow ball(s)<a name="line.978"></a>
+<span class="sourceLineNo">979</span>         * @param radius the radius of the explosion, in cells<a name="line.979"></a>
+<span class="sourceLineNo">980</span>         */<a name="line.980"></a>
+<span class="sourceLineNo">981</span>        public GlowBallEffect(IPackedColorPanel targeting, float duration, GreasedRegion valid, Coord start, Coord end, int radius, float coloring)<a name="line.981"></a>
+<span class="sourceLineNo">982</span>        {<a name="line.982"></a>
+<span class="sourceLineNo">983</span>            this(targeting, duration, valid, start, end, radius);<a name="line.983"></a>
+<span class="sourceLineNo">984</span>            color = coloring;<a name="line.984"></a>
+<span class="sourceLineNo">985</span>        }<a name="line.985"></a>
+<span class="sourceLineNo">986</span>        private static float adjust(final float x, final int amt) { return ((x * (16 + amt)) + ((16 - amt) * x * x * (3f - 2f * x))) * 0.03125f; }<a name="line.986"></a>
+<span class="sourceLineNo">987</span>        /**<a name="line.987"></a>
+<span class="sourceLineNo">988</span>         * Called each frame.<a name="line.988"></a>
+<span class="sourceLineNo">989</span>         *<a name="line.989"></a>
+<span class="sourceLineNo">990</span>         * @param percent The percentage of completion for this action, growing from 0 to 1 over the duration. If<a name="line.990"></a>
+<span class="sourceLineNo">991</span>         *                {@link #setReverse(boolean) reversed}, this will shrink from 1 to 0.<a name="line.991"></a>
+<span class="sourceLineNo">992</span>         */<a name="line.992"></a>
+<span class="sourceLineNo">993</span>        @Override<a name="line.993"></a>
+<span class="sourceLineNo">994</span>        protected void update(float percent) {<a name="line.994"></a>
+<span class="sourceLineNo">995</span>            affected.clear();<a name="line.995"></a>
+<span class="sourceLineNo">996</span>            Radius.inCircle(centers[0].x, centers[0].y, radius, false, validCells.width, validCells.height, affected);<a name="line.996"></a>
+<span class="sourceLineNo">997</span>            int len = affected.size();<a name="line.997"></a>
+<span class="sourceLineNo">998</span>            Coord c;<a name="line.998"></a>
+<span class="sourceLineNo">999</span>            float f, light;<a name="line.999"></a>
+<span class="sourceLineNo">1000</span>            Coord prev = centers[0];<a name="line.1000"></a>
+<span class="sourceLineNo">1001</span>            for (int i = 0; i &lt; 16; i++) {<a name="line.1001"></a>
+<span class="sourceLineNo">1002</span>                centers[i] = centers[i].interpolate(end, adjust(percent, i));<a name="line.1002"></a>
+<span class="sourceLineNo">1003</span>            }<a name="line.1003"></a>
+<span class="sourceLineNo">1004</span>            validCells.not();<a name="line.1004"></a>
+<span class="sourceLineNo">1005</span>            if(!prev.equals(centers[0]))<a name="line.1005"></a>
+<span class="sourceLineNo">1006</span>            {<a name="line.1006"></a>
+<span class="sourceLineNo">1007</span>                FOV.reuseFOV(resMap, lightMaps[0], centers[0].x, centers[0].y, radius + 0.5);<a name="line.1007"></a>
+<span class="sourceLineNo">1008</span>                validCells.writeDoublesInto(lightMaps[0], 0.0);<a name="line.1008"></a>
+<span class="sourceLineNo">1009</span>            }<a name="line.1009"></a>
+<span class="sourceLineNo">1010</span>            for (int i = 1; i &lt; 16; i++) {<a name="line.1010"></a>
+<span class="sourceLineNo">1011</span>                if(!centers[i-1].equals(centers[i]))<a name="line.1011"></a>
+<span class="sourceLineNo">1012</span>                {<a name="line.1012"></a>
+<span class="sourceLineNo">1013</span>                    FOV.reuseFOV(resMap, lightMaps[i], centers[i].x, centers[i].y, radius + 0.5);<a name="line.1013"></a>
+<span class="sourceLineNo">1014</span>                    validCells.writeDoublesInto(lightMaps[i], 0.0);<a name="line.1014"></a>
+<span class="sourceLineNo">1015</span>                }<a name="line.1015"></a>
+<span class="sourceLineNo">1016</span>                else<a name="line.1016"></a>
+<span class="sourceLineNo">1017</span>                {<a name="line.1017"></a>
+<span class="sourceLineNo">1018</span>                    lightMaps[i] = lightMaps[i-1];<a name="line.1018"></a>
+<span class="sourceLineNo">1019</span>                }<a name="line.1019"></a>
+<span class="sourceLineNo">1020</span>            }<a name="line.1020"></a>
+<span class="sourceLineNo">1021</span>            validCells.not();<a name="line.1021"></a>
+<span class="sourceLineNo">1022</span>            for (int i = 0; i &lt; len; i++) {<a name="line.1022"></a>
+<span class="sourceLineNo">1023</span>                c = affected.get(i);<a name="line.1023"></a>
+<span class="sourceLineNo">1024</span>                for (int j = 0; j &lt; 16; j++) {<a name="line.1024"></a>
+<span class="sourceLineNo">1025</span>                    if ((light = (float) lightMaps[j][c.x][c.y]) &lt;= 0f)<a name="line.1025"></a>
+<span class="sourceLineNo">1026</span>                        continue;<a name="line.1026"></a>
+<span class="sourceLineNo">1027</span>                    target.blend(c.x, c.y, color,  light * 0.0625f);<a name="line.1027"></a>
+<span class="sourceLineNo">1028</span>                }<a name="line.1028"></a>
+<span class="sourceLineNo">1029</span>            }<a name="line.1029"></a>
+<span class="sourceLineNo">1030</span>        }<a name="line.1030"></a>
+<span class="sourceLineNo">1031</span>    }<a name="line.1031"></a>
+<span class="sourceLineNo">1032</span><a name="line.1032"></a>
+<span class="sourceLineNo">1033</span><a name="line.1033"></a>
+<span class="sourceLineNo">1034</span>    public static Interpolation fastInSlowMidFastOut = new Interpolation() {<a name="line.1034"></a>
+<span class="sourceLineNo">1035</span>        private final float value = 2, power = 3;<a name="line.1035"></a>
+<span class="sourceLineNo">1036</span>        @Override<a name="line.1036"></a>
+<span class="sourceLineNo">1037</span>        public float apply(float a) {<a name="line.1037"></a>
+<span class="sourceLineNo">1038</span>            if (a &lt;= 0.5f) return (1 - ((float)Math.pow(value, -power * (a * 2)) - 0.125f) * 1.1428572f) * 0.5f;<a name="line.1038"></a>
+<span class="sourceLineNo">1039</span>            return (1 + (float) Math.pow(value, power * (a * 2 - 2)) - 0.25f) * 0.5714286f;<a name="line.1039"></a>
+<span class="sourceLineNo">1040</span>        }<a name="line.1040"></a>
+<span class="sourceLineNo">1041</span>    };<a name="line.1041"></a>
+<span class="sourceLineNo">1042</span><a name="line.1042"></a>
+<span class="sourceLineNo">1043</span>    /**<a name="line.1043"></a>
+<span class="sourceLineNo">1044</span>     * Convenience method to make a ProjectileEffect or SteadyProjectileEffect take an "arc-like" path toward the<a name="line.1044"></a>
+<span class="sourceLineNo">1045</span>     * target, where it is fast at the beginning and end of its motion and is reaching the height of its arc at the<a name="line.1045"></a>
+<span class="sourceLineNo">1046</span>     * center, before triggering another Action when the projectile stops (often this might be an<a name="line.1046"></a>
+<span class="sourceLineNo">1047</span>     * {@link PanelEffect.ExplosionEffect}, but could be any scene2d Action).<a name="line.1047"></a>
+<span class="sourceLineNo">1048</span>     * @param projectile a {@link PanelEffect.ProjectileEffect} (or a subclass of it) to run as the first step<a name="line.1048"></a>
+<span class="sourceLineNo">1049</span>     * @param result an {@link Action} to run after the ProjectileEffect completes<a name="line.1049"></a>
+<span class="sourceLineNo">1050</span>     * @return an Action that can be added to a scene2d Actor, such as a SquidLayers or SparseLayers<a name="line.1050"></a>
+<span class="sourceLineNo">1051</span>     */<a name="line.1051"></a>
+<span class="sourceLineNo">1052</span>    public static Action makeGrenadeEffect(ProjectileEffect projectile, Action result)<a name="line.1052"></a>
+<span class="sourceLineNo">1053</span>    {<a name="line.1053"></a>
+<span class="sourceLineNo">1054</span>        projectile.useArcPathInterpolation();<a name="line.1054"></a>
+<span class="sourceLineNo">1055</span>        return Actions.sequence(projectile, result);<a name="line.1055"></a>
+<span class="sourceLineNo">1056</span>    }<a name="line.1056"></a>
+<span class="sourceLineNo">1057</span>}<a name="line.1057"></a>
 
 
 

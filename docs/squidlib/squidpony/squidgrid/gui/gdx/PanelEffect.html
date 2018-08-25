@@ -179,6 +179,13 @@ extends com.badlogic.gdx.scenes.scene2d.actions.TemporalAction</pre>
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.PulseEffect.html" title="class in squidpony.squidgrid.gui.gdx">PanelEffect.PulseEffect</a></span></code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.SteadyProjectileEffect.html" title="class in squidpony.squidgrid.gui.gdx">PanelEffect.SteadyProjectileEffect</a></span></code>
+<div class="block">Almost exactly lke <a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ProjectileEffect.html" title="class in squidpony.squidgrid.gui.gdx"><code>PanelEffect.ProjectileEffect</code></a>, but its duration specifies the amount of time to spend crossing each
+ cell (in seconds), not the duration of the entire effect.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -262,10 +269,10 @@ extends com.badlogic.gdx.scenes.scene2d.actions.TemporalAction</pre>
 <td class="colFirst"><code>static com.badlogic.gdx.scenes.scene2d.Action</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.html#makeGrenadeEffect-squidpony.squidgrid.gui.gdx.PanelEffect.ProjectileEffect-com.badlogic.gdx.scenes.scene2d.Action-">makeGrenadeEffect</a></span>(<a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ProjectileEffect.html" title="class in squidpony.squidgrid.gui.gdx">PanelEffect.ProjectileEffect</a>&nbsp;projectile,
                  com.badlogic.gdx.scenes.scene2d.Action&nbsp;result)</code>
-<div class="block">Convenience method to make a ProjectileEffect take an "arc-like" path toward the target, where it is fast at the
- beginning and end of its motion and is reaching the height of its arc at the center, before triggering another
- Action when the projectile stops (often this might be an <a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ExplosionEffect.html" title="class in squidpony.squidgrid.gui.gdx"><code>PanelEffect.ExplosionEffect</code></a>, but could be any
- scene2d Action).</div>
+<div class="block">Convenience method to make a ProjectileEffect or SteadyProjectileEffect take an "arc-like" path toward the
+ target, where it is fast at the beginning and end of its motion and is reaching the height of its arc at the
+ center, before triggering another Action when the projectile stops (often this might be an
+ <a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ExplosionEffect.html" title="class in squidpony.squidgrid.gui.gdx"><code>PanelEffect.ExplosionEffect</code></a>, but could be any scene2d Action).</div>
 </td>
 </tr>
 </table>
@@ -328,7 +335,7 @@ extends com.badlogic.gdx.scenes.scene2d.actions.TemporalAction</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>fastInSlowMidFastOut</h4>
-<pre>public static&nbsp;com.badlogic.gdx.math.Interpolation <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/PanelEffect.html#line.950">fastInSlowMidFastOut</a></pre>
+<pre>public static&nbsp;com.badlogic.gdx.math.Interpolation <a href="../../../../src-html/squidpony/squidgrid/gui/gdx/PanelEffect.html#line.1034">fastInSlowMidFastOut</a></pre>
 </li>
 </ul>
 </li>
@@ -383,15 +390,15 @@ extends com.badlogic.gdx.scenes.scene2d.actions.TemporalAction</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>makeGrenadeEffect</h4>
-<pre>public static&nbsp;com.badlogic.gdx.scenes.scene2d.Action&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/PanelEffect.html#line.968">makeGrenadeEffect</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ProjectileEffect.html" title="class in squidpony.squidgrid.gui.gdx">PanelEffect.ProjectileEffect</a>&nbsp;projectile,
+<pre>public static&nbsp;com.badlogic.gdx.scenes.scene2d.Action&nbsp;<a href="../../../../src-html/squidpony/squidgrid/gui/gdx/PanelEffect.html#line.1052">makeGrenadeEffect</a>(<a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ProjectileEffect.html" title="class in squidpony.squidgrid.gui.gdx">PanelEffect.ProjectileEffect</a>&nbsp;projectile,
                                                                        com.badlogic.gdx.scenes.scene2d.Action&nbsp;result)</pre>
-<div class="block">Convenience method to make a ProjectileEffect take an "arc-like" path toward the target, where it is fast at the
- beginning and end of its motion and is reaching the height of its arc at the center, before triggering another
- Action when the projectile stops (often this might be an <a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ExplosionEffect.html" title="class in squidpony.squidgrid.gui.gdx"><code>PanelEffect.ExplosionEffect</code></a>, but could be any
- scene2d Action).</div>
+<div class="block">Convenience method to make a ProjectileEffect or SteadyProjectileEffect take an "arc-like" path toward the
+ target, where it is fast at the beginning and end of its motion and is reaching the height of its arc at the
+ center, before triggering another Action when the projectile stops (often this might be an
+ <a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ExplosionEffect.html" title="class in squidpony.squidgrid.gui.gdx"><code>PanelEffect.ExplosionEffect</code></a>, but could be any scene2d Action).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>projectile</code> - a <a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ProjectileEffect.html" title="class in squidpony.squidgrid.gui.gdx"><code>PanelEffect.ProjectileEffect</code></a> to run as the first step</dd>
+<dd><code>projectile</code> - a <a href="../../../../squidpony/squidgrid/gui/gdx/PanelEffect.ProjectileEffect.html" title="class in squidpony.squidgrid.gui.gdx"><code>PanelEffect.ProjectileEffect</code></a> (or a subclass of it) to run as the first step</dd>
 <dd><code>result</code> - an <code>Action</code> to run after the ProjectileEffect completes</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an Action that can be added to a scene2d Actor, such as a SquidLayers or SparseLayers</dd>
